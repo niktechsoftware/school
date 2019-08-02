@@ -72,26 +72,11 @@ $school_code = $this->session->userdata("school_code");
             <div class="panel-body no-padding">
                 <div class="partition-green text-center core-icon">
                     <i class="fa fa-inr fa-2x icon-big"></i><br>
-                    <!-- <?php 
-		             $value1=   $this->session->userdata("school_code");
-		             $value2=   date('Y-m-d');
-		             $info = $this->db->query('SELECT `closing_balance` FROM `day_book` WHERE (`school_code`= '.$value1.') ORDER BY id DESC;')->row();
-                    ?>
-					<span class="subtitle"><?php echo $info->closing_balance; ?>  </span> -->
+                   
 					<span class="subtitle">
-						<?php 
-		             $school_code=   $this->session->userdata("school_code");
-					 $clos_opening = $this->db->query("select * from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='".$school_code."' ");
-					 $r = $clos_opening;
-					 if($r->num_rows()>0){
-                     $open=$r->row()->opening_balance;
-					 $close=$r->row()->closing_balance;
-					 $total=$close-$open;
-					 echo $total ;}
-					 else{
-					     echo "0.00";
-					 }
-                    ?>
+					<mark>	<?php 
+		           echo $totalIncome;
+                    ?></mark>
                     </span>
                 </div>
                 <a href="<?php echo base_url(); ?>index.php/login/feeReport">
@@ -110,16 +95,7 @@ $school_code = $this->session->userdata("school_code");
             <div class="panel-body no-padding">
                 <div class="partition-azure text-center core-icon">
                     <i class="fa fa-book fa-2x icon-big"></i>
-                    	<!-- <span class="subtitle">
-					<?php 
-		             $school_code=   $this->session->userdata("school_code");
-					 $clos_opening = mysqli_query($this->db->conn_id,"select * from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='".$school_code."' ");
-					 $r = mysqli_fetch_object($clos_opening);
-                     $open=$r->opening_balance;
-					 $close=$r->closing_balance;
-					 $total=$close-$open;
-					 echo $total ;
-                    ?></span> -->
+                    	
                 </div>
                 <a href="<?php echo base_url(); ?>index.php/login/daybook">
                 <div class="padding-20 core-content">
@@ -129,7 +105,7 @@ $school_code = $this->session->userdata("school_code");
 					<div class="row">
 						<div class="col-sm-6">
 						<h6 class="block no-margin">Debit Amount</h6>
-						<?php 
+						<mark><?php 
 					$damount=0;
 					 $school_code=   $this->session->userdata("school_code");
 					 $this->db->where('school_code',$school_code);
@@ -141,10 +117,10 @@ $school_code = $this->session->userdata("school_code");
 					 }
 					 echo $damount;
 					?>
-						</div>
+						</mark></div>
 						<div class="col-sm-6">
 						<h6 class="block no-margin">Credit Amount</h6>
-						<?php 
+						<mark><?php 
 					$camount=0;
 					 $school_code=   $this->session->userdata("school_code");
 					 $this->db->where('school_code',$school_code);
@@ -156,7 +132,7 @@ $school_code = $this->session->userdata("school_code");
 					 }
 					 echo $camount;
                     ?>
-						</div>
+						</mark></div>
 					</div>
 					
 					
@@ -172,13 +148,13 @@ $school_code = $this->session->userdata("school_code");
                 <div class="partition-pink text-center core-icon">
                     <i class="fa fa-users fa-2x icon-big"></i>
                      <br>
-                    	<span class="subtitle"> <?php 
+                    	<span class="subtitle"> <mark><?php 
                     	$this->db->where("school_code",$this->session->userdata("school_code"));
 			            $this->db->where("status",1); 
 			             $this->db->where("job_category",3);
 		                 $info = $this->db->get("employee_info")->num_rows();
 		                 echo $info ;
-                    	?>  </span>
+                    	?>  </mark></span>
                 </div>
                 <a href="<?php echo base_url(); ?>index.php/login/classteacher">
                 <div class="padding-20 core-content">
@@ -190,38 +166,14 @@ $school_code = $this->session->userdata("school_code");
             </div>
         </div>
     </div>
-    <!--<div class="col-md-6 col-lg-3 col-sm-6">
-        <div class="panel panel-default panel-white core-box">
-            <div class="panel-body no-padding">
-                <div class="partition-red padding-20 text-center core-icon">
-                    <i class="fa fa-tasks fa-2x icon-big"></i>
-                </div>
-                <a href="<?php echo base_url(); ?>index.php/login/schedulingReport">
-                <div class="padding-20 core-content">
-                    <h4 class="title block no-margin">Time Table</h4>
-                    <br/>
-                    <span class="subtitle"> Access the time table. </span>
-                </div>
-                </a>
-            </div>
-        </div>
-	</div>-->
+   
 	<div class="col-md-6 col-lg-3 col-sm-6">
         <div class="panel panel-default panel-white core-box">
             <div class="panel-body no-padding">
                 <div class="partition-blue text-center core-icon">
                     <i class="fa fa-users fa-2x icon-big"></i>
                    
-                    	<!-- <span class="subtitle"> <?php 
-                   // $school_code = $this->session->userdata("school_code");
-                    //$this->db->select('*');
-                    //$this->db->from('student_info');
-                    //$this->db->join('class_info','class_info.id=student_info.class_id');
-                   // $this->db->where("class_info.school_code",$school_code);
-                   // $this->db->where("student_info.status",1);
-                   // $query=$this->db->get();
-		             // echo $query->num_rows();   
-		                 ?>  </span> -->
+                 </span> 
                 </div>
                 <a href="<?php echo base_url(); ?>index.php/login/newAdmission">
 				<div class="padding-20 core-content">
@@ -230,20 +182,18 @@ $school_code = $this->session->userdata("school_code");
 				   <div class="row">
 					   <div class="col-sm-6">
 					   <h6 class="block no-margin">Total Students</h6>
-						<?php //$fsd = $this->session->userdata("fsd");
+						<mark><?php 
 						$this->db->select('*');
 							$this->db->from('student_info');
 							$this->db->join('class_info','class_info.id=student_info.class_id');
 							$this->db->where("class_info.school_code",$school_code);
-							//$this->db->where("student_info.status",1);
-							//$this->db->where("student_info.fsd",$fsd);
+							
 							$query=$this->db->get();
-							echo $query->num_rows() ;?>
+							echo $query->num_rows() ;?></mark>
 					   </div>
 					   <div class="col-sm-6">
-					   <h6 class="block no-margin">Current Year Students</h6>
-					   <!-- <span class="subtitle">Total Todays Enroll New Students. </span> -->
-					   <?php $fsd = $this->session->userdata("fsd");
+					   <h6 class="block no-margin">Current Year</h6>
+					  <mark> <?php $fsd = $this->session->userdata("fsd");
 						$this->db->select('*');
 							$this->db->from('student_info');
 							$this->db->join('class_info','class_info.id=student_info.class_id');
@@ -251,7 +201,7 @@ $school_code = $this->session->userdata("school_code");
 							$this->db->where("student_info.status",1);
 							$this->db->where("student_info.fsd",$fsd);
 							$query=$this->db->get();
-							echo $query->num_rows() ;?>
+							echo $query->num_rows() ;?></mark>
 					   </div>
 				   </div>
 				  
@@ -411,8 +361,8 @@ $school_code = $this->session->userdata("school_code");
 							<!--	</div>-->
 							<!--</div>-->
 							
-							<div class="col-md-5 col-lg-4">
-    <div class="panel panel-dark">
+							
+   <!--  <div class="panel panel-dark">
         <div class="panel-heading text-center">
             <h4 class="panel-title">Class Homework</h4>
             <div class="panel-tools">
@@ -447,10 +397,8 @@ $school_code = $this->session->userdata("school_code");
             </div>
         </div>
         
-        <div class="panel-body no-padding">
-            <!--<div class="partition-green padding-15 text-center">-->
-            <!--    <h4 class="no-margin">Last 4 Transaction</h4>-->
-            <!--</div>-->
+      <!--   <div class="panel-body no-padding">
+          
              <?php
                                 $school_code=$this->session->userdata('school_code');
                                   $this->db->where('school_code',$school_code);
@@ -464,6 +412,10 @@ $school_code = $this->session->userdata("school_code");
                                        $this->db->where('id',$cname->stream);
                                       $this->db->where('school_code',$school_code);
                                       $streamname=$this->db->get('stream')->row();
+                                      $this->db->where('class_id',$cname->id);
+                                      $this->db->where('school_code',$school_code);
+                                      $homework_name=$this->db->get('homework_name');
+                                      if($homework_name->num_rows() >0){
                                 ?>
             <div id="accordion" class="panel-group accordion accordion-white no-margin">
                 <div class="panel no-radius">
@@ -479,11 +431,9 @@ $school_code = $this->session->userdata("school_code");
                             <table class="table">
                                 <tbody>
                                 <?php 
-                                      $this->db->where('class_id',$cname->id);
-                                      $this->db->where('school_code',$school_code);
-                                      $homework_name=$this->db->get('homework_name');
+                                     
                                 ?>
-                                <?php if($homework_name->num_rows() >0):?>
+                                <?php ?>
                                 <?php $i=1; foreach($homework_name->result() as $row):?>
                                 <tr>
                                     <td class="center"><?php echo $i;?></td>
@@ -495,11 +445,11 @@ $school_code = $this->session->userdata("school_code");
                                    
                                 </tr>
                                 <?php $i++; endforeach;?>
-                                <?php else: ?>
+                                <?php }else{ ?>
                                 <tr>
                                     <td class="center"><h2>Home Work not define ...</h2></td>
                                 </tr>
-                                <?php endif;?>
+                                <?php }?>
                                 </tbody>
                             </table>
                         </div>
@@ -507,12 +457,13 @@ $school_code = $this->session->userdata("school_code");
                 </div>
             </div>
             <?php  }?>
-        </div>
+        </div> 
     </div>
-</div>
+    </div>-->
+     <div class="row" style="margin-left:2px;">
 
-							<div class="col-lg-8 col-md-7" style="width:820px;">
-								<div class="panel panel-white">
+							<div class="col-lg-7 col-md-6" style="width:720px;">
+								<div class="panel panel-white" style=" height:406px;">
 									<div class="panel-heading border-light">
 										<h4 class="panel-title">Earnings</h4>
 										<ul class="panel-heading-tabs border-light">
@@ -607,45 +558,16 @@ $school_code = $this->session->userdata("school_code");
 								</div>
 							</div>
 
-						</div>
+					
 
-                            <div class="row" style="margin-left:2px;">
+                           
 
 							<div class="col-lg-4 col-md-5">
 								<div class="panel">
 									<div class="panel-heading">
 										<i class="clip-bars"></i>
 										<h4 class="panel-title">Pageviews <span class="text-bold">real-time</span></h4>
-										<div class="panel-tools">
-											<div class="dropdown">
-												<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
-													<i class="fa fa-cog"></i>
-												</a>
-												<ul class="dropdown-menu dropdown-light pull-right" role="menu">
-													<li>
-														<a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
-													</li>
-													<li>
-														<a class="panel-refresh" href="#">
-															<i class="fa fa-refresh"></i> <span>Refresh</span>
-														</a>
-													</li>
-													<li>
-														<a class="panel-config" href="#panel-config" data-toggle="modal">
-															<i class="fa fa-wrench"></i> <span>Configurations</span>
-														</a>
-													</li>
-													<li>
-														<a class="panel-expand" href="#">
-															<i class="fa fa-expand"></i> <span>Fullscreen</span>
-														</a>
-													</li>
-												</ul>
-											</div>
-											<a class="btn btn-xs btn-link panel-close" href="#">
-												<i class="fa fa-times"></i>
-											</a>
-										</div>
+										
 									</div>
 									<div class="panel-body">
 										<h3 class="inline">26</h3> visitors on-line
@@ -675,7 +597,7 @@ $school_code = $this->session->userdata("school_code");
 												Search
 											</div>
 										</div>
-										<div class="row space10">
+										<div class="row space2">
 											<div class="col-sm-4 text-center">
 												<div class="rate">
 													<i class="fa fa-caret-up text-green"></i><span class="value">26</span><span class="percentage">%</span>
@@ -695,7 +617,7 @@ $school_code = $this->session->userdata("school_code");
 												Other OS
 											</div>
 										</div>
-										<div class="height-155">
+										<div class="height-120">
 											<div id="chart2" class="chart half with-transitions">
 												<svg><g class="nvd3 nv-wrap nv-historicalBarChart" transform="translate(0,30)"><g><g class="nv-x nv-axis" transform="translate(0,80)"><g class="nvd3 nv-wrap nv-axis"><g><g class="tick major" transform="translate(167.54483369433595,0)" style="opacity: 1;"><line y2="-80" x2="0"></line><text y="7" dy=".71em" x="0" style="text-anchor: middle;">1,056.0</text></g><g class="tick major" transform="translate(251.3226046923828,0)" style="opacity: 1;"><line y2="-80" x2="0"></line><text y="7" dy=".71em" x="0" style="text-anchor: middle;">1,058.0</text></g><g class="tick major" transform="translate(335.1003909472656,0)" style="opacity: 0.000257;"><line y2="-80" x2="0"></line><text y="7" dy=".71em" x="0" style="text-anchor: middle;">1,060.0</text></g><path class="domain" d="M0,0V0H377V0"></path><text class="nv-axislabel" text-anchor="middle" y="36" x="188.5"></text></g><g class="nv-axisMaxMin" transform="translate(0,0)"><text dy=".71em" y="7" transform="rotate(0 0,0)" style="text-anchor: middle;">1,053.0</text></g><g class="nv-axisMaxMin" transform="translate(377,0)"><text dy=".71em" y="7" transform="rotate(0 0,0)" style="text-anchor: middle;">1,062.0</text></g></g></g><g class="nv-y nv-axis"></g><g class="nv-barsWrap"><g class="nvd3 nv-wrap nv-historicalBar-3508" transform="translate(0,0)"><defs><clipPath id="nv-chart-clip-path-3508"><rect width="377" height="80"></rect></clipPath></defs><g clip-path="url(#nv-chart-clip-path-3508)"><g class="nv-bars"><rect x="0" y="69.07772000111109" height="10.92227999888891" transform="translate(24.909616107567384,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-0" width="33.93000000000001"></rect><rect x="0" y="11.545639798094953" height="68.45436020190505" transform="translate(66.79850160691406,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-1" width="33.93000000000001"></rect><rect x="0" y="1.4210854715202004e-14" height="79.99999999999999" transform="translate(108.68739473175586,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-2" width="33.93000000000001"></rect><rect x="0" y="0.4244218579440826" height="79.57557814205592" transform="translate(150.57628785919727,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-3" width="33.93000000000001"></rect><rect x="0" y="17.890505748306182" height="62.10949425169382" transform="translate(192.46517335984376,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-4" width="33.93000000000001"></rect><rect x="0" y="77.28036447631689" height="2.7196355236831096" transform="translate(234.35405885789064,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-5" width="33.93000000000001"></rect><rect x="0" y="42.91855618102627" height="37.08144381897373" transform="translate(276.24295960952736,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-6" width="33.93000000000001"></rect><rect x="0" y="13.99864499681442" height="66.00135500318558" transform="translate(318.1318451127734,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-7" width="33.93000000000001"></rect><rect x="0" y="21.750060333414318" height="58.24993966658568" transform="translate(360.0207306108203,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-8" width="33.93000000000001"></rect><rect x="0" y="37.26956218976048" height="42.73043781023952" transform="translate(360.03499999999997,0)" fill="#5F8295" class="nv-bar positive nv-bar-0-9" width="33.93000000000001"></rect></g></g></g></g><g class="nv-legendWrap"></g></g></g></svg>
 												<!--
@@ -803,340 +725,8 @@ $school_code = $this->session->userdata("school_code");
 
 
 
-<div class="row" style="margin-left:2px;">
-<div class="col-md-4 col-lg-4">
-    <div class="panel panel-dark">
-        <div class="panel-heading">
-            <h4 class="panel-title">Cash Transaction</h4>
-            <div class="panel-tools">
-                <div class="dropdown">
-                    <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-white">
-                        <i class="fa fa-cog"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-light pull-right" role="menu">
-                        <li>
-                            <a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
-                        </li>
-                        <li>
-                            <a class="panel-refresh" href="#">
-                                <i class="fa fa-refresh"></i> <span>Refresh</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="panel-config" href="#panel-config" data-toggle="modal">
-                                <i class="fa fa-wrench"></i> <span>Configurations</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="panel-expand" href="#">
-                                <i class="fa fa-expand"></i> <span>Fullscreen</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <a class="btn btn-xs btn-link panel-close" href="#">
-                    <i class="fa fa-times"></i>
-                </a>
-            </div>
-        </div>
-        <div class="panel-body no-padding">
-            <div class="partition-green padding-15 text-center">
-                <h4 class="no-margin">Last 4 Transaction</h4>
-            </div>
-            <div id="accordion" class="panel-group accordion accordion-white no-margin">
-                <div class="panel no-radius">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15">
-                                <i class="icon-arrow"></i>
-                                <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
-                                Cash Payment <?php if($new > 0):?> <span class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
-                            </a></h4>
-                    </div>
-                    <div class="panel-collapse collapse in" id="collapseOne">
-                        <div class="panel-body no-padding partition-light-grey">
-                        <a href="<?php echo base_url()?>index.php/login/dayBook">
-                            <table class="table">
-                                <tbody>
-                                <?php $i=1;?>
-                                <?php $cash = $this->db->query("SELECT * FROM cash_payment where school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
-                                <?php if($cash->num_rows() >= 1):?>
-                                <?php foreach($cash->result() as $row):?>
-                                <tr>
-                                    <td class="center"><?php echo $i;?></td>
-                                    <td>
-                                    	<?php
-                                    		if(strlen($row->valid_id)>1):
-                                    			echo $row->valid_id;
-                                    		else:
-                                    			echo $row->name;
-                                    		endif;
-                                    	?>
-                                    </td>
-                                    <td class="center"><?php echo $row->amount;?></td>
-                                    <td><?php echo date("d-M-Y", strtotime("$row->date"));?></td>
-                                </tr>
-                                <?php $i++; endforeach;?>
-                                <?php else: ?>
-                                <tr>
-                                    <td class="center"><h2>No Trasaction done yet...</h2></td>
-                                </tr>
-                                <?php endif;?>
-                                </tbody>
-                            </table>
-                        </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel no-radius">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15 collapsed">
-                                <i class="icon-arrow"></i>
-                                <?php $new = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
-                                Bank Transaction <?php if($new > 0):?> <span class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
-                            </a></h4>
-                    </div>
-                    <div class="panel-collapse collapse" id="collapseTwo">
-                        <div class="panel-body no-padding partition-light-grey">
-                        <a href="<?php echo base_url()?>index.php/login/dayBook">
-                            <table class="table">
-                                <tbody>
-                                <?php $i=1;?>
-                                <?php $cash = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
-                                <?php if($cash->num_rows() >= 1):?>
-                                <?php foreach($cash->result() as $row):?>
-                                <tr>
-                                    <td class="center">1</td>
-                                    <td><?php echo $row->id_name; ?></td>
-                                    <td class="center"><?php echo $row->amount;?></td>
-                                    <td><?php echo date("d-M-Y", strtotime("$row->date"));?></td>
-                                </tr>
-                                <?php $i++; endforeach;?>
-                                </tbody>
-                                <?php else: ?>
-                                <tr>
-                                    <td class="center"><h2>No Trasaction done yet...</h2></td>
-                                </tr>
-                                <?php endif;?>
-                            </table>
-                        </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel no-radius">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15 collapsed">
-                                <i class="icon-arrow"></i>
-                                <?php $new = $this->db->query("SELECT * FROM director_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
-                                Director Transaction <?php if($new > 0):?> <span class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
-                            </a></h4>
-                    </div>
-                    <div class="panel-collapse collapse" id="collapseThree">
-                        <div class="panel-body no-padding partition-light-grey">
-                        <a href="<?php echo base_url()?>index.php/login/dayBook">
-                            <table class="table">
-                                <tbody>
-                                <?php $i=1;?>
-                                <?php $cash = $this->db->query("SELECT * FROM director_transaction WHERE school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
-                                <?php if($cash->num_rows() >= 1):?>
-                                <?php foreach($cash->result() as $row):?>
-                                <tr>
-                                    <td class="center"><?php echo $i;?></td>
-                                    <td>
-                                    	<?php echo $row->applicant_name; ?>
-                                    </td>
-                                    <td class="center"><?php echo $row->amount;?></td>
-                                    <td><?php echo date("d-M-Y", strtotime("$row->date"));?></td>
-                                </tr>
-                                <?php $i++; endforeach;?>
-                                <?php else: ?>
-                                <tr>
-                                    <td class="center"><h2>No Trasaction done yet...</h2></td>
-                                </tr>
-                                <?php endif;?>
-                                </tbody>
-                            </table>
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-md-4 col-lg-4 col-sm-6">
-    <div class="panel panel-blue core-box">
+
     
-     <?php              $dt=date('Y-m-d'); ?>
-        <?php $leve = $this->db->query("SELECT * FROM emp_leave WHERE school_code='$school_code' AND  end_date>='$dt' ORDER BY id");?>
-        <?php $is_row=$leve->num_rows();?>
-        <?php if($is_row > 0):?>
-             <div class="e-slider owl-carousel owl-theme">
-        <?php foreach($leve->result() as $row):?>
-        	<?php $id = $row->emp_id;?>
-			<?php
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("id",$id); 
-		    $info = $this->db->get("employee_info")->row(); ?>
-
-            <div class="item">
-                <div class="panel-body">
-                    <div class="core-box">
-                        <div class="text-light text-bold">
-                            Employee Leave Request
-                        </div>
-                        <br/>
-                        <table style="width: 100%;">
-                        	<tr>
-                        		<td rowspan="4" width="30%">
-
-                        			<?php if(strlen($info->photo > 0)):?>
-                                        <img src="<?php echo base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->photo; ?>"  alt="" width="90" height="105" />
-									<?php else:?>
-										<?php if($info->gender == 'Male'):?>
-											<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/empMale.png" />	
-										<?php endif;?>
-										<?php if($info->gender == 'Female'):?>
-											<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/empFemale.png" />	
-										<?php endif;?>
-									<?php endif;?>
-                        		</td>
-                        		<td>Name :
-                        			<?php echo $info->name;?>
-                        		</td>
-                        	</tr>
-                        	<tr>
-                        		<td>Start Date : <?php echo date("d-M-Y", strtotime($row->start_date)); ?></td>
-                        	</tr>
-                        	<tr>
-                        		<td>Days : <?php echo $row->total_leave; ?></td>
-                        	</tr>
-                        	<tr>
-                        		<td>End Date : <?php echo date("d-M-Y", strtotime($row->end_date)); ?></td>
-                        	</tr>
-                        	<tr>
-                        		<td colspan="2"><br/>Reason : <?php echo implode(' ', array_slice(explode(' ', $row->reason), 0, 7)); ?>...</td>
-                        	</tr>
-                        </table>
-                    </div>
-                </div>
-                 <div class="padding-10">
-                	<?php if($row->status==0){?>
-                	<a href="<?php echo base_url();?>index.php/adminController/appleaveemp/<?php echo $row->id;?>" class="btn btn-sm btn-light-green"><i class="fa fa-check"></i> Approve</a>
-                    <a href="<?php echo base_url();?>index.php/adminController/deleleaveemp/<?php echo $row->id;?>" class="btn btn-sm btn-light-red"><strong>x</strong> Reject</a>
-                <?php } else{?>
-                    <a href="#" class="btn btn-sm btn-light-yellow">
-                        Approved<i  class="fa fa-check"></i>
-                    </a>
-                <?php }?>
-                </div>
-            </div>
-            
-            <?php endforeach; ?>
-             </div>
-        <?php else: ?>
-        	<div class="item">
-                <div class="panel-body">
-                    <div class="core-box">
-                        <div class="text-light text-bold">
-                            Employee Leave Request
-                        </div>
-                        <br/>
-                    	<h2>There is no request for the day.....</h2>
-                    </div>
-                </div>
-            </div>
-        <?php endif;?>
-
-        </div>
-    </div>
- <div class="col-md-4 col-lg-4 col-sm-6" style="height:auto;">
-    <div class="panel panel-blue core-box">
-    <div class="e-slider owl-carousel owl-theme">
-        <?php $dt=date('Y-m-d');?>
-        <?php $leve = $this->db->query("SELECT * FROM stu_leave WHERE school_code='$school_code' AND end_date>='$dt'  ORDER BY id");?>
-        <?php $is_row=$leve->num_rows();?>
-        <?php if($is_row > 0):?>
-       
-        <?php foreach($leve->result() as $row):?>
-        	<?php $id = $row->stu_id;?>
-			<?php
-			//$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("id",$id); ?>
-			<?php $info = $this->db->get("student_info")->row(); ?>
-            <div class="item">
-                <div class="panel-body">
-                    <div class="core-box">
-                        <div class="text-light text-bold">
-                            Student Leave Request
-                        </div>
-                        <br/>
-                        <table style="width: 100%;">
-                        	<tr>
-                        		<td rowspan="4" width="30%">
-
-                        			<?php if(strlen($info->photo > 0)):?>
-										<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $info->photo;?>" />
-									<?php else:?>
-										<?php if($info->gender == 'Male'):?>
-											<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/empMale.png" />	
-										<?php endif;?>
-										<?php if($info->gender == 'Female'):?>
-											<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/empFemale.png" />	
-										<?php endif;?>
-									<?php endif;?>
-                        		</td>
-                        		<td>Name :
-                        			<?php echo $info->name;?>
-                        		</td>
-                        	</tr>
-                        	<tr>
-                        		<td>Start Date : <?php echo date("d-M-Y", strtotime($row->start_date)); ?></td>
-                        	</tr>
-                        	<tr>
-                        		<td>Days : <?php echo $row->total_leave; ?></td>
-                        	</tr>
-                        	<tr>
-                        		<td>End Date : <?php echo date("d-M-Y", strtotime($row->end_date)); ?></td>
-                        	</tr>
-                        	<tr>
-                        		<td colspan="2"><br/>Reason : <?php echo implode(' ', array_slice(explode(' ', $row->reason), 0, 7)); ?>...</td>
-                        	</tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="padding-10">
-                	<?php if($row->approve=='NO'){?>
-                	<a href="<?php echo base_url();?>index.php/adminController/appleave/<?php echo $row->id;?>" class="btn btn-sm btn-light-green"><i class="fa fa-check"></i> Approve</a>
-                    <a href="<?php echo base_url();?>index.php/adminController/deleleave/<?php echo $row->id;?>" class="btn btn-sm btn-light-red"><strong>x</strong> Reject</a>
-                <?php } else{?>
-                    <a href="#" class="btn btn-sm btn-light-yellow">
-                        Approved<i  class="fa fa-check"></i>
-                    </a>
-                <?php }?>
-                </div>
-                </div>
-
-                <?php endforeach; ?>
-                </div>
-        <?php else: ?>
-        	<div class="item">
-                <div class="panel-body">
-                    <div class="core-box">
-                        <div class="text-light text-bold">
-                            Student Leave Request
-                        </div>
-                        <br/>
-                    	<h2>There is no request for the day.....</h2>
-                    </div>
-                </div>
-            </div>
-        <?php endif;?>
-        </div>
-         </div>
-    </div>
 <div class="row" Style="margin-left:2px;">
  <div class="col-md-4 col-lg-4">
         <div class="panel panel-default panel-white ">
@@ -1473,6 +1063,341 @@ $school_code = $this->session->userdata("school_code");
 								</div>
 							</div>
 							</div>
+							
+							<div class="row" style="margin-left:2px;">
+<div class="col-md-4 col-lg-4">
+    <div class="panel panel-dark">
+        <div class="panel-heading">
+            <h4 class="panel-title">Cash Transaction</h4>
+            <div class="panel-tools">
+                <div class="dropdown">
+                    <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-white">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-light pull-right" role="menu">
+                        <li>
+                            <a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
+                        </li>
+                        <li>
+                            <a class="panel-refresh" href="#">
+                                <i class="fa fa-refresh"></i> <span>Refresh</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="panel-config" href="#panel-config" data-toggle="modal">
+                                <i class="fa fa-wrench"></i> <span>Configurations</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="panel-expand" href="#">
+                                <i class="fa fa-expand"></i> <span>Fullscreen</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="btn btn-xs btn-link panel-close" href="#">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-body no-padding">
+            <div class="partition-green padding-15 text-center">
+                <h4 class="no-margin">Last 4 Transaction</h4>
+            </div>
+            <div id="accordion" class="panel-group accordion accordion-white no-margin">
+                <div class="panel no-radius">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15">
+                                <i class="icon-arrow"></i>
+                                <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
+                                Cash Payment <?php if($new > 0):?> <span class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+                            </a></h4>
+                    </div>
+                    <div class="panel-collapse collapse in" id="collapseOne">
+                        <div class="panel-body no-padding partition-light-grey">
+                        <a href="<?php echo base_url()?>index.php/login/dayBook">
+                            <table class="table">
+                                <tbody>
+                                <?php $i=1;?>
+                                <?php $cash = $this->db->query("SELECT * FROM cash_payment where school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
+                                <?php if($cash->num_rows() >= 1):?>
+                                <?php foreach($cash->result() as $row):?>
+                                <tr>
+                                    <td class="center"><?php echo $i;?></td>
+                                    <td>
+                                    	<?php
+                                    		if(strlen($row->valid_id)>1):
+                                    			echo $row->valid_id;
+                                    		else:
+                                    			echo $row->name;
+                                    		endif;
+                                    	?>
+                                    </td>
+                                    <td class="center"><?php echo $row->amount;?></td>
+                                    <td><?php echo date("d-M-Y", strtotime("$row->date"));?></td>
+                                </tr>
+                                <?php $i++; endforeach;?>
+                                <?php else: ?>
+                                <tr>
+                                    <td class="center"><h2>No Trasaction done yet...</h2></td>
+                                </tr>
+                                <?php endif;?>
+                                </tbody>
+                            </table>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel no-radius">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15 collapsed">
+                                <i class="icon-arrow"></i>
+                                <?php $new = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
+                                Bank Transaction <?php if($new > 0):?> <span class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+                            </a></h4>
+                    </div>
+                    <div class="panel-collapse collapse" id="collapseTwo">
+                        <div class="panel-body no-padding partition-light-grey">
+                        <a href="<?php echo base_url()?>index.php/login/dayBook">
+                            <table class="table">
+                                <tbody>
+                                <?php $i=1;?>
+                                <?php $cash = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
+                                <?php if($cash->num_rows() >= 1):?>
+                                <?php foreach($cash->result() as $row):?>
+                                <tr>
+                                    <td class="center">1</td>
+                                    <td><?php echo $row->id_name; ?></td>
+                                    <td class="center"><?php echo $row->amount;?></td>
+                                    <td><?php echo date("d-M-Y", strtotime("$row->date"));?></td>
+                                </tr>
+                                <?php $i++; endforeach;?>
+                                </tbody>
+                                <?php else: ?>
+                                <tr>
+                                    <td class="center"><h2>No Trasaction done yet...</h2></td>
+                                </tr>
+                                <?php endif;?>
+                            </table>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel no-radius">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle padding-15 collapsed">
+                                <i class="icon-arrow"></i>
+                                <?php $new = $this->db->query("SELECT * FROM director_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
+                                Director Transaction <?php if($new > 0):?> <span class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+                            </a></h4>
+                    </div>
+                    <div class="panel-collapse collapse" id="collapseThree">
+                        <div class="panel-body no-padding partition-light-grey">
+                        <a href="<?php echo base_url()?>index.php/login/dayBook">
+                            <table class="table">
+                                <tbody>
+                                <?php $i=1;?>
+                                <?php $cash = $this->db->query("SELECT * FROM director_transaction WHERE school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
+                                <?php if($cash->num_rows() >= 1):?>
+                                <?php foreach($cash->result() as $row):?>
+                                <tr>
+                                    <td class="center"><?php echo $i;?></td>
+                                    <td>
+                                    	<?php echo $row->applicant_name; ?>
+                                    </td>
+                                    <td class="center"><?php echo $row->amount;?></td>
+                                    <td><?php echo date("d-M-Y", strtotime("$row->date"));?></td>
+                                </tr>
+                                <?php $i++; endforeach;?>
+                                <?php else: ?>
+                                <tr>
+                                    <td class="center"><h2>No Trasaction done yet...</h2></td>
+                                </tr>
+                                <?php endif;?>
+                                </tbody>
+                            </table>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 col-lg-4 col-sm-6">
+    <div class="panel panel-blue core-box">
+    
+     <?php              $dt=date('Y-m-d'); ?>
+        <?php $leve = $this->db->query("SELECT * FROM emp_leave WHERE school_code='$school_code' AND  end_date>='$dt' ORDER BY id");?>
+        <?php $is_row=$leve->num_rows();?>
+        <?php if($is_row > 0):?>
+             <div class="e-slider owl-carousel owl-theme">
+        <?php foreach($leve->result() as $row):?>
+        	<?php $id = $row->emp_id;?>
+			<?php
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("id",$id); 
+		    $info = $this->db->get("employee_info")->row(); ?>
+
+            <div class="item">
+                <div class="panel-body">
+                    <div class="core-box">
+                        <div class="text-light text-bold">
+                            Employee Leave Request
+                        </div>
+                        <br/>
+                        <table style="width: 100%;">
+                        	<tr>
+                        		<td rowspan="4" width="30%">
+
+                        			<?php if(strlen($info->photo > 0)):?>
+                                        <img src="<?php echo base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->photo; ?>"  alt="" width="90" height="105" />
+									<?php else:?>
+										<?php if($info->gender == 'Male'):?>
+											<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/empMale.png" />	
+										<?php endif;?>
+										<?php if($info->gender == 'Female'):?>
+											<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/empFemale.png" />	
+										<?php endif;?>
+									<?php endif;?>
+                        		</td>
+                        		<td>Name :
+                        			<?php echo $info->name;?>
+                        		</td>
+                        	</tr>
+                        	<tr>
+                        		<td>Start Date : <?php echo date("d-M-Y", strtotime($row->start_date)); ?></td>
+                        	</tr>
+                        	<tr>
+                        		<td>Days : <?php echo $row->total_leave; ?></td>
+                        	</tr>
+                        	<tr>
+                        		<td>End Date : <?php echo date("d-M-Y", strtotime($row->end_date)); ?></td>
+                        	</tr>
+                        	<tr>
+                        		<td colspan="2"><br/>Reason : <?php echo implode(' ', array_slice(explode(' ', $row->reason), 0, 7)); ?>...</td>
+                        	</tr>
+                        </table>
+                    </div>
+                </div>
+                 <div class="padding-10">
+                	<?php if($row->status==0){?>
+                	<a href="<?php echo base_url();?>index.php/adminController/appleaveemp/<?php echo $row->id;?>" class="btn btn-sm btn-light-green"><i class="fa fa-check"></i> Approve</a>
+                    <a href="<?php echo base_url();?>index.php/adminController/deleleaveemp/<?php echo $row->id;?>" class="btn btn-sm btn-light-red"><strong>x</strong> Reject</a>
+                <?php } else{?>
+                    <a href="#" class="btn btn-sm btn-light-yellow">
+                        Approved<i  class="fa fa-check"></i>
+                    </a>
+                <?php }?>
+                </div>
+            </div>
+            
+            <?php endforeach; ?>
+             </div>
+        <?php else: ?>
+        	<div class="item">
+                <div class="panel-body">
+                    <div class="core-box">
+                        <div class="text-light text-bold">
+                            Employee Leave Request
+                        </div>
+                        <br/>
+                    	<h2>There is no request for the day.....</h2>
+                    </div>
+                </div>
+            </div>
+        <?php endif;?>
+
+        </div>
+    </div>
+ <div class="col-md-4 col-lg-4 col-sm-6" style="height:auto;">
+    <div class="panel panel-blue core-box">
+    <div class="e-slider owl-carousel owl-theme">
+        <?php $dt=date('Y-m-d');?>
+        <?php $leve = $this->db->query("SELECT * FROM stu_leave WHERE school_code='$school_code' AND end_date>='$dt'  ORDER BY id");?>
+        <?php $is_row=$leve->num_rows();?>
+        <?php if($is_row > 0):?>
+       
+        <?php foreach($leve->result() as $row):?>
+        	<?php $id = $row->stu_id;?>
+			<?php
+			//$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("id",$id); ?>
+			<?php $info = $this->db->get("student_info")->row(); ?>
+            <div class="item">
+                <div class="panel-body">
+                    <div class="core-box">
+                        <div class="text-light text-bold">
+                            Student Leave Request
+                        </div>
+                        <br/>
+                        <table style="width: 100%;">
+                        	<tr>
+                        		<td rowspan="4" width="30%">
+
+                        			<?php if(strlen($info->photo > 0)):?>
+										<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $info->photo;?>" />
+									<?php else:?>
+										<?php if($info->gender == 'Male'):?>
+											<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/empMale.png" />	
+										<?php endif;?>
+										<?php if($info->gender == 'Female'):?>
+											<img alt="<?php echo $info->name;?>" width="80%" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/empFemale.png" />	
+										<?php endif;?>
+									<?php endif;?>
+                        		</td>
+                        		<td>Name :
+                        			<?php echo $info->name;?>
+                        		</td>
+                        	</tr>
+                        	<tr>
+                        		<td>Start Date : <?php echo date("d-M-Y", strtotime($row->start_date)); ?></td>
+                        	</tr>
+                        	<tr>
+                        		<td>Days : <?php echo $row->total_leave; ?></td>
+                        	</tr>
+                        	<tr>
+                        		<td>End Date : <?php echo date("d-M-Y", strtotime($row->end_date)); ?></td>
+                        	</tr>
+                        	<tr>
+                        		<td colspan="2"><br/>Reason : <?php echo implode(' ', array_slice(explode(' ', $row->reason), 0, 7)); ?>...</td>
+                        	</tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="padding-10">
+                	<?php if($row->approve=='NO'){?>
+                	<a href="<?php echo base_url();?>index.php/adminController/appleave/<?php echo $row->id;?>" class="btn btn-sm btn-light-green"><i class="fa fa-check"></i> Approve</a>
+                    <a href="<?php echo base_url();?>index.php/adminController/deleleave/<?php echo $row->id;?>" class="btn btn-sm btn-light-red"><strong>x</strong> Reject</a>
+                <?php } else{?>
+                    <a href="#" class="btn btn-sm btn-light-yellow">
+                        Approved<i  class="fa fa-check"></i>
+                    </a>
+                <?php }?>
+                </div>
+                </div>
+
+                <?php endforeach; ?>
+                </div>
+        <?php else: ?>
+        	<div class="item">
+                <div class="panel-body">
+                    <div class="core-box">
+                        <div class="text-light text-bold">
+                            Student Leave Request
+                        </div>
+                        <br/>
+                    	<h2>There is no request for the day.....</h2>
+                    </div>
+                </div>
+            </div>
+        <?php endif;?>
+        </div>
+         </div>
+    </div>
 
 
 <!-- end: PAGE CONTENT-->

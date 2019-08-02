@@ -88,6 +88,11 @@
                 <span class="title"> Subject Configure  </span>
             </a>
         </li>
+          <li>
+            <a href="<?php echo base_url(); ?>index.php/configureHouse/configureHousepage">
+                <span class="title"> House/Team Configure  </span>
+            </a>
+        </li>
 
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/classPromotion">
