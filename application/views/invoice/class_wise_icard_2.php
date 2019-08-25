@@ -75,23 +75,20 @@
             $this->db->where('class_id',$classid);
             $sid=$this->db->get('student_info');
 	    foreach($sid->result() as $studentProfile){
-		
-            $personalInfo = $studentProfile;
+		    $personalInfo = $studentProfile;
             $this->db->where('student_id',$personalInfo->id);
             $guardian_info=$this->db->get('guardian_info');
-            $gurdianInfo = $guardian_info->row();?>
-
-                    <div id="page-wrap">
+            $gurdianInfo = $guardian_info->row();
+            ?> <div id="page-wrap">
                         <table style="width: 60%; font-size:12px; font-weight: bold;">
                             <tr style="background-color:#188f7f; color:white;">
-                                <?php $this->db->where("id",$this->session->userdata("school_code"));
-				$schoolinfo = $this->db->get("school")->row();
-			  $fsd=	$this->session->userdata("fsd");
-			  $this->db->where("id",$fsd);
-		    $tfsd =	$this->db->get("fsd")->row();
-				?>
-				
-				 <?php if($this->session->userdata("school_code")==8){ ?>
+                                <?php 
+                                    $this->db->where("id",$this->session->userdata("school_code"));
+    				                $schoolinfo = $this->db->get("school")->row();
+                        		    $fsd=	$this->session->userdata("fsd");
+                        			$this->db->where("id",$fsd);
+                    		        $tfsd =	$this->db->get("fsd")->row();
+                    				?>
                                 <!--for only dds manner--> 
                                 <td colspan="3">
                                     <img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; border-radius: 50%;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />
@@ -107,39 +104,27 @@
                                         <?php }?>
                                     <h5 style="font-variant:small-caps; text-align:center;">
                                       <?php echo "REG.OFFICE : ".$schoolinfo->address1.' '.$schoolinfo->city.' '.$schoolinfo->state; ?></h5>
-                                     <h4 style="font-variant:small-caps; text-align:center;">Student ID Card
-                                        <?php echo date('Y',strtotime($tfsd->finance_start_date))."-".date('Y',strtotime($tfsd->finance_end_date));?>
-                                     </h4>
-                                     <h5 style="font-variant:small-caps; text-align:center;"></h5>
+									  <h5 style="text-align:center;">www.ddsmanner.in</h5>
+                                   
                                     </h5>
                                     
-                                </td><!--endfor only dds manner--> 
-                                <?php }else{?>
-                                 <td colspan="3">
-                                    <img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; border-radius: 50%;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />
-                                    <h3 style="text-transform:uppercase; text-align:center;">
-                                        <?php echo $schoolinfo->school_name; ?></h3>
-                                    <h5 style="font-variant:small-caps; text-align:center;">
-                                        <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no;?></h5>
-                                    <h5 style="font-variant:small-caps; text-align:center;">
-                                      <?php echo "REG.OFFICE : ".$schoolinfo->address1.' '.$schoolinfo->city.' '.$schoolinfo->state; ?></h5>
-                                     <h4 style="font-variant:small-caps; text-align:center;">Student ID Card
+                                </td>
+                            </tr>
+							<tr style="background-color:#a79c34; color:white;">
+                                <td colspan="3"><h4 style="font-variant:small-caps; text-align:center;">Student ID Card
                                         <?php echo date('Y',strtotime($tfsd->finance_start_date))."-".date('Y',strtotime($tfsd->finance_end_date));?>
                                      </h4>
-                                     <h5 style="font-variant:small-caps; text-align:center;"></h5>
-                                    </h5>
-                                </td>
-                                <?php }?>
-                                <!---->
-                                
+								</td>
                             </tr>
-
                             <tr>
-                                <td style="padding:4px; width:220px;">Name</td>
-                                <td style="width:300px;  text-transform: uppercase;">
-                                    <?php echo $personalInfo->name; ?>
+                                <td style="padding:4px;width: 100px;">Father Name</td>
+                                <td style="text-transform: uppercase;">
+                                    <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
                                 <td rowspan="8" align="center">
+								<div>Student ID:
+                                    <?php echo $personalInfo->username; ?>
+                                </div>
                                     <div>
                                         <div class="fileupload fileupload-new" data-provides="fileupload">
                                             <div
@@ -160,75 +145,64 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--<div>
-                                        <h4 style="margin-top: 10px; text-align:center;">PRINCIPAL SIGN</h4>
-                                    </div>-->
-                                    <div class="row">
-                                        <h4 style="margin-top: 10px; text-align:center;">PRINCIPAL SIGN</h4>
-                                        <?php if($this->session->userdata("school_code")==8){ ?>
-                                        <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="75" height="50"  />
-                                   <?php }?>
-                                    
-                                    <?php if($personalInfo->transport==0){?>
-                                     <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
-                                   <?php }else{ ?>
-                                   <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""  style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
-                                 <label>PickUp Point: <?php
-                              $this->db->where('v_id',$personalInfo->v_id);
-                              $transportrootamount = $this->db->get("transport_root_amount");
-                              if($transportrootamount->num_rows()>0){$transportrootamount1=$transportrootamount->row();echo strtoupper($transportrootamount1->pickup_points);}else{ echo "Not updated";}
-                              ?></label>
-                                  <?php } ?>
+                                    <div>
+                                        <?php echo $personalInfo->name; ?>
                                     </div>
+									<?php 
+									  $this->db->select('class_name,section');
+									  $this->db->where('id',$personalInfo->class_id);
+									  $classInfo=$this->db->get('class_info')->row();
+									  $this->db->where('id',$classInfo->section);
+									  $classInfo_sec=$this->db->get('class_section')->row()->section;
+									  ?>
+                                <div>Class: <?php echo $classInfo->class_name; ?> - <?php echo $classInfo_sec; ?></div>
+                                    <div class="row">
+                                        <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="75" height="50"  />
+                                  </div>
                                 </td>
                             </tr>
-
                             <tr>
-                                <td style="padding:4px">Class</td>
-                                <?php $this->db->select('class_name,section');
-					  $this->db->where('id',$personalInfo->class_id);
-				      $classInfo=$this->db->get('class_info')->row();?>
-                                <td><?php echo $classInfo->class_name; ?></td>
-                            </tr>
-                            <tr>
-                                <td style="padding:4px">Student ID</td>
+                                <td style="padding:4px">Mother Name</td>
                                 <td>
-                                    <?php echo $personalInfo->username; ?>
+                                    <?php echo $gurdianInfo->mother_full_name; ?>
                                 </td>
                             </tr>
-                            <tr>
+							  <tr>
                                 <td style="padding:4px">DOB</td>
                                 <td>
                                     <?php if(strlen($personalInfo->dob) > 1) {echo $personalInfo->dob; }else echo "N/A"; ?>
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td style="padding:4px">Father Name</td>
-                                <td style="text-transform: uppercase;">
-                                    <?php echo $gurdianInfo->father_full_name; ?>
-                                </td>
-                            </tr>
-                            <?php if($this->session->userdata("school_code")==8){?>
-                            <tr>
-                                <td style="padding:5px">Mother Name</td>
+							<tr>
+                                <td style="padding:4px">Address</td>
                                 <td>
-                                    <?php echo $gurdianInfo->mother_full_name; ?>
+                                    <?php echo $personalInfo->address1; ?>
                                 </td>
                             </tr>
-                           <?php }?>
                             <tr>
                                 <td style="padding:4px">Mobile Number</td>
                                 <td>
                                     <?php echo $personalInfo->mobile; ?>
                                 </td>
                             </tr>
-                            <tr>
-                                <td style="padding:4px">Address</td>
+							 <tr>
+                                <td style="padding:4px"> <?php if($personalInfo->transport==0){?>
+								 <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" />
+								<?php }else{ ?>
+							     <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""   />
+                                <?php } ?>
+								</td>
                                 <td>
-                                    <?php echo $personalInfo->address1; ?>
+                                   <?php if($personalInfo->transport==0){?><?php }else{ ?>
+							    <label>PickUp Point: <?php
+                              $this->db->where('v_id',$personalInfo->v_id);
+                              $transportrootamount = $this->db->get("transport_root_amount");
+                              if($transportrootamount->num_rows()>0){$transportrootamount1=$transportrootamount->row();echo strtoupper($transportrootamount1->pickup_points);}else{ echo "Not updated";}
+                              ?></label>
+                                  <?php } ?>
                                 </td>
                             </tr>
+                            
                         </table><br><br>
                     </div> <?php 	} ?>
                 </div>
