@@ -15,7 +15,6 @@
               <li>
                 <a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
               </li>
-              
               <li>
                 <a class="panel-refresh" href="#">
                   <i class="fa fa-refresh"></i> <span>Refresh</span>
