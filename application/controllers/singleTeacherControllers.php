@@ -47,11 +47,11 @@
 				//echo $cl_date;
 			}
 		}
-		$data['pageTitle'] = 'Teacher & Employee Dashboard';
+		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
-		$data['mainPage'] = 'Teacher & Employee Dashboard';
-		$data['subPage'] = 'Teacher & Employee Dashboard';
-		$data['title'] = 'Niktech School ERP Dashboard';
+		$data['mainPage'] = 'Dashboard';
+		$data['subPage'] = 'dashboard';
+		$data['title'] = 'Hgenesis Dashboard';
 		$data['headerCss'] = 'headerCss/dashboardCss';
 		$data['footerJs'] = 'footerJs/dashboardJs';
 		$data['mainContent'] = 'teacherdashboard';
@@ -131,23 +131,19 @@
 		}
 	}
 	
-   function deleteleave(){
-   $id=	$this->input->post("leaveid");
-   	$this->db->where('id',$id);
-   	$this->db->where('school_code',$this->session->userdata('school_code'));
-   	$up=$this->db->delete('emp_leave');
-  
-   }
+
 	
 	function viewProfile(){
-		$this->load->model("employeemodel");
+		$this->load->model("allFormModel");
 		$tID = $this->session->userdata('username');
-		$tid=$this->employeemodel->getEmployeProfile($tID);
-		if($tid->num_rows()>0){
+		$this->db->where("username",$tID);
+		$tid=$this->db->get("employee_info");
 		$id= $tid->row();
-		//$teacherID=$id->id;
-		//$stDetail = $this->singleTeacherModel->getTeacherDetail($teacherID);
-		$data['teacherProfile'] = $id;
+		
+		$teacherID=$id->id;
+		
+		$stDetail = $this->singleTeacherModel->getTeacherDetail($teacherID);
+		$data['teacherProfile'] = $stDetail->row();
 		$data['pageTitle'] = 'Teacher Profile';
 		$data['smallTitle'] = 'Teacher Personal Detail';
 		$data['mainPage'] = 'Teacher';
@@ -157,24 +153,14 @@
 		$data['footerJs'] = 'footerJs/singleTeacherJs';
 		$data['mainContent'] = 'teacherProfile';
 		$this->load->view("includes/mainContent", $data);
-	}else{
-		$data['pageTitle'] = 'Teacher Profile';
-		$data['smallTitle'] = 'Teacher Personal Detail';
-		$data['mainPage'] = 'Teacher';
-		$data['subPage'] = 'Teacher Personal Detail';
-		$data['title'] = 'Teacher Personal Detail';
-		$data['headerCss'] = 'headerCss/singleTeacherCss';
-		$data['footerJs'] = 'footerJs/singleTeacherJs';
-		$data['mainContent'] = 'error';
-		$this->load->view("includes/mainContent", $data);
 	}
 	
-	}
+	
 	
        function salarySummry(){
         $emp_id = $this->session->userdata("username");
         $school_code = $this->session->userdata("school_code");
-        $data['var'] = $this->db->query("select * from emp_salary_info where school_code='$school_code' AND emp_id ='$emp_id'");
+        $data['var'] = $this->db->query("select * from emp_salary_info where school_code='$school_code' AND emp_id ='$emp_id'")->result();
         $data['pageTitle'] = 'Teacher Section';
         $data['smallTitle'] = 'Teacher Summry';
         $data['mainPage'] = 'Teacher';
@@ -187,14 +173,6 @@
     }
 	
 	function teacherLeave(){
-		$this->load->model("employeemodel");
-		$tID = $this->session->userdata('username');
-		$tid=$this->employeemodel->getEmployeProfile($tID);
-		if($tid->num_rows()>0){
-		$id= $tid->row()->id;
-		
-		$var = $this->singleTeacherModel->getTeacherLeave($id);
-		$data['teacherLeave'] = $var;
 		$data['pageTitle'] = 'Teacher Section';
 		$data['smallTitle'] = 'Teacher Leave Details';
 		$data['mainPage'] = 'Teacher';
@@ -204,23 +182,13 @@
 		$data['footerJs'] = 'footerJs/singleTeacherJs';
 		$data['mainContent'] = 'teacherLeave';
 		$this->load->view("includes/mainContent", $data);
-	}else{
-		$data['pageTitle'] = 'Teacher Profile';
-		$data['smallTitle'] = 'Teacher Personal Detail';
-		$data['mainPage'] = 'Teacher';
-		$data['subPage'] = 'Teacher Personal Detail';
-		$data['title'] = 'Teacher Personal Detail';
-		$data['headerCss'] = 'headerCss/singleTeacherCss';
-		$data['footerJs'] = 'footerJs/singleTeacherJs';
-		$data['mainContent'] = 'error';
-		$this->load->view("includes/mainContent", $data);
 	}
-	}
+
 	
 	function classTaken(){
 		$stu_id = $this->session->userdata('username');
 		$var1 = $this->singleTeacherModel->time_Table($stu_id);
-		$data['timetable']=$var1;
+		$data['timetable']=$var1->result();
 		$data['pageTitle'] = 'Teacher Section';
 		$data['smallTitle'] = 'Teacher Class Detail';
 		$data['mainPage'] = 'Teacher';
@@ -451,9 +419,11 @@
 		$school_code=$this->session->userdata('school_code');
 		$fsd=$this->session->userdata('fsd');
 		//print_r($fsd);
-		$this->load->model("employeemodel");
-		$empid = $this->employeemodel->getEmployeProfile($v)->row()->id;
-		
+		$this->db->where('username',$v);
+		$this->db->where('school_code',$school_code);
+		$this->db->where('fsd',$fsd);
+		$this->db->where('status',1);
+		$empid=$this->db->get('employee_info')->row()->id;
 		
 		$request=$this->db->query("SELECT * FROM teacher_attendance WHERE emp_id = '$empid' AND a_date >'$start_date' AND a_date < '$end_date' AND school_code='$school_code'");
 		
@@ -462,13 +432,12 @@
 		    	<hr>
 		    	<div class="panel-body">
       <div class="alert alert-info">
-        <button data-dismiss="alert" class="close"></button>
+        <button data-dismiss="alert" class="close">×</button>
         <h3 class="media-heading text-center"> Welcome to Attendence Report Area</h3>
        <p class="media-timestamp"> 
-       Here you can Your Attendance Record to select starting date to end date which are you selected.
+       Here you can see all attendence of you class from starting date to end date which are you selected.
        </p>
       </div>
-      <?php if($request->num_rows()>0){?>
                     <div class="row">
 						<div class="col-md-12 space20">
 							<div class="btn-group pull-right">
@@ -477,7 +446,16 @@
 								</button>
 								<?php if($this->session->userdata('login_type') == 'admin'){?>
 								<ul class="dropdown-menu dropdown-light pull-right">
-							
+									<!--<li>-->
+									<!--	<a href="#" class="export-pdf" data-table="#sample-table-2" >-->
+									<!--		Save as PDF-->
+									<!--	</a>-->
+									<!--</li>-->
+									<!--<li>-->
+									<!--	<a href="#" class="export-png" data-table="#sample-table-2">-->
+									<!--		Save as PNG-->
+									<!--	</a>-->
+									<!--</li>-->
 									<li>
 										<a href="#" class="export-csv" data-table="#sample-table-2" >
 											Save as CSV
@@ -488,7 +466,21 @@
 											Save as TXT
 										</a>
 									</li>
-									
+									<!--<li>-->
+									<!--	<a href="#" class="export-xml" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
+									<!--		Save as XML-->
+									<!--	</a>-->
+									<!--</li>-->
+									<!--<li>-->
+									<!--	<a href="#" class="export-sql" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
+									<!--		Save as SQL-->
+									<!--	</a>-->
+									<!--</li>-->
+									<!--<li>-->
+									<!--	<a href="#" class="export-json" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
+									<!--		Save as JSON-->
+									<!--	</a>-->
+									<!--</li>-->
 									<li>
 										<a href="#" class="export-excel" data-table="#sample-table-2" >
 											Export to Excel
@@ -550,10 +542,6 @@
 							</tbody>
 						</table>
 						</div>
-						<?php }else{?>
-						<div class = "alert alert-warning"><strong><h1>Attendance Record Not Found!!!!!</h1></strong></div>
-						<?php }?>
-						
 						</div>
 						<?php
 	}
