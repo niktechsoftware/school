@@ -658,10 +658,7 @@ function defineExam1(){
 		$data['examName'] = $this->input->post("examName");
 		$data['student_id'] = $this->input->post("student_id");
 		$data['fsd'] = $this->input->post("fsd");
-		// print_r($data1);
-		// echo $this->input->post("student_id");
-		// echo $this->input->post("fsd");exit;
-		
+	    //print_r($data1);exit();
 		$data['pageTitle'] = 'Result';
 		$data['smallTitle'] = 'Result';
 		$data['mainPage'] = 'Exam';

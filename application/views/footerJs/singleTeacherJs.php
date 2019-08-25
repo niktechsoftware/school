@@ -125,14 +125,6 @@
 
 		
 
-		/*$("#sectionId").change(function(){
-			var section = $("#sectionId").val();
-			var classv = $("#classv").val();
-			$.post("<?php echo site_url("index.php/feeControllers/feeReport") ?>",{section : section,classv : classv}, function(data){
-				$("#rahul").html(data);
-			});
-	
-		});*/
 			$("#sectionId").change(function(){
 					var fsd = $("#fsd").val();
 					var classid = $("#sectionId").val();

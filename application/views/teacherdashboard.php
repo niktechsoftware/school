@@ -148,7 +148,7 @@ if($logtype==3)
                 <div class="partition-red padding-20 text-center core-icon">
                     <i class="fa fa-tasks fa-2x icon-big"></i>
                 </div>
-                <a href="<?php echo base_url(); ?>">
+                <a href="<?php echo base_url(); ?>index.php/singleTeacherControllers/teacherExamDuty">
                 <div class="padding-20 core-content">
                     <h4 class="title block no-margin">Exam Duty</h4>
                     <br/>

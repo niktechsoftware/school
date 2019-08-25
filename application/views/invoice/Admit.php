@@ -105,11 +105,6 @@
                                      </h4>
                                      <h5 style="font-variant:small-caps; text-align:center;"></h5>
                                     </h5>
-                                    <?php if($personalInfo->transport==0){?>
-                                     <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="float: right;margin-top: -53px;width: 50px;height: 50px;border-radius: 50%;" />
-                                   <?php }else{ ?>
-                                   <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""  style="float: right;margin-top: -53px;width: 50px;height: 50px;border-radius: 50%;" />
-                                  <?php } ?>
                                 </td><!--endfor only dds manner--> 
                                 <?php }else{?>
                                  <td colspan="3">
@@ -160,6 +155,16 @@
                                         <?php if($this->session->userdata("school_code")==8){ ?>
                                         <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="75" height="50" style="margin-top=-60px;" />
                                    <?php }?>
+                                   <?php if($personalInfo->transport==0){?>
+                                     <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
+                                   <?php }else{ ?>
+                                   <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""  style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
+                                 <label>PickUp Point: <?php
+                              $this->db->where('v_id',$personalInfo->v_id);
+                              $transportrootamount = $this->db->get("transport_root_amount");
+                              if($transportrootamount->num_rows()>0){$transportrootamount1=$transportrootamount->row();echo strtoupper($transportrootamount1->pickup_points);}else{ echo "Not updated";}
+                              ?></label>
+                                  <?php } ?>
                                     </div>
                                 </td>
                             </tr>
