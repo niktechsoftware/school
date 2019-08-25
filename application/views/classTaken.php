@@ -46,10 +46,10 @@
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
 															<?php 
-																if($row->period == ''){
-																	echo "Lunch";
-																}else{
+																if($row->period){
 																	echo $row->period;
+																}else{
+																	echo "Lunch";
 																}
 															?>
 														</th>
@@ -57,7 +57,7 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):
+														<?php foreach($timetable->result() as $row):
 														?>
 														<th><?php echo $row->time; ?>
 														</th>
@@ -67,7 +67,7 @@
 												<tbody>
 													<tr>
 														<td></td>
-														<?php foreach($timetable as $row):
+														<?php foreach($timetable->result() as $row):
 														 if($row->day == "Monday")
 															{?>
 															<?php if($row->teacher == ''):?>
@@ -104,7 +104,7 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
+														<?php foreach($timetable->result() as $row):?>
 														<th><?php echo $row->time; ?>
 														</th>
 														<?php endforeach;?>
@@ -113,7 +113,7 @@
 												<tbody>
 													<tr>
 															<td></td>
-														<?php foreach($timetable as $row): 
+														<?php foreach($timetable->result() as $row): 
 														if($row->day == "Tuesday")
 															{?>
 															<?php if($row->teacher == ''):?>
@@ -150,7 +150,7 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
+														<?php foreach($timetable->result() as $row):?>
 														<th><?php echo $row->time; ?>
 														</th>
 														<?php endforeach;?>
@@ -159,7 +159,7 @@
 												<tbody>
 													<tr>
 															<td></td>
-														<?php foreach($timetable as $row): 
+														<?php foreach($timetable->result() as $row): 
 														if($row->day == "Wednesday")
 															{?>
 															<?php if($row->teacher == ''):?>
@@ -197,7 +197,7 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
+														<?php foreach($timetable->result() as $row):?>
 														<th><?php echo $row->time; ?>
 														</th>
 														<?php endforeach;?>
@@ -206,7 +206,7 @@
 												<tbody>
 													<tr>
 														<td></td>
-														<?php foreach($timetable as $row):
+														<?php foreach($timetable->result() as $row):
 														 if($row->day == "Thursday")
 															{?>
 															<?php if($row->teacher == ''):?>
@@ -229,6 +229,7 @@
 													<tr>
 														<th>Period</th>
 														<?php 
+														$fsd  = $this->session->userdata("fsd");
 														$uniquePeriod=$this->db->query("SELECT * from period where school_code='$school_code'");
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
@@ -244,7 +245,7 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
+														<?php foreach($timetable->result() as $row):?>
 														<th><?php echo $row->time; ?>
 														</th>
 														<?php endforeach;?>
@@ -253,7 +254,7 @@
 												<tbody>
 													<tr>
 															<td></td>
-														<?php foreach($timetable as $row): 
+														<?php foreach($timetable->result() as $row): 
 														if($row->day == "Friday")
 															{?>
 															<?php if($row->teacher == ''):?>
@@ -290,7 +291,7 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
+														<?php foreach($timetable->result() as $row):?>
 														<th><?php echo $row->time; ?>
 														</th>
 														<?php endforeach;?>
@@ -299,7 +300,7 @@
 												<tbody>
 													<tr>
 														<td></td>
-														<?php foreach($timetable as $row):
+														<?php foreach($timetable->result() as $row):
 														 if($row->day == "Saturday")
 															{?>
 															<?php if($row->teacher == ''):?>

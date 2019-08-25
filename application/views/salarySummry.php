@@ -38,10 +38,12 @@
 									</div>
 									<div class="panel-body">
 										<div class="row">
+										<?php if($var->num_rows()>0){?>
 									<div class="col-md-12 space20">
-										<button class="btn btn-orange add-row">
+										<!-- <button class="btn btn-orange add-row">
 											Add New <i class="fa fa-plus"></i>
-										</button>
+										</button> -->
+										
 										<div class="btn-group pull-right">
 											<button data-toggle="dropdown" class="btn btn-green dropdown-toggle">
 												Export <i class="fa fa-angle-down"></i>
@@ -100,7 +102,7 @@
 											</ul>
 										</div>
 									</div>
-								</div>
+								
 								<div style="width:100%; height:400px; overflow-x: scroll; overflow-y: scroll;">
 										<div class="table-responsive">
 											<table class="table table-striped table-hover table-bordered" id="sample-table-2">
@@ -129,7 +131,7 @@
 										</thead>
 									<tbody >
 									<?php 	$i=1; 
-									foreach ($var as $v):?>
+									foreach ($var->result() as $v):?>
 											<tr>
 											<td><?php echo $i?>	</td>
 											<td><?php echo $v->provide_by;?></td>
@@ -159,6 +161,12 @@
 											</div>
 										</div>
 										</div>
+									</div>
+									<?php }else{?>
+
+										<div class = "alert alert-warning"><strong><h1>Attendance Record Not Found!!!!!</h1></strong></div>
+										
+									<?php }?>
 									</div>
 								</div>
 							</div>

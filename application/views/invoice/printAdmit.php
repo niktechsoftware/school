@@ -151,18 +151,18 @@
 		<table>
 			<tr>
 			<td style="width:20%; border:none;">
-					<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" style="width:100%;" />
+					<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" style="width:65%;" />
 				</td>
 				<td style="text-align:center; border:none; width:60%;">
-				<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;"><b><?php echo $info->school_name; ?></b></h1>
-                <h2 style="font-variant:small-caps;">
+				<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#d80606;"><b><?php echo $info->school_name; ?></b></h1>
+                <h2 style="font-variant:small-caps;color:#d80606;">
             		<?php echo $info->address1." ".$info->address2." ".$info->city; ?>
                 </h2>
-                <h2 style="font-variant:small-caps;padding-bottom:10px;">
+                <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
             		<?php if(strlen($info->mobile_no > 0 )){echo $info->state." - ".$info->pin.", Phone : ".$info->mobile_no.", ";} ?>
 
                 </h2>
-    						<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:70%">
+    						<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
 							<?php 
 							$this->db->where("id",$exam_name);
 						$exname  =	$this->db->get("exam_name")->row()->exam_name;
@@ -270,7 +270,7 @@
              ?>
         </div>
       
-			<table id="items" align="center"  style="width:100%; margin-top:0px; alignment-adjust:central;">
+			<table id="items" align="center"  style="width:100%; margin-top:0px; alignment-adjust:central;color:#d80606;">
 					<thead>
 						<th>Date</th>
                         <?php 

@@ -172,9 +172,15 @@ table h1, h2, h3, h4 {
 	<tr><td>&nbsp;</td></tr>
 	<div class="tcbody">
 	 <div class="row">      
-    <div class="col-md-4" style="padding-top:10px; padding-bottom:10px;"><span style="color:#002D65; font-size:17px;">School No : &emsp;&emsp;&emsp;<strong style="color:black;">55519</strong></span></div>
+    <div class="col-md-4" style="padding-top:10px; padding-bottom:10px;"><span style="color:#002D65; font-size:17px;">School No : 
+    &emsp;&emsp;&emsp;<strong style="color:black;">
+        <?php if($info->school_recognition){echo $info->school_recognition;}else{} ?>
+        </strong></span></div>
 	<div class="col-md-4" style="padding-top:10px; padding-bottom:10px;"></div>
-	<div class="col-md-4" style="padding-top:10px; padding-bottom:10px;"><span style="color:#002D65; font-size:17px;">Affiliation No : &emsp;&emsp;&emsp;<strong style="color:black;">2132251</strong></span></div>
+	<div class="col-md-4" style="padding-top:10px; padding-bottom:10px;"><span style="color:#002D65; font-size:17px;">Affiliation No : 
+	&emsp;&emsp;&emsp;<strong style="color:black;">
+	    <?php if($info->registration_no){echo $info->registration_no;}else{} ?>
+	    </strong></span></div>
     </div>
     <div class="row">      
     <div class="col-md-6" style="padding-top:10px; padding-bottom:10px;"><span style="color:#002D65; font-size:17px;">Book No : &emsp;&emsp;&emsp;<strong style="color:black;"><?php echo $rowb->book_no;?> </strong></span></div>
