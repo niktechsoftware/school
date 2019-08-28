@@ -88,19 +88,16 @@
                                     <img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; border-radius: 50%;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />
                                   
                                   <?php if($personalInfo->class_id < 105 ||$personalInfo->class_id ==116){ ?>
-                                       <h3 style="text-transform:uppercase; text-align:center;"> THE MANNER SCHOOL CHIRAIYAKOT-MAU</h3>
-                                       <h5 style="font-variant:small-caps; text-align:center;"><?php echo "Mobile No. : +91-"; ?>9450601811,9415280237</h5>
+                                       <h3 style="text-transform:uppercase; text-align:center;"> THE MANNER SCHOOL</h3>
+                                       <!--<h5 style="font-variant:small-caps; text-align:center;"><?php echo "Mobile No. : +91-"; ?>9450601811,9415280237</h5>-->
                                    <?php }else{?>
                                     <h3 style="text-transform:uppercase; text-align:center;">
-                                        <?php echo $schoolinfo->school_name; ?></h3>
+                                        <?php echo $schoolinfo->school_name; ?></h3> <?php }?>
                                     <h5 style="font-variant:small-caps; text-align:center;">
-                                        <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no;?></h5>
-                                        <?php }?>
+                                      <?php echo $schoolinfo->address1.' '.$schoolinfo->city.' ('.$schoolinfo->state.')'; ?></h5>
                                     <h5 style="font-variant:small-caps; text-align:center;">
-                                      <?php echo "REG.OFFICE : ".$schoolinfo->address1.' '.$schoolinfo->city.' '.$schoolinfo->state; ?></h5>
-									  <h5 style="text-align:center;">www.ddsmanner.in</h5>
-                                   
-                                    </h5>
+                                        <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no.', '.$schoolinfo->other_mobile_no;?></h5>
+                                    <h5 style="text-align:center;">www.ddsmanner.in</h5>
                                     
                                 </td>
                                 <!---->
@@ -112,11 +109,11 @@
 								</td>
                             </tr>
                             <tr>
-                                <td style="padding:4px;width: 100px;">Father Name</td>
+                                <td style="width: 100px;">Father Name</td>
                                 <td style="text-transform: uppercase;">
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
-                                <td rowspan="8" align="center">
+                                <td rowspan="5" align="center">
 								<div>Student ID:
                                     <?php echo $personalInfo->username; ?>
                                 </div>
@@ -150,40 +147,40 @@
 									  $classInfo_sec=$this->db->get('class_section')->row()->section;
 									  ?>
                                     <div>Class: <?php echo $classInfo->class_name; ?> - <?php echo $classInfo_sec; ?></div>
-                                    <div class="row">
+                                    <!--<div class="row">
                                         <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="75" height="50"  />
-									</div>
+									</div>-->
                                 </td>
                             </tr>
 							<tr>
-                                <td style="padding:4px">Mother Name</td>
+                                <td >Mother Name</td>
                                 <td>
                                     <?php echo $gurdianInfo->mother_full_name; ?>
                                 </td>
                             </tr>
 							<tr>
-                                <td style="padding:4px">DOB</td>
+                                <td >DOB</td>
                                 <td>
                                     <?php if(strlen($personalInfo->dob) > 1) {echo $personalInfo->dob; }else echo "N/A"; ?>
                                 </td>
                             </tr>
 							<tr>
-                                <td style="padding:4px">Address</td>
+                                <td >Address</td>
                                 <td>
                                     <?php echo $personalInfo->address1; ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding:4px">Mobile Number</td>
+                                <td >Mobile Number</td>
                                 <td>
                                     <?php echo $personalInfo->mobile; ?>
                                 </td>
                             </tr>
-							 <tr>
-                                <td style="padding:4px"> <?php if($personalInfo->transport==0){?>
-								 <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" />
+							<tr style="background-color:#a79c34; color:white;">
+                                <td > <?php if($personalInfo->transport==0){?>
+								 <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="width: 100px;"/>
 								<?php }else{ ?>
-							     <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""   />
+							     <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""  style="width: 100px;" />
                                 <?php } ?>
 								</td>
                                 <td>
@@ -195,6 +192,11 @@
                               ?></label>
                                   <?php } ?>
                                 </td>
+								<td> <h4 style="text-align:center;">PRINCIPAL SIGN</h4>
+								 <div class="row">
+                                        <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50" style="margin-left: 30px;" />
+                                  </div>
+								</td>
                             </tr>
                         </table>
                     </div>

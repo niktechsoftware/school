@@ -72,6 +72,7 @@
         //   echo $fsd;
         //   echo $classid;
         //   echo $sectionid;
+        $this->db->where('status',1);
             $this->db->where('class_id',$classid);
             $sid=$this->db->get('student_info');
 	    foreach($sid->result() as $studentProfile){
