@@ -217,8 +217,18 @@ class InvoiceController extends CI_Controller{
 	
 		$data['studentProfile'] = $stDetail;
 		$data['title'] = 'Student Profile';
-	
-		$this->load->view("invoice/Admit", $data);
+	//////////////////
+		$this->db->select("studenticard_format");
+			$this->db->where("school_code",$this->session->userdata("school_code"));			
+		    $val=$this->db->get("result_format");
+           if($val->num_rows()>0)
+            {
+			$val=	$val->row()->studenticard_format;
+			$callview = "Admit_".$val;
+			$this->load->view("invoice/$callview",$data);
+		     }
+		/////////////////////
+		//$this->load->view("invoice/Admit", $data);
 	}
 function feeInvoice(){
 		$invoiceNo = $this->uri->segment(3);
@@ -367,7 +377,6 @@ function feeInvoice(){
 		$data['smallTitle'] = 'Student Profile';
 		$data['mainPage'] = 'Student';
 		$data['subPage'] = 'Profile';
-	
 		$data['fsd'] = $this->uri->segment(3);
 		$data['classid'] = $this->uri->segment(4);
 		$data['sectionid'] = $this->uri->segment(5);
@@ -395,8 +404,18 @@ function feeInvoice(){
 	
 	// 	$data['studentProfile'] = $stDetail;
 		$data['title'] = 'Student Profile';
-	
-		$this->load->view("invoice/class_wise_icard", $data);
+	//////////////////
+		$this->db->select("classwiseicard_format");
+			$this->db->where("school_code",$this->session->userdata("school_code"));			
+		    $val=$this->db->get("result_format");
+           if($val->num_rows()>0)
+            {
+			$val=	$val->row()->classwiseicard_format;
+			$callview = "class_wise_icard_".$val;
+			$this->load->view("invoice/$callview",$data);
+		     }
+		/////////////////////
+	//	$this->load->view("invoice/class_wise_icard", $data);
 	}
 	
 function result(){

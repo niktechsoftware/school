@@ -142,7 +142,7 @@ $tdiscount=0;
 		<tbody>
 		<tr style="background-color:#a1d657" class='text-uppercase'>
 				<td width="10%" style="border: none; text-align:center;">
-				 <img src="<?php echo base_url();?>assets/<?= $school_code ?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" style="width:60px; height:60px; padding:2px;"  />
+				 <img src="<?php echo $this->config->item('asset_url'); ?><?= $school_code ?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" style="width:60px; height:60px; padding:2px;"  />
 
 
 				</td>
@@ -155,7 +155,7 @@ $tdiscount=0;
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
-                <img src="<?php echo base_url();?>assets/<?php echo $school_code;?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:60px; height:60px; padding:2px;" />
+                <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:60px; height:60px; padding:2px;" />
 				</td>
 			</tr>
 			</tbody>
@@ -454,7 +454,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		<tbody>
 		<tr style="background-color:#a1d657" class='text-uppercase'>
 				<td width="10%" style="border: none; text-align:center;">
-				 <img src="<?php echo base_url();?>assets/<?= $school_code ?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" style="width:60px; height:60px; padding:2px;"  />
+				 <img src="<?php echo $this->config->item('asset_url'); ?><?= $school_code ?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" style="width:60px; height:60px; padding:2px;"  />
 
 
 				</td>
@@ -467,7 +467,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
-                <img src="<?php echo base_url();?>assets/<?php echo $school_code;?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:60px; height:60px; padding:2px;" />
+                <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:60px; height:60px; padding:2px;" />
 				</td>
 			</tr>
 			</tbody>
@@ -763,7 +763,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		<tbody>
 		<tr style="background-color:#a1d657" class='text-uppercase'>
 				<td width="10%" style="border: none; text-align:center;">
-				 <img src="<?php echo base_url();?>assets/<?= $school_code ?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" style="width:60px; height:60px; padding:2px;"  />
+				 <img src="<?php echo $this->config->item('asset_url'); ?><?= $school_code ?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" style="width:60px; height:60px; padding:2px;"  />
 
 
 				</td>
@@ -776,7 +776,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
-                <img src="<?php echo base_url();?>assets/<?php echo $school_code;?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:60px; height:60px; padding:2px;" />
+                <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:60px; height:60px; padding:2px;" />
 				</td>
 			</tr>
 			</tbody>

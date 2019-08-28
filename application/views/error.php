@@ -34,11 +34,10 @@
 									</div>
 									<div class="panel-body">
 										<h5>You are doing wrong the followings-<br>
-										1) It Seems you are logout due to Low Internet connection.
-										2) Please Define class fee.<br>
-										3) Please define late fee and transport heads.<br>
-										4) Please insure all details are filled in correct format.<br>
-										5) Yor are tring to delete paid fee student data.  <br>  
+										1) Please Define class fee.<br>
+										2) Please define late fee and transport heads.<br>
+										3) Please insure all details are filled in correct format.<br>
+										4) Yor are tring to delete paid fee student data.  <br>  
 										    
 										    
 										    

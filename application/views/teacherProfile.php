@@ -483,12 +483,15 @@
 											<div class="form-group">
 											<div class="col-sm-12">		
 										<br/><br/>
-										<?php 
-										$emp_id = $teacherProfile->id;
+										<?php $eid = $this->session->userdata("username");
+										$this->db->where("username",$eid);
+										$tid=$this->db->get("employee_info");
+										$id=$tid->row();
+										$emp_id = $id->id;
 		//$var = $this->db->query("select * from emp_salary_info where  emp_id ='$emp_id' AND school_code='$school_code' GROUP BY till_date DESC");
 		$var = $this->db->query("select * from emp_salary_info where  emp_id ='$emp_id' AND school_code='$school_code'");?>
 		<div style="width:100%; height:400px; overflow-x: scroll; overflow-y: scroll;">
-		<div class="table-responsive"><?php if($var->num_rows()>0){?>
+		<div class="table-responsive">
 											<table class="table table-striped table-hover table-bordered" id="sample-table-2">
 										<thead>
 											<tr>
@@ -516,7 +519,6 @@
 										</thead>
 									<tbody >
 									<?php 	$i=1; 
-									
 									foreach ($var->result() as $v):?>
 											<tr>
 											<td><?php echo $i?>	</td>
@@ -538,12 +540,9 @@
 											<td><?php echo $v->monthNo;?></td>
 											<?php $i++;
 											endforeach; ?>
-											
 										</tbody>
-									</table><?php 
-								}	else{
-											?><div class = "alert alert-warning"><strong><h1>Salary Record Not Found!!!!!</h1></strong></div>
-											<?php }?>
+									</table>
+										
 										</div>
 									</div>	
 	   </div>
@@ -563,8 +562,7 @@
 					<div class="panel-body">
 					<?php 	 $this->db->where("valid_id",$emp_id);
 					$this->db->where("school_code",$this->session->userdata("school_code"));
-			   				 $row = $this->db->get("sale_info"); 
-			   				 if($row->num_rows()>0){?>
+			   				 $row = $this->db->get("sale_info"); ?>
 			    		<table class="table table-striped table-hover" id="sample-table-2"> 
 			    				<thead><tr>
 			    				<th>S.no</th>
@@ -591,11 +589,6 @@
 			    				endforeach; ?>
 			    			</tbody>	
 			    		</table>
-			    		<?php }else{
-			    			?>
-			    									<div class = "alert alert-warning"><strong><h1>Purchase Record Not Found!!!!!</h1></strong></div>
-			    									
-			    		<?php }?>
 					</div>
 				</div>
 			</div>

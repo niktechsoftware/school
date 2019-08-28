@@ -71,7 +71,6 @@ class LoginModel extends CI_Model{
         		
         			"email" => $res->email,
         			"username" => $res->username,
-        			"id" => $res->id,
         			"name" => $res->name,
         			"photo" => $res->photo,
         			"logo" => $school->logo,
@@ -113,7 +112,6 @@ class LoginModel extends CI_Model{
         			"address_1" => $res->address1,
         			//"address_2" => $res->address2,
         			"city" => $res->city,
-        			"id" => $res->id,
         			"school_code"=>$scode,
         			"state" => $res->state,
         			"pin" => $res->pin,
