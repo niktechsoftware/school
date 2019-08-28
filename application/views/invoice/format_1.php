@@ -1,8 +1,20 @@
-	<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Design</title>
+
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+	
+	<title><?php echo $title; ?></title>
+
+	<link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
+	<link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/prin_result.css' media="print" />
+	<script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
+	<script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/example.js'></script>
+	
 	<style type="text/css">
+
+
+
 		body {
 			background: #e5952d;
 			font-family: arial;
@@ -818,12 +830,13 @@ $cumulativetotal=0;
 		}
 	?>
 </div>
-</body>
-<div class="invoice-buttons" style="text-align:center;">
+<div class="invoice-buttons" id ="non-printable" style="text-align:center;">
     <button class="button button2" type="button"  onclick="window.print();">
       <i class="fa fa-print padding-right-sm"></i> Print
     </button>
   </div>
+</body>
+
 </html>
 				
 					

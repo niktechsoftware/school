@@ -2,12 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<style type="text/css">
 
-	@media print
+	/*@media print
 	{
 			body * { visibility: hidden; }
 			#printcontent * { visibility: visible; }
 			#printcontent { position: absolute; top: -20px; left: 30px; }
-	    }
+	    }*/
+	    @media print
+		{
+		    body * { visibility: visible; }
+		    .non-printable { display: none; }
+		    .printcontent * { visibility: visible; }
+		    
+		    @page
+		   {
+		   	height: 645px;
+		   	width: 873px;
+		   	margin-left:350px;
+		   	margin-right:350px;
+		  }
+		}
 	    
 	    .button {
   background-color: #4CAF50; /* Green */
@@ -168,10 +182,11 @@
 	</div>
 	
 	</div>
-</body>
- <div class="invoice-buttons" style="text-align:center;">
+	<div class="invoice-buttons" id ="non-printable" style="text-align:center;">
     <button class="button button2" type="button"  onclick="window.print();">
       <i class="fa fa-print padding-right-sm"></i> Print Reciept
     </button>
   </div>
+</body>
+ 
 </html>

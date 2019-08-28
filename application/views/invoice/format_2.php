@@ -490,11 +490,12 @@
 	</div>
 	</div>
 	<br/><br/>
-
-</body>
-<div class="invoice-buttons" style="text-align:center;">
+	<div class="invoice-buttons" style="text-align:center;">
     <button class="button button2" type="button"  onclick="window.print();">
       <i class="fa fa-print padding-right-sm"></i> Print
     </button>
   </div>
+
+</body>
+
 </html>

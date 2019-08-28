@@ -130,7 +130,7 @@
 
 <body>
 	<div id="printcontent" align="center" class="container">
-	<br/><br/><br/>
+
 	<?php
 	$school_code = $this->session->userdata("school_code");
 
@@ -157,7 +157,7 @@
 	   $cyear = date('Y', strtotime($date->finance_start_date));
 		$nyear = date('Y', strtotime($date->finance_end_date));
 ?>		
-
+	<br/><br/><br/>
 	<div id="page-wrap" style="width:1000px; border: 1px solid black; outline: 1px solid black; solid #333;">
 
 		<table style="margin-left:10px;">

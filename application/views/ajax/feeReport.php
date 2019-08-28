@@ -57,31 +57,21 @@
 				</thead>
 				<tbody>
 				<?php
-	$fsdate=$this->input->post("fsd");
-    $school_code = $this->session->userdata("school_code");
-	$this->db->where("school_code",$school_code);
-	$class_id = $this->db->get("class_info")->result();
-    foreach($class_id as $cid){
-	//echo $cid->id;
-	
-	$this->db->where('id',$cid->id);
-	$clname=$this->db->get('class_info')->row();
-
-	$this->db->where('id',$clname->section);
-	$clsection=$this->db->get('class_section')->row();
-	
-
-	$this->db->where("status",1);
-	$this->db->where("class_id",$cid->id);
-	//$this->db->where("fsd",$fsdate);
-	$student = $this->db->get("student_info");
-
-	if($student->num_rows() > 0){
-	$isData = $this->db->count_all("fee_deposit"); 
-	if($isData > 0){
-?>
-				<?php 
-				
+				$fsdate=$this->input->post("fsd");
+				$school_code = $this->session->userdata("school_code");
+				$this->db->where("school_code",$school_code);
+				$class_id = $this->db->get("class_info")->result();
+				foreach($class_id as $cid){
+					$this->db->where('id',$cid->id);
+					$clname=$this->db->get('class_info')->row();
+					$this->db->where('id',$clname->section);
+					$clsection=$this->db->get('class_section')->row();
+					$this->db->where("status",1);
+					$this->db->where("class_id",$cid->id);
+					$student = $this->db->get("student_info");
+					if($student->num_rows() > 0){
+					$isData = $this->db->count_all("fee_deposit"); 
+					if($isData > 0){
 				    $color = array(
 					    "progress-bar-danger",
 					    "progress-bar-success",
@@ -125,7 +115,7 @@
 						?>
 					<tr class="<?php echo $rowcss;?>">
 			  		<td><?php echo $count;?></td>
-			  				<td><strong><?php echo $stuDetail->username;?></strong>
+			  				<td><strong><?php echo $stuDetail->username;?></strong></td>
 			  			<td><?php echo $stuDetail->name;?>
 			  			<input type = "hidden" id="sname<?php echo $count;?>" value="<?php echo $stuDetail->name;?>"/></td>
 						  <td><strong><?php echo $clname->class_name." & ".$clsection->section;?></strong>  
@@ -673,28 +663,24 @@
 							    $this->db->where_in("taken_month",$searchM);
 								$fee_head = $this->db->get("class_fees");
 								if($fee_head->num_rows()>0){
-
 									$this->db->where("class_id",$stuDetail->class_id);
-									//	print_r($stuDetail->class_id);
-								
-											$this->db->where_in("taken_month",13);
-										$one_all_amount = $this->db->get("class_fees");
+									$this->db->where_in("taken_month",13);
+									$one_all_amount = $this->db->get("class_fees");
+									if($one_all_amount->num_rows()>0){
 										$one_all_amount=$one_all_amount->row()->fee_head_amount;
-									
-										for($ui=0;$ui<$rt;$ui++){
+									    for($ui=0;$ui<$rt;$ui++){
 											if($ui>0){
 												$adable_amount =$one_all_amount+$adable_amount;
 											}
 										}
 									$fee_head =$fee_head->row()->fee_head_amount+$adable_amount;
-									//$sum=$sum+$fee_head;
 									$sum=$sum + $fee_head;
 								echo "<br>".$fee_head;
-							//print_r($searchM);
-							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head;?>"/><?php
+							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head;?>"/><?php 
+								}else{echo "<label style='color:red;'>Configure Fee Head and Amount</label>";}
 								}else{
 									echo "fee Not found";}
-							}
+									}
 
 							?>
 						</td>
