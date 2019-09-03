@@ -126,6 +126,7 @@ And also we get Student Icard by click on username of that Student.
 										<th>Father Name</th>
 										<th>Class</th>
 										<th>Section</th>
+								    	<th>D.O.B</th>
 										<th>Address</th>
 										<th>Mobile</th>
 										<th>Settings</th>
@@ -164,6 +165,7 @@ And also we get Student Icard by click on username of that Student.
 											  $this->db->where("school_code",$this->session->userdata("school_code"));
 										      $sectionInfo=$this->db->get('class_section')->row();?>
 										<td><?php echo $sectionInfo->section; ?></td>
+										<td><?php echo $snameid->dob; ?></td>
 										<td><?php echo ucwords($row->address1); ?></td>
 										<td><?php echo $row->mobile; ?></td>
 										<td><a href="<?php echo base_url(); ?>index.php/studentController/admissionSuccess/<?php echo $snameid->id;?>">Full Profile</a></td>

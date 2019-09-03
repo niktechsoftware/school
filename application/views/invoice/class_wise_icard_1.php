@@ -173,14 +173,7 @@
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
                             </tr>
-                            <?php if($this->session->userdata("school_code")==8){?>
-                            <tr>
-                                <td style="padding:5px">Mother Name</td>
-                                <td>
-                                    <?php echo $gurdianInfo->mother_full_name; ?>
-                                </td>
-                            </tr>
-                           <?php }?>
+                        
                             <tr>
                                 <td style="padding:4px">Mobile Number</td>
                                 <td>

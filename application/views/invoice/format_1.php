@@ -143,7 +143,7 @@
         <tr style="border-top:none;">
             <td class="center" style="border:none;">
                
-                <img src="<?= base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:left;" />
+                <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:left;" />
                 <!--</br><i>Aff.No. - <?php echo $info->registration_no;?></i>-->
                 </td>
                 <td colspan="9" class="center" style="border:none;">
@@ -163,7 +163,7 @@
             </td>
            <td class="center" style="border:none; display:none;">
                
-                <img src="<?= base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:right;" />
+                <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:right;" />
                 <!--</br><i>Aff.No. - <?php echo $info->registration_no;?></i>-->
                 </td>
         </tr>
@@ -192,7 +192,7 @@
                 <span>Father's Name: <?= strtoupper($parentInfo->father_full_name); ?></span>
             </td>
 			<td class="">
-				<img src="<?php echo base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/stuImage/<?php echo $studentInfo->photo; ?>"  alt="" width="90" height="105" />
+				<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/stuImage/<?php echo $studentInfo->photo; ?>"  alt="" width="90" height="105" />
 
 			</td>
 		</tr>
@@ -747,22 +747,20 @@ $cumulativetotal=0;
 			
 			
 			</td>
-			
-						<td colspan="2" class="wight" height="25" style="border-left:none;">
-			
-				<img src="<?= base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="70" height="70" style="margin-top=-60px;" /><br>
-				<!--<img src="<?php echo base_url();?>assets/8/spg.jpeg"  alt="" width="120" height="95" />-->
-				Sign Principal
+			<td colspan="2" class="wight" height="25" style="border-left:none;">
+			<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="70" height="70" style="margin-top=-60px;" />
+			Sign Principal
 			</td>
 			
 			
 			
 		</tr>
-        <tr style="border:none;">
-            <br>
-            	<td colspan="5" style="border:none; font-size:10px;"> <img style="float:left;" src="<?php echo base_url();?>assets/8/Map-Icon.png"  alt="" width="20" height="20" />&nbsp;Kharihani Road Chiraiyakot Mau UP India</td>
-            	<td colspan="4" style="border:none; font-size:10px;"> <img style="float:left;" src="<?php echo base_url();?>assets/8/email.png"  alt="" width="20" height="20" />&nbsp;themannerschool@gmail.com </td>
-            	<td colspan="2" style="border:none; font-size:10px;"> <img style="float:left;" src="<?php echo base_url();?>assets/8/web.png"  alt="" width="30" height="30" />&nbsp;www.ddsmanner.in </td>
+        <tr style="border:none;"><?php	
+                         $this->db->where('school_code',$this->session->userdata('school_code'));
+						$url= $this->db->get('sms_setting')->row()->web_url; ?>
+            	<td colspan="5" style="border:none; font-size:10px;"> <img style="float:left;" src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/Map-Icon.png"  alt="" width="20" height="20" />&nbsp;<?php echo $info->address1." ".$info->city." (".$info->state.") ".$info->nationalty; ?></td>
+            	<td colspan="4" style="border:none; font-size:10px;"> <img style="float:left;" src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/email.png"  alt="" width="20" height="20" />&nbsp;<?php echo $info->email1;?></td>
+            	<td colspan="2" style="border:none; font-size:10px;"> <img style="float:left;" src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/web.png"  alt="" width="30" height="30" />&nbsp;www.<?php echo $url; ?></td>
         </tr>
 	</table>
 

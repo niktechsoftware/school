@@ -822,6 +822,8 @@ function getFsd(){
 		  		   
 		  		
 			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit soon.".$schoolname->school_name;
+	//	$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit it till 5 september.".$schoolname->school_name;
+			
 			sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
           //}
 						

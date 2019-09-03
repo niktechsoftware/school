@@ -730,7 +730,7 @@ function isAlpha(evt) {
                 <td style="max-width:120px;"><?php echo $row->pickup_points;?></td>
                 <td  style="max-width:120px;"><?php echo $row->drop_points;?></td>
                 <td  style="max-width:120px;"><?php echo $row->root;?></td>
-                <td style="max-width:80px;"><input type="text" value="<?php echo $row->transport_fee;?>"   onkeypress="return isNumber(event)" class="form-control"  style="max-width:80px;" maxlength="4" id="trans_fee<?php echo $i;?>" /></td>
+                <td style="max-width:80px;"><input type="text" value="<?php echo $row->transport_fee;?>"   onkeypress="return isNumber(event)" class="form-control"  style="max-width:80px;" maxlength="8" id="trans_fee<?php echo $i;?>" /></td>
                 <td style="max-width:40px;"><input type="hidden" id="rowSno1<?php echo $i;?>" size="20" value="<?php echo $row->id;?>">
                     <a href="#" class="btn btn-primary" id="editroot1<?php echo $i;?>">Edit</a>
                      <input type="hidden" id="rowSno1<?php echo $i;?>" size="20" value="<?php echo $row->id;?>">

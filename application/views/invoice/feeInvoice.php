@@ -407,7 +407,13 @@ $monthmk[$i]=13;?>
 			$schoolname=$this->db->get('school')->row()->school_name;
 			?>
 				  <td class="col-sm-7" rowspan="3" style="color:white;" >
-				  <strong>   Recieved by :</strong><?php echo $schoolname; ?>&nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
+				  <strong>   Recieved by :</strong>
+				   <?php if(($this->session->userdata('login_type') == 'admin' )){
+					  echo $schoolname;
+					  }else if($this->session->userdata('login_type')==1){
+						echo $this->session->userdata('username');
+						  } ?>
+				  &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
 This is computer generated copy it not require any signature or stamp.
 				  

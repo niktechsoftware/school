@@ -99,7 +99,7 @@
 
                             <tr>
                                 <td style="padding:5px; width:100px;">Name</td>
-                                <td style="width:150px;">
+                                <td style="width:150px;text-transform: uppercase;">
                                     <?php echo $personalInfo->name; ?>
                                 </td>
                                 <td rowspan="8" align="center">
@@ -161,7 +161,7 @@
 
                             <tr>
                                 <td style="padding:5px">Father Name</td>
-                                <td>
+                                <td style="text-transform: uppercase;">
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
                             </tr>

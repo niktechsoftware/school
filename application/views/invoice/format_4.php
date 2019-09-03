@@ -220,9 +220,9 @@
                 <table
                     style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
                     <tr>
-                        <th colspan="4" rowspan="2">SCHOLASTIC AREA </th>
-                        <th colspan="5" rowspan="2">Term 1 (100 Marks) </th>
-                        <th colspan="5" rowspan="2">Term 2 (100 Marks) </th>
+                        <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
+                        <th colspan="4" rowspan="2">Term 1 (100 Marks) </th>
+                        <th colspan="4" rowspan="2">Term 2 (100 Marks) </th>
                         <th colspan="3">OVERALL</th>
 
                     </tr>
@@ -233,7 +233,7 @@
 
                     <tr>
 
-                        <th colspan="4" rowspan="2">Subjects</th>
+                        <th colspan="1" rowspan="2">Subjects</th>
                         <?php $i=1;
  foreach ($examid as $value):
                  
@@ -243,33 +243,23 @@
    if ($examname->num_rows()>0){
    $examname=$examname->row();
   
-       ?> <td colspan="<?php echo $i;?>"><?php echo $examname->exam_name;?></td>
+       ?> <td colspan="1" ><?php echo $examname->exam_name;?></td>
                         <?php 
    }
-  ?>
-
-
-                        <?php if($i%2==0){ ?>
-                        <td class="center bold">Total<br>
-                            <?php ?>
-                        </td>
-                        <!-- <td class="center bold">Grade</td> -->
+     if($i%2==0){ ?>
+                        <td class="center bold">Total</td>
                         <?php } ?>
                         <?php $i++; endforeach ;
-?>
-                        <!-- <th>Per. <br> Test</th>
-<th>Note <br> Book</th>
-<th>SEA</th>
-<th>Half <br> Yearly</th>
-<th>Total</th> -->
+    ?>
 
-                        <th>Per. <br> Test</th>
-                        <th>Note <br> Book</th>
+                        <th colspan="1">Per. <br> Test</th>
+                        <th colspan="1">Note <br> Book</th>
+                        <th>TOTAL</th>
                         <th>SEA</th>
                         <th>Yearly <br> Exam</th>
                         <th>Total</th>
 
-                        <th>Grand<br> Toltal</th>
+                        <th>Grand<br> Total</th>
                         <th rowspan="2">Grade</th>
                         <th rowspan="2">Rank</th>
                     </tr>
@@ -279,13 +269,13 @@
                     <tr>
                         <th>10</th>
                         <th>5</th>
-                        <th>5</th>
+                        <!--<th>5</th>-->
                         <th>80</th>
                         <th>100</th>
 
                         <th>10</th>
                         <th>5</th>
-                        <th>5</th>
+                        <!--<th>5</th>-->
                         <th>80</th>
                         <th>100</th>
 
@@ -295,6 +285,20 @@
                     <!--Dynamic Subject-->
 
                     <?php 
+                    $dhtm=0;
+                        $htotal = 0;  
+                    	$ctotal =array();
+                        $ctotal[0]=0;
+                        $ctotal[1]=0;
+                        $ctotal[2]=0;
+                        $ctotal[3]=0;
+                        $ctotal[4]=0;
+                        $ctotal["tot2"]=0;
+                        $ctotal["tot4"]=0;
+                        $ctotal["tot6"]=0;
+                        $cumulativetotal=0;
+           $totalp= 0;   
+           $pi=1;
 foreach($resultData as $sub){
 $this->db->where('class_id',$classid->class_id);
 $this->db->where('id',$sub['subject']);
@@ -302,28 +306,96 @@ $subjectname=$this->db->get('subject');
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 ?>
-                    <tr>
-                        <td colspan="4"> <?php echo  $subjectname->subject;
-                       ?> </td>
+                   <tr class="wight"> 
+					 <td class="subject">	
+                     <?php echo  $subjectname->subject;
+                       ?> 
+					</td>
+			     <?php 
+ 				
+                 $gtptal=0;
+                 $subtatal=0;
+		         ?>
+				<?php  $i=1; $t=0; $coltptal=0;  foreach ($examid as $value):?>
+					<td class="center" >	
+					<?php  
 
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+					$this->db->where('subject_id',$sub['subject']);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('stu_id',$studentInfo->id);
+					$this->db->where('exam_id',$value->exam_id);
+					$this->db->where('fsd',$fsd);
+					
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();
+							$subtatal=$subtatal+$marks->marks;
+							$gtptal= $gtptal+$marks->marks;
+							$coltptal+=$marks->marks;
+							echo $marks->marks;
+							$ctotal[$t]+= $marks->marks;
+							
+							$this->db->where('subject_id',$sub['subject']);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('exam_id',$value->exam_id);
+				$exammm=	$this->db->get('exam_max_subject')->row()->max_m;
+				$dhtm=$exammm+$dhtm;
+						}
+					
+					?>
+					</td>
+					<?php if($i%2==0){
+						?>
+						<td class="center bold"><?php echo $subtatal; 
+						$ctotal['tot'.$i]+=$subtatal;
+						//	$gradecal =calculateGrade($subtatal,$classid->class_id);
+						 $subtatal=0;?></td>
 
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+						<!--<td class="center bold"><?php //echo $gradecal;?></td>-->
+					<?php } ?>
+				            
+				<?php $i++; $t++;endforeach; 
+					
 
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-
-                    </tr>
+				for($j=$i; $j < 5; $j++){
+               ?>
+              <td class="center bold"></td>
+              <?php if($i%2==0){ ?>
+              <td class="center"><?php 
+					$ctotal['tot'.$i]+=0;?>
+						</td>
+			 <td class="center bold"></td>
+               <?php }}
+		           ?>
+				<td class="center bold"></td>
+			   <td class="center bold"></td>
+			   <td class="center bold"></td>
+			   <td class="center bold"></td>
+				</tr>
                     <?php }}?>
+                   <!-- <tr class="wight">
+					<td class="subject">GRAND TOTAL</td>
+					<?php $h=1;$i=0; foreach($ctotal as $cd):
+					if($h<5){?>
+					<td class="center">
+					<?php echo $ctotal[$i];  ?>
+					
+					</td>
+					<?php if($h%2==0){
+						?>
+					<td class="center bold"><?php $cumulativetotal+=$ctotal['tot'.$h]; echo $ctotal['tot'.$h];?> </td> 
+					
+					<!--<td class="center bold"></td>
+
+					<?php } ?>
+					
+				<?php $h++; $i++; } endforeach;	
+
+		?>
+		
+		<td class="center bold"><?php echo $cumulativetotal;?></td>
+		<td class="center bold"></td>
+			</tr>	-->
                 </table>
             </div>
 
@@ -420,15 +492,15 @@ if($subjectname->num_rows()>0){
 
                         <!-- Dynamic -->
                         <tr>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
 
                         </tr>
                     </table>
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Hello</td>
+                            <td>-</td>
                         </tr>
                     </table>
 
@@ -452,16 +524,16 @@ if($subjectname->num_rows()>0){
 
                         <!-- Dynamic -->
                         <tr>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
 
                         </tr>
                     </table>
 
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Hello</td>
+                            <td>-</td>
                         </tr>
                     </table>
 
@@ -483,8 +555,8 @@ if($subjectname->num_rows()>0){
                     </tr>
                     <!-- Dynamic -->
                     <tr>
-                        <td>Heelo</td>
-                        <td>Heelo</td>
+                        <td><?php	echo round((($cumulativetotal*100)/$dhtm), 2);?>% </td>
+                        <td>-</td>
 
                     </tr>
 

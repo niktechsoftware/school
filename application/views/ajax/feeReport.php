@@ -289,6 +289,7 @@
 								$this->db->where("class_id",$stuDetail->class_id);
 							//	print_r($stuDetail->class_id);
 							if($school_code ==1){$this->db->where("cat_id",3);}
+							
 							    $this->db->where_in("taken_month",$searchM);
 								$fee_head = $this->db->get("class_fees");
 								if($fee_head->num_rows()>0){
@@ -299,7 +300,7 @@
 											$this->db->where_in("taken_month",13);
 										$one_all_amount = $this->db->get("class_fees");
 										$one_all_amount=$one_all_amount->row()->fee_head_amount;
-									
+									echo $one_all_amount."al";
 										for($ui=0;$ui<$rt;$ui++){
 											if($ui>0){
 												$adable_amount =$one_all_amount+$adable_amount;
@@ -605,7 +606,7 @@
 									endforeach;
 										?><input type = "hidden" id="rem<?php echo $count;?>" value="<?php echo $month;?>"/><?php
 								if($rt>0){
-								$searchM[$rt]=13;
+								//$searchM[$rt]=13;
 									//$this->db->distinct();
 								
 									$this->db->select_sum("fee_head_amount");
@@ -617,11 +618,20 @@
 								 $this->db->where_in("taken_month",$searchM);
 								 $fee_head = $this->db->get("class_fees");
 								 
+								 	$this->db->select_sum("fee_head_amount");
+									if($school_code ==1){
+										$this->db->where("cat_id",3);}
+									$this->db->where("fsd",$fsd);
+									$this->db->where("class_id",$stuDetail->class_id);
+									
+								 $this->db->where_in("taken_month",13);
+								 $fee_head_one = $this->db->get("class_fees")->row()->fee_head_amount;
+								 
 								 if($fee_head->num_rows()>0){
 									 $fee_head =$fee_head->row()->fee_head_amount;
-								 $sum=$sum + ($fee_head * $rt);
+								 $sum=$sum + ($fee_head +($fee_head_one*$rt) );
 									 
-								 echo "<br>".($fee_head * $rt);
+								 echo "<br>".($fee_head +($fee_head_one*$rt) );
 										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head * $rt;?>"/><?php
 								 }else{
 									 echo "fee Not found";								}
@@ -668,6 +678,7 @@
 									$one_all_amount = $this->db->get("class_fees");
 									if($one_all_amount->num_rows()>0){
 										$one_all_amount=$one_all_amount->row()->fee_head_amount;
+									
 									    for($ui=0;$ui<$rt;$ui++){
 											if($ui>0){
 												$adable_amount =$one_all_amount+$adable_amount;
