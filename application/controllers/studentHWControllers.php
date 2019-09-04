@@ -51,20 +51,7 @@ class studentHWControllers extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	}
 	
-	public function defineHomeWork(){
-	    $school_code = $this->session->userdata("school_code");
-		$data['pageTitle'] = 'Define HomeWork';
-		$data['smallTitle'] = 'Employee/Teacher/Student';
-		$data['mainPage'] = 'Define HomeWork';
-		$data['subPage'] = 'Employee/Teacher/Student';
-		$res=$this->db->query("SELECT * FROM class_section WHERE school_code='$school_code'");
-		$data['noc'] = $res->result();
-		$data['title'] = 'Define HomeWork';
-		$data['headerCss'] = 'headerCss/homeWorkCss';
-		$data['footerJs'] = 'footerJs/homeWorkJs';
-		$data['mainContent'] = 'studentHomeWork';
-		$this->load->view("includes/mainContent", $data);
-	}
+
 	
 	function addHomeWork(){
 	    $school_code = $this->session->userdata("school_code");
@@ -333,27 +320,7 @@ class studentHWControllers extends CI_Controller{
 		
 	}
 	
-	function showHomeWork()
-	{
-        $school_code=$this->session->userdata('school_code');
-		$this->load->model("homeWorkModel");
-		$data['pageTitle'] = 'Show HomeWork';
-		$data['smallTitle'] = 'Employee/Teacher/Student';
-		$data['mainPage'] = 'Show HomeWork';
-		$data['subPage'] = 'Employee/Teacher/Student';
-	//	$res=$this->db->query("SELECT DISTINCT class_name FROM class_info");
-		$res=$this->db->query("SELECT * FROM class_section where school_code='$school_code'");
-		$data['noc'] = $res->result();
-		$va=$this->homeWorkModel->getHomeWorkDetail();
-		$data['var1']=$va->result();
-		$data['title'] = 'Show HomeWork';
-		$data['headerCss'] = 'headerCss/homeWorkCss';
-		$data['footerJs'] = 'footerJs/showHomeWorkJs';
-		$data['mainContent'] = 'showHomeWork';
-		$this->load->view("includes/mainContent", $data);
-	
-		
-	}
+
 	
 	function getTeacherWork()
 	{	

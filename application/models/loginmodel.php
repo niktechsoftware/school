@@ -63,7 +63,7 @@ class LoginModel extends CI_Model{
         			"login_type" => $jb,
         			"job_category" => $res->job_category,
         			"address_1" => $res->address,
-        			//"address_2" => $res->address2,
+        		"id" => $res->id,
         			"city" => $res->city,
         			"state" => $res->state,
         			"pin" => $res->pin_code,

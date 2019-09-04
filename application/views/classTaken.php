@@ -1,3 +1,6 @@
+
+
+
 		<div class="row">
 			<div class="col-sm-12">
 					<div class="tabbable">
@@ -43,12 +46,17 @@
 														<?php 
 														$school_code = $this->session->userdata("school_code");
 														$uniquePeriod=$this->db->query("SELECT * from period where school_code ='$school_code'");
-														foreach($uniquePeriod->result() as $row):?>
+														 
+														// print_r($uniquePeriod->num_rows());
+														foreach($uniquePeriod->result() as $row):
+														
+
+														?>
 														<th>
 															<?php 
 																if($row->period == ''){
 																	echo "Lunch";
-																}else{
+																} else{
 																	echo $row->period;
 																}
 															?>
@@ -57,25 +65,42 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):
-														?>
-														<th><?php echo $row->time; ?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+																		
+																	?>
+														<th><?php echo $pdata->from; ?>&nbsp;&nbsp;&nbsp;<?php echo $pdata->to; ?>
 														</th>
-														<?php endforeach;?>
+														<?php 	}
+																	}	
+																	}	?>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td></td>
-														<?php foreach($timetable as $row):
-														 if($row->day == "Monday")
-															{?>
-															<?php if($row->teacher == ''):?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+																		//   print_r($tdata);
+																		// 	exit();
+														 if($tdata->day == "Monday")
+															{ ?>
+															<?php if($tdata->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
 															<?php else:?>
-																<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-															<?php endif;}?>
-													<?php endforeach;?>
+																<td><?php echo $tdata->class_id."<br/>".$tdata->subject_id;?></td>
+															<?php endif; }?>
+													<?php 	}
+																	}	
+																	}?>
 													</tr>
 													
 												</tbody>
@@ -104,24 +129,40 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
-														<th><?php echo $row->time; ?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+																		
+																	?>
+														<th><?php echo $pdata->from; ?>&nbsp;&nbsp;&nbsp;<?php echo $pdata->to; ?>
 														</th>
-														<?php endforeach;?>
+														<?php 	}
+																	}	
+																	}	?>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 															<td></td>
-														<?php foreach($timetable as $row): 
-														if($row->day == "Tuesday")
-															{?>
-															<?php if($row->teacher == ''):?>
+															<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+														 if($tdata->day == "Tuesday")
+															{ ?>
+															<?php if($tdata->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
 															<?php else:?>
-																<td><?php echo $row->teacher."<br/>".$row->subject;?></td>
-															<?php endif;}?>
-													<?php endforeach;?>
+																<td><?php echo $tdata->class_id."<br/>".$tdata->subject_id;?></td>
+															<?php endif; }?>
+													<?php 	}
+																	}	
+																	}?>
 													</tr>
 													
 												</tbody>
@@ -150,24 +191,40 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
-														<th><?php echo $row->time; ?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+																		
+																	?>
+														<th><?php echo $pdata->from; ?>&nbsp;&nbsp;&nbsp;<?php echo $pdata->to; ?>
 														</th>
-														<?php endforeach;?>
+														<?php 	}
+																	}	
+																	}	?>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 															<td></td>
-														<?php foreach($timetable as $row): 
-														if($row->day == "Wednesday")
-															{?>
-															<?php if($row->teacher == ''):?>
+															<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+														 if($tdata->day == "Wednesday")
+															{ ?>
+															<?php if($tdata->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
 															<?php else:?>
-																<td><?php echo $row->teacher."<br/>".$row->subject;?></td>
-															<?php endif;}?>
-													<?php endforeach;?>
+																<td><?php echo $tdata->class_id."<br/>".$tdata->subject_id;?></td>
+															<?php endif; }?>
+													<?php 	}
+																	}	
+																	}?>
 													</tr>
 													
 												</tbody>
@@ -197,24 +254,40 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
-														<th><?php echo $row->time; ?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+																		
+																	?>
+														<th><?php echo $pdata->from; ?>&nbsp;&nbsp;&nbsp;<?php echo $pdata->to; ?>
 														</th>
-														<?php endforeach;?>
+														<?php 	}
+																	}	
+																	}	?>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td></td>
-														<?php foreach($timetable as $row):
-														 if($row->day == "Thursday")
-															{?>
-															<?php if($row->teacher == ''):?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+														 if($tdata->day == "Thursday")
+															{ ?>
+															<?php if($tdata->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
 															<?php else:?>
-																<td><?php echo $row->teacher."<br/>".$row->subject;?></td>
-															<?php endif;}?>
-													<?php endforeach;?>
+																<td><?php echo $tdata->class_id."<br/>".$tdata->subject_id;?></td>
+															<?php endif; }?>
+													<?php 	}
+																	}	
+																	}?>
 													</tr>
 													
 												</tbody>
@@ -244,24 +317,40 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
-														<th><?php echo $row->time; ?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+																		
+																	?>
+														<th><?php echo $pdata->from; ?>&nbsp;&nbsp;&nbsp;<?php echo $pdata->to; ?>
 														</th>
-														<?php endforeach;?>
+														<?php 	}
+																	}	
+																	}	?>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 															<td></td>
-														<?php foreach($timetable as $row): 
-														if($row->day == "Friday")
-															{?>
-															<?php if($row->teacher == ''):?>
+															<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+														 if($tdata->day == "Friday")
+															{ ?>
+															<?php if($tdata->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
 															<?php else:?>
-																<td><?php echo $row->teacher."<br/>".$row->subject;?></td>
+																<td><?php echo $tdata->class_id."<br/>".$tdata->subject_id;?></td>
 															<?php endif; }?>
-													<?php endforeach;?>
+													<?php 	}
+																	}	
+																	}?>
 													</tr>
 													
 												</tbody>
@@ -290,24 +379,40 @@
 													</tr>
 													<tr>
 														<th></th>
-														<?php foreach($timetable as $row):?>
-														<th><?php echo $row->time; ?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+																		
+																	?>
+														<th><?php echo $pdata->from; ?>&nbsp;&nbsp;&nbsp;<?php echo $pdata->to; ?>
 														</th>
-														<?php endforeach;?>
+														<?php 	}
+																	}	
+																	}	?>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td></td>
-														<?php foreach($timetable as $row):
-														 if($row->day == "Saturday")
-															{?>
-															<?php if($row->teacher == ''):?>
+														<?php foreach($period->result() as $pdata)
+																	{
+																	foreach($timetable->result() as $tdata)
+																	{
+																		if($tdata->time_thead_id==$pdata->id)
+																		{
+														 if($tdata->day == "Saturday")
+															{ ?>
+															<?php if($tdata->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
 															<?php else:?>
-																<td><?php echo $row->teacher."<br/>".$row->subject;?></td>
-															<?php endif;}?>
-													<?php endforeach;?>
+																<td><?php echo $tdata->class_id."<br/>".$tdata->subject_id;?></td>
+															<?php endif; }?>
+													<?php 	}
+																	}	
+																	}?>
 													</tr>
 													
 												</tbody>

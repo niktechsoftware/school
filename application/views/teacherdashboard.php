@@ -148,7 +148,7 @@ if($logtype==3)
                 <div class="partition-red padding-20 text-center core-icon">
                     <i class="fa fa-tasks fa-2x icon-big"></i>
                 </div>
-                <a href="<?php echo base_url(); ?>">
+                <a href="#">
                 <div class="padding-20 core-content">
                     <h4 class="title block no-margin">Exam Duty</h4>
                     <br/>
@@ -333,7 +333,7 @@ $total=0.00;
                 </div>
         </div>
         <?php endif;?>
-        <?php } }else{?>
+        <?php } } else{?>
         <div class="item">
                 <div class="panel-body">
                     <div class="core-box">
@@ -546,7 +546,7 @@ $total=0.00;
 																	</td>
 															</tr>
 															
-															<?php }else{
+															<?php } else{
 																
 															}
 															endforeach;
@@ -986,7 +986,7 @@ $total=0.00;
 										</div>
 									</div>
 								</div>
-<?php }?>
+	<?php } ?>
 
 
 <!-- start: PAGE CONTENT -->

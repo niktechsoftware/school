@@ -252,7 +252,7 @@ if($school_code ==1){$this->db->where("cat_id",3);}
                 <div class="partition-azure padding-20 text-center core-icon">
                     <i class="fa fa-book fa-2x icon-big"></i>
                 </div>
-                <a href="<?php echo base_url(); ?>index.php/studentHWControllers/showHomeWork">
+                <a href="<?php echo base_url(); ?>index.php/studentHWControllers/studentShowHomeWork">
                 <div class="padding-20 core-content">
                     <h4 class="title block no-margin">Home Work </h4>
                     <br/>
