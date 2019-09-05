@@ -1,3 +1,4 @@
+
 <?php $school_code = $this->session->userdata("school_code");?>
 
 <div class="container">
@@ -41,7 +42,7 @@
 				<!-- End Heading panel -->
 				<div class="panel-body">
 				        <div class="alert alert-info">
-          <button data-dismiss="alert" class="close">×</button>
+          <button data-dismiss="alert" class="close">Ã—</button>
           <h3 class="media-heading text-center">Welcome to New Admission Area</h3>
          Here you can Enroll new Student in your School, by filling this Student Registration form.
           You can also Quick Register any Student by click on Quick Registration Button.
@@ -964,4 +965,5 @@
 	
 	</form>
 	</div>
+
 <script> doa.max = new Date().toISOString().split("T")[0]; </script>

@@ -1,3 +1,4 @@
+
 <?php
 class StudentController extends CI_Controller{
 	function __construct(){
@@ -914,4 +915,3 @@ function admissionSuccess(){
 				$this->load->view("ajax/attenStuReport",$data);
 			}
 	
-}

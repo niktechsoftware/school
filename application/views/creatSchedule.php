@@ -24,7 +24,7 @@
 									Date & Day<br>
 									Class[Section] & Shift
 							</th>
-						<?php $j=1; foreach($days as $col):?>
+						<?php $j=20; foreach($days as $col):?>
 							<th style="width: 100px;"><?php echo date('d-F-Y', strtotime($col->date1));?>
 							<input type="hidden" id="date<?php echo $j ?>" style="width: 90px;" name="date<?php echo $j ?>" value="<?php echo $col->id;?>"/><br>
 							 <?php //echo $col->id;?></th>
@@ -43,7 +43,7 @@
 							<td class="center"> <?php $classid=$row->id;
 								$this->db->where('id',$row->section);
 							$section=$this->db->get('class_section')->row()->section;
-							 $j=1; echo $row->class_name."[".$section."]";
+							 $j=20; echo $row->class_name."[".$section."]";
 							 
 							 $query = $this->db->query("SELECT * from class_info where id='$row->id' and school_code='$school_code'");
 							
@@ -86,7 +86,7 @@
 						
 								<script> 
 				 						$(document).ready(function(){
-											$("#subject<?php echo $i.$j;?>").change(function(){
+											$("#subject<?php echo $i.$j;?>").change(function(){ 
 												var exam_id = "<?php echo $exam_name;?>";
 												//var edate = "<?php //echo $edate;?>";
 												var classid = $("#class<?php echo $i;?>").val();
@@ -94,7 +94,7 @@
 												var edayid = $("#date<?php echo $j ?>").val();
 												var subjectid = $("#subject<?php echo $i.$j;?>").val();
 
-												//alert(exam_id);
+											//	alert(exam_id);
 												// alert(classid);
 												// alert(shiftid);
 												// alert(edayid);
@@ -150,11 +150,11 @@
 												//var day1 = $("#day<?php echo $j ?>").val();
 												var subjectid = $("#subject<?php echo $i.$j;?>").val();
 												
-												// alert(exam_id);
-												//   alert(classid);
-												//   alert(shiftid);
-												//   alert(edayid);
-												 // alert(subjectid);
+											//	alert(exam_id);
+												//  alert(classid);
+												 //  alert(shiftid);
+												//  alert(edayid);
+												//  alert(subjectid);
 										$.post("<?php echo site_url("index.php/examControllers/fullExam") ?>",{exam_id : exam_id,classid : classid,shiftid :shiftid,edayid : edayid,subjectid : subjectid}, function(data){
 											$("#sectionId12").html(data);
 											});

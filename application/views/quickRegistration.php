@@ -1,3 +1,5 @@
+
+
 <?php $school_code = $this->session->userdata("school_code");?>
 <style>
 .highlight-error {
@@ -325,4 +327,5 @@
 	</form>
 
 </div>
+
 <script> doa.max = new Date().toISOString().split("T")[0]; </script>

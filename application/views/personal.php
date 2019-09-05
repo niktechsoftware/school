@@ -25,8 +25,18 @@
 		$fsd=$this->db->get("general_settings")->row()->fsd_id;?>
 		<!--  <?php $fsd1=date("Y-m-d", strtotime("$fsd + 1 month")); ?>  -->
 		<?php $v=1; foreach($request as $row):
+		    	$this->db->where("id",$fsd);
+			$fdate =	$this->db->get("fsd")->row()->finance_start_date;
+
+								$this->db->where("student_id",$this->uri->segment(3));
+								$this->db->where("fsd",$fsd);
+								$fee_record = $this->db->get("deposite_months");
+							// print_r($fee_record->result());
+							// exit;
+			               $i=1;
+							foreach($fee_record->result() as $fd):
 		?><tr>
-		    <td class="text-center"><?php echo $v; $id=$row->student_id;?> </td>
+		    <td class="text-center"><?php echo $i; $id=$row->student_id;?> </td>
 			<td class="text-center"><?php echo $this->uri->segment(3);?></td>
 			<td class="text-center"><?php echo $row->total;?></td>
 			<td class="text-center"><?php echo $row->paid;?></td>
@@ -35,16 +45,7 @@
 			<td class="text-center">
 		 
 			<?php 	
-			$this->db->where("id",$fsd);
-			$fdate =	$this->db->get("fsd")->row()->finance_start_date;
-
-								$this->db->where("student_id",$this->uri->segment(3));
-								$this->db->where("fsd",$fsd);
-								$fee_record = $this->db->get("deposite_months");
-							// print_r($fee_record->result());
-							// exit;
-			               $i=0;
-							foreach($fee_record->result() as $fd):
+		
 								
 							 if($fd->deposite_month<4){
 								$realm=  $fd->deposite_month-4+12;
@@ -57,7 +58,7 @@
 								?>
 								 </span>
 									
-							<?php $i++; endforeach;  ?>
+							<?php ?>
 			</td>
 		 	<td class="text-center"><?php echo date("d-M-Y", strtotime("$row->diposit_date"));?></td> 
 			<!--  <td><?php echo $row->status;?></td> -->
@@ -72,7 +73,7 @@
 				</a>
 				<?php }}?>
 			</td>
-		</tr>	<?php $v++; endforeach; ?>
+		</tr>	<?php $i++; endforeach;   $v++; endforeach; ?>
 		
 		<!-- <?php // $query1 = $this->db->query("SELECT * FROM feedue2 WHERE student_id='$id'")->result();
 		//foreach($query1 as $v1):?>
