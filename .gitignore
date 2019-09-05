@@ -7,4 +7,6 @@ application/logs/*
 
 application/config/database.php
 application/config/config.php
+application/config/asset_url.php
+school/corn_job/sendAccountSms.php
 

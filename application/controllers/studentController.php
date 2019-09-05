@@ -483,7 +483,8 @@ function admissionSuccess(){
 				"teacher_studentid3"=>$this->input->post("id3"),
 				"teacher_studentid4"=>$this->input->post("id4"),
 				"password" =>$this->input->post("password"),
-				"update_date" => $update_date
+				"update_date" => $update_date,
+				"house_id" =>$this->input->post("house")
 		);
 		if($query = $this->studentModel->updateStudentInfo($datastudent,$studentid)){
 			redirect(base_url()."index.php/studentController/admissionSuccess/$studentid/updateInfo");
