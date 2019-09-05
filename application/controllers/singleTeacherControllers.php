@@ -183,12 +183,31 @@
 		$data['mainContent'] = 'teacherLeave';
 		$this->load->view("includes/mainContent", $data);
 	}
+	function deleleaveemp()
+	{
 
+           $id=$this->input->post('id');
+    //print_r($id);exit;
+    
+        
+          
+          $this->db->where('id',$id);
+         $this->db->where('school_code',$this->session->userdata('school_code'));
+          $up=$this->db->delete('emp_leave');
+          
+       
+
+	}
 	
 	function classTaken(){
-		$stu_id = $this->session->userdata('username');
-		$var1 = $this->singleTeacherModel->time_Table($stu_id);
-		$data['timetable']=$var1->result();
+		$stu_id = $this->session->userdata('id');
+		$data1  = $this->singleTeacherModel->time_Table($stu_id);
+		$data['timetable']= $data1['tt'];
+		$data['period']= $data1['pr'];
+		// print_r($data['timetable']);
+		// echo "<br><br><br>";
+		// print_r($data['period']);
+		// exit;
 		$data['pageTitle'] = 'Teacher Section';
 		$data['smallTitle'] = 'Teacher Class Detail';
 		$data['mainPage'] = 'Teacher';

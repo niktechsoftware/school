@@ -119,7 +119,7 @@
 				<?php if($this->session->userdata('login_type')!="student"){ ?>
 		     	<div id="showStudent">
 				<div class="row">
-					
+		
 					<div class="col-sm-6">
 					<div class="row">
 					<div class="col-sm-6">

@@ -139,7 +139,7 @@ Define New Leave <i class="fa fa-arrow-circle-left"></i>
 Start Date  <span class="symbol required"></span>
 </label>
 <div class="col-md-7 form-group">
-<input type="text" data-date-format="yyyy-mm-dd" data-date-viewmode="years" name="sdate" value="<?php echo set_value('empDob'); ?>" placeholder="Start Date" class="form-control date-picker" required="required"/>
+<input type="date" data-date-format="yyyy-mm-dd" data-date-viewmode="years" name="sdate" value="<?php echo set_value('empDob'); ?>" placeholder="Start Date" class="form-control date-picker" required="required"/>
 </div>
 </div>
 
@@ -149,7 +149,7 @@ Start Date  <span class="symbol required"></span>
 End Date <span class="symbol required"></span>
 </label>
 <div class="col-md-7 form-group">
-<input type="text" data-date-format="yyyy-mm-dd" data-date-viewmode="years"  name="edate" value="<?php echo set_value('empDob'); ?>" placeholder="End Date" class="form-control date-picker" required="required"/>
+<input type="date" data-date-format="yyyy-mm-dd" data-date-viewmode="years"  name="edate" value="<?php echo set_value('empDob'); ?>" placeholder="End Date" class="form-control date-picker" required="required"/>
 </div>
 
 </div>
