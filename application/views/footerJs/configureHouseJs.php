@@ -81,24 +81,7 @@
             $("#streamList1").html(data);
 		});
 		//------------------fee category-------------------------//
-		 $.post("<?php echo site_url('index.php/configureClassControllers/addfeecategory') ?>", {streamName : ''}, function(data){
-        	
-            $("#feeList1").html(data);
-		});
-       <!---->
-        $.post("<?php echo site_url('index.php/configureClassControllers/addSection') ?>", {sectionName : ''}, function(data){
-            $("#sectionList").html(data);
-            //alert(data);
-		});
-
-        $.post("<?php echo site_url('index.php/configureClassControllers/addClass') ?>",{
-    				className : '',
-    				classStream : '',
-    				classSection : ''
-	    			}, function(data){
-            $("#classDetail").html(data);
-            //alert(data);
-		});
+		
 		
         $("#addStreamButton").click(function(){
         	
@@ -106,153 +89,18 @@
     		if(streamName==""){
     		    alert("First add Stream");
     		}else{
-    		    alert("stream successfully Added");
+    		    alert("House successfully Added");
     		}
     		
-    		$.post("<?php echo site_url('index.php/configureClassControllers/addStream') ?>", {streamName : streamName}, function(data){
+    		$.post("<?php echo site_url('index.php/configureHouse/addHouse') ?>", {streamName : streamName}, function(data){
                 $("#streamList1").html(data);
                 //alert(data);
     		});
     		$('#addStream').val("");
         });
         //-----------------------------------------------//
-        $("#addfeecatButton").click(function(){
-        	
-    		var streamName = $('#addfeecategory').val();
-
-    		$.post("<?php echo site_url('index.php/configureClassControllers/addfeecategory') ?>", {streamName : streamName}, function(data){
-                $("#feeList1").html(data);
-                //alert(data);
-                alert("Fee Category successfully created");
-    		});
-    		$('#addfeecategory').val("");
-            // }else{
-            //     alert("First fill Student Category");
-            // }
-        });
-        $("#clname").change(function(){
-            var streamid = $("#clname").val();
-            //alert(clname);
-            $.post("<?php echo site_url('index.php/configureClassControllers/getSection')?>", {streamid : streamid}, function(data){
-                $("#sectionList").html(data);
-                //alert(data);
-    		});
-        });
-        
-         $("#sectionList").change(function(){
-            var sectionid = $("#sectionList").val();
-            var streamid = $("#clname").val();
-            //alert(clname);
-            $.post("<?php echo site_url('index.php/configureClassControllers/getClasslist')?>", {sectionid : sectionid, streamid : streamid}, function(data){
-                $("#classlist").html(data);
-                //alert(data);
-    		});
-        });
-        
-         $("#classlist").change(function(){
-            var classid = $("#classlist").val();
-            $.ajax({
-                       // "url": "<?php //echo site_url('index.php/login/getSubject') ?>",
-                       "url": "<?php echo site_url('index.php/configureFeeController/getfeeheadcat') ?>",
-                        "method": 'POST',
-                        "data": {classid : classid},
-                        beforeSend: function(data) {
-                           $("#subjectBox").html("<center><img src='<?php echo base_url(); ?>assets/images/loading.gif' /></center>")
-                        },
-                        success: function(data) {
-                            $("#subjectBox").html(data);
-                        },
-                        error: function(data) {
-                            $("#subjectBox").html(data)
-                        }
-                    })
-
-        });
-        
-          
-
-		
-			
-			
-        //---------------------------------------------------//
-
-        $("#addSectionButton").click(function(){
-    		var sectionName = $('#addSection1').val();
-    		
-    		if(sectionName==""){
-    		    alert("First add Section");
-    		}else{
-    		   alert("Section Successfully Added");
-    		}
-    		
-    		$.post("<?php echo site_url('index.php/configureClassControllers/addSection') ?>", {sectionName : sectionName}, function(data){
-                $("#sectionList").html(data);
-                //alert("Enter only one character then created your new section");
-    		});
-    		$('#addSection1').val("");
-        });
-        
-        
-
-        $("#classSave").click(function(){
-    		var className = $("#className").val();
-    		var classStream = $("#classStream").val();
-    		var classSection = $("#classSection").val();
-    		if(!(className == "" || classStream == "" || classSection == "")){
-    			$.post("<?php echo site_url('index.php/configureClassControllers/addClass') ?>", 
-    	    		{
-    				className : className,
-    				classStream : classStream,
-    				classSection : classSection
-	    			}, 
-	    				function(data){
-                    $("#classDetail").html(data);
-        		});
-        		alert("Class Successfully Added");
-    		}else{
-    		    alert("Please fill all field");
-    		}
-    		$("#className").val("");
-    		$("#classStream").val("");
-    		$("#classSection").val("");
-        });
-    
-     $("#createfsd").click(function(){
-          
-        var startdate = $('#startdate').val();
-         var enddate = $('#enddate').val(); 
-        alert("FSD Successfully created");
-        $.post("<?php echo site_url('index.php/configureClassControllers/addfsd') ?>", {startdate : startdate,enddate:enddate}, function(data){
-            $("#showfsd").html(data);
-                //alert(data);
-        });
-        $('#startdate').val("");
-         $('#enddate').val("");
-        });
-
-      $("#Applyfsd").click(function(){
-          
-        var fsdid = $('#fsdselect').val();
-       // conformbox('Your want to Apply new fsd');
-        alert("FSD Successfully Apply");
-        $.post("<?php echo site_url('index.php/allFormController/updatefsd') ?>", {fsdid : fsdid,}, function(data){
-            $("#showfsd1").html(data);
-                //alert(data);
-        });
-        $('#fsdselect').val("");
-        //  $('#enddate').val("");
-        });
-        
        
-                $("#findclass").keyup(function(){
-                var findclass =  $("#findclass").val();
-                $.post("<?php echo site_url('index.php/configureClassControllers/findclass') ?>", {findclass : findclass}, function(data){
-                $("#classfindDetail").html(data);
-                //alert(data);
-                });
-                });
-         
-                         
+       
                 
          Main.init();
         SVExamples.init();

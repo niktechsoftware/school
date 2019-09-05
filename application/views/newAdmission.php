@@ -254,10 +254,19 @@
 							    <div class="col-md-3">
 									<div class="form-group">
 										<label class="control-label text-uppercase">
-											Country <span id="contry" Style="color:red;" class="symbol"></span>
+											House/Team <span id="house" class="symbol"></span>
 										</label>
-										<input type="text" value="<?php echo set_value('country'); ?>" value="India" class="form-control" onkeyup="stuCountry()" id="country" name="country" style='text-transform:uppercase'>
-									</div>
+										<select class="form-control" id="house" name="house" >
+											<option value="">-SELECT HOUSE-</option>
+											<?php 
+											$this->db->where("school_code",$this->session->userdata("school_code"));
+											$gethouse =$this->db->get("house");
+											if($gethouse->num_rows()>0){
+											foreach($gethouse->result() as $r):?>
+											<option value="<?php echo $r->id; ?>"><?php echo $r->house_name; ?></option>
+											<?php endforeach; }?>
+										</select>
+										</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
