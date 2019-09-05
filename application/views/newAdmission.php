@@ -1,3 +1,4 @@
+
 <?php $school_code = $this->session->userdata("school_code");?>
 
 <div class="container">
@@ -41,7 +42,7 @@
 				<!-- End Heading panel -->
 				<div class="panel-body">
 				        <div class="alert alert-info">
-          <button data-dismiss="alert" class="close">×</button>
+          <button data-dismiss="alert" class="close">Ã—</button>
           <h3 class="media-heading text-center">Welcome to New Admission Area</h3>
          Here you can Enroll new Student in your School, by filling this Student Registration form.
           You can also Quick Register any Student by click on Quick Registration Button.
@@ -254,10 +255,19 @@
 							    <div class="col-md-3">
 									<div class="form-group">
 										<label class="control-label text-uppercase">
-											Country <span id="contry" Style="color:red;" class="symbol"></span>
+											House/Team <span id="house" class="symbol"></span>
 										</label>
-										<input type="text" value="<?php echo set_value('country'); ?>" value="India" class="form-control" onkeyup="stuCountry()" id="country" name="country" style='text-transform:uppercase'>
-									</div>
+										<select class="form-control" id="house" name="house" >
+											<option value="">-SELECT HOUSE-</option>
+											<?php 
+											$this->db->where("school_code",$this->session->userdata("school_code"));
+											$gethouse =$this->db->get("house");
+											if($gethouse->num_rows()>0){
+											foreach($gethouse->result() as $r):?>
+											<option value="<?php echo $r->id; ?>"><?php echo $r->house_name; ?></option>
+											<?php endforeach; }?>
+										</select>
+										</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
@@ -955,4 +965,5 @@
 	
 	</form>
 	</div>
+
 <script> doa.max = new Date().toISOString().split("T")[0]; </script>

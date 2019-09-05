@@ -129,7 +129,7 @@
                                    <?php }else{ ?>
                                    <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""  style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
                                  <label>PickUp Point: <?php
-                              $this->db->where('v_id',$personalInfo->v_id);
+                              $this->db->where('id',$personalInfo->vehicle_pickup);
                               $transportrootamount = $this->db->get("transport_root_amount");
                               if($transportrootamount->num_rows()>0){$transportrootamount1=$transportrootamount->row();echo strtoupper($transportrootamount1->pickup_points);}else{ echo "Not updated";}
                               ?></label>

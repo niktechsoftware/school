@@ -1,3 +1,4 @@
+
 <?php
 class newAdmissionControllers extends CI_Controller{
     
@@ -132,7 +133,8 @@ public function addinfo(){
 				"aadhar_number"=>$this->input->post("aadhar_number"),
 				//"school_code"=>$this->session->userdata("school_code"),
 				"fsd"=>$this->input->post("fsd"),
-			  	 "created"=>date("Y-m-d H:i:s")
+			  	 "created"=>date("Y-m-d H:i:s"),
+				"house_id"=>$this->input->post("house")
 		);
 		$this->load->model('newAdmissionModel'); 
 		$addInfoConfirm = $this->newAdmissionModel->addInfo($datastudent);
@@ -374,7 +376,8 @@ public function addinfo(){
 				"status"=>1,
 				"gender" => $this->input->post("gender"),
 				"fsd"=>$this->input->post("fsd"),
-				"created"=>date("Y-m-d H:i:s")
+				"created"=>date("Y-m-d H:i:s"),
+            	"house_id"=>$this->input->post("house")
 			);
 			$this->load->model('newAdmissionModel');
 			$addInfoConfirm = $this->newAdmissionModel->addInfo($datastudent);
@@ -497,4 +500,5 @@ public function addinfo(){
 	   }
 	}
 		
+
 }

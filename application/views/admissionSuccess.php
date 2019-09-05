@@ -1,4 +1,5 @@
 
+
 <script>
     function autoResize(id){
         var newheight;
@@ -142,6 +143,16 @@
 											<!-- <td>
 												<?php //echo $personalInfo->class_id; ?>
 											</td> -->
+											<td><a href="#" class="show-tab"></a></td>
+										</tr>
+										<tr class='text-uppercase'>
+											<td>House Name</td>
+											<td>
+												<?php 
+												
+												if($personalInfo->house_id) { $this->db->where("id",$personalInfo->house_id);
+												$get_house=$this->db->get("house")->row()->house_name;echo $get_house; }else echo '<span style="color:#ff9999">N/A</span>'; ?>
+											</td>
 											<td><a href="#" class="show-tab"></a></td>
 										</tr>
 										<tr class='text-uppercase'>
@@ -1219,8 +1230,28 @@
 									<input type="text" value="<?php echo $personalInfo->password; ?>" class="form-control" id="password" name="password">
 								</div>
 							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label class="control-label text-uppercase">
+										House/Team <span class="symbol"></span>
+									</label>
+									<select class="form-control" id="house" name="house" >
+									<option value ="">Select House</option>
+									<?php 
+									$this->db->where("school_code",$this->session->userdata("school_code"));
+												$get_house=$this->db->get("house");
+												if($get_house->num_rows()>0){
+												foreach($get_house->result() as $ty):
+												?>
+									<option value="<?php echo $ty->id;?>" <?php if($ty->id==$personalInfo->house_id){echo 'selected="selected"';}?> ><?php echo $ty->house_name; ?></option>
+								<?php endforeach;}?>
+								</select>
+								</div>
 							</div>
 							</div>
+							</div>
+							
+							
 									
 				</div>
 				
@@ -1914,4 +1945,5 @@
 			        $this->db->update("sms_setting",$count1);
 		endif;
 	}
+
 	?>

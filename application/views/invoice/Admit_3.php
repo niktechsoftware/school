@@ -108,7 +108,7 @@
                                         <!-- <div class="fileupload fileupload-new" data-provides="fileupload">-->
                                         <div style="width:150px; height:150px; border: 1px solid #ccc; margin:auto;">
                                             <?php if(strlen($personalInfo->photo > 0)):?>
-                                            <img alt="<?php echo $personalInfo->name;?>" height="200" width="180"
+                                            <img alt="<?php echo $personalInfo->name;?>" height="148" width="138"
                                                 src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $personalInfo->photo;?>" />
                                             <?php else:?>
                                             <?php if($personalInfo->gender == 1):?>
@@ -154,7 +154,7 @@
                             </tr>
 
                             <tr>
-                                <td style="padding:6px">Father Name</td>
+                                <td style="padding:6px;text-transform: uppercase;">Father Name</td>
                                 <td>
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
