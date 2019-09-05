@@ -5,6 +5,13 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/perfect-scrollbar/src/perfect-scrollbar.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/animate.css/animate.min.css">
     <!-- end: MAIN CSS -->
+    <style>
+    mark {
+    background-color : #FDFD12;
+    color: black;
+    }
+
+</style>
     <!-- start: CSS REQUIRED FOR SUBVIEW CONTENTS -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/owl-carousel/owl-carousel/owl.theme.css">

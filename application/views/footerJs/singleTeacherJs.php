@@ -62,6 +62,8 @@
 <!-- end: CORE JAVASCRIPTS  -->
 <script>
 	jQuery(document).ready(function(){
+
+		
 		$("#stuLeave").hide();
 
 		$("#sonu").click(function(){

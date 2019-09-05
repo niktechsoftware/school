@@ -67,42 +67,22 @@ class Login extends CI_Controller{
 						"school_code"=>$school_code
 				);
 				$this->db->insert('opening_closing_balance',$balance);
-				//echo $cl_date;
+				
 			}
 		}
 		
-// 			$uname=$this->db->get('transport');
-// 		//print_r($uname);
-// 		foreach($uname->result() as $name)
-// 		{
-// 	      echo $u= $name->vehicle_numnber;
-
-// 		$arr=array( 
-// 			'vehicle_numnber'=>"A".$u
-// 		);
-// 		$this->db->where('id',$name->id);
-// 		$this->db->update('transport',$arr);
-// 	}
-// 	exit;
 	
-	// 			$uname=$this->db->get('transport');
-// 		//print_r($uname);
-// 		foreach($uname->result() as $name)
-// 		{
-// 	echo	$u= $name->username;
-
-// 		$arr=array( 
-// 			'username'=>SUBSTR($u,1)
-// 		);
-// 		$this->db->where('id',$name->id);
-// 		$this->db->update('employee_info',$arr);
-// 	}
-// 	exit;
-		
-		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-
-			$data['sender_Detail'] =$sender;
-
+		$school_code = $this->session->userdata("school_code");
+		$clos_opening = $this->db->query("select * from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='".$school_code."' ");
+		$r = $clos_opening;
+		if($r->num_rows()>0){
+			$open=$r->row()->opening_balance;
+			$close=$r->row()->closing_balance;
+			$total=$close-$open;
+			}else{
+				$total = "0.00";
+			}
+			$data['totalIncome']=$total;
 		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
 		$data['mainPage'] = 'Dashboard';

@@ -110,8 +110,8 @@
 		  			<td><?php echo $lv->total_leave;?></td>
 		  			<td><?php echo strtoupper($lv->reason);?></td>
 		  			<?php if($lv->status==0){?>
-		  				<input type="hidden" id="rowid" value="<?php echo $lv->id;?>">
-		  			<td><button type="submit" id ="leavedelete" class="btn btn-red">
+		  				<input type="hidden" id="empid<?php echo $count ;?>" value="<?php echo $lv->id;?>">
+		  			<td><button type="submit" id ="leavedelete<?php echo $count;?>" class="btn btn-red">
 				           Cancle leave
 				</button></td>
 			<?php }else{?>
@@ -121,6 +121,21 @@
             
 			<?php } ?>
 		  		</tr>
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+					<script>
+					 jQuery(document).ready(function() {
+					$("#leavedelete<?php echo $count ;?>").click(function(){
+                      var id =$('#empid<?php echo $count ;?>').val();
+                     alert(id);
+                      $.post("<?php echo site_url('index.php/singleTeacherControllers/deleleaveemp') ?>",{id : id},function(data){
+                     alert("Leave Deleted Successfully!!!!! ");
+                     alert(data);
+                     window.location.reload();
+                      // $("#leavedelete").html();
+                          });
+                           });
+					 });
+					</script>
 		  		<?php $count++; endforeach; ?>
 		  		
 			</tbody>
