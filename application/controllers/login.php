@@ -20,7 +20,7 @@ class Login extends CI_Controller{
 		if(($logtype == "admin")||($logtype == "2")||($logtype == "3")||($logtype == "9")||($logtype == "1")){
 			
 		
-		}else{
+		} else{
 		    	redirect("index.php/homeController/index");
 		}
 	if(!$is_login){
