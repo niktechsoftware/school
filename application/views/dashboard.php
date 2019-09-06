@@ -101,8 +101,12 @@ $school_code = $this->session->userdata("school_code");
 					 $this->db->where('date(date)',date('Y-m-d'));
 				//	 $this->db->where('dabit_cradit',1);
 					$stocktotal=$this->db->get('sale_info')->row();
-					
-					 echo $stocktotal->sub_total;
+					if($stocktotal->sub_total){
+           echo $stocktotal->sub_total;
+          } 
+          else{
+            echo "0";
+          }
                     ?>
                 </mark>
               </div>
@@ -187,7 +191,7 @@ $school_code = $this->session->userdata("school_code");
           <div class="padding-20 core-content">
             <h4 class="title block no-margin">Today Expenditure</h4>
             <br />
-            <span class="subtitle"> <mark><?php echo $info->amount; ?> </mark></span>
+            <span class="subtitle"> <mark><?php if($info->amount){ echo $info->amount; } else{ echo "0"; }?> </mark></span>
           </div>
         </a>
       </div>
@@ -257,10 +261,140 @@ $school_code = $this->session->userdata("school_code");
   <!--        </div>-->
   <!--    </div>-->
 </div>
+<div class="row">
+<div class="col-md-6 col-lg-3 col-sm-6">
+    <div class="panel panel-default panel-white core-box">
+      <div class="panel-body no-padding">
+        <div class="partition-green text-center core-icon">
+          <i class="fa fa-inr fa-2x icon-big"></i><br>
 
+
+        </div>
+        <a href="<?php echo base_url(); ?>index.php/login/feeReport">
+          <div class="padding-20 core-content">
+            <!--	<h3 class="title block no-margin">Fee Reports</h3>-->
+            <h3 class="title block no-margin">This Month Due</h3>
+            <br />
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="block no-margin">Today Fees Collection</h6>
+                </br>
+                <mark><?php 
+					
+					 echo $totalIncome;
+					?>
+                </mark>
+              </div>
+              <div class="col-sm-6">
+                <h6 class="block no-margin">Today Stock</h6>
+                </br>
+                <mark><?php 
+					$camount=0;
+					 $school_code=   $this->session->userdata("school_code");
+					 $this->db->select_sum("sub_total");
+					 $this->db->where('school_code',$school_code);
+					 $this->db->where('date(date)',date('Y-m-d'));
+				//	 $this->db->where('dabit_cradit',1);
+					$stocktotal=$this->db->get('sale_info')->row();
+					if($stocktotal->sub_total){
+           echo $stocktotal->sub_total;
+          } 
+          else{
+            echo "0";
+          }
+                    ?>
+                </mark>
+              </div>
+            </div>
+
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-3 col-sm-6">
+    <div class="panel panel-default panel-white core-box">
+      <div class="panel-body no-padding">
+        <div class="partition-azure text-center core-icon">
+          <i class="fa fa-book fa-2x icon-big"></i>
+
+        </div>
+        <a href="<?php echo base_url(); ?>index.php/login/daybook">
+          <div class="padding-20 core-content">
+            <!-- <h4 class="title block no-margin">DayBook</h4>-->
+            <h4 class="title block no-margin">This Year Due</h4>
+            <br />
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="block no-margin">Debit Amount</h6>
+                <mark><?php 
+					$damount=0;
+					 $school_code=   $this->session->userdata("school_code");
+					 $this->db->where('school_code',$school_code);
+					 $this->db->where('date(pay_date)',date('Y-m-d'));
+					 $this->db->where('dabit_cradit',0);
+					 $debit_amount=$this->db->get('day_book');
+					 foreach($debit_amount->result() as $dm){
+						 $damount=$damount + $dm->amount;
+					 }
+					 echo $damount;
+					?>
+                </mark>
+              </div>
+              <div class="col-sm-6">
+                <h6 class="block no-margin">Credit Amount</h6>
+                <mark><?php 
+					$camount=0;
+					 $school_code=   $this->session->userdata("school_code");
+					 $this->db->where('school_code',$school_code);
+					 $this->db->where('date(pay_date)',date('Y-m-d'));
+					 $this->db->where('dabit_cradit',1);
+					 $credit_amount=$this->db->get('day_book');
+					 foreach($credit_amount->result() as $cm){
+						 $camount=$camount + $cm->amount;
+					 }
+					 echo $camount;
+                    ?>
+                </mark>
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-3 col-sm-6">
+    <div class="panel panel-default panel-white core-box">
+      <div class="panel-body no-padding">
+        <div class="partition-pink text-center core-icon">
+          <i class="fa fa-users fa-2x icon-big"></i>
+          <br>
+          <span class="subtitle"> <?php 
+											$date=Date("Y-m-d");
+											$this->db->select_sum("amount");
+											//$x= $this->db->from("cash_payment");
+                    	$this->db->where("school_code",$this->session->userdata("school_code"));
+			                 $this->db->where("date",$date); 
+		                   $info = $this->db->get('cash_payment')->row();
+									
+                    	?> </span>
+        </div>
+        <a href="<?php echo base_url(); ?>index.php/login/daybook">
+          <div class="padding-20 core-content">
+            <h4 class="title block no-margin">Top 10 Defaulter</h4>
+            <br />
+            <span class="subtitle"> <mark><?php if($info->amount){ echo $info->amount; } else{ echo "0"; }?> </mark></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
 </div>
-
+</div>
 
 <div class="row" style="margin-left:2px;">
   <!--<div class="col-lg-4 col-md-5">-->

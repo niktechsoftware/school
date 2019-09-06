@@ -893,8 +893,9 @@ function admissionSuccess(){
 				$delamountdaybook=0;
 				redirect(base_url()."index.php/login/simpleSearchStudent");
 				}
+			}
 			
-		}
+		
 			
 			
 		function stuAttenReport(){
@@ -914,4 +915,4 @@ function admissionSuccess(){
 				
 				$this->load->view("ajax/attenStuReport",$data);
 			}
-	
+		}
