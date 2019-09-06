@@ -525,16 +525,16 @@ $school_code = $this->session->userdata("school_code");
                   <a href="<?php echo base_url()?>index.php/login/dayBook">
                   <table class="table">
                     <thead style="text-align:center;">
-                    
+
                     <th>Sno.</th>
                     <th>Teacher Name</th>
                 
                     <th>Present / Absent </th>
-                   
                     </thead>
                       <tbody>
                       <?php $i=1;
                          $count=0;
+                         
                         $totpresent=0;
                         $date=Date("Y-m-d");
                         $this->db->where("school_code",$school_code);
