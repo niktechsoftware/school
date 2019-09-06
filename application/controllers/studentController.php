@@ -915,4 +915,5 @@ function admissionSuccess(){
 				
 				$this->load->view("ajax/attenStuReport",$data);
 			}
+	
 		}
