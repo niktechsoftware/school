@@ -182,13 +182,25 @@
     <!-- start: TOPBAR CONTAINER -->
     <div class="container">
         <div class="navbar-header">
-            <a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+            <div class="row">
+                <div class="col-lg-6">
+                <!-- <a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
                 <i class="fa fa-bars"></i>
-            </a>
-            <!-- start: LOGO -->
-            <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/login/">
+                </a> -->
+                <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/login/">
                 <?php echo $this->session->userdata('your_school_name') ?>
-            </a>
+                </a>
+                </div>
+                <div class="col-lg-6">
+                <a  href="<?php echo base_url();?>assets/apk/niktech_software.apk" target="_blank">
+                    <span class="messages-count badge badge-default hide">3</span> <img src="<?php echo base_url();?>assets/apk/download6.gif" style="max-width:40px; margin:0; padding:0;"><span style="margin-top:-5px;">  Download App </span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- start: LOGO -->
+            
+            
             <!-- end: LOGO -->
         </div>
         <div class="topbar-tools">

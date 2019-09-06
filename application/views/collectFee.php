@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-			    <div class="alert alert-info"><h3 class="media-heading text-center">Wecome to Fees Collection Area</h3><p class="media-timestamp">If you want to show student fee collection then 
+			    <div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Fees Collection Area</h3><p class="media-timestamp">If you want to show student fee collection then 
 		enter student id in student id box and click on get record button. Then open new form fill all detail in the form and show all fees of student and save it.</div>
 				<div class="row">
 					<div class="col-sm-12">

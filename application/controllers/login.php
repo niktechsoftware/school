@@ -87,7 +87,9 @@ class Login extends CI_Controller{
 		$data['smallTitle'] = 'Overview of all Section';
 		$data['mainPage'] = 'Dashboard';
 		$data['subPage'] = 'dashboard';
-
+		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row();
+		$data['sender_Detail'] =$sender;
+		$data['cbs']=checkBalSms($sender->uname,$sender->password);
 		$data['title'] = 'Niktech School Dashboard';
 		$data['headerCss'] = 'headerCss/dashboardCss';
 		$data['footerJs'] = 'footerJs/dashboardJs';
