@@ -192,7 +192,7 @@
                                 <td>
                                    <?php if($personalInfo->transport==0){?><?php }else{ ?>
 							    <label>PickUp Point: <?php
-                              $this->db->where('v_id',$personalInfo->v_id);
+                              $this->db->where('id',$personalInfo->vehicle_pickup);
                               $transportrootamount = $this->db->get("transport_root_amount");
                               if($transportrootamount->num_rows()>0){$transportrootamount1=$transportrootamount->row();echo strtoupper($transportrootamount1->pickup_points);}else{ echo "Not updated";}
                               ?></label>

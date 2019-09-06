@@ -40,21 +40,17 @@
 			<div class="panel-body">
 			    <div class="alert alert-info">
 					<h3 class="media-heading text-center">Welcome to show Homework Area</h3>
-					<p class="media-timestamp">To know the show homework for all the student / teacher / employee, go to the Home Work 
+					<p class="media-timestamp">To know the show homework for all the Student / Teacher / Employee, go to the Home Work 
 						for field and select it and you will start doing a list of homework and you can also take a printout of it.
 					</p>
 				</div>
-			
 				<div class="form-group">
-
 				<div class="col-sm-12">
-
          <?php 
     		if($var1->num_rows()>0){
-    		
         	?>
     	<div class="table-responsive" id ="normal">
-    	<table class="table table-striped table-hover" id="sample-table-2">
+    	<table class="table table-striped table-hover table-bordered" id="studHW">
     	<thead>
     	<tr>
         	<th>S.no.</th>
@@ -96,7 +92,7 @@
 						<td style=" width: 30%;"><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
 						    <button class="btn btn-info"  width="104" height="142">Download</button></a>
 						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-						<button class="btn btn-success"  width="104" height="142">Submit</button></a>; 
+						<button class="btn btn-success"  width="104" height="142">Submit</button></a>
 					
 						</td>
 			  		</tr>
@@ -105,11 +101,9 @@
 			</table>
 			</div><?php 
 	}
-	
 	else{
 		echo "<div style='color:red;'>home Work not Assign.</div>";
     }?>
-    
     </div>
     </div>
     </div>

@@ -1,9 +1,11 @@
+
 <?php 
 class configureHouse extends CI_Controller{
 	
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('configurehousemodel');
 		$this->is_login();
 		
 	}
@@ -30,7 +32,7 @@ class configureHouse extends CI_Controller{
 		$data['mainPage'] = 'House';
 		$data['subPage'] = 'House Configuration';
 		
-		$this->load->model("configurehousemodel");
+		
 		$data['column'] = $this->configurehousemodel->houseColumnLIst();
 		
 		$data['title'] = 'House Configuration';
@@ -40,6 +42,53 @@ class configureHouse extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	}
 
+	function addHouse(){
+			$stream=$this->input->post('streamName');
+			
+			$streamList = $this->configurehousemodel->addHouse($stream);
+			//print_r($streamList);
+			$data['streamList'] = $streamList;
+			$this->load->view("ajax/addHouse",$data);
+		
+	}
+	
+	function updateHouse(){
+		
+			
+			if($query = $this->configurehousemodel->updateHouse($this->input->post("streamId"),$this->input->post("streamName"))){
+				?>
+					<script>
+					 $.post("<?php echo site_url('index.php/configureHouse/addHouse') ?>", {streamName : ''}, function(data){
+				        	 $("#streamList1").html(data);
+						});
+					</script>
+					<?php 
+				}	
+				
+			
+	}
+	
+	function deleteHouse(){
+		
+		if($query =$this->configurehousemodel->deleteHouse($this->input->post("streamId"))){
+			?>
+					<script>
+					 $.post("<?php echo site_url('index.php/configureHouse/addHouse') ?>", {streamName : ''}, function(data){
+				        	 $("#streamList1").html(data);
+						});
+					</script>
+					<?php 
+				}
+				else
+				{?>
+				   <script>
+					 $.post("<?php echo site_url('index.php/configureHouse/addHouse') ?>", {streamName : ''}, function(data){
+				        	 $("#streamList1").html(data);
+						});
+					</script>
+			<?php	}
+			
+	}
 
 
 }

@@ -176,7 +176,9 @@
                   <div class="col-sm-7">
                     <select class="form-control" id="sectionId" name="section">
                       <option value="01">-Select Section-</option>
-                      <?php foreach ($noc as $en):?>
+                      
+                      <?php 
+                      foreach ($noc as $en):?>
                       <option value="<?php echo $en->id?>"><?php echo $en->section?></option>
                       <?php endforeach;?>
                     </select>

@@ -295,7 +295,7 @@
 												                                            
 												                                     $j=1;  
 												                                       
-                                                                                		   foreach($monthDeposit->result() as $mdf):
+                                                                      foreach($monthDeposit->result() as $mdf):
 												                                           ?>
 												                                            <div class="progress-bar <?php echo $color[$i];?>" style="width: 8.33%">
 												                                            <?php
@@ -305,7 +305,7 @@
 												                                            echo date("M-y",strtotime("$rdt"));
 												                                            ?>
 												                                        </div>
-												                                        <?php $i++;endforeach;
+												                                        <?php $i++; endforeach;
 												                                       }else{
 												                                           
 												                                      if($apm1->num_rows()>0){

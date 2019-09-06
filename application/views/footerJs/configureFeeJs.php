@@ -61,7 +61,7 @@
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script>
 		$(document).ready(function() {
-    $('#aarju').DataTable();
+    
 } );
 
 

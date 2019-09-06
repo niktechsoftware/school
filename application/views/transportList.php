@@ -77,8 +77,8 @@
 						<th>Address</th>
 						<th>Vehicle Name </th>
 						<th>Vehicle No</th>
-						<th>Picup Point</th>
-						<th> Drop Point</th>
+						<th>Pickup Point</th>
+						<th>Drop Point</th>
 						<th>Root</th>
 						<th>Transport Fee</th>
 					</tr>
@@ -105,7 +105,7 @@
 			                              $transport = $this->db->get("transport");
 
                                     
-										   $this->db->where('v_id',$row->v_id);
+										  $this->db->where('id',$snameid->vehicle_pickup);
 			                              $transportrootamount = $this->db->get("transport_root_amount");
 
 

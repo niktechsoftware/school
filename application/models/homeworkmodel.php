@@ -14,14 +14,33 @@ class homeWorkModel extends CI_Model{
 		return $var;
 	}
 	function getHomeWorkDetail(){
-	    $username=$this->session->userdata('username');
-	    $this->db->where('username',$username);
+		if($this->session->userdata('login_type') == 'admin'){
+			//$username=$this->session->userdata('username');
+	    //$this->db->where('username',$username);
 	    $stuinfo=$this->db->get('student_info')->row();
-	    
+			 //print_r($stuinfo->class_id);
+			 //exit();
 	    $this->db->where("class_id",$stuinfo->class_id);
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$var = $this->db->get("homework_name");
 		return $var;
+		}else	if($this->session->userdata('login_type') == '3'){
+	    $stuinfo=$this->db->get('student_info')->row();
+	    $this->db->where("class_id",$stuinfo->class_id);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$var = $this->db->get("homework_name");
+		return $var;
+	} else{
+		$username=$this->session->userdata('username');
+		$this->db->where('username',$username);
+		$stuinfo=$this->db->get('student_info')->row();
+		 //print_r($stuinfo->class_id);
+		 //exit();
+		$this->db->where("class_id",$stuinfo->class_id);
+	$this->db->where("school_code",$this->session->userdata("school_code"));
+	$var = $this->db->get("homework_name");
+	return $var;
+		}
 	}
 	function getHomeWorkDetailTeacher(){
 		$school_code = $this->session->userdata("school_code");
@@ -35,11 +54,20 @@ class homeWorkModel extends CI_Model{
 		return $var;
 	}
 	function getHomeWorkDetailStudent(){
+		if($this->session->userdata('login_type') == 'admin'){
 		$school_code = $this->session->userdata("school_code");
-        $cid = $this->session->userdata("class_id");
+		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students'  And school_code='$school_code'");
+		return $var;}else if($this->session->userdata('login_type') == '3'){
+			$school_code = $this->session->userdata("school_code");
+	$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students'  And school_code='$school_code'");
+	return $var;
+		} else{
+			$school_code = $this->session->userdata("school_code");
+				$cid = $this->session->userdata("class_id");
 		//$var = $this->db->query("SELECT * FROM homework_name WHERE class_id = '$cid' ");
 		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students' and class_id = '$cid' And school_code='$school_code'");
 		return $var;
+		}
 	}
 	function updateHomeWork($data,$sno){
 		$this->db->where("school_code",$this->session->userdata("school_code"));
