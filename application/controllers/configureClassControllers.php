@@ -169,19 +169,12 @@ endforeach;
 	}
 	public function getSection(){
 		$streamid = $this->input->post("streamid");
-		
 		$this->load->model('configureClassModel');
 		$query = $this->configureClassModel->getSection($streamid);
-        //print_r($query->result());exit();
-		
 	    	echo '<option value="">--Select Section--</option>';
 			foreach ($query->result() as $row){
-				?>
-				
-					<?php   
                            $this->db->where('id',$row->section);
 				 	       $row2=$this->db->get('class_section')->row();
-
                           ?>
 					<option value="<?php echo $row2->id; ?>" ><?php echo $row2->section; ?></option>
 				<?php 

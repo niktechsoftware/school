@@ -85,8 +85,10 @@ class Homeworkpanel extends CI_Controller{
     public function findclasstime()
       {
     
-      	//	$classid=$this->input->post("classid");
-      	//	$this->db->where('class_id',$classid);
+			 $data['cls']=$this->input->post("classid");
+			
+			//	$this->db->where('class_id',$classid);
+				
       		$data['class']=$this->db->get('homework')->result();
       			$this->load->view('panel/homework/classwise',$data);
     
