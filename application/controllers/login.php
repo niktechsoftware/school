@@ -82,12 +82,15 @@ class Login extends CI_Controller{
 			}else{
 				$total = "0.00";
 			}
-			$data['totalIncome']=$total;
+			$sc_code=$this->session->userdata("school_code");
+		$data['totalIncome']=$total;
+		$this->load->model('dashboard_p');
+		$data['emp_lev']=$this->dashboard_p->emp_leave($sc_code);
 		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
 		$data['mainPage'] = 'Dashboard';
 		$data['subPage'] = 'dashboard';
-		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row();
+		$sender = $this->smsmodel->getsmssender($sc_code)->row();
 		$data['sender_Detail'] =$sender;
 		$data['cbs']=checkBalSms($sender->uname,$sender->password);
 		$data['title'] = 'Niktech School Dashboard';

@@ -2002,6 +2002,68 @@ $school_code = $this->session->userdata("school_code");
         </div>
       </div>
     </div>
+    <div class="col-lg-4 col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body no-padding">
+          <div class="padding-10">
+            <h4 class="no-margin inline-block padding-5">Absent Teachers 
+            <!-- <span class="block text-small text-left">Total Absent</span> -->
+            </h4>
+          </div>
+          <div class="tabbable no-margin no-padding partition-dark">
+            <div class="tab-content partition-white">
+              <div id="users_tab_example1" class="tab-pane padding-bottom-5 active">
+                <div class="panel-scroll height-230">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Teacher Name</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                        <!-- <th class="Leave">Leave</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <?php 
+                          if($emp_lev->num_rows()>0){ $i=1;                
+                          foreach($emp_lev->result() as $lv_data)
+                          {                           															
+                          ?>
+                      <tr>
+                        <td><?php echo $i;?></td>
+                        <td><?php echo $lv_data->emp_id; ?></td>
+                        <td>Absent</td>
+                        <td><?php echo $lv_data->a_date; ?></td>
+                        <td>
+                            <input type="hidden" id="abc<?php echo $i;?>"  value="<?php echo $lv_data->emp_id; ?>"/>
+                            <input type="button" id="assgin<?php echo $i;?>"  value="Assgin" class="btn btn-danger" />
+                            <input type="button" id="assgined<?php echo $i;?>"  value="Assgined" class="btn btn-success" />
+                        </td>
+                      </tr>
+                      <script>
+                      $("#assgin<?php echo $i;?>").show();
+                      alert("3"); 
+                      $("#assgined<?php echo $i;?>").hide();
+                      </script>
+                      
+                     
+                            <?php 
+														$i++;	}
+														}
+															?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 
   <div class="row" style="margin-left:2px;">
