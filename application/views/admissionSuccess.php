@@ -1,4 +1,5 @@
 
+
 <script>
     function autoResize(id){
         var newheight;
@@ -1784,6 +1785,7 @@
 								<div class="col-sm-12">
 								<br/><br/>
 							<div class="table-responsive">
+
 								<table class="table table-striped table-hover center table-responsive" id="f_tb">
 												<thead>
 												<tr class="text-center" style="background-color:#1ba593; color:white;">
@@ -1865,6 +1867,7 @@
 												
 													</tbody>
 												</table>
+
 	</div>
 </div>
 	</div><!-- end: panel Body -->
@@ -1953,4 +1956,5 @@
 			        $this->db->update("sms_setting",$count1);
 		endif;
 	}
+
 	?>

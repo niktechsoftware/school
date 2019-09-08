@@ -1,3 +1,4 @@
+
 <?php
 class newAdmissionControllers extends CI_Controller{
     
@@ -499,4 +500,5 @@ public function addinfo(){
 	   }
 	}
 		
+
 }

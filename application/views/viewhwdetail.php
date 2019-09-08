@@ -38,8 +38,8 @@
 			</div><br>
 			
 			<div class="panel-body">
-			<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Homework Full Detail Area</h3>
-			<p class="media-timestamp">This is the <b>Homework Full Detail Area </b>, where you can see the whole details of Given Homework in <b> Details of Given Homework Panel</b>
+			<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Homework Full Details Area</h3>
+			<p class="media-timestamp">This is the <b>Homework Full Details Area </b>, where you can see the whole details of Given Homework in <b> Details of Given Homework Panel</b>
 			and you can see the whole details of Submitted Homework in <b> Details of Submitted Homework Panel</b>
 			</div>
 			<div><!--view form-->

@@ -1,3 +1,4 @@
+
 <!-- start: MAIN JAVASCRIPTS -->
 <!--[if lt IE 9]>
 <script src="<?php echo base_url(); ?>assets/plugins/respond.min.js"></script>
@@ -100,15 +101,8 @@
         });
         //-----------------------------------------------//
        
-       
-                
          Main.init();
         SVExamples.init();
         TableExport.init();
-  
-        
-                  
     });
-
-
 </script>

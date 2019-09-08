@@ -1,3 +1,4 @@
+
 <?php
 class homeWorkModel extends CI_Model{
 	function submitHomeWork($data){
@@ -59,5 +60,5 @@ class homeWorkModel extends CI_Model{
 		return $var;
 	}
 	
-	
+
 }

@@ -453,7 +453,7 @@ function showHomeWork()
         					   <?php
 							     }else{
 						?><a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>; 
+							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>
 							    <?php } ?>
 						   </td>
 				  		</tr>
@@ -504,8 +504,9 @@ function showHomeWork()
                             echo "N/A";
                         }else{
                            $this->db->where("id",$sub);
-                           $dt1= $this->db->get("subject")->row();
-                           echo $dt1->subject;
+						   $dt1= $this->db->get("subject")->row();
+						   if($dt1){echo $dt1->subject;} else{ echo "N/A";}
+                           
                         }
                         ?></td>
 			  			<td><?php echo $lv->maximam_marks;?> ( <?php echo $lv->grade;?> )</td>
@@ -527,7 +528,7 @@ function showHomeWork()
 						else{
 						?>
 						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-						<button class="btn btn-success"  width="104" height="142">Submit</button></a>; 
+						<button class="btn btn-success"  width="104" height="142">Submit</button></a> 
 						<?php } ?>
 						</td>
 			  		</tr>
@@ -619,7 +620,7 @@ function showHomeWork()
         						?><button class="btn btn-danger" id="delete<?php echo $count ; ?>"  width="104" height="142" style="color:white;">Delete</button>
         					    <?php 	}*/else{
 						?><a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>; 
+							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>
 							    <?php } ?>
 							    
 						
@@ -654,6 +655,40 @@ public function viewHomeWork(){
 		$data['mainContent'] = 'viewhwdetail';
 		$this->load->view("includes/mainContent", $data);
 	}
+	public function defineHomeWork(){
+	    $school_code = $this->session->userdata("school_code");
+		$data['pageTitle'] = 'Define HomeWork';
+		$data['smallTitle'] = 'Employee/Teacher/Student';
+		$data['mainPage'] = 'Define HomeWork';
+		$data['subPage'] = 'Employee/Teacher/Student';
+		$res=$this->db->query("SELECT DISTINCT section ,id FROM class_section WHERE school_code='$school_code'");
+		
+		$data['noc'] = $res->result();
+		$data['title'] = 'Define HomeWork';
+		$data['headerCss'] = 'headerCss/homeWorkCss';
+		$data['footerJs'] = 'footerJs/homeWorkJs';
+		$data['mainContent'] = 'studentHomeWork';
+		$this->load->view("includes/mainContent", $data);
+	}
+	function showHomeWork()
+	{
+		$this->load->model("homeWorkModel");
+		$data['pageTitle'] = 'Show HomeWork';
+		$data['smallTitle'] = 'Employee/Teacher/Student';
+		$data['mainPage'] = 'Show HomeWork';
+		$data['subPage'] = 'Employee/Teacher/Student';
+	//	$res=$this->db->query("SELECT DISTINCT class_name FROM class_info");
+		$res=$this->db->query("SELECT DISTINCT section FROM class_section");
+		$data['noc'] = $res->result();
+		$va=$this->homeWorkModel->getHomeWorkDetail();
+		$data['var1']=$va->result();
+		$data['title'] = 'Show HomeWork';
+		$data['headerCss'] = 'headerCss/homeWorkCss';
+		$data['footerJs'] = 'footerJs/showHomeWorkJs';
+		$data['mainContent'] = 'showHomeWork';
+		$this->load->view("includes/mainContent", $data);
 	
+		
+	}
 	
 }
