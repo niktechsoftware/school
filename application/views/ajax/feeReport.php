@@ -200,6 +200,7 @@
 								 	}
 									$cdate = date("Y-m-d");
 									$cmonth = date("Y-m",strtotime($cdate));
+									$curmon = date("m",strtotime($cdate));
 									//print_r($stu_id);
 									$this->db->where("student_id",$stu_id);
 									$dipom = $this->db->get("deposite_months");
@@ -236,7 +237,10 @@
 										?><input type = "hidden" id="rem<?php echo $count;?>" value="<?php echo $month;?>"/><?php
 								if($rt>0){
 								$searchM[$rt]=13;
+								$dt=Date("y-m-d");
+								
 									//$this->db->distinct();
+							
 								
 									$this->db->select_sum("fee_head_amount");
 									if($school_code ==1){
@@ -248,10 +252,26 @@
 								 
 								 $fee_head = $this->db->get("class_fees");
 								 if($fee_head->num_rows()>0){
-									 $fee_head =$fee_head->row()->fee_head_amount;
-									  $sum=$sum + ($fee_head * $rt);
-								 echo "<br>".$fee_head * $rt;
-										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head * $rt;?>"/><?php
+									 $fee_head_one =$fee_head->row()->fee_head_amount;
+									 	$this->db->where("fsd",$fsd);
+									$this->db->where("class_id",$stuDetail->class_id);
+									 	 $this->db->where_in("taken_month",$curmon);
+								 
+								 $examfee = $this->db->get("class_fees");
+								 if($examfee->num_rows()>0){
+								   //  print_r($examfee->num_rows());
+								    $exfee= $examfee->row()->fee_head_amount;
+									$totfee2= $fee_head_one * $rt;
+									$totfee=$totfee2+$exfee;
+									
+								 } 
+								 else{
+								 	$totfee=$fee_head_one * $rt;
+								 }
+									  $sum=$sum +$totfee;
+									//  print_r($totfee);
+								 echo "<br>".$totfee;
+										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $totfee;?>"/><?php
 								 }else{
 									 echo "fee Not found";								}
 							 }
@@ -578,7 +598,7 @@
     										$g++;	
     									
     									endforeach;
-    										//print_r($depmonth);
+    									//	print_r($depmonth);
 										$this->db->where_not_in("month_number",$depmonth);
 										$this->db->where("school_code",$this->session->userdata("school_code"));
 										$fcd = 	$this->db->get("fee_card_detail");
@@ -588,17 +608,22 @@
 											foreach($fcd->result() as $fcg):
 											if($fcg->month_number<4){
 												$roldm=$fcg->month_number-4+12;
+											//	print_r($roldm);
+												
 											}
 											else{
 												$roldm=$fcg->month_number-4;
+												//	print_r($roldm);
 											}
 									$oldm =  date('Y-m', strtotime("$roldm months", strtotime($fdate)));
+										//print_r($oldm);
 									if($oldm<=$cmonth){
 										$searchM[$rt]=$fcg->month_number;
 										echo $duedate= date("M-Y",strtotime($oldm));
 										$month =$month." and ".$duedate;
 									
 										$rt++;
+									//	print_r($month);
 										// $rt;
 								//	echo $cmonth;
 							}
@@ -606,6 +631,7 @@
 									endforeach;
 										?><input type = "hidden" id="rem<?php echo $count;?>" value="<?php echo $month;?>"/><?php
 								if($rt>0){
+								  //  print_r($rt);
 								//$searchM[$rt]=13;
 									//$this->db->distinct();
 								
@@ -615,24 +641,52 @@
 									$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
-								 $this->db->where_in("taken_month",$searchM);
+								 $this->db->where_in("taken_month",13);
 								 $fee_head = $this->db->get("class_fees");
 								 
-								 	$this->db->select_sum("fee_head_amount");
-									if($school_code ==1){
-										$this->db->where("cat_id",3);}
-									$this->db->where("fsd",$fsd);
+								//  	$this->db->select_sum("fee_head_amount");
+								// 	if($school_code ==1){
+								// 		$this->db->where("cat_id",3);}
+								// 	$this->db->where("fsd",$fsd);
+								// 	$this->db->where("class_id",$stuDetail->class_id);
+									
+								//  $this->db->where_in("taken_month",13);
+								//  $fee_head_one = $this->db->get("class_fees")->row()->fee_head_amount;
+								 
+								 if($fee_head->num_rows()>0){ 
+									 $fee_head =$fee_head->row()->fee_head_amount;
+									 $exdate1=Date("y-m-d");
+									 $dte1 = date("m",strtotime($exdate1));
+									 
+									 	$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
-								 $this->db->where_in("taken_month",13);
-								 $fee_head_one = $this->db->get("class_fees")->row()->fee_head_amount;
+									 $this->db->where_in("taken_month",$dte1);
 								 
-								 if($fee_head->num_rows()>0){
-									 $fee_head =$fee_head->row()->fee_head_amount;
-								 $sum=$sum + ($fee_head +($fee_head_one*$rt) );
+								 $examfee1 = $this->db->get("class_fees");
+								 if($examfee1->num_rows()>0){
+								     
+								    $exfee1= $examfee1->row()->fee_head_amount;
+								    
+									$totfee2= $fee_head * $rt;
+									$totfee=$totfee2+$exfee1;
+									print_r($exfee1);
+									print_r($fee_head);
+									print_r($rt);
+								 } 
+								 else{
+								 	$totfee=$fee_head * $rt;
+								//  		print_r($totfee);
+								 }
 									 
-								 echo "<br>".($fee_head +($fee_head_one*$rt) );
-										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head * $rt;?>"/><?php
+									// $feehead=$fee_head+($fee_head_one*$rt);
+								 $sum=$sum + ($totfee) ;
+									 
+								 echo "<br>".($totfee) ;
+								// print_r($fee_head);
+								// print_r($rt);
+								 
+										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $totfee;?>"/><?php
 								 }else{
 									 echo "fee Not found";								}
 							 }

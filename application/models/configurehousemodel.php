@@ -1,3 +1,4 @@
+
 <?php
 class Configurehousemodel extends CI_Model{
 	function houseColumnLIst(){
@@ -56,4 +57,5 @@ class Configurehousemodel extends CI_Model{
 		// return $query;
 	}
 	
+
 }

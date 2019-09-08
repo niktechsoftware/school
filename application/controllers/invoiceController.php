@@ -230,7 +230,7 @@ class InvoiceController extends CI_Controller{
 		/////////////////////
 		//$this->load->view("invoice/Admit", $data);
 	}
-function feeInvoice(){
+    function feeInvoice(){
 		$invoiceNo = $this->uri->segment(3);
 		$studentId = $this->uri->segment(4);
 		$isAdmission = $this->uri->segment(5);

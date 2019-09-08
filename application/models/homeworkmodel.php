@@ -1,3 +1,4 @@
+
 <?php
 class homeWorkModel extends CI_Model{
 	function submitHomeWork($data){
@@ -14,23 +15,9 @@ class homeWorkModel extends CI_Model{
 		return $var;
 	}
 	function getHomeWorkDetail(){
-	    	$school_code = $this->session->userdata("school_code");
-	    if($this->session->userdata("login_type")=="admin"){
-	        
-	  
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$var = $this->db->get("homework_name");
 		return $var;
-	    }else{
-	    $username=$this->session->userdata('username');
-	    $this->db->where('username',$username);
-	    $stuinfo=$this->db->get('student_info')->row();
-			// print_r($stuinfo);
-			// exit();
-	    $this->db->where("class_id",$stuinfo->class_id);
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$var = $this->db->get("homework_name");
-		return $var;}
 	}
 	function getHomeWorkDetailTeacher(){
 		$school_code = $this->session->userdata("school_code");
@@ -44,20 +31,11 @@ class homeWorkModel extends CI_Model{
 		return $var;
 	}
 	function getHomeWorkDetailStudent(){
-	    	$school_code = $this->session->userdata("school_code");
-	    if($this->session->userdata("login_type")=="admin"){
-	        
-      
-		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students' And school_code='$school_code'");
-		return $var;
-	    }else{
 		$school_code = $this->session->userdata("school_code");
         $cid = $this->session->userdata("class_id");
-       // print_r($cid);exit();
 		//$var = $this->db->query("SELECT * FROM homework_name WHERE class_id = '$cid' ");
 		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students' and class_id = '$cid' And school_code='$school_code'");
 		return $var;
-	    }
 	}
 	function updateHomeWork($data,$sno){
 		$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -82,5 +60,5 @@ class homeWorkModel extends CI_Model{
 		return $var;
 	}
 	
-	
+
 }

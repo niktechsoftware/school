@@ -5,7 +5,9 @@
         $dbuser="schoodhe_school";
         $dbpass="Rahul!123singh";
         $con=mysqli_connect($dbhost,$dbuser,$dbpass);
+
     	$con1=mysqli_select_db($con,'schoodhe_C');
+
        if($con1)
        {
           $query1="select * from school";

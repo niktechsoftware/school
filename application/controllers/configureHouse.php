@@ -1,3 +1,4 @@
+
 <?php 
 class configureHouse extends CI_Controller{
 	
@@ -88,5 +89,6 @@ class configureHouse extends CI_Controller{
 			<?php	}
 			
 	}
+
 
 }
