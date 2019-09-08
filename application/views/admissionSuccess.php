@@ -1784,78 +1784,87 @@
 								<div class="col-sm-12">
 								<br/><br/>
 							<div class="table-responsive">
-							<table class="table table-striped table-hover" id="sample-table-2">
-			<thead>
-				<tr class=' text-uppercase'>
-					<th>S.no.</th>
-					<th>Student Id</th>
-					<th>Student Name</th>
-					<th>Father Name</th>
-					<!--<th>Father Mobile</th>-->
-					<th>Total Paid</th>
-					<th>Total Due</th>
-					<th>Full Detail</th>
-				</tr>
-			</thead>
-			<tbody>
-			<?php
-			$count = 1;
-			$school_code = $this->session->userdata("school_code");
-			$this->db->where("id",$stu_id);
-		    //$this->db->where("status",1);
-		    $stuname=$this->db->get("student_info")->row();
-			$detail = $this->db->query("SELECT count(invoice_no) as month,finance_start_date FROM `fee_deposit` WHERE student_id='{$stuname->id}' AND school_code ='$school_code' GROUP BY finance_start_date ");
-			 if($detail->num_rows()>0){
-			 foreach($detail->result() as $row):?>
-			<?php
-			$month = $row->month;
-			$fsd = $row->finance_start_date;
-			    $color = array(
-				    "progress-bar-danger",
-				    "progress-bar-success",
-				    "progress-bar-warning",
-				    "partition-green",
-				    "partition-azure",
-				    "partition-blue",
-				    "partition-orange",
-				    "partition-purple",
-				    "progress-bar-danger",
-				    "progress-bar-success",
-				    "partition-green",
-				    "partition-purple"
-			    );
-			    $this->db->where("school_code",$this->session->userdata("school_code"));
-			    $this->db->where("student_id",$stuname->id);
-			    $rows = $this->db->get("guardian_info")->row();
-
-			   // $this->db->where("school_code",$this->session->userdata("school_code"));
-			    
-
-			   $fee_record= $this->feemodel->getperfeerecord($stu_id);
-			    $total = $this->db->query("SELECT count(invoice_no) as totalMonth, SUM(paid) as totalPaid, SUM(total) as total from fee_deposit WHERE student_id = '$stuname->id' AND finance_start_date='$fsd' and school_code='$school_code'")->row(); ?>
-				<tr class='text-uppercase'>
-		  			<td><?php echo $count;?></td>
-		  			<td><?php echo $stu_id;?>
-		  			<td><?php echo $stuname->name;?></td>
-		  			<td><?php echo $rows->father_full_name;?></td>
-		  			<!--<td><?php //echo $rows->f_mobile;?></td>-->
-
-		  			<td><?php echo $total->totalPaid;?></td>
-		  			<td><?php echo sprintf("%.2f",$total->total-$total->totalPaid);?></td>
-		  			<td>
-						<a href="<?php echo base_url()?>index.php/feeControllers/fullDetail/<?php echo $stu_id;?>/<?php echo $fsd;?>" target="_blank" class="btn btn-blue">
-							View Detail
-						</a>
-		  			</td>
-		  		</tr>
-
-	            <?php
-	            $count++;
-	            endforeach;
-		  	}?>
-
-			</tbody>
-		</table>
+								<table class="table table-striped table-hover center table-responsive" id="f_tb">
+												<thead>
+												<tr class="text-center" style="background-color:#1ba593; color:white;">
+												<th class="text-center">S No.</th>
+												<th class="text-center">Student Id</th>
+												
+												<th class="text-center">Total Fees</th>
+												<th class="text-center">Deposite Month</th>
+												<th class="text-center">Payment Mode </th>
+                                               <!-- <th class="text-center">Late Fees</th> -->
+												<th class="text-center">Paid Amount</th>
+												<th class="text-center">Pending Amount</th>
+													<th class="text-center">Invoice Number</th>
+												<th class="text-center">Activity</th>
+												<!-- <th>Activity</th> -->
+												</tr>
+											</thead>
+											<tbody>
+											<?php 
+												$stuid=$this->uri->segment(3);
+												$this->db->where("id",$stuid);
+											//	$this->db->where("username",$this->session->userdata("username"));
+												$id=$this->db->get("student_info")->row();
+												// this is for getting school_code 
+										     	$cid=$id->class_id;
+										    	$this->db->where("id",$cid);
+												$dt1=$this->db->get("class_info")->row();
+												  $scd=$dt1->school_code; 
+												  //echo $scd;
+												  
+												$this->db->where("student_id",$stuid);
+												$dt=$this->db->get("fee_deposit")->result();
+												
+												  ?>
+												  	<?php
+												  	
+												  	
+												  	$this->db->where('school_code',$scd);
+                                    				 $applymonth=$this->db->get("late_fees")->row()->apply_method;
+                                    				?>
+											
+												<?php $v=1; foreach($dt as $row):
+												?>
+												 <?php if($v%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
+	                             
+												<tr class="<?php echo $rowcss;?> text-uppercase">
+												<td class="text-center"><?php echo $v; ?> </td>
+													<td class="text-center"><?php echo $id->username;?></td>
+													
+													<td class="text-center"><?php $dte= $row->total; echo $dte;?></td>
+													
+													<td class="text-center"><?php echo $row->deposite_month;?></td>
+													<td class="text-center"> <?php if($row->payment_mode==1){ echo "Cash";} elseif($row->payment_mode==2){ echo "Online";}?></td>
+												 	<!-- <td class="text-center"><?php echo $row->late;?></td>  -->
+												 	<td class="text-center"><?php $pd= $row->paid; echo $pd?></td> 
+												 	<td class="text-center"><?php $cr=$dte-$pd; echo $cr;?></td> 
+												 		<td class="text-center"><?php  echo $row->invoice_no;?></td> 
+													 <td>
+													<?php //$fsdt=$this->uri->segment(4);
+													$this->db->where('school_code',$scd);
+													$fsdt=$this->db->get('general_settings')->row()->fsd_id;
+													if($row->invoice_no){
+														if($row->payment_mode=='Due Print'){?>
+															<a href="<?php echo base_url()?>index.php/invoiceController/printDueFee/<?php echo $row->invoice_no;?>/<?php echo $row->student_id;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>" class="btn btn-blue">
+															Print Slip
+														</a>
+													<?php	}else{?>
+														<a href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $row->student_id;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>" class="btn btn-blue">
+															Print Slip
+														</a>
+														<?php }?>
+															<?php if($this->session->userdata('login_type') == 'admin'){ ?>
+														<a href="<?php echo base_url()?>index.php/feeControllers/deleteFee/<?php echo $row->invoice_no;?>/<?php echo $row->student_id;?>/<?php if($v == 1){echo "true"; } ?>" class="btn btn-warning">
+															Delete Fee
+														</a>
+														<?php }}?>
+													</td>
+												</tr>	<?php $v++; endforeach; ?>
+												
+													</tbody>
+												</table>
 	</div>
 </div>
 	</div><!-- end: panel Body -->
