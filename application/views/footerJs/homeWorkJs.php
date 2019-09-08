@@ -63,6 +63,7 @@
 				$("#showhomeworkfor").change(function(){
 					alert("rahul");
 					var homeworkfor = $("#showhomeworkfor").val();
+					alert(homeworkfor);
 					 if(homeworkfor=="students"){
 						$("#showStudent").show();
 					}
@@ -92,6 +93,7 @@
 				
 				$("#sectionId").change(function(){
 					var section = $("#sectionId").val();
+					//alert(section);
 					$.post("<?php echo site_url("index.php/teacherController/getclass") ?>",{section : section}, function(data){
 					$("#classv").html(data);
 						});

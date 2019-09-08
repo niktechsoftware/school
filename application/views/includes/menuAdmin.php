@@ -390,12 +390,12 @@
     </a>
     <ul class="sub-menu">
         <li>
-            <a href="<?php echo base_url(); ?>index.php/adminController/defineHomeWork">
+            <a href="<?php echo base_url(); ?>index.php/studentHWControllers/defineHomeWork">
                 Define HomeWork <i class="icon-arrow"></i>
             </a>
         </li>
         <li>
-            <a href="<?php echo base_url(); ?>index.php/adminController/showHomeWork">
+            <a href="<?php echo base_url(); ?>index.php/studentHWControllers/showHomeWork">
               	Show HomeWork <i class="icon-arrow"></i>
             </a>
         </li>

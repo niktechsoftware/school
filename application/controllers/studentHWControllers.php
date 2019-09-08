@@ -51,7 +51,20 @@ class studentHWControllers extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	}
 	
-
+	public function defineHomeWork(){
+	    $school_code = $this->session->userdata("school_code");
+		$data['pageTitle'] = 'Define HomeWork';
+		$data['smallTitle'] = 'Employee/Teacher/Student';
+		$data['mainPage'] = 'Define HomeWork';
+		$data['subPage'] = 'Employee/Teacher/Student';
+		$res=$this->db->query("SELECT DISTINCT section,id FROM class_section WHERE school_code='$school_code'");
+		$data['noc'] = $res->result();
+		$data['title'] = 'Define HomeWork';
+		$data['headerCss'] = 'headerCss/homeWorkCss';
+		$data['footerJs'] = 'footerJs/homeWorkJs';
+		$data['mainContent'] = 'studentHomeWork';
+		$this->load->view("includes/mainContent", $data);
+	}
 	
 	function addHomeWork(){
 	    $school_code = $this->session->userdata("school_code");
@@ -79,7 +92,7 @@ class studentHWControllers extends CI_Controller{
 					
 			);
 			$this->load->library('upload');
-		//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/filehomeWork');
+	//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/filehomeWork');
 		$asset_name = $this->db->get('upload_asset')->row()->asset_name;
 			$image_path = $asset_name.$school_code.'/images/filehomeWork';
 		$config['upload_path'] = $image_path;
@@ -186,8 +199,8 @@ class studentHWControllers extends CI_Controller{
 					"status"=>1
 					);
 		$this->load->library('upload');
-		//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/filehomeWork');
-		$asset_name = $this->db->get('upload_asset')->row()->asset_name;
+	//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/filehomeWork');
+	$asset_name = $this->db->get('upload_asset')->row()->asset_name;
 			$image_path = $asset_name.$school_code.'/images/filehomeWork';
 		$config['upload_path'] = $image_path;
 		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc';
@@ -268,8 +281,8 @@ class studentHWControllers extends CI_Controller{
 			);
 			
 		$this->load->library('upload');
-		//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/submithomeWork');
-		$asset_name = $this->db->get('upload_asset')->row()->asset_name;
+	//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/submithomeWork');
+	$asset_name = $this->db->get('upload_asset')->row()->asset_name;
 			$image_path = $asset_name.$school_code.'/images/submithomeWork';
 		$config['upload_path'] = $image_path;
 		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc';
@@ -320,7 +333,28 @@ class studentHWControllers extends CI_Controller{
 		
 	}
 	
+function showHomeWork()
+	{
 
+		$this->load->model("homeWorkModel");
+		$data['pageTitle'] = 'Show HomeWork';
+		$data['smallTitle'] = 'Employee/Teacher/Student';
+		$data['mainPage'] = 'Show HomeWork';
+		$data['subPage'] = 'Employee/Teacher/Student';
+		$scode=$this->session->userdata('school_code');
+	//	$res=$this->db->query("SELECT DISTINCT class_name FROM class_info");
+		$res=$this->db->query("SELECT DISTINCT section,id FROM class_section where school_code = $scode ");
+		$data['noc'] = $res->result();
+		$va=$this->homeWorkModel->getHomeWorkDetail();
+		$data['var1']=$va->result();
+		$data['title'] = 'Show HomeWork';
+		$data['headerCss'] = 'headerCss/homeWorkCss';
+		$data['footerJs'] = 'footerJs/showHomeWorkJs';
+		$data['mainContent'] = 'showHomeWork';
+		$this->load->view("includes/mainContent", $data);
+	
+		
+	}
 	
 	function getTeacherWork()
 	{	
@@ -354,7 +388,7 @@ class studentHWControllers extends CI_Controller{
 				  			<td><?php echo $lv->workDiscription;?></td>
 				  			<td><?php echo $lv->givenWorkDate; ?></td>
 							<td><?php echo $lv->DueWorkDate; ?></td>
-							<td><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
+							<td><a href="<?php echo $this->config->item("asset_url"); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
 							    <button class="btn btn-info"  width="104" height="142">Download</button></a>
 							   <?php	if($this->session->userdata("login_type")=='admin'){ ?>
 							   <a href="<?php echo base_url(); ?>index.php/studentHWControllers/deleteHomeWork/<?php echo $lv->s_no;?>" style="color:white;"  class="btn btn-danger">Delete</a>
@@ -412,14 +446,14 @@ class studentHWControllers extends CI_Controller{
 				  			<td><?php echo $lv->workDiscription;?></td>
 				  			<td><?php echo $lv->givenWorkDate; ?></td>
 							<td><?php echo $lv->DueWorkDate; ?></td>
-							<td><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download><button class="btn btn-info"  width="104" height="142">Download</button></a>
+							<td><a href="<?php echo $this->config->item("asset_url"); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download><button class="btn btn-info"  width="104" height="142">Download</button></a>
 							     <?php	if($this->session->userdata("login_type")=='admin'){ ?>
 				            	<a href="<?php echo base_url(); ?>index.php/studentHWControllers/deleteHomeWork/<?php echo $lv->s_no;?>" style="color:white;"  class="btn btn-danger">Delete</a>
 							<a href="<?php echo base_url(); ?>index.php/studentHWControllers/viewHomeWork/<?php echo $lv->s_no;?>" style="color:white;" id="view<?php echo $count;?>" class="btn btn-warning">View Detail</a>
         					   <?php
 							     }else{
 						?><a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>; 
+							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>
 							    <?php } ?>
 						   </td>
 				  		</tr>
@@ -470,15 +504,16 @@ class studentHWControllers extends CI_Controller{
                             echo "N/A";
                         }else{
                            $this->db->where("id",$sub);
-                           $dt1= $this->db->get("subject")->row();
-                           echo $dt1->subject;
+						   $dt1= $this->db->get("subject")->row();
+						   if($dt1){echo $dt1->subject;} else{ echo "N/A";}
+                           
                         }
                         ?></td>
 			  			<td><?php echo $lv->maximam_marks;?> ( <?php echo $lv->grade;?> )</td>
 			  			<td style="max-width: 151px;"><?php echo $lv->workDiscription;?></td>
 			  			<td><?php echo $lv->givenWorkDate; ?></td>
 						<td><?php echo $lv->DueWorkDate; ?></td>
-						<td style=" width: 30%;"><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
+						<td style=" width: 30%;"><a href="<?php echo $this->config->item("asset_url"); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
 						    <button class="btn btn-info"  width="104" height="142">Download</button></a>
 						<?php	 
 						if($this->session->userdata("login_type")=='admin' ||$this->session->userdata("login_type")==3)
@@ -493,7 +528,7 @@ class studentHWControllers extends CI_Controller{
 						else{
 						?>
 						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-						<button class="btn btn-success"  width="104" height="142">Submit</button></a>; 
+						<button class="btn btn-success"  width="104" height="142">Submit</button></a> 
 						<?php } ?>
 						</td>
 			  		</tr>
@@ -572,7 +607,7 @@ class studentHWControllers extends CI_Controller{
 							<td>
 								<?php echo $lv->DueWorkDate; ?>
 							</td>
-							<td style=" width: 30%;"><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
+							<td style=" width: 30%;"><a href="<?php echo $this->config->item("asset_url"); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
 							        <button class="btn btn-info"  width="104" height="142">Download</button></a>
 							<?php 
 							  if($this->session->userdata("login_type")=='admin' || $this->session->userdata("login_type")==3)
@@ -585,7 +620,7 @@ class studentHWControllers extends CI_Controller{
         						?><button class="btn btn-danger" id="delete<?php echo $count ; ?>"  width="104" height="142" style="color:white;">Delete</button>
         					    <?php 	}*/else{
 						?><a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>; 
+							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>
 							    <?php } ?>
 							    
 						
@@ -620,6 +655,40 @@ public function viewHomeWork(){
 		$data['mainContent'] = 'viewhwdetail';
 		$this->load->view("includes/mainContent", $data);
 	}
+	public function defineHomeWork(){
+	    $school_code = $this->session->userdata("school_code");
+		$data['pageTitle'] = 'Define HomeWork';
+		$data['smallTitle'] = 'Employee/Teacher/Student';
+		$data['mainPage'] = 'Define HomeWork';
+		$data['subPage'] = 'Employee/Teacher/Student';
+		$res=$this->db->query("SELECT DISTINCT section ,id FROM class_section WHERE school_code='$school_code'");
+		
+		$data['noc'] = $res->result();
+		$data['title'] = 'Define HomeWork';
+		$data['headerCss'] = 'headerCss/homeWorkCss';
+		$data['footerJs'] = 'footerJs/homeWorkJs';
+		$data['mainContent'] = 'studentHomeWork';
+		$this->load->view("includes/mainContent", $data);
+	}
+	function showHomeWork()
+	{
+		$this->load->model("homeWorkModel");
+		$data['pageTitle'] = 'Show HomeWork';
+		$data['smallTitle'] = 'Employee/Teacher/Student';
+		$data['mainPage'] = 'Show HomeWork';
+		$data['subPage'] = 'Employee/Teacher/Student';
+	//	$res=$this->db->query("SELECT DISTINCT class_name FROM class_info");
+		$res=$this->db->query("SELECT DISTINCT section FROM class_section");
+		$data['noc'] = $res->result();
+		$va=$this->homeWorkModel->getHomeWorkDetail();
+		$data['var1']=$va->result();
+		$data['title'] = 'Show HomeWork';
+		$data['headerCss'] = 'headerCss/homeWorkCss';
+		$data['footerJs'] = 'footerJs/showHomeWorkJs';
+		$data['mainContent'] = 'showHomeWork';
+		$this->load->view("includes/mainContent", $data);
 	
+		
+	}
 	
 }

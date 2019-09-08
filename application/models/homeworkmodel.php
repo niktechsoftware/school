@@ -1,3 +1,4 @@
+
 <?php
 class homeWorkModel extends CI_Model{
 	function submitHomeWork($data){
@@ -14,12 +15,6 @@ class homeWorkModel extends CI_Model{
 		return $var;
 	}
 	function getHomeWorkDetail(){
-	    $username=$this->session->userdata('username');
-	    $this->db->where('username',$username);
-	    $stuinfo=$this->db->get('student_info')->row();
-			// print_r($stuinfo);
-			// exit();
-	    $this->db->where("class_id",$stuinfo->class_id);
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$var = $this->db->get("homework_name");
 		return $var;
@@ -65,5 +60,5 @@ class homeWorkModel extends CI_Model{
 		return $var;
 	}
 	
-	
+
 }

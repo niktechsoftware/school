@@ -45,6 +45,7 @@
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: CORE JAVASCRIPTS  -->
 		<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/table-export.js"></script>
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script>
 		//start datatable of Submitted hw
@@ -54,6 +55,10 @@
         $(document).ready(function() { 
            $('#submithwstu').DataTable();
             } );
+			$(document).ready(function() { 
+				$('#sample').DataTable();
+            } );
+			
         //end datatable of Submitted hw
 			jQuery(document).ready(function() {
 				$("#showStudent").hide();
@@ -131,7 +136,7 @@
 						$("#subjecthomework").html(data);
 						});
 				});
-
+						
 
 				
 				Main.init();
