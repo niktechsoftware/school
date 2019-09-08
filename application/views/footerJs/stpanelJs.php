@@ -156,7 +156,7 @@
 						var fsd = $("#fsd").val();
 						var classvh = $("#classvh").val();
 						//var sectionid = $("#classv").val();
-						alert(classvh);
+						//alert(classvh);
 						$.ajax({
 							"url": "<?= base_url() ?>index.php/studentController/getHousestudentList",
 							"method": 'POST',
