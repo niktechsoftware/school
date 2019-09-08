@@ -49,7 +49,7 @@
 <p>If you want student full details , then  Click on full profile link ,
 OR if you want to delete any student record then click on Delete link.<br>NOTE => if student Pay fee of any month
 then you can't Delete any record of Students.<br>
-And also we get Student Icard by click on username of that Student.
+And also we get Student I card by click on username of that Student.
 </p> </div>
 				    
 					<div class="row">

@@ -30,27 +30,34 @@
 							</div> <!-- End Panel Heading -->
 							<div class="panel-body">
 								<form action ="<?php echo base_url();?>index.php/periodTimeControllers/viewclassplan" method ="post">
-													<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to the teacher lesson plan area</h3><p class="media-timestamp">In this section teacher know our time table of class. if you find information then first select start date than end date and fill teacher id and click on define class plan button and show the result.</div>
-										<p>
-											<h4><b>Note : Please Enter Date  And Teacher ID</b></h4>
-										</p>
+													<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to the Teacher Lesson Plan area</h3><p class="media-timestamp">In this section teachers fill there class work. If you find information then first select start date than end date and fill teacher id and click on define class plan button and show the results.</div>
+										<strong>Note : Please Enter Date  And Teacher ID</strong>
+										
+									<br>
+									<br>
+									<br>
+									
 										<div class="row space15">
 											<div class="col-md-12">
-												<div class="col-md-3"><h4><b>Start Date</b></h4>
+												<div class="col-md-6">
+												<div class="col-md-6"><b>Start Date</b>
 												</div>
-													<div class="col-sm-3">
-														<input type="date" name ="sdate" required="required"/>
+													<div class="col-sm-6">
+														<input type="date" name ="sdate"  class="form-control" required="required"/>
 													</div>
-
-													<div class="col-md-3"><h4><b>End Date</b></h4>
+												</div>
+												<div class="col-md-6">
+													<div class="col-md-6"><b>End Date</b>
 													</div>
-													<div class="col-sm-3">
-														<input type="date" name ="edate" required="required"/>
+													<div class="col-sm-6">
+														<input type="date" name ="edate" class="form-control" required="required"/>
 													</div>
-												<div class="col-md-12">
-												<div class="col-md-3"><h4><b>Teacher ID</b></h4></div>
-													<div class="col-sm-3">
-														<select name="teacherid" required="required">
+												</div>	
+												<div class="col-md-12 space15">
+												<div class="col-md-6">
+												<div class="col-md-6">Teacher ID</div>
+													<div class="col-sm-6">
+														<select name="teacherid"  class="form-control" required="required">
 																<option value="01">-Select-</option>
 																<?php $this->db->where("school_code",$this->session->userdata("school_code"));
 																$this->db->where("job_category",3);
@@ -62,6 +69,10 @@
 																<?php endforeach;?>
 														</select>
 													</div>
+													</div>
+													<div class="col-sm-6">
+													</div>
+													
 												</div>
 												</div>
 												</div>
@@ -116,16 +127,20 @@
 					</div>
 
 					<div class="row space15">
+					
 						<div class="col-md-12">
-							<div class="col-md-3"><h4><b>Start Date</b></h4></div>
-								<div class="col-sm-3">
-								<input type="date" name ="sdate" required="required"/>
+							<div class="col-md-6">
+							<div class="col-md-6"><h4><b>Start Date</b></h4></div>
+								<div class="col-sm-6">
+								<input type="date" name ="sdate"  class="form-control" required="required"/>
 								</div>
-
-							<div class="col-md-3"><h4><b>End Date</b></h4></div>
-								<div class="col-sm-3">
-								<input type="date" name ="edate" required="required"/>
+							</div>
+							<div class="col-md-6">
+							<div class="col-md-6">End Date</div>
+								<div class="col-sm-6">
+								<input type="date" name ="edate"  class="form-control" required="required"/>
 								</div>
+							</div>
 							</div>
 					</div>
 					<div>

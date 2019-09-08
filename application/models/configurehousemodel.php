@@ -19,6 +19,11 @@ class Configurehousemodel extends CI_Model{
 		$query = $this->db->get("house");
 		return $query;
 	}
+	function getHouseList(){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("house");
+		return $query;
+	}
 	
 	public function updateHouse($streamId,$streamName){
 		$val = array(

@@ -31,7 +31,7 @@
 			<div class="panel-body">
 
 									<div class="alert alert-info"><h3 class="media-heading text-center">Edit Bill Area</h3><p class="media-timestamp">Welcome to the Edit Stock bill Area
-                                      You have forgotten to fill the details of any producte bill, you can fill in the bill information.Welcome to the Notice Alert & Message Area</div>
+                                      You have forgotten to fill the details of any product bill, you can fill in the bill information.</div>
 				<div class="row space20">
 					<div class="col-sm-6">
 						<label class="col-sm-4 control-label">

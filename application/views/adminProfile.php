@@ -77,7 +77,7 @@
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
 										<tr>
-											<td>Principal Name</td>
+											<td>Director Name</td>
 											<td>
 												<?php echo $personalInfo->principle_name; ?>
 											</td>

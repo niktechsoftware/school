@@ -4,7 +4,7 @@
 		<!-- start: INLINE TABS PANEL -->
 	<div class="panel panel-white">
 	<div class="alert alert-info">
-<h3 class="media-heading text-center">WELCOME TO THE ADVANCE SEARCH AREA</h3><p class="media-timestamp">If you want full details of the student, then click on checks and then you will see 15 colomns at a time, And you will also save yours students details on your Computer/Laptop .</div>
+<h3 class="media-heading text-center">WELCOME TO THE ADVANCE SEARCH AREA</h3><p class="media-timestamp">If you want full details of the student, then click on checks and then you will see 15 columns at a time, And you will also save yours students details on your Computer/Laptop .</div>
 
 		<div class="panel-heading panel-orange">
 				<h4 class="panel-title">Click column Name to view in the List (Student Detail)</h4>

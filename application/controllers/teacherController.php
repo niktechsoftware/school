@@ -734,5 +734,7 @@ function checkIDOTPc(){
 							<?php echo "Teacher Attendance is Done for Date ".$date1;?></div><?php 
 																
 															}
-				}			
+				}	
+				
+
 }

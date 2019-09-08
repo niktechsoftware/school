@@ -325,7 +325,7 @@
                     <p class="media-timestamp">Please insure that you create Fee of all Class.In this Section you
                       provide discount like as <strong>(brother/sister discount etc)</strong> . Please insert Discount Head, Discount
                       Amount, Discount Present, Applicated date and Discount Type in a given below Section and Press Save Button. 
-                      If you want Delete this field then Press Delete Button.You can choose only one column in Disc/Consession Head and Discount type or Discount
+                      If you want Delete this field then Press Delete Button.You can choose only one column in Disc/Concession Head and Discount type or Discount
                       Amount and Discount Present.
                       </p>
                       <p><stong>Note:-</stong>Discount type is most Important column, choose this column when Student are staff child or study more then two brother </p>
@@ -336,7 +336,7 @@
                             <thead>
                               <tr class="text-nowrap" style="background-color:#804c75; color:white;">
                                 <th>Sno</th>
-                                <th>Disc/Consession Head</th>
+                                <th>Disc/Concession Head</th>
                                 <th>Discount Type</th>
                                 <!-- <th>Disc/Consession ID</th> -->
                                 <th>Disc Amount</th>
