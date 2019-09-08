@@ -154,12 +154,12 @@
                        $result = $this->db->get("school")->row();
                     	if(strlen($this->session->userdata('photo')) > 1):?>
 				    		<?php if($this->session->userdata('login_type') == 'student'): ?>
-				        		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/stuImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" style="margin-top:30px; width:100px;" alt="">
+				        		<img src="<?php echo base_url()?>assets/<?php echo $school_code;?>/images/stuImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" style="margin-top:30px; width:100px;" alt="">
 				        	<?php else: ?>
-				        		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $result->logo;?>" class="img-circle" style="margin-top:30px; width:100px;" alt="">
+				        		<img src="<?php echo base_url()?>assets/<?php echo $school_code;?>/images/empImage/<?php echo $result->logo;?>" class="img-circle" style="margin-top:30px; width:100px;" alt="">
 				        	<?php endif;?>
 				        <?php else:?>
-				        	<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/anonymous.jpg" class="img-circle" style="margin-top:30px; width:100px;" alt="">
+				        	<img src="<?php echo base_url()?>assets/<?php echo $school_code;?>/images/anonymous.jpg" class="img-circle" style="margin-top:30px; width:100px;" alt="">
 				        <?php endif;?>
 
 
@@ -181,16 +181,29 @@
 <header class="topbar navbar navbar-inverse navbar-fixed-top inner">
     <!-- start: TOPBAR CONTAINER -->
     <div class="container">
-        <div class="navbar-header">
+    <div class="row">
+        <div class="col-md-3" style="margin-top:10px"> 
             <a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
-                <i class="fa fa-bars"></i>
+            <i class="fa fa-bars"></i>
             </a>
+        </div>
+        <div class="col-md-3" style="margin-top:10px">
+            <a style="margin-left:120px;"  href="<?php echo base_url();?>assets/apk/niktech_software.apk" target="_blank"> 
+            <span class="button_blink" style="margin-top:-5px;">  Download App </span>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <div class="navbar-header">
+            
             <!-- start: LOGO -->
             <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/login/">
                 <?php echo $this->session->userdata('your_school_name') ?>
             </a>
+            
             <!-- end: LOGO -->
+            </div>
         </div>
+        <div class="col-md-3" style="margin-top:10px">
         <div class="topbar-tools">
             <!-- start: TOP NAVIGATION MENU -->
             <ul class="nav navbar-right">
@@ -199,9 +212,9 @@
                     <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
                     	<?php if(strlen($this->session->userdata('photo')) > 1):?>
 				    		<?php if($this->session->userdata('login_type') == 'student'): ?>
-				        		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/stuImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" width="30" alt="">
+				        		<img src="<?php echo base_url()?>assets/<?php echo $school_code;?>/images/stuImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" width="30" alt="">
 				        	<?php else: ?>
-				        		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" width="30" alt="">
+				        		<img src="<?php echo base_url()?>assets/<?php echo $school_code;?>/images/empImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" width="30" alt="">
 				        	<?php endif;?>
 				        <?php else:?>
 				        	<img src="<?php echo base_url()?>assets/images/anonymous.jpg" class="img-circle" width="30" alt="">
@@ -216,7 +229,7 @@
 				                    My Profile
 				                </a>
 		                    <?php elseif($this->session->userdata('login_type') == 'student'):?>
-                            <a href="<?php echo base_url()?>index.php/singleStudentControllers/studentProfile">
+                            <a href="<?php echo base_url()?>index.php/studentController/studentProfile">
 				                    My Profile
 				                </a>
 
@@ -264,6 +277,10 @@
             </ul>
             <!-- end: TOP NAVIGATION MENU -->
         </div>
+        </div>
+    </div>
+       
+       
     </div>
     <!-- end: TOPBAR CONTAINER -->
 </header>

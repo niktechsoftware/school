@@ -20,7 +20,7 @@
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="myTab_example1">
                   <div class="alert panel-pink">
-                    <button data-dismiss="alert" class="close">×</button>
+                    <button data-dismiss="alert" class="close"></button>
                     <h3 class="media-heading text-center">Welcome to House/Team Define Area</h3>
                     <a class="alert-link" href="#"></a>
                     This is very important to create House .<p>If you want to <strong>Add</strong> a new
@@ -39,8 +39,8 @@
                           <span id="message"></span>
                           <input type="text" id="addStream" class="text-uppercase"  maxlength="15" onkeypress="return isAlaphabte(event)">
                             <a href="#" class="btn btn-sm btn-blue" id="addStreamButton"><i class="fa fa-check"></i>
-                              Add Stream</a></<br><br><br>
-                            <div class="alert alert-warning"> Type a Stream Name and Press Add Stream.If Stream added
+                              Add House</a></<br><br><br>
+                            <div class="alert alert-warning"> Type a House Name and Press Add House.If House/Team added
                               successfully then it show in right side panel where you can change the Name and Delete it.
                             </div>
                           </div>
@@ -50,7 +50,7 @@
                     <div class="col-sm-6">
                       <div class="panel panel-calendar">
                         <div class="panel-heading panel-green border-light">
-                          <h4 class="panel-title">Stream List</h4>
+                          <h4 class="panel-title">House List</h4>
                         </div>
                         <div class="panel-body" id="streamList1">
 
@@ -58,25 +58,13 @@
 												<div class="container">
                         <div class="alert alert-success">
                           You can <strong>Edit </strong> or <strong>Delete </strong>
-                          Stream by Press concern Button it sure that you have not created
-                          subject and classes depending Edited or Deleted Stream.</div>
+                          House by Press concern Button it sure that you have not created
+                          subject and classes depending Edited or Deleted House.</div>
                       </div>
 											</div>
                     </div>
                   </div>
-                </div> <script>
-                         function isAlaphabte(evt) {
-                    evt = (evt) ? evt : window.event;
-                    var charCode = (evt.which) ? evt.which : evt.keyCode;
-                    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-                    return true;
-                    }
-                    $('#message').html('only Alphabates').css('color', 'red');
-                    return false;
-                    }</script>
-
-
-
+                </div>
               </div>
             </div>
           </div>

@@ -49,8 +49,10 @@
                               <option value="">Select Stream Name</option>
                                                             <?php 
                                                             $school_code = $this->session->userdata("school_code");
+                                                           
                   $StreamList = $this->db->query("SELECT DISTINCT stream from class_info where school_code='$school_code' ORDER BY id");
-                                                            ?>
+                 // print_r($StreamLis);                  
+                    ?>
 
 
                               <?php if(isset($StreamList)){?>

@@ -401,3 +401,23 @@ Stack trace:
 #1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #2 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/configureHouse.php on line 47
+[06-Sep-2019 11:26:09 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/schoodhe/public_html/school/application/views/invoice/feeInvoice.php on line 741
+[06-Sep-2019 11:26:16 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/schoodhe/public_html/school/application/views/invoice/feeInvoice.php on line 741
+[06-Sep-2019 11:26:23 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/schoodhe/public_html/school/application/views/invoice/feeInvoice.php on line 741
+[06-Sep-2019 16:11:35 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php:133
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 133
+[07-Sep-2019 16:45:25 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 767
+[07-Sep-2019 16:45:38 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 767
+[07-Sep-2019 17:34:12 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:656
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 656

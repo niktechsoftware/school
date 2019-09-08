@@ -120,6 +120,7 @@
                                                <!-- <th class="text-center">Late Fees</th> -->
 												<th class="text-center">Paid Amount</th>
 												<th class="text-center">Pending Amount</th>
+													<th class="text-center">Invoice Number</th>
 												<th class="text-center">Activity</th>
 												<!-- <th>Activity</th> -->
 												</tr>
@@ -163,6 +164,7 @@
 												 	<!-- <td class="text-center"><?php echo $row->late;?></td>  -->
 												 	<td class="text-center"><?php $pd= $row->paid; echo $pd?></td> 
 												 	<td class="text-center"><?php $cr=$dte-$pd; echo $cr;?></td> 
+												 		<td class="text-center"><?php  echo $row->invoice_no;?></td> 
 													 <td>
 													<?php //$fsdt=$this->uri->segment(4);
 													$this->db->where('school_code',$scd);

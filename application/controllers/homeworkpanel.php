@@ -56,17 +56,13 @@ class Homeworkpanel extends CI_Controller{
 
 
   }
-  public function findstdhw()
-  {
-
+  public function findstdhw(){
   	$stdid=$this->input->post("studentid");
     $this->db->where('username',$stdid);
  	$username=$this->db->get('student_info')->row();
     $this->db->where('submitted_by',$username->username);
   	$data['row']=$this->db->get('homework');
   $this->load->view('panel/homework/studentwise',$data);
-
-
   }
 
     public function classwisehomeworkpanel(){
@@ -85,8 +81,10 @@ class Homeworkpanel extends CI_Controller{
     public function findclasstime()
       {
     
-      	//	$classid=$this->input->post("classid");
-      	//	$this->db->where('class_id',$classid);
+			 $data['cls']=$this->input->post("classid");
+			
+			//	$this->db->where('class_id',$classid);
+				
       		$data['class']=$this->db->get('homework')->result();
       			$this->load->view('panel/homework/classwise',$data);
     
@@ -118,6 +116,7 @@ public function findteacherhw()
 
   }
     public function topperfstdhomeworkpanel(){
+			$data['class']= $this->homeworkmodel->getHomeWorkList();
 		$data['pageTitle'] = 'HomeWork Panel';
 		$data['smallTitle'] = 'HomeWork Panel';
 		$data['mainPage'] = 'HomeWork Panel Area';

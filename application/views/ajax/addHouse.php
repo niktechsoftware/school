@@ -1,3 +1,4 @@
+
 <!--  
 Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   <meta name="description" content="Welcome to niktech software School business ERP . we proving school management erp software. we including online attendance with biometric attendance machine and tracking student with GPS technology & many other facilities in our school management erp system">
@@ -54,14 +55,5 @@ endif;
 		    		})
 		        });
 	 
-                       
-
-	                 
                     <?php } ?> 
-
-
-					
-                    
-
-  
 </script>

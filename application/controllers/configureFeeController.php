@@ -695,92 +695,12 @@ function isAlpha(evt) {
             if((strlen($this->input->post("vehicle_number"))>0)&&(strlen($this->input->post("vehicle_pickup"))>0)&&(strlen($this->input->post("transport_fee"))>0)){
             $this->db->insert("transport_root_amount",$data);}
             $this->load->model("configurefeemodel");
-            $result = $this->configurefeemodel->getroot();
-            if($result->num_rows()>0){?>
-   
-				<table id="aarju" class="table table-striped  table-responsive">
-			    <thead>
-				<tr>
-                <th style="max-width:40px;">S.No.</th>
-                <th style="max-width:40px;">Vehicle Name</th>
-                <th style="max-width:40px;">Number</th>
-                <th style="max-width:50px;">Driver Name</th>
-                <th style="max-width:50px;">Conductor Name</th>
-                <th style="max-width:80px;">Pickup Points</th>
-                <th style="max-width:80px;">Drop Points</th>
-                <th style="max-width:80px;">Route</th>
-                <th style="max-width:40px;">Transport Fee</th>
-                <th style="max-width:30px;">Action</th>
-                
-                </tr>
-				</thead>
-	        	<tbody>
-                    <?php $i=1;foreach($result->result() as $res):
-                    $this->db->where("v_id",$res->id);
-                    $fdata = $this->db->get("transport_root_amount");
-                    if($fdata->num_rows()>0){
-                    foreach($fdata->result() as $row):
-                    ?>
-            <tr>
-                <td style="max-width:30px;"><?php echo $i;?></td>
-                <td style="max-width:50px;"><?php echo $res->vehicle_name;?></td>
-                <td style="max-width:80px;"><?php echo $res->vehicle_numnber;?></td>
-                <td style="max-width:80px;"><?php echo $res->driver_name;?></td>
-                <td style="max-width:80px;"><?php echo $res->conductor_name;?></td>
-                <td style="max-width:120px;"><?php echo $row->pickup_points;?></td>
-                <td  style="max-width:120px;"><?php echo $row->drop_points;?></td>
-                <td  style="max-width:120px;"><?php echo $row->root;?></td>
-                <td style="max-width:80px;"><input type="text" value="<?php echo $row->transport_fee;?>"   onkeypress="return isNumber(event)" class="form-control"  style="max-width:80px;" maxlength="8" id="trans_fee<?php echo $i;?>" /></td>
-                <td style="max-width:40px;"><input type="hidden" id="rowSno1<?php echo $i;?>" size="20" value="<?php echo $row->id;?>">
-                    <a href="#" class="btn btn-primary" id="editroot1<?php echo $i;?>">Edit</a>
-                     <input type="hidden" id="rowSno1<?php echo $i;?>" size="20" value="<?php echo $row->id;?>">
-                    <a href="#" class="btn btn-danger" id="deleteroot1<?php echo $i;?>"></i>Delete</a>
-                </td>
-              
-           
-            <script>
-                $("#editroot1<?php echo $i; ?>").click(function() {
-                    var transfee = $("#trans_fee<?php echo $i;?>").val();
-                    var rowSno = $('#rowSno1<?php echo $i;?>').val();
-                    $.post("<?php echo site_url('configureFeeController/edittransfee') ?>", {
-                        transfee: transfee,
-                        rowSno: rowSno
-                    }, function(data) {
-                        $("#editroot1<?php echo $i;?>").html(data);
-                        //alert(data);
-                    })
-                });
-                $("#deleteroot1<?php echo $i; ?>").click(function() {
-                    var rowSno = $('#rowSno1<?php echo $i;?>').val();
-                    $.post("<?php echo site_url('configureFeeController/deletetransfee') ?>", {
-                        rowSno: rowSno
-                    }, function(data) {
-                        $("#deleteroot1<?php echo $i;?>").html(data);
-                        //alert(data);
-                    })
-                });
-
-                function isNumber(evt) {
-                                    evt = (evt) ? evt : window.event;
-                                    var charCode = (evt.which) ? evt.which : evt.keyCode;
-                                    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-
-                                        return false;
-                                    }
-                                    return true;
-                                }
-                </script>
-                </tr>
-                <?php $i++; endforeach; }?>
-           
-     
-                
-                <?php   endforeach; ?>
-            
-								</tbody>
-							</table>
+            $result1['result'] = $this->configurefeemodel->getroot();
+         //   if($result1->num_rows()>0){
+                $this->load->view('transportfees',$result1);
+			
 						
-        <?php }
+         ///}
             
         }
 

@@ -49,11 +49,16 @@
 	<th>HomeWork</th>
 	</tr>
 <?php
+
 foreach($class as $data)
 {
     $a=$data->submitted_by;
+    //print_r($a);
     $this->db->where("username",$a);
-    $dt1= $this->db->get("student_info")->row();
+    $this->db->where('class_id',$cls);
+    $dt= $this->db->get("student_info");
+    if($dt->num_rows()>0){
+        $dt1=$dt->row();
    
  ?>
 <tr>
@@ -64,7 +69,7 @@ foreach($class as $data)
 	    <button class="btn btn-info"  width="104" height="142">Download</button></a> </td>
 </tr>
  <?php
-}?>
+} }?>
 
 
 </table>
