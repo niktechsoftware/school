@@ -60,6 +60,7 @@
 				 $("#subjecthomework").hide();
 				$("#showhomeworkfor").change(function(){
 					var homeworkfor = $("#showhomeworkfor").val();
+					alert(homeworkfor);
 					 if(homeworkfor=="students"){
 						 $("#subjecthomework").hide();
 						 $("#teacherWork").hide();
