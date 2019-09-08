@@ -14,40 +14,9 @@
 	echo "<div class='alert alert-danger'>".$Warning."</div>";
 }?>
 	
-				<div class="panel-heading">
-					<h4 class="panel-title">Export <span class="text-bold">Transport Data</span> Table</h4>
-					<div class="panel-tools">
-						<div class="dropdown">
-							<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
-								<i class="fa fa-cog"></i>
-							</a>
-							<ul class="dropdown-menu dropdown-light pull-right" role="menu">
-								<li>
-									<a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
-								</li>
-								<li>
-									<a class="panel-refresh" href="#">
-										<i class="fa fa-refresh"></i> <span>Refresh</span>
-									</a>
-								</li>
-								<li>
-									<a class="panel-config" href="#panel-config" data-toggle="modal">
-										<i class="fa fa-wrench"></i> <span>Configurations</span>
-									</a>
-								</li>
-								<li>
-									<a class="panel-expand" href="#">
-										<i class="fa fa-expand"></i> <span>Fullscreen</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						<a class="btn btn-xs btn-link panel-close" href="#">
-							<i class="fa fa-times"></i>
-						</a>
-					</div>
-				</div>
+			
 				<div class="panel-body">
+				
 					<div class="row">
 						<div class="col-md-12 space20">
 							<div class="btn-group pull-right">
@@ -64,6 +33,8 @@
 				</div>
 			</div>
 		</div>
+		<div class ="alert alert-info">
+		<h4 align="center" >Driver Wise <span class="text-bold">Transport List</span> </h4></div>
 		<div class="table-responsive">
 			<table class="table table-striped table-hover" id="sample-table-2">
 				<thead>
@@ -112,7 +83,7 @@
 
 				                          $this->db->where("student_id",$snameid->id);
 										    $fname  = $this->db->get("guardian_info");
-										    if($fname->num_rows()>0){ 
+										   
 
 				                         if($count%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
 				                         <tr class="<?php echo $rowcss;?>" class="text-uppercase">
@@ -121,7 +92,8 @@
 										<td><?php echo strtoupper($row->name); ?></td>	
 										
 										<td><?php 
-										echo strtoupper($classInfo->class_name)." "."[".($row->class_id)."]".$sectionInfo->section; ?></td>	
+										echo strtoupper($classInfo->class_name)." "."[".($row->class_id)."]".$sectionInfo->section; ?></td>
+										<?php  if($fname->num_rows()>0){ ?>	
 										<td><?php echo strtoupper($fname->row()->father_full_name); ?></td>
 										<?php } else{
 										    ?>	<td><?php echo "Please Update";?></td>	
@@ -153,3 +125,6 @@
 	 <?php }else 
 		{echo "NO Record Found";}?>
  
+	<script>
+				TableExport.init();
+		</script>

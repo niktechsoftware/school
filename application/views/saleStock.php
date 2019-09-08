@@ -31,7 +31,7 @@
 			</div>
 			<div class="panel-body"  >
 <div class="alert alert-info"><h3 class="media-heading text-center">welcome to the sale stock area</h3><p class="media-timestamp">In this section you can purchase any time which is present in stock.
-Note- firstly select- buyer id then fill saller id and select item no, quantity and discount if you want then click on save and print receipt button.</div>
+Note- firstly select- buyer id then fill seller id and select item no, quantity and discount if you want then click on save and print reciept button.</div>
 				<div id="validId"></div>
 
 

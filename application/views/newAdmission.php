@@ -846,7 +846,7 @@
 												<th Style="text-align:center;">Passing Year<span id="passy" Style="color:red;"></span></th>
 												<th Style="text-align:center;">Roll No.<span id="rool" Style="color:red;"></span></th>
 												<th Style="text-align:center;">Marks<span id="marks" Style="color:red;"></span></th>
-												<th Style="text-align:center;">Percentages<span id="persent" Style="color:red;"></span></th>
+												<th Style="text-align:center;">Percentage<span id="persent" Style="color:red;"></span></th>
 												<th Style="text-align:center;">Subject<span id="sub" Style="color:red;"></span></th>
 												</tr>
 											</thead>

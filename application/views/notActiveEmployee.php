@@ -2,7 +2,7 @@
   <!-- start: EXPORT DATA TABLE PANEL  -->
   <div class="panel panel-white">
     <div class="panel-heading panel-green">
-      <h4 class="panel-title">List of all Students &amp; <span class="text-bold">Export Student Data List</span>
+      <h4 class="panel-title">Inactive   <span class="text-bold">Employee List</span>
       </h4>
       <div class="panel-tools">
         <div class="dropdown">
@@ -39,7 +39,7 @@
     <div class="panel-body">
       <div class="alert alert-info">
         <button data-dismiss="alert" class="close">×</button>
-        <h3 class="media-heading text-center"> Welcome to Inactive Employee Area</h3>
+        <h3 class="media-heading text-center"> Welcome to Inactive Employee Area.</h3>
        <p class="media-timestamp"> Here you can see all your Inactive Employee, If you want to see your Inactive Employee Detail then click on Full Profile and
         if you want to Active this Employee then click on Edit Profile and update his Status by click on Active.</p>
       </div>
@@ -117,6 +117,7 @@
               <th>Employee Name</th>
               <th>Job Title</th>
               <th>Mobile Number</th>
+              <th>Addreshh</th>
               <th>View</th>
             </tr>
           </thead>
@@ -131,6 +132,7 @@
               <td><?php echo $row->name; ?></td>
               <td><?php echo $row->job_title; ?></td>
               <td><?php echo $row->mobile; ?></td>
+               <td><?php echo $row->address; ?></td>
               <td><a
                   href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">Full
                   Profile</a></td>

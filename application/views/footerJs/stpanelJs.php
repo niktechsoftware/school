@@ -151,6 +151,29 @@
 					})
 					
 				});
+
+					$("#classvh").change(function(){
+						var fsd = $("#fsd").val();
+						var classvh = $("#classvh").val();
+						//var sectionid = $("#classv").val();
+						alert(classvh);
+						$.ajax({
+							"url": "<?= base_url() ?>index.php/studentController/getHousestudentList",
+							"method": 'POST',
+							"data": {fsd : fsd,classvh : classvh,},
+							beforeSend: function(data) {
+								$("#rahul").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+							},
+							success: function(data) {
+								$("#rahul").html(data);
+							},
+							error: function(data) {
+								$("#rahul").html(data)
+							}
+						})
+						
+					});
+						
 				
 				
 				Main.init();

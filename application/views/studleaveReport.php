@@ -10,7 +10,7 @@
 	echo "<div class='alert alert-danger'>".$Warning."</div>";
 }?>
 				<div class="panel-heading panel-red">
-					<h4 class="panel-title">Student <span class="text-bold">Leave</span> Detail</h4>
+					<h4 class="panel-title">Student <span class="text-bold">Leave</span> Details</h4>
 					<div class="panel-tools">
 						<div class="dropdown">
 							<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -117,7 +117,7 @@ or if you want to Cancel student leave then click on Cancel Button.<br>NOTE =>St
 								<thead>
 									<tr style="background-color:#1ba593; color:white;">
 										<th>SNo.</th>
-										<th>Usename</th>
+										<th>Username(id)</th>
 										<th>Student Name</th>
 										<th>Class & Section</th>
 										<th>Mobile Number</th>
@@ -180,12 +180,16 @@ or if you want to Cancel student leave then click on Cancel Button.<br>NOTE =>St
 										
                                            <?php } }?>
 									</tr>
+									
 									<?php $sno++; endforeach; ?>
 								<?php } else{?>
+								<tr>
+									<td colspan="12">
                                  <div class="alert alert-danger">
 		                       <?php  echo "<h4>No leave are requested by Student</h4>";?>
 			                     </div>  
-
+									</td>
+									<tr>
 								<?php }?>
 								</tbody>
 							</table>

@@ -29,7 +29,7 @@
 		    	<div class="alert alert-info">
 		    	    <button data-dismiss="alert" class="close">×</button>
 		    	    <h3 class="media-heading text-center">Welcome to Advance Employee List Area</h3>
-		    	    <p class="media-timestamp">This is Advance Employee List Area. Here you can see any Employee details by click on perticular check box, if you want to see all information
+		    	    <p class="media-timestamp">This is Advance Employee List Area. Here you can see any Employee details by click on particular check box, if you want to see all information
 		    	  of any Employee then click on every checkbox.
         </p></div>
 			<div class="row  space15">
@@ -99,7 +99,7 @@
 				<div class="col-md-2">
 					<label class="checkbox-inline">
 						<input type="checkbox" name="chk[]" value="experiance" id="experiance">
-						Experince
+						Experience
 					</label>
 				</div>
 				<div class="col-md-2">
@@ -143,7 +143,7 @@
 				<div class="col-md-2">
 					<label class="checkbox-inline">
 						<input type="checkbox" name="chk[]" value="join_date" id="join_date">
-						Joine Date
+						Joining Date
 					</label>
 				</div>
 				<div class="col-md-2">

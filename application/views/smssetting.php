@@ -34,10 +34,10 @@
 						
 						<div class="panel-body">
 						    <div class="alert alert-info">
-          <button data-dismiss="alert" class="close">×</button>
+          <button data-dismiss="alert" class="close"></button>
           <h3 class="media-heading text-center">Welcome to the SMS Setting Area</h3>
          In this section you can set the SMS for send.you can see toggle button of every facility ,if you have switch on button of any facility, only then you have to able for send the message.if button
-         is switched off then you can't able to send sms  for those perticular section.
+         is switched off then you can't able to send sms  for those particular section.
         </div>
 							<table class="table">
 								<thead>

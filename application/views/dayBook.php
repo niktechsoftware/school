@@ -66,7 +66,7 @@
                      	</div>
                      	<div class="col-md-2">
                         		<input type="radio" name="check_list" value="Diposit in Bank" required="required">
-                       			 Bank Deposite
+                       			 Bank Deposits
                      	</div>
                      	<div class="col-md-3">
                         		<input type="radio" name="check_list" value="Diposit to Director" required="required">
@@ -168,7 +168,7 @@
             			<input type="text" style="margin-left: 157px;" value="<?php echo $salary;?>"  disabled="disabled"/>
             		</div>
             		<div class="form-group">
-            			<label class="control-label">Bank Deposite</label>
+            			<label class="control-label">Bank Deposits</label>
             			<input type="text" style="margin-left: 110px;" value="<?php echo $banktransaction;?>" disabled="disabled" />
             		</div>
             		<div class="form-group">

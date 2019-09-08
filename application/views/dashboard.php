@@ -1189,7 +1189,7 @@ $school_code = $this->session->userdata("school_code");
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <!--   <div class="col-lg-4 col-md-12"> 
       <div class="panel panel-white">
 
         <div class="panel-body no-padding">
@@ -1534,6 +1534,7 @@ $school_code = $this->session->userdata("school_code");
         </div>
       </div>
     </div>
+    -->
     <div class="col-lg-4 col-md-12">
       <div class="panel panel-white">
         <div class="panel-body no-padding">
