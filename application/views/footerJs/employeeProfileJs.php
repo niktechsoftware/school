@@ -283,13 +283,12 @@
         }
     }
     
-      $("#edate").change(function(){
+      $("#edate").change(function(){ 
 					var emp_id = $("#empid").val();
 					var edate = $("#edate").val();
 					var sdate = $("#sdate").val();
-				alert(edate+","+section+","+classv+","+sdate);
-					$.post("<?php echo site_url("index.php/employeeController/empreport") ?>",{emp_id : emp_id,edate : edate,sdate : sdate}, function(data){
-					$("#rahul").html(data);
+			$.post("<?php echo site_url("index.php/employeeController/empreport") ?>",{emp_id : emp_id,edate : edate,sdate : sdate}, function(data){
+				$("#rahul").html(data);
 						});
 				});
 

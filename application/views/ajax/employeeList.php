@@ -174,7 +174,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 							<?php endif; ?> -->
 							
 							<?php if(strlen($join_date) > 1):?>
-							<th>Joine Date</th>
+							<th>Join Date</th>
 							<?php endif; ?>
 							
 							<?php if(strlen($gender) > 1):?>
@@ -182,7 +182,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 							<?php endif; ?>
 							
 							
-							<th>Settings</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>

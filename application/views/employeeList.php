@@ -143,7 +143,7 @@
 				<div class="col-md-2">
 					<label class="checkbox-inline">
 						<input type="checkbox" name="chk[]" value="join_date" id="join_date">
-						Joine Date
+						Join Date
 					</label>
 				</div>
 				<div class="col-md-2">

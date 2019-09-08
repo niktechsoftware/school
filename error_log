@@ -421,3 +421,4 @@ Stack trace:
 #4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 656
+[08-Sep-2019 20:08:11 Asia/Calcutta] PHP Fatal error:  Cannot redeclare studentHWControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 658

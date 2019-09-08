@@ -287,26 +287,21 @@ class EmployeeController extends CI_Controller{
 
     function empreport()
 	{
-$v=$this->uri->segment(3);
+            $v=$this->uri->segment(3);
 		$emp_id = $this->input->post("emp_id");
-			$edate = $this->input->post("enddate");
-			$sdate = $this->input->post("startdate");
+			$edate = $this->input->post("edate");
+			$sdate = $this->input->post("sdate");
 			$school_code = $this->session->userdata("school_code");
 			$this->db->where('username',$emp_id);
 			$emp=$this->db->get('employee_info')->row();
 			$empid=$emp->id;
-			
-			
-
 			$this->db->where('school_code',$school_code);
 			$this->db->where('emp_id',$empid);
 			$this->db->where('a_date >=',$sdate);
 			$this->db->where('a_date <=',$edate);
 			$var=$this->db->get('teacher_attendance');
-			//print_r($var);
-
-		// $var = $this->db->query("SELECT * FROM teacher_attendance WHERE school_code='$school_code' AND emp_id='$empid' AND  a_date >= '$sdate' and a_date <='$edate'");
-
+			// $var = $this->db->query("SELECT * FROM teacher_attendance WHERE school_code='$school_code' AND emp_id='$empid' AND  a_date >= '$sdate' and a_date <='$edate'");
+	
 		if($var->num_rows() > 0){
 				$sr = 1;
 				?>		<table class="table table-striped table-hover" id="sample_2">
@@ -322,7 +317,7 @@ $v=$this->uri->segment(3);
 							  			 foreach ($var->result() as $row){	
 							  				?><tr>
 							  					<td><?php echo $sr;?></td>
-							  					<td><?php echo $stuID = $row->a_date;  echo $stuID;?></td>
+							  					<td><?php echo $stuID = $row->a_date; ?></td>
 							  					<td>
 							  					<?php 
 							  					$atten=$row->attendance;
