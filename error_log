@@ -422,3 +422,28 @@ Stack trace:
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 656
 [08-Sep-2019 20:08:11 Asia/Calcutta] PHP Fatal error:  Cannot redeclare studentHWControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 658
+[09-Sep-2019 08:13:30 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getHomeWorkList() on null in /home/schoodhe/public_html/school/application/controllers/homeworkpanel.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Homeworkpanel->topperfstdhomeworkpanel()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/homeworkpanel.php on line 119
+[09-Sep-2019 08:56:15 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 08:56:30 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 08:56:33 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 08:56:35 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 08:56:37 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 08:56:50 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 10:35:42 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 11:49:44 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/schoodhe/public_html/school/application/views/dashboard.php:421
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dashboard')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(100): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dashboard.php on line 421
