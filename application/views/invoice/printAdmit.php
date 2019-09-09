@@ -156,7 +156,7 @@
 				<td style="text-align:center; border:none; width:60%;">
 				<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#d80606;"><b><?php echo $info->school_name; ?></b></h1>
                 <h2 style="font-variant:small-caps;color:#d80606;">
-            		<?php echo $info->address1." ".$info->address2." ".$info->city; ?>
+            			<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
             		<?php if(strlen($info->mobile_no > 0 )){echo $info->state." - ".$info->pin.", Phone : ".$info->mobile_no.", ";} ?>
@@ -279,7 +279,7 @@ if($exam_day->num_rows()){
                         $this->db->where('exam_id',$exam_day->row()->exam_id);
                         $date=$this->db->get('exam_day')->result();
                         foreach($date as $ed):?>
-						<th><?php echo date("Y-m-d",strtotime($ed->date1));?></th>
+						<th><?php echo date("d-m-Y",strtotime($ed->date1));?></th>
 						<?php endforeach; }?>
 					</thead>
 					<body>
