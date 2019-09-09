@@ -447,3 +447,13 @@ Stack trace:
 #7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #8 {main}
   thrown in /home/schoodhe/public_html/school/application/views/dashboard.php on line 421
+[09-Sep-2019 13:11:21 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 13:13:45 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 13:13:49 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 14:19:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 14:19:09 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 14:19:14 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 14:19:18 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 14:42:14 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 14:43:37 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
+[09-Sep-2019 14:46:43 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::showHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 617
