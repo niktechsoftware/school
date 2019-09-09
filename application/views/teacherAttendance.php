@@ -39,7 +39,7 @@
 
 									<div class="panel-body">
 <div class="alert alert-info"><h3 class="media-heading text-center">Teacher Attendance</h3><p class="media-timestamp">Welcome To The Teacher Attendance area
-To know the attendance of all your teachers, following the rules given below, you will get the information about all your attendance attenues.</div>
+To know the attendance of all your teachers, following the rules given below, you will get the information about all your attendance attenuate.</div>
 
 									<div class="row">
 										<div class="col-sm-12" id="validId"></div>

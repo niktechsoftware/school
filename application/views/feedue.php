@@ -147,7 +147,7 @@
 									<tr style="background-color:#804c75; color:white;">
 										
 											<th>S.No.</th>
-											<th>Student Usename</th>
+											<th>Student Username</th>
 											<th>Student Name</th>
 											<th>Total due</th>
 											<th>Mobile No.</th>

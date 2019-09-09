@@ -159,7 +159,7 @@
 																	<div class="alert alert-info">
 																		<h4 class="center"><b>Welcome to Notice/Alert Section Area</b></h4>
 									<p>In this section we can send a Alert/Notice for all Employee and Student. Choose your category and Subject,and write your 
-									massage,and Save your Alert/Notice. And also you can Edit or Delete your massage. </p>
+									massage,and Save your Alert/Notice. And also you can Edit or Delete your message. </p>
 																	</div>
 																	<div id="msg"></div>
 																	<div class="col-md-5">

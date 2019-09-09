@@ -299,7 +299,7 @@
 												<div class="panel-body">
 												     <div class="alert alert-info">
 											<h4 class="center"><b>WELCOME TO THE DIRECTOR TRANSACTION AREA</b></h4><br>
-	                                          <center>In This Area Director Can Withdraw Money in Emergency Case And Also Can Diposit Money .</center> 
+	                                          <center>In This Area Director Can Withdraw Money in Emergency Case And Also Can Deposit Money .</center> 
 										</div>
 					                        		<div class="form-group">
 						                              	<div class="form-group" align="center">
