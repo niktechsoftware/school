@@ -546,84 +546,9 @@ $school_code = $this->session->userdata("school_code");
                     <th>Class Name</th>
                     <th>Total Fee Due</th>
                     </thead>
-                      <tbody>
-                        <?php $i=1;
-                        $feecount=0;
-                        $date=Date("Y-m-d");
-                        $month = date("m", strtotime($date));
-
-                        $this->db->where("school_code",$school_code);
-                        $classdt= $this->db->get("class_info");
-                        //  print_r($this->session->userdata("fsd"));
-                        //  //print_r($classdt->result());
-                        //  exit();
-                        foreach($classdt->result() as $data):
-                          $this->db->where("class_id",$data->id);
-                          $studt=$this->db->get("student_info");
-                          // echo "<pre>";
-                          // print_r($studt->result());
-                           
-                          // exit();
-                          if($studt->num_rows()>0){
-
-                          $this->db->where("student_id",$studt->row()->id);
-                          $this->db->where("deposite_month",$month);
-                          $feedt=$this->db->get("fee_deposit");
-                          if($feedt->num_rows()>0){
-
-                          }
-                          else{ 
-                            $this->db->where("class_id",$data->id);
-                            $this->db->where("fsd",$this->session->userdata("fsd"));
-                           $classiddt= $this->db->get("class_fees");
-                           if($classiddt->num_rows()>0){
-
-                          // $this->db->where("school_code",$school_code);
-                           $this->db->where("id",$classiddt->row()->class_id);
-                           $classnm= $this->db->get("class_info")->row();
+                      
 
 
-                            
-                            $this->db->select_sum("fee_head_amount");
-                            $this->db->where("class_id",$data->id);
-                            $this->db->where("fsd",$this->session->userdata("fsd"));
-                           $classfee= $this->db->get("class_fees")->row();
-                           //$feecount=$feecount-$classfee;
-                          ?>
-                        <tr>
-                          <td class="center"><?php echo $i;?></td>
-                          <td><?php echo $classnm->class_name;?></td>
-                          <td><?php echo $classfee->fee_head_amount; ?></td>
-                          </tr>
-
-                     <?php $i++; }  }   }  endforeach; ?>
-                        
-                      </tbody>
-                    </table>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="panel no-radius">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a href="#collapseTwo5" data-parent="#accordion" data-toggle="collapse"
-                    class="accordion-toggle padding-15 collapsed">
-                    <i class="icon-arrow"></i>
-                    <?php $new = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
-                  This Year Due Report<?php if($new > 0):?> <span
-                      class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
-                  </a></h4>
-              </div>
-              <div class="panel-collapse collapse" id="collapseTwo5">
-                <div class="panel-body no-padding partition-light-grey">
-                  <a href="<?php echo base_url()?>index.php/login/dayBook">
-                  <table class="table">
-                    <thead>
-                    <th>Sno.</th>
-                    <th>Class Name</th>
-                    <th>Total Fee Due</th>
-                    </thead>
                       <tbody>
                         <?php $i=1;
                         $feecount=0;
@@ -701,6 +626,82 @@ $school_code = $this->session->userdata("school_code");
                           </tr>
 
                      <?php $i++; } }  }   }  endforeach; ?>
+                    </table>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="panel no-radius">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a href="#collapseTwo5" data-parent="#accordion" data-toggle="collapse"
+                    class="accordion-toggle padding-15 collapsed">
+                    <i class="icon-arrow"></i>
+                    <?php $new = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
+                  This Year Due Report<?php if($new > 0):?> <span
+                      class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+                  </a></h4>
+              </div>
+              <div class="panel-collapse collapse" id="collapseTwo5">
+                <div class="panel-body no-padding partition-light-grey">
+                  <a href="<?php echo base_url()?>index.php/login/dayBook">
+                  <table class="table">
+                    <thead>
+                    <th>Sno.</th>
+                    <th>Class Name</th>
+                    <th>Total Fee Due</th>
+                    </thead>
+                    <tbody>
+                        <?php $i=1;
+                        $feecount=0;
+                        $date=Date("Y-m-d");
+                        $month = date("m", strtotime($date));
+
+                        $this->db->where("school_code",$school_code);
+                        $classdt= $this->db->get("class_info");
+                        //  print_r($this->session->userdata("fsd"));
+                        //  //print_r($classdt->result());
+                        //  exit();
+                        foreach($classdt->result() as $data):
+                          $this->db->where("class_id",$data->id);
+                          $studt=$this->db->get("student_info");
+                          // echo "<pre>";
+                          // print_r($studt->result());
+                           
+                          // exit();
+                          if($studt->num_rows()>0){
+
+                          $this->db->where("student_id",$studt->row()->id);
+                          $this->db->where("deposite_month",$month);
+                          $feedt=$this->db->get("fee_deposit");
+                          if($feedt->num_rows()>0){
+
+                          }
+                          else{ 
+                            $this->db->where("class_id",$data->id);
+                            $this->db->where("fsd",$this->session->userdata("fsd"));
+                           $classiddt= $this->db->get("class_fees");
+                           if($classiddt->num_rows()>0){
+
+                          // $this->db->where("school_code",$school_code);
+                           $this->db->where("id",$classiddt->row()->class_id);
+                           $classnm= $this->db->get("class_info")->row();
+
+
+                            
+                            $this->db->select_sum("fee_head_amount");
+                            $this->db->where("class_id",$data->id);
+                            $this->db->where("fsd",$this->session->userdata("fsd"));
+                           $classfee= $this->db->get("class_fees")->row();
+                           //$feecount=$feecount-$classfee;
+                          ?>
+                        <tr>
+                          <td class="center"><?php echo $i;?></td>
+                          <td><?php echo $classnm->class_name;?></td>
+                          <td><?php echo $classfee->fee_head_amount; ?></td>
+                          </tr>
+
+                     <?php $i++; }  }   }  endforeach; ?>
                         
                       </tbody>
                     </table>
