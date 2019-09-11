@@ -103,7 +103,7 @@
 									</div>
 								</div>
 								<div class="table-responsive">
-									<table class="table table-striped table-hover" id="example">
+									<table class="table table-striped table-hover" id="sample-table-2">
 										<thead>
 											<tr  class=" text-uppercase alert alert-block alert-danger fade in">
 												<th>S.no.</th>
@@ -196,9 +196,7 @@
 						<?php endif; ?>
 
 
-						<script>
-							TableExport.init();
-						</script>
+						
 					</div><!-- end: table-responsive -->
 				</div>
 				<?php endif;?>
