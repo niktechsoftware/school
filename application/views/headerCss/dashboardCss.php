@@ -38,3 +38,4 @@
     <!-- end: CORE CSS -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>

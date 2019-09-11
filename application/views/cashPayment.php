@@ -194,12 +194,12 @@
 						                                	<tr>
 						                                        <td>
 						                                        	<a href="<?php echo base_Url()?>dayBookControllers/transactionDetail/bank/deposit" class="submit btn btn-blue">
-						                                        		Previous Deposite
+						                                        		Previous Deposits
 						                                        	</a>
 						                                        </td>
 						                                        <td>
 						                                        	<a href="<?php echo base_Url()?>dayBookControllers/transactionDetail/bank/withdrwal" class="submit btn btn-blue">
-						                                        		Privious Withdrawal
+						                                        		Previous Withdrawal
 						                                        	</a>
 						                                        </td>
 						                                	</tr>
@@ -212,7 +212,7 @@
 							                        	<label>Bank Transaction</label> &nbsp;&nbsp;&nbsp; <br>
 							                            <select name="id_name" style="width:150px;" required>
 							                                <option value="">-Select Transaction-</option>
-							                                <option value="deposite"> Deposite </option>
+							                                <option value="deposite"> Deposits </option>
 							                                <option value="receive"> Withdrawal </option>
 							                            </select>
 							                       </td>
@@ -279,7 +279,7 @@
 											<button data-dismiss="alert" class="close">
 												&times;
 											</button>
-											<strong>Oh my god...!</strong> Somthing Wrong contact Hwebs technologies... :(
+											<strong>Oh my god...!</strong> Somthing Wrong contact Niktech Software Solutions... :(
 										</div>
 										<?php }elseif(($this->uri->segment(4) == "balanceFalse")){?>
 										<div class="alert alert-danger">
@@ -299,7 +299,7 @@
 												<div class="panel-body">
 												     <div class="alert alert-info">
 											<h4 class="center"><b>WELCOME TO THE DIRECTOR TRANSACTION AREA</b></h4><br>
-	                                          <center>In This Area Director Can Withdraw Money in Emergency Case And Also Can Diposite Money .</center> 
+	                                          <center>In This Area Director Can Withdraw Money in Emergency Case And Also Can Deposit Money .</center> 
 										</div>
 					                        		<div class="form-group">
 						                              	<div class="form-group" align="center">
@@ -307,12 +307,12 @@
 							                                	<tr>
 							                                        <td>
 							                                        	<a href="<?php echo base_Url()?>dayBookControllers/transactionDetail/director/deposit" class="submit btn btn-blue">
-							                                        		Previous Deposite
+							                                        		Previous Deposits
 							                                        	</a>
 							                                        </td>
 							                                        <td>
 							                                        	<a href="<?php echo base_Url()?>dayBookControllers/transactionDetail/director/withdrwal" class="submit btn btn-blue">
-							                                        		Privious Received
+							                                        		Previous Received
 							                                        	</a>
 							                                        </td>
 							                                	</tr>

@@ -32,7 +32,7 @@
 									<div class="panel-body">
 										<div class="alert alert-info">
 											<h4 class="center"><b>WELCOME TO THE INTER STOCK AREA</b></h4><br>
-	                                      This Is The Storage Area Where You Can Enter The New Item, And Whoes Items Already Added  You Can Add Extra Quantity Of Those Items.
+	                                      This Is The Storage Area Where You Can Enter The New Item, And whose Items Already Added  You Can Add Extra Quantity Of Those Items.
 
 										</div>
 										<div id="msg"></div>

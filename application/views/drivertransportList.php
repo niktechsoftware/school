@@ -4,7 +4,7 @@
     <!-- start: RESPONSIVE TABLE PANEL -->
     <div class="panel panel-white">
       <div class="panel-heading panel-pink">
-        <h4 class="panel-title">Classwise <span class="text-bold">Timetable Report</span></h4>
+        <h4 class="panel-title">Driver wise<span class="text-bold">Student List</span></h4>
         <div class="panel-tools">
           <div class="dropdown">
             <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -39,32 +39,43 @@
       <div class="panel-body">
 
      <div class="row">
-                      <div class="col-sm-4">
-                        <div class="panel-heading panel-red border-light">
+                      <div class="col-sm-12">
+                       <div class="col-sm-6">
+                       <div class="col-sm-6">
+                          
+                        </div>
+                         <div class="col-sm-6">
                           <h4 class="panel-title">Driver Name</h4>
                         </div>
-                        <div class="panel-body">
-                          <div class="form-group">
-                            <select id="clname" class="form-control">
-                              <option value="">Select Driver Name</option>
-                                                            <?php 
-                                                            
-                                                            $school_code = $this->session->userdata("school_code");
-                                                            $this->db->where('school_code',$school_code);
-                                                          $transport=  $this->db->get('transport')->result();
-                                                            
-                                                            
-                           foreach ($transport as $row){
-                                 
-                                  ?>
-                              <option value="<?php echo $row->id;?>"><?php echo $row->driver_name;?>&nbsp;(&nbsp;<?php echo $row->vehicle_name;?>&nbsp;[&nbsp;<?php echo $row->vehicle_numnber;?>&nbsp;]&nbsp;)</option>
-                              <?php } ?>
-                            </select>
-                          </div>
+                        </div>
+                          <div class="col-sm-6">
+	                          <div class="col-sm-6">
+	                          <div class="form-group">
+	                            <select id="clname" class="form-control">
+	                              <option value="">Select Driver Name</option>
+	                                                            <?php 
+	                                                            
+	                                                            $school_code = $this->session->userdata("school_code");
+	                                                            $this->db->where('school_code',$school_code);
+	                                                          $transport=  $this->db->get('transport')->result();
+	                                                            
+	                                                            
+	                           foreach ($transport as $row){
+	                                 
+	                                  ?>
+	                              <option value="<?php echo $row->id;?>"><?php echo $row->driver_name;?>&nbsp;(&nbsp;<?php echo $row->vehicle_name;?>&nbsp;[&nbsp;<?php echo $row->vehicle_numnber;?>&nbsp;]&nbsp;)</option>
+	                              <?php } ?>
+	                            </select>
+	                          </div>
+	                          </div>
+	                         <div class="col-sm-6">
+                         	</div>
+                         </div>
+                        
+                        </div>
+                        
                          
-                      </div></div>
-                      
-                    </div>
+                      </div>
                     <div class="table-responsive" style="width:100%; overflow-y: scroll;">
                         <div id=sample_rahul>
                           

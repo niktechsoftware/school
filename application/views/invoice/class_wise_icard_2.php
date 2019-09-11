@@ -59,6 +59,9 @@
         color: white;
         border: 2px solid #4CAF50;
     }
+    .p1 {
+    text-transform: capitalize;
+}
     </style>
 
 </head>
@@ -172,8 +175,8 @@
                             </tr>
 							<tr>
                                 <td >Address</td>
-                                <td>
-                                    <?php echo $personalInfo->address1; ?>
+                                <td class="p1">
+                                    <p><?php echo $personalInfo->address1; ?></p>
                                 </td>
                             </tr>
                             <tr>

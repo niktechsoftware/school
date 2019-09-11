@@ -157,14 +157,18 @@
                             <td width="20%" style="border: none;" rowspan="2">
                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
                                     alt="" width="120" />
-                                </br><i style="color:white">Aff.No. - RC/A-15-16/_____</i>
+                                </br><label style="color:white">Aff.No. - <?php echo $info->registration_no;?></label>
+                                </br><label style="color:white">School Code - 70447</label>
                             </td>
                             <td style="border: none;">
-                                <h1 style="font-size:35px; color:white; margin-left:25px;">
+                                <h1 style="color:white;text-align: center;font-size: 30px;">
                                     <?php echo $info->school_name;?></h1>
                                 <!--	<p style="Arial Black, Gadget, sans-serif; font-size:45px; color:blue; margin-left:45px;"><?php echo $info->your_school_name;?></p>-->
-                                <h2 style="color:white; margin-left:90px; font-size:20px;">
+                                <h2 style="color:white;text-align: center;">
                                     <?php echo $info->address1." ".$info->city; ?>
+                                </h2>
+                                <h2 style="color:white;text-align: center;">
+                                 Mob Number:   <?php echo $info->mobile_no; ?>
                                 </h2>
 
                                 <!--   <h2 style="font-variant:small-caps; margin-left:180px;">
@@ -220,81 +224,100 @@
                 <table
                     style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
                     <tr>
-                        <th colspan="4" rowspan="2">SCHOLASTIC AREA </th>
-                        <th colspan="5" rowspan="2">Term 1 (100 Marks) </th>
-                        <th colspan="5" rowspan="2">Term 2 (100 Marks) </th>
+                        <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
+						<th colspan="5" rowspan="2">Term 1 (100 Marks) </th>
+						<!--<th colspan="5" rowspan="2">Term 2 (100 Marks) </th>-->
+						<th colspan="1" rowspan="2">Term 2 (100 Marks) </th>
                         <th colspan="3">OVERALL</th>
 
                     </tr>
 
                     <tr>
-                        <th colspan="3">Term 2 (50)+ Term 2(50)</th>
+                        <th colspan="3">Term 1 (50)+ Term 2(50)</th>
                     </tr>
 
                     <tr>
 
-                        <th colspan="4" rowspan="2">Subjects</th>
-                        <?php $i=1;
- foreach ($examid as $value):
-                 
-    $examid1=$value->exam_id;	
-   $this->db->where('id',$examid1);
-   $examname=$this->db->get('exam_name');   
-   if ($examname->num_rows()>0){
-   $examname=$examname->row();
-  
-       ?> <td colspan="<?php echo $i;?>"><?php echo $examname->exam_name;?></td>
+                        <th colspan="1" rowspan="1">Subjects</th>
+                        <!--1st term -->
+						<?php 
+							$i=1;
+							 foreach ($examid as $value):
+							   $examid1=$value->exam_id;	
+							   $this->db->where('id',$examid1);
+							    $this->db->where('term',1);
+							   $examname=$this->db->get('exam_name');   
+							   if ($examname->num_rows()>0){
+							   $examname=$examname->row();
+						?> 
+						<td colspan="1" ><?php echo $examname->exam_name;?></td>
                         <?php 
-   }
-  ?>
-
-
-                        <?php if($i%2==0){ ?>
-                        <td class="center bold">Total<br>
-                            <?php ?>
-                        </td>
-                        <!-- <td class="center bold">Grade</td> -->
-                        <?php } ?>
-                        <?php $i++; endforeach ;
-?>
-                        <!-- <th>Per. <br> Test</th>
-<th>Note <br> Book</th>
-<th>SEA</th>
-<th>Half <br> Yearly</th>
-<th>Total</th> -->
-
-                        <th>Per. <br> Test</th>
-                        <th>Note <br> Book</th>
-                        <th>SEA</th>
-                        <th>Yearly <br> Exam</th>
-                        <th>Total</th>
-
-                        <th>Grand<br> Toltal</th>
-                        <th rowspan="2">Grade</th>
-                        <th rowspan="2">Rank</th>
+						}
+						$i++;
+						endforeach ;
+						if(!$i%2==0){ ?>
+						<td class="center bold">Total</td> 
+						<?php } ?>
+						<!--2nd term-->
+						<?php 
+							$i=1;
+							 foreach ($examid as $value):
+							   $examid1=$value->exam_id;	
+							   $this->db->where('id',$examid1);
+							   $this->db->where('term',2);
+							   $examname=$this->db->get('exam_name');   
+							   if ($examname->num_rows()>0){
+							   $examname=$examname->row();
+						?> 
+						<td colspan="1" ><?php echo $examname->exam_name;?></td>
+                        <?php 
+						}
+						$i++;
+						endforeach ;
+						if(!$i%2==0){ ?>
+						<td class="center bold">Total</td> 
+						<?php } ?>
+                       <th>Grand<br> Total</th>
+                        <th rowspan="1">Grade</th>
+                        <th rowspan="1">Rank</th>
                     </tr>
 
 
                     <!-- Dynamic -->
-                    <tr>
+					
+                   <!-- <tr>
                         <th>10</th>
                         <th>5</th>
                         <th>5</th>
                         <th>80</th>
                         <th>100</th>
 
-                        <th>10</th>
+                      <th>10</th>
                         <th>5</th>
                         <th>5</th>
                         <th>80</th>
                         <th>100</th>
 
                         <th>100</th>
-                    </tr>
+                    </tr>-->
 
                     <!--Dynamic Subject-->
 
                     <?php 
+                    $dhtm=0;
+                        $htotal = 0;  
+                    	$ctotal =array();
+                        $ctotal[0]=0;
+                        $ctotal[1]=0;
+                        $ctotal[2]=0;
+                        $ctotal[3]=0;
+                        $ctotal[4]=0;
+                        $ctotal["tot2"]=0;
+                        $ctotal["tot4"]=0;
+                        $ctotal["tot6"]=0;
+                        $cumulativetotal=0;
+           $totalp= 0;   
+           $pi=1;
 foreach($resultData as $sub){
 $this->db->where('class_id',$classid->class_id);
 $this->db->where('id',$sub['subject']);
@@ -302,28 +325,68 @@ $subjectname=$this->db->get('subject');
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 ?>
-                    <tr>
-                        <td colspan="4"> <?php echo  $subjectname->subject;
-                       ?> </td>
+                   <tr class="wight"> 
+					 <td class="subject">	
+                     <?php echo  $subjectname->subject;?> 
+					</td>
+			     <?php 
+ 				
+                 $gtptal=0;
+                 $subtatal=0;
+		         ?>
+				<?php  $i=1; $t=0; $coltptal=0;  foreach ($examid as $value):?>
+					<td class="center" >	
+					<?php  
 
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-
-                    </tr>
+					$this->db->where('subject_id',$sub['subject']);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('stu_id',$studentInfo->id);
+					$this->db->where('exam_id',$value->exam_id);
+					$this->db->where('fsd',$fsd);
+					
+						$marks1= $this->db->get('exam_info');
+						if($marks1->num_rows()>0){
+							$marks=$marks1->row();
+							if(is_int($marks)){ 
+						    $subtatal=$subtatal+$marks->marks;
+							$gtptal= $gtptal+$marks->marks;
+							$coltptal+=$marks->marks;
+							echo $marks->marks;
+							$ctotal[$t]+= $marks->marks; }else{echo $marks->marks;}
+							$this->db->where('subject_id',$sub['subject']);
+        					$this->db->where('class_id',$classid->class_id);
+        					$this->db->where('exam_id',$value->exam_id);
+            				$exammm=$this->db->get('exam_max_subject')->row()->max_m;
+    				if(is_int($exammm)){
+    				    	$dhtm=$exammm+$dhtm;
+    				}
+    				
+						}
+					
+					?><?php echo "/" .$exammm; ?>
+					</td>
+					
+				            
+				<?php 
+				$i++; $t++;endforeach; ?>
+				<?php if(!$i%2==0){ ?>
+						<td class="center bold">
+						<?php 
+					/*	echo $subtatal; 
+						$ctotal['tot'.$i]+=$subtatal;
+						 $subtatal=0;*/
+						 ?>/100
+						 </td>
+					<?php } ?>
+			
+				<td class="center bold">/100</td>
+			   <td class="center bold">/100</td>
+			   <td class="center bold"></td>
+			   <td class="center bold"></td>
+			   
+				</tr>
                     <?php }}?>
+                  
                 </table>
             </div>
 
@@ -420,15 +483,15 @@ if($subjectname->num_rows()>0){
 
                         <!-- Dynamic -->
                         <tr>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
 
                         </tr>
                     </table>
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Hello</td>
+                            <td>-</td>
                         </tr>
                     </table>
 
@@ -452,16 +515,16 @@ if($subjectname->num_rows()>0){
 
                         <!-- Dynamic -->
                         <tr>
-                            <td>Hello</td>
-                            <td>Hello</td>
-                            <td>Hello</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
 
                         </tr>
                     </table>
 
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Hello</td>
+                            <td>-</td>
                         </tr>
                     </table>
 
@@ -483,8 +546,8 @@ if($subjectname->num_rows()>0){
                     </tr>
                     <!-- Dynamic -->
                     <tr>
-                        <td>Heelo</td>
-                        <td>Heelo</td>
+                        <td><?php	//echo round((($cumulativetotal*100)/$dhtm), 2);?>% </td>
+                        <td>-</td>
 
                     </tr>
 

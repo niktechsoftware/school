@@ -5,7 +5,7 @@
 								<div class="panel panel-white">
 									<div class="panel-body">
 										<div class="alert alert-info">
-											<center><h3 class="media-heading"><b>Important Instructions about Adding Subjects to a Class !</b></h3></center>
+											<center><h3 class="media-heading"><b>Important Instructions about Adding Subjects to a Class.</b></h3></center>
                     						<p class="media-timestamp">Welcome to Add Subject area where we can attach Subjects belonging to a Class. Please ensure that we have created Stream, Class, and Section. After that we can able to take admission in any Class.
                     						 to add Subject choose Stream Name, Section Name and Class Name respectively . Please type your <strong> Subject
                       Name</strong> into the box given below and Press 

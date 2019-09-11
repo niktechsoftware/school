@@ -175,7 +175,7 @@ $tdiscount=0;
                     </tr>
                     <tr class='text-uppercase'>
                     	<td class="meta-head" style="padding:5px; font-size:12px;">
-						<strong>Fathers Name</strong><td style="padding:5px; font-size:12px;"> <?php echo $pInfo->father_full_name; ?></td>
+						<strong>Father's Name</strong><td style="padding:5px; font-size:12px;"> <?php echo $pInfo->father_full_name; ?></td>
                         </td>
                     </tr>
 					<tr class='text-uppercase'>
@@ -311,7 +311,6 @@ $monthmk[$i]=13;?>
 		  			<td><?php //echo sprintf('%0.2f', $rowb->total); ?></td>
 		  		</tr> -->
 		  		
-		  				  				  				  				  				  				  				  				  				  				  				  		<tr>
 		  		 <tr class='text-uppercase'>
 					   <?php $transfee=0; 
 					    $this->db->where('id',$this->session->userdata('fsd'));
@@ -321,7 +320,7 @@ $monthmk[$i]=13;?>
 				// 		$this->db->where('student_id',$stuid_details->id); 
 				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-						if(($stuid_details->transport) && ($stuid_details->update_date<=$rowb->diposit_date)){
+						if(($rowb->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
@@ -411,7 +410,10 @@ $monthmk[$i]=13;?>
 				   <?php if(($this->session->userdata('login_type') == 'admin' )){
 					  echo $schoolname;
 					  }else if($this->session->userdata('login_type')==1){
-						echo $this->session->userdata('username');
+						    $eid= $this->session->userdata('username');
+							$this->db->where("username",$eid);
+	                echo	$name=$this->db->get('employee_info')->row()->name;
+	                echo "(".$eid.")";
 						  } ?>
 				  &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
@@ -493,7 +495,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
                     </tr>
                     <tr class='text-uppercase'>
                     	<td class="meta-head" style="padding:5px; font-size:12px;">
-						<strong>Fathers Name</strong><td style="padding:5px; font-size:12px;"> <?php echo $pInfo->father_full_name; ?></td>
+						<strong>Father's Name</strong><td style="padding:5px; font-size:12px;"> <?php echo $pInfo->father_full_name; ?></td>
                         </td>
                     </tr>
 					<tr class='text-uppercase'><?php $this->db->where('id',$classname->section);
@@ -626,15 +628,14 @@ $monthmk[$i]=13;?>
 		  				  				  				  				  				  				  				  				  				  				  				  		<tr>
 		  		 <tr class='text-uppercase'>
 					   <?php $transfee=0; 
-					   $this->db->where('id',$this->session->userdata('fsd'));
-					   $junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
+					    $this->db->where('id',$this->session->userdata('fsd'));
+						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
 		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
 				// 		$this->db->where('school_code',$school_code);
 				// 		$this->db->where('student_id',$stuid_details->id); 
 				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
-					  
-						 //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-						if(($stuid_details->transport) && ($stuid_details->update_date<=$rowb->diposit_date)){
+					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
+							if(($rowb->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
@@ -802,7 +803,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
                     </tr>
                     <tr class='text-uppercase'>
                     	<td class="meta-head" style="padding:5px; font-size:12px;">
-						<strong>Fathers Name</strong><td style="padding:5px; font-size:12px;"> <?php echo $pInfo->father_full_name; ?></td>
+						<strong>Father's Name</strong><td style="padding:5px; font-size:12px;"> <?php echo $pInfo->father_full_name; ?></td>
                         </td>
                     </tr>
 					<tr class='text-uppercase'><?php $this->db->where('id',$classname->section);
@@ -937,15 +938,15 @@ $monthmk[$i]=13;?>
 		  		</tr> -->
 		  		
 		  				  				  				  				  				  				  				  				  				  				  				  		<tr>
-		  		 <tr class='text-uppercase'>
+		  		 	 <tr class='text-uppercase'>
 					   <?php $transfee=0; 
-					   $this->db->where('id',$this->session->userdata('fsd'));
-					   $junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
+					    $this->db->where('id',$this->session->userdata('fsd'));
+						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
 		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
 				// 		$this->db->where('school_code',$school_code);
 				// 		$this->db->where('student_id',$stuid_details->id); 
 				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
-					   //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
+					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
 						if(($stuid_details->transport) && ($stuid_details->update_date<=$rowb->diposit_date)){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
@@ -965,7 +966,6 @@ $monthmk[$i]=13;?>
 					<td class="text-center"><?php echo $transfee; $i++; ?></td>
 					<?php    }}?>
 				</tr>
-				
 				<!-- <tr>-->
 		  <!--		     <td><b><?php //echo $i;?></b></td>-->
 				<!--	<td><b><?php // "TRANSPORT"; ?></b></td>-->

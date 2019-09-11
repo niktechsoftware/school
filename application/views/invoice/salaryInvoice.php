@@ -5,8 +5,8 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	
 	<title><?php echo $title;?></title>
-<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
 	<link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/print.css' media="print" />
 	<script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
@@ -82,12 +82,13 @@
 		<table style="width: 100%">
 			<tr class="text-uppercase">
 				<td width="10%" style="border: none;">
-				 <img src="<?= base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:right;" />
+				 <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:right;" />
 				</td>
 				<td style="border: none;">
 					<h1 align="center" style="text-transform:uppercase;"><?php echo $info->school_name; ?></h1>
 			        <h3 align="center" style="font-variant:small-caps;">
-						<?php echo $info->address1." ".$info->address2." ".$info->city; ?>
+						<?php if($info->address1){echo $info->address1; }else{echo $info->address2; } 
+						echo ",".$info->city; ?>
 			        </h3>
 			        <h3 align="center" style="font-variant:small-caps;">
 						<?php echo $info->state." - ".$info->pin; ?>
@@ -226,7 +227,7 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
               <tr >
                   <th align="center" colspan="3"><label>------------ DEDUCTION ------------</label></th>
               </tr>
-               <tr class="item-row text-uppercase"">
+               <tr class="item-row text-uppercase">
               		<td><label>10</label></td>
                   <td><label>Absent Deduction :</label></td>
                   <th><label><?PHP echo $row->spcialAllowance; ?></label></th>
@@ -280,8 +281,7 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
 	    -->
 	</div>
     <center>This is Computer generated Invoice</center>
-    
+    <center><button id="non-printable" type="button" class="btn btn-primary"  onclick="window.print();">Print Invoice</button></center>
 	
-</body><br>
-<center><button id="non-printable" class="btn btn-purple" style="background-color:blue;color:white; border:1px solid black;height:30px;width:120px" type="submit" onclick="window.print();">Print Invoice</button></center>
+</body>
 </html>

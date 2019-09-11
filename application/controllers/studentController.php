@@ -213,6 +213,26 @@ class StudentController extends CI_Controller{
 		$data['mainContent'] = 'classWiseList';
 		$this->load->view("includes/mainContent", $data);
 	}
+	function houseWiseList(){
+		$data['pageTitle'] = 'Student Panel';
+		$data['smallTitle'] = 'House Student List';
+		$data['mainPage'] = 'Student List Area';
+		$data['subPage'] = 'House Wise List';
+		$data['title'] = 'Student Panel Area ';
+		$this->load->model("configurehousemodel");
+		$data['request'] = $this->configurehousemodel->getHouseList();
+	
+		$data['headerCss'] = 'headerCss/stpanelCss';
+		$data['footerJs'] = 'footerJs/stpanelJs';
+		$data['mainContent'] = 'house/getHouseList';
+		$this->load->view("includes/mainContent", $data);
+		
+	}
+	function getHousestudentList(){
+		$data['fsd'] = $this->input->post("fsd");
+		$data['clah'] = $this->input->post("classvh");
+		$this->load->view("house/getHouseWiseList",$data);
+	}
 	
 	function getClassWiseList(){
 		$data['fsd'] = $this->input->post("fsd");

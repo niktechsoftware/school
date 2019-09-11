@@ -69,7 +69,10 @@
     <?php if($this->session->userdata("login_type")=="admin"){?>
      <div class="col-sm-3" style="margin-top:15px;">
         <div class="page-header">
-        <?php $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row(); ?>
+        <?php 
+        $this->db->where("school_code",$school_code);
+		$sender=$this->db->get("sms_setting")->row(); 
+        // $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row(); ?>
         <a class="button_blink" href="#">Remaining SMS&nbsp;<br><?php echo checkBalSms($sender->uname,$sender->password);?></a>
         </div>
     </div>

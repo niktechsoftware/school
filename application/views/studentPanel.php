@@ -82,13 +82,13 @@
 												</button>
 												</a>
 											</div>
-										<!--<div class="col-sm-4"><a href="<?php echo base_url();?>index.php/login/examDetail">-->
-										<!--		<button class="btn btn-light-red btn-block btn-icon btn-block space10">-->
+										<div class="col-sm-4"><a href="<?php echo base_url();?>index.php/studentController/houseWiseList">
+												<button class="btn btn-light-red btn-block btn-icon btn-block space10">
 
-										<!--		<font size="5">	Marks Slip & List </font><span class="badge badge-info partition-black"> 4 </span>-->
-										<!--		</button>-->
-										<!--		</a>-->
-										<!--	</div>-->
+											<font size="5">	Housewise Student List </font><span class="badge badge-info partition-black"> 4 </span>
+												</button>
+											</a>
+										</div>
 										<!--<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/studentController/homeWorkReport">-->
 										<!--		<button class="btn btn-light-yellow btn-icon btn-block space10">-->
 

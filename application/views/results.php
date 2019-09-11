@@ -36,7 +36,7 @@
 
 									<div class="alert alert-info">
 									    <h3 class="media-heading text-center">Welcome to Subject Result Area</h3>
-									    <p class="media-timestamp">Now you can update pre entered Marks details First of all select dropdown menus and wait for 
+									    <p class="media-timestamp">Now you can update pre entered Marks details First of all select dropdown menu and wait for 
 									    another page and Click Update Marks Button for update. After Clicking update button marks will be updated now you can 
 									    refresh this page and check it.</div>
 										<div class="row">

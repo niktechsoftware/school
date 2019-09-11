@@ -117,8 +117,8 @@ function getFsd(){
 		
 		$updata['student_id']=$this->input->post('stuId');
 		$updata['late']=$this->input->post("latefee");
-		//$updata['discount']=$this->input->post("discountv");
-		//$updata['transport']=$this->input->post("transport_fee");
+	//	$updata['monthly_fee']=$this->input->post("monthfee");
+		$updata['transport']=$this->input->post("transport_fee");
 		$updata['deposite_month ']=	$cmnum;
 		$updata['feecat']=$feecat;
 		$updata['description']=$this->input->post("disc");
@@ -1167,7 +1167,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                                            <input type="hidden" id="h<?= $feeh->fee_head_name; ?>"  value="<?= $fhamount;?>" class="form-control"/>
 	                                                            </div>
 	                                                             <div class="col-sm-6">
-	                                                                <input type="hidden" id="<?php echo $name ?>"  value="<?php echo $fhamount;?>" class="form-control"/>
+	                                                                <input type="hidden" id="<?php echo $name ?>" name="monthfee"  value="<?php echo $fhamount;?>" class="form-control"/>
 	                                                                 <input type="text" id="d<?php echo $name; ?>" value="<?php echo $fhamount;?>" class="form-control" disabled="disabled"/>
 	                                                               </div> 
 	                                                               

@@ -261,7 +261,75 @@ $school_code = $this->session->userdata("school_code");
   <!--        </div>-->
   <!--    </div>-->
 </div>
-
+<!--1st row end-->
+<!--2nd row start-->
+<div class="row">
+<div class="col-md-6 col-lg-3 col-sm-6">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-pink text-center core-icon">
+                    <i class="fa fa-users fa-2x icon-big"></i>
+                     <br>
+                    	<span class="subtitle"> <?php 
+                    	$this->db->where("school_code",$this->session->userdata("school_code"));
+			            $this->db->where("status",1); 
+			             $this->db->where("job_category",3);
+		                 $info = $this->db->get("employee_info")->num_rows();
+		                 echo $info ;
+                    	?>  </span>
+                </div>
+                <a href="<?php echo base_url(); ?>index.php/login/classteacher">
+                <div class="padding-20 core-content">
+                    <h4 class="title block no-margin">Total Teachers</h4>
+                    <br/>
+                    <span class="subtitle"> Access To Class Teachers. </span>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+	<div class="col-md-6 col-lg-3 col-sm-6">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-blue text-center core-icon">
+                    <i class="fa fa-users fa-2x icon-big"></i>
+                   </div>
+                <a href="<?php echo base_url(); ?>index.php/login/newAdmission">
+				<div class="padding-20 core-content">
+				   <!-- <h4 class="title block no-margin">Student Admission</h4>-->
+				   <h4 class="title block no-margin"> New Registration</h4><br>
+				   <div class="row">
+					   <div class="col-sm-6">
+					   <h6 class="block no-margin">Total Students</h6>
+						<?php //$fsd = $this->session->userdata("fsd");
+						$this->db->select('*');
+							$this->db->from('student_info');
+							$this->db->join('class_info','class_info.id=student_info.class_id');
+							$this->db->where("class_info.school_code",$school_code);
+							$query=$this->db->get();
+							echo $query->num_rows() ;?>
+					   </div>
+					   <div class="col-sm-6">
+					   <h6 class="block no-margin">Current Year Students</h6>
+					   <?php $fsd = $this->session->userdata("fsd");
+						$this->db->select('*');
+							$this->db->from('student_info');
+							$this->db->join('class_info','class_info.id=student_info.class_id');
+							$this->db->where("class_info.school_code",$school_code);
+							$this->db->where("student_info.status",1);
+							$this->db->where("student_info.fsd",$fsd);
+							$query=$this->db->get();
+							echo $query->num_rows() ;?>
+					   </div>
+				   </div>
+				  
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--2nd row end-->
 <div class="row">
 
 <div class="col-md-4 col-lg-4">
@@ -345,12 +413,12 @@ $school_code = $this->session->userdata("school_code");
                         $totstudent= $studata->num_rows();
 
                          $totstu=$totstu+$totstudent;
-
                       if( $studata->num_rows()>0){
                           $this->db->where("stu_id",$studata->row()->id);
                           $this->db->where("a_date",$date);
                            $absent=  $this->db->get("attendance")->num_rows();
                            
+
                           $count=$count+$absent;
 
                           $presentstu=$totstu-$count;
@@ -1190,7 +1258,7 @@ $school_code = $this->session->userdata("school_code");
         </div>
       </div>
     </div>
-    <div class="col-lg-4 col-md-12">
+    <!--   <div class="col-lg-4 col-md-12"> 
       <div class="panel panel-white">
 
         <div class="panel-body no-padding">
@@ -1535,6 +1603,69 @@ $school_code = $this->session->userdata("school_code");
         </div>
       </div>
     </div>
+    -->
+    <div class="col-lg-4 col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body no-padding">
+          <div class="padding-10">
+            <h4 class="no-margin inline-block padding-5">Absent Teachers 
+            <!-- <span class="block text-small text-left">Total Absent</span> -->
+            </h4>
+          </div>
+          <div class="tabbable no-margin no-padding partition-dark">
+            <div class="tab-content partition-white">
+              <div id="users_tab_example1" class="tab-pane padding-bottom-5 active">
+                <div class="panel-scroll height-230">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Teacher Name</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                        <!-- <th class="Leave">Leave</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <?php 
+                          if($emp_lev->num_rows()>0){ $i=1;                
+                          foreach($emp_lev->result() as $lv_data)
+                          {                           															
+                          ?>
+                      <tr>
+                        <td><?php echo $i;?></td>
+                        <td><?php echo $lv_data->emp_id; ?></td>
+                        <td>Absent</td>
+                        <td><?php echo $lv_data->a_date; ?></td>
+                        <td>
+                            <input type="hidden" id="abc<?php echo $i;?>"  value="<?php echo $lv_data->emp_id; ?>"/>
+                            <input type="button" id="assgin<?php echo $i;?>"  value="Assgin" class="btn btn-danger" />
+                            <input type="button" id="assgined<?php echo $i;?>"  value="Assgined" class="btn btn-success" />
+                        </td>
+                      </tr>
+                      <script>
+                      $("#assgin<?php echo $i;?>").show();
+                      alert("3"); 
+                      $("#assgined<?php echo $i;?>").hide();
+                      </script>
+                      
+                     
+                            <?php 
+														$i++;	}
+														}
+															?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
 
   <div class="row" style="margin-left:2px;">
