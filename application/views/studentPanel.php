@@ -52,7 +52,7 @@
 											</div>
 											<br></br>
 											<br></br>
-										<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/feepanel/classwisefeepanel">
+										<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/login/feeReport">
 												<button class="btn panel-red btn-icon btn-block space10">
 													<font size="5">Class wise Due Fee</font><span class="badge badge-info partition-orenge"> 4 </span>
 												</button>

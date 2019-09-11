@@ -378,9 +378,7 @@ $school_code = $this->session->userdata("school_code");
                   <a href="#collapseOne1" data-parent="#accordion" data-toggle="collapse"
                     class="accordion-toggle padding-15">
                     <i class="icon-arrow"></i>
-                    <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
-                    Today Student Attendence <?php if($new > 0):?> <span
-                      class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+                   
                   </a></h4>
               </div>
               <div class="panel-collapse collapse in" id="collapseOne1">

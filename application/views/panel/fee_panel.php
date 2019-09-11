@@ -48,7 +48,7 @@
 											</a>
 										</div>
 										<div class="col-sm-4">
-											<a href="<?php echo base_url(); ?>index.php/feepanel/classwisefeepanel">
+											<a href="<?php echo base_url(); ?>index.php/login/feeReport">
 												<button class="btn panel-blue btn-icon btn-block space10">
 													<font size="5">Fee Collect/due <br>Class Wise </font><span class="badge badge-info partition-orenge"> 2 </span>
 												</button>

@@ -236,7 +236,7 @@
 									endforeach;
 										?><input type = "hidden" id="rem<?php echo $count;?>" value="<?php echo $month;?>"/><?php
 								if($rt>0){
-								$searchM[$rt]=13;
+							//	$searchM[$rt]=13;
 								$dt=Date("y-m-d");
 								
 									//$this->db->distinct();
@@ -248,19 +248,23 @@
 									$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
-								 $this->db->where_in("taken_month",$searchM);
+								 $this->db->where_in("taken_month",13);
 								 
 								 $fee_head = $this->db->get("class_fees");
 								 if($fee_head->num_rows()>0){
 									 $fee_head_one =$fee_head->row()->fee_head_amount;
+									// print_r($fee_head->row()->fee_head_amount);
+									 	 //print_r($fsd);
 									 	$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
-									 	 $this->db->where_in("taken_month",$curmon);
+									 	 $this->db->where_in("taken_month",$searchM[$rt-1]);
 								 
 								 $examfee = $this->db->get("class_fees");
+							
 								 if($examfee->num_rows()>0){
 								   //  print_r($examfee->num_rows());
 								    $exfee= $examfee->row()->fee_head_amount;
+								    // 	 print_r($exfee);
 									$totfee2= $fee_head_one * $rt;
 									$totfee=$totfee2+$exfee;
 									
@@ -280,6 +284,7 @@
 							}
 
 							}else{
+							    $m = 0;
 								$this->db->where("school_code",$this->session->userdata("school_code"));
 								$fcd = 	$this->db->get("fee_card_detail");
 								$rt=0;
@@ -295,6 +300,7 @@
 										echo $duedate = date("M-Y",strtotime($oldm));
 							 	    $month =$month." and ".$duedate;
 										$rt++;
+										$m++;
 								//	echo $fcg->month_number;
 								//	echo $cmonth;
 									
@@ -302,7 +308,7 @@
 								endforeach;
 							?><input type = "hidden" id="rem<?php echo $count;?>" value="<?php echo $month;?>"/><?php
 								$adable_amount=0;
-						  	$searchM[$rt]=13;
+						  //	$searchM[$rt]=13;
 								//$this->db->distinct();
 								$this->db->select_sum("fee_head_amount");
 								$this->db->where("fsd",$fsd);
@@ -310,24 +316,30 @@
 							//	print_r($stuDetail->class_id);
 							if($school_code ==1){$this->db->where("cat_id",3);}
 							
-							    $this->db->where_in("taken_month",$searchM);
+							    $this->db->where_in("taken_month",$searchM[$m-1]);
 								$fee_head = $this->db->get("class_fees");
 								if($fee_head->num_rows()>0){
-
+								    
+	                                $this->db->select_sum("fee_head_amount");   
 									$this->db->where("class_id",$stuDetail->class_id);
 									//	print_r($stuDetail->class_id);
-								
+									$this->db->where("fsd",$fsd);
 											$this->db->where_in("taken_month",13);
 										$one_all_amount = $this->db->get("class_fees");
 										$one_all_amount=$one_all_amount->row()->fee_head_amount;
-									echo $one_all_amount."al";
+									/*echo $one_all_amount."al";
 										for($ui=0;$ui<$rt;$ui++){
 											if($ui>0){
 												$adable_amount =$one_all_amount+$adable_amount;
 											}
-										}
-									$fee_head =$fee_head->row()->fee_head_amount+$adable_amount;
-									$sum=$sum + $fee_head;
+										}*/
+										$hmfee = $one_all_amount*($m);
+										$monthtotald=$fee_head->row()->fee_head_amount;
+									$fee_head =$hmfee +	$monthtotald;
+									//print_r($m);
+										//print_r($one_all_amount);
+								
+									$sum=$sum +$fee_head;
 								echo "<br>".$fee_head;
 							//print_r($searchM);
 							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head;?>"/><?php
@@ -661,7 +673,7 @@
 									 	$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
-									 $this->db->where_in("taken_month",$dte1);
+									 $this->db->where_in("taken_month",$searchM[$rt-1]);
 								 
 								 $examfee1 = $this->db->get("class_fees");
 								 if($examfee1->num_rows()>0){
@@ -670,9 +682,9 @@
 								    
 									$totfee2= $fee_head * $rt;
 									$totfee=$totfee2+$exfee1;
-									print_r($exfee1);
-									print_r($fee_head);
-									print_r($rt);
+								// 	print_r($exfee1);
+								// 	print_r($fee_head);
+								// 	print_r($rt);
 								 } 
 								 else{
 								 	$totfee=$fee_head * $rt;
