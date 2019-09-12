@@ -4,7 +4,7 @@
 		<div class="panel panel-white">
 			<div class="panel-heading">
 				<i class="fa fa-external-link-square"></i>
-					Print Sale Reciept here :
+					Print Sale Receipt here :
 			</div>
 			<div class="panel-tools">
 				<div class="dropdown">
@@ -29,7 +29,7 @@
 			</div>
 			<div class="panel-body">
 
-						<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to the Print Reciept Area</h3><p class="media-timestamp">Details of stuff bought or sold by a student or employee, by going to the print receipt and clicking on the print button, you get the complete stock item details..</div>
+						<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to the Print Receipt Area</h3><p class="media-timestamp">Details of stuff bought or sold by a student or employee, by going to the print receipt and clicking on the print button, you get the complete stock item details..</div>
 				 <?php
 				 $school_code = $this->session->userdata("school_code");
 
@@ -49,7 +49,7 @@
 						<thead>
 					    	<tr>
 					        	<th>Student Id/Employee Id : </th>
-					            <th>Reciept No : </th>
+					            <th>Receipt No : </th>
 					            <th>Purchase Date : </th>
 
 					            <th>Paid Amount : </th>

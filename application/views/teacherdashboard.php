@@ -388,7 +388,7 @@ $total=0.00;
             <?php endforeach;?>    
             <?php else:?>
             	<div class="item">
-                   <center> <h3 style="color:red">There is no any note avaliable this time.</h3></center>
+                   <center> <h3 style="color:red">There is no any note available this time.</h3></center>
                 </div>
             <?php endif;?>    
             </div>

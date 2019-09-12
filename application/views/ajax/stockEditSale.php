@@ -9,7 +9,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-                	<th>SNo</th>
+                	<th>S.No.</th>
                     <th><label>Item No</label></th>
                     <th><label>Item Name</label></th>
                     <th><label>Item Category</label></th>

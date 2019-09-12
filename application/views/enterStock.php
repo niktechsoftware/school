@@ -43,7 +43,7 @@
 												</div>
 												<div class="panel-body">
 													<div class="row space15">
-														<div class="col-md-5">Item No</div>
+														<div class="col-md-5">Item No.</div>
 														<div class="col-md-7"><input type="text" onkeyup="mobilevalidation();" class="form-control text-uppercase" id="itemNo" name="itemNo" placeholder="Item No"></div>
 														<span class="text-danger" id="mobile"></span>
 													</div>

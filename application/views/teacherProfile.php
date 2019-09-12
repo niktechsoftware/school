@@ -329,7 +329,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label text-bold">
-												Experiance
+												Experience
 											</label>
 											<input type="text" value="<?php echo $teacherProfile->experiance;?>" class="form-control" id="experiance" name="experiance">
 											
@@ -507,7 +507,7 @@
 												<th class="center">HRA</th>
 												<th class="center">SA</th>
 												<th class="center">Sp.A</th>
-												<th class="center">Encentieve</th>
+												<th class="center">Incentive</th>
 												<th class="center">Bonus</th>
 												<th class="center">gross_s</th>
 												<th class="center">is_advance</th>
@@ -565,11 +565,11 @@
 			   				 $row = $this->db->get("sale_info"); ?>
 			    		<table class="table table-striped table-hover" id="sample-table-2"> 
 			    				<thead><tr>
-			    				<th>S.no</th>
+			    				<th>S.no.</th>
 			    				<th>Item No.</th>
 			    				<th>Purchase Date</th>
 			    				<th>Balance</th>
-			    				<th>total Paid</th>
+			    				<th>Total Paid</th>
 			    				<th>Bill No.</th>
 			    				</tr>
 			    			</thead>

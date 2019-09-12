@@ -1025,7 +1025,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						 if($fd->deposite_month<4){
 							$cdate11=date('Y-m-d');
 							$mno=(int)date('m',strtotime($cdate11));
-							if($mno<$fd->deposite_month){$realm=0;
+							if($mno < $fd->deposite_month){$realm=0;
 							    
 							}else{
 								//echo $mno;
@@ -1041,13 +1041,18 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						if($mno<$fd->deposite_month){$realm=0;
 							    
 							}else{
+								
 								//echo $mno;
-							$realm= $mno- $fd->deposite_month-1;}
+							$realm= $mno- $fd->deposite_month-1;
+							
+							}
 						 }
 						}
 						?>
 								
 						<?php $i++; endforeach; 
+						
+						
 						$this->db->where('school_code',$school_code);
 						$amt=$this->db->get('late_fees')->row()->late_fee;
                         $latefee1=$amt*$realm;
@@ -1067,8 +1072,13 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
                         $latefee1=$amt*$realm;
 					}}else{
 						$latefee1='0.00';
-					 }?>
-	                 <input type="text" value="<?php echo $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
+					 }
+					 
+					 if($realm>0){
+					}else{
+						$realm=0;
+					}?>
+	                 <input type="text" value="<?php echo $realm; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
 						
 														</div>
 	                                                </div>
