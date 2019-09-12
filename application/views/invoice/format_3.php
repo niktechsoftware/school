@@ -139,86 +139,103 @@
 
 <body>
     <div id="printcontent" align="center">
-        <br /><br /><br />
-        <div id="page-wrap" style="height: 788px;width:960px; border:1px solid #333;">
+        <div id="page-wrap" style="height: 1000px;width:960px; border:1px solid #333;">
 
-            <div
-                style="width:80%; height: 788px;margin-left:auto; margin-right:auto; border:1px  solid blue; background-color:#e30e0e;">
+            <div style="width:80%; height:1000px;margin-left:auto; margin-right:auto; border:1px  solid blue; background-color:#e30e0e;">
 
                 <div style="width:95%; margin-left:auto; margin-right:auto; border:1px  solid yellow; height:auto;">
                     <?php
-	$school_code = $this->session->userdata("school_code");
-
-    $this->db->where("id",$school_code);
-    $info =$this->db->get("school")->row();
-?>
+						$school_code = $this->session->userdata("school_code");
+						$this->db->where("id",$school_code);
+						$info =$this->db->get("school")->row();
+					?>
                     <table style="width: 100%;">
                         <tr>
-                            <td width="20%" style="border: none;" rowspan="2">
+                           <td  style="border: none;">
                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
-                                    alt="" width="120" />
+                                    alt="" style="height: 100px;width: 100px;" />
                                 </br><label style="color:white">Aff.No. - <?php echo $info->registration_no;?></label>
                                 </br><label style="color:white">School Code - 70447</label>
                             </td>
-                            <td style="border: none;">
-                                <h1 style="color:white;text-align: center;font-size: 30px;">
+                            <td colspan="2" style="border: none;" >
+                                <h1 style="color:white;font-size: 35px;">
                                     <?php echo $info->school_name;?></h1>
-                                <!--	<p style="Arial Black, Gadget, sans-serif; font-size:45px; color:blue; margin-left:45px;"><?php echo $info->your_school_name;?></p>-->
-                                <h2 style="color:white;text-align: center;">
-                                    <?php echo $info->address1." ".$info->city; ?>
+                                <h2 style="color:white;">
+                                   	<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                                 </h2>
-                                <h2 style="color:white;text-align: center;">
-                                 Mob Number:   <?php echo $info->mobile_no; ?>
+                                <h2 style="color:white;">
+                                <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->mobile_no ;} ?>
                                 </h2>
-
-                                <!--   <h2 style="font-variant:small-caps; margin-left:180px;">
-						<?php   if(strlen($info->mobile_number > 0 )){echo "Mobile No:- : ".$info->mobile_number." ";} ?>
-			           
-			        </h2>-->
                             </td>
-                            <td style="border: none;></td>
-				    	<div style=" display:inline-block; float:right; margin-right:5px;>
-                                <table>
-                                    <tr>
-                                        <td style="border:none; line-height: 20px;">
-                                            <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/stuImage/<?php echo $studentInfo->photo;?>"
-                                                alt="" width="100" height="100" />
-                                        </td>
-                                    </tr>
-
-                                </table>
-                </div>
-                </td>
-                </tr>
-                <tr>
-                    <td style="border: none;">
-
-                        <h2 style="border: 2px solid #000; padding: 5px; width: 200px; color:white; margin-left:130px;">
-                            &nbsp;&nbsp;Progress Report (2019-20) <br>
-                            <?php 
-					    	$this->db->where("school_code",$school_code);
-					       $this->db->where("fsd",$this->session->userdata('fsd'));
-                        	$this->db->where("stu_id",$studentInfo->id);
-                        	$result= $this->db->get("exam_info")->result();
-                        	$c="";$d="";
-                        	foreach($result as $d12):
-                        	$c = $d12->class_id;
-              
-                        	break;
-                        	endforeach;
-                        	if(strlen($c)>0){
-				  //		echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class : <strong>'.$c.' - '.$d.'</strong>';	
-				  		}else{
-				  			echo " There are no marks entry for this Student";
-				  		} 
-                        	?>
-                        </h2>
-
-
-                    </td>
-                </tr>
+							<!--<div class="row">
+							<div class="col-md-2"><img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
+                                    alt="" width="120" /></div>
+							<div class="col-md-10"><h1 style="color:white;text-align: center;font-size: 30px;">
+                                    <?php echo $info->school_name;?></h1>
+                                <h2 style="color:white;text-align: center;">
+                                   	<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
+                                </h2>
+                                <h2 style="color:white;text-align: center;">
+                                <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->mobile_no ;} ?>
+                                </h2></div>
+							</div>-->
+						</tr>
+						 <tr class="wight">
+							<td >
+								<span>Scholar ID: <?= $studentInfo->username; ?></span><br>
+								<span>Scholar Name: <?= strtoupper($studentInfo->name);?> </span><br>
+							   <?php
+										   $this->db->where('school_code',$school_code);
+										   $this->db->where('id',$classid->class_id);
+										   $classname=$this->db->get('class_info');
+										  
+											?>
+								  <?php if($classname->num_rows()>0){
+								  $classdf=$classname->row();
+								  $this->db->where("id",$classdf->section);
+								  $secname = $this->db->get("class_section")->row()->section;
+								  ?>
+								<span>Class: <?php  echo $classdf->class_name."-".$secname; ?></span>
+								 <?php } else { echo "something wrong please try again";  }?>
+							
+							</td>
+							<td >
+								 <span>Mother's Name: <?= strtoupper($parentInfo->mother_full_name); ?></span><br>
+								<span>Father's Name: <?= strtoupper($parentInfo->father_full_name); ?></span><br>
+							</td>
+							<td class="">
+								<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/stuImage/<?php echo $studentInfo->photo; ?>"  alt="" width="90" height="105" />
+							</td>
+						</tr>
+						<tr>
+						
+							<td style="border: none;" colspan="3">
+								<center><h2 style="border: 2px solid #000; padding: 5px; width: 200px; color:white;">
+									Progress Report (2019-20) <br>
+									<?php 
+									$this->db->where("school_code",$school_code);
+								   $this->db->where("fsd",$this->session->userdata('fsd'));
+									$this->db->where("stu_id",$studentInfo->id);
+									$result= $this->db->get("exam_info")->result();
+									$c="";$d="";
+									foreach($result as $d12):
+									$c = $d12->class_id;
+					  
+									break;
+									endforeach;
+									if(strlen($c)>0){	
+								}else{
+									echo " There are no marks entry for this Student";
+								} 
+									?>
+								</h2></center>
+							</td>
+							
+						</tr>
                 </table>
-            </div>
+            
             <br>
             <div>
                 <table
@@ -314,6 +331,7 @@
                         $ctotal[4]=0;
                         $ctotal["tot2"]=0;
                         $ctotal["tot4"]=0;
+						$ctotal["tot5"]=0;
                         $ctotal["tot6"]=0;
                         $cumulativetotal=0;
            $totalp= 0;   
@@ -347,8 +365,8 @@ if($subjectname->num_rows()>0){
 						$marks1= $this->db->get('exam_info');
 						if($marks1->num_rows()>0){
 							$marks=$marks1->row();
+							$subtatal=$subtatal+$marks->marks;
 							if(is_int($marks)){ 
-						    $subtatal=$subtatal+$marks->marks;
 							$gtptal= $gtptal+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
@@ -357,9 +375,9 @@ if($subjectname->num_rows()>0){
         					$this->db->where('class_id',$classid->class_id);
         					$this->db->where('exam_id',$value->exam_id);
             				$exammm=$this->db->get('exam_max_subject')->row()->max_m;
-    				if(is_int($exammm)){
+    				//if(is_int($exammm)){
     				    	$dhtm=$exammm+$dhtm;
-    				}
+    				//}
     				
 						}
 					
@@ -372,15 +390,33 @@ if($subjectname->num_rows()>0){
 				<?php if(!$i%2==0){ ?>
 						<td class="center bold">
 						<?php 
-					/*	echo $subtatal; 
-						$ctotal['tot'.$i]+=$subtatal;
-						 $subtatal=0;*/
+						echo $subtatal; 
+							$ctotal['tot'.$i]+=$subtatal;
+							$gradecal =calculateGrade($subtatal,$classid->class_id);
+						 $subtatal=0;
 						 ?>/100
 						 </td>
 					<?php } ?>
-			
-				<td class="center bold">/100</td>
-			   <td class="center bold">/100</td>
+					<?php if(!$i%2==0){ ?>
+						<td class="center bold">
+						<?php 
+						echo $subtatal; 
+							$ctotal['tot'.$i]+=$subtatal;
+							$gradecal =calculateGrade($subtatal,$classid->class_id);
+						 $subtatal=0;
+						 ?>/100
+						 </td>
+					<?php } ?><?php if(!$i%2==0){ ?>
+						<td class="center bold">
+						<?php 
+						echo $subtatal; 
+							$ctotal['tot'.$i]+=$subtatal;
+							$gradecal =calculateGrade($subtatal,$classid->class_id);
+						 $subtatal=0;
+						 ?>/100
+						 </td>
+					<?php } ?>
+				
 			   <td class="center bold"></td>
 			   <td class="center bold"></td>
 			   
@@ -546,21 +582,45 @@ if($subjectname->num_rows()>0){
                     </tr>
                     <!-- Dynamic -->
                     <tr>
-                        <td><?php	//echo round((($cumulativetotal*100)/$dhtm), 2);?>% </td>
+                        <td><?php  //$cumulativetotal+=$ctotal['tot'.$h];echo $ctotal['tot'.$h];	
+						//print_r($cumulativetotal);
+						echo round((($cumulativetotal*100)/$dhtm), 2);?>% </td>
                         <td>-</td>
 
                     </tr>
 
                 </table>
+				<?php 
+				function calculateGrade($val,$classid){
+								if($val >= 91 && $val < 101):
+									return 'A1';
+								elseif($val >= 81 && $val < 91):
+									return 'A2';
+								elseif($val >= 71 && $val < 81):
+									return 'B1';
+								elseif($val >= 61 && $val < 71):
+									return 'B2';
+								elseif($val >= 51 && $val < 61):
+									return 'C1';
+								elseif($val >= 41 && $val < 51):
+									return 'C2';
+								elseif($val >= 33 && $val < 41):
+									return 'D';
+								else:
+									return 'E';
+								endif;
+								
+							}?>
             </div>
-        </div>
+        </div></div>
     </div>
     </div>
-</body>
-<div class="invoice-buttons" style="text-align:center;">
+	<div class="invoice-buttons" style="text-align:center;">
     <button class="button button2" type="button" onclick="window.print();">
         <i class="fa fa-print padding-right-sm"></i> Print
     </button>
-</div>
+	</div>
+</body>
+
 
 </html>
