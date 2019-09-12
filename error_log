@@ -577,3 +577,45 @@ Stack trace:
 #1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #2 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 10:55:33 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 10:55:41 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 10:56:03 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 10:57:13 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 11:03:00 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 11:33:17 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 11:33:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
