@@ -4,7 +4,7 @@
 								<!-- start: DYNAMIC TABLE PANEL -->
 								<div class="panel panel-white">
 									<div class="panel-heading">
-										<h4 class="panel-title"> Employee<span class="text-bold">Ledgure Table</span></h4>
+										<h4 class="panel-title"> Employee Salary<span class="text-bold">ledger Table</span></h4>
 										<div class="panel-tools">
 											<div class="dropdown">
 												<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">

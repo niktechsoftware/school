@@ -72,13 +72,13 @@
 									<div class="fileupload fileupload-new" data-provides="fileupload">
 										<div style="width: 140px; height: 150px; border: 1px solid #ccc;">
 											<?php if(strlen($personalInfo->photo > 0)):?>
-												<img alt="<?php echo $personalInfo->name;?>" height="148" width="138" src="<?php echo base_url()?>assets/<?php echo $school_code; ?>/images/stuImage/<?php echo $personalInfo->photo;?>" />
+												<img alt="<?php echo $personalInfo->name;?>" height="148" width="138" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $personalInfo->photo;?>" />
 											<?php else:?>
-												<?php if($personalInfo->gender == 'Male'):?>
-													<img alt="<?php echo $personalInfo->name;?>" height="148" width="138" src="<?php echo base_url()?>assets/<?php echo $school_code; ?>/images/stuImage/stuMale.png" />	
+												<?php if($personalInfo->gender == '1'):?>
+													<img alt="<?php echo $personalInfo->name;?>" height="148" width="138" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/stuMale.png" />
 												<?php endif;?>
-												<?php if($personalInfo->gender == 'Female'):?>
-													<img alt="<?php echo $personalInfo->name;?>" height="148" width="138" src="<?php echo base_url()?>assets/<?php echo $school_code; ?>/images/stuImage/stuFemale.png" />	
+												<?php if($personalInfo->gender == '0'):?>
+													<img alt="<?php echo $personalInfo->name;?>" height="148" width="138" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/stuFemale.png" />
 												<?php endif;?>
 											<?php endif;?>
 										</div>
@@ -408,7 +408,7 @@
 <!-- start: RESPONSIVE TABLE PANEL -->
 <div class="panel panel-white">
 <div class="panel-heading panel-blue">
-<h4 class="panel-title">Student <span class="text-bold">Attendence Detail</span></h4>
+<h4 class="panel-title">Student <span class="text-bold">Attendance Detail</span></h4>
 <div class="panel-tools">
 <div class="dropdown">
 <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -447,8 +447,8 @@
 <th class="text-center">S No.</th>
 <th class="text-center">Student Userid</th>
 
-<th class="text-center">Attendence (Green for present,Red for absent)</th>
-<th class="text-center">Attendence Date</th>
+<th class="text-center">Attendance (Green for present,Red for absent)</th>
+<th class="text-center">Attendance Date</th>
 <th class="text-center">Shift 1</th>
 <th class="text-center">Shift 2</th>
 
@@ -550,7 +550,7 @@ if($row->attendance==1){ ?>
 <th class="text-center">Student Id</th>
 
 <th class="text-center">Total Fees</th>
-<th class="text-center">Deposite Month</th>
+<th class="text-center">Deposit Months</th>
 <th class="text-center">Payment Mode </th>
 <th class="text-center">Late Fees</th>
 <th class="text-center">Paid Amount</th>
@@ -616,11 +616,11 @@ $dt=$this->db->get("fee_deposit")->result();
 			   				 $row = $this->db->get("sale_info"); ?> 
 			    		<table class="table table-striped table-hover" id="sample-table-2"> 
 			    				<thead><tr>
-			    				<th>S.no</th>
+			    				<th>S.no.</th>
 			    				<th>Item No.</th>
 			    				<th>Purchase Date</th>
 			    				<th>Balance</th>
-			    				<th>total Paid</th>
+			    				<th>Total Paid</th>
 			    				<th>Bill No.</th>
 			    				</tr>
 			    			</thead>

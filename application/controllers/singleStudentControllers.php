@@ -266,11 +266,11 @@ class singleStudentControllers extends CI_Controller{
 		
 		function stock(){
 			$data['pageTitle'] = 'Student Stock Detail';
-			$data['smallTitle'] = 'Stock purchesing detail';
+			$data['smallTitle'] = 'Stock purchasing detail';
 			$data['mainPage'] = 'Student';
-			$data['subPage'] = 'Stock purchesing detail';
+			$data['subPage'] = 'Stock purchasing detail';
 			
-			$data['title'] = 'Stock purchesing detail';
+			$data['title'] = 'Stock purchasing detail';
 			$data['headerCss'] = 'headerCss/studentCss';
 			$data['footerJs'] = 'footerJs/studentJs';
 			$data['mainContent'] = 'studentStock';

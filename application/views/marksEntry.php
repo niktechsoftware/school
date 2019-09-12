@@ -33,7 +33,7 @@
 										</div>
 									</div>
 									<div class="panel-body">
-                                    <div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Examination Detail Section Area,</h3><p class="media-timestamp">In this page we can enter and save Student marks scored in a particular class and subject Please select following Dropdown options and wait for another page. Fill the marks and click save button to save students marks.
+                                    <div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Examination Detail Section Area.</h3><p class="media-timestamp">In this page we can enter and save Student marks scored in a particular class and subject Please select following Dropdown options and wait for another page. Fill the marks and click save button to save students marks.
                                     (Note : if marks are already filled in a class and subject then you can not save or update marks you can only view).</div>
 									<h4>Define Marks ClassWise</h4>
 										<?php if($this->uri->segment(3)){

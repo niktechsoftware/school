@@ -43,7 +43,7 @@
 							<div class="panel-heading">
 								<h5 class="panel-title">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-									<i class="icon-arrow"></i> Compose Messege
+									<i class="icon-arrow"></i> Compose Messsge
 								</a></h5>
 							</div>
 							<div id="collapseOne" class="panel-collapse collapse ">

@@ -51,7 +51,7 @@
 		$data['smallTitle'] = 'Overview of all Section';
 		$data['mainPage'] = 'Dashboard';
 		$data['subPage'] = 'dashboard';
-		$data['title'] = 'Hgenesis Dashboard';
+		$data['title'] = 'School Dashboard';
 		$data['headerCss'] = 'headerCss/dashboardCss';
 		$data['footerJs'] = 'footerJs/dashboardJs';
 		$data['mainContent'] = 'teacherdashboard';
@@ -162,10 +162,10 @@
         $school_code = $this->session->userdata("school_code");
         $data['var'] = $this->db->query("select * from emp_salary_info where school_code='$school_code' AND emp_id ='$emp_id'")->result();
         $data['pageTitle'] = 'Teacher Section';
-        $data['smallTitle'] = 'Teacher Summry';
+        $data['smallTitle'] = 'Teacher Summary';
         $data['mainPage'] = 'Teacher';
-        $data['subPage'] = 'Teacher Salary Summry';
-        $data['title'] = 'Teacher Salary Summry';
+        $data['subPage'] = 'Teacher Salary Summary';
+        $data['title'] = 'Teacher Salary Summary';
         $data['headerCss'] = 'headerCss/singleTeacherCss';
         $data['footerJs'] = 'footerJs/singleTeacherJs';
         $data['mainContent'] = 'salarySummry';

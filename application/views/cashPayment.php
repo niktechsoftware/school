@@ -221,7 +221,7 @@
 							                            <input name="bank_name" style="width:150px;" type="text" required/>
 							                        </td>
 							                        <td>
-							                        	<label>Account No</label> &nbsp;&nbsp;&nbsp;<br>
+							                        	<label>Account No.</label> &nbsp;&nbsp;&nbsp;<br>
 
 							                        <!--    <input name="account_no" name="amount" id="amount3" pattern="[0-9]" onkeyup="digitvalidation3()" style="width:200px;" type="text" required/><span style="color:#F00" id="digit3"></span>-->
 							                           <input name="account_no"  id="amount3"   style="width:200px;" type="number" required/><span style="color:#F00" id="digit3"></span>
@@ -334,7 +334,7 @@
 							                            <input name="bank_nm" style="width:150px;" type="text" required/>
 							                        </td>
 							                        <td>
-							                        	<label>Account No</label> &nbsp;&nbsp;&nbsp;<br>
+							                        	<label>Account No.</label> &nbsp;&nbsp;&nbsp;<br>
 
 							                        <!--    <input name="account_no" name="amount" id="amount3" pattern="[0-9]" onkeyup="digitvalidation3()" style="width:200px;" type="text" required/><span style="color:#F00" ></span>-->
 							                           <input name="accountno"  id="amount4" style="width:200px;" type="number" required/><span style="color:#F00" id="digit4"></span>

@@ -45,7 +45,7 @@
 				<div class="panel-body">
 				    			<div class="alert btn-purple">
 				    			    <button data-dismiss="alert" class="close">×</button>
-<h4 class="media-heading text-center">Welcome to Simple Search Student area</h4>
+<h4 class="media-heading text-center">Welcome to Simple Search Student Area</h4>
 <p>If you want student full details , then  Click on full profile link ,
 OR if you want to delete any student record then click on Delete link.<br>NOTE => if student Pay fee of any month
 then you can't Delete any record of Students.<br>
