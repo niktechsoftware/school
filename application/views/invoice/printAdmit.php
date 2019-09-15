@@ -127,7 +127,7 @@
 <body>
 	<div id="printcontent" align="center">
 	<br/><br/><br/>
-	<div id="page-wrap" style="width:800px; border: 1px solid black; outline: 1px solid black; solid #333;">
+	<div id="page-wrap" style="height: 480px;width:800px; border: 1px solid black; outline: 1px solid black; solid #333;">
 <?php
 	$school_code = $this->session->userdata("school_code");
 
@@ -154,12 +154,14 @@
 					<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" style="width:65%;" />
 				</td>
 				<td style="text-align:center; border:none; width:60%;">
-				<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#d80606;"><b><?php echo $info->school_name; ?></b></h1>
+			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#d80606;"><b><?php echo $info->school_name; ?></b></h1>
                 <h2 style="font-variant:small-caps;color:#d80606;">
-            		<?php echo $info->address1." ".$info->address2." ".$info->city; ?>
+            		<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
-            		<?php if(strlen($info->mobile_no > 0 )){echo $info->state." - ".$info->pin.", Phone : ".$info->mobile_no.", ";} ?>
+            		<?php //echo $info->state." - ".$info->pin.", ";
+            	        echo "PHONE : " ;
+            		if(strlen($info->mobile_no > 0 )){ echo $info->phone_no.", MOBILE: ".$info->mobile_no ;} ?>
 
                 </h2>
     						<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
@@ -247,7 +249,7 @@
             <table>
                 <tr>
                     	<td style="border:none; line-height: 20px;">
-                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" />
+                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="75"/>
                         </td>
                     </tr>
                    
@@ -270,7 +272,7 @@
              ?>
         </div>
       
-			<table id="items" align="center"  style="width:100%; margin-top:0px; alignment-adjust:central;color:#d80606;">
+			<table id="items" align="center"  style="width:100%; margin-top:0px;color:#d80606;">
 					<thead>
 						<th>Date</th>
                         <?php 
@@ -279,7 +281,7 @@ if($exam_day->num_rows()){
                         $this->db->where('exam_id',$exam_day->row()->exam_id);
                         $date=$this->db->get('exam_day')->result();
                         foreach($date as $ed):?>
-						<th><?php echo date("Y-m-d",strtotime($ed->date1));?></th>
+						<th><?php echo date("d-m-Y",strtotime($ed->date1));?></th>
 						<?php endforeach; }?>
 					</thead>
 					<body>
@@ -291,7 +293,7 @@ if($exam_day->num_rows()){
                         foreach($shift as $s):
                         ?>
                         <tr>
-                        <td><?php echo $s->shift;?></td>
+                        <td style="text-align: center;"><?php if($school_code==5){ ?><?php }else{ ?><?php echo $s->shift;?><?php } ?></td>
                         <?php 
                          foreach($date as $ed):
 						$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -309,7 +311,7 @@ if($exam_day->num_rows()){
                                 $this->db->where('class_id',$ff->class_id);
                                  $subject=$this->db->get('subject');
                                     ?>
-                                <td> <?php echo $subject->row()->subject;?></td>
+                                <td style="text-align: center;"> <?php echo $subject->row()->subject;?></td>
                                 
 							<?php }else{?> <td> </td> <?php }
 						endforeach;?>
@@ -322,15 +324,28 @@ if($exam_day->num_rows()){
 			
             </table>
         <br>
-		<div align="left"><h3>&nbsp;Note 1.Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
+		<div align="left"><h3>
+	    <!--for daffodils start-->
+		<?php if($school_code==5){ ?>
+		&nbsp;Note: 1)Exam timing is  <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) A Student who gives or obtains unfair assistance at an examination 
+		will debarred for the rest of the examination and will</br> 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) On Oct 4 (Friday) who unattend any subject paper with genuine reason 
+		can give their left paper with same exam time.</br>
+		<?php }else{ ?>
+		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
 		$endt =strtotime("-00 minutes",strtotime($s->to1));
 		echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
-		
+		<?php }?></h3>
+		<!--for daffodils end-->
 		</div>
-		</h3>
+		
 		<div>
 		    <br/>
 		<table id="items" align="center"  style="width:100%; margin-top:0px; alignment-adjust:central;">

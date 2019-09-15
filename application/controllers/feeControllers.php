@@ -89,9 +89,9 @@ function getFsd(){
 		$feecat = $this->input->post("feecat");
 		//invoice number logic start
 		$this->db->where("school_code",$school_code);
-		$invoice = $this->db->count_all("invoice_serial");
-		$invoice1=6000+$invoice;
-		$invoice_number = $school_code."I".$invoice1;
+		$invoice = $this->db->get("invoice_serial");
+		$invoice1=6000+$invoice->num_rows();
+		$invoice_number = $school_code."I19".$invoice1;
 		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
 				"reason" => "Fee Deposit",
@@ -907,7 +907,7 @@ function getFsd(){
 	                                            </div>
 	                                           </div> 
 	                                            <div class="row space15">
-	                                                <div id = "discounterOTP">
+	                                                <div id = " ">
 	                                                 <div  class="col-sm-12">
 	                                                    <div class="col-sm-12" id ="rahul1"></div>
 	                                                   
@@ -948,7 +948,7 @@ function getFsd(){
 														$disc+=$disc1;
 															endforeach;?>
 															
-														<div class="col-sm-7"> <input type="text" name ="discount_start" id="discount_start" value ="<?php echo $disc;?>" class="form-control"></div>
+														<div class="col-sm-7"> <input type="text" name ="discount_start"  id="discount_start"  value ="<?php echo $disc;?>" class="form-control"></div>
 	                                                </div>
 												</div>
 												<?php } }else{
