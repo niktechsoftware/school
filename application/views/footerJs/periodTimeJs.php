@@ -87,9 +87,10 @@
 			    
 				$("createBody").hide();
 				$("#nop").change(function(){
+					var tb_id=$("#tb_id").val();
 					var nop = $("#nop").val();
 					//alert(nop);
-					 $.post("<?php echo site_url('index.php/periodTimeControllers/updatePeriod') ?>", {nop : nop},function(data){
+					 $.post("<?php echo site_url('index.php/periodTimeControllers/updatePeriod') ?>", {nop : nop,tb_id : tb_id},function(data){
 				    $("#sectionList").html(data);
 							//alert(data);
 					});	
@@ -98,66 +99,85 @@
 				$('input[name="day[]"]').on("click",function(){
 
 					var period_name = $("#period_name").val();
-					//alert(period_name);
-					//var atLeastOneIsChecked=$('input[name="day[]"]:checked').length;
+					
 					if($('#monday:checked').val()?true:false)
 					{ 
 						var monday = $("#monday").val();
-						
 					}
-				// 	else{
-				// 		var monday = "";
-				// 	}
+				else{
+						var monday = "";
+					}
 					
 					if($('#tuesday:checked').val()?true:false)
 					{
 						var tuesday = $("#tuesday").val();
 						
-				 	}//else{
-				// 		var tuesday = "";
-				// 	}
+				 	}else{
+						var tuesday = "";
+				 	}
 					
 					if($('#wednesday:checked').val()?true:false)
 					{
 						var wednesday = $("#wednesday").val();
 					
-				 	}//else{
-				// 		var wednesday = "";
-				// 	}
+				 	}else{
+				 		var wednesday = "";
+				 	}
 					
 					if($('#thursday:checked').val()?true:false)
 					{
 						var thursday = $("#thursday").val();
 						
 					}
-				// 	else{
-				// 		var thursday = "";
-				// 	}
+				 	else{
+						var thursday = "";
+				 	}
 				
 					if($('#friday:checked').val()?true:false)
 					{
 						var friday = $("#friday").val();
 						
 					}
-				// 	else{
-				// 		var friday = "";
-				// 	}
+				 	else{
+				 		var friday = "";
+				 	}
 					
 					if($('#saturday:checked').val()?true:false)
 					{
 						var saturday = $("#saturday").val();
 						
 					}
-				// 	else{
-				// 		var saturday = "";
-				// 	}
+			 	else{
+				 		var saturday = "";
+				 	}
 				     
-					 $.post("<?php echo site_url('index.php/periodTimeControllers/periodSchedule') ?>",{ period_name:period_name, monday : monday,tuesday : tuesday,wednesday : wednesday,thursday : thursday,friday : friday,saturday : saturday },function(data){
-				            $("#structperiod").html(data);
-					});	
+					$.ajax({
+							"url": "<?php echo site_url('index.php/periodTimeControllers/periodSchedule') ?>",
+							"method": 'POST',
+							"data": { period_name:period_name, monday : monday,tuesday : tuesday,wednesday : wednesday,thursday : thursday,friday : friday,saturday : saturday },
+							beforeSend: function(data) {
+								$("#structperiod").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+							},
+							success: function(data) {
+								  $("#structperiod").html(data);
+							},
+							error: function(data) {
+								$("#structperiod").html(data)
+							}
+						});
 						
 				
 				});
+
+						
+
+
+
+
+
+
+
+
 				// $(document).ready(function(){})
 					$("#days").hide();
 				$("#period_name").change(function(){

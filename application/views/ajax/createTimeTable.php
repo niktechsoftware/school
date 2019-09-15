@@ -39,6 +39,7 @@ if($var->num_rows()>0){
 									</ul>
 								</div>
 							</div>
+							<div id="rahulcc"></div>
 							<h4 class="panel-title">
 							<?php 
 							if(strlen($monday)>0){
@@ -117,6 +118,7 @@ if($var->num_rows()>0){
 											 ?>"/>
 						</h4>
 						</div>
+						<input type="hidden" id ="period_id" name="period_id" value="<?php echo $period_name;?>"/>
 						<div class="panel-body" id ="createBody">
 							<div class="row">
 								<div class="col-sm-12">
@@ -141,12 +143,12 @@ if($var->num_rows()>0){
 														if($lunch != $pk->lunch){
 														$prid[$c]=$pk->id;	echo $pk->period;
 													?>
-														<input type="hidden" name="period<?php echo $c?>" value="<?php echo $pk->id?>" />
+														<input type="hidden" id="period<?php echo $c?>" name="period<?php echo $c?>" value="<?php echo $pk->id?>" />
 													<?php 
 													}
 													else{ 
 														echo "Lunch";?>
-														<input type="hidden" name="period<?php echo $c?>" value="Lunch" />
+														<input type="hidden" name="period<?php echo $c?>" id="period<?php echo $c?>" value="Lunch" />
 														<?php }
 												?></td>
 												<?php $lunch++;$c++; } ?> 
@@ -171,7 +173,7 @@ if($var->num_rows()>0){
 				  									echo $sec->section;
 				  											
 				  									?> 
-				  									<input type="hidden" name="class1<?php echo $tbr;?>" value="<?php echo $row->id.",".$row->section;?>" />
+				  									<input type="hidden" id="class1<?php echo $tbr;?>" name="class1<?php echo $tbr;?>" value="<?php echo $row->id;?>" />
 				  									<?php
 				  									$subject = $this->periodModel->getSubjectName($row->id);
 				  									//print_r($subject);
@@ -189,33 +191,10 @@ if($var->num_rows()>0){
 														foreach($teacher->result() as $tea):
 															$this->db->where('class_id',$row->id);
 															$this->db->where('teacher',$tea->id);
-															//$this->db->where('time_thead_id',$period_name);
+															$this->db->where('time_thead_id',$period_name);
 														$this->db->where('period_id',$prid[$tbc]);
 														$oldv = $this->db->get("time_table");
-				 	//	$oldv = $this->db->query("SELECT * FROM time_table WHERE class_id='$row->id' AND teacher='$tea->id' AND period_id='$prid[$tbc]' AND day LIKE '%$monday%' OR day LIKE '%$tuesday%' OR day LIKE '%$wednesday%' OR day LIKE '%$thursday%' OR day LIKE '%$friday%'");
-                  // 	$oldv = $this->db->query("SELECT * FROM time_table WHERE class_id='$row->id' AND teacher='$tea->id' AND period_id='$prid[$tbc]' AND day LIKE '%$tuesday%'");
-    //                   	$oldv = $this->db->query("SELECT * FROM time_table WHERE class_id='$row->id' AND teacher='$tea->id' AND period_id='$prid[$tbc]' AND day LIKE '%$wednesday%'");
-                                
-            //                                     	$this->db->like('day',$monday);
-            //                                         $this->db->or_like('day',$tuesday); 
-            //                                          $this->db->or_like('day',$tuesday); 
-            //                                          $this->db->or_like('day',$wednesday); 
-            //                                          $this->db->or_like('day',$thursday); 
-            //                                          $this->db->or_like('day',$friday); 
-            //                                          $this->db->or_like('day',$saturday); 
-            //                                          $this->db->where('class_id',$row->id);
-												// 	$this->db->where('teacher',$tea->id);
-												// 	$this->db->where('period_id',$prid[$tbc]);
-												
-            //                                          	$oldv = $this->db->get("time_table");
-            
-            
-    //          $this->db->select('*')->from('time_table')->where('class_id', $row->id)-> where('teacher', $tea->id)-> where('period_id', $prid[$tbc]);
-    // $this->db->like('day',$monday,'after');
-    // $this->db->or_like('day',$tuesday,'after');
-    // $this->db->or_like('day',$wednesday,'after');
-    // $this->db->or_like('day',$thursday,'after'); 
-    //   $oldv = $this->db->get();
+				 	
 
                                                    			?>
 														<option value="<?php echo $tea->id; ?>" <?php if($oldv->num_rows()>0){$oldt=$oldv->row(); if($oldt->teacher==$tea->id){echo 'selected="selected"';}}?>>
@@ -242,7 +221,164 @@ if($var->num_rows()>0){
 														</option>
 														<?php endforeach;?>
 													</select>
+													
 									 			</td>
+									 			<script>
+									 			$("#teacher<?php echo $tbr.$tbc;?>").change(function(){
+									 				var tb_id= $("#period_id").val();
+													var teacherid = $("#teacher<?php echo $tbr.$tbc;?>").val();
+													var classid  = $("#class1<?php echo $tbr;?>").val();
+													var periodid =$("#period<?php echo $tbc;?>").val();
+												
+
+												if($('#monday:checked').val()?true:false)
+																{ 
+																	var monday = $("#monday").val();
+																	
+																}
+															else{
+																	var monday = 0;
+																}
+															
+																if($('#tuesday:checked').val()?true:false)
+																{
+																	var tuesday = $("#tuesday").val();
+																	
+															 	}else{
+																	var tuesday = 0;
+																	
+
+															 	}
+															
+																if($('#wednesday:checked').val()?true:false)
+																{
+																	var wednesday = $("#wednesday").val();
+																
+															 	}else{
+															 		var wednesday = 0;
+															 	}
+																
+																if($('#thursday:checked').val()?true:false)
+																{
+																	var thursday = $("#thursday").val();
+																	
+																}
+															 	else{
+																	var thursday = 0;
+															 	}
+															
+																if($('#friday:checked').val()?true:false)
+																{
+																	var friday = $("#friday").val();
+																	
+																}
+															 	else{
+															 		var friday = 0;
+															 	}
+																
+																if($('#saturday:checked').val()?true:false)
+																{
+																	var saturday = $("#saturday").val();
+																	
+																}
+														 	else{
+															 		var saturday = 0;
+															 	}
+													$.post("<?php echo site_url("index.php/periodTimeControllers/updateTBTeacher") ?>",{tb_id : tb_id,
+														teacherid : teacherid,
+														classid : classid,
+														periodid : periodid,
+														monday : monday,
+														tuesday : tuesday,
+														wednesday : wednesday,
+														thursday : thursday,
+														friday : friday,
+														saturday : saturday
+
+
+													}, function(data){
+													$("#rahulcc").html(data);
+														});
+												});
+
+												////script for subject 
+													$("#subject<?php echo $tbr.$tbc;?>").change(function(){
+									 				var tb_id= $("#period_id").val();
+													var subjectid = $("#subject<?php echo $tbr.$tbc;?>").val();
+													var classid  = $("#class1<?php echo $tbr;?>").val();
+													var periodid =$("#period<?php echo $tbc;?>").val();
+												
+												if($('#monday:checked').val()?true:false)
+																{ 
+																	var monday = $("#monday").val();
+																	
+																}
+															else{
+																	var monday = 0;
+																}
+																
+																if($('#tuesday:checked').val()?true:false)
+																{
+																	var tuesday = $("#tuesday").val();
+																	
+															 	}else{
+																	var tuesday = 0;
+																	
+
+															 	}
+																
+																if($('#wednesday:checked').val()?true:false)
+																{
+																	var wednesday = $("#wednesday").val();
+																
+															 	}else{
+															 		var wednesday = 0;
+															 	}
+																
+																if($('#thursday:checked').val()?true:false)
+																{
+																	var thursday = $("#thursday").val();
+																	
+																}
+															 	else{
+																	var thursday = 0;
+															 	}
+															
+																if($('#friday:checked').val()?true:false)
+																{
+																	var friday = $("#friday").val();
+																	
+																}
+															 	else{
+															 		var friday = 0;
+															 	}
+																
+																if($('#saturday:checked').val()?true:false)
+																{
+																	var saturday = $("#saturday").val();
+																	
+																}
+														 	else{
+															 		var saturday = 0;
+															 	}
+													$.post("<?php echo site_url("index.php/periodTimeControllers/updateTBSubject") ?>",{tb_id : tb_id,
+														subjectid : subjectid,
+														classid : classid,
+														periodid : periodid,
+														monday : monday,
+														tuesday : tuesday,
+														wednesday : wednesday,
+														thursday : thursday,
+														friday : friday,
+														saturday : saturday
+
+
+													}, function(data){
+													$("#rahulcc").html(data);
+														});
+												});
+
+									 			</script>
 									 			<?php			} // End if condition of Lunch
 										
 				  												else{ ?> 
@@ -260,13 +396,11 @@ if($var->num_rows()>0){
 					</table>
 					<input type="hidden" name="tbr" value="<?php echo $tbr;?>"/>
 					<input type="hidden" name="tbc" value="<?php echo $tbc;?>"/>
-					<input type="hidden" name="period_id" value="<?php echo $period_name;?>"/>
+					
 				</div> 
 
 				
-				<div class="form-group center">
-	       			<input class="submit btn btn-blue" type="submit" value="Save &amp; Print Slip" />
-	        	</div>
+				
 				<?php
 				}
 							else
