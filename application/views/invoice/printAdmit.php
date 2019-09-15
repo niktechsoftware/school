@@ -127,7 +127,7 @@
 <body>
 	<div id="printcontent" align="center">
 	<br/><br/><br/>
-	<div id="page-wrap" style="width:800px; border: 1px solid black; outline: 1px solid black; solid #333;">
+	<div id="page-wrap" style="height: 480px;width:800px; border: 1px solid black; outline: 1px solid black; solid #333;">
 <?php
 	$school_code = $this->session->userdata("school_code");
 

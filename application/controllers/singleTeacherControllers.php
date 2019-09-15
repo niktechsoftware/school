@@ -51,7 +51,7 @@
 		$data['smallTitle'] = 'Overview of all Section';
 		$data['mainPage'] = 'Dashboard';
 		$data['subPage'] = 'dashboard';
-		$data['title'] = 'Hgenesis Dashboard';
+		$data['title'] = 'School Dashboard';
 		$data['headerCss'] = 'headerCss/dashboardCss';
 		$data['footerJs'] = 'footerJs/dashboardJs';
 		$data['mainContent'] = 'teacherdashboard';
@@ -162,10 +162,10 @@
         $school_code = $this->session->userdata("school_code");
         $data['var'] = $this->db->query("select * from emp_salary_info where school_code='$school_code' AND emp_id ='$emp_id'")->result();
         $data['pageTitle'] = 'Teacher Section';
-        $data['smallTitle'] = 'Teacher Summry';
+        $data['smallTitle'] = 'Teacher Summary';
         $data['mainPage'] = 'Teacher';
-        $data['subPage'] = 'Teacher Salary Summry';
-        $data['title'] = 'Teacher Salary Summry';
+        $data['subPage'] = 'Teacher Salary Summary';
+        $data['title'] = 'Teacher Salary Summary';
         $data['headerCss'] = 'headerCss/singleTeacherCss';
         $data['footerJs'] = 'footerJs/singleTeacherJs';
         $data['mainContent'] = 'salarySummry';
@@ -451,7 +451,7 @@
 		    	<hr>
 		    	<div class="panel-body">
       <div class="alert alert-info">
-        <button data-dismiss="alert" class="close">×</button>
+        <button data-dismiss="alert" class="close">Ã—</button>
         <h3 class="media-heading text-center"> Welcome to Attendence Report Area</h3>
        <p class="media-timestamp"> 
        Here you can see all attendence of you class from starting date to end date which are you selected.
@@ -564,7 +564,7 @@
 						</div>
 						<?php
 	}
-		public function defineHomeWork(){
+	/*	public function defineHomeWork(){
 		$school_code = $this->session->userdata("school_code");
 	$data['pageTitle'] = 'Define HomeWork';
 	$data['smallTitle'] = 'Employee/Teacher/Student';
@@ -577,7 +577,7 @@
 	$data['footerJs'] = 'footerJs/homeWorkJs';
 	$data['mainContent'] = 'studentHomeWork';
 	$this->load->view("includes/mainContent", $data);
-}
+}*/
 
 function showHomeWork()
 {
@@ -587,9 +587,6 @@ function showHomeWork()
 	$data['smallTitle'] = 'Employee/Teacher/Student';
 	$data['mainPage'] = 'Show HomeWork';
 	$data['subPage'] = 'Employee/Teacher/Student';
-//	$res=$this->db->query("SELECT DISTINCT class_name FROM class_info");
-	
-	//$data['var1']=$va->result();
 	$data['title'] = 'Show HomeWork';
 	$data['headerCss'] = 'headerCss/homeWorkCss';
 	$data['footerJs'] = 'footerJs/showHomeWorkJs';
@@ -614,25 +611,7 @@ function showHomeWork()
 	$this->load->view("includes/mainContent", $data);
 }
 
-function showHomeWork()
-{
-		$school_code=$this->session->userdata('school_code');
-	$this->load->model("homeWorkModel");
-	$data['pageTitle'] = 'Show HomeWork';
-	$data['smallTitle'] = 'Employee/Teacher/Student';
-	$data['mainPage'] = 'Show HomeWork';
-	$data['subPage'] = 'Employee/Teacher/Student';
-//	$res=$this->db->query("SELECT DISTINCT class_name FROM class_info");
-	
-	//$data['var1']=$va->result();
-	$data['title'] = 'Show HomeWork';
-	$data['headerCss'] = 'headerCss/homeWorkCss';
-	$data['footerJs'] = 'footerJs/showHomeWorkJs';
-	$data['mainContent'] = 'showHomeWork';
-	$this->load->view("includes/mainContent", $data);
 
-	
-}
 	
 }
 

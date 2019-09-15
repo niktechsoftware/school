@@ -393,6 +393,9 @@ function showHomeWork()
 					</tbody>
 				</table>
 				</div>
+				<script>
+	TableExport.init();
+</script>
 	<?php 
 		}
 	
@@ -483,7 +486,14 @@ function showHomeWork()
 				?>
 					<tr>
 			  			<td><?php echo $count;?></td>
-			  			<td><?php echo $lv->givenby;?></td>
+			  			<td><?php $this->db->where("username",$lv->givenby);
+			  			$emp_p = $this->db->get("employee_info");
+			  			if($emp_p->num_rows()>0){
+			  			    	echo $emp_p->row()->name."[".$emp_p->row()->username."]";
+			  			}else{
+			  			    	echo "Admin";
+			  			}
+			  		?></td>
 			  			<td><?php echo $lv->work_name;?></td>
 			  		
 			  			<td><?php $sub= $lv->subject_id;
@@ -522,7 +532,11 @@ function showHomeWork()
 			  		<?php $count++; endforeach; ?>
 				</tbody>
 			</table>
-			</div><?php 
+			</div>
+			<script>
+	TableExport.init();
+</script>
+			<?php 
 	}
 	
 	else{
@@ -537,21 +551,9 @@ function showHomeWork()
 	$var=$this->homeWorkModel->getSectionWise($classt,$sec);
 
 	?>
-	
-	<html><head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-	<script> // alert("hii");
-	    $(document).ready(function() {
-    $('#sample-table-2').DataTable();
-} );
-	</script>
-	
-	</head><body>
+
 		<div class="table-responsive" id ="normal">
+		
 		<table class="table table-striped table-hover" id="sample-table-2">
 		<thead>
 		<tr>
@@ -594,7 +596,7 @@ function showHomeWork()
 							<td>
 								<?php echo $lv->DueWorkDate; ?>
 							</td>
-							<td style=" width: 30%;"><a href="<?php echo $this->config->item("asset_url"); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
+							<td style=" width: 30%;"><a href="<?php echo $this->config->item("asset_url"); ?>/<?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" 
 							        <button class="btn btn-info"  width="104" height="142">Download</button></a>
 							<?php 
 							  if($this->session->userdata("login_type")=='admin' || $this->session->userdata("login_type")==3)
@@ -616,9 +618,13 @@ function showHomeWork()
 				  		<?php $count++; endforeach; ?>
 					</tbody>
 				</table>
+		
+				</div>
 				
-			
-				</div></body></html><?php 
+						
+			<script>
+	
+</script><?php 
 	}
 	
 	public function deleteHomeWork(){
