@@ -3,6 +3,7 @@ class periodTimeControllers extends CI_Controller{
     
     	function __construct(){
 		parent::__construct();
+		$this->load->model("periodmodel");
 			$this->is_login();
 		
 	}
@@ -19,7 +20,7 @@ class periodTimeControllers extends CI_Controller{
 		$period_name = $this->input->post("periodName");
 	    //print_r($period_name);exit;
 		$pdate = $this->input->post("pdate");
-		$this->load->model("periodmodel");
+		
 	   $data['period_name'] = $period_name;
    //print_r($data);exit();
 	   $data['pdate'] = $pdate;
@@ -79,13 +80,183 @@ class periodTimeControllers extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	}
 
+	function updateTBSubject(){
+		$monday = $this->input->post("monday");
+	$tuesday =$this->input->post("tuesday");
+	$wednesday = $this->input->post("wednesday");
+	$thursday = $this->input->post("thursday");
+	$friday = $this->input->post("friday");
+	$saturday = $this->input->post("saturday");
+	$tb_id=$this->input->post("tb_id");
+	$subjectid=$this->input->post("subjectid");
+	$classid=$this->input->post("classid");
+	$periodid=$this->input->post("periodid");
+
+	$this->db->where("time_thead_id",$tb_id);
+	$this->db->where("class_id",$classid);
+	$this->db->where("period_id",$periodid);
+	$checktbteacher=$this->db->get("time_table");
+	if($checktbteacher->num_rows()>0){
+		$data = array(
+			
+			"subject_id"		=>$subjectid
+			
+		);
+		$this->db->where("id",$checktbteacher->row()->id);
+		$this->db->update("time_table",$data);
+		$tbr_id = $checktbteacher->row()->id;
+		if($monday){
+			//echo "rahul";
+			$var = $this->periodmodel->checkdaystb($monday,$tbr_id);
+		}
+		if($tuesday){
+			$var =$this->periodmodel->checkdaystb($tuesday,$tbr_id);
+		}
+		if($wednesday){
+			$var =$this->periodmodel->checkdaystb($wednesday,$tbr_id);
+		}
+		if($thursday){
+			$var =$this->periodmodel->checkdaystb($thursday,$tbr_id);
+		}
+		if($friday){
+			$var =$this->periodmodel->checkdaystb($friday,$tbr_id);
+		}
+		if($saturday){
+			$var = $this->periodmodel->checkdaystb($saturday,$tbr_id);
+		}
+		
+	}else{
+
+		$data = array(
+			"time_thead_id"	=>$tb_id,
+			"class_id"		=>$classid,
+			"period_id"		=>$periodid,
+			"subject_id"		=>$subjectid
+			
+		);
+		$this->db->insert("time_table",$data);
+
+		$this->db->where("time_thead_id",$tb_id);
+	$this->db->where("class_id",$classid);
+	$this->db->where("period_id",$periodid);
+	$checktbteacher=$this->db->get("time_table");
+if($checktbteacher->num_rows()>0){
+	$tbr_id = $checktbteacher->row()->id;
+		if($monday){
+			$var =$this->periodmodel->checkdaystb($monday,$tbr_id);
+		}
+		if($tuesday){
+			$var =$this->periodmodel->checkdaystb($tuesday,$tbr_id);
+		}
+		if($wednesday){
+			$var =$this->periodmodel->checkdaystb($wednesday,$tbr_id);
+		}
+		if($thursday){
+			$var =$this->periodmodel->checkdaystb($thursday,$tbr_id);
+		}
+		if($friday){
+			$var =$this->periodmodel->checkdaystb($friday,$tbr_id);
+		}
+		if($saturday){
+			$var =$this->periodmodel->checkdaystb($saturday,$tbr_id);
+		}
+		
+	}
+	}
+echo '<div class="alert alert-warning">Subject is added into time table are Successfully done!!!!</div>';
+	}
+function updateTBTeacher(){
+	$monday = $this->input->post("monday");
+	$tuesday =$this->input->post("tuesday");
+	$wednesday = $this->input->post("wednesday");
+	$thursday = $this->input->post("thursday");
+	$friday = $this->input->post("friday");
+	$saturday = $this->input->post("saturday");
+	$tb_id=$this->input->post("tb_id");
+	$teacherid=$this->input->post("teacherid");
+	$classid=$this->input->post("classid");
+	$periodid=$this->input->post("periodid");
+
+	$this->db->where("time_thead_id",$tb_id);
+	$this->db->where("class_id",$classid);
+	$this->db->where("period_id",$periodid);
+	$checktbteacher=$this->db->get("time_table");
+	if($checktbteacher->num_rows()>0){
+		$data = array(
+			
+			"teacher"		=>$teacherid
+			
+		);
+		$this->db->where("id",$checktbteacher->row()->id);
+		$this->db->update("time_table",$data);
+		$tbr_id = $checktbteacher->row()->id;
+		if($monday){
+			//echo "rahul";
+			$var = $this->periodmodel->checkdaystb($monday,$tbr_id);
+		}
+		if($tuesday){
+			$var =$this->periodmodel->checkdaystb($tuesday,$tbr_id);
+		}
+		if($wednesday){
+			$var =$this->periodmodel->checkdaystb($wednesday,$tbr_id);
+		}
+		if($thursday){
+			$var =$this->periodmodel->checkdaystb($thursday,$tbr_id);
+		}
+		if($friday){
+			$var =$this->periodmodel->checkdaystb($friday,$tbr_id);
+		}
+		if($saturday){
+			$var = $this->periodmodel->checkdaystb($saturday,$tbr_id);
+		}
+		
+	}else{
+
+		$data = array(
+			"time_thead_id"	=>$tb_id,
+			"class_id"		=>$classid,
+			"period_id"		=>$periodid,
+			"teacher"		=>$teacherid
+			
+		);
+		$this->db->insert("time_table",$data);
+		$this->db->where("time_thead_id",$tb_id);
+	$this->db->where("class_id",$classid);
+	$this->db->where("period_id",$periodid);
+	$checktbteacher=$this->db->get("time_table");
+if($checktbteacher->num_rows()>0){
+	$tbr_id = $checktbteacher->row()->id;
+		if($monday){
+			$var =$this->periodmodel->checkdaystb($monday,$tbr_id);
+		}
+		if($tuesday){
+			$var =$this->periodmodel->checkdaystb($tuesday,$tbr_id);
+		}
+		if($wednesday){
+			$var =$this->periodmodel->checkdaystb($wednesday,$tbr_id);
+		}
+		if($thursday){
+			$var =$this->periodmodel->checkdaystb($thursday,$tbr_id);
+		}
+		if($friday){
+			$var =$this->periodmodel->checkdaystb($friday,$tbr_id);
+		}
+		if($saturday){
+			$var =$this->periodmodel->checkdaystb($saturday,$tbr_id);
+		}
+		
+	}
+	}
+echo '<div class="alert alert-info">Teacher is added into time table are Successfully done!!!!</div>';
+}
 
 	function updatePeriod(){
 		$i=1;
-		$period_name = $this->input->post("periodName");
+		$tb_id=$this->input->post("tb_id");
+		//$period_name = $this->input->post("periodName");
 		$num=$this->input->post("nop");
 		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("nop_id",$period_name);
+		$this->db->where("nop_id",$tb_id);
 		$request = $this->db->get("period")->result();
 		//print_r($period_name);
 		?>
@@ -110,11 +281,11 @@ class periodTimeControllers extends CI_Controller{
 		            				<table width="80%">
 		                				<tr>
 		                    				<td>
-		                        			<input type="text" class="form-control" style="width:100px;" name="period<?php echo $i; ?>" value="<?php echo $row->period; ?>"/>
+		                        			<input type="text" class="form-control" required="required" width:100px;" name="period<?php echo $i; ?>" value="<?php echo $row->period; ?>"/>
 	                            			</td>
                                 			<?php 
 											$a = $num / 2;
-											if(($i >= $a) && ($i <= $a + 3)):
+											if(($i >= $a-3) && ($i <= $a + 3)):
 											?>
                                 			<td  align="center">
 		                        				<input type="radio" value="<?php echo $i; ?>" name="lunch" />Lunch
@@ -127,11 +298,11 @@ class periodTimeControllers extends CI_Controller{
 		                   				 <table width="80%" >
 		                        			 <tr>
 		                            			 <td>
-		                                 			<input type="time" class="form-control" style="width:100px;" name="from<?php echo $i; ?>" id="from<?php echo $i; ?>" value="<?php echo $row->from;?>">
+		                                 			<input type="time" required="required" class="form-control" style="width:100px;" name="from<?php echo $i; ?>" id="from<?php echo $i; ?>" value="<?php echo $row->from;?>">
 		                              			</td>
 		                             			 <td> to</td>
 		                             			 <td>
-		                                   			<input type="time" class="form-control" style="width:100px;" name="to<?php echo $i; ?>" id="to<?php echo $i; ?>" value="<?php echo $row->to;?>">
+		                                   			<input type="time"  required="required" class="form-control" style="width:100px;" name="to<?php echo $i; ?>" id="to<?php echo $i; ?>" value="<?php echo $row->to;?>">
 		                              			</td>
 		                        			 </tr>
 		                    			</table>
@@ -148,7 +319,7 @@ class periodTimeControllers extends CI_Controller{
 		            				<table width="80%">
 		                				<tr>
 		                    				<td>
-		                        			<input type="text" class="form-control" style="width:100px;" name="period<?php echo $j; ?>" />
+		                        			<input type="text" class="form-control" required="required" style="width:100px;" name="period<?php echo $j; ?>" />
 	                            			</td>
                                 			
 		                      			</tr>
@@ -158,11 +329,11 @@ class periodTimeControllers extends CI_Controller{
 		                   				 <table width="80%" >
 		                        			 <tr>
 		                            			 <td>
-		                                 			<input type="time" class="form-control" style="width:100px;" name="from<?php echo $j; ?>" id="from<?php echo $j; ?>" >
+		                                 			<input type="time" class="form-control" required="required" style="width:100px;" name="from<?php echo $j; ?>" id="from<?php echo $j; ?>" >
 		                              			</td>
 		                             			 <td> to</td>
 		                             			 <td>
-		                                   			<input type="time" class="form-control" style="width:100px;" name="to<?php echo $j; ?>" id="to<?php echo $j; ?>" >
+		                                   			<input type="time" class="form-control" required="required" style="width:100px;" name="to<?php echo $j; ?>" id="to<?php echo $j; ?>" >
 		                              			</td>
 		                        			 </tr>
 		                    			</table>
@@ -286,42 +457,11 @@ class periodTimeControllers extends CI_Controller{
 
 // 	redirect("index.php/login/schedulingReport");
 // 	}
-	function periodsheduleinsert(){
-		$period_thead = $this->input->post("period_id");
-		$days = $this->input->post("days");
-		$tbr = $this->input->post("tbr");
-		$tbc = $this->input->post("tbc");
-		$this->load->model("periodModel");
-		$checkTB = $this->periodModel->checkvalue($days,$period_thead);
-		if($checkTB->num_rows()>0)
-		{
-			$var = $this->periodModel->deldaywise($days,$period_thead);
-		}
-		for($i=1;$i<$tbr;$i++)
-		{
-			for($j=1;$j<$tbc;$j++)
-			{
-				$data = array(
-					"time_thead_id" => $period_thead,
-					"day" => $this->input->post("days"),
-					"period_id" => $this->input->post("period$j"),
-					//"time" => $this->input->post("from$j"),
-					"class_id" => $this->input->post("class1$i"),
-					"teacher" => $this->input->post("teacher$i$j"),
-					"subject_id" => $this->input->post("subject$i$j"),
-					"school_code"=>$this->session->userdata("school_code")
-					);
-				$this->periodModel->periodSchedule($data);
-				//print_r($data);//not given any value
-			}
-		}	
-
-	redirect("index.php/login/schedulingReport/");
-	}
+	
 	
 	function timeTable(){
 		$no_of_period=$this->input->post('no_of_period');
-		$school_code=$this->session->userdata('school_code');
+	
 		$this->load->model("periodModel");
 		//$period=$this->uri->segment('3');
 		$var = $this->periodModel->uniqueClass($no_of_period);
@@ -434,8 +574,12 @@ class periodTimeControllers extends CI_Controller{
 															echo $class1->row()->class_name."-".$section;
 														  ?>
 														  </th>
-														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' AND school_code='$school_code' AND day LIKE '%1%'"); ?>
-														<?php while($res = mysqli_fetch_object($query )):?>
+														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period'"); ?>
+														<?php while($res = mysqli_fetch_object($query )):
+															$this->db->where("days_id",1);
+															 $this->db->where("time_table_id",$res->id);
+															$getdaysa = $this->db->get("time_table_days");
+															if($getdaysa->num_rows()>0){?>
 														<td>
 															<?php if($res->teacher == '0'):?>
 																<?php echo "<span style='color:green;'>Lunch</span>";?>
@@ -456,7 +600,7 @@ class periodTimeControllers extends CI_Controller{
 				  													?>
 															<?php endif;?>
 														</td>
-														<?php endwhile; ?>
+														<?php } endwhile; ?>
 													</tr>
 													<?php } $i++; endforeach;?>
 												</tbody>
@@ -509,9 +653,11 @@ class periodTimeControllers extends CI_Controller{
 														<?php endforeach;?>
 													</tr>
 												</thead>
-												<tbody>
-													<?php foreach($uniqueClass as $row):?>
-													<tr>
+											<tbody>
+													<?php $i=1; foreach($uniqueClass as $row):?>
+													<?php if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
+	                                                <tr class="<?php echo $rowcss;?>">
+													
 														<th><?php $class = $row->class_id;
 															$this->db->where("id",$row->class_id);
 				  													 $class1=$this->db->get("class_info")->row(); 
@@ -519,8 +665,12 @@ class periodTimeControllers extends CI_Controller{
 														 //echo $class;?>
 														 	
 														 </th>
-														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' AND school_code='$school_code' AND day LIKE '%2%'"); ?>
-														<?php while($res = mysqli_fetch_object($query )):?>
+														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' "); ?>
+														<?php while($res = mysqli_fetch_object($query )):
+															$this->db->where("days_id",2);
+															 $this->db->where("time_table_id",$res->id);
+															$getdaysa = $this->db->get("time_table_days");
+															if($getdaysa->num_rows()>0){?>
 														<td>
 															<?php if($res->teacher == '0'):?>
 																<?php echo "<span style='color:green;'>Lunch</span>";?>
@@ -541,7 +691,7 @@ class periodTimeControllers extends CI_Controller{
 				  													?>
 															<?php endif;?>
 														</td>
-														<?php endwhile; ?>
+														<?php } endwhile; ?>
 													</tr>
 													<?php endforeach;?>
 												</tbody>
@@ -595,8 +745,9 @@ class periodTimeControllers extends CI_Controller{
 													</tr>
 												</thead>
 												<tbody>
-													<?php foreach($uniqueClass as $row):?>
-													<tr>
+													<?php $i=1; foreach($uniqueClass as $row):?>
+													<?php if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
+	                                                <tr class="<?php echo $rowcss;?>">
 														<th>
 															<?php $class = $row->class_id;
 															$this->db->where("id",$row->class_id);
@@ -604,8 +755,12 @@ class periodTimeControllers extends CI_Controller{
 				  													echo $class1->class_name;
 														 ?>
 															</th>
-															<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' AND school_code='$school_code' AND day LIKE '%3%'"); ?>
-														<?php while($res = mysqli_fetch_object($query )):?>
+															<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' "); ?>
+														<?php while($res = mysqli_fetch_object($query )):
+															$this->db->where("days_id",3);
+															 $this->db->where("time_table_id",$res->id);
+															$getdaysa = $this->db->get("time_table_days");
+															if($getdaysa->num_rows()>0){?>
 														<td><?php if($res->teacher == '0'):?>
 																<?php echo "<span style='color:green;'>Lunch</span>";?>
 															<?php else:?>
@@ -625,7 +780,7 @@ class periodTimeControllers extends CI_Controller{
 				  													?>
 															<?php endif;?>
 														</td>
-														<?php endwhile; ?>
+														<?php } endwhile; ?>
 													</tr>
 													<?php endforeach;?>
 												</tbody>
@@ -679,15 +834,21 @@ class periodTimeControllers extends CI_Controller{
 													</tr>
 												</thead>
 												<tbody>
-													<?php foreach($uniqueClass as $row):?>
-													<tr>
+													<?php $i=1; foreach($uniqueClass as $row):?>
+													<?php if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
+	                                                <tr class="<?php echo $rowcss;?>">
 														<th><?php $class = $row->class_id;
 															$this->db->where("id",$row->class_id);
 				  													 $class1=$this->db->get("class_info")->row(); 
 				  													echo $class1->class_name;
 														 ?></th>
-														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' AND school_code='$school_code' AND day LIKE '%4%'"); ?>
-														<?php while($res = mysqli_fetch_object($query )):?>
+														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' "); ?>
+														<?php while($res = mysqli_fetch_object($query )):
+															$this->db->where("days_id",4);
+															 $this->db->where("time_table_id",$res->id);
+															$getdaysa = $this->db->get("time_table_days");
+															if($getdaysa->num_rows()>0){
+																?>
 														<td>
 															<?php if($res->teacher == '0'):?>
 																<?php echo "<span style='color:green;'>Lunch</span>";?>
@@ -708,7 +869,7 @@ class periodTimeControllers extends CI_Controller{
 				  													?>
 															<?php endif;?>
 														</td>
-														<?php endwhile; ?>
+														<?php  } endwhile; ?>
 													</tr>
 													<?php endforeach;?>
 												</tbody>
@@ -763,15 +924,20 @@ class periodTimeControllers extends CI_Controller{
 													</tr>
 												</thead>
 												<tbody>
-													<?php foreach($uniqueClass as $row):?>
-													<tr>
+													<?php $i=1; foreach($uniqueClass as $row):?>
+													<?php if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
+	                                                <tr class="<?php echo $rowcss;?>">
 														<th><?php $class = $row->class_id;
 															$this->db->where("id",$row->class_id);
 				  													 $class1=$this->db->get("class_info")->row(); 
 				  													echo $class1->class_name;
 														 ?></th>
-														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' AND school_code='$school_code' AND day LIKE '%5%'"); ?>
-														<?php while($res = mysqli_fetch_object($query )):?>
+														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' "); ?>
+														<?php while($res = mysqli_fetch_object($query )):
+															$this->db->where("days_id",5);
+															 $this->db->where("time_table_id",$res->id);
+															$getdaysa = $this->db->get("time_table_days");
+															if($getdaysa->num_rows()>0){?>
 														<td>
 															<?php if($res->teacher == '0'):?>
 																<?php echo "<span style='color:green;'>Lunch</span>";?>
@@ -792,7 +958,7 @@ class periodTimeControllers extends CI_Controller{
 				  													?>
 															<?php endif;?>
 														</td>
-														<?php endwhile; ?>
+														<?php } endwhile; ?>
 													</tr>
 													<?php endforeach;?>
 												</tbody>
@@ -846,15 +1012,19 @@ class periodTimeControllers extends CI_Controller{
 													</tr>
 												</thead>
 												<tbody>
-													<?php foreach($uniqueClass as $row):?>
-													<tr>
+													<?php $i=1; foreach($uniqueClass as $row):?>
+													<?php if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
+	                                                <tr class="<?php echo $rowcss;?>">
 														<th><?php $class = $row->class_id;
 															$this->db->where("id",$row->class_id);
 				  													 $class1=$this->db->get("class_info")->row(); 
 				  													echo $class1->class_name;
 														 ?></th>
-														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' AND school_code='$school_code' AND day LIKE '%6%'"); ?>
-														<?php while($res = mysqli_fetch_object($query )):?>
+														<?php $query = mysqli_query($this->db->conn_id,"SELECT * FROM time_table WHERE class_id = '$class' and time_thead_id='$no_of_period' "); ?>
+														<?php while($res = mysqli_fetch_object($query )):$this->db->where("days_id",6);
+															 $this->db->where("time_table_id",$res->id);
+															$getdaysa = $this->db->get("time_table_days");
+															if($getdaysa->num_rows()>0){?>
 														<td>
 															<?php if($res->teacher == '0'):?>
 																<?php echo "<span style='color:green;'>Lunch</span>";?>
@@ -875,7 +1045,7 @@ class periodTimeControllers extends CI_Controller{
 				  													?>
 															<?php endif;?>
 														</td>
-														<?php endwhile; ?>
+														<?php } endwhile; ?>
 													</tr>
 													<?php endforeach;?>
 												</tbody>

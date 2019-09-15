@@ -68,7 +68,7 @@
                                             </select>
                                         </td>
                                         </tr>
-                                <input type="hidden" name ="period_name"  value="<?php echo $period_name;?>" />
+                                <input type="hidden" id ="tb_id" name ="period_name"  value="<?php echo $period_name;?>" />
                                  <input type="hidden" name ="pdate" value="<?php echo $pdate;?>" />
                                  <input type="hidden" name ="nopid" value="<?php echo $period_name;?>" />
                                   </table>
