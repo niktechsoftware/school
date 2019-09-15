@@ -43,7 +43,7 @@
 		    <button data-dismiss="alert" class="close">×</button>
                 <h3 class="media-heading text-center">Welcome to Employee Salary Report</h3>
                 <p class="media-timestamp">Welcome to Employee Salary Report area
-                if you want to see Employee Salary Report then select FSD and Click on Get Salary Detail.You can also see Full Salary Detail of perticular Employee just click on View Detail. </div>
+                if you want to see Employee Salary Report then select FSD and Click on Get Salary Detail.You can also see Full Salary Detail of particular Employee just click on View Detail. </div>
 					<div class="row">
 						<div class="col-sm-3">
 							&nbsp;
@@ -103,7 +103,7 @@
 									</div>
 								</div>
 								<div class="table-responsive">
-									<table class="table table-striped table-hover" id="example">
+									<table class="table table-striped table-hover" id="sample-table-2">
 										<thead>
 											<tr  class=" text-uppercase alert alert-block alert-danger fade in">
 												<th>S.no.</th>
@@ -196,9 +196,7 @@
 						<?php endif; ?>
 
 
-						<script>
-							TableExport.init();
-						</script>
+						
 					</div><!-- end: table-responsive -->
 				</div>
 				<?php endif;?>

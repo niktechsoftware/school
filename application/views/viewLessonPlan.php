@@ -5,7 +5,7 @@
 							<div class="panel panel-white">
 								<div class="panel-heading panel-blue">
 										<i class="fa fa-external-link-square"></i>
-										View Lession Plan :
+										View Lesson Plan :
 									<div class="panel-tools">
 										<div class="dropdown">
 											<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">

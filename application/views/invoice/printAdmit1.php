@@ -171,8 +171,10 @@
                 </h2>
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
             		<?php //echo $info->state." - ".$info->pin.", ";
-            	        echo "PHONE : " ;
-            		if(strlen($info->mobile_no > 0 )){ echo $info->phone_no.", MOBILE: ".$info->mobile_no ;} ?>
+
+            	        echo "Contact No. : " ;
+            		if(strlen($info->mobile_no > 0 )){echo $info->phone_no.", ".$info->mobile_no ;} ?>
+
 
                 </h2>
                 	<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
@@ -259,7 +261,9 @@
             <table>
                 <tr>
                     	<td style="border:none; line-height: 10px;">
-                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="75" />
+
+                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="100" />
+
                         </td>
                     </tr>
                    
@@ -340,7 +344,9 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) On Oct 4 (Friday) who unattend any subject paper with genuine reason 
-		can give their left paper with same exam time.
+
+		can give their left paper with same exam time.	
+
 		<!--for daffodils end-->
 		<!--for scholar start-->
 		<?php }else if($school_code==13){
@@ -371,8 +377,9 @@
 		</table></div>
         <div> </div>
         <hr>
-        
-	</div></br></br></br></br></br></br></br>
+
+	</div></br></br></br></br>
+
 	<?php }}else{echo "<span style='color:red'>Student not found</span>";}?>
 	</div>
 <div class="invoice-buttons" style="text-align:center;">

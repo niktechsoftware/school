@@ -57,7 +57,17 @@ foreach($class->result() as $data)
  $row2=$data->class_id;
  $row3=$data->period_id;
  $row4=$data->teacher;
- $row5=$data->day;
+ 
+ $this->db->where("id",$data->id);
+$resu= $this->db->get("time_table_days");
+ if($resu->num_rows()>0){
+   $days1d=$resu->row()->days_id;
+   $this->db->where("id",$days1d);
+   $daysname = $this->db->get("days_name");
+   $row5=$daysname->row()->name;
+ }else{
+  $row5=0;
+ }
  $this->db->where('id',$row1);
  $sub=$this->db->get('subject');
  

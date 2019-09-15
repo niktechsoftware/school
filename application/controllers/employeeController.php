@@ -334,7 +334,7 @@ class EmployeeController extends CI_Controller{
 											</tbody>
 										</table>
 							  			<?php 
-							  		}	
+							  		}else{ echo "<label style='color:red;'>No Record Found<label>";}
 
 							  		
 	}

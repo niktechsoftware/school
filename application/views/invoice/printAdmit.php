@@ -126,7 +126,8 @@
 
 <body>
 	<div id="printcontent" align="center">
-	<br/><br/><br/>
+
+
 	<div id="page-wrap" style="height: 480px;width:800px; border: 1px solid black; outline: 1px solid black; solid #333;">
 <?php
 	$school_code = $this->session->userdata("school_code");
@@ -159,9 +160,10 @@
             		<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
-            		<?php //echo $info->state." - ".$info->pin.", ";
-            	        echo "PHONE : " ;
-            		if(strlen($info->mobile_no > 0 )){ echo $info->phone_no.", MOBILE: ".$info->mobile_no ;} ?>
+
+            		<?php echo $info->state." - ".$info->pin.", Contact No. : " ;
+            		if(strlen($info->mobile_no > 0 )){echo $info->phone_no.", ".$info->mobile_no ;} ?>
+
 
                 </h2>
     						<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
@@ -249,7 +251,9 @@
             <table>
                 <tr>
                     	<td style="border:none; line-height: 20px;">
-                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="75"/>
+
+                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="100"/>
+
                         </td>
                     </tr>
                    
@@ -293,7 +297,9 @@ if($exam_day->num_rows()){
                         foreach($shift as $s):
                         ?>
                         <tr>
+
                         <td style="text-align: center;"><?php if($school_code==5){ ?><?php }else{ ?><?php echo $s->shift;?><?php } ?></td>
+
                         <?php 
                          foreach($date as $ed):
 						$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -327,15 +333,29 @@ if($exam_day->num_rows()){
 		<div align="left"><h3>
 	    <!--for daffodils start-->
 		<?php if($school_code==5){ ?>
-		&nbsp;Note: 1)Exam timing is  <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
+
+		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
+
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) A Student who gives or obtains unfair assistance at an examination 
 		will debarred for the rest of the examination and will</br> 
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) On Oct 4 (Friday) who unattend any subject paper with genuine reason 
-		can give their left paper with same exam time.</br>
-		<?php }else{ ?>
+
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) On Sep 20 (Friday) who unattend any subject paper with genuine reason 
+		can give their left paper with same exam time.	
+		<!--for daffodils end-->
+		<!--for scholar start-->
+		<?php }else if($school_code==13){
+		?>	&nbsp;Note: 1)The reporting time to school will be at 7:20 am and dispersal timing will be at 11:00 am. </br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		2)Bring this admit card and all necessary instruments (Pen, Pencil box, Geometry box etc.) during exam is compulsory. </br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		3) Unfair means or papers are strictly prohibited.</br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		4) Issuing of duplicate Admit card will charge 10 rs.
+		<?php }else{ ?><!--for scholar end-->
+
 		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
 		$endt =strtotime("-00 minutes",strtotime($s->to1));
@@ -343,7 +363,8 @@ if($exam_day->num_rows()){
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
 		<?php }?></h3>
-		<!--for daffodils end-->
+
+	
 		</div>
 		
 		<div>

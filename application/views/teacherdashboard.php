@@ -388,7 +388,7 @@ $total=0.00;
             <?php endforeach;?>    
             <?php else:?>
             	<div class="item">
-                   <center> <h3 style="color:red">There is no any note avaliable this time.</h3></center>
+                   <center> <h3 style="color:red">There is no any note available this time.</h3></center>
                 </div>
             <?php endif;?>    
             </div>
@@ -396,7 +396,7 @@ $total=0.00;
     </div>
 </div>
 
-<div class="col-md-10 col-lg-5 col-sm-5">
+<!--<div class="col-md-10 col-lg-5 col-sm-5">
         <div class="panel panel-default panel-white ">
             <div class="panel-body">
                 <div class="partition-green padding-20 text-center ">
@@ -407,7 +407,6 @@ $total=0.00;
                 <thead><tr><th>Class</th>
                     <th>Subject</th>
                     <th>Work Subject Name</th>
-                   
                      <th>Remark</th>
                       <th>Define Work</th>
                      <th>Grade</th>
@@ -450,7 +449,7 @@ $total=0.00;
            </table>
            </div>
       </div>
-  </div> 
+  </div> -->
      
 
 

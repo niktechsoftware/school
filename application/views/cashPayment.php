@@ -221,7 +221,7 @@
 							                            <input name="bank_name" style="width:150px;" type="text" required/>
 							                        </td>
 							                        <td>
-							                        	<label>Account No</label> &nbsp;&nbsp;&nbsp;<br>
+							                        	<label>Account No.</label> &nbsp;&nbsp;&nbsp;<br>
 
 							                        <!--    <input name="account_no" name="amount" id="amount3" pattern="[0-9]" onkeyup="digitvalidation3()" style="width:200px;" type="text" required/><span style="color:#F00" id="digit3"></span>-->
 							                           <input name="account_no"  id="amount3"   style="width:200px;" type="number" required/><span style="color:#F00" id="digit3"></span>
@@ -299,7 +299,7 @@
 												<div class="panel-body">
 												     <div class="alert alert-info">
 											<h4 class="center"><b>WELCOME TO THE DIRECTOR TRANSACTION AREA</b></h4><br>
-	                                          <center>In This Area Director Can Withdraw Money in Emergency Case And Also Can Diposit Money .</center> 
+	                                          <center>In This Area Director Can Withdraw Money in Emergency Case And Also Can Deposit Money .</center> 
 										</div>
 					                        		<div class="form-group">
 						                              	<div class="form-group" align="center">
@@ -334,7 +334,7 @@
 							                            <input name="bank_nm" style="width:150px;" type="text" required/>
 							                        </td>
 							                        <td>
-							                        	<label>Account No</label> &nbsp;&nbsp;&nbsp;<br>
+							                        	<label>Account No.</label> &nbsp;&nbsp;&nbsp;<br>
 
 							                        <!--    <input name="account_no" name="amount" id="amount3" pattern="[0-9]" onkeyup="digitvalidation3()" style="width:200px;" type="text" required/><span style="color:#F00" ></span>-->
 							                           <input name="accountno"  id="amount4" style="width:200px;" type="number" required/><span style="color:#F00" id="digit4"></span>

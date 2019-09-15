@@ -44,7 +44,7 @@
 				<div class="col-md-2">
 					<label class="checkbox-inline">
 						<input type="checkbox" name="chk[]" value="scholer_no" id="scholer_no" checked="checked">
-						Scholer No
+						Scholar No.
 					</label>
 				</div>
 				<div class="col-md-2">

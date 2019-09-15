@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-			    <div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Teacher Leave Detail Area,</h3>
+			    <div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Teacher Leave Detail Area.</h3>
                     <p class="media-timestamp">
                         Here you can see your leave details.If your leave is Approved then you will see Approved Button.
                         You can also request for Leave by click on Define New Leave Button. 

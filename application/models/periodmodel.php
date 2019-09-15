@@ -50,28 +50,45 @@ return $query1;
 }
 
 	function uniqueClass($period)
-	{$school_code = $this->session->userdata("school_code");
-		$var = $this->db->query("SELECT DISTINCT class_id FROM time_table Where school_code='$school_code' and time_thead_id='$period'");
+	{
+		$var = $this->db->query("SELECT DISTINCT class_id FROM time_table Where time_thead_id='$period'");
 		return $var;
 	}
 	
 	function uniquePeriod($period)
-	{$school_code = $this->session->userdata("school_code");
-		$var = $this->db->query("SELECT DISTINCT period_id FROM time_table WHERE school_code='$school_code' and time_thead_id='$period'");
+	{
+		$var = $this->db->query("SELECT DISTINCT period_id FROM time_table WHERE  time_thead_id='$period'");
 		return $var;
 	}
 	
 	function checkvalue($data,$time_thead_id)
-	{	$school_code = $this->session->userdata("school_code");
-	    $query = $this->db->query("SELECT * FROM time_table WHERE school_code='$school_code' and time_thead_id='$time_thead_id' AND day LIKE '%$data%'");
+	{	
+	    $query = $this->db->query("SELECT * FROM time_table WHERE time_thead_id='$time_thead_id'");
 		return $query;
 	}
 	
 	function deldaywise($data,$time_thead_id)
-	{	$school_code = $this->session->userdata("school_code");
-		$query = $this->db->query("DELETE FROM time_table WHERE school_code='$school_code' and time_thead_id='$time_thead_id' AND day LIKE '%$data%'");
+	{	
+		$query = $this->db->query("DELETE FROM time_table WHERE time_thead_id='$time_thead_id'");
 		return $query;
 	}
 
+
+
+function checkdaystb($day,$tbid){
+	$this->db->where("time_table_id",$tbid);
+			$this->db->where("days_id",$day);
+		$ttd = $this->db->get("time_table_days");
+		if($ttd->num_rows()>0){
+
+		}else{
+			$dayentry  = array(
+				"days_id"=>$day,
+				"time_table_id"=>$tbid
+			);
+			$this->db->insert("time_table_days",$dayentry);
+		}
+		return true;
+}
 }
 ?>

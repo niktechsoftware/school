@@ -84,7 +84,7 @@
 												<?php }?>  
 
 												            <div class="row">
-															<div class="alert alert-warning"> <strong class="">Note :-This is fee section.here you can deposite fee. Procedure for fee deposite is-First choose Pay Mode,Pay Date,Student Category after that click on those month which you want to pay.
+															<div class="alert alert-warning"> <strong class="">Note :-This is fee section.here you can deposit fee. Procedure for fee deposit is-First choose Pay Mode,Pay Date,Student Category after that click on those month which you want to pay.
 														You can pay two or more month at a time press control button and choose you month you want to pay </div>
 												                <div class="col-sm-4">
 												                    <div class="panel panel-white">

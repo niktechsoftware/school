@@ -84,8 +84,9 @@ class msgNoticeControllers extends CI_Controller{
 				"school_code"=>$this->session->userdata("school_code")
 		);
 		$var=$this->msgmodel->sendSms($data);
-		if($var)
+		if($var){
 		echo "successfylly Sent";
+		}
 }
 
 

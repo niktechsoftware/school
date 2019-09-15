@@ -37,10 +37,10 @@
 </p>
 </div>
 <div class="row">
-	<div class="col-md-4"></div>
+	<div class="col-md-4">Select Time Table</div>
 <div class="col-md-4 center"> 
 	<select name="no_of_period" id="no_of_period" class="form-control" required>
-		<option value="-nop-">-NOP-</option>
+		<option value="-nop-">-Select Time Table-</option>
 		<?php
 		$this->db->where('school_code',$this->session->userdata('school_code'));
 		$period_name=$this->db->get('no_of_period')->result();
