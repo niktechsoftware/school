@@ -247,7 +247,7 @@
             <table>
                 <tr>
                     	<td style="border:none; line-height: 20px;">
-                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" />
+                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="100"/>
                         </td>
                     </tr>
                    

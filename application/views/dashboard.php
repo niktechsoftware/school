@@ -635,7 +635,8 @@ $school_code = $this->session->userdata("school_code");
                         $month = date("m", strtotime($date));
                         $yearmonth= date("m-y",strtotime($date));
                        // print_r($rmo);
-
+                       $this->db->distinct();
+                       $this->db->select('class_name,id');
                         $this->db->where("school_code",$school_code);
                         $classdt= $this->db->get("class_info");
                         //  print_r($this->session->userdata("fsd"));
@@ -649,7 +650,7 @@ $school_code = $this->session->userdata("school_code");
                            
                           // exit();
                           if($studt->num_rows()>0){
-                           
+                           $sum=$studt->num_rows();
 
                           // print_r($nummo);
                           // echo "<pre>";
@@ -674,7 +675,7 @@ $school_code = $this->session->userdata("school_code");
                           
                            $rmo= date("m-y",strtotime($feemonth));
                           //  print_r($dmonth->row()->deposite_month);
-                          $nummo=$yearmonth-$rmo;
+                          //$nummo=$yearmonth-$rmo;
                           //  print_r($nummo);
 
                             $this->db->where("class_id",$data->id);
@@ -683,25 +684,44 @@ $school_code = $this->session->userdata("school_code");
                            if($classiddt->num_rows()>0){
 
                           // $this->db->where("school_code",$school_code);
-                           $this->db->where("id",$classiddt->row()->class_id);
-                           $classnm= $this->db->get("class_info")->row();
+                        //   $this->db->where("id",$classiddt->row()->class_id);
+                        //   $classnm= $this->db->get("class_info")->row();
+                         $this->db->select_sum("fee_head_amount");
+                            if($school_code ==1){$this->db->where("cat_id",3);}
+                            	$this->db->where_in("taken_month",13);
+                            $this->db->where("class_id",$data->id);
+                            $this->db->where("fsd",$this->session->userdata("fsd"));
+                           $classfee= $this->db->get("class_fees")->row();
+                           $cfee=$classfee->fee_head_amount;
 
 
                             
                             $this->db->select_sum("fee_head_amount");
+                            if($school_code ==1){$this->db->where("cat_id",3);}
+                            	$this->db->where_in("taken_month",$month);
                             $this->db->where("class_id",$data->id);
                             $this->db->where("fsd",$this->session->userdata("fsd"));
-                           $classfee= $this->db->get("class_fees")->row();
-                           $fees=$classfee->fee_head_amount;
-                           $totstufee= $fees*$nummo;
+                           $classfee= $this->db->get("class_fees");
+                           if($classfee->num_rows()>0){
+                           $fees=$classfee->row()->fee_head_amount;
+                           $fee=$cfee+$fees;
+                           $totfee =$fee*$sum;
+                           }
+                           else{
+                           $totfee= $cfee*$sum; 
                            
+                         
+                           }
+                        //      print_r($sum);
+                        //     print_r($fees);
+                        //   print_r($cfee);
 
                            //$feecount=$feecount-$classfee;
                           ?>
                         <tr>
                           <td class="center"><?php echo $i;?></td>
-                          <td><?php echo $classnm->class_name;?></td>
-                          <td><?php echo $totstufee; ?></td>
+                          <td><?php echo $data->class_name;?></td>
+                          <td><?php echo $totfee; ?></td>
                           </tr>
 
                      <?php $i++; } }  }   }  endforeach; ?>

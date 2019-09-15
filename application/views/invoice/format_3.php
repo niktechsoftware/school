@@ -139,9 +139,9 @@
 
 <body>
     <div id="printcontent" align="center">
-        <div id="page-wrap" style="height: 1000px;width:960px; border:1px solid #333;">
+        <div id="page-wrap" style="margin-top: 70px;height: 1250px;width:960px; border:1px solid #333;">
 
-            <div style="width:80%; height:1000px;margin-left:auto; margin-right:auto; border:1px  solid blue; background-color:#e30e0e;">
+            <div style="width:100%; height:1250px;margin-left:auto; margin-right:auto; border:1px  solid blue; background-color:#e30e0e;">
 
                 <div style="width:95%; margin-left:auto; margin-right:auto; border:1px  solid yellow; height:auto;">
                     <?php
@@ -244,13 +244,12 @@
                         <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
 						<th colspan="5" rowspan="2">Term 1 (100 Marks) </th>
 						<!--<th colspan="5" rowspan="2">Term 2 (100 Marks) </th>-->
-						<th colspan="1" rowspan="2">Term 2 (100 Marks) </th>
-                        <th colspan="3">OVERALL</th>
+                       <!-- <th colspan="3">OVERALL</th>-->
 
                     </tr>
 
                     <tr>
-                        <th colspan="3">Term 1 (50)+ Term 2(50)</th>
+                       <!-- <th colspan="3">Term 1 (50)+ Term 2(50)</th>-->
                     </tr>
 
                     <tr>
@@ -292,11 +291,11 @@
 						$i++;
 						endforeach ;
 						if(!$i%2==0){ ?>
-						<td class="center bold">Total</td> 
+						<!--<td class="center bold">Total</td> -->
 						<?php } ?>
-                       <th>Grand<br> Total</th>
+                       <!--<th>Grand<br> Total</th>
                         <th rowspan="1">Grade</th>
-                        <th rowspan="1">Rank</th>
+                        <th rowspan="1">Rank</th>-->
                     </tr>
 
 
@@ -342,6 +341,7 @@ $this->db->where('id',$sub['subject']);
 $subjectname=$this->db->get('subject'); 
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
+    if($subjectname->subject != "DRAWING " && $subjectname->subject != "DRAWING"){
 ?>
                    <tr class="wight"> 
 					 <td class="subject">	
@@ -365,8 +365,8 @@ if($subjectname->num_rows()>0){
 						$marks1= $this->db->get('exam_info');
 						if($marks1->num_rows()>0){
 							$marks=$marks1->row();
-							$subtatal=$subtatal+$marks->marks;
-							if(is_int($marks)){ 
+							
+							if(is_int($marks)){ $subtatal=$subtatal+$marks->marks;
 							$gtptal= $gtptal+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
@@ -375,9 +375,9 @@ if($subjectname->num_rows()>0){
         					$this->db->where('class_id',$classid->class_id);
         					$this->db->where('exam_id',$value->exam_id);
             				$exammm=$this->db->get('exam_max_subject')->row()->max_m;
-    				//if(is_int($exammm)){
+    				if(is_int($exammm)){
     				    	$dhtm=$exammm+$dhtm;
-    				//}
+    				}
     				
 						}
 					
@@ -389,39 +389,44 @@ if($subjectname->num_rows()>0){
 				$i++; $t++;endforeach; ?>
 				<?php if(!$i%2==0){ ?>
 						<td class="center bold">
-						<?php 
+						<?php 	
+					/*	if($marks1->num_rows()>0){
+							$marks=$marks1->row();
+							$subtatal=$subtatal+$marks->marks;
+							$dhtm=$exammm+$dhtm;
 						echo $subtatal; 
 							$ctotal['tot'.$i]+=$subtatal;
 							$gradecal =calculateGrade($subtatal,$classid->class_id);
-						 $subtatal=0;
-						 ?>/100
+						 $subtatal=0;}*/
+						 $gtptal= $gtptal+$marks->marks;
+						 ?><?php  $rty = $gtptal/2; echo $gtptal;  ?>/100
 						 </td>
 					<?php } ?>
 					<?php if(!$i%2==0){ ?>
-						<td class="center bold">
+					<!--<td class="center bold">
 						<?php 
 						echo $subtatal; 
 							$ctotal['tot'.$i]+=$subtatal;
 							$gradecal =calculateGrade($subtatal,$classid->class_id);
 						 $subtatal=0;
 						 ?>/100
-						 </td>
+						 </td>-->
 					<?php } ?><?php if(!$i%2==0){ ?>
-						<td class="center bold">
+						<!--<td class="center bold">
 						<?php 
 						echo $subtatal; 
 							$ctotal['tot'.$i]+=$subtatal;
 							$gradecal =calculateGrade($subtatal,$classid->class_id);
 						 $subtatal=0;
 						 ?>/100
-						 </td>
+						 </td>-->
 					<?php } ?>
 				
-			   <td class="center bold"></td>
-			   <td class="center bold"></td>
+			  <!-- <td class="center bold"></td>-->
+			  <!-- <td class="center bold"></td>-->
 			   
 				</tr>
-                    <?php }}?>
+                    <?php }}}?>
                   
                 </table>
             </div>
@@ -438,64 +443,41 @@ if($subjectname->num_rows()>0){
 
                     <tr>
                         <td>Work Education</td>
-                        <td>0</td>
-                        <td>Work Education</td>
-                        <td>0</td>
+                        <td>A</td>
+                        <td>Health</td>
+                        <td>A</td>
                     </tr>
 
                     <tr>
                         <td>Art Education</td>
-                        <td>0</td>
-                        <td>Art Education</td>
-                        <td>0</td>
+                        <td>A</td>
+                        <td>Discipline</td>
+                        <td>A</td>
                     </tr>
 
-                    <tr>
-                        <td>Helth</td>
-                        <td>0</td>
-                        <td>Helth</td>
-                        <td>0</td>
-                    </tr>
                 </table>
             </div>
 
+            
             <br>
             <div>
                 <table
                     style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
 
                     <tr>
-                        <td colspan="2"> Grade </td>
-                        <td colspan="2">Grade</td>
-                    </tr>
-
-                    <tr>
-                        <td>Work Education</td>
-                        <td>0</td>
-                        <td>Work Education</td>
-                        <td>0</td>
-                    </tr>
-
-                </table>
-            </div>
-
-            <br>
-            <div>
-                <table
-                    style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
-
-                    <tr>
+					
                         <td>
-                            0
+                            Overall Marks : <?php echo $cumulativetotal; ?>/<?php echo $dhtm;?>
+                           
                         </td>
                         <td>
-                            0
+                            Percentage: <?php //echo round((($cumulativetotal*100)/$dhtm), 2);?>% 
                         </td>
                         <td>
-                            0
+                            Grade
                         </td>
                         <td>
-                            0
+                            Rank
                         </td>
                     </tr>
                 </table>
@@ -514,20 +496,67 @@ if($subjectname->num_rows()>0){
                         <tr>
                             <th> Activity </th>
                             <th>T1</th>
-                            <th>T2</th>
+                            
                         </tr>
 
                         <!-- Dynamic -->
                         <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-
+                            <td>Work Education</td>
+                            <td>A</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Art Education</td>
+                            <td>B</td>
+                           
+                        </tr>
+                        <tr>
+                            <td>Health & Physical Education</td>
+                            <td>A</td>
+                           
+                        </tr>
+                        <tr>
+                            <td>Scientific Skills</td>
+                            <td>A</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Thinking Skills</td>
+                            <td>A</td>
+                           
+                        </tr>
+                        <tr>
+                            <td>Social Skills</td>
+                            <td>A</td>
+                           
+                        </tr>
+                        <tr>
+                            <td>Yoga/NCC</td>
+                            <td>A</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>Sports</td>
+                            <td>A</td>
+                           
                         </tr>
                     </table>
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>-</td>
+                            <?php
+							$this->db->where('id',$this->session->userdata('fsd'));
+							$fsdval=$this->db->get('fsd')->row();
+							$this->db->where('a_date >=',$fsdval->finance_start_date);
+							$this->db->where('a_date <=',$fsdval->finance_end_date);
+							$this->db->where('stu_id',$studentInfo->id);
+							$row=$this->db->get('attendance');
+							$this->db->where('a_date >=',$fsdval->finance_start_date);
+							$this->db->where('a_date <=',$fsdval->finance_end_date);
+							$this->db->where('stu_id',$studentInfo->id);
+							$this->db->where('attendance',1);
+							$row1=$this->db->get('attendance');
+							?>
+                            <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php print_r($row1->num_rows()); ?>/<?php print_r($row->num_rows()); ?></label></td>
                         </tr>
                     </table>
 
@@ -544,23 +573,66 @@ if($subjectname->num_rows()>0){
                             <th colspan="3"> Discipline</th>
                         </tr>
                         <tr>
-                            <th> Activity </th>
+                            <th> Element </th>
                             <th>T1</th>
-                            <th>T2</th>
+                           
                         </tr>
 
+                        
                         <!-- Dynamic -->
                         <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>Regularity & Punctuality</td>
+                            <td>B</td>
+                           
+
+                        </tr>
+                        <tr>
+                            <td>Sincerity</td>
+                            <td>A</td>
+                            
+
+                        </tr>
+                        <tr>
+                            <td>Behaviour & Values</td>
+                            <td>A</td>
+                           
+
+                        </tr>
+                        <tr>
+                            <td>Respectfulness For Rules & Reulations</td>
+                            <td>A</td>
+                            
+
+                        </tr>
+                        <tr>
+                            <td>Attitude Towards Teachers</td>
+                            <td>A</td>
+                            
+
+                        </tr>
+                        <tr>
+                            <td>Attitude Towards School-Maltes</td>
+                            <td>A</td>
+                            
+
+                        </tr>
+                        <tr>
+                            <td>Attitude Towards Society</td>
+                            <td>A</td>
+                           
+
+                        </tr>
+                        <tr>
+                            <td>Attitude Towards Nation</td>
+                            <td>A</td>
+                           
 
                         </tr>
                     </table>
 
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>-</td>
+                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label>Very Good</label></td>
                         </tr>
                     </table>
 
@@ -569,6 +641,10 @@ if($subjectname->num_rows()>0){
             </div>
 
             <br />
+            <div>
+            <p><label style="color: white;">Instructions</label></p>
+            <p><label style="color: white;">Grading Scale For Scholastic areas:Grades are awarded on a 8-point Grading Scale as Follows-</label></p>
+            </div></br>
             <div>
                 <table
                     style="width:95%;  margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -582,11 +658,36 @@ if($subjectname->num_rows()>0){
                     </tr>
                     <!-- Dynamic -->
                     <tr>
-                        <td><?php  //$cumulativetotal+=$ctotal['tot'.$h];echo $ctotal['tot'.$h];	
-						//print_r($cumulativetotal);
-						echo round((($cumulativetotal*100)/$dhtm), 2);?>% </td>
-                        <td>-</td>
-
+                        <td>91-100</td>
+                        <td>A1</td>
+                    </tr>
+                    <tr>
+                        <td>81-90</td>
+                        <td>A2</td>
+                    </tr>
+                    <tr>
+                        <td>71-80</td>
+                        <td>B1</td>
+                    </tr>
+                    <tr>
+                        <td>61-70</td>
+                        <td>B2</td>
+                    </tr>
+                    <tr>
+                        <td>51-60</td>
+                        <td>C1</td>
+                    </tr>
+                     <tr>
+                        <td>41-50</td>
+                        <td>C2</td>
+                    </tr>
+                     <tr>
+                        <td>33-40</td>
+                        <td>D</td>
+                    </tr>
+                     <tr>
+                        <td>32 & Below</td>
+                        <td>E(Needs Improvement)</td>
                     </tr>
 
                 </table>
@@ -611,6 +712,26 @@ if($subjectname->num_rows()>0){
 								endif;
 								
 							}?>
+            </div>
+            <br>
+            <div  style="color: white;">
+			<div  style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Congratulations! Promoted to Class :</div>
+			</div>
+			<br>
+            <div>
+                <table style="width:95%;background-color:white;">
+					<tr>
+						<td>		
+                            Date :
+                        </td>
+                        <td>
+                            Class Teacher
+                        </td>
+                        <td>
+                            Principal
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div></div>
     </div>

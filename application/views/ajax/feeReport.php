@@ -99,7 +99,7 @@
 				    $count = 1;
 						$tot=0.00;
 						$this->db->where("id",$fsd);
-						$fdate =	$this->db->get("fsd")->row()->finance_start_date;
+						$fdate =$this->db->get("fsd")->row()->finance_start_date;
 
 						$sum=0;
 
