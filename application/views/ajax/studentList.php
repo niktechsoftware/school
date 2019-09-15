@@ -79,7 +79,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 												<?php endif; ?>
 												
 												<?php if(strlen($scholer_no) > 1):?>
-												<th>Scholer No</th>
+												<th>Scholar No.</th>
 												<?php endif; ?>
 												
 												<?php if(strlen($name) > 1):?>

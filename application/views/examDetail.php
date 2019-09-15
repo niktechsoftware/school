@@ -33,7 +33,7 @@
 										</div>
 									</div>
 									<div class="panel-body">
-                                    <div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Examination Detail Section Area,</h3>
+                                    <div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Examination Detail Section Area.</h3>
                                     <p class="media-timestamp">In this Page We Can Enter and save Student Marks Scored in a Particular Class and Subject Please Select Following 
                                     Dropdown Options and Wait for Another Page. Fill the Marks and Click save Button to Save Students Marks.
                                     (Note : if marks are already filled in a class and subject then you can not save or update marks you can only view).</div>

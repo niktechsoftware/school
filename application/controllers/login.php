@@ -329,11 +329,11 @@ function updatemaximum()
 
 	function employeeSummry(){
 		$data['pageTitle'] = 'Employee Section';
-		$data['smallTitle'] = 'Employee Summry';
+		$data['smallTitle'] = 'Employee Summary';
 		$data['mainPage'] = 'Employee';
-		$data['subPage'] = 'Employee Summry';
+		$data['subPage'] = 'Employee Summary';
 
-		$data['title'] = 'Employee Summry';
+		$data['title'] = 'Employee Summary';
 		$data['headerCss'] = 'headerCss/configureClassCss';
 		$data['footerJs'] = 'footerJs/configureClassJs';
 		$data['mainContent'] = 'employeeSummry';
@@ -946,16 +946,16 @@ function createSchedule()
 		$this->load->view("includes/mainContent", $data);
 	}
 	function results(){
-		$data['pageTitle'] = 'Results Summry';
-		$data['smallTitle'] = 'Results Summry';
+		$data['pageTitle'] = 'Results Summary';
+		$data['smallTitle'] = 'Results Summary';
 		$data['mainPage'] = 'Exam';
-		$data['subPage'] = 'Results Summry';
+		$data['subPage'] = 'Results Summary';
 		$this->load->model("examModel");
 		$var=$this->examModel->getExamName();
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
-		$data['title'] = 'Results Summry';
+		$data['title'] = 'Results Summary';
 		$data['headerCss'] = 'headerCss/examCss';
 		$data['footerJs'] = 'footerJs/examJs';
 		$data['mainContent'] = 'results';
@@ -1068,7 +1068,7 @@ function createSchedule()
 
 	function message(){
 		$data['pageTitle'] = 'Notice & Message Alert';
-		$data['smallTitle'] = 'massage';
+		$data['smallTitle'] = 'message';
 		$data['mainPage'] = 'Message';
 		$data['subPage'] = 'Notice & Message Alert';
 		$data['title'] = 'Notice & Message Alert';

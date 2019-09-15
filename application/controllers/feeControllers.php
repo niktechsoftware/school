@@ -89,9 +89,9 @@ function getFsd(){
 		$feecat = $this->input->post("feecat");
 		//invoice number logic start
 		$this->db->where("school_code",$school_code);
-		$invoice = $this->db->count_all("invoice_serial");
-		$invoice1=6000+$invoice;
-		$invoice_number = $school_code."I".$invoice1;
+		$invoice = $this->db->get("invoice_serial");
+		$invoice1=6000+$invoice->num_rows();
+		$invoice_number = $school_code."I19".$invoice1;
 		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
 				"reason" => "Fee Deposit",
@@ -802,6 +802,7 @@ function getFsd(){
 			$sname=$this->input->post("sname");
 			$amt=$this->input->post("amount");
 			$amt1=$this->input->post("amount1");
+			
 // 			if($amt==0)	{
 // 			    $amt2=$this->input->post("amount");
 // 			}else{
@@ -821,10 +822,13 @@ function getFsd(){
 //           }else	{
 		  		   
 		  		
+			
 			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit soon.".$schoolname->school_name;
+// print_r($msg);
+// exit();
 	//	$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit it till 5 september.".$schoolname->school_name;
 			
-			sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+		//	sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
           //}
 						
 		}
@@ -907,7 +911,7 @@ function getFsd(){
 	                                            </div>
 	                                           </div> 
 	                                            <div class="row space15">
-	                                                <div id = "discounterOTP">
+	                                                <div id = " ">
 	                                                 <div  class="col-sm-12">
 	                                                    <div class="col-sm-12" id ="rahul1"></div>
 	                                                   
@@ -948,7 +952,7 @@ function getFsd(){
 														$disc+=$disc1;
 															endforeach;?>
 															
-														<div class="col-sm-7"> <input type="text" name ="discount_start" id="discount_start" value ="<?php echo $disc;?>" class="form-control"></div>
+														<div class="col-sm-7"> <input type="text" name ="discount_start"  id="discount_start"  value ="<?php echo $disc;?>" class="form-control"></div>
 	                                                </div>
 												</div>
 												<?php } }else{
@@ -1021,7 +1025,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						 if($fd->deposite_month<4){
 							$cdate11=date('Y-m-d');
 							$mno=(int)date('m',strtotime($cdate11));
-							if($mno<$fd->deposite_month){$realm=0;
+							if($mno < $fd->deposite_month){$realm=0;
 							    
 							}else{
 								//echo $mno;
@@ -1037,13 +1041,18 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						if($mno<$fd->deposite_month){$realm=0;
 							    
 							}else{
+								
 								//echo $mno;
-							$realm= $mno- $fd->deposite_month-1;}
+							$realm= $mno- $fd->deposite_month-1;
+							
+							}
 						 }
 						}
 						?>
 								
 						<?php $i++; endforeach; 
+						
+						
 						$this->db->where('school_code',$school_code);
 						$amt=$this->db->get('late_fees')->row()->late_fee;
                         $latefee1=$amt*$realm;
@@ -1063,8 +1072,15 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
                         $latefee1=$amt*$realm;
 					}}else{
 						$latefee1='0.00';
-					 }?>
-	                 <input type="text" value="<?php echo $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
+					 }
+					 
+				// 	 if($realm>0){
+					     
+				// 	}else{
+				// 		$realm=0;
+				// 	} 
+				?>
+	                 <input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
 						
 														</div>
 	                                                </div>

@@ -47,6 +47,10 @@
 												<form action="<?php echo base_url();?>index.php/examControllers/getData1"  method ="post"  id="form">
 												<div class="panel-body space10">
 													<div class="row col-sm-12">
+													    <div class="space10" >
+														<label class="panel-title">Select Term&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
+					                           <select name="term"><option>--SELECT TERM--</option><option value="1" >TERM 1</option><option value="2">TERM 2</option></select>
+													</div>
 													<div class="space10" >
 														<label class="panel-title">Test Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
 					                            <input type="text" name="examName" style="width: 180px;" id="examName" required="" onkeyup="myfunction1()" onkeyup="myfunction()" />

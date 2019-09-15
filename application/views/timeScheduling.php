@@ -39,10 +39,12 @@
 			
 			<div class="container">
 			<div class="row">
-				
-				<div class="col-md-4 center"> 
+				<div class="col-md-12">
+				<div class="col-md-6 "> 
+					<label class="col-md-6" >Select Time Table</label>
+				<div class="col-md-6">	
 				<select name="period_name" id="period_name" class="form-control" required>
-					<option value="-nop-">-NOP-</option>
+					<option value="-nop-">-Select Time Table-</option>
 					<?php
 					$this->db->where('school_code',$this->session->userdata('school_code'));
 					$period_name=$this->db->get('no_of_period')->result();
@@ -50,6 +52,7 @@
 					<option value="<?php echo $data->id ?>"><?php echo $data->period_name ?></option>
 					<?php } ?>
 				</select>
+			</div>
 				</div>	
 				<div  id="days" class="col-md-6 center">
 								<input type='checkbox' id="monday" name='day[]' value="1">Monday
@@ -59,12 +62,15 @@
 								<input type='checkbox' id="friday" name='day[]' value="5">Friday
 								<input type='checkbox' id="saturday" name='day[]' value="6">Saturday 
 				</div>
-				<div class="col-md-2"></div>
+
+				
 			</div>
 					</div>
                 </div>                                
             	</div>
+            	<div id="structperiod"></div>      
           </div>
-        </div>        
+        </div>  
+
       </div>
-      <div id="structperiod"></div>
+    

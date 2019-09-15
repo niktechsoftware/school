@@ -108,8 +108,9 @@
 																$sname=$this->db->get("subject")->row(); 
 																//print_r($sname);
 																$this->db->where("id",$row->teacher);
-																$ename=$this->db->get("employee_info")->row(); 
-																echo $ename->name."<br/>".$sname->subject;?></td>
+																$ename=$this->db->get("employee_info"); 
+																if($ename->num_rows()>0){
+																echo $ename->row()->name."<br/>".$sname->subject;}?></td>
 															<?php endif;}?>
 													<?php endforeach;?>
 													</tr>

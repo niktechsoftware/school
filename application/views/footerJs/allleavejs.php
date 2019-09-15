@@ -135,7 +135,7 @@
                           });
                            }); 
                    <?php endfor; ?>
- 
+                TableExport.init();
                 Main.init();
                 SVExamples.init();
                 FormElements.init();

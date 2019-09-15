@@ -131,7 +131,7 @@ $("#teacherattendancebutton").click(function(){
 			var subject = $("#subject").val();
 			var reciever = $("#reciever").val();
 			$.post("<?php echo site_url('index.php/msgNoticeControllers/sendMsg') ?>", {message : message,subject : subject,reciever : reciever},function(data){
-		          $("#msg").html(data);
+		   $("#msg").html(data);
 			});	
 		});
 

@@ -43,7 +43,7 @@
 							<div class="panel-heading">
 								<h5 class="panel-title">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-									<i class="icon-arrow"></i> Compose Messege
+									<i class="icon-arrow"></i> Compose Messsge
 								</a></h5>
 							</div>
 							<div id="collapseOne" class="panel-collapse collapse ">
@@ -51,53 +51,38 @@
 									<div id="sidebar-menu">
 									
 										<div id="msg"></div>
-					          			<ul class="nav sidebar-nav">
-			                        		<li> 
-			                          			<ul id="sideFour" class="nav sub-nav" style="z-index:0;">
-			                           	 			<li>
+			                           	 		<form action="" method="get">
 			                           	 				    <div class="form-group">
 					                                          	<label for="inputStandard" class="col-lg-2 control-label">To</label>
 					                                          	<div class="col-lg-10">
-						                                            <input type="text" name="reciever" id="reciever" class="form-control" placeholder="Type Here Student/Employee...">
+						                                            <input type="text" name="reciever" id="reciever" class="form-control" required="" placeholder="Type Here Student/Employee...">
 						                                          
 					                                          	</div>
 					                                        </div>
-					                                        <div class="form-group">
-					                                        	<label for="inputStandard" class="col-lg-2 control-label"></label>
-					                                        	<div class="col-lg-10">&nbsp;</div>
-					                                        </div>
+					                                        
 					                                        <div class="form-group">
 					                                          	<label for="inputStandard" class="col-lg-2 control-label">Subject</label>
 					                                          	<div class="col-lg-10">
-					                                            	<input type="text" name="subject" id="subject" class="form-control" placeholder="Type Here...">
+					                                            	<input type="text" name="subject" id="subject" class="form-control" required="" placeholder="Type Here...">
 					                                          	</div>
 					                                        </div>
-					                                        <div class="form-group">
-					                                        	<label for="inputStandard" class="col-lg-2 control-label"></label>
-					                                        	<div class="col-lg-10">&nbsp;</div>
-					                                        </div>
+					                                        
 					                                        <div class="form-group">
 					                                        	<label for="inputStandard" class="col-lg-2 control-label">Your Message</label>
 						                                        <div class="col-lg-10">
 							                                        <div class="panel-body">
-							                                        	<textarea  style="height:200px; width:100%;" name="message" id="message" rows="10"></textarea> 
+							                                        	<textarea  style="height:200px; width:100%;" name="message" id="message" required="" rows="10"></textarea> 
 							                                        </div>
 						                                        </div>
 					                                        </div>
-					                                        <div >
 					                                            <div >
-					                                               
-					                                                <button type="submit" id="submit" class="submit btn btn-blue" >Submit</button>
+					                                                <button type="submit" id="submit" class="btn btn-primary" >Submit</button>
 					                                            </div>
 					                                            <div class="col-lg-2 form-group">
-					                                                <input type="reset" class="submit btn btn-blue" value="Reset Message" />
+					                                                <input type="reset" class="btn btn-danger" value="Reset Message" />
 					                                            </div>
-					                                       </div>
-			                            			</li>
-			                          			</ul>
-			                        		</li>
-			            				</ul>
-	            				
+                                					     	</form>
+			                          	
 			        				</div>
 								</div>
 							</div>
@@ -131,7 +116,7 @@
 									<?php
 									$v=$this->session->userdata('username');
 									$name=$this->session->userdata('name');
-										$ides = $this->db->query("SELECT * FROM message WHERE reciever_id='$v'or reciever_id='$name' AND school_code='$school_code'");
+										$ides = $this->db->query("SELECT * FROM message WHERE sender_id='$v'or sender_id='$name' AND school_code='$school_code'");
 										$i=1;
 									 	foreach($ides->result() as $msg):
 									?>

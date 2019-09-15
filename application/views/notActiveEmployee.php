@@ -117,7 +117,7 @@
               <th>Employee Name</th>
               <th>Job Title</th>
               <th>Mobile Number</th>
-              <th>Addreshh</th>
+              <th>Address</th>
               <th>View</th>
             </tr>
           </thead>

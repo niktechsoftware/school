@@ -68,4 +68,16 @@ class adminc extends CI_Controller{
 	   $data['title']="Admit Card";
 	   $this->load->view("invoice/printAdmit1",$data);
  }	
+ 
+ function getMobile(){
+     $this->db->select("mobile");
+     $this->db->where("school_code",9);
+     $this->db->where("status",1);
+    $dfg = $this->db->get("student_info");
+    $mob="8382829593";
+     foreach($dfg->result() as $row):
+         $mob =$mob.",".$row->mobile;
+         endforeach;
+     
+ }
 }

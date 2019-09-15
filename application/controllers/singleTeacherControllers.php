@@ -451,7 +451,7 @@
 		    	<hr>
 		    	<div class="panel-body">
       <div class="alert alert-info">
-        <button data-dismiss="alert" class="close">Ã—</button>
+        <button data-dismiss="alert" class="close">×</button>
         <h3 class="media-heading text-center"> Welcome to Attendence Report Area</h3>
        <p class="media-timestamp"> 
        Here you can see all attendence of you class from starting date to end date which are you selected.
@@ -614,6 +614,4 @@ function showHomeWork()
 
 	
 }
-
-
 
