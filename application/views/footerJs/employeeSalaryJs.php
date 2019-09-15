@@ -49,10 +49,24 @@
 		<script src="<?php echo base_url(); ?>assets/plugins/ckeditor/adapters/jquery.js"></script>
 		<script src="<?php echo base_url(); ?>assets/js/form-validation.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/tableExport.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jquery.base64.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/html2canvas.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jquery.base64.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/libs/sprintf.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/jspdf.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/libs/base64.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/table-export.js"></script>
 		<!-- start: CORE JAVASCRIPTS  -->
 		<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 		<!-- end: CORE JAVASCRIPTS  -->
-<script>
+		<script>
+				/*jQuery(document).ready(function() {
+				TableExport.init();
+				Main.init();
+				SVExamples.init();
+		    	});*/
+					
     jQuery(document).ready(function() {
 		<?php $val = $this->db->count_all("employee_info");
 		
@@ -83,7 +97,7 @@
 	     $("#rahul").show();
    		 });
 	
-    
+    TableExport.init();
         Main.init();
         SVExamples.init();
     });

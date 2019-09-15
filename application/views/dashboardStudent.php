@@ -115,38 +115,71 @@ if ($dipom->num_rows () > 0) {
 	endforeach
 	;
 	
-	$adable_amount = 0;
-	$searchM [$rt] = 13;
-	// $this->db->distinct();
-	$this->db->select_sum ( "fee_head_amount" );
-	$this->db->where ( "fsd", $fsd );
-	$this->db->where ( "class_id", $rows->class_id );
-	// print_r($stuDetail->class_id);
-	if ($school_code == 1) {
-		$this->db->where ( "cat_id", 3 );
-	}
-	$this->db->where_in ( "taken_month", $searchM );
-	$fee_head = $this->db->get ( "class_fees" );
-	if ($fee_head->num_rows () > 0) {
+
+		$this->db->select_sum("fee_head_amount");
+		if($school_code ==1){
+			$this->db->where("cat_id",3);}
+		$this->db->where("fsd",$fsd);
+		$this->db->where("class_id",$rows->class_id);
+	    $this->db->where_in("taken_month",13);
+	    $fee_head = $this->db->get("class_fees");
+	 if($fee_head->num_rows()>0){
+		 $fee_head =$fee_head->row()->fee_head_amount; 
+		 	$this->db->where("class_id",$rows->class_id);
+		//	print_r($stuDetail->class_id);
+	
+				$this->db->where_in("taken_month",$searchM[$rt-1]);
+			$one_all_amount = $this->db->get("class_fees");
+			$one_all_amount=$one_all_amount->row()->fee_head_amount;
+	
+		$totalfee=$fee_head*$rt;
+		$totalfeedue= $totalfee + $one_all_amount;
+		 
+		 
+// 		 print_r($searchM[$rt-1]);
+	 echo " and total payble amount is Rs.<b>".$totalfeedue."</b>";
+
 		
 		$this->db->where ( "class_id", $rows->class_id );
 		// print_r($stuDetail->class_id);
 		
-		$this->db->where_in ( "taken_month", 13 );
-		$one_all_amount = $this->db->get ( "class_fees" );
-		$one_all_amount = $one_all_amount->row ()->fee_head_amount;
+
+      }
+
+
+	$adable_amount=0;
+  $searchM[$rt]=13;
+	//$this->db->distinct();
+	$this->db->select_sum("fee_head_amount");
+	$this->db->where("fsd",$fsd);
+	$this->db->where("class_id",$rows->class_id);
+//	print_r($stuDetail->class_id);
+if($school_code ==1){$this->db->where("cat_id",3);}
+    $this->db->where_in("taken_month",13);
+	$fee_head = $this->db->get("class_fees");
+	if($fee_head->num_rows()>0){
+
+		$this->db->where("class_id",$rows->class_id);
+		//	print_r($stuDetail->class_id);
+	
+				$this->db->where_in("taken_month",$searchM[$rt-1]);
+			$one_all_amount = $this->db->get("class_fees");
+			$one_all_amount=$one_all_amount->row()->fee_head_amount;
 		
-		for($ui = 0; $ui < $rt; $ui ++) {
-			if ($ui > 0) {
-				$adable_amount = $one_all_amount + $adable_amount;
-			}
-		}
-		$fee_head = $fee_head->row ()->fee_head_amount + $adable_amount;
-		echo " and total payble amount is Rs.<b>" . $fee_head . "</b>";
-		// print_r($searchM);
-	} else {
-		echo "fee Not found";
-	}
+// 			for($ui=0;$ui<$rt;$ui++){
+// 				if($ui>0){
+// 					$adable_amount =$one_all_amount+$adable_amount;
+// 				}
+// 			}
+		$fee_head =$fee_head->row()->fee_head_amount;
+		$totalfee=$fee_head*$rt;
+		$totalfeedue= $totalfee + $one_all_amount;
+	echo " and total payble amount is Rs.<b>".$totalfeedue."</b>";
+//print_r($searchM);
+   
+	}else{
+		echo "fee Not found";}
+
 }
 
 ?>

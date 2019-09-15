@@ -62,18 +62,18 @@
 		<script>
 		$(document).ready(function() {
     $('#sample-table-12').DataTable();
-} );
+    } );
 
 			$(document).ready(function() {
     $('#a_tb').DataTable();
-} );
+     } );
 					$(document).ready(function() {
     $('#f_tb').DataTable();
-} );
+     } );
 			
-$(document).ready(function() {
+    $(document).ready(function() {
     $('#sample-table-daybook').DataTable();
-} );
+     } );
 
 			jQuery(document).ready(function() {
 			    

@@ -46,7 +46,7 @@ Export <i class="fa fa-angle-down"></i>
 </button>
 <?php if($this->session->userdata('login_type') == 'admin'){?>
 <ul class="dropdown-menu dropdown-light pull-right">
-<li>
+<!--<li>
 <a href="#" class="export-pdf" data-table="#sample-table-2" >
 Save as PDF
 </a>
@@ -80,13 +80,13 @@ Save as SQL
 <a href="#" class="export-json" data-table="#sample-table-2" data-ignoreColumn ="3,4">
 Save as JSON
 </a>
-</li>
+</li>-->
 <li>
 <a href="#" class="export-excel" data-table="#sample-table-2" >
 Export to Excel
 </a>
 </li>
-<li>
+<!--<li>
 <a href="#" class="export-doc" data-table="#sample-table-2" data-ignoreColumn ="3,4">
 Export to Word
 </a>
@@ -95,7 +95,7 @@ Export to Word
 <a href="#" class="export-powerpoint" data-table="#sample-table-2" data-ignoreColumn ="3,4">
 Export to PowerPoint
 </a>
-</li>
+</li>-->
 </ul>
 <?php }?>
 </div>

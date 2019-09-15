@@ -457,3 +457,177 @@ Stack trace:
 [09-Sep-2019 14:42:14 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
 [09-Sep-2019 14:43:37 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::defineHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 602
 [09-Sep-2019 14:46:43 Asia/Calcutta] PHP Fatal error:  Cannot redeclare singleTeacherControllers::showHomeWork() in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 617
+[11-Sep-2019 10:52:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function print_e() in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 10:53:53 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function print_e() in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 10:57:14 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 10:57:41 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 10:59:10 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 10:59:36 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 11:00:09 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 11:02:15 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 11:02:50 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:334
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 334
+[11-Sep-2019 11:50:25 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on float in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:340
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(321): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 340
+[11-Sep-2019 13:11:20 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[11-Sep-2019 13:11:31 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[11-Sep-2019 13:11:35 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[11-Sep-2019 13:11:40 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[11-Sep-2019 13:11:50 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 10:55:33 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 10:55:41 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 10:56:03 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 10:57:13 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 11:03:00 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 11:33:17 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 11:33:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php:296
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleTeacherControllers->teacherClasstimeTable()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleTeacherControllers.php on line 296
+[12-Sep-2019 19:37:32 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function int() in /home/schoodhe/public_html/school/application/views/dashboard.php:677
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dashboard')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(100): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dashboard.php on line 677

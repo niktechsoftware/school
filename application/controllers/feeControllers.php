@@ -802,6 +802,7 @@ function getFsd(){
 			$sname=$this->input->post("sname");
 			$amt=$this->input->post("amount");
 			$amt1=$this->input->post("amount1");
+			
 // 			if($amt==0)	{
 // 			    $amt2=$this->input->post("amount");
 // 			}else{
@@ -821,10 +822,13 @@ function getFsd(){
 //           }else	{
 		  		   
 		  		
+			
 			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit soon.".$schoolname->school_name;
+// print_r($msg);
+// exit();
 	//	$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit it till 5 september.".$schoolname->school_name;
 			
-			sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+		//	sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
           //}
 						
 		}
