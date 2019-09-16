@@ -1059,15 +1059,19 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 	}
 	
 	function defineclassplan(){
-		$uri1=$this->uri->segment(3);
-		$uri2=$this->uri->segment(4);
+		 $uri1=$this->uri->segment(3);
+		 $uri2=$this->uri->segment(4);
+		$defPlan= $this->uri->segment(5);
+		
 		if((strlen($uri1) > 0) && (strlen($uri2) > 0))
 		{
 			$data['sdate']=$uri1;
 			$data['edate']=$uri2;
+			$data['time_thead_id'] = $defPlan;
 		}
 		else
-		{	
+		{
+		$data['time_thead_id'] = $this->input->post('time_thead_id1');	
 		$data['sdate']= $this->input->post("sdate");
 		$data['edate']= $this->input->post("edate");
 		}
@@ -1086,7 +1090,11 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		$s1date =$this->input->post("s1date");
 		$edate =$this->input->post("edate");
 		$userid = $this->session->userdata("username");
+		$thead= $this->input->post('thead');
+		//print_r($thead);exit();
+		$this->db->where('nop_id',$thead);
 		$period=$this->db->get("period");
+		//print_r($period);exit();
 		foreach($period->result() as $row):
 		    $period_id=$row->id;
 		print_r($period_id);
@@ -1104,7 +1112,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 				'period'=>$this->input->post("period$i"),
 				'class_work'=>$this->input->post("lp$i"),
 				'teacher_id'=>$userid,
-				'school_code'=>$this->session->userdata("school_code")
+				//'school_code'=>$this->session->userdata("school_code")
 				
 		);
 		//$guru = $this->db->query("SELECT * FROM lesson_plan WHERE subject='".$subject."' AND class_sec ='".$class_sec."' AND teacher_id = '".$userid."' AND date1='".$date1."' AND dayname = '".$dayname."'");
@@ -1123,7 +1131,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 			$i++;
 		}
 		endforeach;
-			redirect("periodTimeControllers/defineclassplan/$s1date/$edate");
+			redirect("periodTimeControllers/defineclassplan/$s1date/$edate/$thead");
 		
 	}
 	function viewclassplan(){

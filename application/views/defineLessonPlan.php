@@ -44,8 +44,30 @@
 								</div>
 							</div>
 					</div>
+					<div class="row space15">
+						<div class="col-md-3"><h4><b>Select Time Table</b></h4></div>
+						<div class="col-md-4">
+							<select class="form-control" id="time_thead_id1" name="time_thead_id1">
+						<option value="">-Select Time Table-</option>
+							<?php $this->db->where('school_code',$this->session->userdata('school_code'));
+							$time_thead_id= $this->db->get('no_of_period');
+						if($time_thead_id->num_rows()>0):
+								foreach($time_thead_id->result() as $thead):
+									?>
+										<option value="<?php echo $thead->id;?>"><?php echo $thead->period_name;?></option>
+									<?php
+								endforeach;
+						endif;?>
+							<option>
+			</select>
+						</div>
+					</div>
 					<div>
+						<div class="row">
+							<div class="col-md-12">
 							<button type="submit" class="btn btn-light-purple">Define Class Plan<i class="fa fa-arrow-circle-right"></i> </button>
+						</div>
+						</div>
 					</div>
 			</div>
 		</form>
