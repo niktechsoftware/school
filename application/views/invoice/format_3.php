@@ -397,7 +397,7 @@ if($subjectname->num_rows()>0){
 
             <br>
             <div>
-                <table
+               <!-- <table
                     style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
 
                     <tr>
@@ -419,7 +419,7 @@ if($subjectname->num_rows()>0){
                         <td>A</td>
                     </tr>
 
-                </table>
+                </table>-->
             </div>
 
             
@@ -508,19 +508,22 @@ if($subjectname->num_rows()>0){
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
                             <?php
+                            $this->db->where("class_id",$classid->class_id);
+							$this->db->where("school_code",$this->session->userdata('school_code'));
+							$dt=$this->db->get("school_attendance");
+						    $atotal=$dt->num_rows();
 							$this->db->where('id',$this->session->userdata('fsd'));
 							$fsdval=$this->db->get('fsd')->row();
+							
 							$this->db->where('a_date >=',$fsdval->finance_start_date);
 							$this->db->where('a_date <=',$fsdval->finance_end_date);
 							$this->db->where('stu_id',$studentInfo->id);
-							$row=$this->db->get('attendance');
-							$this->db->where('a_date >=',$fsdval->finance_start_date);
-							$this->db->where('a_date <=',$fsdval->finance_end_date);
-							$this->db->where('stu_id',$studentInfo->id);
-							$this->db->where('attendance',1);
+							$this->db->where('attendance',0);
 							$row1=$this->db->get('attendance');
+							$absnt=$row1->num_rows();
+							$present =$atotal-$absnt;
 							?>
-                            <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php print_r($row1->num_rows()); ?>/<?php print_r($row->num_rows()); ?></label></td>
+                            <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $present; ?>/<?php echo $atotal; ?></label></td>
                         </tr>
                     </table>
 
@@ -596,7 +599,7 @@ if($subjectname->num_rows()>0){
 
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label>Very Good</label></td>
+                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $gradecal =remarks($per,$classid->class_id);?></label></td>
                         </tr>
                     </table>
 
@@ -675,6 +678,22 @@ if($subjectname->num_rows()>0){
 									return 'E';
 								endif;
 								
+							}
+							function remarks($val,$classid){
+								if($val >= 91 && $val < 101):
+									return 'Excellent';
+								elseif($val >= 81 && $val < 91):
+									return 'Very Good';
+								elseif($val >= 71 && $val < 81):
+									return 'Good';
+								elseif($val >= 61 && $val < 71):
+									return 'Good';
+								elseif($val >= 51 && $val < 61):
+									return 'Progressive';
+								else:
+									return 'Need Improvement';
+								endif;
+								
 							}?>
             </div>
             <br>
@@ -689,10 +708,10 @@ if($subjectname->num_rows()>0){
                             Date :
                         </td>
                         <td>
-                            Class Teacher
+                            Class Teacher :
                         </td>
                         <td>
-                            Principal
+                            Principal :<div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50"  /></div>
                         </td>
                     </tr>
                 </table>
