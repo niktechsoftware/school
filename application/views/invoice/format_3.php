@@ -182,7 +182,7 @@
                                 </h2></div>
 							</div>-->
 						</tr>
-						 <tr class="wight">
+						 <tr class="wight" style="color: white;font-size: 13px;">
 							<td >
 								<span>Scholar ID: <?= $studentInfo->username; ?></span><br>
 								<span>Scholar Name: <?= strtoupper($studentInfo->name);?> </span><br>
@@ -335,99 +335,63 @@
                         $cumulativetotal=0;
            $totalp= 0;   
            $pi=1;
+		   $grandtotal=0;
 foreach($resultData as $sub){
 $this->db->where('class_id',$classid->class_id);
 $this->db->where('id',$sub['subject']);
 $subjectname=$this->db->get('subject'); 
+
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
-    if($subjectname->subject != "DRAWING " && $subjectname->subject != "DRAWING"){
-?>
+	?><?php $totalp+=200;?>
+	<?php if($subjectname->subject != "DRAWING " && $subjectname->subject != "DRAWING"){ ?>
                    <tr class="wight"> 
 					 <td class="subject">	
                      <?php echo  $subjectname->subject;?> 
 					</td>
 			     <?php 
- 				
+ 				$ttal=0;
                  $gtptal=0;
                  $subtatal=0;
-		         ?>
-				<?php  $i=1; $t=0; $coltptal=0;  foreach ($examid as $value):?>
-					<td class="center" >	
-					<?php  
-
+					$i=1; $t=0; $coltptal=0;  foreach ($examid as $value):?>
+					<td class="center">	
+					<?php
 					$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('stu_id',$studentInfo->id);
 					$this->db->where('exam_id',$value->exam_id);
 					$this->db->where('fsd',$fsd);
-					
-						$marks1= $this->db->get('exam_info');
-						if($marks1->num_rows()>0){
-							$marks=$marks1->row();
-							
-							if(is_int($marks)){ $subtatal=$subtatal+$marks->marks;
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();
+							$subtatal=$subtatal+$marks->marks;
 							$gtptal= $gtptal+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
-							$ctotal[$t]+= $marks->marks; }else{echo $marks->marks;}
+							$ctotal[$t]+= $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
-        					$this->db->where('class_id',$classid->class_id);
-        					$this->db->where('exam_id',$value->exam_id);
-            				$exammm=$this->db->get('exam_max_subject')->row()->max_m;
-    				if(is_int($exammm)){
-    				    	$dhtm=$exammm+$dhtm;
-    				}
-    				
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('exam_id',$value->exam_id);
+				$exammm=	$this->db->get('exam_max_subject')->row()->max_m;
+				$ttal=$ttal+$exammm;
+				$dhtm=$exammm+$dhtm;
 						}
-					
 					?><?php echo "/" .$exammm; ?>
-					</td>
-					
-				            
-				<?php 
-				$i++; $t++;endforeach; ?>
-				<?php if(!$i%2==0){ ?>
-						<td class="center bold">
-						<?php 	
-					/*	if($marks1->num_rows()>0){
-							$marks=$marks1->row();
-							$subtatal=$subtatal+$marks->marks;
-							$dhtm=$exammm+$dhtm;
-						echo $subtatal; 
-							$ctotal['tot'.$i]+=$subtatal;
-							$gradecal =calculateGrade($subtatal,$classid->class_id);
-						 $subtatal=0;}*/
-						 $gtptal= $gtptal+$marks->marks;
-						 ?><?php  $rty = $gtptal/2; echo $gtptal;  ?>/100
-						 </td>
-					<?php } ?>
-					<?php if(!$i%2==0){ ?>
-					<!--<td class="center bold">
-						<?php 
-						echo $subtatal; 
-							$ctotal['tot'.$i]+=$subtatal;
-							$gradecal =calculateGrade($subtatal,$classid->class_id);
-						 $subtatal=0;
-						 ?>/100
-						 </td>-->
-					<?php } ?><?php if(!$i%2==0){ ?>
-						<!--<td class="center bold">
-						<?php 
-						echo $subtatal; 
-							$ctotal['tot'.$i]+=$subtatal;
-							$gradecal =calculateGrade($subtatal,$classid->class_id);
-						 $subtatal=0;
-						 ?>/100
-						 </td>-->
-					<?php } ?>
-				
-			  <!-- <td class="center bold"></td>-->
-			  <!-- <td class="center bold"></td>-->
+					</td> 
+				<?php $i++; $t++;endforeach; ?>
+				<td class="center bold"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
+			   <?php ?></td>
 			   
+			   
+				<!--<td class="center bold"><?php   echo $gtptal;  ?></td>
+				<td class="center bold"><?php  echo $gtptal;  ?></td>-->
+			  <!-- <td class="center bold"></td>-->
+			  <!-- <td class="center bold"></td>-->
 				</tr>
-                    <?php }}}?>
-                  
+                    <?php }}
+					}?>
+					
+					
                 </table>
             </div>
 
@@ -467,14 +431,14 @@ if($subjectname->num_rows()>0){
                     <tr>
 					
                         <td>
-                            Overall Marks : <?php echo $cumulativetotal; ?>/<?php echo $dhtm;?>
+                            Overall Marks : <?php echo $grandtotal; ?>/<?php echo $dhtm;?>
                            
                         </td>
                         <td>
-                            Percentage: <?php //echo round((($cumulativetotal*100)/$dhtm), 2);?>% 
+                            Percentage: <?php echo $per=round((($grandtotal*100)/$dhtm), 2);?>% 
                         </td>
                         <td>
-                            Grade
+                             Grade: <?php echo $gradecal =calculateGrade($per,$classid->class_id);?>
                         </td>
                         <td>
                             Rank
