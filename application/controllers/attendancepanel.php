@@ -48,31 +48,24 @@ class Attendancepanel extends CI_Controller{
   }
   public function findstdattendance()
   {
-
   	$stdid=$this->input->post("studentid");
   	$fsd=$this->input->post("fsd");
-
   	$this->db->where('id',$fsd);
   	$fsdval=$this->db->get('fsd')->row();
-  	
    $this->db->where('username',$stdid);
 		 $username=$this->db->get('student_info');
-		 if($username->num_rows()){
+		 if($username->num_rows()>0){
 			$username=$username->row();
 	$this->db->where('a_date >=',$fsdval->finance_start_date);
 	$this->db->where('a_date <=',$fsdval->finance_end_date);
     $this->db->where('stu_id',$username->id);
 		$data['row']=$this->db->get('attendance');
-
 		$data['name']=$username->name;
-
 		$classid=$username->class_id;
 		$this->db->where('id',$classid);
 		$this->db->where('school_code',$this->session->userdata('school_code'));
-		
 		$classinfo=$this->db->get('class_info')->row();
 		$data['class']=$classinfo->class_name;
-		
 		$sectionid=$classinfo->section;
 		$this->db->where('id',$sectionid);
 		$this->db->where('school_code',$this->session->userdata('school_code'));
@@ -269,7 +262,83 @@ class Attendancepanel extends CI_Controller{
 
 
   }
+  public function categorywise(){
+  	$emp= $this->input->post('emp');
+  	$this->load->model('attendancepanelmodel');
+  	if($emp == 'accountant'){
+  	$data['view'] = $this->attendancepanelmodel->categorywiseemp($emp);
+  	$this->load->view('panel/attendance/empwise_attendance',$data);
+  } else if($emp == 'teacher'){
+  	$data['view'] = $this->attendancepanelmodel->categorywiseemp($emp);
+  	$this->load->view('panel/attendance/empwise_attendancet',$data);
+  }
+  else if($emp == 'employee'){
+  	$data['view'] = $this->attendancepanelmodel->categorywiseemp($emp);
+  	$this->load->view('panel/attendance/empwise_attendancee',$data);
+  }
+  else {
+  	$data['view'] = $this->attendancepanelmodel->categorywiseemp($emp);
+  	$this->load->view('panel/attendance/empwise_attendancep',$data);
+  }
+	}
+	public function teacherwiseatt(){
+		$empusername = $this->uri->segment(3);
+		$data['pageTitle'] = 'Attendance Panel';
+	 $data['smallTitle'] = 'Attendance Panel';
+	 $data['mainPage'] = 'Attendance Panel Area';
+	 $data['subPage'] = 'Attendance Panel';
+	 $data['title'] = 'Attendance Panel Area ';
+	 $data['headerCss'] = 'headerCss/noticeCss';
+	 $data['footerJs'] = 'footerJs/noticeJs';
+	 $data['mainContent'] = 'panel/attendance/teacherwiseattendance';
+		$this->load->model('attendancepanelmodel');
+		$data['view']= $this->attendancepanelmodel->teacheratt($empusername);
+	 // $this->load->view('panel/attendance/teacherwiseattendance',$data);
+		$this->load->view("includes/mainContent", $data);
 
+ }
+ public function principalwiseatt(){
+		$empusername = $this->uri->segment(3);
+		$data['pageTitle'] = 'Attendance Panel';
+	 $data['smallTitle'] = 'Attendance Panel';
+	 $data['mainPage'] = 'Attendance Panel Area';
+	 $data['subPage'] = 'Attendance Panel';
+	 $data['title'] = 'Attendance Panel Area ';
+	 $data['headerCss'] = 'headerCss/noticeCss';
+	 $data['footerJs'] = 'footerJs/noticeJs';
+	 $data['mainContent'] = 'panel/attendance/principalwiseattendance';
+		$this->load->model('attendancepanelmodel');
+		$data['view']= $this->attendancepanelmodel->teacheratt($empusername);
+		$this->load->view("includes/mainContent", $data);
+ }
+ public function employeewiseatt(){
+		$empusername = $this->uri->segment(3);
+		$data['pageTitle'] = 'Attendance Panel';
+	 $data['smallTitle'] = 'Attendance Panel';
+	 $data['mainPage'] = 'Attendance Panel Area';
+	 $data['subPage'] = 'Attendance Panel';
+	 $data['title'] = 'Attendance Panel Area ';
+	 $data['headerCss'] = 'headerCss/noticeCss';
+	 $data['footerJs'] = 'footerJs/noticeJs';
+	 $data['mainContent'] = 'panel/attendance/empwiseattendance';
+		$this->load->model('attendancepanelmodel');
+		$data['view']= $this->attendancepanelmodel->teacheratt($empusername);
+		$this->load->view("includes/mainContent", $data);
+ }
+ public function accountantwiseatt(){
+		$empusername = $this->uri->segment(3);
+		$data['pageTitle'] = 'Attendance Panel';
+	 $data['smallTitle'] = 'Attendance Panel';
+	 $data['mainPage'] = 'Attendance Panel Area';
+	 $data['subPage'] = 'Attendance Panel';
+	 $data['title'] = 'Attendance Panel Area ';
+	 $data['headerCss'] = 'headerCss/noticeCss';
+	 $data['footerJs'] = 'footerJs/noticeJs';
+	 $data['mainContent'] = 'panel/attendance/accwiseattendance';
+		$this->load->model('attendancepanelmodel');
+		$data['view']= $this->attendancepanelmodel->teacheratt($empusername);
+		$this->load->view("includes/mainContent", $data);
+ }
 }
 
 ?>

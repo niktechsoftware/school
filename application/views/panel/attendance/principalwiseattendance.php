@@ -41,22 +41,44 @@
                			<div class="col-md-12">
 						<h2>Employee Wise </h2>
 						
-				<div class="row">
-					<div class="col-md-4">
-						<select class="form-control" id="empattendance">
-							<option value="">-Slecte Category-</option>
-							<option value="accountant">Accountant</option>
-							<option value="teacher">Teacher</option>
-							<option value="employee">Employee</option>
-							<option value="principal">Principal</option>
-						</select>
-					</div>
-				</div>
-				<div class="row" style="padding-top:30px;">
-					<div class="col-md-12" id="empatt1">
-						
-					</div>
-				</div>
+					<table style="width:100%; border:1px solid teal" class="table table-bordered" id="studattendance">
+	<thead>
+		<tr>
+			<td>S. No.</td>
+			<td>Name</td>
+			<td>Attendance</td>
+			<!-- <td>Attendance</td> -->
+			<td>Attendance Date</td>
+		</tr>
+	</thead>
+	<tbody>
+		<?php 
+		$i=1;
+			if($view->num_rows()>0){
+				foreach($view->result() as $emp):
+					$this->db->where('emp_id',$emp->id);
+					$empattendance = $this->db->get('teacher_attendance');
+					if($empattendance->num_rows()>0){
+						foreach($empattendance->result() as $row):
+						?>
+							<tr>
+								<td><?php echo $i;?></td>
+								<td><?php echo $emp->name;?></td>
+								<?php if($row->attendance !=0){?>
+								<td><?php echo "Present";?></td><?php }else {
+									?><td><span style="color:red;"><?php echo "Absent";?></span></td>
+									<?php
+								}?>
+								<td><?php echo $row->a_date;?></td>
+							</tr>
+						<?php
+						endforeach;
+					}
+				endforeach;
+			}
+		?>
+		<tbody>
+		</table>
 </div>
 </div>
 </div>

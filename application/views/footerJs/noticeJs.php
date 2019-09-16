@@ -107,7 +107,9 @@ $("#teacherattendancebutton").click(function(){
 		$(document).ready(function() {
     $('#cldetail').DataTable();
 } );
-
+jQuery(document).ready(function(){
+	$('#studattendance').DataTable();
+});
 
 	jQuery(document).ready(function() {
 	$("#textArea").keyup(function(){
@@ -478,7 +480,12 @@ $("#teacherattendancebutton").click(function(){
 					
 					});
 
-
+					$('#empattendance').change(function(){
+						var emp= $('#empattendance').val();
+						$.post("<?php echo site_url("index.php/attendancepanel/categorywise") ?>",{emp : emp}, function(data){
+						$("#empatt1").html(data);
+						});
+					});
 		Main.init();
 		SVExamples.init();
 		FormElements.init();

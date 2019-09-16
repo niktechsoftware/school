@@ -76,6 +76,15 @@
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script>
 			jQuery(document).ready(function() {
+		// 		$('#time_thead_id').change(function(){
+		// 			var time_thead_id= $('#time_thead_id').val();
+		// 			alert(time_thead_id);
+		// 			$.post("<?php echo base_url('periodTimeControllers/lessonPlan')?>",{
+		// 				time_thead_id : time_thead_id }, function(data){
+        //     $("#time_lesson_plan").html(data);
+        //   });
+		// 		});
+
 				Main.init();
 				SVExamples.init();
 				FormElements.init();

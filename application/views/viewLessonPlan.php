@@ -53,6 +53,7 @@
 														<input type="date" name ="edate" class="form-control" required="required"/>
 													</div>
 												</div>	
+												<div class="row">
 												<div class="col-md-12 space15">
 												<div class="col-md-6">
 												<div class="col-md-6">Teacher ID</div>
@@ -71,8 +72,24 @@
 													</div>
 													</div>
 													<div class="col-sm-6">
+													<div class="col-md-4">
+													<select class="form-control" id="time_thead_id" name="time_thead_id">
+														<option value="">-Select Time Table-</option>
+															<?php $this->db->where('school_code',$this->session->userdata('school_code'));
+															$time_thead_id= $this->db->get('no_of_period');
+														if($time_thead_id->num_rows()>0):
+																foreach($time_thead_id->result() as $thead):
+																	?>
+																		<option value="<?php echo $thead->id;?>"><?php echo $thead->period_name;?></option>
+																	<?php
+																endforeach;
+														endif;?>
+															<option>
+														</select>
+														</div>
 													</div>
 													
+												</div>
 												</div>
 												</div>
 												</div>

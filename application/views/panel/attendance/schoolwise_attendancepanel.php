@@ -48,9 +48,9 @@ Here you can see all Present , Absent day of your school month Wise.
 								<thead>
 									<tr>
 										<th>Month</th>
-										<th>Present Days</th>
-										<th>Absent Days</th>
-										<th>Present Student</th>
+										<th>Open Days</th>
+										<th>Close Days</th>
+									
 									</tr>
 								</thead>
 								<tbody>
@@ -60,22 +60,81 @@ $this->db->where('school_code', $this->session->userdata('school_code'));
 $this->db->where('id', $this->session->userdata('fsd'));
 $fsddate = $this->db->get('fsd')->row()->finance_start_date;
 $scode=$this->session->userdata('school_code');
-
 for ($j=0;$j<12;$j++){
  $actdate= date('Y-m', strtotime("$j months", strtotime($fsddate)));
+$month= date('m', strtotime("$j months", strtotime($fsddate)));
+if($month==04){
+$day=30;
+}
+elseif($month==05)
+{
+  $day=31;
+}
+elseif($month==06)
+{
+  $day=30;
+}
+elseif($month == '07')
+{
+  $day = '31';
+}
+elseif($month =='08')
+{
+  $day='31';
+}
+elseif($month == '09')
+{
+  $day=30;
+}
+elseif($month==10)
+{
+  $day=31;
+}
+elseif($month==11)
+{
+  $day=30;
+}
+elseif($month==12)
+{
+  $day=31;
+}
+elseif($month==01)
+{
+  $day=31;
+}
+elseif($month==02)
+{
+  $day=28;
+}
+else{
+  $day=31;
+}
+
+$this->db->where('school_code',$scode);
+$class=$this->db->get('class_info')->result();
+$value=0;
+foreach($class as $data)
+{
+  $this->db->where('class_id',$data->id);
+ $stdinfo= $this->db->get('student_info');
+ $value=$value+$stdinfo->num_rows();
+}
+
 
 $ddate = $actdate.'-%';
 $ab = $this->db->query("SELECT distinct date FROM school_attendance WHERE school_code = '$scode' and date like '$ddate'");
+
 ?>
 <tr class="text-uppercase">
 										<td><?php echo $actdate;?></td>
 										<td><?php echo $ab->num_rows();?></td>
-										<td>soon</td>
-										<td>soon</td>
+										<td><?php echo $day-$ab->num_rows();?></td>
+								
 									</tr>
 
 
    <?php 
+ 
 }?>
 								</tbody>
 							</table>

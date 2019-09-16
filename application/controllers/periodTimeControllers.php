@@ -1131,7 +1131,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 				if($logtype == "admin"){
 				$data['username']=$this->input->post("teacherid");
 			}
-			
+			$data['lesson_plan']=$this->input->post('time_thead_id');
 			$data['sdate']= $this->input->post("sdate");
 			$data['edate']= $this->input->post("edate");
 		$data['pageTitle'] = 'Time Schedule';
@@ -1144,5 +1144,6 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		$data['mainContent'] = 'ajax/viewClassPlan';
 		$this->load->view("includes/mainContent", $data);
 	}
+	
 }
 ?>
