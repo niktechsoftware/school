@@ -224,7 +224,7 @@
             <table> 
           
                      <tr>
-                    	<td style="border:none; line-height: 15px;">
+                    	<td style="border:none; line-height: 15px;text-transform: uppercase;">
                         	
 				  	<h3>Student ID : <strong><?php echo $rowc->username; ?></strong>	</h3>
 				  		
@@ -232,20 +232,20 @@
                        
                     </tr>
                     <tr>
-                     <td style="border:none; line-height: 15px;">
+                     <td style="border:none; line-height: 15px;text-transform: uppercase;">
                         	
                      <h3>Roll Number : <strong>____________</strong>	(To Be Filled By School Office.)</h3>
 				  		
                         </td>
                     </tr>
                     <tr>
-                    	<td style="border:none; line-height: 15px;">
+                    	<td style="border:none; line-height: 15px;text-transform: uppercase;">
                     		<h3>Student Name : <strong><?php echo $rowc->name ?></strong></h3>
 
                         </td>
                     </tr>
                     <tr>
-                    	<td style="border:none; line-height: 15px;">
+                    	<td style="border:none; line-height: 15px;text-transform: uppercase;">
                         <h3>Father Name : <strong><?php echo $pInfo->father_full_name; ?></strong></h3>
                         </td>
                     </tr>
@@ -282,7 +282,7 @@
         <br>
 			<table id="items" align="center"  style="width:100%; margin-top:0px;color:#d80606;">
 					<thead>
-						<th>Date</th>
+						<th style="text-transform: uppercase;">Date</th>
                         <?php 
                         $this->db->where('exam_id',$exam_day->exam_id);
                         $date=$this->db->get('exam_day')->result();
@@ -299,7 +299,7 @@
                         foreach($shift as $s):
                         ?>
                         <tr>
-                        <td style="text-align: center;"><?php if($school_code==5){ ?><?php }else{ ?><?php echo $s->shift;?><?php } ?></td>
+                        <td style="text-align: center;text-transform: uppercase;"><?php if($school_code==5){ ?><?php }else{ ?><?php echo $s->shift;?><?php } ?></td>
                         <?php 
                          foreach($date as $ed):
 						$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -317,7 +317,7 @@
                                 $this->db->where('class_id',$ff->class_id);
                                  $subject=$this->db->get('subject');
                                     ?>
-                                <td style="text-align: center;"> <?php echo $subject->row()->subject;?></td>
+                                <td style="text-align: center;text-transform: uppercase;"> <?php echo $subject->row()->subject;?></td>
                                 
 							<?php }else{?> <td> </td> <?php }
 						endforeach;?>
@@ -364,9 +364,11 @@
 		
 		<div>
 		    <br/>
-		<table id="items" align="center"  style="width:100%; margin-top:0px;alignment-adjust:central;">
+		<table id="items" align="center"  style="width:100%; margin-top:0px; alignment-adjust:central;">
 		<tr>
-		<td><br>(Signature)<br>Class Teacher</td><td><br>(Signature)<br>Principal</td>
+		<td style="width: 50%;">(Signature)<br>Class Teacher</td>
+		<td>(Signature)<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50" style="float:right;"  />
+		<br>Principal</td>
 		</tr>
 		</table></div>
         <div> </div>

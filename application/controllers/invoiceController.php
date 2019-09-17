@@ -380,30 +380,7 @@ class InvoiceController extends CI_Controller{
 		$data['fsd'] = $this->uri->segment(3);
 		$data['classid'] = $this->uri->segment(4);
 		$data['sectionid'] = $this->uri->segment(5);
-
-	// 	$this->load->model("studentModel");
-	// 	$this->load->model("allFormModel");
-	// 	$this->load->model("subjectModel");
-	// 	$stDetail = $this->studentModel->getStudentDetail($fsd,$classid);
-	// 	$stid  =$stDetail->row()->id;
-	// 	$data['gurdianDetail'] = $this->studentModel->getGurdianDetail($stid);
-	// 	$data['className'] = $this->allFormModel->getClass();
-	// 	$data['sectionName'] = $this->allFormModel->getSection();
-
-	// 	$this->db->where('class_id',$classid);
-	// 	$sid=$this->db->get('student_info');
-	// foreach($sid as $stuid)
-	// 	$personalInfo = $stDetail->row();
-	
-	// 	$className = $personalInfo->class_id;
-	// 	//$section = $personalInfo->section;
-	
-	// //	$data['subjectList'] = $this->subjectModel->getSubjectByClassSection($className,$section);
-	
-	// 	$data['studentsSubject'] = $this->subjectModel->isStudentSubject($className);
-	
-	// 	$data['studentProfile'] = $stDetail;
-		$data['title'] = 'Student Profile';
+        $data['title'] = 'Student Profile';
 	//////////////////
 		$this->db->select("classwiseicard_format");
 			$this->db->where("school_code",$this->session->userdata("school_code"));			
@@ -416,6 +393,133 @@ class InvoiceController extends CI_Controller{
 		     }
 		/////////////////////
 	//	$this->load->view("invoice/class_wise_icard", $data);
+	}
+	function classwise_reports(){
+		$data['pageTitle'] = 'Student Section';
+		$data['smallTitle'] = 'Student Profile';
+		$data['mainPage'] = 'Student';
+		$data['subPage'] = 'Profile';
+		//$data['fsd'] = $this->uri->segment(3);
+		$data['classid'] = $this->uri->segment(4);
+		$data['sectionid'] = $this->uri->segment(5);
+        $data['title'] = 'Student Profile';
+/////////////////////////////////////
+
+        	            $this->db->where("id",$this->uri->segment(3));
+        		 $fsd = $this->db->get("fsd")->row();
+            $futureDate=date('Y-m-d', strtotime('+1 year', strtotime($fsd->finance_start_date )) );
+    		$data['fsd']=$this->uri->segment(3);
+    		$data['futureDate'] = $futureDate;
+		
+            	      $this->db->Distinct();
+            	      $this->db->select("exam_id");
+            		  $this->db->where("school_code",$this->session->userdata("school_code"));
+            		  $this->db->where("fsd",$this->uri->segment(3));
+    $examTypeResult2 =$this->db->get("exam_info")->result();
+                      $this->db->where("fsd",$this->uri->segment(3) );
+    $examTypeResult = $this->db->get("exam_info")->result();
+		
+                		$this->db->Distinct();
+                		$this->db->select("class_id");
+                		$this->db->where("fsd",$this->uri->segment(3) );
+    		 $classid = $this->db->get("exam_info")->row();
+	            		$this->db->Distinct();
+                		$this->db->select("subject_id");
+                		$this->db->where("fsd",$this->uri->segment(3) );
+                		$this->db->order_by("subject_id","Asc");
+	 $examTypeResult1 = $this->db->get("exam_info")->result();
+		
+		$subject = Array();
+		$subject5 = Array();
+		foreach($examTypeResult as $val):
+			$subject[] = $val->subject_id;
+		endforeach;
+		foreach($examTypeResult1 as $val):
+			$subject5[] = $val->subject_id;
+		endforeach;
+		$subject = array_unique($subject);
+		$subject5 = array_unique($subject5);
+		$formatedResult = array();
+		foreach($subject5 as $subVal):
+			$subject = array();
+			foreach($examTypeResult as $val):
+				$count = 1;
+				$marks = array();
+				if($subVal == $val->subject_id):
+					if($count == 1){
+                         $subject['subject'] = $subVal;
+                                	}
+					$marks['Attendance'] = $val->Attendance;
+                	$marks['examType'] = $val->exam_id;
+					$marks['out_of'] = $val->out_of;
+					$marks['marks'] = $val->marks;
+					$marks['created'] = $val->created;
+					$subject["marks"][] = $marks;
+				endif;
+				$count++;
+			endforeach;
+			
+			$formatedResult[] = $subject;
+			 
+		endforeach;
+        
+        
+        
+        
+////////////////////////////////////////////        
+		$this->db->select("classwisereport_format");
+			$this->db->where("school_code",$this->session->userdata("school_code"));			
+		    $val=$this->db->get("result_format");
+           /*if($val->num_rows()>0)
+            {
+			$val=	$val->row()->classwisereport_format;
+			$callview = "class_wise_report_".$val;
+			$this->load->view("invoice/$callview",$data);
+		     }*/
+		     
+		     
+////////////////////////////////////////////////    
+		     if($val->num_rows()>0)
+            {
+		      if($examTypeResult){
+                $val=	$val->row()->classwisereport_format;
+		if($examTypeResult){
+		    $data['fsd']=$this->uri->segment(3);
+		//	$data['classid']=$classid;
+			$data['title'] = "Mark Sheet";
+			$data['futureDate'] = $futureDate;
+			$data['resultData'] = $formatedResult;
+			$data['examid']=$examTypeResult2;
+			$callview = "class_wise_report_".$val;
+			$this->load->view("invoice/$callview",$data);
+		}
+		else{
+			 echo "<div class='alert alert-warning'> .
+					 Please ensure that you have select the result formate form the Setting Section.   
+					<br>If Yes then Contact to  Admin. 
+					<br>If Not then goto setting and Select Your Specific Result formate. 
+					<br>Thanku You;
+					<br>All the best;
+					 !!!!!!!!!</div>";
+			
+		         }}
+		   else
+		       {
+			
+					 echo "<div class='alert alert-warning'> No Record Found Please Select Valid FSD and Student ID.
+					Please insure possible mistakes.<br>1. Selected Financial Start Date have no exam conducted in current date.
+					<br>2.You have inserted wrong student ID please check it befoure generating Exam result.<br>
+					3. May be Student is Inactive so please conform it...
+					<br>
+					<br>
+					<br>
+					Sorry !!!!!!!!!</div>";
+		  	       
+                 }
+			
+            }
+/////////////////////////////////
+		     
 	}
 	
 function result(){

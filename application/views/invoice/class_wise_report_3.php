@@ -6,14 +6,13 @@
 
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 
-    <title><?php echo $title; ?></title>
+    <title>Student ICard</title>
 
     <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
-    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/prin_result.css'
+    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/print.css'
         media="print" />
     <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
     <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/example.js'></script>
-
     <style type="text/css">
     @media print {
         body * {
@@ -26,7 +25,7 @@
 
         #printcontent {
             position: absolute;
-            top: -20px;
+            top: 40px;
             left: 30px;
         }
     }
@@ -60,7 +59,6 @@
         color: white;
         border: 2px solid #4CAF50;
     }
-
     .nob {
         border: none;
     }
@@ -135,11 +133,23 @@
         border-collapse: collapse;
     }
     </style>
+
 </head>
 
 <body>
     <div id="printcontent" align="center">
-        <div id="page-wrap" style="margin-top: 70px;height: 1250px;width:960px; border:1px solid #333;">
+       
+                    <?php
+                            $this->db->where('status',1);
+                            $this->db->where('class_id',$classid);
+                            $sid=$this->db->get('student_info');
+                	        foreach($sid->result() as $studentProfile){
+                            $studentInfo = $studentProfile;
+                            $this->db->where('student_id',$studentInfo->id);
+                            $guardian_info=$this->db->get('guardian_info');
+                            $parentInfo = $guardian_info->row();?>
+
+                    <div id="page-wrap" style="margin-top: 70px;height: 1250px;width:960px; border:1px solid #333;">
 
             <div style="width:100%; height:1250px;margin-left:auto; margin-right:auto; border:1px  solid blue; background-color:#e30e0e;">
 
@@ -184,11 +194,11 @@
 						</tr>
 						 <tr class="wight" style="color: white;font-size: 13px;">
 							<td >
-								<span style="text-transform: uppercase;">Scholar ID: <?= $studentInfo->username; ?></span><br>
-								<span style="text-transform: uppercase;">Scholar Name: <?= strtoupper($studentInfo->name);?> </span><br>
+								<span style="text-transform: uppercase;">Scholar ID: <?php echo $studentInfo->username; ?></span><br>
+								<span style="text-transform: uppercase;">Scholar Name: <?php echo strtoupper($studentInfo->name);?> </span><br>
 							   <?php
 										   $this->db->where('school_code',$school_code);
-										   $this->db->where('id',$classid->class_id);
+										   $this->db->where('id',$classid);
 										   $classname=$this->db->get('class_info');
 										  
 											?>
@@ -337,7 +347,7 @@
            $pi=1;
 		   $grandtotal=0;
 foreach($resultData as $sub){
-$this->db->where('class_id',$classid->class_id);
+$this->db->where('class_id',$classid);
 $this->db->where('id',$sub['subject']);
 $subjectname=$this->db->get('subject'); 
 
@@ -357,7 +367,7 @@ if($subjectname->num_rows()>0){
 					<td class="center">	
 					<?php
 					$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('class_id',$classid);
 					$this->db->where('stu_id',$studentInfo->id);
 					$this->db->where('exam_id',$value->exam_id);
 					$this->db->where('fsd',$fsd);
@@ -370,7 +380,7 @@ if($subjectname->num_rows()>0){
 							echo $marks->marks;
 							$ctotal[$t]+= $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
 				$exammm=	$this->db->get('exam_max_subject')->row()->max_m;
 				$ttal=$ttal+$exammm;
@@ -438,7 +448,7 @@ if($subjectname->num_rows()>0){
                             Percentage: <?php echo $per=round((($grandtotal*100)/$dhtm), 2);?>% 
                         </td>
                         <td>
-                             Grade: <?php echo $gradecal =calculateGrade($per,$classid->class_id);?>
+                             Grade: <?php //echo $gradecal =calculateGrade($per,$classid->class_id);?>
                         </td>
                         <td>
                             Rank
@@ -508,7 +518,7 @@ if($subjectname->num_rows()>0){
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
                             <?php
-                            $this->db->where("class_id",$classid->class_id);
+                            $this->db->where("class_id",$classid);
 							$this->db->where("school_code",$this->session->userdata('school_code'));
 							$dt=$this->db->get("school_attendance");
 						    $atotal=$dt->num_rows();
@@ -599,7 +609,7 @@ if($subjectname->num_rows()>0){
 
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $gradecal =remarks($per,$classid->class_id);?></label></td>
+                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php //echo $gradecal =remarks($per,$classid->class_id);?></label></td>
                         </tr>
                     </table>
 
@@ -659,7 +669,7 @@ if($subjectname->num_rows()>0){
 
                 </table>
 				<?php 
-				function calculateGrade($val,$classid){
+			/*	function calculateGrade($val,$classid){
 								if($val >= 91 && $val < 101):
 									return 'A1';
 								elseif($val >= 81 && $val < 91):
@@ -694,7 +704,7 @@ if($subjectname->num_rows()>0){
 									return 'Need Improvement';
 								endif;
 								
-							}?>
+							}*/ ?>
             </div>
             <br>
             <div  style="color: white;">
@@ -717,13 +727,14 @@ if($subjectname->num_rows()>0){
                 </table>
             </div>
         </div></div>
+    </div> <?php 	} ?>
+             
     </div>
-    </div>
-	<div class="invoice-buttons" style="text-align:center;">
+    <div class="invoice-buttons" style="text-align:center;">
     <button class="button button2" type="button" onclick="window.print();">
         <i class="fa fa-print padding-right-sm"></i> Print
     </button>
-	</div>
+</div>
 </body>
 
 
