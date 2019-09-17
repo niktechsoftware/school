@@ -291,8 +291,9 @@
 	
 	function teacherClasstimeTable(){
 		$stu_id = $this->session->userdata('username');
+
 		$var1 = $this->singleTeacherModel->time_Table($stu_id);
-		
+		print_r($var1);exit();
 		$data['timetable']=$var1->result();
 		$data['pageTitle'] = 'Teacher Section';
 		$data['smallTitle'] = 'Class Time Table';

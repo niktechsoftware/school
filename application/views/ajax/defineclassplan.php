@@ -102,7 +102,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						}
 						else{
 							
-					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$username."' AND date1='".$sdate."' AND dayname = '".$weekday."'AND school_code = '".$school_code."' ");
+					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$username."' AND date1='".$sdate."' AND dayname = '".$weekday."' ");
 			
 					if($guru->num_rows()>0)
 					{
