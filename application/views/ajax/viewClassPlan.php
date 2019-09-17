@@ -109,7 +109,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						}
 						else{
 							
-					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$username."' AND date1='".$sdate."' AND dayname = '".$weekday."'  AND school_code = '".$school_code."'");
+					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$id."' AND date1='".$sdate."' AND dayname = '".$weekday."'");
 					if($guru->num_rows()>0)
 					{
 						$period1=$row->period;?><input type="hidden" name="period" value="<?php echo $period1?>"/><?php
@@ -143,7 +143,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					<td style="color:grean">
 					<?php 
 						$period1=$row->period;?><input type="hidden" name="period" value="<?php echo $period1?>"/><?php
-						$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$username."' AND period_id = '$period1' ");
+						$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$id."' AND period_id = '$period1' ");
 						foreach($result1->result() as $row1):
 							echo $row1->subject." ";?><input type="hidden" name="subject" value="<?php echo $row1->subject;?>"/><?php 
 							$r=	$row1->class1;

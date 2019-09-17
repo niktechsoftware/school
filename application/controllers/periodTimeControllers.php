@@ -300,6 +300,8 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		                            			 <td>
 		                                 			<input type="time" required="required" class="form-control" style="width:100px;" name="from<?php echo $i; ?>" id="from<?php echo $i; ?>" value="<?php echo $row->from;?>">
 		                              			</td>
+
+												  
 		                             			 <td> to</td>
 		                             			 <td>
 		                                   			<input type="time"  required="required" class="form-control" style="width:100px;" name="to<?php echo $i; ?>" id="to<?php echo $i; ?>" value="<?php echo $row->to;?>">
@@ -321,7 +323,16 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		                    				<td>
 		                        			<input type="text" class="form-control" required="required" style="width:100px;" name="period<?php echo $j; ?>" />
 	                            			</td>
-                                			
+                                			<?php 
+											$a = $num / 2;
+										//	print_r($i);
+											//print_r($a);exit();
+											if(($j >= $a-3) && ($j <= $a + 3)):
+											?>
+                                			<td  align="center">
+		                        				<input type="radio" value="<?php echo $j; ?>" name="lunch" />Lunch
+		                        			</td>
+		                            		<?php endif; ?>
 		                      			</tr>
 		                  			 </table>
 		               			 </td>
@@ -1091,10 +1102,8 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		$edate =$this->input->post("edate");
 		$userid = $this->session->userdata("username");
 		$thead= $this->input->post('thead');
-		//print_r($thead);exit();
 		$this->db->where('nop_id',$thead);
 		$period=$this->db->get("period");
-		//print_r($period);exit();
 		foreach($period->result() as $row):
 		    $period_id=$row->id;
 		print_r($period_id);
@@ -1138,7 +1147,9 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		$logtype = $this->session->userdata('login_type');
 				if($logtype == "admin"){
 				$data['username']=$this->input->post("teacherid");
-			}
+			// } if($logtype == '3'){
+			// 	$data['username'] = $this->session->userdata('username');
+			 }
 			$data['lesson_plan']=$this->input->post('time_thead_id');
 			$data['sdate']= $this->input->post("sdate");
 			$data['edate']= $this->input->post("edate");
