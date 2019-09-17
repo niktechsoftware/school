@@ -68,7 +68,7 @@ $snm=$this->session->userdata('username');
 			$dtf=$this->db->get("fsd")->row();
 			$school_code=$dtf->school_code;
 		
-		$this->db->where("school_code",$school_code);
+		//$this->db->where("school_code",$school_code);
 		$this->db->where("class_id",$class);
 		$query=$this->db->get("time_table");
 		return $query;

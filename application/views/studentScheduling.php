@@ -7,7 +7,7 @@
 			$school_code=$dtf->school_code;
 
              $this->db->where("class_id",$cid);
-              $this->db->where("school_code",$school_code);
+             // $this->db->where("school_code",$school_code);
 			$dt1=$this->db->get("time_table")->result(); 
            // $pid= $dt1->period_id;
            // print_r($dt1);
