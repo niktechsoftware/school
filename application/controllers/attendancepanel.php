@@ -61,6 +61,7 @@ class Attendancepanel extends CI_Controller{
     $this->db->where('stu_id',$username->id);
 		$data['row']=$this->db->get('attendance');
 		$data['name']=$username->name;
+		$data['username']=$username->username;
 		$classid=$username->class_id;
 		$this->db->where('id',$classid);
 		$this->db->where('school_code',$this->session->userdata('school_code'));
@@ -137,7 +138,7 @@ class Attendancepanel extends CI_Controller{
           ///print_r($fsdval);
         $sdate=  $fsdval->finance_start_date;
        // $sdate;exit;
-         
+        $data['classid']=$classid;
           $this->db->where('class_id',$classid);
 	$data['class'] = $this->db->query("select distinct stu_id FROM attendance WHERE class_id='$classid' AND a_date >='$fsdval->finance_start_date' AND a_date <='$fsdval->finance_end_date'");
   		$this->load->view('panel/attendance/classwise',$data);
