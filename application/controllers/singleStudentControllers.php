@@ -87,7 +87,6 @@ class singleStudentControllers extends CI_Controller{
 			$data['sectionName'] = $this->allFormModel->getSection();
 			$personalInfo = $stDetail->row();
 			$classid = $personalInfo->class_id;
-		
 			//$section = $personalInfo->section;
 			$data['subjectList'] = $this->subjectModel->getSubjectByClassSection($classid);
 			$data['studentsSubject'] = $this->subjectModel->isStudentSubject($studentId);
@@ -96,7 +95,6 @@ class singleStudentControllers extends CI_Controller{
 			$data['smallTitle'] = 'Student Personal Detail';
 			$data['mainPage'] = 'Student Profile';
 			$data['subPage'] = 'Student Personal Detail';
-			
 			$data['title'] = 'Student Personal Detail';
 			$data['headerCss'] = 'headerCss/studentCss';
 			$data['footerJs'] = 'footerJs/studentJs';

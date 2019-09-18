@@ -36,7 +36,7 @@
 
 							<div class="alert alert-info"><h3 class="media-heading text-center">Teacher Attendance Report</h3>
 							<p class="media-timestamp">
-							    Here you can see Teacher Attendence Report, Please select starting date and end date for seeing teacher attendence report and wait for another page.
+							    Here you can see Teacher Attendance Report, Please select starting date and end date for seeing teacher attendance report and wait for another page.
                             </p>
                             </div>
 								<div class="col-sm-12">

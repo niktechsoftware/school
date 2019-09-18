@@ -139,9 +139,7 @@
 		$this->db->where("username",$tID);
 		$tid=$this->db->get("employee_info");
 		$id= $tid->row();
-		
 		$teacherID=$id->id;
-		
 		$stDetail = $this->singleTeacherModel->getTeacherDetail($teacherID);
 		$data['teacherProfile'] = $stDetail->row();
 		$data['pageTitle'] = 'Teacher Profile';
@@ -449,8 +447,12 @@
 		$this->db->where('fsd',$fsd);
 		$this->db->where('status',1);
 		$empid=$this->db->get('employee_info')->row()->id;
-		
-		$request=$this->db->query("SELECT * FROM teacher_attendance WHERE emp_id = '$empid' AND a_date >'$start_date' AND a_date < '$end_date' AND school_code='$school_code'");
+		$this->db->where('school_code',$school_code);
+			$this->db->where('emp_id',$empid);
+			$this->db->where('a_date >=',$start_date);
+			$this->db->where('a_date <=',$end_date);
+			$var=$this->db->get('teacher_attendance');
+//		$request=$this->db->query("SELECT * FROM teacher_attendance WHERE emp_id = '$empid' AND a_date >'$start_date' AND a_date < '$end_date' AND school_code='$school_code'");
 		
 		    	?>
 		    	<br><br>
@@ -540,7 +542,7 @@
 							</thead>
 							<tbody>
 								<?php $i=1;
-			  			 foreach ($request->result() as $row){	
+			  			 foreach ($var->result() as $row){	
 			  				?><tr>
 			  					<td><?php echo $i;?></td>
 			  					<!--<td><?php //echo $row->attendance; ?></td>-->
