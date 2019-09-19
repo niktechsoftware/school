@@ -271,6 +271,23 @@
 								 } 
 								 else{
 								 	$totfee=$fee_head_one * $rt;
+								 } 
+								 if($stuDetail->transport==1){
+								     $vid=$stuDetail->vehicle_pickup;
+								     $this->db->where("id",$vid);
+								    $rootdt= $this->db->get("transport_root_amount");
+								     if($rootdt->num_rows()>0){
+								       $tfee1=  $rootdt->row()->transport_fee;
+								       $tfee=$tfee1*$rt;
+								       $totfee=$totfee+ $tfee;
+								     }
+								     else{
+								         echo "root not define";
+								     }
+								     
+								 } 
+								 else{
+								     $totfee =$totfee;
 								 }
 									  $sum=$sum +$totfee;
 									//  print_r($totfee);
@@ -335,7 +352,25 @@
 										}*/
 										$hmfee = $one_all_amount*($m);
 										$monthtotald=$fee_head->row()->fee_head_amount;
-									$fee_head =$hmfee +	$monthtotald;
+									$fee_head =$hmfee +	$monthtotald; 
+									
+									 if($stuDetail->transport==1){
+								     $vid=$stuDetail->vehicle_pickup;
+								     $this->db->where("id",$vid);
+								    $rootdt= $this->db->get("transport_root_amount");
+								     if($rootdt->num_rows()>0){
+								       $tfee2=  $rootdt->row()->transport_fee;
+								       $tfee3=$tfee2*($m);
+								       $fee_head=$fee_head+ $tfee3;
+								     }
+								     else{
+								         echo "root not define";
+								     }
+								     
+								 } 
+								 else{
+								     $fee_head =$fee_head;
+								 }
 									//print_r($m);
 										//print_r($one_all_amount);
 								
@@ -690,7 +725,23 @@
 								 	$totfee=$fee_head * $rt;
 								//  		print_r($totfee);
 								 }
-									 
+									 if($stuDetail->transport==1){
+								     $vid=$stuDetail->vehicle_pickup;
+								     $this->db->where("id",$vid);
+								    $rootdt= $this->db->get("transport_root_amount");
+								     if($rootdt->num_rows()>0){
+								       $tfee6=  $rootdt->row()->transport_fee;
+								       $tfee7=$tfee6*($rt);
+								       $totfee=$totfee+ $tfee7;
+								     }
+								     else{
+								         echo "root not define";
+								     }
+								     
+								 } 
+								 else{
+								     $totfee =$totfee;
+								 }
 									// $feehead=$fee_head+($fee_head_one*$rt);
 								 $sum=$sum + ($totfee) ;
 									 
@@ -729,28 +780,55 @@
 								endforeach;
 							?><input type = "hidden" id="rem<?php echo $count;?>" value="<?php echo $month;?>"/><?php
 								$adable_amount=0;
-						  	$searchM[$rt]=13;
+						  //	$searchM[$rt]=13;
 								//$this->db->distinct();
 								$this->db->select_sum("fee_head_amount");
 								$this->db->where("fsd",$fsd);
 								$this->db->where("class_id",$stuDetail->class_id);
 							//	print_r($stuDetail->class_id);
 							if($school_code ==1){$this->db->where("cat_id",3);}
-							    $this->db->where_in("taken_month",$searchM);
+							
+							    $this->db->where_in("taken_month",$searchM[$rt-1]);
 								$fee_head = $this->db->get("class_fees");
+								
 								if($fee_head->num_rows()>0){
+								    
+								     $this->db->select_sum("fee_head_amount");  
 									$this->db->where("class_id",$stuDetail->class_id);
+									$this->db->where("fsd",$fsd);
 									$this->db->where_in("taken_month",13);
 									$one_all_amount = $this->db->get("class_fees");
 									if($one_all_amount->num_rows()>0){
 										$one_all_amount=$one_all_amount->row()->fee_head_amount;
 									
-									    for($ui=0;$ui<$rt;$ui++){
-											if($ui>0){
-												$adable_amount =$one_all_amount+$adable_amount;
-											}
-										}
-									$fee_head =$fee_head->row()->fee_head_amount+$adable_amount;
+								// 	    for($ui=0;$ui<$rt;$ui++){
+								// 			if($ui>0){
+								// 				$adable_amount =$one_all_amount+$adable_amount;
+								// 			}
+								// 		}
+								 $fee8=$one_all_amount*($rt);
+								 
+									$fee9 =$fee_head->row()->fee_head_amount;
+									$fee_head=$fee8 + $fee9;
+									
+									if($stuDetail->transport==1){
+								     $vid=$stuDetail->vehicle_pickup;
+								     $this->db->where("id",$vid);
+								    $rootdt= $this->db->get("transport_root_amount");
+								     if($rootdt->num_rows()>0){
+								       $tfee4=  $rootdt->row()->transport_fee;
+								       $tfee5=$tfee4*($rt);
+								       $fee_head=$fee_head+ $tfee5;
+								     }
+								     else{
+								         echo "root not define";
+								     }
+								     
+								 } 
+								 else{
+								     $fee_head =$fee_head;
+								 }
+									
 									$sum=$sum + $fee_head;
 								echo "<br>".$fee_head;
 							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head;?>"/><?php 

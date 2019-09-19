@@ -910,3 +910,121 @@ Stack trace:
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 451
 [17-Sep-2019 16:10:41 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php:672) in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 672
+[17-Sep-2019 17:17:11 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php:672) in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 672
+[18-Sep-2019 12:31:50 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function strttotime() in /home/schoodhe/public_html/school/application/views/dayBook2.php:274
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 274
+[18-Sep-2019 12:32:42 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function strttotime() in /home/schoodhe/public_html/school/application/views/dayBook2.php:274
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 274
+[18-Sep-2019 12:34:29 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function strttotime() in /home/schoodhe/public_html/school/application/views/dayBook2.php:275
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 275
+[18-Sep-2019 12:35:17 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function strttotime() in /home/schoodhe/public_html/school/application/views/dayBook2.php:275
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 275
+[18-Sep-2019 12:35:58 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function strttotime() in /home/schoodhe/public_html/school/application/views/dayBook2.php:271
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 271
+[18-Sep-2019 12:36:28 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function strttotime() in /home/schoodhe/public_html/school/application/views/dayBook2.php:271
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 271
+[18-Sep-2019 12:37:16 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function strttotime() in /home/schoodhe/public_html/school/application/views/dayBook2.php:273
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 273
+[19-Sep-2019 01:22:13 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function bool() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php:385
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(493): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('20', '131', '34')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 385
+[19-Sep-2019 10:34:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::row() in /home/schoodhe/public_html/school/application/views/dayBook2.php:207
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 207
+[19-Sep-2019 10:35:01 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::row() in /home/schoodhe/public_html/school/application/views/dayBook2.php:207
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook2')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/dayBookControllers.php(168): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dayBook2.php on line 207

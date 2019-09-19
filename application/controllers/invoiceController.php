@@ -391,15 +391,14 @@ class InvoiceController extends CI_Controller{
 			$callview = "class_wise_icard_".$val;
 			$this->load->view("invoice/$callview",$data);
 		     }
-		/////////////////////
-	//	$this->load->view("invoice/class_wise_icard", $data);
+	/////////////////////
+	
 	}
 	function classwise_reports(){
 		$data['pageTitle'] = 'Student Section';
 		$data['smallTitle'] = 'Student Profile';
 		$data['mainPage'] = 'Student';
 		$data['subPage'] = 'Profile';
-		//$data['fsd'] = $this->uri->segment(3);
 		$data['classid'] = $this->uri->segment(4);
 		$data['sectionid'] = $this->uri->segment(5);
         $data['title'] = 'Student Profile';

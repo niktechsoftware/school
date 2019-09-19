@@ -352,8 +352,10 @@ if($subjectname->num_rows()>0){
 			     <?php 
  				$ttal=0;
                  $gtptal=0;
-                 $subtatal=0;
-					$i=1; $t=0; $coltptal=0;  foreach ($examid as $value):?>
+                 //$subtatal=0;
+					$i=1; $t=0;
+				//	$coltptal=0; 
+					foreach ($examid as $value):?>
 					<td class="center">	
 					<?php
 					$this->db->where('subject_id',$sub['subject']);
@@ -364,19 +366,33 @@ if($subjectname->num_rows()>0){
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
-							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
-							$coltptal+=$marks->marks;
+							////////////////////////	
+					if(is_numeric($marks->marks)){
+					  $gtptal= $gtptal+$marks->marks;
+					}else{ $gtptal= $gtptal;}
+					////////////////////////
+
+
+							//$gtptal= $gtptal+$marks->marks;
 							echo $marks->marks;
-							$ctotal[$t]+= $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
-				$exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-				$ttal=$ttal+$exammm;
-				$dhtm=$exammm+$dhtm;
-						}
-					?><?php echo "/" .$exammm; ?>
+			$exammm_row=	$this->db->get('exam_max_subject')->row();
+				$exammm=	$exammm_row->max_m;
+			            //$ttal=$ttal+$exammm;
+				        //$dhtm=$exammm+$dhtm;
+				        
+				        
+			//////////////////////
+			if(is_numeric($exammm)){
+					  $ttal=$ttal+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal= $ttal;
+					 $dhtm= $dhtm;   
+					}
+			///////////////////////
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 				<td class="center bold"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
@@ -435,10 +451,10 @@ if($subjectname->num_rows()>0){
                            
                         </td>
                         <td>
-                            Percentage: <?php echo $per=round((($grandtotal*100)/$dhtm), 2);?>% 
+                            Percentage: <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}?>% 
                         </td>
                         <td>
-                             Grade: <?php echo $gradecal =calculateGrade($per,$classid->class_id);?>
+                             Grade: <?php if($dhtm>0){echo $gradecal =calculateGrade($per,$classid->class_id);}?>
                         </td>
                         <td>
                             Rank
@@ -599,7 +615,7 @@ if($subjectname->num_rows()>0){
 
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $gradecal =remarks($per,$classid->class_id);?></label></td>
+                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php if($dhtm>0){echo $gradecal =remarks($per,$classid->class_id);} ?></label></td>
                         </tr>
                     </table>
 

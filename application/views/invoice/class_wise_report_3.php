@@ -362,30 +362,47 @@ if($subjectname->num_rows()>0){
 			     <?php 
  				$ttal=0;
                  $gtptal=0;
-                 $subtatal=0;
-					$i=1; $t=0; $coltptal=0;  foreach ($examid as $value):?>
+                 //$subtatal=0;
+					$i=1; $t=0; 
+					//$coltptal=0; 
+					foreach ($examid as $value):?>
 					<td class="center">	
-					<?php
-					$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('class_id',$classid);
-					$this->db->where('stu_id',$studentInfo->id);
-					$this->db->where('exam_id',$value->exam_id);
-					$this->db->where('fsd',$fsd);
-						$marks= $this->db->get('exam_info');
+					<?php 
+        					$this->db->where('subject_id',$sub['subject']);
+        					$this->db->where('class_id',$classid);
+        					$this->db->where('stu_id',$studentInfo->id);
+        					$this->db->where('exam_id',$value->exam_id);
+        					$this->db->where('fsd',$fsd);
+        			$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
-							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
-							$coltptal+=$marks->marks;
+					////////////////////////	
+					if(is_numeric($marks->marks)){
+					  $gtptal= $gtptal+$marks->marks;
+					}else{ $gtptal= $gtptal;}
+					////////////////////////
+
+
+							//$gtptal= $gtptal+$marks->marks;
 							echo $marks->marks;
-							$ctotal[$t]+= $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('class_id',$classid);
-					$this->db->where('exam_id',$value->exam_id);
-				$exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-				$ttal=$ttal+$exammm;
-				$dhtm=$exammm+$dhtm;
-						}
+        					$this->db->where('class_id',$classid);
+        					$this->db->where('exam_id',$value->exam_id);
+			    $exammm_row=$this->db->get('exam_max_subject')->row();
+				    $exammm=$exammm_row->max_m;
+		                //$ttal=$ttal+$exammm;
+				        //$dhtm=$exammm+$dhtm;
+				        
+				        
+			//////////////////////
+			if(is_numeric($exammm)){
+					  $ttal=$ttal+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal= $ttal;
+					 $dhtm= $dhtm;   
+					}
+			///////////////////////
+						}else if($marks->num_rows()==0){ $exammm=" "; }
 					?><?php echo "/" .$exammm; ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
@@ -445,10 +462,11 @@ if($subjectname->num_rows()>0){
                            
                         </td>
                         <td>
-                            Percentage: <?php echo $per=round((($grandtotal*100)/$dhtm), 2);?>% 
+                            Percentage: <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}
+                            ?>% 
                         </td>
                         <td>
-                             Grade: <?php //echo $gradecal =calculateGrade($per,$classid->class_id);?>
+                             Grade: <?php if($dhtm>0){echo $gradecal =calculateGrade($per,$classid);}?>
                         </td>
                         <td>
                             Rank
@@ -609,7 +627,7 @@ if($subjectname->num_rows()>0){
 
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php //echo $gradecal =remarks($per,$classid->class_id);?></label></td>
+                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php if($dhtm>0){echo $gradecal =remarks($per,$classid);}?></label></td>
                         </tr>
                     </table>
 
@@ -668,8 +686,31 @@ if($subjectname->num_rows()>0){
                     </tr>
 
                 </table>
-				<?php 
-			/*	function calculateGrade($val,$classid){
+				
+            </div>
+            <br>
+            <div  style="color: white;">
+			<div  style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Congratulations! Promoted to Class :</div>
+			</div>
+			<br>
+            <div>
+                <table style="width:95%;background-color:white;">
+					<tr>
+						<td>		
+                            Date :
+                        </td>
+                        <td>
+                            Class Teacher :
+                        </td>
+                        <td>
+                            Principal :<div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50"  /></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div></div>
+    </div> <?php 	} ?><?php 
+				function calculateGrade($val,$classid){
 								if($val >= 91 && $val < 101):
 									return 'A1';
 								elseif($val >= 81 && $val < 91):
@@ -704,30 +745,7 @@ if($subjectname->num_rows()>0){
 									return 'Need Improvement';
 								endif;
 								
-							}*/ ?>
-            </div>
-            <br>
-            <div  style="color: white;">
-			<div  style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Congratulations! Promoted to Class :</div>
-			</div>
-			<br>
-            <div>
-                <table style="width:95%;background-color:white;">
-					<tr>
-						<td>		
-                            Date :
-                        </td>
-                        <td>
-                            Class Teacher :
-                        </td>
-                        <td>
-                            Principal :<div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50"  /></div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div></div>
-    </div> <?php 	} ?>
+							} ?>
              
     </div>
     <div class="invoice-buttons" style="text-align:center;">
