@@ -149,7 +149,10 @@
 		function saleStock(){
 		    $school_code = $this->session->userdata("school_code");
 			$this->db->where("school_code",$school_code);
-			$billno = $this->db->count_all("invoice_serial");
+			$billno = $this->db->order_by('id',"desc")->limit(1)->get('invoice_serial')->row()->id;
+			
+//$billno= $billno4->num_rows();
+		//print_r($billno);exit();
 			$this->load->model("daybookModel");
 			$this->load->model("enterStockModel");
 			$bill = $billno + 1000;
@@ -251,8 +254,9 @@
 				// $this->db->where("bill_no",$billno);
 				// $var1 =$this->db->update("sale_info",$data);
 
-				
+			//	print_r($data);exit();
 				$var1 = $this->enterStockModel->saleEntry($data);
+			
 			   }
 			}
 				 $bal = array(

@@ -42,55 +42,49 @@ class AdminController extends CI_Controller{
 	
 	function appleave()
 	{
-
-          $id=$this->input->post('id');
+		 // $id=$this->input->post('id');
+			$id=$this->uri->segment(3);
+		  //print_r($id);exit();
           $leave= array(
           	'approve' =>'YES', 
           );
-
-          $this->db->where('stu_id',$id);
+          $this->db->where('id',$id);
          $this->db->where('school_code',$this->session->userdata('school_code'));
-          $up=$this->db->update('stu_leave',$leave);
-          
-          $this->db->where('stu_id',$id);
+		  $up=$this->db->update('stu_leave',$leave);
+		  //print_r($up);exit();
+          $this->db->where('id',$id);
          $this->db->where('school_code',$this->session->userdata('school_code'));
-          $leave=$this->db->get('stu_leave')->row();
-          
-           $this->db->where('id',$id);
+		  $leave=$this->db->get('stu_leave')->row();
+		  
+           $this->db->where('id',$leave->stu_id);
          //$this->db->where('school_code',$this->session->userdata('school_code'));
           $stu=$this->db->get('student_info')->row();
-          
           	$this->db->where("school_code",$this->session->userdata('school_code'));
 		$sende_Detail1=$this->db->get("sms_setting")->row();
-		
           	$msg = "Dear Staff ".$stu->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Approved.";
 		//echo $msg;exit;
 			sms($stu->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-
+			redirect("index.php/login/index");
 	}
 	function deleleave()
 	{
 
-		$id=$this->input->post('id');
-    
-          $this->db->where('id',$id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-          $up=$this->db->delete('stu_leave');
-       
+		$id=$this->uri->segment(3);
        $this->db->where('id',$id);
          $this->db->where('school_code',$this->session->userdata('school_code'));
           $leave=$this->db->get('stu_leave')->row();
-          
-           $this->db->where('id',$id);
+           $this->db->where('id',$leave->stu_id);
         // $this->db->where('school_code',$this->session->userdata('school_code'));
           $stu=$this->db->get('student_info')->row();
-          
+		  $this->db->where('id',$id);
+		  $this->db->where('school_code',$this->session->userdata('school_code'));
+		   $up=$this->db->delete('stu_leave');
           	$this->db->where("school_code",$this->session->userdata('school_code'));
 		$sende_Detail1=$this->db->get("sms_setting")->row();
-		
           	$msg = "Dear Staff ".$stu->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Cancelled.";
 		//echo $msg;exit;
 			sms($stu->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+			redirect("index.php/login/index");
 	}
 	function appleaveemp()
 	{

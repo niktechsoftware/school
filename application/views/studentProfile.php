@@ -563,17 +563,18 @@ if($row->attendance==1){ ?>
 <?php 
 $this->db->where("username",$this->session->userdata("username"));
 $id=$this->db->get("student_info")->row()->id;
-
 $this->db->where("student_id",$id);
 $dt=$this->db->get("fee_deposit")->result();
-
 ?>
-
 <?php $v=1; foreach($dt as $row):
+$sid=$row->student_id;
+$this->db->where('id',$sid);
+$stud_unm= $this->db->get('student_info')->row();
+
 ?><tbody>
 	<tr>
 <td class="text-center"><?php echo $v; ?> </td>
-<td class="text-center"><?php echo $row->student_id;?></td>
+<td class="text-center"><?php echo $stud_unm->username;?></td>
 
 <td class="text-center"><?php $dte= $row->total; echo $dte;?></td>
 
@@ -626,17 +627,21 @@ $dt=$this->db->get("fee_deposit")->result();
 			    			</thead>
 			    			<tbody>	
 			    		 <?php		$i=1; 	
-			    		foreach($row->result() as $rows):?> 
-			
+						foreach($row->result() as $rows):
+						$this->db->where('billno',$rows->bill_no);
+						$bal=$this->db->get('sale_balance');
+						if($bal->num_rows()>0){ 
+							$balance1= $bal->row();?> 
+								
 			    				 <tr>
 			    				<td> <?php echo $i;?> </td>
 			    				<td> <?php echo $rows->item_no;?> </td>
 			    				<td> <?php echo $rows->date;?> </td>
-			    				<td> <?php echo $rows->balance;?> </td>
-			    				<td> <?php echo $rows->paid;?> </td>
+			    				<td> <?php echo $balance1->balance;?> </td>
+			    				<td> <?php echo $balance1->paid;?> </td>
 			    				<td> <?php echo $rows->bill_no;?> </td>
 			    				</tr>
-			    				<?php $i++; 
+			    				<?php $i++; }
 			    				endforeach; ?> 
 			    			</tbody>	
 			    		</table>
