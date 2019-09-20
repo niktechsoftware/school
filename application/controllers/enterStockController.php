@@ -151,7 +151,6 @@
 		    $school_code = $this->session->userdata("school_code");
 			$this->db->where("school_code",$school_code);
 			$billno = $this->db->order_by('id',"desc")->limit(1)->get('invoice_serial')->row()->id;
-			
 //$billno= $billno4->num_rows();
 		//print_r($billno);exit();
 			$this->load->model("daybookModel");
@@ -167,9 +166,7 @@
 							"bill_no"=>$billno,
 							"valid_id"=>$validID
 					);
-					
 				//	$this->enterStockModel->updatebill($data2);
-
 				}
 				else if(strlen($this->input->post("empID"))>0){
 					$emid = $this->input->post("empID");
@@ -195,23 +192,17 @@
 				$this->db->where("school_code",$this->session->userdata("school_code"));
 				$this->db->where("opening_date",date("Y-m-d"));
 				$cb = $this->db->get("opening_closing_balance");
-
     //     	$this->db->where("school_code",$this->session->userdata("school_code"));
 				// $this->db->where("pay_date",date("Y-m-d"));
 				// $cb = $this->db->get("day_book");
-
-				
              $dt= $cb->row()->closing_balance;
 				$cl_balance = $dt + $this->input->post("paid");
-
-				
 				$cbData = array(
 					"closing_balance" => $cl_balance
 				);
 				$this->db->where("school_code",$this->session->userdata("school_code"));
 				$this->db->where("opening_date",date("Y-m-d"));
 				$this->db->update("opening_closing_balance",$cbData);
-				
 				$daybook=array(
 						"amount" => $this->input->post("paid"),
 						"pay_date"=> date("Y-m-d"),
@@ -238,10 +229,7 @@
 						"dis_rs" => $this->input->post("discount$i"),
 						"total_price" => $this->input->post("total_price$i"),
 						"sub_total" => $this->input->post("sub_total$i"),
-						
-						
 					    	//"previous_balance" => $this->input->post("p_balance"),
-						
 					     	"category" => $this->input->post("category"),
 					             	"valid_id" => $validID,
 						//"name" => $this->input->post("empFirstName"),
@@ -287,6 +275,7 @@
                          $this->db->where('student_id',$student->id);
                         $upadte=$this->db->update('feedue',$up);
                       }
+                      
                       else
                       {
                         $ines=array(
@@ -428,8 +417,9 @@ function editSaleStock(){
 	      $query2 = $this->db->update("sale_balance", $sale);
 
 	                $this->db->where('username',$dt->valid_id);
-				    $student=$this->db->get('student_info')->row();
-
+				    $student=$this->db->get('student_info');
+				    	if($student->num_rows()>0){
+				    		$student=$student->row();
 				     $this->db->where('student_id',$student->id);
 				     $this->db->where('school_code',$this->session->userdata('school_code'));
                       $studentfee=$this->db->get('feedue');
@@ -457,7 +447,7 @@ function editSaleStock(){
                           $inserttt=$this->db->insert('feedue',$ines);
                       }
               
-	 
+	 }
 
   	}
   	$this->db->where("school_code",$this->session->userdata("school_code"));

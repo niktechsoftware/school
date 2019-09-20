@@ -591,6 +591,10 @@ function showHomeWork()
 {
 		$school_code=$this->session->userdata('school_code');
 	$this->load->model("homeWorkModel");
+	$res=$this->db->query("SELECT DISTINCT section,id FROM class_section where school_code = $school_code ");
+		$data['noc'] = $res->result();
+		$va=$this->homeWorkModel->getHomeWorkDetail();
+		$data['var1']=$va->result();
 	$data['pageTitle'] = 'Show HomeWork';
 	$data['smallTitle'] = 'Employee/Teacher/Student';
 	$data['mainPage'] = 'Show HomeWork';
