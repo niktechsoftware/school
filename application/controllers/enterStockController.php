@@ -128,8 +128,10 @@
 		}
 		function getTData(){
 			$tid = $this->input->post("name");
+		//	print_r($tid);exit();
 			$this->load->model("enterStockModel");
 			$var = $this->enterStockModel->getItemName($tid);
+			
 			if($var->num_rows() > 0){
 				foreach ($var->result() as $row){
 					$itemData = array(
@@ -139,9 +141,8 @@
 							"price" =>$row->item_price,
 							"qunatity" =>$row->item_quantity,
 							);
-							
-				}
-							
+						//	print_r($itemData);exit();
+				}		
 				}
 				echo (json_encode($itemData));
 		}
@@ -301,15 +302,29 @@
               
 
 					if($var1):
-						$var = $this->enterStockModel->getItemName1($data);
+					//	$var = $this->enterStockModel->getItemName1($data);
+					$this->db->where("school_code",$this->session->userdata("school_code"));
+	      	$this->db->where("bill_no",$billno);
+	      	$var = $this->db->get("sale_info");
 						if($var->num_rows() > 0):
+
 							foreach ($var->result() as $row):
-								$q = $row->item_quantity;
+
+								$this->db->where("school_code",$this->session->userdata("school_code"));
+								$this->db->where("item_no",$row->item_no);
+								$row1 = $this->db->get("enter_stock")->row();
+								$q = $row1->item_quantity;
+								$itemno = $row1->item_no;
 								$data1 = array(
-									"item_quantity" => ($q - $data["item_quant"]),
-									"item_no" =>  $data["item_no"]
+									"item_quantity" => ($q - $row->item_quant),
+									// "item_no" =>  $data["item_no"]
 								);
-								$this->enterStockModel->updateStock1($data1);
+								// $aab=$row->item_quant;
+								// print_r($aab);
+								// print_r($q);
+								// $aarju=($q - $row->item_quant);
+								// print_r($aarju);exit();
+								$this->enterStockModel->updateStock1($data1,$itemno);
 							endforeach;
 						endif;
 					endif;
