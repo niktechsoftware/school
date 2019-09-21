@@ -78,6 +78,31 @@ endforeach;
 			redirect("index.php/homeController/lockPage");
 		}
 	}
+	//-------------------------------------//
+	public function rep_formate_save(){
+		$formate_rep=$this->input->post('formate_rep');
+		$this->load->model('configureClassModel');
+		$rep = $this->configureClassModel->formate_rep($rep);
+		print_r($rep);exit();
+		/*$data['streamList'] = $streamList;
+		$this->load->view("ajax/addfeecat",$data);*/
+	}
+	public function id_formate_save(){
+		$formate_id=$this->input->post('formate_id');
+		//print_r($formate_rep);exit();
+		
+	}
+	public function tc_formate_save(){
+		$formate_tc=$this->input->post('formate_tc');
+		//print_r($formate_rep);exit();
+		
+	}
+	public function cc_formate_save(){
+		$formate_cc=$this->input->post('formate_cc');
+		//print_r($formate_rep);exit();
+		
+	}
+//-------------------------------------//
 	public function deletefeecat(){
 		$id=$this->input->post('streamId');
 		$this->db->where('school_code',$this->session->userdata('school_code'));

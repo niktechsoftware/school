@@ -148,27 +148,25 @@ redirect("index.php/login/index");
 				"school_name" => $this->input->post("your_school_name"),
 				"director_name" => $this->input->post("director_name"),
 				"principle_name" => $this->input->post("principle_name"),
+				"wise_principle_name" => $this->input->post("wise_principle_name"),
 				"language" => $this->input->post("language"),
 				"attendence_type" => $this->input->post("attendance_type"),
-				
-				"wise_principle_name" => $this->input->post("wise_principle_name"),
 				"school_recognition" => $this->input->post("school_recognition"),
 				"registration_no" => $this->input->post("collage_registration_number"),
-				
-				
 				"address1" => $this->input->post("address_1"),
 				"address2" => $this->input->post("address_2"),
 				"city" => $this->input->post("city"),
 				"state" => $this->input->post("state"),
 				"pin" => $this->input->post("pin"),
 				"nationalty" => $this->input->post("nationality"),
-				
 				"mobile_no" => $this->input->post("mobile_number"),
+				"other_mobile_no" => $this->input->post("other_mobile_no"),
+				"phone_no" => $this->input->post("phone_no"),
 				"fax_no" => $this->input->post("fax_number"),
 				"email1" => $this->input->post("email1"),
 				"email2" => $this->input->post("email2")
 		);
-	//	print_r($data);
+		//print_r($data); exit();
 		if($this->adminModel->updateAdminProfile($data)):
 			$loginData = array(
 					"school_name" => $this->input->post("your_school_name"),

@@ -382,7 +382,7 @@
 											<label class="control-label text-bold">
 												Other Moblie Number
 											</label>
-											<input type="text" value="<?php echo $personalInfo->other_mobile_no;?>" class="form-control" id="fax_number">
+											<input type="text" value="<?php echo $personalInfo->other_mobile_no;?>" class="form-control" id="other_mobile_no">
 										</div>
 									</div>
 								</div>
@@ -393,7 +393,7 @@
 											<label class="control-label text-bold">
 												Phone-Number
 											</label>
-											<input type="text" value="<?php echo $personalInfo->phone_no;?>" class="form-control" id="mobile_number">
+											<input type="text" value="<?php echo $personalInfo->phone_no;?>" class="form-control" id="phone_no">
 										</div>
 									</div>
 									<div class="col-md-6">
