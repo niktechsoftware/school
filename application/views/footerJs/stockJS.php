@@ -211,7 +211,7 @@
 
 					$('select#item_no<?php echo $i; ?>').change(function(){
 						var name = $('#item_no<?php echo $i; ?>').val();
-						alert(name);					
+						//alert(name);					
 						$.post("<?php echo site_url("index.php/enterStockController/getTData") ?>", {name : name}, function(data){		
 							var d = jQuery.parseJSON(data);				
 							 $('#item_name<?php echo $i; ?>').val(d.itemName);

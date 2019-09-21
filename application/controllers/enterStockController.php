@@ -173,13 +173,16 @@
 				}
 				else if(strlen($this->input->post("empID"))>0){
 					$emid = $this->input->post("empID");
+					
 						$this->db->where('username',$emid);
 						$this->db->where('school_code',$school_code);
 					$validID= $this->db->get('employee_info')->row()->id;
+					
 					$data2 = array(
 							"bill_no"=>$billno,
 							"valid_id"=>$validID
 					);
+				
 					//$this->enterStockModel->updatebill($data2);
 				}else {
 					$validID=$this->input->post("empFirstName");
@@ -268,8 +271,9 @@
 				 "billno" =>$billno,
 				 "valid_id" => $validID
                );
-				  $this->db->insert("sale_balance",$bal);
-				
+					$this->db->insert("sale_balance",$bal);
+					
+				if($this->input->post("category") =='Student Id'){
 				    $this->db->where('username',$this->input->post("studID"));
 				    $student=$this->db->get('student_info')->row();
 
@@ -299,7 +303,7 @@
                           );
                           $inserttt=$this->db->insert('feedue',$ines);
                       }
-              
+										}
 
 					if($var1):
 					//	$var = $this->enterStockModel->getItemName1($data);
@@ -426,10 +430,12 @@ function editSaleStock(){
 	      $query2 = $this->db->update("sale_info", $data);
 	       $this->db->where("billno",$billno);
 	      $query2 = $this->db->update("sale_balance", $sale);
-
+//print_r($dt->valid_id);
+//print_r($billno);exit();
 	                $this->db->where('username',$dt->valid_id);
-				    $student=$this->db->get('student_info')->row();
-
+				    $student=$this->db->get('student_info');
+							if($student->num_rows()>0){
+								$student= $student->row();
 				     $this->db->where('student_id',$student->id);
 				     $this->db->where('school_code',$this->session->userdata('school_code'));
                       $studentfee=$this->db->get('feedue');
@@ -456,7 +462,7 @@ function editSaleStock(){
                           );
                           $inserttt=$this->db->insert('feedue',$ines);
                       }
-              
+										}
 	 
 
   	}

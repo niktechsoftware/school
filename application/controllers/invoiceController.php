@@ -332,6 +332,8 @@ class InvoiceController extends CI_Controller{
 	}
 	
 	function saleInvoice(){
+		$data['id']=$this->uri->segment(3);
+		//print_r($id);
 		$data['title'] = "Fee reciept invoice";
 		$this->load->view("invoice/saleInvoice",$data);
 	}
