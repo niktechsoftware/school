@@ -614,18 +614,51 @@ function defineExam1(){
 
 	function updatesubmaxiMarks(){
 	   $marks= $this->input->post("mark");
-	   $rowid =  $this->input->post("viid");
+		 $rowid =  $this->input->post("viid");
+		 $examid =  $this->input->post("examid");
+		 $classid =  $this->input->post("classid");
+		 $subjectid =  $this->input->post("subjectid");
+
 	   $data =array(
 	       'max_m'=> $marks,
 	       );
 	       $this->db->where('id', $rowid);
-	       $this->db->update("exam_max_subject",$data);
+				$updt= $this->db->update("exam_max_subject",$data);
+				if($updt){
+					$examinfo =array(
+						'out_of'=> $marks,
+					);
+					$this->db->where('exam_id', $examid);
+					$this->db->where('class_id', $classid);
+					$this->db->where('subject_id', $subjectid);
+				$dt=	$this->db->update('exam_info',$examinfo);
+				if($dt){
 	       echo "Updated";
-	       ?>
-	      
-	       <?php
+				} }
 	}
 	
+	function deletesubmaxiMarks(){
+		$marks= $this->input->post("mark");
+		$rowid =  $this->input->post("viid");
+		$examid =  $this->input->post("examid");
+		 $classid =  $this->input->post("classid");
+		 $subjectid =  $this->input->post("subjectid");
+		$data =array(
+				'max_m'=> $marks,
+				);
+				$this->db->where('id', $rowid);
+			$deletedt=	$this->db->delete("exam_max_subject");
+			if($deletedt){
+				$this->db->where('exam_id', $examid);
+				$this->db->where('class_id', $classid);
+				$this->db->where('subject_id', $subjectid);
+			$dt=	$this->db->delete('exam_info');
+			if($dt){
+				echo "Deleted";
+			}
+			}
+ }
+ 
 	function insertMarksdetail()
 	{
 	    $stuid=$this->input->post('stuid'); 

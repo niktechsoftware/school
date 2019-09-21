@@ -717,7 +717,7 @@ function getFsd(){
 			   // $this->db->where("student_id",$student_id);
 
 			   if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))&&($this->feemodel->del_feedue($invoiceNo,$student_id))){
-				redirect(base_url()."index.php/feeControllers/fullDetail/".$student_id."/".$df); 
+				redirect(base_url()."index.php/feeControllers/feesDetail/".$student_id."/".$df); 
 			   }else{
 				   echo "Please Contact to Admin";
 			   }
@@ -1261,7 +1261,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                            <div class="col-sm-12">
 	                                                <div class="col-sm-6 text-uppercase">Total</div>
 	                                                <div class="col-sm-6">
-	                                                    <input type="hidden" id="total1"  value="<?php echo $totfees;?>" name="total1" />
+	                                                    <input type="hidden" id="total1"  value="<?php echo $totfees+$latefee1;?>" name="total1" />
 	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
 	                                                    <input type="text" id="total"  value="<?php echo $totfees+$latefee1;?>" class="form-control" readonly/>
 	                                                </div>
