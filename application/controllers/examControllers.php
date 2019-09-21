@@ -473,7 +473,6 @@ function defineExam1(){
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
 		$data['examid'] = $this->input->post("examid");
-		
 	$this->load->view("ajax/examMarksDetail",$data);		
 	}
 
