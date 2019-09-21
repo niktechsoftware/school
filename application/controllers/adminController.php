@@ -152,12 +152,13 @@ class AdminController extends CI_Controller{
 	function updateAdminProfile(){
 		$data = array(
 				"school_name" => $this->input->post("your_school_name"),
+				"director_name" => $this->input->post("director_name"),
 				"principle_name" => $this->input->post("principle_name"),
 				"language" => $this->input->post("language"),
 				"attendence_type" => $this->input->post("attendance_type"),
 				
 				"wise_principle_name" => $this->input->post("wise_principle_name"),
-				
+				"school_recognition" => $this->input->post("school_recognition"),
 				"registration_no" => $this->input->post("collage_registration_number"),
 				
 				
@@ -289,6 +290,41 @@ class AdminController extends CI_Controller{
 			}
 		}
 	}
+	public function uploadprinciple_sign(){
+		$school_code = $this->session->userdata("school_code");
+		$photo_name = time().trim($_FILES['logo']['name']);
+		$photo_name = str_replace(' ', '_', $photo_name);
+		$new_img = array(
+				"principle_sign"=> $photo_name
+		);
+		$old_img = $this->input->post("old_img");
+		@chmod("assets/".$school_code."/images/empImage/" . $old_img, 0777);
+		@unlink("assets/".$school_code."/images/empImage/" . $old_img);
+		$this->db->where("id",$this->session->userdata("school_code"));
+		$query = $this->db->update("school",$new_img);
+		if($query){
+			$this->load->library('upload');
+			// Set configuration array for uploaded photo.
+			//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/empImage');
+			$asset_name = $this->db->get('upload_asset')->row()->asset_name;
+			$image_path = $asset_name.$school_code.'/images/empImage';
+			$config['upload_path'] = $image_path;
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
+			$config['max_size'] = '1160';
+			$config['file_name'] = $photo_name;
+			// Upload first photo and create a thumbnail of it.
+			if (!empty($_FILES['logo']['name'])) {
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('logo')) {
+					// ---------------------------------- Redirect Success Page ----------------------
+					$this->session->set_userdata("principle_sign",$photo_name);
+					redirect("index.php/adminController/adminProfile/true/updateInfo");
+				}else{
+					redirect("index.php/errorController");	
+				}
+			}
+		}
+	}
 	
 	public function uploadAdminPicture(){
 		
@@ -321,7 +357,6 @@ class AdminController extends CI_Controller{
 				
 				$this->upload->initialize($config);
 				if ($this->upload->do_upload('logo')) {
-					//echo "hhh";exit;
 					// ---------------------------------- Redirect Success Page ----------------------
 					$this->session->set_userdata("photo",$photo_name);
 					redirect("index.php/adminController/adminProfile/true/updateInfo");

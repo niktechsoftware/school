@@ -3,7 +3,6 @@
 		<?php 
 			if(isset($profile)):
 				$personalInfo = $profile->row();
-				//rahul
 		?>
 		<div class="tabbable">
 			<ul class="nav nav-tabs tab-padding tab-space-3 tab-blue" id="myTab4">
@@ -77,12 +76,13 @@
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
 										<tr>
-											<td>Director Name</td>
+											<td>Owner Name</td>
 											<td>
-												<?php echo $personalInfo->principle_name; ?>
+												<?php if(strlen($personalInfo->director_name) > 1){echo $personalInfo->director_name; }else echo '<span style="color:#ff9999">N/A</span>'; ?>
 											</td>
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
+										
 										<tr>
 											<td>Login ID</td>
 											<td>
@@ -120,9 +120,9 @@
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
 										<tr>
-											<td>Language</td>
+											<td>Principal Name</td>
 											<td>
-												<?php if(strlen($personalInfo->language) <= 0){echo '<span style="color:#ff9999">N/A</span>'; }else{ echo $personalInfo->language; } ?>
+												<?php if(strlen($personalInfo->principle_name) > 1){echo $personalInfo->principle_name; }else echo '<span style="color:#ff9999">N/A</span>'; ?>
 											</td>
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
@@ -136,7 +136,7 @@
 										
 										
 										<tr>
-											<td>College Registration Number</td>
+											<td>School Affiliation Number</td>
 											<td>
 												<?php if(strlen($personalInfo->registration_no) <= 0){echo '<span style="color:#ff9999">N/A</span>'; }else{ echo $personalInfo->registration_no; } ?>
 											</td>
@@ -146,7 +146,7 @@
 										<tr>
 											<td>School Code</td>
 											<td>
-												<?php if(strlen($personalInfo->id) <= 0){ echo '<span style="color:#ff9999">N/A</span>'; }else{ echo $personalInfo->id; } ?>
+												<?php if(strlen($personalInfo->school_recognition) <= 0){ echo '<span style="color:#ff9999">N/A</span>'; }else{ echo $personalInfo->school_recognition; } ?>
 											</td>
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
@@ -169,7 +169,7 @@
 										<tr>
 											<td>Address</td>
 											<td>
-												<?php echo $personalInfo->address1." ".$personalInfo->address2; ?>
+												<?php if($personalInfo->address1){echo $personalInfo->address1; }else{echo $personalInfo->address2; } ?>
 											</td>
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
@@ -187,7 +187,13 @@
 											</td>
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
-										
+										<tr>
+											<td>Phone-Number</td>
+											<td>
+												<?php echo $personalInfo->phone_no; ?>
+											</td>
+											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
+										</tr>
 										<tr>
 											<td>Mobile-Number</td>
 											<td>
@@ -241,13 +247,30 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label text-bold">
-												Principal Name
+												Owner Name
 											</label>
-											<input type="text" class="form-control" value="<?php echo $personalInfo->principle_name;?>" id="principle_name">
+											<input type="text" class="form-control" value="<?php echo $personalInfo->director_name;?>" id="director_name">
 										</div>
 									</div>
 								</div>
-								
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label text-bold">
+												Principal Name
+											</label>
+											<input type="text" value="<?php echo $personalInfo->principle_name;?>" class="form-control" id="principle_name">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label text-bold">
+												Vice Principal Name
+											</label>
+											<input type="text" value="<?php echo $personalInfo->wise_principle_name;?>" class="form-control" id="wise_principle_name">
+										</div>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
@@ -266,39 +289,22 @@
 										</div>
 									</div>
 								</div>
-								<!-- <div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label text-bold">
-												Finance Start Date (yyyy-mm-dd)
-											</label>
-											<input type="date" data-date-format="yyyy-mm-dd" id="finance_start_date" value="<?php  //echo date("d-M-Y", strtotime($fsdd->finance_start_date));?>" data-date-viewmode="years" class="form-control date-picker">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label text-bold">
-												Financial Year End Date (yyyy-mm-dd)
-											</label>
-											<input type="date" data-date-format="yyyy-mm-dd" id="finance_end_date" value="<?php //echo date("d-M-Y", strtotime($fsdd->finance_end_date));?>" data-date-viewmode="years" class="form-control date-picker">
-										</div>
-									</div>
-								</div> -->
+								
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label text-bold">
-												Vice Principal Name
+												School Code
 											</label>
-											<input type="text" value="<?php echo $personalInfo->wise_principle_name;?>" class="form-control" id="wise_principle_name">
+											<input type="text" value="<?php echo $personalInfo->school_recognition;?>" class="form-control" id="school_recognition">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label text-bold">
-												 Registration Number
+												School Affiliation Number
 											</label>
-											<input type="text" value="<?php echo $personalInfo->registration_no;?>" class="form-control" id="collage_registration_number">
+											<input type="text" value="<?php echo $personalInfo->registration_no;?>" class="form-control" id="registration_no">
 										</div>
 									</div>
 								</div>
@@ -306,14 +312,6 @@
 								
 								<div class="row">
 									
-									<!-- <div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label text-bold">
-												School Code
-											</label>
-											<input type="text" value="<?php echo $personalInfo->id;?>" class="form-control" id="school_code">
-										</div>
-									</div> -->
 								</div>
 								<div class="row">
 									<div class="col-md-6">
@@ -369,6 +367,44 @@
 										</div>
 									</div>
 								</div>
+								<div class="row">
+									
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label text-bold">
+												Mobile-Number
+											</label>
+											<input type="text" value="<?php echo $personalInfo->mobile_no;?>" class="form-control" id="mobile_number">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label text-bold">
+												Other Moblie Number
+											</label>
+											<input type="text" value="<?php echo $personalInfo->other_mobile_no;?>" class="form-control" id="fax_number">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label text-bold">
+												Phone-Number
+											</label>
+											<input type="text" value="<?php echo $personalInfo->phone_no;?>" class="form-control" id="mobile_number">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label text-bold">
+												Fax Number
+											</label>
+											<input type="text" value="<?php echo $personalInfo->fax_no;?>" class="form-control" id="fax_number">
+										</div>
+									</div>
+								</div>
 							</div>
 							
 							
@@ -394,6 +430,7 @@
 				                            </form>
 										</div>
 									</div>
+									
 									<div class="col-md-6">
 										<div class="form-group">
 											<div style="width: 140px; height: 130px; border: 1px solid #000;">
@@ -413,29 +450,47 @@
 										</div>
 									</div>
 								</div>
+								<div class="row"><div class="col-md-12"> &nbsp; </div></div>
 								<div class="row">
-									<div class="col-md-12">&nbsp;</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<div style="width: 140px; height: 130px; border: 1px solid #000;">
+												<?php if(strlen($personalInfo->principle_sign > 0)):?>
+													<img alt="<?php echo $personalInfo->school_name;?>" height="128" width="138" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $personalInfo->principle_sign;?>" />
+												<?php else:?>
+													<img alt="<?php echo $personalInfo->school_name;?>" width="128" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/lo.png" />	
+												<?php endif;?>
+											</div>
+										</div>
+										<div class="form-group">
+											<form method="post" action="<?php echo base_url()?>index.php/adminController/uploadprinciple_sign" enctype="multipart/form-data">
+												<input type="hidden" name="old_img" value="<?php echo $personalInfo->principle_sign;?>">
+				                                <input type="file" name="logo" class="form-control input-sm" ><br/>
+				                                <input id="submit" name="submit" type="submit" class="btn btn-primary btn-sm pull-left" value="Upload Principal Sign">
+				                            </form>
+										</div>
+									</div>
+									<!--<div class="col-md-6">
+										<div class="form-group">
+											<div style="width: 140px; height: 130px; border: 1px solid #000;">
+												<?php if(strlen($personalInfo->principle_sign > 0)):?>
+													<img alt="<?php echo $personalInfo->school_name;?>" height="128" width="138" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $personalInfo->principle_sign;?>" />
+												<?php else:?>
+													<img alt="<?php echo $personalInfo->school_name;?>" width="128" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/lo.png" />	
+												<?php endif;?>
+											</div>
+										</div>
+										<div class="form-group">
+											<form method="post" action="<?php echo base_url()?>index.php/adminController/uploadprinciple_sign" enctype="multipart/form-data">
+												<input type="hidden" name="old_img" value="<?php echo $personalInfo->principle_sign;?>">
+				                                <input type="file" name="logo" class="form-control input-sm" ><br/>
+				                                <input id="submit" name="submit" type="submit" class="btn btn-primary btn-sm pull-left" value="Upload Profile Picture">
+				                            </form>
+										</div>
+									</div>-->
 								</div>
 								
-								<div class="row">
-									
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label text-bold">
-												Mobile-Number
-											</label>
-											<input type="text" value="<?php echo $personalInfo->mobile_no;?>" class="form-control" id="mobile_number">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label text-bold">
-												Fax Number
-											</label>
-											<input type="text" value="<?php echo $personalInfo->fax_no;?>" class="form-control" id="fax_number">
-										</div>
-									</div>
-								</div>
+								<div class="row"><div class="col-md-12"> &nbsp; </div></div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
