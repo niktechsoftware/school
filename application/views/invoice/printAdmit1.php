@@ -165,14 +165,14 @@
 					<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" style="width:65%;" />
 				</td>
 				<td style="text-align:center; border:none; width:60%;">
-			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#d80606;"><b><?php echo $info->school_name; ?></b></h1>
+			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#d80606;">
+			    <b> <span class="schoolTitle"><?php if(($rowc->class_id==98)||($rowc->class_id==99) || ($rowc->class_id==116)||($rowc->class_id== 100) ||($rowc->class_id== 101) ||($rowc->class_id== 102) ||($rowc->class_id== 103) ||($rowc->class_id== 104) ){ echo "THE MANNER SCHOOL";}else{echo $info->school_name;}?></span></b>
+			    </h1>
                 <h2 style="font-variant:small-caps;color:#d80606;">
             		<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
-            		<?php //echo $info->state." - ".$info->pin.", ";
-            	        echo "Contact No. : " ;
-            		if(strlen($info->mobile_no > 0 )){echo $info->phone_no.", ".$info->mobile_no ;} ?>
+            		<?php echo "Mobile No. : +91-".$info->mobile_no.', '.$info->other_mobile_no; ?>
 
                 </h2>
                 	<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
@@ -280,7 +280,7 @@
              //print_r($exam_day->exam_id);print_r($class_id);exit;
              ?>
         <br>
-			<table id="items" align="center"  style="width:100%; margin-top:0px;color:#d80606;">
+			<table id="items" align="center"  style="width:100%; margin-top:1px;color:#d80606;">
 					<thead>
 						<th style="text-transform: uppercase;">Date</th>
                         <?php 
@@ -299,7 +299,11 @@
                         foreach($shift as $s):
                         ?>
                         <tr>
-                        <td style="text-align: center;text-transform: uppercase;"><?php if($school_code==5){ ?><?php }else{ ?><?php echo $s->shift;?><?php } ?></td>
+                        <td style="text-align: center;text-transform: uppercase;"><?php if($school_code==5){ ?><?php }else{ ?>
+                        <?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?><?php }else{echo $s->shift; } ?>
+                        <?php //echo $s->shift;?>
+                        
+                        <?php } ?></td>
                         <?php 
                          foreach($date as $ed):
 						$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -351,7 +355,20 @@
 		3) Unfair means or papers are strictly prohibited.</br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		4) Issuing of duplicate Admit card will charge 10 rs.
-		<?php }else{ ?><!--for scholar end-->
+		<?php }else if($school_code==8){ ?>
+		<!--for scholar end-->
+		<!--for dds start-->
+		<?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?>&nbsp;Note: 1)Exam timing is - 09:00 A.M. to 12:00 P.M.<br><?php }else{ ?>
+		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
+		<?php  } ?>
+		
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is latest by 7:50 A.M. and departure time is 12:30 P.M.
+		<?php /*foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
+		$endt =strtotime("-00 minutes",strtotime($s->to1));
+		echo $s->shift."-".date('H:i A', $startt)." "; endforeach;*/ ?> </br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
+		<?php }else{ ?><!--for dds end-->
 		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
 		$endt =strtotime("-00 minutes",strtotime($s->to1));
@@ -364,7 +381,7 @@
 		
 		<div>
 		    <br/>
-		<table id="items" align="center"  style="width:100%; margin-top:0px; alignment-adjust:central;">
+		<table id="items" align="center"  style="width:100%; margin-top:1px; alignment-adjust:central;">
 		<tr>
 		<td style="width: 50%;">(Signature)<br>Class Teacher</td>
 		<td>(Signature)<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50" style="float:right;"  />

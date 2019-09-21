@@ -249,7 +249,7 @@
             <br>
             <div>
                 <table
-                    style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
+                    style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
                     <tr>
                         <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
 						<th colspan="5" rowspan="2">TERM 1 (100 MARKS) </th>
@@ -465,8 +465,8 @@ if($subjectname->num_rows()>0){
                             Percentage: <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}
                             ?>% 
                         </td>
-                        <td>
-                             Grade: <?php if($dhtm>0){echo $gradecal =calculateGrade($per,$classid);}?>
+                        <td >
+                             Grade: <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade($per,$classid);}?></label>
                         </td>
                         <td>
                             Rank
@@ -493,7 +493,7 @@ if($subjectname->num_rows()>0){
 
                         <!-- Dynamic -->
                         <tr>
-                            <td style="text-transform: uppercase;">Work Education</td>
+                            <td >Work Education</td>
                             <td>A</td>
                             
                         </tr>
