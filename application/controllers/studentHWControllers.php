@@ -266,7 +266,6 @@ class studentHWControllers extends CI_Controller{
 					"status"=>1,
 					"obtain_marks"=>10	
 			);
-			
 		$this->load->library('upload');
 	//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/submithomeWork');
 	$asset_name = $this->db->get('upload_asset')->row()->asset_name;
@@ -280,9 +279,6 @@ class studentHWControllers extends CI_Controller{
 			$this->upload->do_upload('filehomeWork');
 		}
 		else{echo "Somthing going wrong. Please Contact Site administrator";}
-			
-			
-			
 			$this->load->model("homeWorkModel");
 			$var=$this->homeWorkModel->submitHomeWork($data);
 			if($var)

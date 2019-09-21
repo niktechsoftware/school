@@ -126,10 +126,10 @@
 					 jQuery(document).ready(function() {
 					$("#leavedelete<?php echo $count ;?>").click(function(){
                       var id =$('#empid<?php echo $count ;?>').val();
-                     alert(id);
+                    // alert(id);
                       $.post("<?php echo site_url('index.php/singleTeacherControllers/deleleaveemp') ?>",{id : id},function(data){
                      alert("Leave Deleted Successfully!!!!! ");
-                     alert(data);
+                    // alert(data);
                      window.location.reload();
                       // $("#leavedelete").html();
                           });

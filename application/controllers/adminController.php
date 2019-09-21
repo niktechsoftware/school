@@ -61,7 +61,7 @@ class AdminController extends CI_Controller{
           $stu=$this->db->get('student_info')->row();
           	$this->db->where("school_code",$this->session->userdata('school_code'));
 		$sende_Detail1=$this->db->get("sms_setting")->row();
-          	$msg = "Dear Staff ".$stu->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Approved.";
+          	$msg = "Dear Student ".$stu->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Approved.";
 		//echo $msg;exit;
 			sms($stu->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 			redirect("index.php/login/index");
@@ -81,7 +81,7 @@ class AdminController extends CI_Controller{
 		   $up=$this->db->delete('stu_leave');
           	$this->db->where("school_code",$this->session->userdata('school_code'));
 		$sende_Detail1=$this->db->get("sms_setting")->row();
-          	$msg = "Dear Staff ".$stu->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Cancelled.";
+          	$msg = "Dear Student ".$stu->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Cancelled.";
 		//echo $msg;exit;
 			sms($stu->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 			redirect("index.php/login/index");
@@ -89,15 +89,15 @@ class AdminController extends CI_Controller{
 	function appleaveemp()
 	{
 
-          $id=$this->input->post('id');
+          $id=$this->uri->segment(3);
           $leave= array(
           	'status' =>1, 
           );
-
+// print_r($id);exit();
           $this->db->where('id',$id);
          $this->db->where('school_code',$this->session->userdata('school_code'));
           $up=$this->db->update('emp_leave',$leave);
-          
+         
           $this->db->where('id',$id);
          $this->db->where('school_code',$this->session->userdata('school_code'));
           $leave=$this->db->get('emp_leave')->row();
@@ -112,12 +112,12 @@ class AdminController extends CI_Controller{
           	$msg = "Dear ".$emp->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Approved.";
 		echo $msg;
 			sms($emp->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-
+redirect("index.php/login/index");
 	}
 	function deleleaveemp()
 	{
 
-           $id=$this->input->post('id');
+           $id=$this->uri->segment(3);
     //print_r($id);exit;
     
          $this->db->where('id',$id);
@@ -140,7 +140,7 @@ class AdminController extends CI_Controller{
           	$msg = "Dear ".$emp->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Cancelled.";
 		//echo $msg;exit;
 			sms($emp->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-
+redirect("index.php/login/index");
 	}
 	
 	function updateAdminProfile(){

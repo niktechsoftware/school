@@ -468,7 +468,6 @@ function defineExam1(){
 		 $classid = $this->input->post("classid");
 		 $subjectid =$this->input->post("subjectid");
 		 $examid =$this->input->post("examid");
-		
 		$data['t_id'] = $this->input->post("teacherid");
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");

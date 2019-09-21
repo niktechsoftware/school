@@ -80,10 +80,14 @@
                           $this->db->where("billno",$row->bill_no);
                           $this->db->where("valid_id",$row->valid_id);
                           $singleRow= $this->db->get("sale_balance")->row();
+                         // $this->db->where('bill_no',$singleRow->billno);
+                         // $salEMP= $this->db->get('sale_info')->row();
+
                        ?>
                        <tr>
                             	<td colspan="3"><strong>Total</strong></td>
                                 <td colspan="5">
+                               
                                 	<input name="old_total" id="old_total"  class="text-uppercase" value="<?php echo  $singleRow->total;?>" type="hidden"/>
                                 	<input id="total" name="tt"   class="text-uppercase" style="width:180px;" value="<?php echo $singleRow->total;?>" type="text" required />
                                 </td>
@@ -118,7 +122,9 @@
 $('select#item_no<?php echo $i; ?>').change(function(){
 	var name = $('#item_no<?php echo $i; ?>').val();					
 	$.post("<?php echo site_url("index.php/enterStockController/getTData") ?>", {name : name}, function(data){		
-		var d = jQuery.parseJSON(data);				
+		var d = jQuery.parseJSON(data);	
+      //  $('#empID<?php echo $i; ?>').val(d.empID);
+        
 		 $('#item_name<?php echo $i; ?>').val(d.itemName);
 		 $('#item_cat<?php echo $i; ?>').val(d.itemCat);
          $('#item_quantity1<?php echo $i;?>').val(d.qunatity);

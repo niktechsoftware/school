@@ -211,7 +211,7 @@ class TeacherModel extends CI_Model{
 	}
 	
 	function checkStudID($stud){
-		//$this->db->where("school_code",$this->session->userdata("school_code"));
+	//	$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("username",$stud);
 	$req=$this->db->get("student_info");
 	return $req;
