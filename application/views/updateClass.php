@@ -125,12 +125,51 @@
 									<button class="btn btn-purple btn-sm" id="editClass<?php echo $i; ?>">
 			                    		<i class="fa fa-edit"></i> &nbsp;Update
 			                    	</button>
-			                        <button class="btn btn-red btn-sm" id="deleteClass<?php echo $i; ?>" onClick="Refreshs()">
+			                        <button class="btn btn-red btn-sm" id="deleteClass<?php echo $i; ?>">
 			                    		<i class="fa fa-trash-o"></i> &nbsp;Delete
 			                    	</button>
 								</td>
 
 							</tr>
+							<script>
+							$("#editClass<?php echo $i; ?>").click(function(){
+								var id = $("#id<?php echo $i; ?>").val();
+								var clName = $("#clName<?php echo $i; ?>").val();
+								var stream = $("#stream<?php echo $i; ?>").val();
+								var section = $("#section<?php echo $i; ?>").val();
+								var teacherId = $("#teacherId<?php echo $i; ?>").val();
+								//alert(id +" , "+ clName +" , "+ stream +" , "+ section +" , "+ teacherId);
+								$.post("<?php echo site_url('index.php/configureClassControllers/updateClass')?>",
+										{
+											id : id,
+											clName : clName,
+											stream : stream,
+											section : section,
+											teacherId : teacherId
+										},
+										function(data){
+											$("#success").html(data);
+											
+										}
+								);
+							});
+
+							$("#deleteClass<?php echo $i; ?>").click(function(){
+								var id = $("#id<?php echo $i; ?>").val();
+								var clName = $("#clName<?php echo $i; ?>").val();
+								var section = $("#section<?php echo $i; ?>").val();
+								//alert(id +" , "+ clName +" , "+ section);
+								$.post("<?php echo site_url('index.php/configureClassControllers/deleteClass')?>",
+										{
+											rowId : id,
+											//clName : clName,
+											//section : section
+										},
+										function(data){
+											$("#success").html(data);
+										});
+							});
+							</script>
 							<?php $i++; endforeach; endif;?>
 						</tbody>
 					</table>

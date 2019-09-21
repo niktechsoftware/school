@@ -173,7 +173,7 @@
             <div class="col-sm-6">
               
                 <div class="col-sm-5"><label>Upload</label></div>
-                <div class="col-sm-7"><input type="file" name="filehomeWork" class="form-control"></div>
+                <div class="col-sm-7"><input type="file" name="filehomeWork" class="form-control" required="required"></div>
               </div>
          
             <div class="col-sm-6">

@@ -791,11 +791,11 @@ function periodTimeSlot(){
 
 	function tc(){
 
-		$data['pageTitle'] = 'Time Schedule';
-		$data['smallTitle'] = 'Time Schedule';
-		$data['mainPage'] = 'Period Time Scheduling';
-		$data['subPage'] = 'Time Scheduling';
-		$data['title'] = 'Period Time Scheduling';
+		$data['pageTitle'] = 'Transfer Certificate';
+		$data['smallTitle'] = 'Transfer Certificate';
+		$data['mainPage'] = 'Transfer Certificate';
+		$data['subPage'] = 'Transfer Certificate';
+		$data['title'] = 'Transfer Certificate';
 		$data['headerCss'] = 'headerCss/tcCss';
 		$data['footerJs'] = 'footerJs/tcJs';
 		$data['mainContent'] = 'tc';

@@ -58,54 +58,7 @@
     $('#class').DataTable();
 } );
     jQuery(document).ready(function() {
-    <?php 
-    $this->db->where("school_code",$this->session->userdata("school_code"));
-    	$i = $this->db->count_all("class_info");
-    ?>
-		<?php for($j = 1; $j <= $i; $j++):?>
-			$("#editClass<?php echo $j; ?>").click(function(){
-				var id = $("#id<?php echo $j; ?>").val();
-				var clName = $("#clName<?php echo $j; ?>").val();
-				var stream = $("#stream<?php echo $j; ?>").val();
-				var section = $("#section<?php echo $j; ?>").val();
-				var teacherId = $("#teacherId<?php echo $j; ?>").val();
-				//alert(id +" , "+ clName +" , "+ stream +" , "+ section +" , "+ teacherId);
-				$.post("<?php echo site_url('index.php/configureClassControllers/updateClass')?>",
-						{
-							id : id,
-							clName : clName,
-							stream : stream,
-							section : section,
-							teacherId : teacherId
-						},
-						function(data){
-							$("#success").html(data);
-							window.location.reload();
-						}
-				);
-			});
-
-			$("#deleteClass<?php echo $j; ?>").click(function(){
-				var id = $("#id<?php echo $j; ?>").val();
-				var clName = $("#clName<?php echo $j; ?>").val();
-				var section = $("#section<?php echo $j; ?>").val();
-				//alert(id +" , "+ clName +" , "+ section);
-				$.post("<?php echo site_url('index.php/configureClassControllers/deleteClass')?>",
-						{
-							rowId : id,
-							//clName : clName,
-							//section : section
-						},
-						function(data){
-							$("#success").html(data);
-						});
-			});
-
-
-     
-
-		<?php endfor; ?>
-    
+   
         Main.init();
         SVExamples.init();
         

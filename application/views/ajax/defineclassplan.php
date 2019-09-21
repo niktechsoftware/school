@@ -51,7 +51,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					$period=$this->db->get("period");
 					foreach($period->result() as $row):
 				?>
-				<th><?php echo $row->period;?></th>
+				<th><?php if($row->period == ''){ echo "LUNCH"; } else {echo $row->period;}?></th>
 				<?php 
 					endforeach;
 				?>
@@ -108,7 +108,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					{
 					   
 						$period1=$row->id;?><input type="hidden" name="period<?php echo $j;?>" value="<?php echo $period1?>"/><?php
-							//$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$username."' AND period = '$period1' And day LIKE '%$weekday%'");
+						//$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$username."' AND period = '$period1' And day LIKE '%$weekday%'");
 							foreach($guru->result() as $row1):
 
 								$r=	$row1->class_sec;
@@ -137,7 +137,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					<?php 
 						$period1=$row->id;?><input type="hidden" name="period<?php echo $j;?>" value="<?php echo $period1?>"/><?php
 						$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$id."' AND period_id = '$period1' ");
-						foreach($result1->result() as $row1):
+							foreach($result1->result() as $row1):
 						  $sub=$row1->subject_id;
 						  $this->db->where('id',$sub);
 						  $subject=$this->db->get('subject');

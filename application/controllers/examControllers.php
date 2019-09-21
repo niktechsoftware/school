@@ -468,7 +468,6 @@ function defineExam1(){
 		 $classid = $this->input->post("classid");
 		 $subjectid =$this->input->post("subjectid");
 		 $examid =$this->input->post("examid");
-		
 		$data['t_id'] = $this->input->post("teacherid");
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");
@@ -766,10 +765,10 @@ function defineExam1(){
 			<thead>
 			 <?php $i=1; if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
              <tr class="<?php echo $rowcss;?>">
-					<th class="column-left"> Class & Shift</th>
+					<th class="column-left"> Date Of Exam/<br>Class & Shift</th>
 				<?php foreach ($dad->result() as $col):
 				//print_r($dad->result());?>
-				<th ><?php echo "Date Of Exam"."[".$col->date1."]"?></th>
+				<th ><?php echo $col->date1;?></th>
 			<?php endforeach;?>
 		</thead>
 		<tbody><?php $i=1;foreach ($getClass as $rowClass):
@@ -778,7 +777,7 @@ function defineExam1(){
 		    foreach ($shiftid->result() as $rowShift):
 		
 			?>
-		 <?php if($i%3==0){$rowcss="warning";}else{$rowcss ="danger";}?>
+		 <?php if($i%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
             <tr class="<?php echo $rowcss;?>">
 			<td class="column-left"><?php
 			echo $rowClass->class_name;?>-<?php
@@ -800,10 +799,8 @@ function defineExam1(){
                       foreach ($subject1 as  $value) {   
                            ?>
 
-				 <input type="hidden" name = "id<?php echo $i.$j;?>" value = "<?php echo $exam; ?>" id="id<?php $i.$j;?>"/>
 				
-				<input type="text" name = "<?php echo $value->id; ?>" style="width: 110px;" value = "<?php echo $value->subject; ?>" id="value<?php $i.$j?>"/>
-				
+				<?php echo $value->subject; ?>
 			
 					
 				<?php $m = $j++;

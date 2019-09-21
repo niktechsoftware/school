@@ -157,7 +157,16 @@
 					
 				});
 		
-		
+		///
+		$("#thead").change(function(){
+			var thead = $("#thead").val();
+			//alert(teacherid);
+			$.post("<?php echo site_url("index.php/singleTeacherControllers/getperiod") ?>",{thead : thead}, function(data){
+				$("#time_table").html(data);
+				});
+			});
+			
+		////
 		Main.init();
 		SVExamples.init();
 		TableExport.init();

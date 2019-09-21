@@ -61,9 +61,9 @@ function getItemName1($data){
 		$req = $this->db->get("enter_stock");
 		return $req;
 }
-function updateStock1($stockData){
+function updateStock1($stockData,$itemno){
 	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("item_no",$stockData['item_no']);
+	$this->db->where("item_no",$itemno);
 	$query = $this->db->update("enter_stock", $stockData);
 	return true;
 }
