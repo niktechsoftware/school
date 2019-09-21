@@ -30,21 +30,7 @@ class Configureclassmodel extends CI_Model{
 		$query = $this->db->get("fee_cat");
 		return $query;
 	}
-//----------------formate---------------------//
-	public function formate_rep($rep){
-		/*$db = array(
-			"cat_name" => $rep,
-				"school_code"=>$this->session->userdata("school_code"),
-		);
-		if(strlen($rep) > 1){
-			
-			$insert=$this->db->insert("fee_cat",$db);
-			
-		}
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$query = $this->db->get("fee_cat");
-		return $query;*/
-	}
+
 	
 	function updatefeecat($data,$rowId){
 //$this->db->where("school_code",$this->session->userdata("school_code"));

@@ -65,8 +65,8 @@
 						</div>
 					</div>
 					<div class="col-sm-8">
-						<div id="report_1"><img alt="" src="<?php echo base_url(); ?>assets/images/report_1.png" height="500px" width="400px" ></div>
-						<div id="report_2"><img alt="" src="<?php echo base_url(); ?>assets/images/report_2.png" height="500px" width="650px" ></div>
+						<div id="report_1"><img alt="" src="<?php echo base_url(); ?>assets/images/report_1.png" height="500px" width="650px" ></div>
+						<div id="report_2"><img alt="" src="<?php echo base_url(); ?>assets/images/report_2.png" height="500px" width="400px" ></div>
 						<div id="report_3"><img alt="" src="<?php echo base_url(); ?>assets/images/report_3.png" height="500px" width="400px" ></div>
 					</div>
                   </div>

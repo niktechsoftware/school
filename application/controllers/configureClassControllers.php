@@ -81,10 +81,23 @@ endforeach;
 	//-------------------------------------//
 	public function rep_formate_save(){
 		$formate_rep=$this->input->post('formate_rep');
-		$this->load->model('configureClassModel');
-		$rep = $this->configureClassModel->formate_rep($rep);
-		print_r($rep);exit();
-		/*$data['streamList'] = $streamList;
+		$db = array(
+				"format" => $formate_rep,
+				"classwisereport_format"=>$formate_rep,
+				"school_code"=>$this->session->userdata("school_code"),
+				"created_date"=>date('Y-m-d')
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("result_format");
+		if($query->num_rows() >0){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->update("result_format",$db);
+		}else{
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->insert("result_format",$db);
+		}
+		
+		/*
 		$this->load->view("ajax/addfeecat",$data);*/
 	}
 	public function id_formate_save(){
