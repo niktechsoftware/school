@@ -19,7 +19,7 @@
                     <i class="green fa fa-home"></i> ID Card Formate
                   </a>
                 </li>
-                <li>
+                <!--<li>
                   <a href="#myTab_example3" data-toggle="tab">
                     <i class="green fa fa-home"></i> TC Formate
                   </a>
@@ -28,7 +28,7 @@
                   <a href="#myTab_example4" data-toggle="tab">
                     <i class="green fa fa-home"></i> CC Formate
                   </a>
-                </li>
+                </li>-->
               </ul>
               <div class="tab-content">
 			  <!----1st tab end--->
@@ -78,16 +78,12 @@
                     <button data-dismiss="alert" class="close">
                       ×
                     </button>
-                    <h3 class="media-heading text-center">Welcome To Add or Update Section Area </h3>
+                    <h3 class="media-heading text-center">Welcome to ID Card Formate Section</h3>
                     <a class="alert-link" href="#"></a>
-                    This is important to create Section after creating Stream because Subject and Classes requires a
-                    valid section.You should not change Section name after creating and declare the Subjects and
-                    Classes.If you change it may affect your Exam and Time Table Section. <br>If you
-                    want to <strong>Add</strong> a new Section to your School, Please type in the <strong> Section
-                      Name</strong> into the box given below the <strong>Section column</strong> and press 
-                    <strong>Add Section</strong> Button.To <strong>Edit</strong> existing Section Edit it's Name and
-                    Press <strong>Edit</strong> Button next to the row ,
-                    And to <strong>Delete</strong> a Section simply Press <strong>Delete</strong> Button.
+                    please select a formate for view of student ID card. after select a formate you can view
+				   the preview of that selected formate.if you like that formate then click save button which is
+				   display in bottom side of that formate. if you want to see another formate you can select another 
+				   formate and then click save button to configure that formate.
                   </div>
 
                   <div class="row">
@@ -126,14 +122,11 @@
                     <button data-dismiss="alert" class="close">
                       
                     </button>
-                    <h3 class="media-heading text-center">Welcome to Add Class Section</h3>
-                    <p class="media-timestamp">Please insure that you have created Stream and Section for Class. This is
-                      Class creation area. You have to provide Class Name (Like 1st,8th,12th etc..) and select Class
-                      stream
-                      (Like : Science, Arts, Commerce etc) . If Stream is not applicable then select (None of these).
-                      After this
-                      select Section if applicable, otherwise none,and after that click Save Button and Save your Class.</p>
-                      
+                    <h3 class="media-heading text-center">Welcome To Transfer Certificate Section</h3>
+                    please select a formate for view of student Transfer Certificate. after select a formate you can view
+				   the preview of that selected formate.if you like that formate then click save button which is
+				   display in bottom side of that formate. if you want to see another formate you can select another 
+				   formate and then click save button to configure that formate.
                   </div>
                   <div class="row">
                     <div class="col-sm-4">
@@ -162,14 +155,11 @@
                     <button data-dismiss="alert" class="close">
                       
                     </button>
-                    <h3 class="media-heading text-center">Welcome to Add Class Section</h3>
-                    <p class="media-timestamp">Please insure that you have created Stream and Section for Class. This is
-                      Class creation area. You have to provide Class Name (Like 1st,8th,12th etc..) and select Class
-                      stream
-                      (Like : Science, Arts, Commerce etc) . If Stream is not applicable then select (None of these).
-                      After this
-                      select Section if applicable, otherwise none,and after that click Save Button and Save your Class.</p>
-                      
+                    <h3 class="media-heading text-center">Welcome To Character Certificate Section</h3>
+                    please select a formate for view of student Character Certificate. after select a formate you can view
+				   the preview of that selected formate.if you like that formate then click save button which is
+				   display in bottom side of that formate. if you want to see another formate you can select another 
+				   formate and then click save button to configure that formate.
                   </div>
                   <div class="row">
                     <div class="col-sm-4">

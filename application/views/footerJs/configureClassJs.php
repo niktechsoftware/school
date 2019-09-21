@@ -78,7 +78,7 @@
 		$("#rep_formate_save").click(function(){
         	var formate_rep = $('#formate_rep').val();
 			$.post("<?php echo site_url('index.php/configureClassControllers/rep_formate_save') ?>", {formate_rep : formate_rep}, function(data){
-               alert("Report Formate successfully Cunfigured");
+               alert("Report Formate successfully Configured");
     		});
         });
 		
@@ -110,7 +110,7 @@
 			$("#id_formate_save").click(function(){
         	var formate_id = $('#formate_id').val();
 			$.post("<?php echo site_url('index.php/configureClassControllers/id_formate_save') ?>", {formate_id : formate_id}, function(data){
-               alert("ID Formate successfully Cunfigured");
+               alert("ID Formate successfully Configured");
     		});
         });
 		
@@ -138,7 +138,7 @@
 			$("#tc_formate_save").click(function(){
         	var formate_tc = $('#formate_tc').val();
 			$.post("<?php echo site_url('index.php/configureClassControllers/tc_formate_save') ?>", {formate_tc : formate_tc}, function(data){
-               alert("TC Formate successfully Cunfigured");
+               alert("TC Formate successfully Configured");
     		});
         });
 		
@@ -165,7 +165,7 @@
 			$("#cc_formate_save").click(function(){
         	var formate_cc = $('#formate_cc').val();
 			$.post("<?php echo site_url('index.php/configureClassControllers/cc_formate_save') ?>", {formate_cc : formate_cc}, function(data){
-               alert("CC Formate successfully Cunfigured");
+               alert("CC Formate successfully Configured");
     		});
         });
 		

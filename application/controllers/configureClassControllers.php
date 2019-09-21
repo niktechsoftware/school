@@ -97,22 +97,62 @@ endforeach;
 		$query = $this->db->insert("result_format",$db);
 		}
 		
-		/*
-		$this->load->view("ajax/addfeecat",$data);*/
+		//redirect("login/configuredoc");
 	}
 	public function id_formate_save(){
 		$formate_id=$this->input->post('formate_id');
-		//print_r($formate_rep);exit();
+		$db = array(
+				"classwiseicard_format" => $formate_id,
+				"studenticard_format"=>$formate_id,
+				"school_code"=>$this->session->userdata("school_code"),
+				"created_date"=>date('Y-m-d')
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("result_format");
+		if($query->num_rows() >0){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->update("result_format",$db);
+		}else{
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->insert("result_format",$db);
+		}
 		
 	}
 	public function tc_formate_save(){
 		$formate_tc=$this->input->post('formate_tc');
-		//print_r($formate_rep);exit();
+		$db = array(
+				"tc" => $formate_tc,
+				"school_code"=>$this->session->userdata("school_code"),
+				"created_date"=>date('Y-m-d')
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("result_format");
+		if($query->num_rows() >0){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->update("result_format",$db);
+		}else{
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->insert("result_format",$db);
+		}
 		
 	}
 	public function cc_formate_save(){
 		$formate_cc=$this->input->post('formate_cc');
-		//print_r($formate_rep);exit();
+		$formate_tc=$this->input->post('formate_tc');
+		$db = array(
+				"cc" => $formate_cc,
+				"school_code"=>$this->session->userdata("school_code"),
+				"created_date"=>date('Y-m-d')
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("result_format");
+		if($query->num_rows() >0){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->update("result_format",$db);
+		}else{
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->insert("result_format",$db);
+		}
 		
 	}
 //-------------------------------------//
