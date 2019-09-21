@@ -651,7 +651,7 @@
 		</div>
 	</div>
 </div>
-					</div>	
+					</div>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->	
 				<div id="certificates" class="tab-pane fade <?php if($this->uri->segment(4) == 'certificate'){ echo "in active";}?>">
 					<div class="panel-body">
@@ -810,7 +810,6 @@
 					<div class="panel-body">
 						<h1>Salary Report</h1>
 					</div>
-					
 					<div style="width:100%; height:400px; overflow-x: scroll; overflow-y: scroll;">
 								<div class="table-responsive">
 								<?php  	
@@ -839,7 +838,6 @@
 												<th class="center">Gross</th>
 												<th class="center">Till Date</th>
 												<th class="center">Month No</th>
-												
 											</tr>
 										</thead>
 									<tbody >
@@ -862,17 +860,15 @@
 											<td><?php echo $v->encentieve;?></td>
 											<td><?php echo $v->bonus;?></td>
 											<td><?php echo $v->gross_s;?></td>
-											
 											<td><?php echo $v->till_date;?></td>
 											<td><?php echo $v->monthNo;?></td>
+										</tr>
 											<?php $i++;
 											endforeach; ?>
 										</tbody>
 									</table>
-										
 											<div class="col-sm-2">
-													<input type="hidden" value="<?php echo $i; ?>" name="rows" />
-															
+											<input type="hidden" value="<?php echo $i; ?>" name="rows" />
 											</div>
 									<?php else:?>
 										<div class="alert alert-block alert-danger fade in">
@@ -884,21 +880,21 @@
 												You have not configured the salary of this employee. Or there is no salary report avaliable in the database. If you want to give salary to this employee please click on salary button given bellow... Thank you
 											</p>
 											<br/>
-											<p>
-												<a href="<?php echo base_url()?>login/employeeSalary" class="btn btn-red">
-													Salary
-												</a>
+											<p><a href="<?php echo base_url()?>login/employeeSalary" class="btn btn-red">Salary</a>
 											</p>
 										</div>
+										
 									<?php endif;?>
 										</div>
-										</div>
 									</div>
-					<div id="print_report" class="tab-pane fade <?php if(!$this->uri->segment(4) == 'Print Profile'){ echo "in active";}?>">
+								</div> <!-- </div> -->
+										<div id="print_report" class="tab-pane fade <?php if(!$this->uri->segment(4) == 'Print Profile'){ echo "in active";}?>">
 					<div class="panel-body">
-						<IFRAME src="<?php echo base_url(); ?>index.php/invoiceController/printEmpProfile/<?php echo $id; ?>" width="100%" height="550px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
+						<IFRAME src="<?php echo base_url(); ?>index.php/invoiceController/printEmpProfile/<?php echo $id; ?>" width="100%" height="550px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></IFRAME>
 					</div>
 				</div>
+						</div>			
+					
 			</div>
 				</div>
 			</div>

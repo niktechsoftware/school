@@ -28,7 +28,7 @@
 											?>
 											<th>
 												<?php 
-													echo $row->to." - ".$row->from;
+													echo $row->from." - ".$row->to;
 												?>
 											</th>
 											<?php 
@@ -39,11 +39,17 @@
 									<tbody>									
 										<tr>
 											<td>Monday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."'");?>
+											<?php $i = 1;
+											$this->db->where('days_id',1);
+											$tdays= $this->db->get('time_table_days')->result();
+											//print_r($tdays);exit();
+											foreach($tdays as $tt):?>
+											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."' AND id='".$tt->time_table_id."'");?>
                                             <?php
                                             
-                                             foreach($timetable->result() as $row):
+											 foreach($timetable->result() as $row):
+												
+												
                                                 $this->db->where('id',$row->class_id);
                                                 $class=$this->db->get('class_info')->row();
                                                 $this->db->where('id',$row->subject_id);
@@ -59,12 +65,17 @@
 												<?php else:?>
 													<td><?php if($class->class_name){echo $class->class_name; } else {echo "N/A";}?><br><?php if($subject->subject) {echo $subject->subject;}else{ echo "N/A";}?></td>
 												<?php endif;?>
-											<?php $i++; endforeach;?>
+											<?php $i++; endforeach;
+											endforeach; ?>
 										</tr>
 										<tr>
 											<td>Tuesday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."'");?>
+											<?php $i = 1;
+											$this->db->where('days_id',2);
+											$tdays= $this->db->get('time_table_days')->result();
+											foreach($tdays as $tt):
+											?>
+											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."' AND id='".$tt->time_table_id."'");?>
                                             <?php foreach($timetable->result() as $row):
                                                  $this->db->where('id',$row->class_id);
                                                  $class=$this->db->get('class_info')->row();
@@ -76,12 +87,17 @@
 												<?php else:?>
 													<td><?php if($class->class_name){echo $class->class_name; } else {echo "N/A";}?><br><?php if($subject->subject) {echo $subject->subject;}else{ echo "N/A";}?></td>
 												<?php endif;?>
-											<?php $i++; endforeach;?>
+											<?php $i++; endforeach;
+											endforeach; ?>
 										</tr>
 										<tr>
 											<td>Wednesday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."' ");?>
+											<?php $i = 1;
+											$this->db->where('days_id',3);
+											$tdays= $this->db->get('time_table_days')->result();
+											//print_r($tdays);exit();
+											foreach($tdays as $tt):?>
+											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."' AND id='".$tt->time_table_id."' ");?>
 											<?php foreach($timetable->result() as $row):?>
 												<?php if($lunch == $i):?>
 													<td><?php echo "Lunch";?></td>
@@ -89,12 +105,17 @@
 												<?php else:?>
 													<td><?php if($class->class_name){echo $class->class_name; } else {echo "N/A";}?><br><?php if($subject->subject) {echo $subject->subject;}else{ echo "N/A";}?></td>
 												<?php endif;?>
-											<?php $i++; endforeach;?>
+											<?php $i++; endforeach;
+											endforeach; ?>
 										</tr>
 										<tr>
 											<td>Thursday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."'");?>
+											<?php $i = 1;
+											$this->db->where('days_id',4);
+											$tdays= $this->db->get('time_table_days')->result();
+											//print_r($tdays);exit();
+											foreach($tdays as $tt):?>
+											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."' AND id='".$tt->time_table_id."'");?>
 											<?php foreach($timetable->result() as $row):?>
 												<?php if($lunch == $i):?>
 													<td><?php echo "Lunch";?></td>
@@ -102,12 +123,17 @@
 												<?php else:?>
 													<td><?php if($class->class_name){echo $class->class_name; } else {echo "N/A";}?><br><?php if($subject->subject) {echo $subject->subject;}else{ echo "N/A";}?></td>
 												<?php endif;?>
-											<?php $i++; endforeach;?>
+											<?php $i++; endforeach;
+											endforeach; ?>
 										</tr>
 										<tr>
 											<td>Friday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."'");?>
+											<?php $i = 1;
+											$this->db->where('days_id',5);
+											$tdays= $this->db->get('time_table_days')->result();
+											//print_r($tdays);exit();
+											foreach($tdays as $tt):?>
+											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."' AND id='".$tt->time_table_id."'");?>
 											<?php foreach($timetable->result() as $row):?>
 												<?php if($lunch == $i):?>
 													<td><?php echo "Lunch";?></td>
@@ -115,12 +141,17 @@
 												<?php else:?>
 													<td><?php if($class->class_name){echo $class->class_name; } else {echo "N/A";}?><br><?php if($subject->subject) {echo $subject->subject;}else{ echo "N/A";}?></td>
 												<?php endif;?>
-											<?php $i++; endforeach;?>
+											<?php $i++; endforeach;
+											endforeach; ?>
 										</tr>
 										<tr>
 											<td>Saturday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."'");?>
+											<?php $i = 1;
+											$this->db->where('days_id',6);
+											$tdays= $this->db->get('time_table_days')->result();
+											//print_r($tdays);exit();
+											foreach($tdays as $tt):?>
+											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  teacher = '".$this->session->userdata('id')."' AND id='".$tt->time_table_id."'");?>
 											<?php foreach($timetable->result() as $row):?>
 												<?php if($lunch == $i):?>
 													<td><?php echo "Lunch";?></td>
@@ -128,7 +159,8 @@
 												<?php else:?>
 													<td><?php if($class->class_name){echo $class->class_name; } else {echo "N/A";}?><br><?php if($subject->subject) {echo $subject->subject;}else{ echo "N/A";}?></td>
 												<?php endif;?>
-											<?php $i++; endforeach;?>
+											<?php $i++; endforeach;
+											endforeach;?>
 										</tr>
 									</tbody>
 								</table>

@@ -53,10 +53,10 @@
 			<input type="date" name ="edate" class="form-control" required="required"/>
 		</div>
 	</div>	
-	<div class="row">
-	<div class="col-md-12 space15">
+	<div class="row space15" style="padding-top:10px;">
+	<div class="col-md-12 ">
 	<div class="col-md-6">
-	<div class="col-md-6">Teacher ID</div>
+	<div class="col-md-6"><b>Teacher ID</b></div>
 		<div class="col-sm-6">
 			<select name="teacherid"  class="form-control" required="required">
 					<option value="01">-Select-</option>
@@ -72,6 +72,7 @@
 		</div>
 		</div>
 		<div class="col-sm-6">
+		<div class="col-md-6"><b>Select Time Table</b></div>
 		<div class="col-md-6">
 		<select class="form-control" id="time_thead_id" name="time_thead_id">
 			<option value="">-Select Time Table-</option>

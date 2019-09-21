@@ -51,7 +51,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					$period=$this->db->get("period");
 					foreach($period->result() as $row):
 				?>
-				<th><?php echo $row->period;?></th>
+				<th><?php if($row->period == ''){ echo "LUNCH"; } else {echo $row->period;}?></th>
 				<?php 
 					endforeach;
 				?>

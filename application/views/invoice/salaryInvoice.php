@@ -67,6 +67,14 @@
             return res;
         }
     </script>
+    <style>
+    .btnn_primary{
+        color: #fff;
+    background-color: #244969;
+    border-color: #10212f;
+}
+    
+    </style>
 </head>
 
 <body>
@@ -281,7 +289,7 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
 	    -->
 	</div>
     <center>This is Computer generated Invoice</center>
-    <center><button id="non-printable" type="button" class="btn btn-primary"  onclick="window.print();">Print Invoice</button></center>
+    <center><button id="non-printable" type="button" class="btn btnn_primary"  onclick="window.print();">Print Invoice</button></center>
 	
 </body>
 </html>

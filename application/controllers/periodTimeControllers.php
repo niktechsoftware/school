@@ -1121,7 +1121,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 				'period'=>$this->input->post("period$i"),
 				'class_work'=>$this->input->post("lp$i"),
 				'teacher_id'=>$userid,
-				//'school_code'=>$this->session->userdata("school_code")
+				'school_code'=>$this->session->userdata("school_code")
 				
 		);
 		//$guru = $this->db->query("SELECT * FROM lesson_plan WHERE subject='".$subject."' AND class_sec ='".$class_sec."' AND teacher_id = '".$userid."' AND date1='".$date1."' AND dayname = '".$dayname."'");

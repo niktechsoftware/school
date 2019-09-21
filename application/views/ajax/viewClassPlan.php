@@ -48,14 +48,15 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					
 					$this->db->where('username',$username);
 					$teacherid=$this->db->get('employee_info')->row();
-					$id=$teacherid->id;
-					
+					$id=$teacherid->username;
+				
 				}else{
 					$username= $this->session->userdata("username");
 					
 					$this->db->where('username',$username);
 					$teacherid=$this->db->get('employee_info')->row();
-					$id=$teacherid->id;
+					$id=$teacherid->username;
+			
 				}
                 //$this->db->where("school_code",$this->session->userdata("school_code"));
                 $this->db->where('nop_id',$lesson_plan);
@@ -110,6 +111,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						else{
 							
 					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$id."' AND date1='".$sdate."' AND dayname = '".$weekday."'");
+				
+			//	print_R($guru);exit();
 					if($guru->num_rows()>0)
 					{
 						$period1=$row->period;?><input type="hidden" name="period" value="<?php echo $period1?>"/><?php
