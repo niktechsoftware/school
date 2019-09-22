@@ -167,12 +167,12 @@
 														//$cd=date("Y-m-d");
 														//print_r($cd);
 													    ?> 
-													 <button type='submit' style="width: 160px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
+													 <button type='submit' style="width: 130px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
 														</td>
 														
 														<td >												
-											          <a href="<?php echo base_url();?>index.php/periodTimeControllers/deleteperiod/<?php echo $row->id; ?>" class="btn btn-green " id="delete<?php echo $i;?>">
-											          	<i class="fa fa-arrow-circle-right"></i>Delete Period</a>
+											          <a href="<?php echo base_url();?>index.php/periodTimeControllers/deleteperiod/<?php echo $row->id; ?>" class="btn btn-danger " id="delete<?php echo $i;?>">
+											          	<i class="fa fa-trash-o" style="color:white;"></i></a>
 														</td>
 													</tr>
 													</form>

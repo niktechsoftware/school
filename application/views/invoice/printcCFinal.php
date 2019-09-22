@@ -90,8 +90,8 @@ table h1, h2, h3 {
 
 <body>		
 <div id="printcontent" class="container">
-	<div id="page-wrap">
-
+	<div id="page-wrap" class="row">
+	<div class="col-md-10">
 		<?php 
 	$school_code = $this->session->userdata("school_code");
 	$school_info = mysqli_query($this->db->conn_id,"select * from school where id= '$school_code'");
@@ -203,7 +203,7 @@ table h1, h2, h3 {
 
     </div>
     
-    
+    </div>
 </div>
 </div>
 </body>

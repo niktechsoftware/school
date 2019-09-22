@@ -354,7 +354,7 @@
 									                            <input name="name" style="width:200px;" type="text"/>
 									                        </td> 
 									                        <td>
-									                        	<label>Discription</label> &nbsp;&nbsp;&nbsp;<br>
+									                        	<label>Description</label> &nbsp;&nbsp;&nbsp;<br>
 									                            <textarea rows="5" cols="12" name="disc" style="width:200px;" type="text"> </textarea> 
 									                        </td>                       	
 								                        </tr>

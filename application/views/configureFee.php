@@ -50,7 +50,7 @@
                     This is very important area to define date for deposit month fee.You can change
                     date in any time but all Student's who remain to deposit their fee will be
                     change accordingly.
-                    <p> Note:-Define deposite date for every Month . <br>If you want to take <strong> Late Fee </strong> 
+                    <p> Note:-Define deposit date for every Month . <br>If you want to take <strong> Late Fee </strong> 
                     you can define Late Fee charges also. One row or Month will
                         save at a time on click <strong>SAVE </strong> Button.
                       </p>

@@ -135,7 +135,7 @@ $tdiscount=0;
 	$classname =$this->db->get("class_info")->row();
 ?>
 	<div id="printcontent" style="width:100%;">
-	<h3 class="text-danger text-center text-uppercase">School Reciept</h3>
+	<h3 class="text-danger text-center text-uppercase">School Receipt</h3>
 	<div id="page-wrap" style="border:1px solid #333; width: 95%; margin: 0 auto;">
 <div style="margin:5px;">
 		<table style="width: 100%; border:1px solid black; ">
@@ -151,7 +151,11 @@ $tdiscount=0;
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0; font-size:12px"><?php echo $info->address1." ,".$info->city; ?></span>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			        <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
-			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px"><?php if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} ?>
+			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
+			            <?php //if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
+			           echo "Mobile No. : +91-".$info->mobile_no;
+			           if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{}
+			           ?>
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
@@ -200,7 +204,7 @@ $tdiscount=0;
             <table>
                 <tbody>
 				<tr class='text-uppercase'>
-                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"><b>Reciept No</b></td>
+                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"><b>Receipt No.</b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;"><?php echo $rowb->invoice_no; ?></td>
                 </tr>
                 <tr class='text-uppercase'>
@@ -232,14 +236,14 @@ $tdiscount=0;
 		    $this->db->where("id",$fsd_id);
 		     $fsddate=$this->db->get("fsd")->row()->finance_start_date;?>
                 <tr class='text-uppercase'>
-                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Deposite Date </b></td>
+                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Deposit Date </b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;">
                     	<?php 
                     	echo date("d-M-y",  strtotime($rowb->diposit_date));
 						?>					</td>
                 </tr>
                 <tr class='text-uppercase'>
-                     <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Fee of Month </b></td>
+                     <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Fee For The Month </b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;">
 
                     	<?php 
@@ -269,12 +273,12 @@ $tdiscount=0;
 		<table id="items" style="margin: 5px 0 0 0;">
 		  <tbody style=" background-color:#ffff99">
 		      <tr class='text-uppercase'>
-		          	<td colspan="3" align="center" style="background-color:green; color:white;" ><b>Admission Fee Detail</b></td>
+		          	<td colspan="3" align="center" style="background-color:green; color:white;" ><b>Admission Fee Details</b></td>
 		      </tr>
 		  <tr class='text-uppercase'>
 		       <th class="col-sm-1 text-center">No.</th>
-               <th class="col-sm-8">Fee Name</th>
-               <th class="col-sm-3 text-center">Fee Amount</th>
+               <th class="col-sm-8">Particulars</th>
+               <th class="col-sm-3 text-center">Amount</th>
 		  </tr>
 	
 		  		<?php 
@@ -387,7 +391,7 @@ $tdiscount=0;
 			?> 
 				<tr class='text-uppercase'>
 		  		    <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
-					<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE"; ?></b></td>
+					<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE, IF ANY"; ?></b></td>
 					<td class="col-sm-3 text-center"><?php  echo $prbalanace=$rowb->previous_balance; $i++;?></td>
 				</tr>	
 				<!--<hr style="margin-top:5px; margin-bottom:0;">-->
@@ -406,7 +410,7 @@ $tdiscount=0;
 			$schoolname=$this->db->get('school')->row()->school_name;
 			?>
 				  <td class="col-sm-7" rowspan="3" style="color:white;" >
-				  <strong>   Recieved by :</strong>
+				  <strong>   Received by :</strong>
 				   <?php if(($this->session->userdata('login_type') == 'admin' )){
 					  echo $schoolname;
 					  }else if($this->session->userdata('login_type')==1){
@@ -417,7 +421,7 @@ $tdiscount=0;
 						  } ?>
 				  &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
-This is computer generated copy it not require any signature or stamp.
+This is computer generated invoice and verified by accountant.
 				  
 				  </td>
 				
@@ -442,7 +446,7 @@ This is computer generated copy it not require any signature or stamp.
 	<!-- student copy-->
 
 	
-	<h3 class="text-danger text-center text-uppercase">Student Reciept</h3>
+	<h3 class="text-danger text-center text-uppercase">Student Receipt</h3>
 	<div id="page-wrap" style="border:1px solid #333; width: 95%; margin: 0 auto;">
 <?php 
 $tdiscount=0;$school_code=$this->session->userdata("school_code");
@@ -471,7 +475,11 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0; font-size:12px"><?php echo $info->address1." ,".$info->city; ?></span>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			        <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
-			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px"><?php if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} ?>
+			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
+			           <?php //if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
+			           echo "Mobile No. : +91-".$info->mobile_no;
+			           if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{}
+			           ?>
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
@@ -518,7 +526,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
             <table>
                 <tbody>
 				<tr class='text-uppercase'>
-                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"><b>Reciept No</b></td>
+                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"><b>Receipt No.</b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;"><?php echo $rowb->invoice_no; ?></td>
                 </tr>
                 <tr class='text-uppercase'>
@@ -550,14 +558,14 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		    $this->db->where("id",$fsd_id);
 		     $fsddate=$this->db->get("fsd")->row()->finance_start_date;?>
                 <tr class='text-uppercase'>
-                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Deposite Date </b></td>
+                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Deposit Date </b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;">
                     	<?php 
                     	echo date("d-M-y",  strtotime($rowb->diposit_date));
 						?>					</td>
                 </tr>
                 <tr class='text-uppercase'>
-                     <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Fee of Month </b></td>
+                     <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Fee For The Month </b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;">
 
                     	<?php 
@@ -583,12 +591,12 @@ $monthmk[$i]=13;?>
 		<table id="items" style="margin: 5px 0 0 0;">
 		  <tbody style=" background-color:#ffff99">
 		      <tr class='text-uppercase'>
-		          	<td colspan="3" align="center" style="background-color:green; color:white;" ><b>Admission Fee Detail</b></td>
+		          	<td colspan="3" align="center" style="background-color:green; color:white;" ><b>Admission Fee Details</b></td>
 		      </tr>
 		  <tr class='text-uppercase'>
 		       <th class="col-sm-1 text-center">No.</th>
-               <th class="col-sm-8">Fee Name</th>
-               <th class="col-sm-3 text-center">Fee Amount</th>
+               <th class="col-sm-8">PARTICULARS</th>
+               <th class="col-sm-3 text-center">Amount</th>
 		  </tr>
 	
 		  		<?php 
@@ -699,7 +707,7 @@ $monthmk[$i]=13;?>
 			?> 
 				<tr class='text-uppercase'>
 		  		    <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
-					<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE"; ?></b></td>
+					<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE, IF ANY"; ?></b></td>
 					<td class="col-sm-3 text-center"><?php  echo $prbalanace=$rowb->previous_balance; $i++;?></td>
 				</tr>	
 				<!--<hr style="margin-top:5px; margin-bottom:0;">-->
@@ -719,9 +727,9 @@ $monthmk[$i]=13;?>
 			$schoolname=$this->db->get('school')->row()->school_name;
 			?>
 				  <td class="col-sm-7" rowspan="3" style="color:white;" >
-				  <strong>   Recieved by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
+				  <strong>   Received by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
-This is computer generated copy it not require any signature or stamp.
+This is computer generated invoice and verified by accountant.
 				  
 				  </td>
 				
@@ -750,7 +758,9 @@ This is computer generated copy it not require any signature or stamp.
     <!--</div>-->
     <?php }else{?>
     	<div id="printcontent" style="width:100%;">
-    	<!--<h3 class="text-danger text-center text-uppercase">Student Reciept</h3>-->
+
+    	<h3 class="text-danger text-center text-uppercase">Student Receipt</h3>
+
 	<div id="page-wrap" style="border:1px solid #333; width: 95%; margin: 0 auto;">
 <?php 
 $tdiscount=0;$school_code=$this->session->userdata("school_code");
@@ -779,7 +789,11 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0; font-size:12px"><?php echo $info->address1." ,".$info->city; ?></span>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			         <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
-			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px"><?php if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} ?>
+			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
+			            <?php //if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
+			           echo "Mobile No. : +91-".$info->mobile_no;
+			           if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{}
+			           ?>
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
@@ -826,7 +840,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
             <table>
                 <tbody>
 				<tr class='text-uppercase'>
-                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"><b>Reciept No</b></td>
+                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"><b>Receipt No.</b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;"><?php echo $rowb->invoice_no; ?></td>
                 </tr>
                 <tr class='text-uppercase'>
@@ -858,14 +872,14 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		    $this->db->where("id",$fsd_id);
 		     $fsddate=$this->db->get("fsd")->row()->finance_start_date;?>
                 <tr class='text-uppercase'>
-                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Deposite Date </b></td>
+                    <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Deposit Date </b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;">
                     	<?php 
                     	echo date("d-M-y",  strtotime($rowb->diposit_date));
 						?>					</td>
                 </tr>
                 <tr class='text-uppercase'>
-                     <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Fee of Month </b></td>
+                     <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Fee For The Month </b></td>
                     <td style="padding: 0 5px 0 5px; font-size:12px;">
 
                     	<?php 
@@ -895,12 +909,12 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		<table id="items" style="margin: 5px 0 0 0;">
 		  <tbody style=" background-color:#ffff99">
 		      <tr class='text-uppercase'>
-		          	<td colspan="3" align="center" style="background-color:green; color:white;" ><b>Admission Fee Detail</b></td>
+		          	<td colspan="3" align="center" style="background-color:green; color:white;" ><b>Admission Fee Details</b></td>
 		      </tr>
 		  <tr class='text-uppercase'>
 		       <th class="col-sm-1 text-center">No.</th>
-               <th class="col-sm-8">Fee Name</th>
-               <th class="col-sm-3 text-center">Fee Amount</th>
+               <th class="col-sm-8">PARTICULARS</th>
+               <th class="col-sm-3 text-center">Amount</th>
 		  </tr>
 	
 		  		<?php 
@@ -1015,7 +1029,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			?> 
 				<tr class='text-uppercase'>
 		  		    <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
-					<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE"; ?></b></td>
+					<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE, IF ANY"; ?></b></td>
 					<td class="col-sm-3 text-center"><?php  echo $prbalanace=$rowb->previous_balance; $i++;?></td>
 				</tr>	
 				<!--<hr style="margin-top:5px; margin-bottom:0;">-->
@@ -1035,9 +1049,11 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			$schoolname=$this->db->get('school')->row()->school_name;
 			?>
 				  <td class="col-sm-7" rowspan="3" style="color:white;" >
-				  <strong>   Recieved by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
+				  <strong>   Received by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
-                          This is computer generated copy it not require any signature or stamp.
+
+This is computer generated invoice and verified by Accountant.
+
 				  
 				  </td>
 				
@@ -1064,7 +1080,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 </body>
 <div class="invoice-buttons" style="text-align:center;">
     <button class="button button2" type="button"  onclick="window.print();">
-      <i class="fa fa-print padding-right-sm"></i> Print Reciept
+      <i class="fa fa-print padding-right-sm"></i> Print Receipt
     </button>
   </div>
 </html>

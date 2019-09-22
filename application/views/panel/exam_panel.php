@@ -56,7 +56,14 @@
 										<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/exampanel/gradcardexampanel">
 												<button class="btn panel-purple btn-icon btn-block space10">
 
-												<font size="5">	Grade Card</font><span class="badge badge-info partition-purple"> 3 </span>
+												<font size="5">Student Wise Report Card</font><span class="badge badge-info partition-purple"> 3 </span>
+												</button>
+												</a>
+											</div>
+											<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/exampanel/classwisereport">
+												<button class="btn panel-purple btn-icon btn-block space10">
+
+												<font size="5">Class Wise Report Card</font><span class="badge badge-info partition-purple"> 3 </span>
 												</button>
 												</a>
 											</div>

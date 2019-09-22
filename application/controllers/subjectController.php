@@ -40,7 +40,7 @@ class SubjectController extends CI_Controller{
 												<div class="panel-body">
 													<div class="text-white text-large">
 														<span id=name style="color:red;"></span>
-														<input type="text" id="addSubject" minlength="3" maxlength="15" onkeyup="myfunction()" onkeyup="myfunction1()" onkeypress="return isNumberKey(event)" >
+														<input type="text" id="addSubject" minlength="3" maxlength="30" onkeyup="myfunction()" onkeyup="myfunction1()" onkeypress="return isNumberKey(event)" >
 														<a href="#" class="btn btn-sm btn-light-green" id="addSSubjectButton"><i class="fa fa-check"></i> Add Subject</a>
 													</div>
 													<div class="text-blue text-small" style="padding-top:5px;">

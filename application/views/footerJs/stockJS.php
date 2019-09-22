@@ -210,7 +210,8 @@
 				<?php $i = 1; for($i = 1; $i<=15; $i++){ ?>
 
 					$('select#item_no<?php echo $i; ?>').change(function(){
-						var name = $('#item_no<?php echo $i; ?>').val();					
+						var name = $('#item_no<?php echo $i; ?>').val();
+						//alert(name);					
 						$.post("<?php echo site_url("index.php/enterStockController/getTData") ?>", {name : name}, function(data){		
 							var d = jQuery.parseJSON(data);				
 							 $('#item_name<?php echo $i; ?>').val(d.itemName);
@@ -218,6 +219,7 @@
 							  $('#item_quantity1<?php echo $i;?>').val(d.qunatity);
 							 $('#item_size<?php echo $i; ?>').val(d.itemsize);
 							 $('#item_price<?php echo $i; ?>').val(d.price);
+							// alert(d);
 						});
 					});
 				
@@ -244,7 +246,7 @@
 
 						}
 					});
-					
+					/////discount code
 					$('input#item_discount<?php echo $i; ?>').keyup(
 						function(){
 							var name = $('#total_price<?php echo $i; ?>').val();
@@ -264,7 +266,7 @@
 					var name =  Number($('#valid_id').val()) + Number($('#sub_total1').val()) + Number($('#sub_total2').val()) + Number($('#sub_total3').val()) + Number($('#sub_total4').val()) + Number($('#sub_total5').val()) + Number($('#sub_total6').val()) + Number($('#sub_total7').val()) + Number($('#sub_total8').val()) + Number($('#sub_total9').val()) + Number($('#sub_total10').val()) + Number($('#sub_total11').val()) + Number($('#sub_total12').val()) + Number($('#sub_total13').val()) + Number($('#sub_total14').val()) + Number($('#sub_total15').val());				
 					$("#total").val(name);
 				});
-				
+				////balance amount code
 				$('input#paid').keyup(
 					function(){
 						var name = $('#paid').val();

@@ -46,14 +46,12 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					$username= $this->session->userdata("username");
 					$this->db->where('username',$username);
 					$teacherid=$this->db->get('employee_info')->row();
-
-					$id=$teacherid->id; 
-
-					$this->db->where("school_code",$this->session->userdata("school_code"));
+					$id=$teacherid->id;
+					$this->db->where("nop_id",$time_thead_id);
 					$period=$this->db->get("period");
 					foreach($period->result() as $row):
 				?>
-				<th><?php echo $row->period;?></th>
+				<th><?php if($row->period == ''){ echo "LUNCH"; } else {echo $row->period;}?></th>
 				<?php 
 					endforeach;
 				?>
@@ -65,6 +63,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					$j = 1;
 					$sdate = date("Y-m-d",strtotime("$sdate"));
 					$s1date=$sdate;
+					$thead= $time_thead_id;
 					?><?php
 					$e1date = date("Y-m-d",strtotime("$edate"));
 					?><?php
@@ -73,6 +72,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 				<form method="post" action="<?php echo base_url();?>periodTimeControllers/saveLessonPlan">
 				<tr>
 					<td style="color:green"><input type="hidden" name="s1date" value="<?php echo $s1date;?>"/>
+						<input type="hidden" name="thead" value="<?php echo $time_thead_id;?>"/>
 					<input type="hidden" name="edate" value="<?php echo $edate;?>"/>
 					<?php 
 						$weekday = date('l', strtotime($sdate));
@@ -102,13 +102,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						}
 						else{
 							
-					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$username."' AND date1='".$sdate."' AND dayname = '".$weekday."'AND school_code = '".$school_code."' ");
+					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$username."' AND date1='".$sdate."' AND dayname = '".$weekday."' ");
 			
 					if($guru->num_rows()>0)
 					{
 					   
 						$period1=$row->id;?><input type="hidden" name="period<?php echo $j;?>" value="<?php echo $period1?>"/><?php
-							//$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$username."' AND period = '$period1' And day LIKE '%$weekday%'");
+						//$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$username."' AND period = '$period1' And day LIKE '%$weekday%'");
 							foreach($guru->result() as $row1):
 
 								$r=	$row1->class_sec;
@@ -136,8 +136,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					<td style="color:green">
 					<?php 
 						$period1=$row->id;?><input type="hidden" name="period<?php echo $j;?>" value="<?php echo $period1?>"/><?php
-						$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$id."' AND period_id = '$period1' And school_code = '$school_code' AND day LIKE '%$weekday%'");
-						foreach($result1->result() as $row1):
+						$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$id."' AND period_id = '$period1' ");
+							foreach($result1->result() as $row1):
 						  $sub=$row1->subject_id;
 						  $this->db->where('id',$sub);
 						  $subject=$this->db->get('subject');

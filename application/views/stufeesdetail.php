@@ -157,7 +157,25 @@
 												<td class="text-center"><?php echo $v; ?> </td>
 													<td class="text-center"><?php echo $id->username;?></td>
 													
-													<td class="text-center"><?php $dte= $row->total; echo $dte;?></td>
+													<td class="text-center"><?php $dte= $row->total;
+													//  if(($row->late)>0){
+													// 	 $latefee=$row->late;
+													// 	 $dte=$latefee+$dte1;
+
+													//  }
+													//  else{
+													// 	 $dte=$dte1;
+													//  }
+													//  if(($row->transport)>0){
+													// 	$trans= $row->transport;
+													// 	$dte=$trans+$dte;
+													//  }
+													//  else{
+													// 	 $dte=$dte;
+
+													//  }
+													
+													echo $dte;?></td>
 													
 													<td class="text-center"><?php echo $row->deposite_month;?></td>
 													<td class="text-center"> <?php if($row->payment_mode==1){ echo "Cash";} elseif($row->payment_mode==2){ echo "Online";}?></td>

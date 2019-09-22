@@ -627,7 +627,7 @@ function getFsd(){
 					<!-- <th>Student Name</th> -->
 					<th>Total due</th>
 					<!-- <th>Paid</th> -->
-					<th>Deposite Date</th>
+					<th>Deposit Date</th>
 					<!-- <th>Invoice No</th> -->
 					<th>Action</th>
 				</tr>
@@ -718,7 +718,7 @@ function getFsd(){
 			   // $this->db->where("student_id",$student_id);
 
 			   if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))&&($this->feemodel->del_feedue($invoiceNo,$student_id))){
-				redirect(base_url()."index.php/feeControllers/fullDetail/".$student_id."/".$df); 
+				redirect(base_url()."index.php/feeControllers/feesDetail/".$student_id."/".$df); 
 			   }else{
 				   echo "Please Contact to Admin";
 			   }
@@ -1122,7 +1122,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                            <?php }}?>
 	                                             <div class="row space15">
 	                                                <div class="col-sm-12">
-	                                                    <div class="col-sm-5 text-uppercase">Discription</div>
+	                                                    <div class="col-sm-5 text-uppercase">Description</div>
 	                                                    <div class="col-sm-7">
 	                                                       <textarea rows="5" cols="6" class="form-control" id="disc" name="disc" placeholder="Text Field"></textarea>
 	                                                    </div>
@@ -1262,7 +1262,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                            <div class="col-sm-12">
 	                                                <div class="col-sm-6 text-uppercase">Total</div>
 	                                                <div class="col-sm-6">
-	                                                    <input type="hidden" id="total1"  value="<?php echo $totfees;?>" name="total1" />
+	                                                    <input type="hidden" id="total1"  value="<?php echo $totfees+$latefee1;?>" name="total1" />
 	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
 	                                                    <input type="text" id="total"  value="<?php echo $totfees+$latefee1;?>" class="form-control" readonly/>
 	                                                </div>
