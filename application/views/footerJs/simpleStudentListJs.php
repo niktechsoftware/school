@@ -1,6 +1,6 @@
 <!-- end: EXPORT DATA TABLE PANEL -->
 				<!-- start: MAIN JAVASCRIPTS -->
-		<!--[if lt IE 9]>
+zx		<!--[if lt IE 9]>
 		<script src="<?php echo base_url(); ?>assets/plugins/respond.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/plugins/excanvas.min.js"></script>
 		<![endif]-->

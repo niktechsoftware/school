@@ -148,12 +148,24 @@
 		
 		function saleStock(){
 		    $school_code = $this->session->userdata("school_code");
-			$this->db->where("school_code",$school_code);
-			$billno = $this->db->count_all("invoice_serial");
+		//	$this->db->where("school_code",$school_code);
+			//$billno = $this->db->order_by('id',"desc")->limit(1)->get('invoice_serial')->row()->id;
 			$this->load->model("daybookModel");
 			$this->load->model("enterStockModel");
-			$bill = $billno + 1000;
-	     	$billno = $school_code."I".$bill;
+			$this->db->where("school_code",$school_code);
+		$invoice = $this->db->get("invoice_serial");
+		$invoice1=1+6000+$invoice->num_rows();
+		$invoice_number = $school_code."I19".$invoice1;
+	     	$billno = $invoice_number;
+	     	
+	     		$invoiceDetail = array(
+				"invoice_no" => $invoice_number,
+				"reason" => "Stock Sale",
+				"invoice_date" => date('Y-m-d'),
+				"school_code"=>$school_code
+		);
+		$this->db->insert("invoice_serial",$invoiceDetail);
+		
 				$validID = "";
 				if(strlen($this->input->post("studID"))>0){
 					$stid = $this->input->post("studID");
@@ -264,7 +276,7 @@
 				 "valid_id" => $validID
                );
 				  $this->db->insert("sale_balance",$bal);
-				
+					if($this->input->post("category") =='Student Id'){
 				    $this->db->where('username',$this->input->post("studID"));
 				    $student=$this->db->get('student_info')->row();
 
@@ -294,18 +306,27 @@
                           );
                           $inserttt=$this->db->insert('feedue',$ines);
                       }
-              
+					}
 
 					if($var1):
-						$var = $this->enterStockModel->getItemName1($data);
+					//	$var = $this->enterStockModel->getItemName1($data);
+					$this->db->where("school_code",$this->session->userdata("school_code"));
+	      	$this->db->where("bill_no",$billno);
+	      	$var = $this->db->get("sale_info");
 						if($var->num_rows() > 0):
+
 							foreach ($var->result() as $row):
-								$q = $row->item_quantity;
+
+								$this->db->where("school_code",$this->session->userdata("school_code"));
+								$this->db->where("item_no",$row->item_no);
+								$row1 = $this->db->get("enter_stock")->row();
+								$q = $row1->item_quantity;
+								$itemno = $row1->item_no;
 								$data1 = array(
-									"item_quantity" => ($q - $data["item_quant"]),
-									"item_no" =>  $data["item_no"]
+									"item_quantity" => ($q - $row->item_quant),
+									// "item_no" =>  $data["item_no"]
 								);
-								$this->enterStockModel->updateStock1($data1);
+								$this->enterStockModel->updateStock1($data1,$itemno);
 							endforeach;
 						endif;
 					endif;
@@ -410,7 +431,8 @@ function editSaleStock(){
 
 	                $this->db->where('username',$dt->valid_id);
 				    $student=$this->db->get('student_info')->row();
-
+                        	if($student->num_rows()>0){
+								$student= $student->row();
 				     $this->db->where('student_id',$student->id);
 				     $this->db->where('school_code',$this->session->userdata('school_code'));
                       $studentfee=$this->db->get('feedue');
@@ -438,7 +460,7 @@ function editSaleStock(){
                           $inserttt=$this->db->insert('feedue',$ines);
                       }
               
-	 
+                        	}
 
   	}
   	$this->db->where("school_code",$this->session->userdata("school_code"));
