@@ -83,4 +83,14 @@ class noticeControllers extends CI_Controller{
 					echo "Somthing going wrong. Please Contact Site administrator";
 				}
 			}
+		// function insertMessage(){
+		// 	$school_code= $this->session->userdata('school_code');
+		// 	$unm= $this->session->userdata('username');
+		// 	print_r($unm);
+		// 	$receiver= $this->input->post('receiver');
+		// 	$subject= $this->input->post('subject');
+		// 	$message= $this->input->post('message');
+
+			
+		// }	
 }

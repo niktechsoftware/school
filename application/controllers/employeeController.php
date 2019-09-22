@@ -346,15 +346,11 @@ class EmployeeController extends CI_Controller{
 		$data['smallTitle'] = 'Employee Profile';
 		$data['mainPage'] = 'Employee Profile';
 		$data['subPage'] = 'Manage or Print Profile';
-		
 		$empNo = $this->uri->segment(3); 
 // 		$this->db->where('username',$empNo);
 // 		$empid=$this->db->get('employee_info')->row()->id;
-		
-		
 		$this->load->model("employeeModel");
 		$profile = $this->employeeModel->getEmployeProfile($empNo);
-	
 		$data['profile'] = $profile;
 		$data['title'] = 'Configure Class/Section';
 		$data['headerCss'] = 'headerCss/employeeProfileCss';
@@ -445,7 +441,6 @@ class EmployeeController extends CI_Controller{
 	public function uploadEmployeeImage(){
 		$school_code = $this->session->userdata("school_code");
 		$id = $this->input->post('c_id');
-
         $photo_name = time().$_FILES['empImage']['name'];
         $photo_name = str_replace(' ', '_', $photo_name);
         $new_img = array(
@@ -454,7 +449,6 @@ class EmployeeController extends CI_Controller{
         $old_img = $this->input->post("old_img");
         @chmod("assets/".$school_code."/images/empImage/" . $old_img, 0777);
         @unlink("assets/".$school_code."/images/empImage/" . $old_img);
-
         if($query = $this->employeeModel->updateImage($new_img)){
             $this->load->library('upload');
             // Set configuration array for uploaded photo.

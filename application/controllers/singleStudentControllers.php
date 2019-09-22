@@ -1,3 +1,4 @@
+
 <?php
 class singleStudentControllers extends CI_Controller{
 	function __construct()
@@ -86,7 +87,6 @@ class singleStudentControllers extends CI_Controller{
 			$data['sectionName'] = $this->allFormModel->getSection();
 			$personalInfo = $stDetail->row();
 			$classid = $personalInfo->class_id;
-		
 			//$section = $personalInfo->section;
 			$data['subjectList'] = $this->subjectModel->getSubjectByClassSection($classid);
 			$data['studentsSubject'] = $this->subjectModel->isStudentSubject($studentId);
@@ -95,7 +95,6 @@ class singleStudentControllers extends CI_Controller{
 			$data['smallTitle'] = 'Student Personal Detail';
 			$data['mainPage'] = 'Student Profile';
 			$data['subPage'] = 'Student Personal Detail';
-			
 			$data['title'] = 'Student Personal Detail';
 			$data['headerCss'] = 'headerCss/studentCss';
 			$data['footerJs'] = 'footerJs/studentJs';
@@ -225,17 +224,14 @@ class singleStudentControllers extends CI_Controller{
 		function timeScheduling(){
 			$stu_id = $this->session->userdata('username');
 			$var = $this->singleStudentModel->getclassAndStu($stu_id);
-			
 			$class = $var->class_id;
             $this->db->where("id",$class);
         	$dte=$this->db->get("class_info")->row();
         	$sec=$dte->section;
         	$class=$dte->class_name;
-        
         	$this->db->where("id",$sec);
         	$dts=$this->db->get("class_section")->row();
         	$sec1=$dts->section;
-
 			$data['sec1']=$sec1;
 			$data['class']=$class;
 			$var1 = $this->singleStudentModel->getTimeTable($class);
@@ -244,7 +240,6 @@ class singleStudentControllers extends CI_Controller{
 			$data['smallTitle'] = 'Student Personal Time Table';
 			$data['mainPage'] = 'Student';
 			$data['subPage'] = 'Student Personal Time Table';
-			
 			$data['title'] = 'Student Personal Time Table';
 			$data['headerCss'] = 'headerCss/studentCss';
 			$data['footerJs'] = 'footerJs/studentJs';
@@ -345,4 +340,5 @@ class singleStudentControllers extends CI_Controller{
 							  			<?php 
 							  		}	  		
 			}
+
 }

@@ -96,8 +96,9 @@
 	if($rowb){
 	$id_name = $rowb->id_name;
 	$valid_id = $rowb->valid_id;
+	
 	if(strlen($valid_id) > 0):
-		$empInfo = $this->db->query("select * from employee_info where username = '$valid_id' AND school_code = '$school_code' ")->row();
+		$empInfo = $this->db->query("select * from employee_info where id = '$valid_id' AND school_code = '$school_code' ")->row();
 	endif;
 	
 ?>
@@ -107,7 +108,7 @@
                     	<td style="border:none;">
                         	<?php $i = $id_name; ?>
                         	<?php if(strlen($valid_id) > 0):
-								echo $empInfo->name;
+							if($empInfo->name){	echo $empInfo->name;} else {echo "N/A";}
 							endif;?>
                     		<strong><?php echo $rowb->name; ?></strong>
                         </td>
@@ -116,7 +117,9 @@
                     	<td style="border:none;">
                         	<?php echo '<strong>Mobile No. :</strong>'.$rowb->phone_no; ?>
                         	<?php if(strlen($valid_id) > 0):
-					echo $empInfo->mobile;
+				if($enpInfo->mobile){	echo $empInfo->mobile;} else {
+					echo "N/A";
+				}
 				endif;?>
                         </td>
                     </tr>

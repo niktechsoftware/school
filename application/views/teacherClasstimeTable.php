@@ -22,128 +22,26 @@
 							</div>
 						</div>
 					</div>
-					
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-sm-12">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Day</th>
-											<?php 
-											$lunch = 0;
-											$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code ='$school_code'");
-											foreach($uniquePeriod->result() as $row):?>
-											<th>
-												<?php 
-													if($row->period == ''){
-														echo "Lunch";
-													}else{
-														echo $row->period;
-													}
-													$lunch = $row->lunch;
-												?>
-											</th>
-											<?php endforeach;?>
-										</tr>
-										<tr>
-											<th></th>
-											<?php
-												foreach($uniquePeriod->result() as $row):
-											?>
-											<th>
-												<?php 
-													echo $row->to." - ".$row->from;
-												?>
-											</th>
-											<?php 
-												endforeach;
-											?>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Monday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE school_code ='$school_code' AND teacher = '".$this->session->userdata('username')."' AND day LIKE '%Monday%' ORDER BY id ASC");?>
-											<?php foreach($timetable->result() as $row):?>
-												<?php if($lunch == $i):?>
-													<td><?php echo "Lunch";?></td>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php else:?>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php endif;?>
-											<?php $i++; endforeach;?>
-										</tr>
-										<tr>
-											<td>Tuesday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE school_code ='$school_code' AND teacher = '".$this->session->userdata('username')."' AND day LIKE '%Tuesday%' ORDER BY id ASC");?>
-											<?php foreach($timetable->result() as $row):?>
-												<?php if($lunch == $i):?>
-													<td><?php echo "Lunch";?></td>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php else:?>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php endif;?>
-											<?php $i++; endforeach;?>
-										</tr>
-										<tr>
-											<td>Wednesday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE  school_code ='$school_code' AND teacher = '".$this->session->userdata('username')."' AND day LIKE '%Wednesday%' ORDER BY id ASC");?>
-											<?php foreach($timetable->result() as $row):?>
-												<?php if($lunch == $i):?>
-													<td><?php echo "Lunch";?></td>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php else:?>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php endif;?>
-											<?php $i++; endforeach;?>
-										</tr>
-										<tr>
-											<td>Thursday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE school_code ='$school_code' AND teacher = '".$this->session->userdata('username')."' AND day LIKE '%Thursday%' ORDER BY id ASC");?>
-											<?php foreach($timetable->result() as $row):?>
-												<?php if($lunch == $i):?>
-													<td><?php echo "Lunch";?></td>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php else:?>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php endif;?>
-											<?php $i++; endforeach;?>
-										</tr>
-										<tr>
-											<td>Friday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE school_code ='$school_code' AND teacher = '".$this->session->userdata('username')."' AND day LIKE '%Friday%' ORDER BY id ASC");?>
-											<?php foreach($timetable->result() as $row):?>
-												<?php if($lunch == $i):?>
-													<td><?php echo "Lunch";?></td>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php else:?>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php endif;?>
-											<?php $i++; endforeach;?>
-										</tr>
-										<tr>
-											<td>Saturday</td>
-											<?php $i = 1;?>
-											<?php $timetable = $this->db->query("SELECT * FROM time_table WHERE school_code ='$school_code' AND teacher = '".$this->session->userdata('username')."' AND day LIKE '%Saturday%' ORDER BY id ASC");?>
-											<?php foreach($timetable->result() as $row):?>
-												<?php if($lunch == $i):?>
-													<td><?php echo "Lunch";?></td>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php else:?>
-													<td><?php echo $row->class1."<br/>".$row->subject;?></td>
-												<?php endif;?>
-											<?php $i++; endforeach;?>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+					<div class="row" style="margin-left:10px;padding-bottom:20px;">
+					<div class="col-md-3"><h4><strong>Select Time Table</strong></h4></div>
+						<div class="col-md-4">
+							<select class="form-control" name="thead" id="thead">
+								<option value="">-Select Time Table-</option>
+								<?php $this->db->where('school_code',$this->session->userdata('school_code'));
+								$thead_id=$this->db->get('no_of_period');
+								if($thead_id->num_rows()>0):
+									foreach($thead_id->result() as $row):
+										?>
+											<option value="<?php echo $row->id;?>"><?php echo $row->period_name;?></option>
+										<?php
+									endforeach;
+								endif;?>
+							</select>
 						</div>
+					</div>
+					<div class="row" id="time_table">
+								<div class="col-md-12">
+								</div>
 					</div>
 				</div>
 			</div>

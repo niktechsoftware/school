@@ -39,7 +39,7 @@
 
 							<div class="alert alert-info"><h3 class="media-heading text-center">Student Attendance Report</h3>
 							<p class="media-timestamp">
-							    Here you can see class wise attendance report,Please select all dropdown box and starting date and end date, and wait for another page.
+							    Here you can see Class Wise Attendance Report,Please select all dropdown box and starting date and end date, and wait for another page.
 							</p>
 </div>
 

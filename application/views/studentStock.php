@@ -34,8 +34,11 @@
 									</div>
 									<div class="panel-body">
 										<?php $v=$this->session->userdata('username'); 	
+											$this->db->where('username',$v);
+											$vid=$this->db->get('student_info')->row();
+											$v1= $vid->id;
 										$this->db->where("school_code",$this->session->userdata("school_code"));
-										 $this->db->where("valid_id",$v);
+										 $this->db->where("valid_id",$v1);
 								   				 $row = $this->db->get("sale_info"); ?>
 								    		<table class="table table-striped table-hover" id="sample-table-2"> 
 								    				<thead><tr>

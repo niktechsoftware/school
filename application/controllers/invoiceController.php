@@ -332,6 +332,8 @@ class InvoiceController extends CI_Controller{
 	}
 	
 	function saleInvoice(){
+		$data['id']=$this->uri->segment(3);
+		//print_r($id);
 		$data['title'] = "Fee reciept invoice";
 		$this->load->view("invoice/saleInvoice",$data);
 	}
@@ -764,10 +766,10 @@ function result(){
 // 			$v=$this->db->get("tc_certificate")->row();
 			$data['tcnumber'] = $tc->row()->tc_number;
 			$data['tcdate'] = $tc->row()->tc_date;
-		$data['pageTitle'] = 'Due Fee Invoice';
-		$data['smallTitle'] = 'Due Fee Invoice';
-		$data['mainPage'] = 'invoice';
-		$data['subPage'] = 'Print Due Fee Invoice';
+		$data['pageTitle'] = 'Transfer Certificate';
+		$data['smallTitle'] = 'Transfer Certificate';
+		$data['mainPage'] = 'Transfer Certificate';
+		$data['subPage'] = 'Transfer Certificate';
 		$data['title'] = 'printTC';
 		$data['headerCss'] = 'headerCss/configureClassCss';
 		$data['footerJs'] = 'footerJs/configureClassJs';

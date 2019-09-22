@@ -124,7 +124,7 @@ if($var->num_rows()>0){
 								<div class="col-sm-12">
 									<!-- start: INLINE TABS PANEL -->
 									<div class="panel panel-white">
-										<table class="table table-hover" width ="100%">
+										<table class="table  table-striped" width ="100%">
 			 								<tr>
 			 									<td class ="center">
 													PERIODS
@@ -153,10 +153,10 @@ if($var->num_rows()>0){
 												?></td>
 												<?php $lunch++;$c++; } ?> 
 											</tr> 
-											<tr>
+											<tr style="background-color:	#13eaca26	;">
 												<td class= "center">TIME SLOTS</td>
 												<?php //print_r($var->result());
-												foreach ($var->result() as $pk): ?>
+										foreach ($var->result() as $pk): ?>
 												<td class = "center" ><?php echo $pk->from;?> - <?php echo $pk->to; ?></td>
 												<?php endforeach; ?>
 											</tr>
@@ -165,7 +165,7 @@ if($var->num_rows()>0){
 				  							foreach($className->result() as $row){
 
 				 							 ?>
-				  							<tr>
+				  							<tr style="background-color:#ff00d73d;">
 				  								<td class= "center">
 				  									<?php echo $row->class_name;?>-
 				  									<?php $this->db->where("id",$row->section);

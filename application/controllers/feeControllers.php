@@ -626,7 +626,7 @@ function getFsd(){
 					<!-- <th>Student Name</th> -->
 					<th>Total due</th>
 					<!-- <th>Paid</th> -->
-					<th>Deposite Date</th>
+					<th>Deposit Date</th>
 					<!-- <th>Invoice No</th> -->
 					<th>Action</th>
 				</tr>
@@ -911,7 +911,7 @@ function getFsd(){
 	                                            </div>
 	                                           </div> 
 	                                            <div class="row space15">
-	                                                <div id = "discounterOTP">
+	                                                <div id = " ">
 	                                                 <div  class="col-sm-12">
 	                                                    <div class="col-sm-12" id ="rahul1"></div>
 	                                                   
@@ -952,7 +952,7 @@ function getFsd(){
 														$disc+=$disc1;
 															endforeach;?>
 															
-														<div class="col-sm-7"> <input type="text" name ="discount_start" id="discount_start" value ="<?php echo $disc;?>" class="form-control"></div>
+														<div class="col-sm-7"> <input type="text" name ="discount_start"  id="discount_start"  value ="<?php echo $disc;?>" class="form-control"></div>
 	                                                </div>
 												</div>
 												<?php } }else{
@@ -1121,7 +1121,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                            <?php }}?>
 	                                             <div class="row space15">
 	                                                <div class="col-sm-12">
-	                                                    <div class="col-sm-5 text-uppercase">Discription</div>
+	                                                    <div class="col-sm-5 text-uppercase">Description</div>
 	                                                    <div class="col-sm-7">
 	                                                       <textarea rows="5" cols="6" class="form-control" id="disc" name="disc" placeholder="Text Field"></textarea>
 	                                                    </div>

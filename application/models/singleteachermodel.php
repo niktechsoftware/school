@@ -13,8 +13,11 @@ class singleTeacherModel extends CI_Model{
 	}
 	
 	function time_Table($teacher_id){
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("teacher",$teacher_id);
+		//$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where('username',$teacher_id);
+		$emp=$this->db->get('employee_info')->row();
+		$emp_id= $emp->id;
+		$this->db->where("teacher",$emp_id);
 		$tdata = $this->db->get("time_table");
 
 		// $this->db->where("id",$dt->time_thead_id);

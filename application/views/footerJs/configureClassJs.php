@@ -74,8 +74,123 @@
 
 
     jQuery(document).ready(function() {
+		<!--report formate-->
+		$("#rep_formate_save").click(function(){
+        	var formate_rep = $('#formate_rep').val();
+			$.post("<?php echo site_url('index.php/configureClassControllers/rep_formate_save') ?>", {formate_rep : formate_rep}, function(data){
+               alert("Report Formate successfully Configured");
+    		});
+        });
+		
+		
+		
+				$("#report_1").hide();
+				$("#report_2").hide();
+				$("#report_3").hide();
+				
+				
+				
+         $("#formate_rep").change(function(){
+            var formate_rep = $("#formate_rep").val();
+        if(formate_rep== 1){
+			 $("#report_1").show();
+			  $("#report_2").hide();
+				  $("#report_3").hide();
+			 }else if(formate_rep== 2){
+				  $("#report_1").hide();
+					$("#report_2").show();
+						$("#report_3").hide();
+				 }else if(formate_rep== 3){
+					  $("#report_1").hide();
+						$("#report_2").hide();
+							$("#report_3").show();
+					 }
+    		});
+			<!--id formate-->
+			$("#id_formate_save").click(function(){
+        	var formate_id = $('#formate_id').val();
+			$.post("<?php echo site_url('index.php/configureClassControllers/id_formate_save') ?>", {formate_id : formate_id}, function(data){
+               alert("ID Formate successfully Configured");
+    		});
+        });
+		
+		
+			$("#id_1").hide();
+				$("#id_2").hide();
+				$("#id_3").hide();
+         $("#formate_id").change(function(){
+            var formate_rep = $("#formate_id").val();
+        if(formate_rep== 1){
+			 $("#id_1").show();
+			  $("#id_2").hide();
+				  $("#id_3").hide();
+			 }else if(formate_rep== 2){
+				  $("#id_1").hide();
+					$("#id_2").show();
+						$("#id_3").hide();
+				 }else if(formate_rep== 3){
+					  $("#id_1").hide();
+						$("#id_2").hide();
+							$("#id_3").show();
+					 }
+    		});
+			<!--tc formate-->
+			$("#tc_formate_save").click(function(){
+        	var formate_tc = $('#formate_tc').val();
+			$.post("<?php echo site_url('index.php/configureClassControllers/tc_formate_save') ?>", {formate_tc : formate_tc}, function(data){
+               alert("TC Formate successfully Configured");
+    		});
+        });
+		
+			$("#tc_1").hide();
+				$("#tc_2").hide();
+				$("#tc_3").hide();
+         $("#formate_tc").change(function(){
+            var formate_rep = $("#formate_tc").val();
+        if(formate_rep== 1){
+			 $("#tc_1").show();
+			  $("#tc_2").hide();
+				  $("#tc_3").hide();
+			 }else if(formate_rep== 2){
+				  $("#tc_1").hide();
+					$("#tc_2").show();
+						$("#tc_3").hide();
+				 }else if(formate_rep== 3){
+					  $("#tc_1").hide();
+						$("#tc_2").hide();
+							$("#tc_3").show();
+					 }
+    		});
+			<!--cc formate-->
+			$("#cc_formate_save").click(function(){
+        	var formate_cc = $('#formate_cc').val();
+			$.post("<?php echo site_url('index.php/configureClassControllers/cc_formate_save') ?>", {formate_cc : formate_cc}, function(data){
+               alert("CC Formate successfully Configured");
+    		});
+        });
+		
+		
+			$("#cc_1").hide();
+				$("#cc_2").hide();
+				$("#cc_3").hide();
+         $("#formate_cc").change(function(){
+            var formate_rep = $("#formate_cc").val();
+        if(formate_rep== 1){
+			 $("#cc_1").show();
+			  $("#cc_2").hide();
+				  $("#cc_3").hide();
+			 }else if(formate_rep== 2){
+				  $("#cc_1").hide();
+					$("#cc_2").show();
+						$("#cc_3").hide();
+				 }else if(formate_rep== 3){
+					  $("#cc_1").hide();
+						$("#cc_2").hide();
+							$("#cc_3").show();
+					 }
+    		});
         
-        
+        ///////////
         $.post("<?php echo site_url('index.php/configureClassControllers/addStream') ?>", {streamName : ''}, function(data){
         	
             $("#streamList1").html(data);

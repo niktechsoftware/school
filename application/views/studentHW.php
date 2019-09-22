@@ -39,8 +39,8 @@
             <br>
 			<div class="panel-body">
 			    <div class="alert alert-info">
-					<h3 class="media-heading text-center">Welcome to show Homework Area</h3>
-					<p class="media-timestamp">To know the show homework for all the Student / Teacher / Employee, go to the Home Work 
+					<h3 class="media-heading text-center">Welcome to Show Homework Area</h3>
+					<p class="media-timestamp">To know the Show homework for all the Student / Teacher / Employee, go to the Home Work 
 						for field and select it and you will start doing a list of homework and you can also take a printout of it.
 					</p>
 				</div>

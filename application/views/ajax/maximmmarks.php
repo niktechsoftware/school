@@ -83,8 +83,14 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   					     
                  <td><button class="btn btn-red" id="updtmmarks<?php echo $i;?>">Update Your Marks<i class="fa fa-arrow-circle-right"></i>
                      </button>
+                     <button class="btn btn-red" id="deletemmarks<?php echo $i;?>">Delete Marks<i class="fa fa-trash-o"></i>
+                     </button>
                   </td>
                   <input type="hidden" id="viid<?php echo $i;?>" value="<?php echo $val->row()->id; ?>" />
+                  <input type="hidden" id="examid1<?php echo $i;?>" value="<?php echo $examid; ?>" />
+                      <input type="hidden" id="classid1<?php echo $i;?>" value="<?php echo $classid; ?>" />
+                    
+                      <input type="hidden" id="subjectid1<?php echo $i;?>" value="<?php echo $subjectid; ?>" />
                     </tr>
                  </tbody>
                   <?php  }else{?>  
@@ -161,15 +167,41 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 
                         $("#updtmmarks<?php echo $i;?>").click(function(){
                             var mark = $("#mmmark<?php echo $i;?>").val();
+                            var examid = $("#examid1<?php echo $i;?>").val();
+                            var classid = $("#classid1<?php echo $i;?>").val();
+                            var subjectid = $("#subjectid1<?php echo $i;?>").val();
                             var viid = $("#viid<?php echo $i;?>").val();
                             if(mark!=""){
                                 //alert(mark+viid);
-                    $.post("<?php echo site_url("index.php/examControllers/updatesubmaxiMarks") ?>",{mark : mark,viid : viid,}, function(data){
+                    $.post("<?php echo site_url("index.php/examControllers/updatesubmaxiMarks") ?>",{mark : mark,viid : viid, examid : examid, classid : classid, subjectid : subjectid,}, function(data){
                     
                       alert('Maximum Marks Updated Successfully');
                       $("#updtmmarks<?php echo $i;?>").html(data);
                       // $("#updtmmarks<?php echo $i;?>").hide();
                         //window.location.reload();
+                    });
+                            }else{
+                                alert('Please fill Marks');
+                            }
+                 
+                     });  
+
+                     $("#deletemmarks<?php echo $i;?>").click(function(){
+                            var mark = $("#mmmark<?php echo $i;?>").val();
+                            var examid = $("#examid1<?php echo $i;?>").val();
+                            var classid = $("#classid1<?php echo $i;?>").val();
+                            var subjectid = $("#subjectid1<?php echo $i;?>").val();
+                            var viid = $("#viid<?php echo $i;?>").val();
+                            if(mark!=""){
+                                //alert(mark+viid);
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubmaxiMarks") ?>",{mark : mark,viid : viid, examid : examid, classid : classid, subjectid : subjectid,}, function(data){
+                     
+                      $("#deletemmarks<?php echo $i;?>").html(data);
+                      alert('Maximum Marks Deleted Successfully');
+                      $("#deletemmarks<?php echo $i;?>").html();
+                     // $("#mmmark<?php echo $i;?>").show();
+                      // $("#updtmmarks<?php echo $i;?>").hide();
+                       // window.location.reload();
                     });
                             }else{
                                 alert('Please fill Marks');
@@ -248,8 +280,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   <?php }?>             
                  <td><button class="btn btn-red" id="updtmmarks">Update Your Marks<i class="fa fa-arrow-circle-right"></i>
                      </button>
+                     <button class="btn btn-red" id="deletemmarks">Delete Marks<i class="fa fa-trash-o"></i>
+                     </button>
                   </td>
                   <input type="hidden" id="viid" value="<?php echo $val->row()->id; ?>" />
+                  <input type="hidden" id="classid1" value="<?php echo $classid; ?>" />
+                <input type="hidden" id="examid1" value="<?php echo $examid; ?>" />
+                <input type="hidden" id="subjectid1" value="<?php echo $subjectid; ?>" />
                     </tr>
                   
                  
@@ -327,12 +364,15 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 
                         $("#updtmmarks").click(function(){
                             var mark = $("#mmmark<?php echo $i;?>").val();
+                            var examid = $("#examid1").val();
+                            var classid = $("#classid1").val();
+                            var subjectid = $("#subjectid1").val();
                            // var marks_grade = $("#marks_grade").val();
                             var viid = $("#viid").val();
                             //alert(mark);
                             if(mark!=""){
                                 //alert(mark+viid);
-                            $.post("<?php echo site_url("index.php/examControllers/updatesubmaxiMarks") ?>",{mark : mark,viid : viid,}, function(data){
+                            $.post("<?php echo site_url("index.php/examControllers/updatesubmaxiMarks") ?>",{mark : mark,viid : viid,examid : examid, classid : classid, subjectid : subjectid,}, function(data){
                             $("#updtmmarks").html(data);
                               alert('Maximum Marks Updated Successfully');
                                $("#updtmmarks").html();
@@ -341,6 +381,28 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                             }else{
                                 alert('Please fill Marks');
                             }
+                     });  
+                     $("#deletemmarks").click(function(){
+                            var mark = $("#mmmark<?php echo $i;?>").val();
+                            var examid = $("#examid1").val();
+                            var classid = $("#classid1").val();
+                            var subjectid = $("#subjectid1").val();
+                            var viid = $("#viid").val();
+                            if(mark!=""){
+                                alert(subjectid+classid+examid );
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubmaxiMarks") ?>",{mark : mark,viid : viid, examid : examid, classid : classid, subjectid : subjectid,}, function(data){
+                     
+                      $("#deletemmarks").html(data);
+                      alert('Maximum Marks Deleted Successfully');
+                      $("#deletemmarks").html();
+                     // $("#mmmark<?php echo $i;?>").show();
+                      // $("#updtmmarks<?php echo $i;?>").hide();
+                       // window.location.reload();
+                    });
+                            }else{
+                                alert('Please fill Marks');
+                            }
+                 
                      });  
                 </script>
                 <?php } ?>

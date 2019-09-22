@@ -425,12 +425,14 @@ $total=0.00;
                     foreach($homework as $home)
                     {?>
                            <?php $this->db->where('id',$home->class_id);
-                           $classname=$this->db->get('class_info')->row();
+                           $classname=$this->db->get('class_info');
+                           
                             $this->db->where('id',$home->subject_id);
-                           $subjectname=$this->db->get('subject')->row();
+                           $subjectname=$this->db->get('subject');
+                          
                            ?>
-                    <tr><td>   <?php echo $classname->class_name;?></td>
-                   <td>  <?php   echo $subjectname->subject;?></td>
+                    <tr><td>   <?php if($classname->num_rows()>0){  $classname =  $classname->row();echo $classname->class_name;}?></td>
+                   <td>  <?php   if($subjectname->num_rows()>0){$subjectname=$subjectname->row(); echo $subjectname->subject;}?></td>
                     <td>  <?php  echo $home->work_name;?></td>
                      <td>  <?php  echo $home->remark;?></td>
                      <td>  <?php  echo $home->workDiscription;?></td>

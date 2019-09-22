@@ -172,7 +172,10 @@
             		<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
+
             		<?php echo "Mobile No. : +91-".$info->mobile_no.', '.$info->other_mobile_no; ?>
+
+
 
                 </h2>
                 	<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
@@ -259,7 +262,9 @@
             <table>
                 <tr>
                     	<td style="border:none; line-height: 10px;">
+
                     		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="100" />
+
                         </td>
                     </tr>
                    
@@ -299,11 +304,13 @@
                         foreach($shift as $s):
                         ?>
                         <tr>
+
                         <td style="text-align: center;text-transform: uppercase;"><?php if($school_code==5){ ?><?php }else{ ?>
                         <?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?><?php }else{echo $s->shift; } ?>
                         <?php //echo $s->shift;?>
                         
                         <?php } ?></td>
+
                         <?php 
                          foreach($date as $ed):
 						$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -337,13 +344,17 @@
 		<div align="left"><h3>
 	    <!--for daffodils start-->
 		<?php if($school_code==5){ ?>
+
 		&nbsp;Note: 1)Exam timing is  <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
+
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) A Student who gives or obtains unfair assistance at an examination 
 		will debarred for the rest of the examination and will</br> 
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
+
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) On Oct 4 (Friday) who unattend any subject paper with genuine reason 
+
 		can give their left paper with same exam time.	
 		<!--for daffodils end-->
 		<!--for scholar start-->
@@ -380,18 +391,22 @@
 		</div>
 		
 		<div>
+
 		    <br/>
 		<table id="items" align="center"  style="width:100%; margin-top:1px; alignment-adjust:central;">
 		<tr>
 		<td style="width: 50%;">(Signature)<br>Class Teacher</td>
 		<td>(Signature)<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50" style="float:right;"  />
 		<br>Principal</td>
+
 		</tr>
 		</table></div>
         <div> </div>
         <hr>
-        
+
+
 	</div></br></br></br></br>
+
 	<?php }}else{echo "<span style='color:red'>Student not found</span>";}?>
 	</div>
 <div class="invoice-buttons" style="text-align:center;">

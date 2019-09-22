@@ -33,7 +33,9 @@
 										</div>
 									</div>
 									<div class="panel-body">
-										<?php $v=$this->session->userdata('username'); 	
+										<?php $v1=$this->session->userdata('username'); 	
+										$v=$this->session->userdata('id');
+										
 										$this->db->where("school_code",$this->session->userdata("school_code"));
 										 $this->db->where("valid_id",$v);
 								   				 $row = $this->db->get("sale_info"); ?>
@@ -49,14 +51,16 @@
 								    			</thead>
 								    			<tbody>	
 								    		<?php		$i=1; 	
-								    		foreach($row->result() as $rows):?>
-								
+											foreach($row->result() as $rows):
+											$this->db->where('billno',$rows->bill_no);
+											$data= $this->db->get('sale_balance')->row();?>
+													
 								    				<tr>
 								    				<td> <?php echo $i;?> </td>
 								    				<td> <?php echo $rows->item_no;?> </td>
 								    				<td> <?php echo $rows->date;?> </td>
-								    				<td> <?php echo $rows->balance;?> </td>
-								    				<td> <?php echo $rows->paid;?> </td>
+								    				<td> <?php echo $data->balance;?> </td>
+								    				<td> <?php echo $data->paid;?> </td>
 								    				<td> <?php echo $rows->bill_no;?> </td>
 								    				</tr>
 								    				<?php $i++; 

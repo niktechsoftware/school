@@ -78,7 +78,7 @@
 								if($do)
 								{echo "successfully home work is Given";
 								}?></div>
-								<select name="showhomeworkfor" id="showhomeworkfor">
+								<select name="showhomeworkfor" id="showhomeworkfor" >
 								<option value="01">-Select-</option>
 									<?php $logtype = $this->session->userdata('login_type');
 											if($logtype == "admin"){

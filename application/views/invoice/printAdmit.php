@@ -126,9 +126,10 @@
 
 <body>
 	<div id="printcontent" align="center">
+
 	<div id="page-wrap" style="height: 480px;width:800px; border: 1px solid black; outline: 1px solid black; solid #333;">
-<?php
-	$school_code = $this->session->userdata("school_code");
+
+	<?php $school_code = $this->session->userdata("school_code");
 
     $this->db->where("id",$school_code);
     $info =$this->db->get("school")->row();
@@ -153,6 +154,7 @@
 					<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" style="width:65%;" />
 				</td>
 				<td style="text-align:center; border:none; width:60%;">
+
 			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#d80606;">
 			    <b> <span class="schoolTitle"><?php if(($rowc->class_id==98)||($rowc->class_id==99) || ($rowc->class_id==116)||($rowc->class_id== 100) ||($rowc->class_id== 101) ||($rowc->class_id== 102) ||($rowc->class_id== 103) ||($rowc->class_id== 104) ){ echo "THE MANNER SCHOOL";}else{echo $info->school_name;}?></span><?php //echo $info->school_name; ?></b>
 			    </h1><h2 style="font-variant:small-caps;color:#d80606;">
@@ -162,6 +164,8 @@
             		<?php //echo $info->state." - ".$info->pin.", Contact No. : " ;
             		//if(strlen($info->mobile_no > 0 )){echo $info->phone_no.", ".$info->mobile_no ;} 
             		echo "Mobile No. : +91-".$info->mobile_no.', '.$info->other_mobile_no; ?>
+
+
 
                 </h2>
     						<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
@@ -249,7 +253,9 @@
             <table>
                 <tr>
                     	<td style="border:none; line-height: 20px;">
+
                     		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="100"/>
+
                         </td>
                     </tr>
                    
@@ -293,11 +299,13 @@ if($exam_day->num_rows()){
                         foreach($shift as $s):
                         ?>
                         <tr>
+
                         <td style="text-align: center;text-transform: uppercase;"><?php if($school_code==5){ ?><?php }else{ ?>
                         <?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?><?php }else{echo $s->shift; } ?>
                         <?php //echo $s->shift;?>
                         
                         <?php } ?></td>
+
                         <?php 
                          foreach($date as $ed):
 						$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -331,12 +339,15 @@ if($exam_day->num_rows()){
 		<div align="left"><h3>
 	    <!--for daffodils start-->
 		<?php if($school_code==5){ ?>
+
 		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
+
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) A Student who gives or obtains unfair assistance at an examination 
 		will debarred for the rest of the examination and will</br> 
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
+
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) On Sep 20 (Friday) who unattend any subject paper with genuine reason 
 		can give their left paper with same exam time.	
 		<!--for daffodils end-->
@@ -349,6 +360,7 @@ if($exam_day->num_rows()){
 		3) Unfair means or papers are strictly prohibited.</br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		4) Issuing of duplicate Admit card will charge 10 rs.
+
 		<?php }else if($school_code==8){ ?>
 		<!--for scholar end-->
 		<!--for dds start--><?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?>&nbsp;Note: 1)Exam timing is - 09:00 A.M. to 12:00 P.M.<br><?php }else{ ?>
@@ -361,6 +373,7 @@ if($exam_day->num_rows()){
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
 		<?php }else{ ?><!--for dds end-->
+
 		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
 		$endt =strtotime("-00 minutes",strtotime($s->to1));
@@ -368,6 +381,7 @@ if($exam_day->num_rows()){
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
 		<?php }?></h3>
+
 	
 		</div>
 		

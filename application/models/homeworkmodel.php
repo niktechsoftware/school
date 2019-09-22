@@ -14,15 +14,16 @@ class homeWorkModel extends CI_Model{
 		$var = $this->db->get("homework");
 		return $var;
 	}
-	function getHomeWorkDetail(){ 
-	$this->db->where("class_id",$this->session->userdata("class_id"));
+
+	function getHomeWorkDetail(){
+
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$var = $this->db->get("homework_name");
 		return $var;
 	}
 	function getHomeWorkDetailTeacher(){
 		$school_code = $this->session->userdata("school_code");
-	//	$var = $this->db->query("SELECT * FROM homework_name WHERE class_id = 0");
+
 		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='teachers' And school_code='$school_code'");
 		return $var;
 	}
@@ -33,9 +34,11 @@ class homeWorkModel extends CI_Model{
 	}
 	function getHomeWorkDetailStudent(){
 		$school_code = $this->session->userdata("school_code");
-        $cid = $this->session->userdata("class_id");
+
+        //$cid = $this->session->userdata("class_id");
 		//$var = $this->db->query("SELECT * FROM homework_name WHERE class_id = '$cid' ");
-		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students' and class_id = '$cid' And school_code='$school_code'");
+		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students' AND school_code='$school_code'");
+
 		return $var;
 	}
 	function updateHomeWork($data,$sno){
