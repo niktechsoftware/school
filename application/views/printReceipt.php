@@ -67,20 +67,27 @@
 							$valid_id=$row->valid_id;
 							$this->db->where("billno",$bill);
 							$dt2=$this->db->get("sale_balance")->row();
-							//print_r($dt2);
+							if($row->category=="Student Id"){
+							$this->db->where('id',$row->valid_id);
+							$sunm=$this->db->get('student_info');}
+							else{
+								$this->db->where('id',$row->valid_id);
+							$sunm=$this->db->get('employee_info');
+							}
+							if($sunm->num_rows()>0){
+								$sunm= $sunm->row()->username;
 						            ?>
-
 							<tr>
-					        	<td><?php echo $row->valid_id; ?></td>
-					            <td><?php echo $row->bill_no; ?></td>
-					            <td><?php echo $row->date; ?></td>
-
+					        	<td><?php echo $sunm; ?></td>
+					            <td><?php echo $dt2->billno; ?></td>
+					            <td><?php echo $dt2->date; ?></td>
 					             <td><?php echo $dt2->paid; ?></td>
 					            <td><?php echo $dt2->balance; ?></td>
 					            <td><a href="<?php echo base_url()?>index.php/invoiceController/printSaleReciept/<?php echo $row->bill_no; ?>" target="_blank" class="btn btn-green btn-gradient">Print</a></td>
 					        </tr>
 					<?php 
 					}
+				}
 
 						}
 					?>

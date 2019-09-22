@@ -68,6 +68,11 @@
 <li>
     <a href="javascript:void(0)"><i class="fa fa-cogs"></i> <span class="title"> Configuration </span><i class="icon-arrow"></i> </a>
     <ul class="sub-menu">
+	 <li>
+            <a href="<?php echo base_url(); ?>index.php/login/configuredoc">
+                Configure Document Formate <i class="icon-arrow"></i>
+            </a>
+        </li>
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/configureClass">
                 Configure Class <i class="icon-arrow"></i>

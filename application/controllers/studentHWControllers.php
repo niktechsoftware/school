@@ -266,7 +266,6 @@ class studentHWControllers extends CI_Controller{
 					"status"=>1,
 					"obtain_marks"=>10	
 			);
-			
 		$this->load->library('upload');
 	//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/submithomeWork');
 	$asset_name = $this->db->get('upload_asset')->row()->asset_name;
@@ -280,9 +279,6 @@ class studentHWControllers extends CI_Controller{
 			$this->upload->do_upload('filehomeWork');
 		}
 		else{echo "Somthing going wrong. Please Contact Site administrator";}
-			
-			
-			
 			$this->load->model("homeWorkModel");
 			$var=$this->homeWorkModel->submitHomeWork($data);
 			if($var)
@@ -462,7 +458,8 @@ function showHomeWork()
         	$this->load->model("homeWorkModel");
         	$va=$this->homeWorkModel->getHomeWorkDetailStudent();
     		if($va->num_rows()>0){
-    		$var1=$va->result();
+			$var1=$va->result();
+			//print_r($var1);exit();
         	?>
     	<div class="table-responsive" id ="normal">
     	<table class="table table-striped table-hover" id="sample-table-2">
@@ -549,6 +546,7 @@ function showHomeWork()
 	$sec=$this->input->post("section");
 	$this->load->model("homeWorkModel");
 	$var=$this->homeWorkModel->getSectionWise($classt,$sec);
+	
 
 	?>
 

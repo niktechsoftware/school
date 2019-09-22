@@ -58,7 +58,19 @@ foreach($class->result() as $data)
 $this->db->where('id',$data->stu_id);
 $studentname=$this->db->get('student_info');
 if($studentname->num_rows()>0){
-
+							/*$this->db->where("class_id",$classid);
+							$this->db->where("school_code",$this->session->userdata('school_code'));
+							$dt=$this->db->get("school_attendance");
+						    $atotal=$dt->num_rows();
+							$this->db->where('id',$this->session->userdata('fsd'));
+							$fsdval=$this->db->get('fsd')->row();
+							$this->db->where('a_date >=',$fsdval->finance_start_date);
+							$this->db->where('a_date <=',$fsdval->finance_end_date);
+							$this->db->where('stu_id',$studentInfo->id);
+							$this->db->where('attendance',0);
+							$row1=$this->db->get('attendance');
+							$absnt=$row1->num_rows();
+							$present =$atotal-$absnt;*/
 $this->db->where('stu_id',$data->stu_id);
 $this->db->where('attendance',0);
 $atten=$this->db->get('attendance');

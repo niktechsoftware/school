@@ -36,7 +36,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 			</div> <!-- End Panel Heading -->
 			<div class="panel-body">
 				
-		<div class="table-responsive">
+		<div class="table-responsive" >
 		<table class="table table-striped table-hover">
 			<thead>
 			<tr>
@@ -48,17 +48,20 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					
 					$this->db->where('username',$username);
 					$teacherid=$this->db->get('employee_info')->row();
-					$id=$teacherid->id;
-					
+					$id=$teacherid->username;
+				
 				}else{
 					$username= $this->session->userdata("username");
 					
 					$this->db->where('username',$username);
 					$teacherid=$this->db->get('employee_info')->row();
-					$id=$teacherid->id;
+					$id=$teacherid->username;
+			
 				}
-				$this->db->where("school_code",$this->session->userdata("school_code"));
-					$period=$this->db->get("period");
+                //$this->db->where("school_code",$this->session->userdata("school_code"));
+                $this->db->where('nop_id',$lesson_plan);
+                    $period=$this->db->get("period");
+                   // print_r($period);exit();
 					foreach($period->result() as $row):
 				?>
 				<th><?php echo $row->period;?></th>
@@ -107,11 +110,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						}
 						else{
 							
-					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$username."' AND date1='".$sdate."' AND dayname = '".$weekday."'  AND school_code = '".$school_code."'");
+					$guru = $this->db->query("SELECT * FROM lesson_plan WHERE teacher_id = '".$id."' AND date1='".$sdate."' AND dayname = '".$weekday."'");
+				
+			//	print_R($guru);exit();
 					if($guru->num_rows()>0)
 					{
 						$period1=$row->period;?><input type="hidden" name="period" value="<?php echo $period1?>"/><?php
-							$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$id."' AND period_id = '$period1' And day LIKE '%$weekday%' AND school_code = '".$school_code."'");
+							$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$id."' AND period_id = '$period1'");
 							foreach($result1->result() as $row1):
 								?><input type="hidden" name="subject" value="<?php echo $row1->subject_id;?>"/><?php 
 							 
@@ -141,7 +146,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					<td style="color:grean">
 					<?php 
 						$period1=$row->period;?><input type="hidden" name="period" value="<?php echo $period1?>"/><?php
-						$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$username."' AND period_id = '$period1' And day LIKE '%$weekday%' AND school_code = '".$school_code."'");
+						$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$id."' AND period_id = '$period1' ");
 						foreach($result1->result() as $row1):
 							echo $row1->subject." ";?><input type="hidden" name="subject" value="<?php echo $row1->subject;?>"/><?php 
 							$r=	$row1->class1;
@@ -160,7 +165,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 			} // End while loop
 			?>
 			
-		</table>	
+		</table>
 		</div>
 		
 	</div>

@@ -503,8 +503,9 @@ $school_code = $this->session->userdata("school_code");
                         <tr>
                           <td class="center"><?php echo $i;?></td>
                           <td> <?php echo $totteacher->name ;?>  </td>  
-                       <td class="center"><?php    if($classdt->num_rows()>0){?> <span style="color:green;"><?php echo "Present" ;?></span><?php } else{  ?><span style="color:red;"><?php  echo "Absent" ; ?></span><?php } ?></td>
-                         
+                    <?php    if($classdt->num_rows()>0){?>   <td class="center"> <span style="color:green;"><?php if(($classdt->row()->attendance)==1){ echo "Present" ;?></span><?php } else{  ?><span style="color:red;"><?php  echo "Absent" ; ?></span></td><?php } } else{?>
+                        <td> Today's Attendance Not Done. </td>  
+                         <?php }?>
                         </tr>
                <?php     $i++;  endforeach;?>
                        

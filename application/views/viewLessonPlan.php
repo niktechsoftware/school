@@ -28,69 +28,87 @@
 									</div>
 								</div>
 							</div> <!-- End Panel Heading -->
-							<div class="panel-body">
-								<form action ="<?php echo base_url();?>index.php/periodTimeControllers/viewclassplan" method ="post">
-													<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to the Teacher Lesson Plan area</h3><p class="media-timestamp">In this section teachers fill there class work. If you find information then first select start date than end date and fill teacher id and click on define class plan button and show the results.</div>
-										<strong>Note : Please Enter Date  And Teacher ID</strong>
-										
-									<br>
-									<br>
-									<br>
-									
-										<div class="row space15">
-											<div class="col-md-12">
-												<div class="col-md-6">
-												<div class="col-md-6"><b>Start Date</b>
-												</div>
-													<div class="col-sm-6">
-														<input type="date" name ="sdate"  class="form-control" required="required"/>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="col-md-6"><b>End Date</b>
-													</div>
-													<div class="col-sm-6">
-														<input type="date" name ="edate" class="form-control" required="required"/>
-													</div>
-												</div>	
-												<div class="col-md-12 space15">
-												<div class="col-md-6">
-												<div class="col-md-6">Teacher ID</div>
-													<div class="col-sm-6">
-														<select name="teacherid"  class="form-control" required="required">
-																<option value="01">-Select-</option>
-																<?php $this->db->where("school_code",$this->session->userdata("school_code"));
-																$this->db->where("job_category",3);
-																$var=$this->db->get("employee_info");
+<div class="panel-body">
+<form action ="<?php echo base_url();?>index.php/periodTimeControllers/viewclassplan" method ="post">
+		<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to the Teacher Lesson Plan area</h3><p class="media-timestamp">In this section teachers fill there class work. If you find information then first select start date than end date and fill teacher id and click on define class plan button and show the results.</div>
+<strong>Note : Please Enter Date  And Teacher ID</strong>
 
-																foreach($var->result() as $v):
-																print_r($v);?>
-																<option value="<?php echo $v->username;?>"><?php echo $v->username;?></option>
-																<?php endforeach;?>
-														</select>
-													</div>
-													</div>
-													<div class="col-sm-6">
-													</div>
-													
-												</div>
-												</div>
-												</div>
-											</div>
-											<div>
-												<button type="submit" class="btn btn-light-purple"><i class="fa fa-arrow-circle-right"></i>Define Class Plan </button>
-											</div>
-										</div>
-									</form>
-								</div>
-						</div>
-					</div>
-				</div>
+<br>
+<br>
+<br>
 
-				<?php
-				}
-				else{
-					?>
+<div class="row space15">
+<div class="col-md-12">
+	<div class="col-md-6">
+	<div class="col-md-6"><b>Start Date</b>
+	</div>
+		<div class="col-sm-6">
+			<input type="date" name ="sdate"  class="form-control" required="required"/>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="col-md-6"><b>End Date</b>
+		</div>
+		<div class="col-sm-6">
+			<input type="date" name ="edate" class="form-control" required="required"/>
+		</div>
+	</div>	
+	<div class="row space15" style="padding-top:10px;">
+	<div class="col-md-12 ">
+	<div class="col-md-6">
+	<div class="col-md-6"><b>Teacher ID</b></div>
+		<div class="col-sm-6">
+			<select name="teacherid"  class="form-control" required="required">
+					<option value="01">-Select-</option>
+					<?php $this->db->where("school_code",$this->session->userdata("school_code"));
+					$this->db->where("job_category",3);
+					$var=$this->db->get("employee_info");
+
+					foreach($var->result() as $v):
+					print_r($v);?>
+					<option value="<?php echo $v->username;?>"><?php echo $v->username;?></option>
+					<?php endforeach;?>
+			</select>
+		</div>
+		</div>
+		<div class="col-sm-6">
+		<div class="col-md-6"><b>Select Time Table</b></div>
+		<div class="col-md-6">
+		<select class="form-control" id="time_thead_id" name="time_thead_id">
+			<option value="">-Select Time Table-</option>
+				<?php $this->db->where('school_code',$this->session->userdata('school_code'));
+				$time_thead_id= $this->db->get('no_of_period');
+			if($time_thead_id->num_rows()>0):
+					foreach($time_thead_id->result() as $thead):
+						?>
+							<option value="<?php echo $thead->id;?>"><?php echo $thead->period_name;?></option>
+						<?php
+					endforeach;
+			endif;?>
+				<option>
+			</select>
+			</div>
+		</div>
+		
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
+<div>
+	<button type="submit" class="btn btn-light-purple"><i class="fa fa-arrow-circle-right"></i>Define Class Plan </button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<?php
+}
+else{
+?>
 					<div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-white">
@@ -136,12 +154,32 @@
 								</div>
 							</div>
 							<div class="col-md-6">
-							<div class="col-md-6">End Date</div>
+							<div class="col-md-6"><h4><b>End Date</h4></b></div>
 								<div class="col-sm-6">
 								<input type="date" name ="edate"  class="form-control" required="required"/>
 								</div>
 							</div>
 							</div>
+					</div>
+					<div class="row space15">
+					
+					<div class="col-md-3"><h4 class="text-center"><strong>Select Time Table</strong></h4></div>
+						<div class="col-md-4">
+						<select class="form-control" id="time_thead_id" name="time_thead_id">
+							<option value="">-Select Time Table-</option>
+								<?php $this->db->where('school_code',$this->session->userdata('school_code'));
+								$time_thead_id= $this->db->get('no_of_period');
+							if($time_thead_id->num_rows()>0):
+									foreach($time_thead_id->result() as $thead):
+										?>
+											<option value="<?php echo $thead->id;?>"><?php echo $thead->period_name;?></option>
+										<?php
+									endforeach;
+							endif;?>
+								<option>
+							</select>
+							</div>
+						
 					</div>
 					<div>
 							<button type="submit" class="btn btn-light-purple"><i class="fa fa-arrow-circle-right"></i>Define Class Plan </button>

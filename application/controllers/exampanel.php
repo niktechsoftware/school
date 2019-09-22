@@ -233,6 +233,21 @@ class Exampanel extends CI_Controller{
 
 
   }
+  public function classwisereport(){
+		$data['pageTitle'] = 'Exam Panel';
+		$data['smallTitle'] = 'Exam Panel';
+		$data['mainPage'] = 'Exam Panel Area';
+		$data['subPage'] = 'Exam Panel';
+		$data['title'] = 'Exam Panel Area ';
+		$data['headerCss'] = 'headerCss/noticeCss';
+		$data['footerJs'] = 'footerJs/noticeJs';
+		$this->load->model("allFormModel");
+		$data['request'] = $this->allFormModel->getsectionfeereport()->result();
+		$data['mainContent'] = 'panel/exam/classwisereport';
+		$this->load->view("includes/mainContent", $data);
+
+
+  }
 
     public function topperfomertotalexampanel(){
 		$data['pageTitle'] = 'Exam Panel';

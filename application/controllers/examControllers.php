@@ -468,13 +468,11 @@ function defineExam1(){
 		 $classid = $this->input->post("classid");
 		 $subjectid =$this->input->post("subjectid");
 		 $examid =$this->input->post("examid");
-		
 		$data['t_id'] = $this->input->post("teacherid");
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
 		$data['examid'] = $this->input->post("examid");
-		
 	$this->load->view("ajax/examMarksDetail",$data);		
 	}
 
@@ -614,18 +612,51 @@ function defineExam1(){
 
 	function updatesubmaxiMarks(){
 	   $marks= $this->input->post("mark");
-	   $rowid =  $this->input->post("viid");
+		 $rowid =  $this->input->post("viid");
+		 $examid =  $this->input->post("examid");
+		 $classid =  $this->input->post("classid");
+		 $subjectid =  $this->input->post("subjectid");
+
 	   $data =array(
 	       'max_m'=> $marks,
 	       );
 	       $this->db->where('id', $rowid);
-	       $this->db->update("exam_max_subject",$data);
+				$updt= $this->db->update("exam_max_subject",$data);
+				if($updt){
+					$examinfo =array(
+						'out_of'=> $marks,
+					);
+					$this->db->where('exam_id', $examid);
+					$this->db->where('class_id', $classid);
+					$this->db->where('subject_id', $subjectid);
+				$dt=	$this->db->update('exam_info',$examinfo);
+				if($dt){
 	       echo "Updated";
-	       ?>
-	      
-	       <?php
+				} }
 	}
 	
+	function deletesubmaxiMarks(){
+		$marks= $this->input->post("mark");
+		$rowid =  $this->input->post("viid");
+		$examid =  $this->input->post("examid");
+		 $classid =  $this->input->post("classid");
+		 $subjectid =  $this->input->post("subjectid");
+		$data =array(
+				'max_m'=> $marks,
+				);
+				$this->db->where('id', $rowid);
+			$deletedt=	$this->db->delete("exam_max_subject");
+			if($deletedt){
+				$this->db->where('exam_id', $examid);
+				$this->db->where('class_id', $classid);
+				$this->db->where('subject_id', $subjectid);
+			$dt=	$this->db->delete('exam_info');
+			if($dt){
+				echo "Deleted";
+			}
+			}
+ }
+ 
 	function insertMarksdetail()
 	{
 	    $stuid=$this->input->post('stuid'); 
@@ -733,10 +764,10 @@ function defineExam1(){
 			<thead>
 			 <?php $i=1; if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
              <tr class="<?php echo $rowcss;?>">
-					<th class="column-left"> Class & Shift</th>
+					<th class="column-left"> Date Of Exam/<br>Class & Shift</th>
 				<?php foreach ($dad->result() as $col):
 				//print_r($dad->result());?>
-				<th ><?php echo "Date Of Exam"."[".$col->date1."]"?></th>
+				<th ><?php echo $col->date1;?></th>
 			<?php endforeach;?>
 		</thead>
 		<tbody><?php $i=1;foreach ($getClass as $rowClass):
@@ -745,7 +776,7 @@ function defineExam1(){
 		    foreach ($shiftid->result() as $rowShift):
 		
 			?>
-		 <?php if($i%3==0){$rowcss="warning";}else{$rowcss ="danger";}?>
+		 <?php if($i%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
             <tr class="<?php echo $rowcss;?>">
 			<td class="column-left"><?php
 			echo $rowClass->class_name;?>-<?php
@@ -767,10 +798,8 @@ function defineExam1(){
                       foreach ($subject1 as  $value) {   
                            ?>
 
-				 <input type="hidden" name = "id<?php echo $i.$j;?>" value = "<?php echo $exam; ?>" id="id<?php $i.$j;?>"/>
 				
-				<input type="text" name = "<?php echo $value->id; ?>" style="width: 110px;" value = "<?php echo $value->subject; ?>" id="value<?php $i.$j?>"/>
-				
+				<?php echo $value->subject; ?>
 			
 					
 				<?php $m = $j++;

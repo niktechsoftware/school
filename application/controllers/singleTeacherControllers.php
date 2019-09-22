@@ -139,9 +139,7 @@
 		$this->db->where("username",$tID);
 		$tid=$this->db->get("employee_info");
 		$id= $tid->row();
-		
 		$teacherID=$id->id;
-		
 		$stDetail = $this->singleTeacherModel->getTeacherDetail($teacherID);
 		$data['teacherProfile'] = $stDetail->row();
 		$data['pageTitle'] = 'Teacher Profile';
@@ -291,9 +289,10 @@
 	
 	function teacherClasstimeTable(){
 		$stu_id = $this->session->userdata('username');
+
 		$var1 = $this->singleTeacherModel->time_Table($stu_id);
-		
-		$data['timetable']=$var1->result();
+		//print_r($var1);exit();
+		//$data['timetable']=$var1->result();
 		$data['pageTitle'] = 'Teacher Section';
 		$data['smallTitle'] = 'Class Time Table';
 		$data['mainPage'] = 'Teacher';
@@ -303,6 +302,11 @@
 		$data['footerJs'] = 'footerJs/singleTeacherJs';
 		$data['mainContent'] = 'teacherClasstimeTable';
 		$this->load->view("includes/mainContent", $data);
+	}
+	function getperiod(){
+		$data['timeTable']=$this->input->post('thead');
+		//print_r($timeTable);
+		$this->load->view('ajax/teacherTimeTable',$data);
 	}
 	function teacherExamDuty(){
 		$data['pageTitle'] = 'Teacher Section';
@@ -443,8 +447,12 @@
 		$this->db->where('fsd',$fsd);
 		$this->db->where('status',1);
 		$empid=$this->db->get('employee_info')->row()->id;
-		
-		$request=$this->db->query("SELECT * FROM teacher_attendance WHERE emp_id = '$empid' AND a_date >'$start_date' AND a_date < '$end_date' AND school_code='$school_code'");
+		$this->db->where('school_code',$school_code);
+			$this->db->where('emp_id',$empid);
+			$this->db->where('a_date >=',$start_date);
+			$this->db->where('a_date <=',$end_date);
+			$var=$this->db->get('teacher_attendance');
+//		$request=$this->db->query("SELECT * FROM teacher_attendance WHERE emp_id = '$empid' AND a_date >'$start_date' AND a_date < '$end_date' AND school_code='$school_code'");
 		
 		    	?>
 		    	<br><br>
@@ -534,7 +542,7 @@
 							</thead>
 							<tbody>
 								<?php $i=1;
-			  			 foreach ($request->result() as $row){	
+			  			 foreach ($var->result() as $row){	
 			  				?><tr>
 			  					<td><?php echo $i;?></td>
 			  					<!--<td><?php //echo $row->attendance; ?></td>-->
@@ -583,6 +591,10 @@ function showHomeWork()
 {
 		$school_code=$this->session->userdata('school_code');
 	$this->load->model("homeWorkModel");
+	$res=$this->db->query("SELECT DISTINCT section,id FROM class_section where school_code = $school_code ");
+		$data['noc'] = $res->result();
+		$va=$this->homeWorkModel->getHomeWorkDetail();
+		$data['var1']=$va->result();
 	$data['pageTitle'] = 'Show HomeWork';
 	$data['smallTitle'] = 'Employee/Teacher/Student';
 	$data['mainPage'] = 'Show HomeWork';

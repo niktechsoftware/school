@@ -5,18 +5,19 @@
 			$this->db->where("id",$cid);
 			$dtf=$this->db->get("class_info")->row();
 			$school_code=$dtf->school_code;
-
+			//$this->db->where('school_code',$school_code);
+			//$pp=$this->db->get('period');
+			//foreach($pp->result() as $p1){
+			//$p11=$p1->id;
+			//$this->db->where("period_id",$p11);
              $this->db->where("class_id",$cid);
-              $this->db->where("school_code",$school_code);
-			$dt1=$this->db->get("time_table")->result(); 
+             // $this->db->where("school_code",$school_code);
+			$dt1=$this->db->get("time_table")->result();
+			//print_r($dt1);
+			//} exit();
            // $pid= $dt1->period_id;
            // print_r($dt1);
-            /* $this->db->where("id",$pid);
-             $this->db->where("school_code",$school_code);
-			 $dt2=$this->db->get("period")->result();*/
-              
-
-
+           
 			?>
 		
 		<div class="row">
@@ -83,25 +84,32 @@
 														$this->db->where("id",$row->period_id);
 											             $this->db->where("school_code",$school_code);
 														 $dt2=$this->db->get("period")->result();
+														// print_r($row->period_id);
 														foreach($dt2 as $row1):
-
-														 //print_r($row1); 
-															
+														// print_r($row1); 
+														if($row1->period == ''){ 
+															?>
+															<th><?php echo $row1->from; ?> to <?php echo $row1->to; ?></th>
+														<?php }else{ ?>
+															<th><?php echo $row1->from; ?> to <?php echo $row1->to; ?></th>
+														<?php }
 														 ?>
-														<th><?php echo $row1->from; ?> to <?php echo $row1->to; ?></th>
-														<?php endforeach;;
+														
+														<?php endforeach;
 													endforeach;?>
-														
-														
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td><?php echo $class."-".$sec1;?></td>
 														<?php foreach($dt1 as $row):
-														 if($row->day == "Monday")
-															{?>
-															<?php if($row->teacher == ''):?>
+														$this->db->where('time_table_id',$row->id);
+														$days= $this->db->get('time_table_days');
+														if($days->num_rows()>0){
+															foreach($days->result() as $row1):
+														 if($row1->days_id == "1")
+															{ ?>
+															<?php if(($row->teacher == '') && ($ror->subject_id == '')):?>
 																<td><?php echo "Lunch";?></td>
 															<?php else:?>
 																<td><?php  $this->db->where("id",$row->subject_id);
@@ -111,13 +119,13 @@
 																$ename=$this->db->get("employee_info"); 
 																if($ename->num_rows()>0){
 																echo $ename->row()->name."<br/>".$sname->subject;}?></td>
-															<?php endif;}?>
+															<?php endif;} 
+														endforeach; 
+														} ?>
 													<?php endforeach;?>
 													</tr>
-													
 												</tbody>
 											</table>
-								
 										</div>
 										<!-- for Tuesday -->
 										<div id="tuesday" class="tab-pane">
@@ -163,7 +171,11 @@
 													<tr>
 														<td><?php echo $class."-".$sec1;?></td>
 														<?php foreach($dt1 as $row):
-														 if($row->day == "Tuesday")
+														$this->db->where('time_table_id',$row->id);
+														$days= $this->db->get('time_table_days');
+														if($days->num_rows()>0){
+															foreach($days->result() as $row1):
+														 if($row1->days_id == "2")
 															{?>
 															<?php if($row->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
@@ -174,7 +186,8 @@
 																$this->db->where("id",$row->teacher);
 																$ename=$this->db->get("employee_info")->row(); 
 																echo $ename->name."<br/>".$sname->subject;?></td>
-															<?php endif;}?>
+															<?php endif;}
+															endforeach; } ?>
 													<?php endforeach;?>
 													</tr>
 													
@@ -226,7 +239,11 @@
 													<tr>
 														<td><?php echo $class."-".$sec1;?></td>
 														<?php foreach($dt1 as $row):
-														 if($row->day == "Wednesday")
+														$this->db->where('time_table_id',$row->id);
+														$days= $this->db->get('time_table_days');
+														if($days->num_rows()>0){
+															foreach($days->result() as $row1):
+														 if($row1->days_id == "3")
 															{?>
 															<?php if($row->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
@@ -237,7 +254,8 @@
 																$this->db->where("id",$row->teacher);
 																$ename=$this->db->get("employee_info")->row(); 
 																echo $ename->name."<br/>".$sname->subject;?></td>
-															<?php endif;}?>
+															<?php endif;}
+															endforeach; } ?>
 													<?php endforeach;?>
 													</tr>
 													
@@ -290,7 +308,11 @@
 													<tr>
 														<td><?php echo $class."-".$sec1;?></td>
 														<?php foreach($dt1 as $row):
-														 if($row->day == "Thursday")
+														$this->db->where('time_table_id',$row->id);
+														$days= $this->db->get('time_table_days');
+														if($days->num_rows()>0){
+															foreach($days->result() as $row1):
+														 if($row1->days_id == "4")
 															{?>
 															<?php if($row->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
@@ -301,7 +323,8 @@
 																$this->db->where("id",$row->teacher);
 																$ename=$this->db->get("employee_info")->row(); 
 																echo $ename->name."<br/>".$sname->subject;?></td>
-															<?php endif;}?>
+															<?php endif;}
+															endforeach; } ?>
 													<?php endforeach;?>
 													</tr>
 													
@@ -354,7 +377,11 @@
 													<tr>
 														<td><?php echo $class."-".$sec1;?></td>
 														<?php foreach($dt1 as $row):
-														 if($row->day == "Friday")
+														$this->db->where('time_table_id',$row->id);
+														$days= $this->db->get('time_table_days');
+														if($days->num_rows()>0){
+															foreach($days->result() as $row1):
+														 if($row1->days_id == "5")
 															{?>
 															<?php if($row->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
@@ -365,7 +392,8 @@
 																$this->db->where("id",$row->teacher);
 																$ename=$this->db->get("employee_info")->row(); 
 																echo $ename->name."<br/>".$sname->subject;?></td>
-															<?php endif;}?>
+															<?php endif;}
+															endforeach; } ?>
 													<?php endforeach;?>
 													</tr>
 													
@@ -416,7 +444,11 @@
 													<tr>
 														<td><?php echo $class."-".$sec1;?></td>
 														<?php foreach($dt1 as $row):
-														 if($row->day == "Saturday")
+														$this->db->where('time_table_id',$row->id);
+														$days= $this->db->get('time_table_days');
+														if($days->num_rows()>0){
+															foreach($days->result() as $row1):
+														 if($row1->days_id == "6")
 															{?>
 															<?php if($row->teacher == ''):?>
 																<td><?php echo "Lunch";?></td>
@@ -427,7 +459,8 @@
 																$this->db->where("id",$row->teacher);
 																$ename=$this->db->get("employee_info")->row(); 
 																echo $ename->name."<br/>".$sname->subject;?></td>
-															<?php endif;}?>
+															<?php endif;}
+															endforeach; } ?>
 													<?php endforeach;?>
 													</tr>
 													

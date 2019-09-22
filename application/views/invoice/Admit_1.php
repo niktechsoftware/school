@@ -98,8 +98,10 @@
                             </tr>
 
                             <tr>
-                                <td style="padding:5px; width:100px;">Name</td>
-                                <td style="width:150px;text-transform: uppercase;color:pink;font-weight: bold;">
+
+                                <td style="padding:5px; width:220px;">Name</td>
+                                <td style="width:300px;text-transform: uppercase;">
+
                                     <?php echo $personalInfo->name; ?>
                                 </td>
                                 <td rowspan="8" align="center">
@@ -124,9 +126,11 @@
                                     </div>
                                     <div class="row">
                                         <h4 style="margin-top: 10px; text-align:center;">PRINCIPAL SIGN</h4>
+
                                         <?php if($this->session->userdata("school_code")==5){ ?>
                                         <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpeg" alt="" width="100" height="50"  />
                                    <?php }?>
+
                                    <?php if($personalInfo->transport==0){?>
                                      <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
                                    <?php }else{ ?>

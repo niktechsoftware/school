@@ -129,8 +129,9 @@ if ($dipom->num_rows () > 0) {
 		//	print_r($stuDetail->class_id);
 	
 				$this->db->where_in("taken_month",$searchM[$rt-1]);
-			$one_all_amount = $this->db->get("class_fees");
-			$one_all_amount=$one_all_amount->row()->fee_head_amount;
+			$one_all_amount1 = $this->db->get("class_fees");
+				if($one_all_amount1->num_rows()>0){
+			$one_all_amount=$one_all_amount1->row()->fee_head_amount;
 	
 		$totalfee=$fee_head*$rt;
 		$totalfeedue= $totalfee + $one_all_amount;
@@ -143,7 +144,7 @@ if ($dipom->num_rows () > 0) {
 		$this->db->where ( "class_id", $rows->class_id );
 		// print_r($stuDetail->class_id);
 		
-
+	 }
       }
 
 
@@ -163,8 +164,9 @@ if($school_code ==1){$this->db->where("cat_id",3);}
 		//	print_r($stuDetail->class_id);
 	
 				$this->db->where_in("taken_month",$searchM[$rt-1]);
-			$one_all_amount = $this->db->get("class_fees");
-			$one_all_amount=$one_all_amount->row()->fee_head_amount;
+			$one_all_amount1 = $this->db->get("class_fees");
+			if($one_all_amount1->num_rows()>0){
+			$one_all_amount=$one_all_amount1->row()->fee_head_amount;
 		
 // 			for($ui=0;$ui<$rt;$ui++){
 // 				if($ui>0){
@@ -176,7 +178,7 @@ if($school_code ==1){$this->db->where("cat_id",3);}
 		$totalfeedue= $totalfee + $one_all_amount;
 	echo " and total payble amount is Rs.<b>".$totalfeedue."</b>";
 //print_r($searchM);
-   
+}
 	}else{
 		echo "fee Not found";}
 

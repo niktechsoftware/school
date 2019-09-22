@@ -100,12 +100,14 @@
         	<div style="display:inline-block;">
          <?php
  
-	$id = $this->uri->segment(3);
+	//$id = $this->uri->segment(3);
 	
 	$sqlb=mysqli_query($this->db->conn_id,"select * from sale_info where bill_no = '$id' AND school_code = '$school_code'");
+	
 	$rowb=mysqli_fetch_object($sqlb);
 	
 	$category = $rowb->category;
+	
 	$valid_id = $rowb->valid_id;
 	
 	if($category == "Employee Id")
@@ -117,14 +119,21 @@
 	{     
 		$sqlc=mysqli_query($this->db->conn_id,"select * from student_info where id='$valid_id' ");
 		$rowc=mysqli_fetch_object($sqlc);
+		//print_r($rowc);
+		//print_r($valid_id);exit();
 		if($rowc)
 		{
 			$this->db->where('school_code',$school_code);
 			$this->db->where('id',$rowc->class_id);
-			$dt=$this->db->get("class_info")->row();
+			$dtt=$this->db->get("class_info");
+		//	print_r($rowc->class_id);
+		//	print_r($school_code);exit();
+		if($dtt->num_rows()>0){
+			$dt=$dtt->row();
 			$sid=$dt->section;
 			$this->db->where('id',$sid);
 			$dt1=$this->db->get("class_section")->row();
+		}
 		}
 	}
 
@@ -148,8 +157,10 @@
 								echo '<strong>Mobile No. :</strong>'.$rowc->mobile;
 							}
 							if($category == "Student Id")
-							{
-								echo '<strong>Class :</strong>'.strtoupper($dt->class_name).' - '.strtoupper($dt1->section);
+							{if($dtt->num_rows()>0){
+								 if(strlen($dtt->row()->class_name)>0){
+								echo '<strong>Class :</strong>'.strtoupper($dtt->row()->class_name).' - '.strtoupper($dt1->section); }
+								 }else{ echo "N/A";}
 							}
 							?>
                     		
