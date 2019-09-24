@@ -65,16 +65,26 @@ class SmsAjax extends CI_Controller{
 	
 	function sendNotice(){
 		$count=0;
+		
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		$sende_Detail =$sender;
+		//print_r($sende_Detail->row()->password);exit;
      	$sende_Detail1=	$sende_Detail->row();
 		$msg =	$this->input->post("meg");
+		
 		//print_r($msg);exit;
 		$fmobile = $this->input->post("m_number");
-		sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-		redirect("index.php/login/mobileNotice/Notice");
+		if($this->input->post("language")==1){
+			$getv =  sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+			print_r($getv);
+		
+		}else{
+			echo smshindi($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+		
+
+		}
+		//redirect("index.php/login/mobileNotice/Notice");
 	}
-	
 	
 	
 	function sendallParent(){
@@ -87,8 +97,6 @@ class SmsAjax extends CI_Controller{
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		$fmobile=$this->session->userdata("mobile_number");
-// 			print_r($fmobile);
-// 				exit();
 		if($isSMS->parent_message)
 		{
 		if($query->num_rows() > 0)
@@ -98,23 +106,27 @@ class SmsAjax extends CI_Controller{
 			if($parentmobile->mobile){
 			
 			if($smscount<90){
-				$fmobile1 =$parentmobile->mobile;
+				$fmobile =$fmobile.",".$parentmobile->mobile;
 				$count=$count+1;
 				$smscount++;
-				// print_r($fmobile);
-				// exit();
 			}else{
-				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				//$fmobile="8382829593";
+				if($this->input->post("language")==1){
+				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}
+				$fmobile="8382829593";
 				$smscount=0;
 			}
 			
 			}
 			endforeach;
-					sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			}
-	
-			
+			if($this->input->post("language")==1){
+				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}
 		
 		}
 		else{
@@ -137,6 +149,7 @@ class SmsAjax extends CI_Controller{
 			$this->load->view("includes/mainContent", $data);
 		}
 	}
+	
 	function sendAnnuncement(){
 		$smscount=0;
 		$count=0;
@@ -159,16 +172,24 @@ class SmsAjax extends CI_Controller{
 				$count=$count+1;
 				$smscount++;
 			}else{
+				if($this->input->post("language")==1){
 				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				$fmobile="8382829593";
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}
+			$fmobile="8382829593";
 				$smscount=0;
 			}
 			
 			}
 			endforeach;
 			}
-			sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-		
+			if($this->input->post("language")==1){
+				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}
+			
 			redirect("index.php/login/mobileNotice/Announcement/$count");
 		}
 		else{
@@ -219,17 +240,22 @@ class SmsAjax extends CI_Controller{
 				$fmobile =$fmobile.",".$empmob->mobile;
 				$count=$count+1;
 				$smscount++;
-			}else{
+			}else{if($this->input->post("language")==1){
 				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				$fmobile="8382829593";
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}$fmobile="8382829593";
 				$smscount=0;
 			}
 			
 			}
 			endforeach;
 			}
-			sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			if($fmobile){
+			if($this->input->post("language")==1){
+				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}if($fmobile){
 				foreach($query->result() as $parentmobile):
 				if($parentmobile->mobile){
 						
@@ -238,7 +264,11 @@ class SmsAjax extends CI_Controller{
 						$count=$count+1;
 						$smscount++;
 					}else{
-						sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+						if($this->input->post("language")==1){
+							sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+						}else{
+							smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+						}
 						$fmobile="8382829593";
 						$smscount=0;
 					}
@@ -246,8 +276,11 @@ class SmsAjax extends CI_Controller{
 				}
 				endforeach;
 			}//print_r($count);exit();
-			sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				
+			if($this->input->post("language")==1){
+				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}	
 			
 			}
 			else{
@@ -296,18 +329,25 @@ class SmsAjax extends CI_Controller{
 				$count=$count+1;
 				$smscount++;
 			}else{
+				if($this->input->post("language")==1){
 				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				$fmobile="8382829593";
-			echo 	$fmobile;
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}
+			$fmobile="8382829593";
+			//echo 	$fmobile;
 				$smscount=0;
 			}
 			
 			}
 			endforeach;
 			}
-			echo $fmobile;
-			sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			
+			//echo $fmobile;
+			if($this->input->post("language")==1){
+				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}
 		
 		}
 		else{	$data['pageTitle'] = 'SMS Panel';
