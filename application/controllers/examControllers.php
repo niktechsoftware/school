@@ -665,7 +665,14 @@ function defineExam1(){
 	    $classid=$this->input->post('classid');
 	    $subjectid=$this->input->post('subjectid');
 	    $examid=$this->input->post('examid');
-	    $attendence=$this->input->post('attendence');
+		$attendence=$this->input->post('attendence');
+		$this->db->where('school_code' ,$this->session->userdata('school_code'));
+		$this->db->where('class_id',$classid);
+		$this->db->where('subject_id',$subjectid);
+		$this->db->where('stu_id',$stuid);
+		$this->db->where('exam_id',$examid);
+	$v=	$this->db->get('exam_info');
+	if($v->num_rows()<1){
 	    $data=array(
 	        'class_id'=>$classid,
 	        'subject_id'=>$subjectid,
@@ -677,10 +684,12 @@ function defineExam1(){
 	         'fsd'=>$this->session->userdata('fsd'),
 	         'school_code'=>$this->session->userdata('school_code'),
 	         "created" => date('Y-m-d'),
-	        );
+			);
 	        $this->db->insert('exam_info',$data);
 	         echo "inserted";
-	       ?>
+		  } else{
+			  echo "marks already given";
+		  }  ?>
 	      
 	       <?php
 	}
