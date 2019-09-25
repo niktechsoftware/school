@@ -71,7 +71,7 @@
 				//$gurdianInfo = $gurdianDetail->row();?>
          
 					<div id="page-wrap">
-            <table style="width: 55%; font-size:14px; font-weight: bold; "class="text-uppercase">
+            <table style="width: 40%; font-size:18px; font-weight: bold;" class="text-uppercase">
               <tr style="background-image: linear-gradient(to bottom right, red, yellow); color:white;">
                 <?php $this->db->where("id",$this->session->userdata("school_code"));
 				$schoolinfo = $this->db->get("school")->row();
@@ -80,22 +80,21 @@
 		    $tfsd =	$this->db->get("fsd")->row();
 				?>
                 <td colspan="3">
-                  <!--  <img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 120px; height: 120px; border-radius: 50%;" src="<?php echo base_url();?>assets/<?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />-->
-                  <h5 style="text-transform:uppercase; text-align:center;"><?php echo $schoolinfo->school_name; ?></h5>
-                  <h6 style="font-variant:small-caps; text-align:center;">
-                    <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no;?></h6>
-                  <h6 style="font-variant:small-caps; text-align:center;">
-                    <?php echo "REG.OFFICE : ".$schoolinfo->address1.' '.$schoolinfo->city.' '.$schoolinfo->state; ?></h6>
-                    <h6 style="font-variant:small-caps; text-align:center;"><?php echo $personalInfo->job_title; ?> ID Card
+                     <h2 style="text-transform:uppercase; text-align:center;"><?php echo $schoolinfo->school_name; ?></h2>
+                  <h3 style="font-variant:small-caps; text-align:center;">
+                    <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no;?></h3>
+                  <h3 style="font-variant:small-caps; text-align:center;">
+                    <?php echo "REG.OFFICE : ".$schoolinfo->address1.' '.$schoolinfo->city.' '.$schoolinfo->state; ?></h3>
+                    <h3 style="font-variant:small-caps; text-align:center;"><?php echo $personalInfo->job_title; ?> ID Card
                       <?php echo date('Y',strtotime($tfsd->finance_start_date))."-".date('Y',strtotime($tfsd->finance_end_date));?>
-                    </h6>
+                    </h3>
                     <h3 style="font-variant:small-caps; text-align:center;"></h3>
-                 
+                  </h3>
                 </td>
               </tr>
 
               <tr>
-               <td style="padding:3px; width:220px;">Name</td>
+               <td style="padding:4px; width:220px;">Name</td>
                 <td style="width:300px;">
                   <?php echo $personalInfo->name; ?>
                 </td>
@@ -104,15 +103,15 @@
                     <div class="fileupload fileupload-new" data-provides="fileupload">
                       <div style="width:150px; height:170px; border: 1px solid #ccc; margin:auto; margin-top:0px;">
                         <?php if(strlen($personalInfo->photo > 0)):?>
-                        <img alt="<?php echo $personalInfo->name;?>" height="170" width="120"
+                        <img alt="<?php echo $personalInfo->name;?>" height="170" width="150"
                           src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $personalInfo->photo;?>" />
                         <?php else:?>
                         <?php if($personalInfo->gender == 1):?>
-                        <img alt="<?php echo $personalInfo->name;?>" height="148" width="120"
+                        <img alt="<?php echo $personalInfo->name;?>" height="148" width="138"
                           src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/empMale.png" />
                         <?php endif;?>
                         <?php if($personalInfo->gender == 0):?>
-                        <img alt="<?php echo $personalInfo->name;?>" height="148" width="120"
+                        <img alt="<?php echo $personalInfo->name;?>" height="148" width="138"
                           src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/empFemale.png" />
                         <?php endif;?>
                         <?php endif;?>
@@ -120,58 +119,45 @@
                     </div>
                   </div>
                   <div>
-                    <h4 style="margin-top: 5px; text-align:center;">AUTHORISED SIGN</h4>
-                                                            <?php if($this->session->userdata("school_code")==2){ ?>
-                                        <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50"  />
-                                   <?php }?>
+                    <h4 style="margin-top: 8px; text-align:center;">AUTHORISED SIGN</h4>
+                    <div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpeg" alt="" width="100" height="50"  /></div>
+                                     
                   </div>
                 </td>
               </tr>
               <tr>
-                <td style="padding:3px">Employee ID</td>
+                <td style="padding:4px">Employee ID</td>
                 <td>
                   <?php echo $personalInfo->username; ?>
                 </td>
               </tr>
               <tr>
-                <td style="padding:3px">Gender</td>
+                <td style="padding:4px">Gender</td>
                 <td>
                   <?php if (strlen ($personalInfo->gender==1)){echo "Male";}elseif(strlen ($personalInfo->gender==0)){echo "Female";}else echo '<span style="color:#ff9999">N/A</span>'; ?>
                 </td>
               </tr>
               
                <tr>
-                <td style="padding:3px">DOB</td>
+                <td style="padding:4px">DOB</td>
                 <td>
                   <?php echo $personalInfo->dob; ?>
                 </td>
               </tr>
               <tr>
-                <td style="padding:3px">Job Title</td>
+                <td style="padding:4px">Job Title</td>
                 <td>
-                  <?php  if($personalInfo->job_category==1){
-                  echo "Accountant";
-                  } 
-                  elseif($personalInfo->job_category==2){
-                       echo "Employee"; 
-                  }
-                elseif($personalInfo->job_category==3){
-                       echo "Teacher"; 
-                  }
-                 elseif($personalInfo->job_category==4){
-                       echo "Principal"; 
-                  }
-                  ?>
+                  <?php  if($personalInfo->job_title==1){ echo "Accountant";} elseif($personalInfo->job_title==2){ echo "Employee" ;} elseif($personalInfo->job_title==3){ echo "Teacher" ;} else{ echo "Principal" ; } ?>
                 </td>
               </tr>
               <tr>
-                <td style="padding:3px">Mobile Number</td>
+                <td style="padding:4px">Mobile Number</td>
                 <td>
                   <?php echo $personalInfo->mobile; ?>
                 </td>
               </tr>
               <tr class="text-uppercase">
-                <td style="padding:3px">Address</td>
+                <td style="padding:4px">Address</td>
                 <td>
                   <?php echo $personalInfo->address." ".$personalInfo->city." ".$personalInfo->state; ?>
                 </td>

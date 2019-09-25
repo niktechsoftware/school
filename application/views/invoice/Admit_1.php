@@ -74,7 +74,7 @@
 				$gurdianInfo = $gurdianDetail->row();?>
 
                     <div id="page-wrap">
-                        <table style="width: 60%; font-size:12px; font-weight: bold;">
+                        <table style="width: 40%; font-size:12px; font-weight: bold;">
                             <tr style="background-color:#188f7f; color:white;">
                                 <?php $this->db->where("id",$this->session->userdata("school_code"));
 				$schoolinfo = $this->db->get("school")->row();
@@ -98,10 +98,8 @@
                             </tr>
 
                             <tr>
-
                                 <td style="padding:5px; width:220px;">Name</td>
-                                <td style="width:300px;text-transform: uppercase;">
-
+                                <td style="width:300px;text-transform: uppercase;color:red;">
                                     <?php echo $personalInfo->name; ?>
                                 </td>
                                 <td rowspan="8" align="center">
@@ -126,11 +124,7 @@
                                     </div>
                                     <div class="row">
                                         <h4 style="margin-top: 10px; text-align:center;">PRINCIPAL SIGN</h4>
-
-                                        <?php if($this->session->userdata("school_code")==5){ ?>
-                                        <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpeg" alt="" width="100" height="50"  />
-                                   <?php }?>
-
+                                        <div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpeg" alt="" width="100" height="50"  /></div>
                                    <?php if($personalInfo->transport==0){?>
                                      <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
                                    <?php }else{ ?>
@@ -150,11 +144,11 @@
                                 <?php $this->db->select('class_name,section');
 					  $this->db->where('id',$personalInfo->class_id);
 				      $classInfo=$this->db->get('class_info')->row();?>
-                                <td style="color:yellow;"><?php echo $classInfo->class_name; ?></td>
+                                <td style="color:green;"><?php echo $classInfo->class_name; ?></td>
                             </tr>
                             <tr>
                                 <td style="padding:5px">Student ID</td>
-                                <td>
+                                <td style="color:red;">
                                     <?php echo $personalInfo->username; ?>
                                 </td>
                             </tr>
@@ -168,13 +162,13 @@
 
                             <tr>
                                 <td style="padding:5px">Father Name</td>
-                                <td style="text-transform: uppercase;">
+                                <td style="text-transform: uppercase;color:blue;">
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding:5px">Mobile Number</td>
-                                <td style="color:blue;">
+                                <td style="color:pink;">
                                     <?php echo $personalInfo->mobile; ?>
                                 </td>
                             </tr>
