@@ -30,6 +30,7 @@ class Configureclassmodel extends CI_Model{
 		$query = $this->db->get("fee_cat");
 		return $query;
 	}
+
 	
 	function updatefeecat($data,$rowId){
 //$this->db->where("school_code",$this->session->userdata("school_code"));

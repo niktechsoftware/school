@@ -45,6 +45,7 @@ if($this->uri->segment(3) == 'Notice'){ ?>
                     <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?></p>
                     
                      <form method="post" action="<?php echo base_url();?>index.php/smsAjax/sendNotice">
+                      <div>  </div>
                      <table class="table">
                      	<tr>
                      		<td>Mobile Number : </td>
@@ -52,10 +53,18 @@ if($this->uri->segment(3) == 'Notice'){ ?>
                             	<input type="hidden" name="section" value="Notice" />
                             	<input type="text" name="m_number" id="inputStandard" class="form-control" placeholder="Mobile Number"/>
                             </td>
+                            <td> <select class="form-control"  name="language" style="width: 200px;" required="required">
+                               
+                               
+                                <option value="1">GENRAL[English]</option>
+                                
+                                <option value="2">HINDI[Unicode Hindi]</option>
+                              </select>
+                            </td>
                      	</tr>
                      	<tr>
-                     		<td>Message : </td>
-                     		<td><textarea name="meg" class="form-control" id="textArea" rows="5"></textarea></td>
+                     		<td >Message : </td>
+                     		<td colspan="2"><textarea name="meg" class="form-control" id="textArea" rows="5"></textarea></td>
                      	</tr>
                      	<tr>
                      		<td colspan="2">
@@ -91,7 +100,15 @@ elseif($this->uri->segment(3) == 'Parent%20Message'){ ?>
           		<?php }
           			?> 
                      <table class="table">
+                      <tr><td>Select Language</td><td><select class="form-control"  name="language" style="width: 200px;" required="required">
+                               
+                               
+                                <option value="1">GENRAL[English]</option>
+                                
+                                <option value="2">HINDI[Unicode Hindi]</option>
+                              </select></td></tr>
                      	<tr>
+
                      		<td>Message : </td>
                      		<td>
                             	<input type="hidden" name="section" value="Parent Message" />
@@ -137,6 +154,14 @@ elseif($this->uri->segment(3) == 'Announcement'){ ?>
           			?> 
                      <table class="table">
                      	<tr>
+                         <tr><td>Select Language</td><td><select class="form-control"  name="language" style="width: 200px;" required="required">
+                               
+                               
+                                <option value="1">GENRAL[English]</option>
+                                
+                                <option value="2">HINDI[Unicode Hindi]</option>
+                              </select></td></tr>
+                      
                      		<td>Message : </td>
                      		<td>
                             	<input type="hidden" name="section" value="Announcement" />
@@ -176,6 +201,14 @@ elseif($this->uri->segment(3) == 'Greeting'){ ?>
           			?> 
                      <table class="table">
                      	<tr>
+                         <tr><td>Select Language</td><td><select class="form-control"  name="language" style="width: 200px;" required="required">
+                               
+                               
+                                <option value="1">GENRAL[English]</option>
+                                
+                                <option value="2">HINDI[Unicode Hindi]</option>
+                              </select></td></tr>
+                      
                      		<td>Message : </td>
                      		<td>
                             	<input type="hidden" name="section" value="Greeting" />
@@ -239,6 +272,14 @@ elseif($this->uri->segment(3) == 'classwise'){ ?>
 														</select>
 														</td>							
                      	</tr>
+                       <tr><td>Select Language</td><td><select class="form-control"  name="language" style="width: 200px;" required="required">
+                               
+                               
+                                <option value="1">GENRAL[English]</option>
+                                
+                                <option value="2">HINDI[Unicode Hindi]</option>
+                              </select></td></tr>
+                      
                      	<tr>
                      		<td>Message : </td>
                      		<td>

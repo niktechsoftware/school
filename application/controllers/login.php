@@ -143,7 +143,17 @@ class Login extends CI_Controller{
 		$data['classid']=$this->uri->segment(3);
 		$this->load->view("includes/mainContent", $data);
 	}
-
+function configuredoc(){
+		$data['pageTitle'] = 'Configuration';
+		$data['smallTitle'] = 'Document Formate';
+		$data['mainPage'] = 'Configuration';
+		$data['subPage'] = 'Document Formate';
+		$data['title'] = 'Configure Formate';
+		$data['headerCss'] = 'headerCss/configureClassCss';
+		$data['footerJs'] = 'footerJs/configureClassJs';
+		$data['mainContent'] = 'configure_formate';
+		$this->load->view("includes/mainContent", $data);
+	}
 	function configureClass(){
 		$data['pageTitle'] = 'Configuration';
 		$data['smallTitle'] = 'Class, Section And Subject Stream';

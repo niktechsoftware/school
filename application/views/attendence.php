@@ -106,7 +106,11 @@ if($a->num_rows()>0){ ?>
 </tbody>
 
             <span style="font-size:20px;">Attendence (in %) = <?php $totatt=$p+$a1;if($totatt!=0){echo round(($a1/$totatt)*100,2) ."%";}else{echo "0%";}?></span>
-        
+        <?php $totatt=$p+$a1;if($totatt!=0){ ?>
+<div><label>Total Attendence=</label><label><?php echo $totatt; ?></label></div>
+<div><label>Total Present =</label><label><?php echo $a1; ?></label></div>
+<div><label>Total Absent =</label><label><?php echo $absent= $totatt-$a1; ?></label></div>
+<?php } ?>
 </table>
 </div>
 </div>

@@ -77,7 +77,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  {?>
                   <td><?php echo 'Grade'?></td>
                   <td>
-                 <input type="text" id="mmmark<?php echo $i;?>" class="text-uppercase" pattern="[A-Za-z]{1}" minlength="1" maxlength="1"  value="<?php echo $val->row()->max_m;?>" required />     
+                 <input type="text" id="mmmark<?php echo $i;?>" class="text-uppercase" pattern="[A-Za-z]{1}" minlength="1" maxlength="6"  value="<?php echo $val->row()->max_m;?>" required />     
                  </td>
                   <?php }?>             
   					     
@@ -275,7 +275,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  {?>
                   <td><?php echo 'Grade'?></td>
                   <td>
-                 <input type="text" id="mmmark<?php echo $i;?>" class="text-uppercase" pattern="[A-Za-z]{1}" minlength="1" maxlength="1"  value="<?php echo $val->row()->max_m;?>" required />     
+                 <input type="text" id="mmmark<?php echo $i;?>" class="text-uppercase" pattern="[A-Za-z]{1}" minlength="1" maxlength="6"  value="<?php echo $val->row()->max_m;?>" required />     
                  </td>
                   <?php }?>             
                  <td><button class="btn btn-red" id="updtmmarks">Update Your Marks<i class="fa fa-arrow-circle-right"></i>

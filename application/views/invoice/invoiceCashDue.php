@@ -106,7 +106,7 @@
         	<div style="display:inline-block;">
 <?php
 	$id = $this->uri->segment(3);
-	echo $id;
+	//echo $id;
 	$rowb = $this->db->query("select * from feedue where invoice_no = '$id' and school_code = '$school_code'")->row();
 	$this->db->where("id",$rowb->student_id);
 	$studetail=$this->db->get("student_info");
@@ -125,6 +125,18 @@
                     <tr>
                     	<td style=""><strong>Student Id :-</strong>
 					<?php echo $stuname->username; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td style=""><strong>Class :-</strong>
+					<?php 
+            					   $this->db->where('school_code',$school_code);
+            					   $this->db->where('id',$stuname->class_id);
+					    $classname=$this->db->get('class_info');
+					   $classdf=$classname->row();
+					                $this->db->where("id",$classdf->section);
+					    $secname = $this->db->get("class_section")->row()->section;
+					 echo $classdf->class_name."-".$secname; ?>
                         </td>
                     </tr>
             </table>

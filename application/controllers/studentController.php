@@ -149,6 +149,22 @@ class StudentController extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	
 	}
+	function classwise_examreport(){
+	
+		$data['classid'] = $this->input->post('class');
+		$data['sectionid'] = $this->input->post('section');;
+		$data['fsd'] = $this->input->post('fsd');
+		$data['pageTitle'] = 'Student Report';
+		$data['smallTitle'] = 'Student Report';
+		$data['mainPage'] = 'Student Report';
+		$data['subPage'] = 'Student Report';
+		$data['title'] = 'Student Report';
+		$data['headerCss'] = 'headerCss/admissionSuccessCss';
+		$data['footerJs'] = 'footerJs/admitCardJs';
+		$data['mainContent'] = 'panel/exam/classwise_examreport';
+		$this->load->view("includes/mainContent", $data);
+	
+	}
 
 	function student_wise_icard(){
 		$stuid=$this->input->post('stdid');

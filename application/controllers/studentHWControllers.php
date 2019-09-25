@@ -458,7 +458,8 @@ function showHomeWork()
         	$this->load->model("homeWorkModel");
         	$va=$this->homeWorkModel->getHomeWorkDetailStudent();
     		if($va->num_rows()>0){
-    		$var1=$va->result();
+			$var1=$va->result();
+			//print_r($var1);exit();
         	?>
     	<div class="table-responsive" id ="normal">
     	<table class="table table-striped table-hover" id="sample-table-2">
@@ -545,6 +546,7 @@ function showHomeWork()
 	$sec=$this->input->post("section");
 	$this->load->model("homeWorkModel");
 	$var=$this->homeWorkModel->getSectionWise($classt,$sec);
+	
 
 	?>
 

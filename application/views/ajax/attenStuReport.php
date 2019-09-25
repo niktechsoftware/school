@@ -69,6 +69,8 @@
 									<th>S.no.</th>
 									<th>Date</th>
 									<th>Taken By</th>
+									<th>Shif1</th>
+									<th>Shif2</th>
 									<th>Present</th>
 									<th>Absent</th>
 									<th>Absent Person</th>
@@ -97,6 +99,8 @@
 									<td>
 									<?php echo $a->teacher_id ;?>
 									</td>
+									<td> <?php if($a->shift_1>0){ echo "YES";} else { echo "NO";}?></td>
+									<td> <?php if($a->shift_2>0){ echo "YES";} else { echo "NO";}?></td>
 			  					    <td>
 			  						<?php    
 										$rdta= $a->date;

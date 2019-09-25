@@ -78,6 +78,84 @@ endforeach;
 			redirect("index.php/homeController/lockPage");
 		}
 	}
+	//-------------------------------------//
+	public function rep_formate_save(){
+		$formate_rep=$this->input->post('formate_rep');
+		$db = array(
+				"format" => $formate_rep,
+				"classwisereport_format"=>$formate_rep,
+				"school_code"=>$this->session->userdata("school_code"),
+				"created_date"=>date('Y-m-d')
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("result_format");
+		if($query->num_rows() >0){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->update("result_format",$db);
+		}else{
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->insert("result_format",$db);
+		}
+		
+		//redirect("login/configuredoc");
+	}
+	public function id_formate_save(){
+		$formate_id=$this->input->post('formate_id');
+		$db = array(
+				"classwiseicard_format" => $formate_id,
+				"studenticard_format"=>$formate_id,
+				"school_code"=>$this->session->userdata("school_code"),
+				"created_date"=>date('Y-m-d')
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("result_format");
+		if($query->num_rows() >0){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->update("result_format",$db);
+		}else{
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->insert("result_format",$db);
+		}
+		
+	}
+	public function tc_formate_save(){
+		$formate_tc=$this->input->post('formate_tc');
+		$db = array(
+				"tc" => $formate_tc,
+				"school_code"=>$this->session->userdata("school_code"),
+				"created_date"=>date('Y-m-d')
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("result_format");
+		if($query->num_rows() >0){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->update("result_format",$db);
+		}else{
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->insert("result_format",$db);
+		}
+		
+	}
+	public function cc_formate_save(){
+		$formate_cc=$this->input->post('formate_cc');
+		$formate_tc=$this->input->post('formate_tc');
+		$db = array(
+				"cc" => $formate_cc,
+				"school_code"=>$this->session->userdata("school_code"),
+				"created_date"=>date('Y-m-d')
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->get("result_format");
+		if($query->num_rows() >0){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->update("result_format",$db);
+		}else{
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$query = $this->db->insert("result_format",$db);
+		}
+		
+	}
+//-------------------------------------//
 	public function deletefeecat(){
 		$id=$this->input->post('streamId');
 		$this->db->where('school_code',$this->session->userdata('school_code'));

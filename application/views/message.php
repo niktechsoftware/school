@@ -49,9 +49,8 @@
 							<div id="collapseOne" class="panel-collapse collapse ">
 								<div class="panel-body">
 									<div id="sidebar-menu">
-									
 										<div id="msg"></div>
-			                           	 		<form action="" method="get">
+			                           	 		<form  method ="post" role="form" class="smart-wizard form-horizontal" id="form" action="<?php echo base_url();?>index.php/noticeControllers/insertMessage" >
 			                           	 				    <div class="form-group">
 					                                          	<label for="inputStandard" class="col-lg-2 control-label">To</label>
 					                                          	<div class="col-lg-10">
@@ -59,14 +58,12 @@
 						                                          
 					                                          	</div>
 					                                        </div>
-					                                        
 					                                        <div class="form-group">
 					                                          	<label for="inputStandard" class="col-lg-2 control-label">Subject</label>
 					                                          	<div class="col-lg-10">
 					                                            	<input type="text" name="subject" id="subject" class="form-control" required="" placeholder="Type Here...">
 					                                          	</div>
 					                                        </div>
-					                                        
 					                                        <div class="form-group">
 					                                        	<label for="inputStandard" class="col-lg-2 control-label">Your Message</label>
 						                                        <div class="col-lg-10">
@@ -76,7 +73,7 @@
 						                                        </div>
 					                                        </div>
 					                                            <div >
-					                                                <button type="submit" id="submit" class="btn btn-primary" >Submit</button>
+					                                                <button type="submit" id="submit" class="btn btn-primary" name="submit">Submit</button>
 					                                            </div>
 					                                            <div class="col-lg-2 form-group">
 					                                                <input type="reset" class="btn btn-danger" value="Reset Message" />
