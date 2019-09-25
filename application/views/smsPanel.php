@@ -48,6 +48,13 @@
 												</button>
 												</a>
 											</div>
+											<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/login/smsreport">
+												<button class="btn panel-green btn-icon btn-block space10">
+												<font size="5"> SMS Report</font><span class="badge badge-green partition-orenge"> 1 </span>
+
+												</button>
+												</a>
+											</div>
 										<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/login/feeReport">
 												<button class="btn panel-blue btn-icon btn-block space10">
 												<font size="5">Send Fee Reminder SMS</font><span class="badge badge-blue partition-orenge"> 2 </span>
