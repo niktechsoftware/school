@@ -258,6 +258,22 @@ endforeach;
 				<?php 
 			}
 	}
+	public function getexamname(){
+		$fsd = $this->input->post("fsd");
+		$this->load->model('exammodel');
+		$query = $this->exammodel->getExamName();
+	    	echo '<option value="">--Select Exam--</option>';
+			foreach ($query->result() as $row){
+				$school=$this->session->userdata("school_code");
+				 $this->db->where('school_code',$school);
+					 $this->db->where('fsd',$row->fsd);
+				 $row2=$this->db->get('exam_name')->row();
+				 print_r($row2);
+				 ?>
+					<!--<option value="<?php echo $row2->id; ?>" ><?php echo $row2->exam_name; ?></option>-->
+				<?php 
+			}
+	}
 	
 	
 	public function deleteStream(){
