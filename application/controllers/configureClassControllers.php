@@ -259,20 +259,17 @@ endforeach;
 			}
 	}
 	public function getexamname(){
-		$fsd = $this->input->post("fsd");
-		$this->load->model('exammodel');
-		$query = $this->exammodel->getExamName();
-	    	echo '<option value="">--Select Exam--</option>';
-			foreach ($query->result() as $row){
-				$school=$this->session->userdata("school_code");
-				 $this->db->where('school_code',$school);
-					 $this->db->where('fsd',$row->fsd);
-				 $row2=$this->db->get('exam_name')->row();
-				 print_r($row2);
-				 ?>
-					<!--<option value="<?php echo $row2->id; ?>" ><?php echo $row2->exam_name; ?></option>-->
-				<?php 
-			}
+		 $fsd  =$this->input->post("fsd");
+		$school=$this->session->userdata("school_code");
+			  $this->db->where('fsd',$fsd);
+			  $this->db->where('school_code',$school);
+		$emp= $this->db->get('exam_name');
+		if($emp->num_rows>0){echo '<option value="">--Select Exam--</option>';
+			foreach ($emp->result() as $row){ ?>
+			<option value="<?php echo $row->id; ?>" ><?php echo $row->exam_name; ?></option>
+									<?php   }
+							}else{ ?><option value="" >No Exam Sheduled</option>
+							<?php }
 	}
 	
 	
