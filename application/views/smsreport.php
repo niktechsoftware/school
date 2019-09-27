@@ -88,11 +88,11 @@ print employee Icard by click on that Employee Id.
 									<!--		Save as JSON-->
 									<!--	</a>-->
 									<!--</li>-->
-									<!--<li>-->
-									<!--	<a href="#" class="export-excel" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
-									<!--		Export to Excel-->
-									<!--	</a>-->
-									<!--</li>-->
+									<li>
+										<a href="#" class="export-excel" data-table="#sample-table-2" data-ignoreColumn ="3,4">
+										Export to Excel
+										</a>
+									</li>
 									<!--<li>-->
 									<!--	<a href="#" class="export-doc" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
 									<!--		Export to Word-->
@@ -121,6 +121,7 @@ print employee Icard by click on that Employee Id.
 										<th>Sms</th>
 										<th>Status</th>
                     <th>Date</th>
+										<th>Update Status</th>
 									</tr>
 								</thead>
 								<?php
@@ -137,9 +138,40 @@ print employee Icard by click on that Employee Id.
 										<td><?php echo $row->sms; ?></td>
 										<td><?php echo $row->status ?></td>
 										<td class="text-lowercase"><?php echo $row->date; ?></td>
+										<td class="text-lowercase"><input type="hidden" id="msgid<?php echo $sno;?>" value="<?php echo $row->msg_id;?>">
+										<?php if(($row->status)== "#StatusUnknown"){?>
+										<button  id="update<?php echo $sno;?>" class="btn btn-red">Update</button>
+										<?php } else{?>
+											<button  id="updated<?php echo $sno;?>" class="btn btn-green">Updated</button>
+										<?php }?>
+										</td>
                   
 										
 									</tr>
+									<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+									<script>
+									$(document).ready(function(){
+										// $('#updated<?php echo $sno;?>').hide();
+										// $('#update<?php echo $sno;?>').show();
+										$('#update<?php echo $sno;?>').click(function(){
+											var msgid=$('#msgid<?php echo $sno;?>').val();
+											alert(msgid);
+										  	$.post('<?php echo site_url("smsAjax/updatesms_status");?>' , {msgid : msgid } , function(data){
+													// if(data){
+														alert(data);
+														$('#updated<?php echo $sno;?>').show();
+														$('#update<?php echo $sno;?>').hide();
+														$('#update<?php echo $sno;?>').html();
+													//}
+
+											     }
+											
+										    )
+
+										});
+
+									});
+									</script>
 									<?php $sno++; endforeach; ?>
 								</tbody>
 							</table>

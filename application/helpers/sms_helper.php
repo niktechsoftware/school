@@ -13,7 +13,7 @@ $url="http://zapsms.co.in/vendorsms/pushsms.aspx?user=".$user."&password=".$pass
 	$output=curl_exec($ch);
 	$rt=json_decode($output,true);
 	?> <pre> <?php
-print_r(json_decode($output));?></pre><?php 
+//print_r(json_decode($output));?></pre><?php 
 
 $numn = ((strlen($number)+1)/11);
 for($i=0; $i<$numn;$i++){
