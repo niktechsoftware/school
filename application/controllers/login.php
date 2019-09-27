@@ -1359,8 +1359,8 @@ function createSchedule()
 		$data['subPage'] = 'Bank Transaction / Account Management';
 
 		$data['title'] = 'Bank Transaction / Account Management';
-		$data['headerCss'] = 'headerCss/configureClassCss';
-		$data['footerJs'] = 'footerJs/configureClassJs';
+		$data['headerCss'] = 'headerCss/studentCss';
+		$data['footerJs'] = 'footerJs/simpleStudentListJs';
 		$data['mainContent'] = 'smsreport';
 		$this->load->view("includes/mainContent", $data);
 	}
