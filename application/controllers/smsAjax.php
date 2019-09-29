@@ -76,7 +76,6 @@ class SmsAjax extends CI_Controller{
 	}
 	
 	
-	
 	function sendallParent(){
 		$smscount=0;
 		$count=0;
@@ -87,8 +86,6 @@ class SmsAjax extends CI_Controller{
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		$fmobile=$this->session->userdata("mobile_number");
-// 			print_r($fmobile);
-// 				exit();
 		if($isSMS->parent_message)
 		{
 		if($query->num_rows() > 0)
@@ -98,22 +95,19 @@ class SmsAjax extends CI_Controller{
 			if($parentmobile->mobile){
 			
 			if($smscount<90){
-				$fmobile1 =$parentmobile->mobile;
+				$fmobile =$fmobile.",".$parentmobile->mobile;
 				$count=$count+1;
 				$smscount++;
-				// print_r($fmobile);
-				// exit();
 			}else{
-				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				//$fmobile="8382829593";
+				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				$fmobile="8382829593";
 				$smscount=0;
 			}
 			
 			}
 			endforeach;
-					sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			}
-	
+			sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			
 		
 		}
@@ -137,6 +131,7 @@ class SmsAjax extends CI_Controller{
 			$this->load->view("includes/mainContent", $data);
 		}
 	}
+	
 	function sendAnnuncement(){
 		$smscount=0;
 		$count=0;

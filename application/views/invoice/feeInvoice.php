@@ -331,12 +331,12 @@ $monthmk[$i]=13;?>
 	                                                  $tffee=$tffee->row();
 	                                                  foreach($rty->result() as $tyu):
 		   
-		    if($junefee == 1){
+		                                     if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
 	                                                $transfee  +=$tffee->transport_fee;
 	                                            }}else{
 	                                                $transfee  +=$tffee->transport_fee; 
-	                                            } endforeach;
+	                                         } endforeach;
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
@@ -421,7 +421,7 @@ $monthmk[$i]=13;?>
 						  } ?>
 				  &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
-This is computer generated invoice and verified by accountant.
+                     This is computer generated invoice and verified by accountant.
 				  
 				  </td>
 				

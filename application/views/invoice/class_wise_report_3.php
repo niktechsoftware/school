@@ -175,7 +175,7 @@
                                 </h2>
                                 <h2 style="color:white;">
                                 <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
-									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->mobile_no ;} ?>
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->other_mobile_no ;} ?>
                                 </h2>
                             </td>
 							<!--<div class="row">
