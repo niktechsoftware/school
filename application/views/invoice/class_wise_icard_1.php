@@ -64,11 +64,13 @@
 </head>
 
 <body>
+
    
            <div id="printcontent">
         <div id="page-wrap">
             <div class="row">
                 <div class="col-sm-12">
+
                     <?php
         //   echo $fsd;
         //   echo $classid;
@@ -192,7 +194,9 @@
                             </tr>
                         </table><br><br>
                     </div>
+
 </div>
+
 
 
                     

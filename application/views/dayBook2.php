@@ -117,15 +117,18 @@ Export to PowerPoint
 <th>Paid To</th>
 <!--<th>Paid By Name</th>-->
 <th>Paid By </th>
-<th>Class </th>
 <th style="width:250px;">Reason</th>
 <th>Discount Amount</th>
 <?php if($condition=='Both'){?>
+
+<th>Class </th>
 <th>Debit</th>
 <th>Credit</th>
 <?php } elseif($condition=='Debit'){?>
 <th>Debit</th>
 <?php } else{?>
+
+<th>Class </th>
 <th>Credit</th>
 <?php }?>
 <?php	if($this->session->userdata('login_type') == 'admin'){  ?>
@@ -154,27 +157,26 @@ if($dr_cr==0){?>
 <tr class="<?php echo $rowcss;?>">
 <td><?php echo $sno; ?></td>
 <td><?php echo $row->paid_to; ?></td>
-<?php $id = $this->db->query("SELECT name From student_info where id ='$row->paid_by'")->row();?>
-
-<?php $id_4 = $this->db->query("SELECT name,username,class_id From student_info where id ='$row->paid_by'");
-
-$id3=$id_4->row();
- $id_5=$id_4->num_rows();
-//print_r($id_5);
+<?php 
+        $id = $this->db->query("SELECT name From student_info where id ='$row->paid_by'")->row();
+        $id_4 = $this->db->query("SELECT name,username,class_id From student_info where id ='$row->paid_by'");
+        $id3=$id_4->row();
+         $id_5=$id_4->num_rows();
 ?>
-<td><?php if($id3){ echo strtoupper($id3->name)." "."[".($id3->username)."]"; }else{
+<td><?php 
+if($id3){ echo strtoupper($id3->name)." "."[".($id3->username)."]"; }else{
 $eid = $this->db->query("SELECT username From employee_info where id ='$row->paid_by' AND school_code='$school_code'")->row();
 if($eid){echo $eid->username; } else {echo "Other";} 
 }?></td>
-<td><?php if($id_5==0){}else{
+<!--<td><?php if($id_5==0){}else{
             $this->db->where('school_code',$school_code);
             $this->db->where('id',$id3->class_id);
 $classname=$this->db->get('class_info');
 $classdf=$classname->row();
             $this->db->where("id",$classdf->section);
 $secname = $this->db->get("class_section")->row()->section;
- ?><?php  echo $classdf->class_name."-".$secname; }?></td>
-<td><?php $row->reason;  ?></td>
+ ?><?php  echo $classdf->class_name."-".$secname; }?></td>-->
+<td><?php echo $row->reason;  ?></td>
 <td></td>
 <td style="color:red"><?php if($dr_cr == 0 || $dr_cr == 0){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
 <!--<td>888</td>-->
@@ -217,14 +219,7 @@ $id1=$id_4->row();
 $eid = $this->db->query("SELECT username From employee_info where id ='$row->paid_by' AND school_code='$school_code'")->row();
 if($eid){echo $eid->username; } else {echo "Other";} 
 }?></td>
-<td><?php if($id_5==0){}else{
-            $this->db->where('school_code',$school_code);
-            $this->db->where('id',$id1->class_id);
-$classname=$this->db->get('class_info');
-$classdf=$classname->row();
-            $this->db->where("id",$classdf->section);
-$secname = $this->db->get("class_section")->row()->section;
-} ?><?php  echo $classdf->class_name."-".$secname; ?></td>
+
 <td><?php if(($row->reason)=="Fee Deposit"){ $invoice=$row->invoice_no; 
         $this->db->where("invoice_no",$invoice);
        $dpmonth= $this->db->get("deposite_months");
@@ -262,9 +257,18 @@ $secname = $this->db->get("class_section")->row()->section;
        }else{
            echo "Deposit Month not define";
        }
-echo $row->reason; } else{ $row->reason; } ?></td>
+echo $row->reason; } else{ echo $row->reason; } ?></td>
 <td></td>
+<td><?php if($id_5==0){}else{
+            $this->db->where('school_code',$school_code);
+            $this->db->where('id',$id1->class_id);
+$classname=$this->db->get('class_info');
+$classdf=$classname->row();
+            $this->db->where("id",$classdf->section);
+$secname = $this->db->get("class_section")->row()->section;
+} ?><?php  echo $classdf->class_name."-".$secname; ?></td>
 <td style="color:green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
+
 <?php if($this->session->userdata('login_type') == 'admin'){  ?>
 <td><?php echo $row->closing_balance; ?></td>
 <?php }?>
@@ -288,40 +292,28 @@ if($count%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
 <tr class="<?php echo $rowcss;?>">
 <td><?php echo $sno; ?></td>
 <td><?php echo $row->paid_to; ?></td>
-<?php $id = $this->db->query("SELECT name From student_info where id ='$row->paid_by'")->row();?>
-
-<?php $id_4 = $this->db->query("SELECT name,username,class_id From student_info where id ='$row->paid_by'");
-$id2=$id_4->row();
- $id_5=$id_4->num_rows();?>
-<td><?php if($id2){ echo strtoupper($id2->name)." "."[".($id2->username)."]"; }else{
-$eid = $this->db->query("SELECT username From employee_info where id ='$row->paid_by' AND school_code='$school_code'")->row();
+<?php 
+    $id = $this->db->query("SELECT name From student_info where id ='$row->paid_by'")->row();
+    $id_4 = $this->db->query("SELECT name,username,class_id From student_info where id ='$row->paid_by'");
+    $id2=$id_4->row();
+    $id_5=$id_4->num_rows();
+    ?>
+<td><?php 
+if($id2){ echo strtoupper($id2->name)." "."[".($id2->username)."]"; }else{
+    $eid = $this->db->query("SELECT username From employee_info where id ='$row->paid_by' AND school_code='$school_code'")->row();
 if($eid){echo $eid->username; } else {echo "Other";} 
-}?></td>
-<td><?php if($id_5==0){}else{$id2->class_id;
-            $this->db->where('school_code',$school_code);
-            $this->db->where('id',$id2->class_id);
-$classname=$this->db->get('class_info');
-$classdf=$classname->row();
-            $this->db->where("id",$classdf->section);
-$secname = $this->db->get("class_section")->row()->section;
-} ?><?php  echo $classdf->class_name."-".$secname; ?></td>
+        }?>
+</td>
 <td><?php if(($row->reason)=="Fee Deposit"){ $invoice=$row->invoice_no; 
         $this->db->where("invoice_no",$invoice);
        $dpmonth= $this->db->get("deposite_months");
        if($dpmonth->num_rows()>0){
-           
         $dpdata= $dpmonth->result();
-        
          foreach($dpdata as $dprow):
             $dpm= $dprow->deposite_month;
             $dateObj   = DateTime::createFromFormat('!m', $dpm);
             $monthName = $dateObj->format('F');
-            // $this->dtotime($date));
-             
-            
-           
             echo ($monthName). " "; 
-            
             //  $this->db->where("id",$dprow->fsd);
             // $fsddt=$this->db->get("fsd");
             // if($fsddt->num_rows()>0){
@@ -342,18 +334,25 @@ $secname = $this->db->get("class_section")->row()->section;
        }else{
            echo "Deposit Month not define";
        }
-  echo $row->reason;  } else{ $row->reason; } ?></td>
+  echo $row->reason;  } else{ echo $row->reason; } ?></td>
 <?php 
-$this->db->where('school_code',$this->session->userdata('school_code'));
-$this->db->where('invoice_number',$row->invoice_no);
+            $this->db->where('school_code',$this->session->userdata('school_code'));
+            $this->db->where('invoice_number',$row->invoice_no);
 $discountid=$this->db->get('dis_den_tab');
-if($discountid->num_rows()>0){?>
-<td><?php echo $discountid->row()->discount_rupee ; ?></td>
+if($discountid->num_rows()>0){
+?><td><?php echo $discountid->row()->discount_rupee ; ?></td>
 <?php }else{?>
 <td>0.00</td>
-<?php }
-?>
-
+<?php } ?>
+<td><?php 
+if($id_5==0){  }else{$id2->class_id;
+            $this->db->where('school_code',$school_code);
+            $this->db->where('id',$id2->class_id);
+$classname=$this->db->get('class_info');
+$classdf=$classname->row();
+            $this->db->where("id",$classdf->section);
+$secname = $this->db->get("class_section")->row()->section;
+ ?><?php  echo $classdf->class_name."-".$secname; } ?></td>
 <td style="color:red"><?php if($dr_cr == 0 || $dr_cr == 0){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
 <td style="color:green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
 

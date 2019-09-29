@@ -382,7 +382,7 @@
 											<label class="control-label text-bold">
 												Other Moblie Number
 											</label>
-											<input type="text" value="<?php echo $personalInfo->other_mobile_no;?>" class="form-control" id="other_mobile_no">
+											<input type="text" value="<?php if($personalInfo->other_mobile_no) {echo $personalInfo->other_mobile_no;} else{ echo "N/A";}?>" class="form-control" id="other_mobile_no">
 										</div>
 									</div>
 								</div>

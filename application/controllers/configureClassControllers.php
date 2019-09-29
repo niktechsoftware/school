@@ -258,6 +258,19 @@ endforeach;
 				<?php 
 			}
 	}
+	public function getexamname(){
+		 $fsd  =$this->input->post("fsd");
+		$school=$this->session->userdata("school_code");
+			  $this->db->where('fsd',$fsd);
+			  $this->db->where('school_code',$school);
+		$emp= $this->db->get('exam_name');
+		if($emp->num_rows>0){echo '<option value="">--Select Exam--</option>';
+			foreach ($emp->result() as $row){ ?>
+			<option value="<?php echo $row->id; ?>" ><?php echo $row->exam_name; ?></option>
+									<?php   }
+							}else{ ?><option value="" >No Exam Sheduled</option>
+							<?php }
+	}
 	
 	
 	public function deleteStream(){

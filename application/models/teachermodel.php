@@ -134,23 +134,59 @@ class TeacherModel extends CI_Model{
 		$query = $this->db->update("school_attendance",$school_attendance);
 	}
 	
-    function checkPresenti($classid,$date1){
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("class_id",$classid);
-		//$this->db->where("section",$sectionid);
-		$this->db->where("a_date",$date1);
-		$this->db->where("shift_1",1);
-		$query = $this->db->get("attendance");
-		return $query;
+    function checkPresenti($classid,$date1){	
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("class_id",$classid);
+		//	$this->db->where("teacher_id",$teacherid);
+			$this->db->where("date",$date1);
+			$this->db->where("shift_1",1);
+			$query1 = $this->db->get("school_attendance")->num_rows();
+
+	
+		if($query1>0){
+			//echo "no";
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("class_id",$classid);
+			//$this->db->where("section",$sectionid);
+			$this->db->where("a_date",$date1);
+			$this->db->where("shift_1",1);
+			$query = $this->db->get("attendance")->num_rows();
+			if($query>0){
+				return $query;
+			}
+			//print_r($query);
+			//echo "dfsdf";
+			return $query1;
+			}
+			else{
+					return $query1;
+			}
 	}
 	function checkPresentia2($classid,$date1){
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("class_id",$classid);
+	//	$this->db->where("teacher_id",$teacherid);
+		$this->db->where("date",$date1);
+		$this->db->where("shift_2",1);
+		$query = $this->db->get("school_attendance")->num_rows();
+
+	
+		if($query>0){
+		//	print_r($query);	$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("class_id",$classid);
 		//$this->db->where("section",$sectionid);
 		$this->db->where("a_date",$date1);
 		$this->db->where("shift_2",1);
-		$query = $this->db->get("attendance");
+		$query1 = $this->db->get("attendance")->num_rows();
+		if($query1>0){
+			return $query1;
+		}
 		return $query;
+			}
+			else{
+				return $query;
+			
+			}
 	}
 /*	function checkPresentia2($sec,$cla,$date1){
 		$this->db->where("school_code",$this->session->userdata("school_code"));
