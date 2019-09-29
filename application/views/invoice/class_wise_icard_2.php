@@ -84,8 +84,8 @@
             $guardian_info=$this->db->get('guardian_info');
             $gurdianInfo = $guardian_info->row();
             ?> <div id="page-wrap">
-                        <table style="width: 60%; font-size:12px; font-weight: bold;">
-                            <tr style="background-color:#188f7f; color:white;">
+                        <table style="width: 55%; font-size:12px; font-weight: bold;">
+                            <tr style="background-color:#0a443c; color:white;">
                                 <?php 
                                     $this->db->where("id",$this->session->userdata("school_code"));
     				                $schoolinfo = $this->db->get("school")->row();
@@ -99,23 +99,23 @@
                                   
                                   <?php if($personalInfo->class_id < 105 ||$personalInfo->class_id ==116){ ?>
                                        <h3 style="text-transform:uppercase; text-align:center;"> THE MANNER SCHOOL</h3>
-                                       <!--<h5 style="font-variant:small-caps; text-align:center;"><?php echo "Mobile No. : +91-"; ?>9450601811,9415280237</h5>-->
+                                       <!--<h5 style="font-variant:small-caps; text-align:center;"><?php echo "Contact Us : +91-"; ?>9450601811,9415280237</h5>-->
                                    <?php }else{?>
                                     <h3 style="text-transform:uppercase; text-align:center;">
                                         <?php echo $schoolinfo->school_name; ?></h3> <?php }?>
+                                    <h4 style=" text-align:center;">
+                                      <?php echo $schoolinfo->address1.' '.$schoolinfo->city.' ('.$schoolinfo->state.')'; ?>&nbsp;&nbsp;<span style="font-size: 12px;">(www.ddsmanner.in)</span></h4>
                                     <h5 style="font-variant:small-caps; text-align:center;">
-                                      <?php echo $schoolinfo->address1.' '.$schoolinfo->city.' ('.$schoolinfo->state.')'; ?></h5>
-                                    <h5 style="font-variant:small-caps; text-align:center;">
-                                        <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no.', '.$schoolinfo->other_mobile_no;?></h5>
-                                    <h5 style="text-align:center;">www.ddsmanner.in</h5>
+                                        <?php echo "Contact Us : +91-".$schoolinfo->mobile_no.', '.$schoolinfo->other_mobile_no;?></h5>
+                                    <h5 style="text-align:center;">Student ID Card:<?php echo date('Y',strtotime($tfsd->finance_start_date))."-".date('Y',strtotime($tfsd->finance_end_date));?></h5>
                                </td>
                             </tr>
-							<tr style="background-color:#a79c34; color:white;">
+						<!--	<tr style="background-color:#a79c34; color:white;">
                                 <td colspan="3"><h4 style="font-variant:small-caps; text-align:center;">Student ID Card
-                                        <?php echo date('Y',strtotime($tfsd->finance_start_date))."-".date('Y',strtotime($tfsd->finance_end_date));?>
+                                        <?php //echo date('Y',strtotime($tfsd->finance_start_date))."-".date('Y',strtotime($tfsd->finance_end_date));?>
                                      </h4>
 								</td>
-                            </tr>
+                            </tr>-->
                             <tr>
                                 <td style="width: 100px;">Father Name</td>
                                 <td style="text-transform: uppercase;">
@@ -128,17 +128,17 @@
                                     <div>
                                         <div class="fileupload fileupload-new" data-provides="fileupload">
                                             <div
-                                                style="width:150px; height:150px; border: 1px solid #ccc; margin:auto;">
+                                                style="width:125px; height:112px; border: 1px solid #ccc; margin:auto;">
                                                 <?php if(strlen($personalInfo->photo > 0)):?>
-                                                <img alt="<?php echo $personalInfo->name;?>" height="148" width="138"
+                                                <img alt="<?php echo $personalInfo->name;?>" height="110" width="110"
                                                     src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $personalInfo->photo;?>" />
                                                 <?php else:?>
                                                 <?php if($personalInfo->gender == 1):?>
-                                                <img alt="<?php echo $personalInfo->name;?>" height="148" width="138"
+                                                <img alt="<?php echo $personalInfo->name;?>" height="110" width="110"
                                                     src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/stuMale.png" />
                                                 <?php endif;?>
                                                 <?php if($personalInfo->gender == 0):?>
-                                                <img alt="<?php echo $personalInfo->name;?>" height="148" width="138"
+                                                <img alt="<?php echo $personalInfo->name;?>" height="110" width="110"
                                                     src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/stuFemale.png" />
                                                 <?php endif;?>
                                                 <?php endif; ?>
@@ -170,7 +170,7 @@
 							  <tr>
                                 <td >DOB</td>
                                 <td>
-                                    <?php if(strlen($personalInfo->dob) > 1) {echo $personalInfo->dob; }else echo "N/A"; ?>
+                                    <?php if(strlen($personalInfo->dob) > 1) {echo date("d-m-Y",strtotime($personalInfo->dob)); }else {echo "N/A";} ?>
                                 </td>
                             </tr>
 							<tr>
@@ -187,9 +187,9 @@
                             </tr>
 							 <tr style="background-color:#a79c34; color:white;">
                                 <td > <?php if($personalInfo->transport==0){?>
-								 <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="width: 100px;"/>
+								 <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="width: 60px;height: 35px;"/>
 								<?php }else{ ?>
-							     <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""  style="width: 100px;" />
+							     <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""  style="width: 60px;height: 35px;" />
                                 <?php } ?>
 								</td>
                                 <td>
@@ -201,9 +201,9 @@
                               ?></label>
                                   <?php } ?>
                                 </td>
-								<td> <h4 style="text-align:center;">PRINCIPAL SIGN</h4>
+								<td> <!--<h4 style="text-align:center;">PRINCIPAL SIGN</h4>-->
 								 <div class="row">
-                                        <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50" style="margin-left: 30px;" />
+                                        <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="80" height="30" style="margin-left: 30px;" />
                                   </div>
 								</td>
                             </tr>

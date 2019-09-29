@@ -66,7 +66,9 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 <?php $i = 1;$j=1;
                      $this->db->where("status",1);
                       $this->db->where("class_id",$classid);
+
                     $this->db->order_by("name", "asc");
+
                     $num_row=$this->db->get("student_info");
                   //  print_r($num_row);exit();
                 if($num_row->num_rows()>0){
@@ -165,7 +167,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
     					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);
     						 $("#submit<?php echo $i;?>").show();
-    					//	alert(" Marks inserted Successfully!!!!! ");
+
     					});
     				    }else{
     				        alert('Please fill all Boxes');

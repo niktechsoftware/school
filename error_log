@@ -1,84 +1,10 @@
-[16-Sep-2019 13:35:31 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 13:35:41 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:17:37 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:17:39 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:17:42 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:22 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:24 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:26 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:27 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:28 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:30 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:30 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:30 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:31 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:18:47 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:19:59 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:06 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:08 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:10 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:12 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:12 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:14 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:14 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:16 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:26 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[16-Sep-2019 17:20:28 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[17-Sep-2019 22:04:03 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[17-Sep-2019 22:04:08 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[17-Sep-2019 22:05:08 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[19-Sep-2019 14:58:37 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function order_by() on null in /home/schoodhe/public_html/sschool1/application/controllers/enterStockController.php:152
-Stack trace:
-#0 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): enterStockController->saleStock()
-#1 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
-#2 {main}
-  thrown in /home/schoodhe/public_html/sschool1/application/controllers/enterStockController.php on line 152
-[19-Sep-2019 15:06:21 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function order_by() on null in /home/schoodhe/public_html/sschool1/application/controllers/enterStockController.php:152
-Stack trace:
-#0 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): enterStockController->saleStock()
-#1 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
-#2 {main}
-  thrown in /home/schoodhe/public_html/sschool1/application/controllers/enterStockController.php on line 152
-[21-Sep-2019 08:45:34 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[21-Sep-2019 08:45:36 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[21-Sep-2019 08:45:39 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 349
-[23-Sep-2019 14:47:28 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_result::num_row() in /home/schoodhe/public_html/sschool1/application/views/invoice/invoiceCashPayment.php:111
-Stack trace:
-#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
-#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
-#2 /home/schoodhe/public_html/sschool1/application/controllers/invoiceController.php(343): CI_Loader->view('invoice/invoice...', Array)
-#3 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): InvoiceController->invoiceCashPayment('11I11682')
-#4 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
-#5 {main}
-  thrown in /home/schoodhe/public_html/sschool1/application/views/invoice/invoiceCashPayment.php on line 111
-[23-Sep-2019 14:49:12 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/sschool1/application/views/invoice/invoiceCashPayment.php:120
-Stack trace:
-#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
-#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
-#2 /home/schoodhe/public_html/sschool1/application/controllers/invoiceController.php(343): CI_Loader->view('invoice/invoice...', Array)
-#3 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): InvoiceController->invoiceCashPayment('11I11682')
-#4 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
-#5 {main}
-  thrown in /home/schoodhe/public_html/sschool1/application/views/invoice/invoiceCashPayment.php on line 120
-[23-Sep-2019 14:51:44 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}', expecting elseif (T_ELSEIF) or else (T_ELSE) or endif (T_ENDIF) in /home/schoodhe/public_html/sschool1/application/views/invoice/invoiceCashPayment.php on line 192
-[24-Sep-2019 10:26:58 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/sschool1/application/views/adminProfile.php:5
-Stack trace:
-#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
-#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
-#2 /home/schoodhe/public_html/sschool1/application/views/includes/mainContent.php(6): CI_Loader->view('adminProfile')
-#3 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include('/home/schoodhe/...')
-#4 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
-#5 /home/schoodhe/public_html/sschool1/application/controllers/adminController.php(40): CI_Loader->view('includes/mainCo...', Array)
-#6 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): AdminController->adminProfile()
-#7 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
-#8 {main}
-  thrown in /home/schoodhe/public_html/sschool1/application/views/adminProfile.php on line 5
+[29-Sep-2019 17:51:55 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:51:59 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:52:04 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:52:14 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:52:26 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:52:51 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:53:02 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:53:04 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:53:35 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
+[29-Sep-2019 17:57:28 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 5
