@@ -1,4 +1,8 @@
-
+<style>
+    .td1{
+        text-transform: uppercase;
+    }
+</style>
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="panel panel-white">

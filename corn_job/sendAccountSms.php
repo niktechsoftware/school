@@ -7,7 +7,7 @@
         $con=mysqli_connect($dbhost,$dbuser,$dbpass);
 
 
-    	$con1=mysqli_select_db($con,'schoodhe_C');
+    	$con1=mysqli_select_db($con,'schoodhe_D');
 
 
        if($con1)
