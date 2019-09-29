@@ -23,7 +23,7 @@ for($i=0; $i<$numn;$i++){
 	 $mid = $gt['MsgId'];
 	 $textsms  = $gt['Text'];
 	 $date1 = date("Y-m-d H:s:i");
-	$status  =checkDeliver($user,$pass,$mid);
+	$status  ="Submitted";
 	 //echo $sentNumber."-".$mid."-".$date1;
 	 $datai= array(
 	 	'sent_number'=>$sentNumber,
