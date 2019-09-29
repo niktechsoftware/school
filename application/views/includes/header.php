@@ -182,17 +182,17 @@
     <!-- start: TOPBAR CONTAINER -->
     <div class="container">
     <div class="row">
-        <div class="col-md-3" style="margin-top:10px"> 
+        <!--<div class="col-md-3" style="margin-top:10px"> 
             <a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
             <i class="fa fa-bars"></i>
             </a>
-        </div>
-        <div class="col-md-3" style="margin-top:10px">
+        </div>-->
+        <div class="col-md-2" style="margin-top:10px">
             <a style="margin-left:120px;"  href="<?php echo base_url();?>assets/apk/niktech_software.apk" target="_blank"> 
-            <span class="button_blink" style="margin-top:-5px;">  Download App </span>
+            <span class="button_blink" style="margin-top:-5px;"> Download App </span>
             </a>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-8">
             <div class="navbar-header">
             
             <!-- start: LOGO -->
@@ -203,7 +203,7 @@
             <!-- end: LOGO -->
             </div>
         </div>
-        <div class="col-md-3" style="margin-top:10px">
+        <div class="col-md-2" style="margin-top:10px">
         <div class="topbar-tools">
             <!-- start: TOP NAVIGATION MENU -->
             <ul class="nav navbar-right">
@@ -251,16 +251,10 @@
 						            $total1=$this->db->count_all("notice");
 						            $totalNoti = $total1 + $total;?>
 
-                        <!--<li>-->
-                        <!--    <a href="pages_messages.html">-->
-
-                        <!--    </a>-->
-                        <!--</li>-->
-                        <!--<li>-->
+                     
                         <!--    <a href="<?php //echo base_url()?>index.php/homeController/lockPage">-->
 
-                        <!--    </a>-->
-                        <!--</li>-->
+                     
                         <li>
                             <a href="<?php echo base_url()?>index.php/homeController/logout">
                                 Log Out

@@ -123,7 +123,7 @@
                 </div>
                 <div class="table-responsive" style="width:100%; overflow-y: scroll;">
                   <table class="table table-striped table-hover" id="sample-table-2">
-                    <thead>
+                   
                       <thead id="sample_rahul1">
                       </thead>
                     <tbody id=sample_rahul>

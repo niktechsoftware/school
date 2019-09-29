@@ -263,7 +263,7 @@ $tdiscount=0;
 						$monthmk[$i]=$tyu->deposite_month;
                     	//echo date("d-M-y", $rdt);
 					$i++; endforeach;						
-$monthmk[$i]=13;?>
+                  $monthmk[$i]=13;?>
                 </td></tr>
             </tbody></table>
             </div>
@@ -341,7 +341,36 @@ $monthmk[$i]=13;?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
 					<td class="text-center"><?php echo $transfee; $i++; ?></td>
-					<?php    }}?>
+					<?php    }} else{
+							if($stuid_details->vehicle_pickup){
+							$paid=	$rowb->paid;
+							$total=	$rowb->total;
+						if($paid >$total){
+				
+					// exit();
+				
+
+					$transfee=$paid - $total;
+						 $this->db->where("id",$stuid_details->vehicle_pickup);
+						 $tffee=  $this->db->get("transport_root_amount");
+						 if($tffee->num_rows()>0){
+								 $tffee=$tffee->row();
+								 $transfee1=$tffee->transport_fee;
+								 $transfee2=intval($transfee1);
+								 if($transfee2 = $transfee){
+									// echo"aarjua";
+									 //exit();
+
+									
+						?>
+					  <td class="text-center"><b><?php echo $i;?></b></td>
+					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
+					<td class="text-center"><?php echo $transfee; $i++; ?></td>
+					<?php 
+					// print_r($paid);
+					// print_r($total);
+					// exit();
+				} } } } } ?>
 				</tr>
 				
 				<!-- <tr>-->
@@ -660,7 +689,39 @@ $monthmk[$i]=13;?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
 					<td class="text-center"><?php echo $transfee; $i++; ?></td>
-					<?php    }}?>
+					<?php    }} else{
+							if($stuid_details->vehicle_pickup){
+							$paid=	$rowb->paid;
+							$total=	$rowb->total;
+						if($paid >$total){
+					// print_r($paid);
+					// print_r($total);
+					// exit();
+					$transfee=$paid - $total;
+
+					
+						 $this->db->where("id",$stuid_details->vehicle_pickup);
+						 $tffee=  $this->db->get("transport_root_amount");
+						 if($tffee->num_rows()>0){
+								 $tffee=$tffee->row();
+								 $transfee1=$tffee->transport_fee;
+								 $transfee2=intval($transfee1);
+								 if($transfee2 =$transfee){
+
+
+
+						
+						?>
+					  <td class="text-center"><b><?php echo $i;?></b></td>
+					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
+					<td class="text-center"><?php echo $transfee; $i++; ?></td>
+					<?php } } } } } 
+					
+				//	print_r($transfee);
+					// print_r($transfee2);
+					// print_r($transfee);
+					// exit();
+					?>
 				</tr>
 				
 				<!-- <tr>-->
@@ -729,7 +790,7 @@ $monthmk[$i]=13;?>
 				  <td class="col-sm-7" rowspan="3" style="color:white;" >
 				  <strong>   Received by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
-This is computer generated invoice and verified by accountant.
+This is computer generated invoice and verified by Accountant.
 				  
 				  </td>
 				
@@ -756,9 +817,12 @@ This is computer generated invoice and verified by accountant.
      <!--   </button>-->
     <!--    <button class="btn btn-danger" type="button" onclick="window.print();">Print Reciept </button>-->
     <!--</div>-->
-    <?php }else{?>
+
+    <?php } else{?>
     	<div id="printcontent" style="width:100%;">
+
     	<h3 class="text-danger text-center text-uppercase">Student Receipt</h3>
+
 	<div id="page-wrap" style="border:1px solid #333; width: 95%; margin: 0 auto;">
 <?php 
 $tdiscount=0;$school_code=$this->session->userdata("school_code");
@@ -897,7 +961,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 						$monthmk[$i]=$tyu->deposite_month;
                     	//echo date("d-M-y", $rdt);
 					$i++; endforeach;						
-$monthmk[$i]=13;?>
+                $monthmk[$i]=13;?>
                 </td></tr>
             </tbody></table>
             </div>
@@ -936,9 +1000,9 @@ $monthmk[$i]=13;?>
 		  		    if($feeh->fee_head_name!= NULL){?>		  				  			
 		  		<tr class='text-uppercase'>
 				  <td class="col-sm-1 text-center"><b> <?php echo $i;?></b></td>
-		  		<td class="col-sm-8"><b><?php echo $feeh->fee_head_name;?></b></td>
-		  		<td class="col-sm-3 text-center"><?php  if($feeh->taken_month==13){ $total+=$feeh->fee_head_amount*$demont; echo $feeh->fee_head_amount*$demont;}else{ $total+=$feeh->fee_head_amount; echo $feeh->fee_head_amount;}?></td>
-		  		</tr>
+		  		  <td class="col-sm-8"><b><?php echo $feeh->fee_head_name;?></b></td>
+		  		  <td class="col-sm-3 text-center"><?php  if($feeh->taken_month==13){ $total+=$feeh->fee_head_amount*$demont; echo $feeh->fee_head_amount*$demont;}else{ $total+=$feeh->fee_head_amount; echo $feeh->fee_head_amount;}?></td>
+		  	   </tr>
 		  		<?php $i++; }
 		  		 endforeach;}?>
 		  				  				  			
@@ -954,24 +1018,26 @@ $monthmk[$i]=13;?>
 					   <?php $transfee=0; 
 					    $this->db->where('id',$this->session->userdata('fsd'));
 						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
+						
 		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
 				// 		$this->db->where('school_code',$school_code);
 				// 		$this->db->where('student_id',$stuid_details->id); 
 				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
+					  
 						if(($stuid_details->transport) && ($stuid_details->update_date<=$rowb->diposit_date)){
-	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
-	                                              $tffee=  $this->db->get("transport_root_amount");
-	                                              if($tffee->num_rows()>0){
-	                                                  $tffee=$tffee->row();
-	                                                  foreach($rty->result() as $tyu):
+                            $this->db->where("id",$stuid_details->vehicle_pickup);
+                            $tffee=  $this->db->get("transport_root_amount");
+                        if($tffee->num_rows()>0){
+                            $tffee=$tffee->row();
+                            foreach($rty->result() as $tyu):
 		   
-		    if($junefee == 1){
-	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
-	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
-	                                            } endforeach;
+		                        if($junefee == 1){
+	                                    if($tyu->deposite_month != 6){
+	                                            $transfee  +=$tffee->transport_fee;
+	                                    }}else{
+	                                             $transfee  +=$tffee->transport_fee; 
+	                           } endforeach;
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
@@ -1047,7 +1113,9 @@ $monthmk[$i]=13;?>
 				  <td class="col-sm-7" rowspan="3" style="color:white;" >
 				  <strong>   Received by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
-This is computer generated invoice and verified by accountant.
+
+This is computer generated invoice and verified by Accountant.
+
 				  
 				  </td>
 				
@@ -1071,6 +1139,7 @@ This is computer generated invoice and verified by accountant.
 	</div>
 </div>
     <?php } ?>
+
 </body>
 <div class="invoice-buttons" style="text-align:center;">
     <button class="button button2" type="button"  onclick="window.print();">

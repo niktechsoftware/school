@@ -58,7 +58,7 @@
 <div class="toolbar row">
     <div class="col-sm-3 hidden-xs">
         <div class="page-header">
-            <h1><?php echo $pageTitle; ?> <small><?php echo $smallTitle; ?> </small></h1>
+            <h1 style="color: wight; font-weight: bold; font-size: 23px;"><?php echo $pageTitle; ?> <small><?php echo $smallTitle; ?> </small></h1>
         </div>
     </div>
     

@@ -9,7 +9,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 		<!--<input type="hidden" name="classv" value="<?php //echo $cla; ?> "/>-->
 		<input type="hidden" name="date1" value="<?php echo $date1;?>"/>
 		<?php $i=1;
-		if($check->num_rows() > 0)
+		if($check > 0)
 		{
 			?><div class="alert alert-danger">
 			<?php echo "<h4>Attendance is Done for [ ".date("d-m-Y",strtotime($date1))."]</h4>";?>

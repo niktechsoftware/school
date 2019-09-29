@@ -83,7 +83,7 @@
 		    $tfsd =	$this->db->get("fsd")->row();
 				?> <td colspan="3">
                                     <img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; border-radius: 50%;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />
-                                    <h3 style="text-transform:uppercase; text-align:center;">
+                                    <h3 style="text-transform:uppercase; text-align:center;color:red;">
                                         <?php echo $schoolinfo->school_name; ?></h3>
                                     <h5 style="font-variant:small-caps; text-align:center;">
                                         <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no;?></h5>
@@ -98,8 +98,10 @@
                             </tr>
 
                             <tr>
+
                                 <td style="padding:5px; width:220px;">Name</td>
                                 <td style="width:300px;text-transform: uppercase;">
+
                                     <?php echo $personalInfo->name; ?>
                                 </td>
                                 <td rowspan="8" align="center">
@@ -124,7 +126,11 @@
                                     </div>
                                     <div class="row">
                                         <h4 style="margin-top: 10px; text-align:center;">PRINCIPAL SIGN</h4>
-                                        <div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50"  /></div>
+
+                                        <?php if($this->session->userdata("school_code")==5){ ?>
+                                        <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpeg" alt="" width="100" height="50"  />
+                                   <?php }?>
+
                                    <?php if($personalInfo->transport==0){?>
                                      <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
                                    <?php }else{ ?>
@@ -144,7 +150,7 @@
                                 <?php $this->db->select('class_name,section');
 					  $this->db->where('id',$personalInfo->class_id);
 				      $classInfo=$this->db->get('class_info')->row();?>
-                                <td><?php echo $classInfo->class_name; ?></td>
+                                <td style="color:yellow;"><?php echo $classInfo->class_name; ?></td>
                             </tr>
                             <tr>
                                 <td style="padding:5px">Student ID</td>
@@ -168,7 +174,7 @@
                             </tr>
                             <tr>
                                 <td style="padding:5px">Mobile Number</td>
-                                <td>
+                                <td style="color:blue;">
                                     <?php echo $personalInfo->mobile; ?>
                                 </td>
                             </tr>
