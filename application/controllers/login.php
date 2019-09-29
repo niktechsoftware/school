@@ -1352,6 +1352,18 @@ function createSchedule()
 		$data['mainContent'] = 'bankTransaction';
 		$this->load->view("includes/mainContent", $data);
 	}
+	function smsreport(){
+		$data['pageTitle'] = 'Account Management';
+		$data['smallTitle'] = 'Bank Transaction';
+		$data['mainPage'] = 'Bank Transaction';
+		$data['subPage'] = 'Bank Transaction / Account Management';
+
+		$data['title'] = 'Bank Transaction / Account Management';
+		$data['headerCss'] = 'headerCss/studentCss';
+		$data['footerJs'] = 'footerJs/simpleStudentListJs';
+		$data['mainContent'] = 'smsreport';
+		$this->load->view("includes/mainContent", $data);
+	}
 
 	function directorTransaction(){
 		$data['pageTitle'] = 'Account Management';

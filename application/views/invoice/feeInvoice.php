@@ -120,7 +120,7 @@
     
 
 <?php 
-
+if($this->session->userdata("school_code")!=9){
 $school_code=$this->session->userdata("school_code");
 $tdiscount=0;
 	$this->db->where("id",$school_code);
@@ -341,7 +341,36 @@ $tdiscount=0;
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
 					<td class="text-center"><?php echo $transfee; $i++; ?></td>
-					<?php    }}?>
+					<?php    }} else{
+							if($stuid_details->vehicle_pickup){
+							$paid=	$rowb->paid;
+							$total=	$rowb->total;
+						if($paid >$total){
+				
+					// exit();
+				
+
+					$transfee=$paid - $total;
+						 $this->db->where("id",$stuid_details->vehicle_pickup);
+						 $tffee=  $this->db->get("transport_root_amount");
+						 if($tffee->num_rows()>0){
+								 $tffee=$tffee->row();
+								 $transfee1=$tffee->transport_fee;
+								 $transfee2=intval($transfee1);
+								 if($transfee2 = $transfee){
+									// echo"aarjua";
+									 //exit();
+
+									
+						?>
+					  <td class="text-center"><b><?php echo $i;?></b></td>
+					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
+					<td class="text-center"><?php echo $transfee; $i++; ?></td>
+					<?php 
+					// print_r($paid);
+					// print_r($total);
+					// exit();
+				} } } } } ?>
 				</tr>
 				
 				<!-- <tr>-->
@@ -660,7 +689,39 @@ $monthmk[$i]=13;?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
 					<td class="text-center"><?php echo $transfee; $i++; ?></td>
-					<?php    }}?>
+					<?php    }} else{
+							if($stuid_details->vehicle_pickup){
+							$paid=	$rowb->paid;
+							$total=	$rowb->total;
+						if($paid >$total){
+					// print_r($paid);
+					// print_r($total);
+					// exit();
+					$transfee=$paid - $total;
+
+					
+						 $this->db->where("id",$stuid_details->vehicle_pickup);
+						 $tffee=  $this->db->get("transport_root_amount");
+						 if($tffee->num_rows()>0){
+								 $tffee=$tffee->row();
+								 $transfee1=$tffee->transport_fee;
+								 $transfee2=intval($transfee1);
+								 if($transfee2 =$transfee){
+
+
+
+						
+						?>
+					  <td class="text-center"><b><?php echo $i;?></b></td>
+					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
+					<td class="text-center"><?php echo $transfee; $i++; ?></td>
+					<?php } } } } } 
+					
+				//	print_r($transfee);
+					// print_r($transfee2);
+					// print_r($transfee);
+					// exit();
+					?>
 				</tr>
 				
 				<!-- <tr>-->
@@ -757,7 +818,7 @@ This is computer generated invoice and verified by Accountant.
     <!--    <button class="btn btn-danger" type="button" onclick="window.print();">Print Reciept </button>-->
     <!--</div>-->
 
-    <?php }else{?>
+    <?php } else{?>
     	<div id="printcontent" style="width:100%;">
 
     	<h3 class="text-danger text-center text-uppercase">Student Receipt</h3>

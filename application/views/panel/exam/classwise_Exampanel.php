@@ -40,28 +40,52 @@
         <div class="col-md-12">
         <div class="panel-body">
        <div class="text-white text-large">
+	   
+	   <!---->
+	    <div class="col-md-3">
+                          <div class="form-group">
+<?php 					$school_code = $this->session->userdata("school_code");
+						$detail = $this->db->query("SELECT * FROM fsd where school_code='$school_code' Order BY id");
+						if(($detail->num_rows() > 0)){
+							
+					?>
+                   <select class="form-control" id="fsd" name = "fsd" >
+							<option value="">-select FSD-</option>
+		                      			<?php 
+		                      			
+		                      			if(($detail->num_rows() > 0)){
+		                      			foreach($detail->result() as $row):?>
+		                      				
+		                      			<option value="<?php echo $row->id;?>">
+		                      			<?php echo date("d-M-y", strtotime($row->finance_start_date));?>
+		                      		</option>
+		                      		<?php endforeach;
+		                      				
+		                      			}
+		                      			?>
+						</select>
+						<?php } ?>
+                          </div>
+                        </div>
+	   <!---->
+	   
         <div class="col-md-3">
                           <div class="form-group">
-
-                   <select id="examid" class="form-control">
-                              <option value="">Select Exam Name</option><?php
-                              $school=$this->session->userdata("school_code");
-                              
-                              $this->db->where('school_code',$school);
-
-                            $emp= $this->db->get('exam_name')->result();
-                            foreach($emp as $data)
-                            {
-                                ?>
-                            
-                              <option value="<?php echo $data->id;?>"><?php echo $data->exam_name;?></option>
-                              <?php
-                             } ?>
-                            </select>
+						   <select id="examid" class="form-control">
+									   <!-- <option value="">Select Exam Name</option>-->
+										<?php
+											 /* $school=$this->session->userdata("school_code");
+											  //$this->db->where('fsd',$fsd);
+											  $this->db->where('school_code',$school);
+										$emp= $this->db->get('exam_name')->result();
+										foreach($emp as $data){ ?>
+										<option value="<?php echo $data->id;?>"><?php echo $data->exam_name;?></option>
+									  <?php } */?>
+							</select>
                           </div>
                         </div>
                   
-                      <div class="col-sm-3">
+                      <div class="col-sm-2">
                         
                           <div class="form-group">
                             <select id="clname" class="form-control">
@@ -83,14 +107,14 @@
                           </div>
                          
                         </div>
-                      <div class="col-sm-3">
+                      <div class="col-sm-2">
                           <div class="form-group">
                             <select id="sectionList" class="form-control">
                               
                             </select>
                           </div>
                         </div>
-                      <div class="col-sm-3">
+                      <div class="col-sm-2">
                           <div class="form-group">
                             <select id="classlist" class="form-control">
                             </select>
@@ -128,7 +152,14 @@
 
                 <script>
                  jQuery(document).ready(function() {
-
+		$("#fsd").change(function(){
+            var fsd = $("#fsd").val();
+            //alert(clname);
+            $.post("<?php echo site_url('index.php/configureClassControllers/getexamname') ?>", {fsd : fsd}, function(data){
+                $("#examid").html(data);
+                //alert(data);
+            });
+        });
         $("#clname").change(function(){
             var streamid = $("#clname").val();
             //alert(clname);
@@ -137,6 +168,7 @@
                 //alert(data);
             });
         });
+		
 
         $("#sectionList").change(function(){
             var sectionid = $("#sectionList").val();
@@ -152,11 +184,12 @@
          
             var classid = $("#classlist").val();
              var examid = $("#examid").val();
+			 var fsd = $("#fsd").val();
 
             $.ajax({
                         "url": "<?= base_url() ?>index.php/exampanel/findclassexam",
                         "method": 'POST',
-                        "data": {classid : classid , examid : examid},
+                        "data": {classid : classid , examid : examid, fsd :fsd},
                         beforeSend: function(data) {
                             $("#sample_rahul").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
                         },

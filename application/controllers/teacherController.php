@@ -88,24 +88,25 @@ function getclassforexam(){
 		  }
 		  $teacherid = $this->input->post("teacherid");
 		$check = $this->teacherModel->checkPresenti($classid,$date1);
-		if($check->num_rows() > 0)
-		{
+		// print_r($check);
+		 if($check > 0)
+		 {
 		
-		}
-		else
+		 }
+		 else
 		{
-		if($check)
+		if($check==0)
 		{?>
 			<tr>
-			<td>S.No.</td>
-			<td>Student ID </td>
-			<!--<td> Scholer No</td>-->
-			<td> Student Name</td>
-				<td>Father Name</td>
+		 	<td>S.No.</td>
+		 	<td>Student ID </td>
+		 	<td> Scholer No</td>
+		<td> Student Name</td>
+		 		<td>Father Name</td> 
 			<!--<td> Mobile</td>-->
-			<td> Attendance<input type="hidden" value="300001" name="tID" /></td>
-			</tr>
-			<?php 
+		<td><input type="hidden" value="300001" name="tID" /></td> 
+		 	</tr> 
+		 	<?php 
 		}
 		}
 	}
@@ -118,13 +119,14 @@ function getclassforexam(){
 		}
 		$teacherid = $this->input->post("teacherid");
 		$check = $this->teacherModel->checkPresentia2($classid,$date1);
-		if($check->num_rows() > 0)
+		//print_r($check);
+		if($check > 0)
 		{
 		
 		}
 		else
 		{
-		if($check)
+		if($check==0)
 		{?>
 			<tr>
 			<td>S.No.</td>

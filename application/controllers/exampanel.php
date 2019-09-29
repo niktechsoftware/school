@@ -75,17 +75,15 @@ class Exampanel extends CI_Controller{
 
   public function findclassexam()
 	  {
-
-	  	 $school_code=$this->session->userdata("school_code");
-                              
-	  	 $fsd=$this->session->userdata("fsd");                     
-		  $classid=$this->input->post("classid");
+		$school_code=$this->session->userdata("school_code");
+        // $fsd=$this->session->userdata("fsd");                     
+	    $classid=$this->input->post("classid");
 		$data['classid']=$classid;
   		$data['examid']=$this->input->post("examid");
-  		
-  		 $this->db->where('status',1);
-  		$this->db->where('class_id',$classid);
-  		$data['student']=$this->db->get('student_info')->result();
+  		$data['fsd']=$this->input->post("fsd");
+						 $this->db->where('status',1);
+						 $this->db->where('class_id',$classid);
+	    $data['student']=$this->db->get('student_info')->result();
 
   		$this->load->view('panel/exam/classwise',$data);
 
