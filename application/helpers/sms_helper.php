@@ -48,7 +48,31 @@ function smshindi($number,$msg,$user,$pass,$senderid)
 	curl_setopt($ch,CURLOPT_URL,$url);
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 	$output=curl_exec($ch);
+	$rt=json_decode($output,true);
+	?> <pre> <?php
+//print_r(json_decode($output));?></pre><?php 
+
+$numn = ((strlen($number)+1)/11);
+for($i=0; $i<$numn;$i++){
+	$dat =  $rt['MessageData'][$i];
+	$sentNumber =  $dat['Number'];
+	$gt =  $dat['MessageParts'][0];
+	 $mid = $gt['MsgId'];
+	 $textsms  = $gt['Text'];
+	 $date1 = date("Y-m-d H:s:i");
+	$status  ="Submitted";
+	 //echo $sentNumber."-".$mid."-".$date1;
+	 $datai= array(
+	 	'sent_number'=>$sentNumber,
+	 	'msg_id'=>$mid,
+	 	'status'=>$status,
+	 	'sms'=>$textsms,
+	 	'date'=>$date1
+	 );
+	$object1[$i]=$datai;
+	}
 	curl_close($ch);
+return $object1;
 }
 
 function checkBalSms($user,$pass)

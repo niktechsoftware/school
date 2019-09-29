@@ -82,7 +82,7 @@ $school_code = $this->session->userdata("school_code");
             <br />
             <div class="row">
               <div class="col-sm-6">
-                <h6 class="block no-margin">Today Fees Collection</h6>
+                <h6 class="block no-margin">Fees </h6>
                 </br>
                 <mark><?php 
 					
@@ -91,7 +91,7 @@ $school_code = $this->session->userdata("school_code");
                 </mark>
               </div>
               <div class="col-sm-6">
-                <h6 class="block no-margin">Today Stock</h6>
+                <h6 class="block no-margin">Stock</h6>
                 </br>
                 <mark><?php 
 					$camount=0;
@@ -212,7 +212,7 @@ $school_code = $this->session->userdata("school_code");
             <h4 class="title block no-margin">Today Business</h4><br>
             <div class="row">
               <div class="col-sm-6">
-                <h6 class="block no-margin">Today Opening</h6>
+                <h6 class="block no-margin">Opening</h6>
                 </br>
                 <mark><?php 
                 $date=Date("Y-m-d");
@@ -227,7 +227,7 @@ $school_code = $this->session->userdata("school_code");
 							echo $data->opening_balance ;?></mark>
               </div>
               <div class="col-sm-6">
-                <h6 class="block no-margin">Today Closing</h6>
+                <h6 class="block no-margin">Closing</h6>
                 </br>
                 <mark> <?php  $date=Date("Y-m-d");
 						$this->db->select('closing_balance');
@@ -328,7 +328,79 @@ $school_code = $this->session->userdata("school_code");
             </div>
         </div>
     </div>
-    </div>
+   
+    
+    <div class="row">
+							<div class="col-md-5 col-lg-3 col-sm-5">
+								<div class="panel panel-blue core-box">
+									<div class="e-slider owl-carousel owl-theme">
+										<div class="item">
+											<div class="panel-body">
+												<div class="core-box">
+												<?php   $this->db->where("school_code",$school_code);
+		$sender=$this->db->get("sms_setting")->row(); ?>
+													<div class="text-white text-bold">
+														Available SMS [<?php echo checkBalSms($sender->uname,$sender->password);?>]
+													</div>
+													<div class="text-white text-large pull-left">
+														<?php $datj=date("Y-m-d");echo date("d-m-Y");?>
+													</div>
+													<div class="text-white text-large pull-right">
+													<?php 
+													$this->db->where("school_code",$this->session->userdata("school_code"));
+													$this->db->where("DATE(date)",$datj);
+													$getsmsn = $this->db->get("sent_sms_details");?>
+														 Sent <?php echo $getsmsn->num_rows();?> </a>
+														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										<div class="item">
+											<div class="panel-body">
+												<div class="core-box">
+													<div class="text-white text-large text-bold">
+														Todays Sent [<?php echo $getsmsn->num_rows();?>]
+													</div>
+													
+													<div class="text-white text-large pull-right">
+													<?php 
+													$dlv =0; $subn=0; $other=0;
+													if($getsmsn->num_rows()>0){
+														foreach($getsmsn->result() as $row):
+														$get_report  = checkDeliver($sender->uname,$sender->password,$row->msg_id);
+														//echo $get_report;
+														if($get_report=='#DELIVRD'){
+															$dlv=$dlv+1;
+															
+														}else{
+															if($get_report=='#SUBMITTED'){
+																$subn=$subn+1;
+															}else{
+																$other=$other+1;
+															}
+														}
+														endforeach; } ?>
+														 Delivered =<?php echo $dlv;?>
+														 Submitted = <?php echo $subn;?>
+														 Other =<?php echo $other;?>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+							</div>
+    
+     </div>
+    
+    
+    
+    
+    
     <!--2nd row end-->
 <div class="row">
 
