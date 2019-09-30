@@ -1353,13 +1353,13 @@ function createSchedule()
 		$this->load->view("includes/mainContent", $data);
 	}
 	function smsreport(){
-		$data['pageTitle'] = 'Account Management';
-		$data['smallTitle'] = 'Bank Transaction';
-		$data['mainPage'] = 'Bank Transaction';
-		$data['subPage'] = 'Bank Transaction / Account Management';
+		$data['pageTitle'] = 'SMS Report Panel';
+		$data['smallTitle'] = 'SMS PAnel';
+		$data['mainPage'] = 'SMS Report Panel';
+		$data['subPage'] = 'Get Sms Report / SMS Panel';
 
-		$data['title'] = 'Bank Transaction / Account Management';
-		$data['headerCss'] = 'headerCss/studentCss';
+		$data['title'] = 'Get SMS Report / SMS Panel';
+		$data['headerCss'] = 'headerCss/studentListCss';
 		$data['footerJs'] = 'footerJs/simpleStudentListJs';
 		$data['mainContent'] = 'smsreport';
 		$this->load->view("includes/mainContent", $data);

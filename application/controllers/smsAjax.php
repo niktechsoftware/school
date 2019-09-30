@@ -96,7 +96,13 @@ class SmsAjax extends CI_Controller{
 								'school_code'=>$this->session->userdata("school_code")
 
 							);
-							$this->db->insert("sent_sms_details",$data);
+						$insertdata=	$this->db->insert("sent_sms_details",$data);
+						if($insertdata){
+								redirect("index.php/login/mobileNotice/Notice");
+						}
+						else{
+							redirect("index.php/login/mobileNotice/Notice");
+						}
 							// $data=array(
 
 							// );
@@ -120,12 +126,14 @@ class SmsAjax extends CI_Controller{
 			// 	'phone' => $contact['phone']
 			// 	);
 		
-		}else{
+		}
+	
+		else{
 			echo smshindi($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		
 
 		}
-		//redirect("index.php/login/mobileNotice/Notice");
+	
 	}
 	
 	
@@ -686,28 +694,48 @@ class SmsAjax extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	}	
 	function updatesms_status(){
-	$msg_id=	$this->input->post("msgid");
-	$school_code =$this->session->userdata("school_code");
-	$this->db->where("school_code",$school_code);
-	//
-	$msgdata=$this->db->get("sms_setting");
-	if($msgdata->num_rows()>0){
-		$sender_detail=$msgdata->row();
-		$username=$sender_detail->uname;
-		$password=$sender_detail->password;
+				 $msg=	$this->input->post("msgid");
+				 
+				$school_code =$this->session->userdata("school_code");
+				$this->db->where("school_code",$school_code);
+			  $msgdata=$this->db->get("sms_setting");
+			  	if($msgdata->num_rows()>0){
+						$sender_detail=$msgdata->row();
+						$username=$sender_detail->uname;
+						$password=$sender_detail->password;
+						$this->db->where("sms",$msg);
+						$msgdata=$this->db->get("sent_sms_details");
+						if($msgdata->num_rows()>0){
+							foreach($msgdata->result() as $row):
+								$msg_id=$row->msg_id;
+						$dt=checkDeliver($username,$password,$msg_id);
+						$arr =array(
+							'status' =>$dt
+						);
+						$this->db->where("msg_id",$msg_id);
+						$updatedata=$this->db->update("sent_sms_details",$arr);
+				if($updatedata){
+					
 
-	$dt=checkDeliver($username,$password,$msg_id);
-	$arr =array(
-		'status' =>$dt
-	);
-	$this->db->where("msg_id",$msg_id);
-	$updatedata=$this->db->update("sent_sms_details",$arr);
-	if($updatedata){
+				} endforeach; echo "Updated"; }
+
+				}
+
 
 	}
-
-	}
-
-
-	}
+	function viewsmsdetail(){
+		$msg=$this->uri->segment(3);
+		
+		$data['msg'] =$msg;
+	
+		$data['pageTitle'] = 'View SMS Report';
+		$data['smallTitle'] = 'View SMS Report';
+		$data['mainPage'] = 'View SMS Report';
+		$data['subPage'] = 'View SMS Report';
+		$data['title'] = 'View SMS Report ';
+		$data['headerCss'] = 'headerCss/studentListCss';
+		$data['footerJs'] = 'footerJs/simpleStudentListJs';
+		$data['mainContent'] = 'viewsmsdetail';
+		$this->load->view("includes/mainContent", $data);
+	}	
 }
