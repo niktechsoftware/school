@@ -84,6 +84,7 @@
                                 $this->db->where("date <= ",$edate);
 			  					$this->db->where("class_id",$cla);	  
 			  				     $data=$this->db->get("school_attendance");
+			  				    // print_r($data);exit();
 								if($data->num_rows()>0)
 			  			             {
 			  			             	$sno=1;

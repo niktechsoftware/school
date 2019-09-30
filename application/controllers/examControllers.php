@@ -657,7 +657,7 @@ function defineExam1(){
 			}
  }
  
-	function insertMarksdetail()
+function insertMarksdetail()
 	{
 	    $stuid=$this->input->post('stuid'); 
 	    $marks=$this->input->post('marks');
@@ -693,7 +693,6 @@ function defineExam1(){
 	      
 	       <?php
 	}
-
 	function resultRender(){
 		$school_code =$this->session->userdata("school_code");
 		$data['examName'] = $this->input->post("examName");

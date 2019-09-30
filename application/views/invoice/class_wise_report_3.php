@@ -175,7 +175,7 @@
                                 </h2>
                                 <h2 style="color:white;">
                                 <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
-									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->mobile_no ;} ?>
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->other_mobile_no ;} ?>
                                 </h2>
                             </td>
 							<!--<div class="row">
@@ -354,7 +354,7 @@ $subjectname=$this->db->get('subject');
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 	?><?php $totalp+=200;?>
-	<?php if($subjectname->subject != "DRAWING " && $subjectname->subject != "DRAWING"){ ?>
+	<?php //if($subjectname->subject != "DRAWING " && $subjectname->subject != "DRAWING"){ ?>
                    <tr class="wight"> 
 					 <td class="subject">	
                      <?php echo  $subjectname->subject;?> 
@@ -415,7 +415,9 @@ if($subjectname->num_rows()>0){
 			  <!-- <td class="center bold"></td>-->
 			  <!-- <td class="center bold"></td>-->
 				</tr>
-                    <?php }}
+                    <?php //}
+    
+}
 					}?>
 					
 					

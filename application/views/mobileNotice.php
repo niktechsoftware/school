@@ -5,12 +5,13 @@
 		<div class="panel panel-white">
 			<div class="panel-heading panel-orange">
 				<i class="fa fa-external-link-square"></i>
-				Send Message:
+				Send Message:   <a class="btn btn-success" href="<?php echo base_url();?>index.php/login/smsreport">  Get Sms Report </a>
+			       
 			</div>
 			<div class="panel-tools">										
 				<div class="dropdown">
 					<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
-						<i class="fa fa-cog"></i>
+						<i class="fa fa-cog"></button></i>
 					</a>
 					<ul class="dropdown-menu dropdown-light pull-right" role="menu">
 						<li>
@@ -30,10 +31,12 @@
 			</div>
 			<div class="panel-body"  >
 <!-- -------------------------------------------------------- Msg part ------------------------------------------------ -->
+                  <div ></div>
                   <?php
+                  
 if($this->uri->segment(3) == 'Notice'){ ?>
 <div class="alert alert-info">
-          <button data-dismiss="alert" class="close">×</button>
+          <button data-dismiss="alert" class="close"> </button>
           <h3 class="media-heading text-center">Welcome to Notice Area</h3>
          This is the area you can send message to a particular Parent or Mobile number.
                      If you want to add more than one number Please use Comma.<br>

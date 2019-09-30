@@ -389,7 +389,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                             var subjectid = $("#subjectid1").val();
                             var viid = $("#viid").val();
                             if(mark!=""){
-                                alert(subjectid+classid+examid );
+                               confirm('Do you really want to delete Maximum Marks?');
                     $.post("<?php echo site_url("index.php/examControllers/deletesubmaxiMarks") ?>",{mark : mark,viid : viid, examid : examid, classid : classid, subjectid : subjectid,}, function(data){
                      
                       $("#deletemmarks").html(data);

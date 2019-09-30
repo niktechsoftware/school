@@ -84,7 +84,7 @@
 				?>
                                 <td colspan="3"><div style="background-color:#188f7f;">
                                     <!--<img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; border-radius: 50%;" src="<?php echo base_url();?>assets/<?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />-->
-                                    <h2 style="text-transform:uppercase; text-align:center;color:red;">
+                                    <h2 style="text-transform:uppercase; text-align:center;color:#e5e75f;">
                                         <?php echo $schoolinfo->school_name; ?></h2>
                                     <h5 style="font-variant:small-caps; text-align:center;color:#e5e75f;">
                                         <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no;?></h5>
@@ -155,7 +155,7 @@
 
                             <tr>
                                 <td style="padding:6px;text-transform: uppercase;">Father Name</td>
-                                <td style="text-transform: uppercase;">
+                                <td>
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
                             </tr>

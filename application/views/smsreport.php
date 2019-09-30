@@ -39,15 +39,14 @@
 				      <div class="panel-body">
 							<div class="alert alert-info">
           <button data-dismiss="alert" class="close">×</button>
-          <h3 class="media-heading text-center">Welcome to Simple Employee List Area</h3>
-Here you can see all the employees list, if you want to see full detail of employees, then choose employee id and click on full profile button.And you can also
-print employee Icard by click on that Employee Id.
+          <h3 class="media-heading text-center">Welcome to SMS Report Panel</h3>
+Here you can see all the sent sms Detals, if you want to Download click export Buttons to export sms report. 
         </div>
 					<div class="row">
 						<div class="col-md-12 space20">
-							<!-- <button class="btn btn-orange add-row">
-								Add New <i class="fa fa-plus"></i>
-							</button> -->
+							<a class = "btn btn-info" href="<?php echo base_url(); ?>index.php/login/smsreport">
+												Send Message
+												</a>
 							<div class="btn-group pull-right">
 								<button data-toggle="dropdown" class="btn btn-green dropdown-toggle">
 									Export <i class="fa fa-angle-down"></i>
@@ -113,6 +112,7 @@ print employee Icard by click on that Employee Id.
 								<thead>
 									<tr>
 										<th>SNo.</th>
+
 										<!-- <th>Sent Number</th> -->
 										<!-- <th>Full Name</th>
 										<th>Job Title</th>
@@ -131,6 +131,7 @@ print employee Icard by click on that Employee Id.
 								// //	$this->db->where("status",1);
 								// 	$result = $this->db->get("sent_sms_details");
 									$this->db->select('*, COUNT(id) as total');
+
 									$this->db->where("school_code",$this->session->userdata("school_code"));
 									$this->db->group_by('sms'); 
 								
@@ -146,6 +147,7 @@ print employee Icard by click on that Employee Id.
 									<tr class="text-uppercase">
 										<td><?php echo $sno; ?></td>
 									 
+
 										<!-- <td><?php echo $row->sent_number; ?></td> -->
 										<td><?php echo $row->sms; ?></td>
 										<!-- <td><?php// echo $row->status ?></td> -->
@@ -157,10 +159,12 @@ print employee Icard by click on that Employee Id.
 									
 											<!-- <button  id="updated<?php echo $sno;?>" class="btn btn-green">Updated</button> -->
 									
+
 										</td>
                    <td><a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->sms; ?>" class="btn btn-green"> View Sms Detail</a></td> 
 										
 									</tr>
+
 									<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 									<script>
 									$(document).ready(function(){
@@ -187,6 +191,7 @@ print employee Icard by click on that Employee Id.
 									TableExport.init();
 									</script>
 									<?php $sno++; endforeach; ?>
+
 								</tbody>
 							</table>
 						</div>

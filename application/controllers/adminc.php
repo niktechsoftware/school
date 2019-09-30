@@ -22,6 +22,21 @@ class adminc extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 		
 	}
+	/*function house(){
+	    $row= $this->db->get('house_list')->result();
+	          foreach($row as $a){
+					    $b=$a->code;
+            	           $data= array(
+                      	'house_id' =>$b
+                      );
+					    $this->db->where('username',$a->user);
+						$c=$this->db->get('student_info')->num_rows();
+						if($c >0){
+							$this->db->where('username',$a->user);
+							$up=$this->db->update('student_info',$data);
+							}
+						}
+	}*/
 	
 	function admitCardReports(){
 		    $data['pageTitle'] = 'Admit Card';

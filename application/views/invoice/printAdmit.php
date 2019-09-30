@@ -163,7 +163,11 @@
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
             		<?php //echo $info->state." - ".$info->pin.", Contact No. : " ;
             		//if(strlen($info->mobile_no > 0 )){echo $info->phone_no.", ".$info->mobile_no ;} 
-            		echo "Mobile No. : +91-".$info->mobile_no.', '.$info->other_mobile_no; ?>
+            		if(strlen($info->mobile_no)>0){
+            		echo "Mobile No. : +91-".$info->mobile_no;}
+            		else{
+            		echo "Mobile No. : +91-".$info->other_mobile_no; }
+            		?>
 
 
 
