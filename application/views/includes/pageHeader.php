@@ -1,11 +1,9 @@
 
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 * {
   box-sizing:border-box;
 }
-
 .button_responsive{
   padding:5px;
   float:left;
@@ -58,7 +56,7 @@
 <div class="toolbar row">
     <div class="col-sm-3 hidden-xs">
         <div class="page-header">
-            <h1 style="color: wight; font-weight: bold; font-size: 23px;"><?php echo $pageTitle; ?> <small><?php echo $smallTitle; ?> </small></h1>
+            <h1><?php echo $pageTitle; ?> <small><?php echo $smallTitle; ?> </small></h1>
         </div>
     </div>
     
@@ -134,6 +132,3 @@
     </div>
 </div>
  <br>
-
-<!-- end: BREADCRUMB -->
-

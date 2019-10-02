@@ -1,3 +1,12 @@
 [29-Sep-2019 17:32:06 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/school/application/helpers/sms_helper.php on line 5
 [29-Sep-2019 17:32:15 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/school/application/helpers/sms_helper.php on line 5
 [29-Sep-2019 17:32:42 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/school/application/helpers/sms_helper.php on line 5
+[01-Oct-2019 13:09:52 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
+[01-Oct-2019 13:10:00 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
+[01-Oct-2019 13:10:03 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
+[01-Oct-2019 13:10:24 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
+[01-Oct-2019 13:10:40 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
+[01-Oct-2019 13:11:00 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
+[01-Oct-2019 13:11:06 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
+[01-Oct-2019 13:12:27 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
+[01-Oct-2019 13:12:41 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77

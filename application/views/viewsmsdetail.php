@@ -37,7 +37,7 @@
         </div>
       </div>
 				      <div class="panel-body">
-							<div class="alert alert-info">
+        <div class="alert alert-info">
           <button data-dismiss="alert" class="close">×</button>
           <h3 class="media-heading text-center">Welcome to SMS Report Panel</h3>
 Here you can see all the sent sms Detals, if you want to Download click export Buttons to export sms report. 
@@ -112,86 +112,48 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 								<thead>
 									<tr>
 										<th>SNo.</th>
-
-										<!-- <th>Sent Number</th> -->
-										<!-- <th>Full Name</th>
-										<th>Job Title</th>
-										<th>Mobile</th>
-										<th>Address</th> -->
+										<th>Sent Number</th>
+										<th>SMS ID</th>
 										<th>Sms</th>
-										<!-- <th>Export To Excel</th> -->
-                    <th>Date</th>
-										<th>Total</th>
-										<th>Update Status</th>
-										<th>View</th>
+										
+                    					<th>Date</th>
+                    					<th>Status</th>
+										
 									</tr>
 								</thead>
 								<?php
-								// 	$this->db->where("school_code",$this->session->userdata("school_code"));
-								// //	$this->db->where("status",1);
-								// 	$result = $this->db->get("sent_sms_details");
-									$this->db->select('*, COUNT(id) as total');
-
-									$this->db->where("school_code",$this->session->userdata("school_code"));
-									$this->db->group_by('sms'); 
+								$sender =$this->smsmodel->getsmssender($this->session->userdata("school_code"));
 								
-									$this->db->order_by('total'); 
-								
-									$result=$this->db->get('sent_sms_details');
-								//	echo "<pre>";
-									// print_r($dt);
-									// exit();
+								if($sender->num_rows()>0){
+									$sende_Detail =$sender->row();
+										$this->db->where("msg_id",$msg);
+								//	$this->db->where("status",1);
+									$result1 = $this->db->get("sent_sms_details");
+									if($result1->num_rows()>0){
+									    $row=$result1->row();
+									$this->db->where("sms",$row->sms);
+								//	$this->db->where("status",1);
+									$result = $this->db->get("sent_sms_details");
 								?>
 								<tbody>
 									<?php $sno = 1; foreach ($result->result() as $row): ?>
 									<tr class="text-uppercase">
 										<td><?php echo $sno; ?></td>
 									 
-
-										<!-- <td><?php echo $row->sent_number; ?></td> -->
+										<td><?php echo $row->sent_number; ?></td>
+											<td><?php echo $row->msg_id; ?></td>
 										<td><?php echo $row->sms; ?></td>
-										<!-- <td><?php// echo $row->status ?></td> -->
+										
 										<td class="text-lowercase"><?php echo $row->date; ?></td>
-										<td class="text-lowercase"><?php echo $row->total; ?></td>
-										<td class="text-lowercase"><input type="hidden" id="msgid<?php echo $sno;?>" value="<?php echo $row->sms;?>">
-									
-										<button  id="update<?php echo $sno;?>" class="btn btn-red">Update</button>
-									
-											<!-- <button  id="updated<?php echo $sno;?>" class="btn btn-green">Updated</button> -->
-									
-
+										<td class="text-lowercase"> <?php echo checkDeliver($sende_Detail->uname,$sende_Detail->password,$row->msg_id);?>
 										</td>
-                   <td><a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->msg_id; ?>" class="btn btn-green"> View Sms Detail</a></td> 
+                  
 										
 									</tr>
-
-									<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-									<script>
-									$(document).ready(function(){
-										// $('#updated<?php echo $sno;?>').hide();
-										// $('#update<?php echo $sno;?>').show();
-										$('#update<?php echo $sno;?>').click(function(){
-											var msgid=$('#msgid<?php echo $sno;?>').val();
-											alert(msgid);
-										  	$.post('<?php echo site_url("smsAjax/updatesms_status");?>' , {msgid : msgid } , function(data){
-													// if(data){
-														alert(data);
-														// $('#updated<?php // echo $sno;?>').show();
-													//	$('#update<?php //echo $sno;?>').hide();
-														$('#update<?php echo $sno;?>').html(data);
-													//}
-
-											     }
-											
-										    )
-
-										});
-
-									});
-									TableExport.init();
-									</script>
-									<?php $sno++; endforeach; ?>
-
+									
+									<?php $sno++; endforeach; } } else{
+									echo "Please contact to Admin User name or Password is Wrong ";
+									}?>
 								</tbody>
 							</table>
 						</div>
