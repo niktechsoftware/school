@@ -488,7 +488,7 @@ jQuery(document).ready(function(){
 					});
 	
 	});
-	TableExport.init();
+	//TableExport.init();
 	Main.init();
 		SVExamples.init();
 		FormElements.init();

@@ -405,9 +405,8 @@ class InvoiceController extends CI_Controller{
 		$data['sectionid'] = $this->uri->segment(5);
         $data['title'] = 'Student Profile';
 /////////////////////////////////////
-
-        	            $this->db->where("id",$this->uri->segment(3));
-        		 $fsd = $this->db->get("fsd")->row();
+				$this->db->where("id",$this->uri->segment(3));
+		$fsd = 	$this->db->get("fsd")->row();
             $futureDate=date('Y-m-d', strtotime('+1 year', strtotime($fsd->finance_start_date )) );
     		$data['fsd']=$this->uri->segment(3);
     		$data['futureDate'] = $futureDate;
@@ -537,7 +536,6 @@ function result(){
 		// echo $fsd1;
 		//exit;
 		$resultData = array();
-		
 		/**
 		 * this code block get persional information about a student by given studentID.
 		 */
