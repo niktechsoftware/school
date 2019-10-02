@@ -349,8 +349,26 @@ $school_code = $this->session->userdata("school_code");
 													<?php 
 													$this->db->where("school_code",$this->session->userdata("school_code"));
 													$this->db->where("DATE(date)",$datj);
-													$getsmsn = $this->db->get("sent_sms_details");?>
-														 Sent <?php echo $getsmsn->num_rows();?> </a>
+													$getsmsn = $this->db->get("sent_sms_master");
+													$tot = 0;$sent =0; $wrong =0;
+													if($getsmsn->num_rows()>0){
+														
+													foreach($getsmsn->result() as $fty):
+													$this->db->where("sms_master_id",$fty->id);
+													$sentsms = $this->db->get("sent_sms_details");
+                          if($sentsms->num_rows()>0){
+                            $sent+=$sentsms->num_rows();
+                          }
+													
+													$this->db->where("sms_master_id",$fty->id);
+													$wrongsms = $this->db->get("wrong_number_sms");
+                          if($wrongsms->num_rows()>0){
+													$wrong +=$wrongsms->num_rows();
+                      }
+													endforeach;
+													$tot=$sent+$wrong;
+													}?>
+														 Sent <?php echo $tot;?> </a>
 														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
 													</div>
 												</div>
@@ -361,30 +379,13 @@ $school_code = $this->session->userdata("school_code");
 											<div class="panel-body">
 												<div class="core-box">
 													<div class="text-white text-large text-bold">
-														Todays Sent [<?php echo $getsmsn->num_rows();?>]
+														Todays Sent [<?php echo $tot;?>]
 													</div>
 													
-													<div class="text-white text-large pull-right">
-													<?php 
-													$dlv =0; $subn=0; $other=0;
-													if($getsmsn->num_rows()>0){
-														foreach($getsmsn->result() as $row):
-														$get_report  = checkDeliver($sender->uname,$sender->password,$row->msg_id);
-														//echo $get_report;
-														if($get_report=='#DELIVRD'){
-															$dlv=$dlv+1;
-															
-														}else{
-															if($get_report=='#SUBMITTED'){
-																$subn=$subn+1;
-															}else{
-																$other=$other+1;
-															}
-														}
-														endforeach; } ?>
-														 Delivered =<?php echo $dlv;?>
-														 Submitted = <?php echo $subn;?>
-														 Other =<?php echo $other;?>
+											
+														 Delivered =<?php echo $sent;?>
+														 Wrong = <?php echo $wrong;?>
+														 
 													</div>
 												</div>
 											</div>
@@ -452,7 +453,7 @@ $school_code = $this->session->userdata("school_code");
                     <i class="icon-arrow"></i>
 
                     <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
-                    Today Student Attendance <?php if($new > 0):?> <span
+                    Today Morning Student Attendance <?php if($new > 0):?> <span
                       class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
 
                   </a></h4>
@@ -469,7 +470,7 @@ $school_code = $this->session->userdata("school_code");
                     <th>Present Student</th>
                     <th>Absent Student</th>
                     </thead>
-                      <tbody>
+                                 <tbody>
                         <?php $i=1;?>
                         <?php $count=0;
                         $totstu=0;
@@ -481,45 +482,71 @@ $school_code = $this->session->userdata("school_code");
                        // $this->db->where("section",$sectiondt->id);
                        $classdt= $this->db->get("class_info");
                      if($classdt->num_rows()>0){
-                        
+                        // print_r($classdt->result());
                          foreach($classdt->result() as $sectiondt):
                             //  print_r($sectiondt);
                             // exit();
-                          $this->db->where("id",$sectiondt->section);
-                          $data= $this->db->get("class_section");
-                         if($data->num_rows()>0){
+                               $this->db->where("school_code",$school_code);
+                        $this->db->where("id",$sectiondt->section);
+                       $classsection= $this->db->get("class_section");
+                           $fsd= $this->session->userdata("fsd");
+                           
+                           $this->db->where("fsd",$fsd);
+                          $this->db->where("class_id",$sectiondt->id);
+                          $data= $this->db->get("student_info");
+                         if($data->num_rows()>0){  
                               
                          $this->db->where("class_id",$sectiondt->id);
                          $studata=$this->db->get("student_info");
                          $totstudent= $studata->num_rows();
                         // echo "<pre>";
                       //  print_r($studata->row());
-                         $totstu=$totstu+$totstudent;
-                      if($studata->num_rows()>0){
-                             $date=Date("Y-m-d");
+                         //$totstu=$totstu+$totstudent; 
+                        
+                        
+                       if($studata->num_rows()>0){  ?>
+                           <tr>
+                          <td class="center"><?php echo $i;?></td>
+                          <td> <?php  if($classsection->num_rows()>0){ echo $classsection->row()->section ; } else{ echo "Section Not define";}?>  </td>
+
+                          <td class="center"><?php echo $sectiondt->class_name;?></td>
+                          <td class="center"><?php echo $totstudent;?></td>
+                          <?php  $date=Date("Y-m-d");
+                             $this->db->where("date",$date);
+                          $this->db->where("school_code",$school_code);
+                          $this->db->where("shift_1",1);
+                          $this->db->where("class_id",$sectiondt->id);
+                          $school_atten= $this->db->get("school_attendance");
+                          if($school_atten->num_rows()>0){
+                          
                           $this->db->where("stu_id",$studata->row()->id);
+                           $this->db->where("shift_1",1);
                           $this->db->where("a_date",$date);
                            $absent=  $this->db->get("attendance")->num_rows();
                            if($absent>0){
 
                           $count=$count+$absent;
 
-                          $presentstu=$totstu-$count;
+                          $presentstu=$totstudent-$count;
                           // print_r($count);
                          
                         ?>
                     
-                        <tr>
-                          <td class="center"><?php echo $i;?></td>
-                          <td> <?php echo $data->row()->section ;?>  </td>
-
-                          <td class="center"><?php echo $sectiondt->class_name;?></td>
-                          <td class="center"><?php echo $totstu;?></td>
+                       
                           <td class="center"><?php echo $presentstu;?></td>
                           <td class="center"><?php echo $count;?></td>
                         
                         </tr>
-                        <?php $i++; }  } }    endforeach; } ?>
+                        <?php  } else{ ?>
+                        
+                          <td class="center"><?php echo $school_atten->num_rows();?></td>
+                          <td class="center"><?php echo 0;?></td>
+                        
+                    <?php    }  } else{?>
+                    
+                          <td class="center"><?php echo "N/A";?></td>
+                          <td class="center"><?php echo "N/A";?></td>
+                  <?php  } $i++; } }    endforeach; } ?>
                        
                        
                      
@@ -529,15 +556,125 @@ $school_code = $this->session->userdata("school_code");
                 </div>
               </div>
             </div>
-            <div class="panel no-radius">
+                <div class="panel no-radius">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a href="#collapseOne2" data-parent="#accordion" data-toggle="collapse"
+                    class="accordion-toggle padding-15">
+                    <i class="icon-arrow"></i>
+
+                    <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
+                    Today Evening Student Attendance <?php if($new > 0):?> <span
+                      class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+
+                  </a></h4>
+              </div>
+              <div class="panel-collapse collapse in" id="collapseOne2">
+                <div class="panel-body no-padding partition-light-grey">
+                  <a href="<?php echo base_url()?>index.php/login/dayBook">
+                    <table class="table">
+                    <thead>
+                    <th>Sno.</th>
+                    <th>Section Name</th>
+                    <th>Class Name</th>
+                    <th>Total Student</th>
+                    <th>Present Student</th>
+                    <th>Absent Student</th>
+                    </thead>
+                                 <tbody>
+                        <?php $i=1;?>
+                        <?php $count=0;
+                        $totstu=0;
+                     
+
+                      
+                      
+                         $this->db->where("school_code",$school_code);
+                       // $this->db->where("section",$sectiondt->id);
+                       $classdt= $this->db->get("class_info");
+                     if($classdt->num_rows()>0){
+                        // print_r($classdt->result());
+                         foreach($classdt->result() as $sectiondt):
+                            //  print_r($sectiondt);
+                            // exit();
+                               $this->db->where("school_code",$school_code);
+                        $this->db->where("id",$sectiondt->section);
+                       $classsection= $this->db->get("class_section");
+                           $fsd= $this->session->userdata("fsd");
+                           
+                           $this->db->where("fsd",$fsd);
+                          $this->db->where("class_id",$sectiondt->id);
+                          $data= $this->db->get("student_info");
+                         if($data->num_rows()>0){  
+                              
+                         $this->db->where("class_id",$sectiondt->id);
+                         $studata=$this->db->get("student_info");
+                         $totstudent= $studata->num_rows();
+                        // echo "<pre>";
+                      //  print_r($studata->row());
+                         //$totstu=$totstu+$totstudent; 
+                        
+                        
+                       if($studata->num_rows()>0){  ?>
+                           <tr>
+                          <td class="center"><?php echo $i;?></td>
+                          <td> <?php  if($classsection->num_rows()>0){ echo $classsection->row()->section ; } else{ echo "Section Not define";}?>  </td>
+
+                          <td class="center"><?php echo $sectiondt->class_name;?></td>
+                          <td class="center"><?php echo $totstudent;?></td>
+                          <?php  $date=Date("Y-m-d");
+                             $this->db->where("date",$date);
+                          $this->db->where("school_code",$school_code);
+                          $this->db->where("shift_2",1);
+                          $this->db->where("class_id",$sectiondt->id);
+                          $school_atten= $this->db->get("school_attendance");
+                          if($school_atten->num_rows()>0){
+                          
+                          $this->db->where("stu_id",$studata->row()->id);
+                           $this->db->where("shift_2",1);
+                          $this->db->where("a_date",$date);
+                           $absent=  $this->db->get("attendance")->num_rows();
+                           if($absent>0){
+
+                          $count=$count+$absent;
+
+                          $presentstu=$totstudent-$count;
+                          // print_r($count);
+                         
+                        ?>
+                    
+                       
+                          <td class="center"><?php echo $presentstu;?></td>
+                          <td class="center"><?php echo $count;?></td>
+                        
+                        </tr>
+                        <?php  } else{ ?>
+                        
+                          <td class="center"><?php echo $school_atten->num_rows();?></td>
+                          <td class="center"><?php echo 0;?></td>
+                        
+                    <?php    }  } else{?>
+                    
+                          <td class="center"><?php echo "N/A";?></td>
+                          <td class="center"><?php echo "N/A";?></td>
+                  <?php  } $i++; } }    endforeach; } ?>
+                       
+                       
+                     
+                      </tbody>
+                    </table>
+                  </a>
+                </div>
+              </div>
+            </div>
+                 <div class="panel no-radius">
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <a href="#collapseTwo2" data-parent="#accordion" data-toggle="collapse"
                     class="accordion-toggle padding-15 collapsed">
                     <i class="icon-arrow"></i>
-                    <?php $new = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
-                  Today  Teacher Attendance <?php if($new > 0):?> <span
-                      class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+                      Today  Teacher Attendance <span
+                      class="label label-danger pull-right"></span>
                   </a></h4>
               </div>
               <div class="panel-collapse collapse" id="collapseTwo2">
@@ -583,48 +720,6 @@ $school_code = $this->session->userdata("school_code");
                        
                        
                      
-                      </tbody>
-                    </table>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="panel no-radius">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a href="#collapseThree3" data-parent="#accordion" data-toggle="collapse"
-                    class="accordion-toggle padding-15 collapsed">
-                    <i class="icon-arrow"></i>
-                    <?php $new = $this->db->query("SELECT * FROM director_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
-                    Director Transaction <?php if($new > 0):?> <span
-                      class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
-                  </a></h4>
-              </div>
-              <div class="panel-collapse collapse" id="collapseThree3">
-                <div class="panel-body no-padding partition-light-grey">
-                  <a href="<?php echo base_url()?>index.php/login/dayBook">
-                    <table class="table">
-                      <tbody>
-                        <?php $i=1;?>
-                        <?php $cash = $this->db->query("SELECT * FROM director_transaction WHERE school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
-                        <?php if($cash->num_rows() >= 1):?>
-                        <?php foreach($cash->result() as $row):?>
-                        <tr>
-                          <td class="center"><?php echo $i;?></td>
-                          <td>
-                            <?php echo $row->applicant_name; ?>
-                          </td>
-                          <td class="center"><?php echo $row->amount;?></td>
-                          <td><?php echo date("d-M-Y", strtotime("$row->date"));?></td>
-                        </tr>
-                        <?php $i++; endforeach;?>
-                        <?php else: ?>
-                        <tr>
-                          <td class="center">
-                            <h2>No Trasaction done yet...</h2>
-                          </td>
-                        </tr>
-                        <?php endif;?>
                       </tbody>
                     </table>
                   </a>

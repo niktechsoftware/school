@@ -37,7 +37,7 @@
         </div>
       </div>
 				      <div class="panel-body">
-        <div class="alert alert-info">
+							<div class="alert alert-info">
           <button data-dismiss="alert" class="close">×</button>
           <h3 class="media-heading text-center">Welcome to SMS Report Panel</h3>
 Here you can see all the sent sms Detals, if you want to Download click export Buttons to export sms report. 
@@ -112,43 +112,50 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 								<thead>
 									<tr>
 										<th>SNo.</th>
-										<th>Sent Number</th>
-										<th>SMS ID</th>
 										<th>Sms</th>
-										
                     					<th>Date</th>
-                    					<th>Status</th>
-										
+										<th>Total</th>
+										<th>Sent Success</th>
+										<th>Wrong Numbers</th>
 									</tr>
 								</thead>
 								<?php
-								$sender =$this->smsmodel->getsmssender($this->session->userdata("school_code"));
 								
-								if($sender->num_rows()>0){
-									$sende_Detail =$sender->row();
-									$this->db->where("school_code",$this->session->userdata("school_code"));
-								//	$this->db->where("status",1);
-									$result = $this->db->get("sent_sms_details");
 								?>
 								<tbody>
-									<?php $sno = 1; foreach ($result->result() as $row): ?>
+								
+									<?php 
+									if($result->num_rows()>0){
+									$sno = 1; foreach ($result->result() as $row): 
+									$this->db->where("sms_master_id",$row->id);
+									$sentsms = $this->db->get("sent_sms_details");
+									
+									$this->db->where("sms_master_id",$row->id);
+									$wrongsms = $this->db->get("wrong_number_sms");
+										
+									?>
 									<tr class="text-uppercase">
 										<td><?php echo $sno; ?></td>
 									 
-										<td><?php echo $row->sent_number; ?></td>
-											<td><?php echo $row->msg_id; ?></td>
+
+										<!-- <td><?php echo $row->sent_number; ?></td> -->
 										<td><?php echo $row->sms; ?></td>
-										
+										<!-- <td><?php// echo $row->status ?></td> -->
 										<td class="text-lowercase"><?php echo $row->date; ?></td>
-										<td class="text-lowercase"> <?php echo checkDeliver($sende_Detail->uname,$sende_Detail->password,$row->msg_id);?>
-										</td>
-                  
+										<td class="text-lowercase"><?php echo $sentsms->num_rows()+ $wrongsms->num_rows(); ?></td>
+										<td class="text-lowercase">
+										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->id; ?>" class="btn btn-green"> Success <?php echo $sentsms->num_rows();?></a></td> 
+									</td>
+
+                  					<td class="text-lowercase">
+										<a href="<?php echo base_url();?>index.php/smsAjax/wrongsmsdetail/<?php echo $row->id; ?>" class="btn btn-danger"> Wrong  <?php echo $wrongsms->num_rows();?></a></td> 
+									</td>
 										
 									</tr>
+
 									
-									<?php $sno++; endforeach; }else{
-									echo "Please contact to Admin User name or Password is Wrong ";
-									}?>
+									<?php $sno++; endforeach;} ?>
+
 								</tbody>
 							</table>
 						</div>

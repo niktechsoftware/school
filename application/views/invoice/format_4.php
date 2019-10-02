@@ -168,19 +168,6 @@
                                     if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->mobile_no ;} ?>
                                 </h2>
                             </td>
-                            <!--<div class="row">
-                            <div class="col-md-2"><img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
-                                    alt="" width="120" /></div>
-                            <div class="col-md-10"><h1 style="color:white;text-align: center;font-size: 30px;">
-                                    <?php echo $info->school_name;?></h1>
-                                <h2 style="color:white;text-align: center;">
-                                    <?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
-                                </h2>
-                                <h2 style="color:white;text-align: center;">
-                                <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
-                                    if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->mobile_no ;} ?>
-                                </h2></div>
-                            </div>-->
                         </tr>
                          <tr class="wight" style="color: white;font-size: 13px;">
                             <td >
@@ -194,8 +181,6 @@
                                             ?>
                                   <?php if($classname->num_rows()>0){
                                   $classdf=$classname->row();
-                                 // print_r($classdf);exit();
-
                                   $this->db->where("id",$classdf->section);
                                   $secname = $this->db->get("class_section")->row()->section;
                                   ?>
@@ -224,7 +209,6 @@
                                     $c="";$d="";
                                     foreach($result as $d12):
                                     $c = $d12->class_id;
-                      
                                     break;
                                     endforeach;
                                     if(strlen($c)>0){   
@@ -239,9 +223,151 @@
                 </table>
             
             <br>
-            <?php if($d12->class_id == 142 || $d12->class_id == 143 || $d12->class_id == 152 || $d12->class_id == 149){
-                    ?>
-              <div>
+          <?php if($d12->class_id == 142 || $d12->class_id == 143 || $d12->class_id == 147 || $d12->class_id == 148|| $d12->class_id == 293){ ?>
+					<div>
+                <table
+                    style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
+                     <tr>
+                        <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
+						<th colspan="4" rowspan="2">Periodic Test</th>
+						<th rowspan="3">NoteBook(5) &
+                                Sub. Enrichment(5)<br>
+                                <span>(B=10)</span></th>
+                       <th rowspan="3" colspan="1">total</th>
+
+                    </tr>
+
+                    <tr>
+                       <!-- <th colspan="3">Term 1 (50)+ Term 2(50)</th>-->
+                    </tr>
+
+                    <tr>
+
+                        <th colspan="1" rowspan="1" style="text-transform: uppercase;">Subjects</th>
+                        <!--1st term -->
+						<?php 
+							$i=1;
+							 foreach ($examid as $value):
+							   $examid1=$value->exam_id;	
+							   $this->db->where('id',$examid1);
+							    $this->db->where('term',1);
+							   $examname=$this->db->get('exam_name');   
+							   if ($examname->num_rows()>0){
+							   $examname=$examname->row();
+						?> 
+						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?></td>
+                        <?php 
+						}
+						$i++;
+						endforeach ;
+						if(!$i%2==0){ ?>
+						<td class="center bold" style="text-transform: uppercase;">Total</td> 
+						<?php } ?>
+						<!--2nd term-->
+						<?php 
+							$i=1;
+							 foreach ($examid as $value):
+							   $examid1=$value->exam_id;	
+							   $this->db->where('id',$examid1);
+							   $this->db->where('term',2);
+							   $examname=$this->db->get('exam_name');   
+							   if ($examname->num_rows()>0){
+							   $examname=$examname->row();
+						?> 
+						<td colspan="1" ><?php echo $examname->exam_name;?></td>
+                        <?php 
+						}
+						$i++;
+						endforeach ;
+						if(!$i%2==0){ ?>
+						<!--<td class="center bold" style="text-transform: uppercase;">Total</td> -->
+						<?php } ?>
+                       <!--<th style="text-transform: uppercase;">Grand<br> Total</th>
+                        <th rowspan="1" style="text-transform: uppercase;">Grade</th>
+                        <th rowspan="1" style="text-transform: uppercase;">Rank</th>-->
+                    </tr>
+					<?php 
+                    $dhtm=0;
+                        $htotal = 0;  
+                    	$ctotal =array();
+                        $ctotal[0]=0;
+                        $ctotal[1]=0;
+                        $ctotal[2]=0;
+                        $ctotal[3]=0;
+                        $ctotal[4]=0;
+                        $ctotal["tot2"]=0;
+                        $ctotal["tot4"]=0;
+						$ctotal["tot5"]=0;
+                        $ctotal["tot6"]=0;
+                        $cumulativetotal=0;
+           $totalp= 0;   
+           $pi=1;
+		   $grandtotal=0;
+foreach($resultData as $sub){
+$this->db->where('class_id',$classid->class_id);
+$this->db->where('id',$sub['subject']);
+$subjectname=$this->db->get('subject'); 
+
+if($subjectname->num_rows()>0){
+    $subjectname=$subjectname->row();
+	?><?php $totalp+=200;?>
+                   <tr class="wight"> 
+					 <td class="subject">	
+                     <?php echo  $subjectname->subject;?> 
+					</td>
+			     <?php 
+ 				$ttal=0;
+                 $gtptal=0;
+					$i=1; $t=0;
+					foreach ($examid as $value):?>
+					<td class="center">	
+					<?php
+					$this->db->where('subject_id',$sub['subject']);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('stu_id',$studentInfo->id);
+					$this->db->where('exam_id',$value->exam_id);
+					$this->db->where('fsd',$fsd);
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();	
+					if(is_numeric($marks->marks)){
+					  $gtptal= $gtptal+$marks->marks;
+					}else{ $gtptal= $gtptal;}
+							echo $marks->marks;
+							$this->db->where('subject_id',$sub['subject']);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('exam_id',$value->exam_id);
+			$exammm_row=	$this->db->get('exam_max_subject')->row();
+				$exammm=	$exammm_row->max_m;
+			if(is_numeric($exammm)){
+					  $ttal=$ttal+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal= $ttal;
+					 $dhtm= $dhtm;   
+					}
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+					</td> 
+				<?php $i++; $t++;endforeach; ?>
+				<td class="center bold"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
+			   <?php ?></td>
+			   <!--toatl marks of all pt and note &sea-->
+			   <td></td>
+			   <!--annual exam marks-->
+			   <td></td>
+				<!--<td class="center bold"><?php   echo $gtptal;  ?></td>
+				<td class="center bold"><?php  echo $gtptal;  ?></td>-->
+			  <!-- <td class="center bold"></td>-->
+			  <!-- <td class="center bold"></td>-->
+				</tr>
+                    <?php //}
+    
+}
+					}?>
+					
+					
+                </table>
+            </div>
+             <!-- <div>
                 <h2>SCHOLASTIC AREA</h2>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -253,7 +379,7 @@
                             <th rowspan="2">NoteBook(5) &
                                 Sub. Enrichment(5)<br>
                                 <span>(B=10)</span></th>
-                                <th style="color:pink;" rowspan="2">Total<br>(A+B=20)</th>
+                                <th  rowspan="2">Total<br>(A+B=20)</th>
                                 <th rowspan="2">Annual Exam<br>(C=80)</th>
                                 <th rowspan="2">Grand Total<br>(A+B+C=100)</th>
                                 <th rowspan="2">Grade</th>
@@ -280,9 +406,200 @@
                     </tbody>
                     
                 </table>
-            </div>
+            </div>-->
                     <?php 
-            } else{?>
+            } else if($d12->class_id == 216 || $d12->class_id == 217 || $d12->class_id == 150 || $d12->class_id == 153|| $d12->class_id == 149 || $d12->class_id == 152){ ?>
+			
+			<div>
+                <table
+                    style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
+                    <tr><?php
+							/*$this->db->where("school_code",$this->session->userdata("school_code"));
+							$this->db->where("term", 1);
+							$this->db->where("fsd",$this->session->userdata('fsd'));
+							$this->db->where("stu_id",$studentInfo->id);
+						echo	$t1 = $this->db->get("exam_info")->num_rows();
+							$this->db->where("school_code",$this->session->userdata("school_code"));
+							$this->db->where("term", 2);
+							$this->db->where("fsd",$this->session->userdata('fsd'));
+							$this->db->where("stu_id",$studentInfo->id);
+							$t2 = $this->db->get("exam_info")->num_rows();*/
+
+					?>
+                        <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
+                        <th colspan="3" rowspan="2">TERM 1 (100 MARKS) </th>
+                        <th colspan="3" rowspan="2">Term 2 (100 Marks) </th>
+                       <!-- <th colspan="3">OVERALL</th>-->
+
+                    </tr>
+
+                    <tr>
+                       <!-- <th colspan="3">Term 1 (50)+ Term 2(50)</th>-->
+                    </tr>
+
+                    <tr>
+
+                        <th colspan="1" rowspan="1" style="text-transform: uppercase;">Subjects</th>
+                        <!--1st term -->
+                        <?php 
+							$i=1; 
+                             foreach ($examid as $value):
+                               $examid1=$value->exam_id;    
+                               $this->db->where('id',$examid1);
+                                $this->db->where('term',1);
+                               $examname=$this->db->get('exam_name');   
+                               if ($examname->num_rows()>0){
+                               $examname=$examname->row();
+                        ?> 
+                        <td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?></td>
+                        <?php 
+                        }
+                        $i++;
+                        endforeach ;
+                        if(!$i%2==0){ ?>
+                        <!---<td class="center bold" style="text-transform: uppercase;">Total</td> --->
+                        <?php } ?>
+						
+						
+						
+                        <!--2nd term-->
+                        <?php 
+                            $i=1;
+                             foreach ($examid_2 as $value):
+                               $examid1=$value->exam_id;    
+                               $this->db->where('id',$examid1);
+                               $this->db->where('term',2);
+                               $examname=$this->db->get('exam_name');   
+                               if ($examname->num_rows()>0){
+                               $examname=$examname->row();
+                        ?> 
+                        <td colspan="1" ><?php echo $examname->exam_name;?></td>
+                        <?php 
+                        }
+                        $i++;
+                        endforeach ;
+                        if(!$i%2==0){ ?>
+                        <?php } ?>
+                    </tr>
+
+                    <?php 
+                    $dhtm=0;
+                        $htotal = 0;  
+                        $ctotal =array();
+                        $ctotal[0]=0;
+                        $ctotal[1]=0;
+                        $ctotal[2]=0;
+                        $ctotal[3]=0;
+                        $ctotal[4]=0;
+                        $ctotal["tot2"]=0;
+                        $ctotal["tot4"]=0;
+                        $ctotal["tot5"]=0;
+                        $ctotal["tot6"]=0;
+                        $cumulativetotal=0;
+           $totalp= 0;   
+           $pi=1;
+           $grandtotal=0;
+foreach($resultData as $sub){
+$this->db->where('class_id',$classid->class_id);
+$this->db->where('id',$sub['subject']);
+$subjectname=$this->db->get('subject'); 
+if($subjectname->num_rows()>0){
+    $subjectname=$subjectname->row();
+	$totalp+=200;
+	?>
+                   <tr class="wight"> 
+                     <td class="subject">   
+                     <?php echo  $subjectname->subject;?> 
+                    </td>
+					<!--for 1st term marks-->
+                 <?php 
+                $ttal=0;
+                 $gtptal=0;
+                    $i=1; $t=0; 
+                    foreach ($examid as $value):?>
+                    <td class="center"> 
+                    <?php
+					$this->db->where("term", 1);
+                    $this->db->where('subject_id',$sub['subject']);
+                    $this->db->where('class_id',$classid->class_id);
+                    $this->db->where('stu_id',$studentInfo->id);
+                    $this->db->where('exam_id',$value->exam_id);
+                    $this->db->where('fsd',$fsd);
+                        $marks= $this->db->get('exam_info');
+                        if($marks->num_rows()>0){
+                            $marks=$marks->row();
+                    if(is_numeric($marks->marks)){
+                      $gtptal= $gtptal+$marks->marks;
+                    }else{ $gtptal= $gtptal;}
+                            echo $marks->marks;
+                            $this->db->where('subject_id',$sub['subject']);
+                    $this->db->where('class_id',$classid->class_id);
+                    $this->db->where('exam_id',$value->exam_id);
+            $exammm_row=    $this->db->get('exam_max_subject')->row();
+                $exammm=    $exammm_row->max_m;
+            if(is_numeric($exammm)){
+                      $ttal=$ttal+$exammm;
+                    $dhtm=$exammm+$dhtm;
+                    }else{ $ttal= $ttal;
+                     $dhtm= $dhtm;   
+                    }
+                        }else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+                    </td> 
+                <?php $i++; $t++;endforeach; ?>
+               <!-- <td class="center bold"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
+               <?php ?></td>-->
+			   <!--for 1st term marks end-->
+			   
+			   
+			   <!--for 2nd term marks start-->
+			   <?php 
+                $ttal=0;
+                 $gtptal=0;
+                    $i=1; $t=0; 
+                    foreach ($examid_2 as $value):?>
+                    <td class="center"> 
+                    <?php
+					$this->db->where("term", 2);
+                    $this->db->where('subject_id',$sub['subject']);
+                    $this->db->where('class_id',$classid->class_id);
+                    $this->db->where('stu_id',$studentInfo->id);
+                    $this->db->where('exam_id',$value->exam_id);
+                    $this->db->where('fsd',$fsd);
+                        $marks= $this->db->get('exam_info');
+                        if($marks->num_rows()>0){
+                            $marks=$marks->row();
+                    if(is_numeric($marks->marks)){
+                      $gtptal= $gtptal+$marks->marks;
+                    }else{ $gtptal= $gtptal;}
+                            echo $marks->marks;
+                            $this->db->where('subject_id',$sub['subject']);
+                    $this->db->where('class_id',$classid->class_id);
+                    $this->db->where('exam_id',$value->exam_id);
+            $exammm_row=    $this->db->get('exam_max_subject')->row();
+                $exammm=    $exammm_row->max_m;
+            if(is_numeric($exammm)){
+                      $ttal=$ttal+$exammm;
+                    $dhtm=$exammm+$dhtm;
+                    }else{ $ttal= $ttal;
+                     $dhtm= $dhtm;   
+                    }
+                        }else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+                    </td> 
+                <?php $i++; $t++;endforeach; ?>
+               <!-- <td class="center bold"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
+               <?php ?></td>-->
+			   <!--for 2nd term marks end-->
+			   
+                </tr>
+                    <?php 
+    
+}
+                    }?>
+                    
+                    
+                </table>
+            </div>
+			<?php }else{?>
             <div>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -387,7 +704,7 @@ $subjectname=$this->db->get('subject');
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
     ?><?php $totalp+=200;?>
-    <?php if($subjectname->subject != "DRAWING " && $subjectname->subject != "DRAWING"){ ?>
+    <?php //if($subjectname->subject != "DRAWING " && $subjectname->subject != "DRAWING"){ ?>
                    <tr class="wight"> 
                      <td class="subject">   
                      <?php echo  $subjectname->subject;?> 
@@ -443,7 +760,9 @@ if($subjectname->num_rows()>0){
               <!-- <td class="center bold"></td>-->
               <!-- <td class="center bold"></td>-->
                 </tr>
-                    <?php }}
+                    <?php // }
+    
+}
                     }?>
                     
                     
@@ -486,7 +805,7 @@ if($subjectname->num_rows()>0){
                     <tr>
                     
                         <td>
-                            Overall Marks : <?php echo $grandtotal; ?>/<?php echo $dhtm;?>
+                            Total Marks : <?php echo $grandtotal; ?>/<?php echo $dhtm;?>
                            
                         </td>
                         <td>
@@ -621,7 +940,7 @@ if($subjectname->num_rows()>0){
 
                         </tr>
                         <tr>
-                            <td>Respectfulness For Rules & Reulations</td>
+                            <td>Respectful For Rules & Regulations</td>
                             <td>A</td>
                             
 
@@ -746,7 +1065,7 @@ if($subjectname->num_rows()>0){
                                 elseif($val >= 51 && $val < 61):
                                     return 'Progressive';
                                 else:
-                                    return 'Need Improvement';
+                                    return 'Needs Improvement';
                                 endif;
                                 
                             }?>

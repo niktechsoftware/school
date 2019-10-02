@@ -91,8 +91,8 @@
 						<?php echo $info->state." - ".$info->pin; ?>
 			        </h3>
 			        <h3 align="center" style="font-variant:small-caps;">
-						<?php if(strlen($info->mobile_no > 0 )){ echo "Mobile : ".$info->mobile_no;}?>
-			            
+					<?php echo "Contact No. : " ;
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->other_mobile_no ;} ?>
 			        </h3>
 				</td>
 				<td style="width:10%; border:none;"></td>

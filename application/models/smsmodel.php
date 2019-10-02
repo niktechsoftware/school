@@ -5,6 +5,69 @@ class Smsmodel extends CI_Model{
 		$row = $this->db->get("sms")->row();
 		return $row;
 	}
+	
+	function sentmasterRecord($msg,$totsmssent,$master_id){
+		$schol_code = $this->session->userdata("school_code");
+		$this->db->where("id",$master_id);
+		$getcheck = $this->db->get("sent_sms_master");
+		if($getcheck->num_rows()>0){
+			return false;
+		}else{
+		$data=array(
+				"id"=>$master_id,
+				"tot_count"=>$totsmssent,
+				"sms"=>$msg,
+				"school_code"=>$schol_code,
+				"date"=>Date("Y-m-d H:s:i")
+		
+		);
+		$insertwrongnumber= $this->db->insert("sent_sms_master",$data);
+		return true;
+		}	
+	}
+	
+	function checknum($cnumber,$msg,$master_id){
+		$cnumber = str_replace(' ', '', $cnumber);
+		if((is_numeric($cnumber)) && (strlen($cnumber)==10)){
+			return $cnumber;
+		}else{
+			$data=array(
+					
+					"mobile"=>$cnumber,
+					"sms_master_id"=>$master_id
+						
+			);
+			$insertwrongnumber= $this->db->insert("wrong_number_sms",$data);
+			return false;
+		}
+			
+	}
+	
+	
+	
+	function sendReport($getv,$master_id){
+		foreach ($getv as $key => $rowValue):
+			if($rowValue['sent_number']){
+				$number=$rowValue['sent_number'];
+				$msm_id = $rowValue['msg_id'];
+				$smsf =$master_id;
+				$data=array(
+						'sent_number'=>$number,
+						'msg_id'=>$msm_id,
+						'sms_master_id'=>$master_id,
+						'status'=>1,
+						'date'=>date('Y-m-d H:s:i')
+				);
+				$this->db->insert("sent_sms_details",$data);
+			}else{
+				
+			}
+			
+		endforeach;
+		return true;
+	}
+	
+	
 	function getsmssender($school_code){
 		$this->db->where("school_code",$school_code);
 		$val=$this->db->get("sms_setting");
