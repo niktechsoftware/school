@@ -121,6 +121,29 @@
 				 $('#expenditurer').html(data);
 			})
 		});
+		$('#createexp').click(function(){
+			var expenditure = $('#expenditure').val();
+			alert(expenditure);
+			$.post("<?php echo base_url('index.php/dayBookControllers/createxpe') ?>", {expenditure : expenditure
+         }, function(data){
+                $("#expenditure2").html(data);
+        });
+        $('#expenditure').val("");
+
+		});
+		$('#createexp1').click(function(){
+			var expsub = $('#expsub').val();
+			var subexp = $('#subexp').val();
+			alert(subexp);
+			alert(expsub);
+			$.post("<?php echo base_url('index.php/dayBookControllers/creatsubexp') ?>", {subexp : subexp,expsub: expsub
+         }, function(data){
+                $("#expen").html(data);
+				alert(data);
+        });
+        $('#expsub').val("");
+
+		});
 		Main.init();
 		SVExamples.init();
 		FormElements.init();

@@ -1339,6 +1339,17 @@ function createSchedule()
 		$data['mainContent'] = 'cashPayment';
 		$this->load->view("includes/mainContent", $data);
 	}
+	function newexpenditure(){
+		$data['pageTitle'] = 'Add Expenditure';
+		$data['smallTitle'] = 'Add Expenditure';
+		$data['mainPage'] = 'Add Expenditure';
+		$data['subPage'] = 'Add Expenditure';
+		$data['title'] = 'Add Expenditure';
+		$data['headerCss'] = 'headerCss/configureClassCss';
+		$data['footerJs'] = 'footerJs/transactionJs';
+		$data['mainContent'] = 'addexpenditure';
+		$this->load->view("includes/mainContent", $data);
+	}
 
 	function bankTransaction(){
 		$data['pageTitle'] = 'Account Management';

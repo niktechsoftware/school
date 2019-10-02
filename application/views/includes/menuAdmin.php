@@ -136,6 +136,13 @@
                 </a>
             </li>
          </ul>
+         <ul class="sub-menu">
+            <li>
+                <a href="<?php echo base_url(); ?>index.php/login/newexpenditure ">
+                Expenditure   <i class="icon-arrow"></i>
+                </a>
+            </li>
+         </ul>
     </li>
 <li>
     <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Employee </span><i class="icon-arrow"></i> </a>
