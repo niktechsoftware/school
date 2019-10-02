@@ -1370,10 +1370,8 @@ function createSchedule()
 		$data['subPage'] = 'Get Sms Report / SMS Panel';
 
 		$data['title'] = 'Get SMS Report / SMS Panel';
-
-		$data['headerCss'] = 'headerCss/studentListCss';
-
-		$data['footerJs'] = 'footerJs/simpleStudentListJs';
+		$data['headerCss'] = 'headerCss/noticeCss';
+		$data['footerJs'] = 'footerJs/noticeJs';
 		$data['mainContent'] = 'smsreport';
 		$this->load->view("includes/mainContent", $data);
 	}

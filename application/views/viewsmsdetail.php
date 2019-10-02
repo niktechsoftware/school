@@ -126,7 +126,13 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 								
 								if($sender->num_rows()>0){
 									$sende_Detail =$sender->row();
-									$this->db->where("sms",$msg);
+										$this->db->where("msg_id",$msg);
+								//	$this->db->where("status",1);
+									$result1 = $this->db->get("sent_sms_details");
+									if($result1->num_rows()>0){
+									    $row=$result1->row();
+									$this->db->where("sms",$row->sms);
+
 								//	$this->db->where("status",1);
 									$result = $this->db->get("sent_sms_details");
 								?>
@@ -146,7 +152,11 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 										
 									</tr>
 									
+<<<<<<< HEAD
+									<?php $sno++; endforeach; } } else{
+=======
 									<?php $sno++; endforeach; }else{
+>>>>>>> 35d083756596e38841ad67f7df7e0e74dd29db77
 									echo "Please contact to Admin User name or Password is Wrong ";
 									}?>
 								</tbody>

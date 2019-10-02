@@ -441,8 +441,8 @@ if($subjectname->num_rows()>0){
 
                         <th colspan="1" rowspan="1" style="text-transform: uppercase;">Subjects</th>
                         <!--1st term -->
-                        <?php //print_r();
-						$i=1;
+                        <?php 
+							$i=1; 
                              foreach ($examid as $value):
                                $examid1=$value->exam_id;    
                                $this->db->where('id',$examid1);
