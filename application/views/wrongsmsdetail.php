@@ -4,7 +4,7 @@
 		<div class="panel panel-white">
 
 			<div class="panel-heading panel-blue">
-				<h4 class="panel-title ">View  <span class="text-bold">SMS Details</span></h4>
+				<h4 class="panel-title ">View  <span class="text-bold">Wrong Number SMS Details</span></h4>
 				<div class="panel-tools">
 					<div class="dropdown">
 						<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -38,8 +38,8 @@
 			</div><br>
 			
 			<div class="panel-body">
-			<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Sent SMS Report Area</h3>
-			<p class="media-timestamp">This is the <b>sent SMS Details Area </b>, where you can see the real details and track your sms report. 
+			<div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Sent Wrong Number SMS Report Area</h3>
+			<p class="media-timestamp">This is the <b>sent wrong Number SMS Details Area </b>, where you can see the real details and track your sms report. 
 			</div>
 			<div><!--view form-->
 		<div class="col-sm-12">
@@ -48,7 +48,7 @@
       	 <?php
       $id= $this->uri->segment(3);
       	$this->db->where("sms_master_id",$id);
-		$var = $this->db->get("sent_sms_details");
+		$var = $this->db->get("wrong_number_sms");
 		$this->db->where("id",$id);
 		$ssm = $this->db->get("sent_sms_master")->row();
 	if($var->num_rows()>0){
@@ -59,41 +59,23 @@
 								<thead>
 									<tr style="background-color:#1ba593; color:white;">
 										<th>SNo.</th>
-										<th>Sent Number</th>
+										<th>Wrong Number</th>
 										<th>SMS</th>
-										<th>SMS ID</th>
-										<th>Date & Time</th>
+											<th>Date & Time</th>
 										<th>Status</th>
-										<th>Track</th>
+										
 									</tr>
 								</thead>
 								<tbody><?php $i=1; foreach($var->result() as $lv): ?>
 								<tr>
 								<td><?php echo $i; ?></td>
-								<td><?php echo $lv->sent_number;?></td>
+								<td><?php echo $lv->mobile;?></td>
 								<td><?php echo $ssm->sms; ?></td>
-								<td ><?php echo $lv->msg_id; ?>
-								<input type="hidden" id="smsid<?php echo $i;?>" value ="<?php echo $lv->msg_id;?>"></td>
-								<td><?php echo $lv->date; ?></td>
-								<td>Sent</td>
-								<td><button class="btn btn-info" id="track<?php echo $i;?>" width="104" height="142">Track</button>
-							
-								<input type="text" id="trackvalue<?php echo $i;?>"  readonly="readonly"/>
-								</td>
+									<td><?php echo $ssm->date; ?></td>
+								<td>Failed</td>
 								
 								</tr>
-								<script>
-										$('#track<?php echo $i;?>').click(function(){
-											var msgid=$('#smsid<?php echo $i;?>').val();
-											//alert(msgid);
-										  	$.post('<?php echo site_url("smsAjax/updatesms_status");?>' , {msgid : msgid } , function(data){
-														$('#trackvalue<?php echo $i;?>').val(data);
-													
-										});
-
-									});
-									
-									</script>
+								
 							<?php $i++; endforeach; ?>
 							</tbody>
 			</table>

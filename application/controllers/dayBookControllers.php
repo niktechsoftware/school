@@ -605,6 +605,62 @@ function daybook()
 		$data['mainContent'] = 'transactionDetail';
 		$this->load->view("includes/mainContent", $data);
 	}
+	function createxpe(){
+		$exp= $this->input->post('expenditure');
+		//print_r($exp);
+		$this->load->model('daybookmodel');
+		if($exp){
+			$explist = $this->daybookmodel->createxpe($exp);
+	}else{
+		$explist = $this->daybookmodel->createxpee();
+	}
+		$data['explist'] = $explist;
+		$this->load->view("ajax/createxpee",$data);
+	}
+		
+	function updateExp(){
+		$expID= $this->input->post('expId');
+		$expName= $this->input->post('expName');
+		$this->load->model('daybookmodel');
+		if($query = $this->daybookmodel->updatexpee($expID,$expName)){ ?>
+			<script>
+			        $.post("<?php echo base_url('index.php/login/newexpenditure') ?>", function(data){
+			            $("#expenditure2").html(data);
+					});
+			</script>
+	<?php	//	$explist = $this->daybookmodel->updatexpee($expID,$expName);
+		}
+
+	}
+	function creatsubexp(){
+		$subexpid= $this->input->post('subexp');
+		$expsub= $this->input->post('expsub');
+		print_r($subexpid);
+		print_r($expsub);
+		$this->load->model('daybookmodel');
+		if($subexpid){
+			$explist = $this->daybookmodel->creatSubexpe($expsub,$subexpid);
+	}else{
+		$explist = $this->daybookmodel->creatsubexpee();
+	}
+		$data['explist'] = $explist;
+		$this->load->view("ajax/subExpenceType",$data);
+	}
+	function updateSubExp(){
+		$expID= $this->input->post('expId');
+		$expName= $this->input->post('expName');
+		$expNameSub= $this->input->post('expNameSub');
+		$this->load->model('daybookmodel');
+		if($query = $this->daybookmodel->updatSubexpee($expID,$expName,$expNameSub)){ ?>
+			<script>
+			        $.post("<?php echo base_url('index.php/login/newexpenditure') ?>", function(data){
+			            $("#expen").html(data);
+					});
+			</script>
+	<?php	//	$explist = $this->daybookmodel->updatexpee($expID,$expName);
+		}
+
+	}
 
 }
 

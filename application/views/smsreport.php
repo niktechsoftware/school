@@ -112,38 +112,28 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 								<thead>
 									<tr>
 										<th>SNo.</th>
-
-										<!-- <th>Sent Number</th> -->
-										<!-- <th>Full Name</th>
-										<th>Job Title</th>
-										<th>Mobile</th>
-										<th>Address</th> -->
 										<th>Sms</th>
-										<!-- <th>Export To Excel</th> -->
-                    <th>Date</th>
+                    					<th>Date</th>
 										<th>Total</th>
-										<th>Update Status</th>
-										<th>View</th>
+										<th>Sent Success</th>
+										<th>Wrong Numbers</th>
 									</tr>
 								</thead>
 								<?php
-								// 	$this->db->where("school_code",$this->session->userdata("school_code"));
-								// //	$this->db->where("status",1);
-								// 	$result = $this->db->get("sent_sms_details");
-									$this->db->select('*, COUNT(id) as total');
-
-									$this->db->where("school_code",$this->session->userdata("school_code"));
-									$this->db->group_by('sms'); 
 								
-									$this->db->order_by('total'); 
-								
-									$result=$this->db->get('sent_sms_details');
-								//	echo "<pre>";
-									// print_r($dt);
-									// exit();
 								?>
 								<tbody>
-									<?php $sno = 1; foreach ($result->result() as $row): ?>
+								
+									<?php 
+									if($result->num_rows()>0){
+									$sno = 1; foreach ($result->result() as $row): 
+									$this->db->where("sms_master_id",$row->id);
+									$sentsms = $this->db->get("sent_sms_details");
+									
+									$this->db->where("sms_master_id",$row->id);
+									$wrongsms = $this->db->get("wrong_number_sms");
+										
+									?>
 									<tr class="text-uppercase">
 										<td><?php echo $sno; ?></td>
 									 
@@ -152,47 +142,19 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 										<td><?php echo $row->sms; ?></td>
 										<!-- <td><?php// echo $row->status ?></td> -->
 										<td class="text-lowercase"><?php echo $row->date; ?></td>
-										<td class="text-lowercase"><?php echo $row->total; ?></td>
-										<td class="text-lowercase"><input type="hidden" id="msgid<?php echo $sno;?>" value="<?php echo $row->sms;?>">
-									
-										<button  id="update<?php echo $sno;?>" class="btn btn-red">Update</button>
-									
-											<!-- <button  id="updated<?php echo $sno;?>" class="btn btn-green">Updated</button> -->
-									
+										<td class="text-lowercase"><?php echo $sentsms->num_rows()+ $wrongsms->num_rows(); ?></td>
+										<td class="text-lowercase">
+										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->id; ?>" class="btn btn-green"> Success <?php echo $sentsms->num_rows();?></a></td> 
+									</td>
 
-										</td>
-
-                   <td><a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->msg_id; ?>" class="btn btn-green"> View Sms Detail</a></td> 
-
+                  					<td class="text-lowercase">
+										<a href="<?php echo base_url();?>index.php/smsAjax/wrongsmsdetail/<?php echo $row->id; ?>" class="btn btn-danger"> Wrong  <?php echo $wrongsms->num_rows();?></a></td> 
+									</td>
 										
 									</tr>
 
-									<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-									<script>
-									$(document).ready(function(){
-										// $('#updated<?php echo $sno;?>').hide();
-										// $('#update<?php echo $sno;?>').show();
-										$('#update<?php echo $sno;?>').click(function(){
-											var msgid=$('#msgid<?php echo $sno;?>').val();
-											alert(msgid);
-										  	$.post('<?php echo site_url("smsAjax/updatesms_status");?>' , {msgid : msgid } , function(data){
-													// if(data){
-														alert(data);
-														// $('#updated<?php // echo $sno;?>').show();
-													//	$('#update<?php //echo $sno;?>').hide();
-														$('#update<?php echo $sno;?>').html(data);
-													//}
-
-											     }
-											
-										    )
-
-										});
-
-									});
-									TableExport.init();
-									</script>
-									<?php $sno++; endforeach; ?>
+									
+									<?php $sno++; endforeach;} ?>
 
 								</tbody>
 							</table>

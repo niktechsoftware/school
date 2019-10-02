@@ -14,7 +14,7 @@ class SmsAjax extends CI_Controller{
 			$logtype = $this->session->userdata('login_type');
 			if(($logtype == 1)){
 			}else{
-			
+
 			if($logtype != "admin"){
 				//echo $is_login;
 				redirect("index.php/homeController/index");
@@ -65,82 +65,85 @@ class SmsAjax extends CI_Controller{
 	
 	function sendNotice(){
 		$count=0;
-		
+		$smsc =0;
+		$smscount=0;
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-		$sende_Detail =$sender;
+		$sende_Detail =$sender->row();
 		//print_r($sende_Detail->row()->password);exit;
-     	$sende_Detail1=	$sende_Detail->row();
+     	
 		$msg =	$this->input->post("meg");
+		$fmobile1 = $this->input->post("m_number");
+		$str_arr=explode(",",$fmobile1);
+		$totnumb =  sizeof($str_arr);
+		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
+		$getresultm = $this->smsmodel->sentmasterRecord($msg,$totnumb,$master_id);
+		if($getresultm){
+		foreach($str_arr as $xuv):
 		
-		//print_r($msg);exit;
-		$fmobile = $this->input->post("m_number");
-		if($fmobile && is_numeric($fmobile) && mb_strlen($fmobile)==10){
-		  
-		    
-		if($this->input->post("language")==1){
-			 $getv =  sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-
-		}else{
-			$getv =  smshindi($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			
-		}
 		
-			$a[]=0;
-			foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
-				} else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
+			$checknum = $this->smsmodel->checknum($xuv,$msg,$master_id);
+			if($checknum){
+			if($smscount<90){
+				if($smsc==0){
+					$fmobile =$checknum;
+				}else{
+					$fmobile=$fmobile.",".$checknum;
 				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-
-						$datainsert=	$this->db->insert("sent_sms_details",$data);
-						if($datainsert){
-						    echo $datainsert;
-						}
-						else{
-						    echo "data not inserted";
-						}
-							
-		}
+				$smscount++;
+				$smsc++;
+				$count=$count+1;
+				
+			}else{
+				if($this->input->post("language")==1){
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}else{
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+				$fmobile="8382829593";
+				$smscount=0;
+			}
+			}
+			endforeach;
+			//echo $fmobile;
 			
-		} else{
-		    $data=array(
-		        "sms"=>$msg,
-		        "mobile"=>"wrong number",
-		        "school_code"=>$this->session->userdata("school_code"),
-		        "date"=>Date("y-m-d")
-		        
-		        );
-		       $insertwrongnumber= $this->db->insert("wrong_number_sms",$data);
-		       if($insertwrongnumber){
-		//echo "wrong number ";
-
-		redirect("index.php/login/mobileNotice/Notice");
-		       }
+			if($this->input->post("language")==1){
+				echo $fmobile;
+				//exit();
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}else{
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+			redirect("index.php/login/mobileNotice/Notice");
+		}else{
+			$data['subPage'] = 'Mobile Message And Notice';
+			$data['title'] = 'Mobile Message And Notice';
+			$data['headerCss'] = 'headerCss/noticeCss';
+			$data['footerJs'] = 'footerJs/noticeJs';
+			$data['mainContent'] = 'norecordFound';
+			$this->load->view("includes/mainContent", $data);
 		}
-	}
+}
+	
 	
 	
 	function sendallParent(){
 		$smscount=0;
 		$count=0;
+		$smsc =0;
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender->num_rows()>0){
 		$sende_Detail =$sender->row();
 		$msg =$this->input->post("meg");
+		$totsmssent = $this->input->post("totsmsv");
+		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
+		$getresultm = $this->smsmodel->sentmasterRecord($msg,$totsmssent,$master_id);
+		if($getresultm){
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		$fmobile=$this->session->userdata("mobile_number");
@@ -148,91 +151,44 @@ class SmsAjax extends CI_Controller{
 		{
 		if($query->num_rows() > 0)
 		{   
-		if($fmobile){
-		   
 			foreach($query->result() as $parentmobile):
-			if($parentmobile->mobile && is_numeric($parentmobile->mobile) && mb_strlen($parentmobile->mobile)==10){
-// 			echo "ajsfjkhsuidfhui";
-// 			exit();
+			$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
+			if($checknum){
 			if($smscount<90){
-				$fmobile =$fmobile.",".$parentmobile->mobile;
-			
-				$count=$count+1;
+				if($smsc==0){
+					$fmobile =$checknum;
+				}else{
+					$fmobile=$fmobile.",".$checknum;
+				}
 				$smscount++;
+				$smsc++;
+				$count=$count+1;
 			}else{
 				if($this->input->post("language")==1){
-				  
-			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}else{
-				$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}	
-			$a[]=0;
-			foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-
-							
-		}
-				
-			}else{
-				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}
-				$fmobile="8382829593";
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+				$fmobile=$checknum;
 				$smscount=0;
 			}
-			
 			}
+			
 			endforeach;
-			
-			}
 			if($this->input->post("language")==1){
-			    
-				$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				$a[]=0;
-		foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+				//echo $fmobile;
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
-
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+			}
+			redirect("index.php/login/mobileNotice/Parent%20Message/$count");
 		}
-			
-
 		
-		}
 		else{
 			$data['subPage'] = 'Mobile Message And Notice';
 			$data['title'] = 'Mobile Message And Notice';
@@ -241,8 +197,8 @@ class SmsAjax extends CI_Controller{
 			$data['mainContent'] = 'norecordFound';
 			$this->load->view("includes/mainContent", $data);
 		}
-		}
-		redirect("index.php/login/mobileNotice/Parent%20Message/$count");
+		
+		//redirect("index.php/login/mobileNotice/Parent%20Message/$count");
 	}else
 		{
 			$data['subPage'] = 'Mobile Message And Notice';
@@ -252,98 +208,66 @@ class SmsAjax extends CI_Controller{
 			$data['mainContent'] = 'error';
 			$this->load->view("includes/mainContent", $data);
 		}
+		}else{
+			echo "Something is wrong";}
 	}
+	
 	
 	function sendAnnuncement(){
 		$smscount=0;
 		$count=0;
+		$smsc =0;
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender){
 		$sende_Detail =$sender->row();
 		$msg =$this->input->post("meg");
+		$totsmssent = $this->input->post("totsmsv");
+		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
+		$getresultm = $this->smsmodel->sentmasterRecord($msg,$totsmssent,$master_id);
+		if($getresultm){
 		$employee = $this->employeemodel->employeeList($this->session->userdata("school_code"));
 	
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		
-		$fmobile=$this->session->userdata("mobile_number");
 		if($isSMS->announcement)
 		{ 
-			if($fmobile){
 			foreach($employee->result() as $empmob):
-			if($empmob->mobile){
-			if($smscount<90){
-				$fmobile =$fmobile.",".$empmob->mobile;
-				$count=$count+1;
+			$checknum = $this->smsmodel->checknum($empmob->mobile,$msg,$master_id);
+			if($checknum){
+				if($smscount<90){
+				if($smsc==0){
+					$fmobile =$checknum;
+				}else{
+					$fmobile=$fmobile.",".$checknum;
+				}
 				$smscount++;
+				$smsc++;
+				$count=$count+1;
 			}else{
 				if($this->input->post("language")==1){
-			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-
-			}else{
-				$getv= smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}	
-			$a[]=0;
-			foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
-		}
-
-			$fmobile="8382829593";
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+				$fmobile=$checknum;
 				$smscount=0;
+			
 			}
 			
 			}
 			endforeach;
-			}
 			if($this->input->post("language")==1){
-				$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-
-				}else{
-					smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				}
-				$a[]=0;
-		foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
-				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-	
-		}
+				//echo $fmobile;
 			
-
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}else{
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
 			
 			redirect("index.php/login/mobileNotice/Announcement/$count");
 		}
@@ -359,7 +283,7 @@ class SmsAjax extends CI_Controller{
 			$this->load->view("includes/mainContent", $data);
 		}
 	
-	}
+	}}
 	else{
 	    	$data['subPage'] = 'Mobile Message And Notice';
 			$data['title'] = 'Sender ID Not Approved Error Please Contact Administrator';
@@ -373,169 +297,108 @@ class SmsAjax extends CI_Controller{
 	function sendGreeting(){
 		$smscount=0;
 		$count=0;
+		$smsc =0;
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender){
 		$sende_Detail =$sender->row();
 		
 		$msg =$this->input->post("meg");
-		
-		
+		$totsmssent = $this->input->post("totsmsv");
+		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
+		$getresultm = $this->smsmodel->sentmasterRecord($msg,$totsmssent,$master_id);
+		if($getresultm){
 		$employee = $this->employeemodel->employeeList($this->session->userdata("school_code"));
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		
-		$fmobile=$this->session->userdata("mobile_number");
+		//$fmobile=$this->session->userdata("mobile_number");
 		if($isSMS->greeting)
 		{
-			if($fmobile){
-			foreach($employee->result() as $empmob):
-			if($empmob->mobile){
 			
+			foreach($employee->result() as $empmob):
+			$checknum = $this->smsmodel->checknum($empmob->mobile,$msg,$master_id);
+			if($checknum){
 			if($smscount<90){
-				$fmobile =$fmobile.",".$empmob->mobile;
-				$count=$count+1;
-				$smscount++;
-			}else{if($this->input->post("language")==1){
-				$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				$a[]=0;
-			foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+				if($smsc==0){
+					$fmobile =$checknum;
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
+					$fmobile=$fmobile.",".$checknum;
 				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-		
-		}
-			$fmobile="8382829593";
-
+				$smscount++;
+				$smsc++;
+				$count=$count+1;
+			}
+			else{
+				if($this->input->post("language")==1){
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}else{
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+				$fmobile=$checknum;
 				$smscount=0;
 			}
 			
 			}
 			endforeach;
-			}
 			if($this->input->post("language")==1){
-				$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				$a[]=0;
-		foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+				
+					$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
-
-		}
-			if($fmobile){
-
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+				
+		
 				foreach($query->result() as $parentmobile):
-				if($parentmobile->mobile){
-						
+				$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
+				if($checknum){
 					if($smscount<90){
-						$fmobile =$fmobile.",".$parentmobile->mobile;
-						$count=$count+1;
+						if($smsc==0){
+							$fmobile =$checknum;
+						}else{
+							$fmobile=$fmobile.",".$checknum;
+						}
 						$smscount++;
+						$smsc++;
+						$count=$count+1;
 					}else{
 						if($this->input->post("language")==1){
-						$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-
-						}else{
-						$getv=	smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-						}	
-						$a[]=0;
-					foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
-		}
-						$fmobile="8382829593";
-						$smscount=0;
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+				$fmobile=$checknum;
+				$smscount=0;
 					}
 						
 				}
 				endforeach;
-			}//print_r($count);exit();
 			if($this->input->post("language")==1){
-			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}else{
-			$getv=	smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}	
-			
-			$a[]=0;
-		foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+				echo $fmobile;
+				
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
-		}
-		
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
 			
+							
+		
+
+		redirect("index.php/login/mobileNotice/Greeting/$count");
 			}
+		}
 			else{
 			    	$data['pageTitle'] = 'SMS Panel';
-		$data['smallTitle'] = 'Mobile SMS';
-		$data['mainPage'] = 'SMS Panel Area';
+					$data['smallTitle'] = 'Mobile SMS';
+					$data['mainPage'] = 'SMS Panel Area';
 				$data['subPage'] = 'Mobile Message And Notice';
 				$data['title'] = 'Mobile Message And Notice';
 				$data['headerCss'] = 'headerCss/noticeCss';
@@ -550,103 +413,64 @@ class SmsAjax extends CI_Controller{
 	function classwise(){	
 		$smscount=0;
 		$count=0;
+		$smsc =0;
 		$class_id = $this->input->post("class");
 	//	$section_id = $this->input->post("section");
 	
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender->num_rows()>0){
 		$sende_Detail =$sender->row();
-		$msg =	$this->input->post("meg");
+		$msg =$this->input->post("meg");
+		$totsmssent = $this->input->post("totsmsv");
+		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
+		$getresultm = $this->smsmodel->sentmasterRecord($msg,$totsmssent,$master_id);
+		if($getresultm){
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
-		
-		$fmobile=$this->session->userdata("mobile_number");
+		//$fmobile=$this->session->userdata("mobile_number");
 		if($isSMS->parent_message)
 		{
-			
 				$query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id);
-				
-		
-			
 		if($query->num_rows() > 0)
 		{   
-		if($fmobile){
+		
 			foreach($query->result() as $parentmobile):
-			if($parentmobile->mobile){
-			
+			$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
+			if($checknum){
 			if($smscount<90){
-				$fmobile =$fmobile.",".$parentmobile->mobile;
-				$count=$count+1;
+				if($smsc==0){
+					$fmobile =$checknum;
+				}else{
+					$fmobile=$fmobile.",".$checknum;
+				}
 				$smscount++;
+				$smsc++;
+				$count=$count+1;
 			}else{
 				if($this->input->post("language")==1){
-			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-
-			}else{
-			$getv=	smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}	
-			$a[]=0;
-			foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
-		}
-			
-
-			$fmobile="8382829593";
-			//echo 	$fmobile;
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+				$fmobile=$checknum;
 				$smscount=0;
+
+			
 			}
 			
 			}
 			endforeach;
-			}
-			//echo $fmobile;
 			if($this->input->post("language")==1){
-			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}else{
-			$getv=	smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}
-			
-			$a[]=0;
-		foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
 		}
+			redirect("index.php/login/mobileNotice/classwise/$count");
 		
 		}
 		else{	$data['pageTitle'] = 'SMS Panel';
@@ -678,11 +502,18 @@ class SmsAjax extends CI_Controller{
 	function transportwise(){	
 		$smscount=0;
 		$count=0;
+		$smsc =0;
 		$vehicle_id = $this->input->post("vehicle");
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender->num_rows()>0){
 		$sende_Detail =$sender->row();
 		$msg =	$this->input->post("meg");
+		
+		$totsmssent = $this->input->post("totsmsv");
+		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
+		$getresultm = $this->smsmodel->sentmasterRecord($msg,$totsmssent,$master_id);
+		if($getresultm){
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		$fmobile=$this->session->userdata("mobile_number");
 		if($isSMS->parent_message)
@@ -690,78 +521,41 @@ class SmsAjax extends CI_Controller{
 		  $query = $this->smsmodel->getTransportFatherNumber($vehicle_id);
 	    if($query->num_rows() > 0)
 	     	{   
-	     	if($fmobile){
+	     	
 			foreach($query->result() as $parentmobile):
-			if($parentmobile->mobile){
-			// print_r($parentmobile->mobile);
-			// exit();
+			$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
+			if($checknum){
 			 if($smscount<90){
-				$fmobile =$fmobile.",".$parentmobile->mobile;
-			// 	print_r($fmobile);
-			// exit();
-				$count=$count+1;
-				$smscount++;
-			 }else{
-			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			
-				$a[]=0;
-			 foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+				if($smsc==0){
+					$fmobile =$checknum;
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
+					$fmobile=$fmobile.",".$checknum;
 				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
-		}
-				$fmobile="8382829593";
-			   echo $fmobile;
+				$smscount++;
+				$smsc++;
+				$count=$count+1;
+			 }else{if($this->input->post("language")==1){
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}else{
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
+				$fmobile=$checknum;
 				$smscount=0;
 			}
 			
 			 }
 			endforeach;
-			}
-			
-			 $fmobile;
-			$getv= sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			$a[]=0;
-	     	foreach ($getv as $key => $rowValue) {
-				if($rowValue['sent_number']){
-					$number=$rowValue['sent_number'];
-					$msm_id = $rowValue['msg_id'];
-					$smsf =$rowValue['sms'];
+	     	if($this->input->post("language")==1){
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-					$number=0;
-					$msm_id =0;
-					$smsf="Wrong Mobile";
-				}
-							$data=array(
-								'sent_number'=>$number,
-								'msg_id'=>$msm_id,
-								
-								'sms'=>$smsf,
-								'date'=>date("Y-m-d H:s:i"),
-								'school_code'=>$this->session->userdata("school_code")
-
-							);
-							$this->db->insert("sent_sms_details",$data);
-							
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+			$this->smsmodel->sendReport($getv,$master_id);
 		}
-			//exit;
+		redirect("index.php/login/mobileNotice/transportwise/$count");
 	    }
 		else{	
 			$data['pageTitle'] = 'SMS Panel';
@@ -817,38 +611,33 @@ class SmsAjax extends CI_Controller{
 						$sender_detail=$msgdata->row();
 						$username=$sender_detail->uname;
 						$password=$sender_detail->password;
-						$this->db->where("sms",$msg);
-						$msgdata=$this->db->get("sent_sms_details");
-						if($msgdata->num_rows()>0){
-							foreach($msgdata->result() as $row):
-								$msg_id=$row->msg_id;
-						$dt=checkDeliver($username,$password,$msg_id);
-						$arr =array(
-							'status' =>$dt
-						);
-						$this->db->where("msg_id",$msg_id);
-						$updatedata=$this->db->update("sent_sms_details",$arr);
-				if($updatedata){
-
-				} endforeach; echo "Updated"; }
-
+						
+						$dt=checkDeliver($username,$password,$msg);
+						echo $dt;
 				}
 
 
 	}
 	function viewsmsdetail(){
-		$msg=$this->uri->segment(3);
-		
-		$data['msg'] =$msg;
-	
+			$data['pageTitle'] = 'View SMS Report';
+		$data['smallTitle'] = 'View SMS Report';
+		$data['mainPage'] = 'View SMS Report';
+		$data['subPage'] = 'View SMS Report';
+		$data['title'] = 'View SMS Report ';
+		$data['headerCss'] = 'headerCss/smsCss';
+		$data['footerJs'] = 'footerJs/smsJs';
+		$data['mainContent'] = 'viewsmsdetail';
+		$this->load->view("includes/mainContent", $data);
+	}	
+	function wrongsmsdetail(){
 		$data['pageTitle'] = 'View SMS Report';
 		$data['smallTitle'] = 'View SMS Report';
 		$data['mainPage'] = 'View SMS Report';
 		$data['subPage'] = 'View SMS Report';
 		$data['title'] = 'View SMS Report ';
-		$data['headerCss'] = 'headerCss/studentListCss';
-		$data['footerJs'] = 'footerJs/simpleStudentListJs';
-		$data['mainContent'] = 'viewsmsdetail';
+		$data['headerCss'] = 'headerCss/smsCss';
+		$data['footerJs'] = 'footerJs/smsJs';
+		$data['mainContent'] = 'wrongsmsdetail';
 		$this->load->view("includes/mainContent", $data);
-	}	
+}
 }

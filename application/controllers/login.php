@@ -1339,6 +1339,17 @@ function createSchedule()
 		$data['mainContent'] = 'cashPayment';
 		$this->load->view("includes/mainContent", $data);
 	}
+	function newexpenditure(){
+		$data['pageTitle'] = 'Add Expenditure';
+		$data['smallTitle'] = 'Add Expenditure';
+		$data['mainPage'] = 'Add Expenditure';
+		$data['subPage'] = 'Add Expenditure';
+		$data['title'] = 'Add Expenditure';
+		$data['headerCss'] = 'headerCss/configureClassCss';
+		$data['footerJs'] = 'footerJs/transactionJs';
+		$data['mainContent'] = 'addexpenditure';
+		$this->load->view("includes/mainContent", $data);
+	}
 
 	function bankTransaction(){
 		$data['pageTitle'] = 'Account Management';
@@ -1353,14 +1364,17 @@ function createSchedule()
 		$this->load->view("includes/mainContent", $data);
 	}
 	function smsreport(){
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$sent_report = $this->db->get("sent_sms_master");
+		$data['result']  =$sent_report;
 		$data['pageTitle'] = 'SMS Report Panel';
 		$data['smallTitle'] = 'SMS PAnel';
 		$data['mainPage'] = 'SMS Report Panel';
 		$data['subPage'] = 'Get Sms Report / SMS Panel';
 
 		$data['title'] = 'Get SMS Report / SMS Panel';
-		$data['headerCss'] = 'headerCss/noticeCss';
-		$data['footerJs'] = 'footerJs/noticeJs';
+		$data['headerCss'] = 'headerCss/smsCss';
+		$data['footerJs'] = 'footerJs/smsJs';
 		$data['mainContent'] = 'smsreport';
 		$this->load->view("includes/mainContent", $data);
 	}

@@ -99,7 +99,9 @@ elseif($this->uri->segment(3) == 'Parent%20Message'){ ?>
           <?php $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
-					?><div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+					?>
+					<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
           		<?php }
           			?> 
                      <table class="table">
@@ -126,7 +128,10 @@ elseif($this->uri->segment(3) == 'Parent%20Message'){ ?>
 		     </table>
              </form>
 <?php } 
-elseif($this->uri->segment(3) == 'Announcement'){ ?>
+elseif($this->uri->segment(3) == 'Announcement'){ 
+	$this->db->where("school_code",$school_code);
+      	$this->db->where("status",1);
+      	$result = $this->db->get("employee_info");?>
 <div class="alert alert-info">
           <button data-dismiss="alert" class="close">×</button>
           <h3 class="media-heading text-center">Welcome to Announcement Area</h3>
@@ -135,13 +140,11 @@ elseif($this->uri->segment(3) == 'Announcement'){ ?>
                      Unit SMS<br><strong> (where 1 Unit = 140 SMS Character)</strong>
         </div>
          <?php 
-        	$this->db->where("school_code",$school_code);
-		$this->db->where("status",1);
-		$result = $this->db->get("employee_info");
+        	
 	//	$a= $result->result();
 	//	print_r($a);
         ?>
-			<p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?><br>Available Contacts of Employees to send SMS =<?php echo $result->num_rows();?> + 1 SMS for admin </p>
+			<p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?><br>Available Contacts of Employees to send SMS =<?php echo $result->num_rows();?>  SMS for admin </p>
             <?php
 					 //if(!($auth->announcement == 'yes')){
 						// echo '<font color=" color="#FF0000">Announcement Not Activated. Please activat it first, from SMS setting.</font>';
@@ -152,7 +155,10 @@ elseif($this->uri->segment(3) == 'Announcement'){ ?>
                       <?php $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
-					?><div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+					?>
+					<input type ="hidden" name = "totsmsv" value="<?php echo $result->num_rows();?>" >
+					
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
           		<?php }
           			?> 
                      <table class="table">
@@ -180,6 +186,12 @@ elseif($this->uri->segment(3) == 'Announcement'){ ?>
              </form>
 <?php } 
 elseif($this->uri->segment(3) == 'Greeting'){ ?>
+   <?php 
+      	$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
+      	$this->db->where("school_code",$school_code);
+      	$this->db->where("status",1);
+      	$result = $this->db->get("employee_info");
+					 ?>
 <div class="alert alert-info">
           <button data-dismiss="alert" class="close">×</button>
           <h3 class="media-heading text-center">Welcome to Greeting Area</h3>
@@ -187,19 +199,18 @@ elseif($this->uri->segment(3) == 'Greeting'){ ?>
                     you can also see your credit SMS Balance . you can also see Number of Character in your message and Number of 
                      Unit SMS . <br><strong> (where 1 Unit = 140 SMS Character)</strong>
         </div>
-			 <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?><br>Available Contacts to send SMS =<?php //echo $result->num_rows();?></p>
+			 <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?><br>Available Contacts to send SMS =<?php echo $result->num_rows()+$query->num_rows();?></p>
             
            
-            <?php
-					 //if(!($auth->greeting == 'yes')){
-						 //echo '<font color=" color="#FF0000">Greeting Not Activated. Please activat it first, from SMS setting.</font>';
-					 //}
-					 ?>
+          
             <form method="post" action="<?php echo base_url();?>index.php/smsAjax/sendGreeting">
                      <?php $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
-					?><div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+					?>
+					<input type ="hidden" name = "totsmsv" value="<?php echo $result->num_rows()+$query->num_rows();;?>" >
+					
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
           		<?php }
           			?> 
                      <table class="table">
@@ -246,7 +257,10 @@ elseif($this->uri->segment(3) == 'classwise'){ ?>
                      <?php $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
-					?><div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+					?>
+					<input type ="hidden" name = "totsmsv" value="<?php //echo $query->num_rows()+1;?>" >
+					
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
           		<?php }
           			?> 
                      <table class="table">
@@ -306,7 +320,9 @@ elseif($this->uri->segment(3) == 'transportwise'){ ?>
                      <?php $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
-					?><div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+					?><input type ="hidden" name = "totsmsv" value="<?php //echo $query->num_rows()+1;?>" >
+					
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
           		<?php }
           			?> 
                      <table class="table">
