@@ -11,3 +11,7 @@
 [01-Oct-2019 13:12:27 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
 [01-Oct-2019 13:12:41 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 77
 [02-Oct-2019 13:27:37 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/school/application/controllers/login.php on line 1362
+[02-Oct-2019 16:52:59 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 194
+[02-Oct-2019 16:53:16 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 194
+[02-Oct-2019 16:53:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 194
+[03-Oct-2019 01:46:39 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 194

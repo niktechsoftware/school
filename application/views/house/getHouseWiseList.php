@@ -43,6 +43,7 @@ endif;
 						<th>S.no.</th>
 						<th>Student Id</th>
 						<th>Student Name</th>
+						<th>Class</th>
 						<th>Father Name</th>
 						<th>Father Mobile</th>
 						<th>Address</th>
@@ -66,8 +67,18 @@ endif;
 				   <?php if($count%2==0){$rowcss="danger";}else{$rowcss ="warning";}?><tr class="<?php echo $rowcss;?>">
 			  			
 			  				<td><?php echo $count;?></td>
-			  			<td><?php echo $stu_id;?></td>
+			  			<td><?php echo $stuDetail->username;?></td>
 			  			<td><?php echo $stuDetail->name;?></td>
+			  			<td><?php  $stuDetail->class_id;
+	  			                  $this->db->where('school_code',$this->session->userdata("school_code"));
+                                  $this->db->where('id',$stuDetail->class_id);
+                       $classname=$this->db->get('class_info');
+                       if($classname->num_rows()>0){
+                                  $classdf=$classname->row();
+                                  $this->db->where("id",$classdf->section);
+                                  $secname = $this->db->get("class_section")->row()->section;
+                                 echo $classdf->class_name."-".$secname;
+                                 }?></td>
 			  			<td><?php echo $rows->father_full_name;?></td>
 			  		
 			  			
