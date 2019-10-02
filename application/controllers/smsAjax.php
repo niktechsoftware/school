@@ -79,6 +79,7 @@ class SmsAjax extends CI_Controller{
 		    
 		if($this->input->post("language")==1){
 			 $getv =  sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+
 		}else{
 			$getv =  smshindi($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 			
@@ -104,6 +105,7 @@ class SmsAjax extends CI_Controller{
 								'school_code'=>$this->session->userdata("school_code")
 
 							);
+
 						$datainsert=	$this->db->insert("sent_sms_details",$data);
 						if($datainsert){
 						    echo $datainsert;
@@ -185,10 +187,13 @@ class SmsAjax extends CI_Controller{
 
 							);
 							$this->db->insert("sent_sms_details",$data);
+
 							
 		}
 				
-			
+			}else{
+				smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}
 				$fmobile="8382829593";
 				$smscount=0;
 			}
@@ -200,10 +205,6 @@ class SmsAjax extends CI_Controller{
 			if($this->input->post("language")==1){
 			    
 				$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				}else{
-					$getv= smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				}
-				
 				$a[]=0;
 		foreach ($getv as $key => $rowValue) {
 				if($rowValue['sent_number']){
@@ -226,8 +227,10 @@ class SmsAjax extends CI_Controller{
 							);
 							$this->db->insert("sent_sms_details",$data);
 							
+
 		}
 			
+
 		
 		}
 		else{
@@ -275,6 +278,7 @@ class SmsAjax extends CI_Controller{
 			}else{
 				if($this->input->post("language")==1){
 			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+
 			}else{
 				$getv= smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			}	
@@ -301,7 +305,7 @@ class SmsAjax extends CI_Controller{
 							$this->db->insert("sent_sms_details",$data);
 							
 		}
-			
+
 			$fmobile="8382829593";
 				$smscount=0;
 			}
@@ -311,10 +315,10 @@ class SmsAjax extends CI_Controller{
 			}
 			if($this->input->post("language")==1){
 				$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+
 				}else{
 					smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}
-				
 				$a[]=0;
 		foreach ($getv as $key => $rowValue) {
 				if($rowValue['sent_number']){
@@ -336,9 +340,10 @@ class SmsAjax extends CI_Controller{
 
 							);
 							$this->db->insert("sent_sms_details",$data);
-							
+	
 		}
 			
+
 			
 			redirect("index.php/login/mobileNotice/Announcement/$count");
 		}
@@ -392,10 +397,6 @@ class SmsAjax extends CI_Controller{
 				$smscount++;
 			}else{if($this->input->post("language")==1){
 				$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				}else{
-				$getv=	smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				}
-				
 				$a[]=0;
 			foreach ($getv as $key => $rowValue) {
 				if($rowValue['sent_number']){
@@ -417,9 +418,10 @@ class SmsAjax extends CI_Controller{
 
 							);
 							$this->db->insert("sent_sms_details",$data);
-							
+		
 		}
 			$fmobile="8382829593";
+
 				$smscount=0;
 			}
 			
@@ -428,10 +430,6 @@ class SmsAjax extends CI_Controller{
 			}
 			if($this->input->post("language")==1){
 				$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				}else{
-				$getv=	smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				}
-				
 				$a[]=0;
 		foreach ($getv as $key => $rowValue) {
 				if($rowValue['sent_number']){
@@ -454,8 +452,10 @@ class SmsAjax extends CI_Controller{
 							);
 							$this->db->insert("sent_sms_details",$data);
 							
+
 		}
 			if($fmobile){
+
 				foreach($query->result() as $parentmobile):
 				if($parentmobile->mobile){
 						
@@ -466,6 +466,7 @@ class SmsAjax extends CI_Controller{
 					}else{
 						if($this->input->post("language")==1){
 						$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+
 						}else{
 						$getv=	smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 						}	
@@ -528,7 +529,7 @@ class SmsAjax extends CI_Controller{
 							$this->db->insert("sent_sms_details",$data);
 							
 		}
-				
+		
 			
 			}
 			else{
@@ -579,6 +580,7 @@ class SmsAjax extends CI_Controller{
 			}else{
 				if($this->input->post("language")==1){
 			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+
 			}else{
 			$getv=	smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			}	
@@ -606,6 +608,7 @@ class SmsAjax extends CI_Controller{
 							
 		}
 			
+
 			$fmobile="8382829593";
 			//echo 	$fmobile;
 				$smscount=0;
@@ -644,7 +647,6 @@ class SmsAjax extends CI_Controller{
 							$this->db->insert("sent_sms_details",$data);
 							
 		}
-			
 		
 		}
 		else{	$data['pageTitle'] = 'SMS Panel';
@@ -700,11 +702,8 @@ class SmsAjax extends CI_Controller{
 				$count=$count+1;
 				$smscount++;
 			 }else{
-			 if($this->input->post("language")==1){
 			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}else{
-				$getv=smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}
+			
 				$a[]=0;
 			 foreach ($getv as $key => $rowValue) {
 				if($rowValue['sent_number']){
@@ -738,12 +737,7 @@ class SmsAjax extends CI_Controller{
 			}
 			
 			 $fmobile;
-	     	 if($this->input->post("language")==1){
-			$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}else{
-				$getv=smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}
-			
+			$getv= sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			$a[]=0;
 	     	foreach ($getv as $key => $rowValue) {
 				if($rowValue['sent_number']){
@@ -835,7 +829,6 @@ class SmsAjax extends CI_Controller{
 						$this->db->where("msg_id",$msg_id);
 						$updatedata=$this->db->update("sent_sms_details",$arr);
 				if($updatedata){
-					
 
 				} endforeach; echo "Updated"; }
 

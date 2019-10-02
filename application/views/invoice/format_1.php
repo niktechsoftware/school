@@ -169,8 +169,8 @@
         </tr>
         <tr class="wight">
             <td colspan="5">
-                <span>Scholar ID: <?= $studentInfo->username; ?></span>
-                <span>Scholar Name: <?= strtoupper($studentInfo->name);?> </span>
+                <span style="text-transform: uppercase;">Scholar ID: <?= $studentInfo->username; ?></span>
+                <span style="text-transform: uppercase;">Scholar Name:  <?= strtoupper($studentInfo->name);?> </span>
                <?php
                            $this->db->where('school_code',$school_code);
                            $this->db->where('id',$classid->class_id);
@@ -182,14 +182,14 @@
                   $this->db->where("id",$classdf->section);
                   $secname = $this->db->get("class_section")->row()->section;
                   ?>
-                <span>Class: <?php  echo $classdf->class_name."-".$secname; ?></span>
+                <span style="text-transform: uppercase;">Class: <?php  echo $classdf->class_name."-".$secname; ?></span>
                  <?php } else { echo "something wrong please try again";  }?>
                 <span></span>
             </td>
             <td colspan="5">
                            
-                 <span>Mother's Name: <?= strtoupper($parentInfo->mother_full_name); ?></span>
-                <span>Father's Name: <?= strtoupper($parentInfo->father_full_name); ?></span>
+                 <span style="text-transform: uppercase;">Mother's Name: <?= strtoupper($parentInfo->mother_full_name); ?></span>
+                <span style="text-transform: uppercase;">Father's Name: <?= strtoupper($parentInfo->father_full_name); ?></span>
             </td>
 			<td class="">
 				<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/stuImage/<?php echo $studentInfo->photo; ?>"  alt="" width="90" height="105" />
@@ -206,7 +206,7 @@
 		<td class="center" colspan="4">TERM - 1</td>
 		<td class="center" colspan="4">TERM - 2</td>
            
-			<td colspan="2">Cumulative Evaluation</td>
+			<td colspan="2" style="text-transform: uppercase;">Cumulative Evaluation</td>
 		</tr>
 		<tr class="yellow">
 		<td>SUBJECT</td>
@@ -220,14 +220,13 @@
            $arrco[5]=0;
             $arrco[6]=0;
            foreach ($examid as $value):
-                 
               $examid1=$value->exam_id;	
              $this->db->where('id',$examid1);
-             $examname=$this->db->get('exam_name');   
+             $examname=$this->db->get('exam_name'); 
+             
              if ($examname->num_rows()>0){
-             $examname=$examname->row();
-            
-             	?>  <td><?php echo $examname->exam_name;?><?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){if($i%2==1){echo "[20]";}else{echo "[30]";}}else{
+             $examname=$examname->row(); 
+             	?>  <td style="text-transform: uppercase;"><?php echo $examname->exam_name;?><?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){if($i%2==1){echo "[20]";}else{echo "[30]";}}else{
              	if(($classid->class_id==100)||($classid->class_id==101)||($classid->class_id== 102) ||($classid->class_id== 103) ||($classid->class_id== 104) ){ if($i%2==1){echo "[40]";}else{echo "[60]";}}else{ if($i%2==1){echo "[20]";}else{echo "[80]";}}}?></td>
              	<?php 
              }else{
@@ -238,7 +237,7 @@
 
           
             <?php if($i%2==0){ ?>
-            <td class="center bold">Total<br>
+            <td class="center bold" style="text-transform: uppercase;">Total<br>
            <?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){echo "[50]";}else{echo "[100]";}?>
         </td>
 			<td class="center bold">Grade</td>
@@ -248,12 +247,12 @@ for($j=$i; $j < 5; $j++){
 ?>
 <td></td>
  <?php if($i%2==0){ ?>
-            <td>Total <br><?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){echo "50";}else{echo "100";}?></td>
-			<td>Grade</td>
+            <td style="text-transform: uppercase;">Total <br><?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){echo "50";}else{echo "100";}?></td>
+			<td style="text-transform: uppercase;">Grade</td>
       <?php }}
 			?>
-			<td colspan="1" class="text-center">Cumulative Marks<?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){echo "[100]";}else{echo "[200]";}?></td>
-			<td colspan="1">Grade</td>
+			<td colspan="1" class="text-center" style="text-transform: uppercase;">Cumulative Marks<?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){echo "[100]";}else{echo "[200]";}?></td>
+			<td colspan="1" style="text-transform: uppercase;">Grade</td>
 		</tr>
 		<?php $htotal = 0;  
 
@@ -278,7 +277,7 @@ $cumulativetotal=0;
                     <?php 
                     $this->db->where('class_id',$classid->class_id);
                     $this->db->where('id',$sub['subject']);
-                    $subjectname=$this->db->get('subject'); 
+                    $subjectname=$this->db->get('subject');
                     if($subjectname->num_rows()>0){
                         $subjectname=$subjectname->row();
                     
@@ -311,8 +310,10 @@ $cumulativetotal=0;
                    }
                  
                     }else{ $totalp+=200;?>
-		<tr class="wight"> 
-					 <td class="subject">	
+
+					 	<tr class="wight"> 
+					 <td class="subject" style="text-transform: uppercase;">	
+
                      <?php echo  $subjectname->subject;
                        ?> 
 					</td>
@@ -364,17 +365,19 @@ $cumulativetotal=0;
 
 				for($j=$i; $j < 5; $j++){
                ?>
-              <td class="center bold"></td>
+              <td class="center bold" ></td>
               <?php if($i%2==0){ ?>
               <td class="center"><?php 
 					$ctotal['tot'.$i]+=0;?>
 						</td>
-			 <td class="center bold"><?php echo calculateGrade($ctotal['tot'.$i],$classid->class_id); ?></td>
+			 <td class="center bold" style="text-transform: uppercase;"><?php echo calculateGrade($ctotal['tot'.$i],$classid->class_id); ?></td>
                <?php }}
 		           ?>
-				<td class="center bold"><?php  $rty = $gtptal/2; echo $gtptal;  ?></td>
-			   <td class="center bold"><?php echo calculateGrade($rty,$classid->class_id)?></td>	
-		</tr>
+
+				<td class="center bold" style="text-transform: uppercase;"><?php  $rty = $gtptal/2; echo $gtptal;  ?></td>
+			   <td class="center bold" style="text-transform: uppercase;"><?php echo calculateGrade($rty,$classid->class_id)?></td>	
+				</tr>
+
 					<?php } }endforeach;?>
 		<tr class="wight">
 					<td class="subject">GRAND TOTAL</td>
@@ -965,16 +968,20 @@ $cumulativetotal=0;
 		
 		
 		
-		<?php } ?>
-		<!--- others marks table end--->
-		<tr class="tableHeader">	
-			<td colspan="2">B. CO-Scholastic Areas</td>
-			<td colspan="3">Descriptive Indicators</td>
+
+		<td class="center bold"><?php echo $cumulativetotal;?></td>
+		<td class="center bold"></td>
+			</tr>	
+		    <tr class="tableHeader">	
+			<td colspan="2" style="text-transform: uppercase;">B. CO-Scholastic Areas</td>
+			<td colspan="3" style="text-transform: uppercase;">Descriptive Indicators</td>
+
 			<td>Grade</td>
-			<td colspan="2">Descriptive Indicators</td>
+			<td colspan="2" style="text-transform: uppercase;">Descriptive Indicators</td>
 			<td>Grade</td>
-			<td colspan="2" class="pink">Class Teachers Remark</td>
+			<td colspan="2" class="pink" style="text-transform: uppercase;">Class Teachers Remark</td>
 		</tr>
+		<?php } ?>
 		  <tr class="wight">
 					<td class="subject" colspan="2">VALUE EDUCATION <?php //echo $arrco[1];?></td>
 					<?php 
@@ -996,16 +1003,21 @@ $cumulativetotal=0;
 						$marks->marks;
 						?>
 					
-					<td colspan="3"><?= discriptiveindicator($marks->marks);?></td>
-					<td><?php echo calculateGrade1($marks->marks,$classid->class_id)?></td>
+					<td colspan="3" style="text-transform: uppercase;"><?= discriptiveindicator($marks->marks);?></td>
+					<td style="text-transform: uppercase;"><?php echo calculateGrade1($marks->marks,$classid->class_id)?></td>
 						<?php }else{
 						?>
 					<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
 					<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
 						<?php }
 						if($marksa->num_rows()>0){$marksa = $marksa->row();	?>
-					<td colspan="2"><?= discriptiveindicator($marksa->marks);?></td>
-             		<td><?php echo calculateGrade1($marksa->marks,$classid->class_id)?></td>
+
+					
+					
+					<td colspan="2" style="text-transform: uppercase;"><?= discriptiveindicator($marksa->marks);?></td>
+             		<td style="text-transform: uppercase;"><?php echo calculateGrade1($marksa->marks,$classid->class_id)?></td>
+             		
+
              		<?php }else{?>
              		<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
              		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
@@ -1024,34 +1036,47 @@ $cumulativetotal=0;
              	<?php } ?>
 		</tr>
 		<tr class="wight">
-					<td class="subject" colspan="2">WORK EDUCATION <?php //echo $arrco[2];?></td>
-						<?php 
-								$this->db->where('subject_id',$arrco[2]);
-								$this->db->where('class_id',$classid->class_id);
-								$this->db->where('stu_id',$studentInfo->id);
-								$this->db->where('exam_id',28);
-								$this->db->where('fsd',$fsd);
-							$marks= $this->db->get('exam_info');
-								$this->db->where('subject_id',$arrco[2]);
-								$this->db->where('class_id',$classid->class_id);
-								$this->db->where('stu_id',$studentInfo->id);
-								$this->db->where('exam_id',30);
-								$this->db->where('fsd',$fsd);
-							$marksa= $this->db->get('exam_info');
+
+			
+				
+					<td class="subject" colspan="2" >WORK EDUCATION <?php //echo $arrco[2];?></td>
+					
+						<?php $this->db->where('subject_id',$arrco[2]);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('stu_id',$studentInfo->id);
+					$this->db->where('exam_id',28);
+					$this->db->where('fsd',$fsd);
+					
+						$marks= $this->db->get('exam_info');
+						
+						$this->db->where('subject_id',$arrco[2]);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('stu_id',$studentInfo->id);
+					$this->db->where('exam_id',30);
+					$this->db->where('fsd',$fsd);
+						$marksa= $this->db->get('exam_info');
+
 							if(($marks->num_rows()>0) || ($marksa->num_rows()>0)){
 							if($marks->num_rows()>0){
 							$marks=$marks->row();
 						$marks->marks;
 						?>
-					<td colspan="3"><?= discriptiveindicator($marks->marks);?></td>
-					<td><?php echo calculateGrade1($marks->marks,$classid->class_id)?></td>
-						<?php }else{?>
-					<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
+
+					
+					<td colspan="3" style="text-transform: uppercase;"><?= discriptiveindicator($marks->marks);?></td>
+					<td style="text-transform: uppercase;"><?php echo calculateGrade1($marks->marks,$classid->class_id)?></td>
+						<?php }else{
+						?>
+							<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
+
 					<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
 						<?php }
 						if($marksa->num_rows()>0){$marksa = $marksa->row();	?>
 					<td colspan="2"><?= discriptiveindicator($marksa->marks);?></td>
-             		<td><?php echo calculateGrade1($marksa->marks,$classid->class_id)?></td>
+
+             		<td style="text-transform: uppercase;"><?php echo calculateGrade1($marksa->marks,$classid->class_id)?></td>
+             		
+
              		<?php }else{?>
              		<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
              		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
@@ -1244,7 +1269,7 @@ $cumulativetotal=0;
 		</tr>
 		<tr class="pink">
 			<td colspan="2">FINAL RESULT</td>
-			<td colspan="7">Passed/Promoted/Supp./Detained.</td>
+			<td colspan="7" style="text-transform: uppercase;">Passed/Promoted/Supp./Detained.</td>
 		</tr>
 		<tr>
 			<td colspan="9" class="wight" height="25" style="border-right: None">

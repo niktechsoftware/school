@@ -123,8 +123,8 @@ class studentHWControllers extends CI_Controller{
 		 $dt= $this->db->get("subject")->row()->subject;
 		$workfor=$this->input->post("homeworkfor");
 		$sdate = $this->input->post("sdate");
-		$msg =	"Dear Student please done your homework before ".$sdate." given in homework section of ".$workfor." subject ".$dt."-".$def."For more info visit login to you account";
-		
+	$msg =	"Dear Student please done your homework before ".$sdate." given in homework section of ".$workfor." subject ".$dt."-".$def."For more info visit login to you account";
+	
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 	
 		$fmobile=$this->session->userdata("mobile_number");
@@ -212,7 +212,8 @@ class studentHWControllers extends CI_Controller{
 		$sende_Detail =$sender->row();
 	$def=	$this->input->post("hwdefine");
 		$sdate = $this->input->post("sdate");
-		$msg =	"Dear Teacher please done your homework ".$def." before ".$sdate." given in homework section of your account .For more info visit login to you account";
+	$msg =	"Dear Teacher please done your homework ".$def." before ".$sdate." given in homework section of your account .For more info visit login to you account";
+	   
 	    $isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		$fmobile=$this->session->userdata("mobile_number");
 //	print_r($isSMS);exit();

@@ -66,8 +66,11 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 <?php $i = 1;$j=1;
                      $this->db->where("status",1);
                       $this->db->where("class_id",$classid);
+
                       //$this->db->order_by("name","asc");
+
                     $num_row=$this->db->get("student_info");
+                  //  print_r($num_row);exit();
                 if($num_row->num_rows()>0){
                 foreach ($num_row->result() as $stu):
                  $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND fsd = '$fsd' and school_code='$school_code' AND stu_id='$stu->id'");
@@ -78,7 +81,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   <tr>
                     <td><?php echo $j; ?></td>
                     <td><?php echo $stu->username; ?> </td>
-                    <td><?php echo $stu->name;?></td>
+                    <td ><span  style="text-transform:uppercase;"><?php echo $stu->name;?></span></td>
                      <?php if($v->Attendance==1)
                     { ?>
                    <td><?php echo 'P'?></td>
@@ -164,7 +167,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
     					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);
     						 $("#submit<?php echo $i;?>").show();
-    						//alert(" Marks inserted Successfully!!!!! ");
+
     					});
     				    }else{
     				        alert('Please fill all Boxes');

@@ -98,7 +98,7 @@
 	$valid_id = $rowb->valid_id;
 	
 	if(strlen($valid_id) > 0):
-		$empInfo = $this->db->query("select * from employee_info where id = '$valid_id' AND school_code = '$school_code' ")->row();
+		$empInfo = $this->db->query("select * from employee_info where id = '$valid_id' AND school_code = '$school_code' ");
 	endif;
 	
 ?>
@@ -108,7 +108,7 @@
                     	<td style="border:none;">
                         	<?php $i = $id_name; ?>
                         	<?php if(strlen($valid_id) > 0):
-							if($empInfo->name){	echo $empInfo->name;} else {echo "N/A";}
+							if($empInfo->num_rows()>0){	echo $empInfo->row()->name; } else {echo "N/A";}
 							endif;?>
                     		<strong><?php echo $rowb->name; ?></strong>
                         </td>
@@ -117,10 +117,10 @@
                     	<td style="border:none;">
                         	<?php echo '<strong>Mobile No. :</strong>'.$rowb->phone_no; ?>
                         	<?php if(strlen($valid_id) > 0):
-				if($enpInfo->mobile){	echo $empInfo->mobile;} else {
+				if($empInfo->num_rows()>0){	echo $empInfo->row()->mobile;} else {
 					echo "N/A";
 				}
-				endif;?>
+				endif; ?>
                         </td>
                     </tr>
             </table>
@@ -172,7 +172,9 @@
 		      <td>
 		      	<?php echo $rowb->phone_no; ?>
 		      	<?php if(strlen($valid_id) > 0):
-					echo $empInfo->mobile;
+				if($empInfo->num_rows()>0){
+				    	echo $empInfo->mobile;
+				}else{echo "N/A"; }
 				endif;?>
 		      </td>
 		      <td><?php echo $rowb->reason; ?></td>

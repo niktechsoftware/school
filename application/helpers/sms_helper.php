@@ -3,6 +3,8 @@
 function sms($number,$msg,$user,$pass,$senderid)
 {  
 
+
+
 $url="http://bulksms.niktechsoftware.com/vendorsms/pushsms.aspx?user=".$user."&password=".$pass."&msisdn=".$number."&sid=".$senderid."&msg=".urlencode($msg)."&fl=0&gwid=2";
 	$object1 =array();
 
@@ -78,7 +80,7 @@ return $object1;
 
 function checkBalSms($user,$pass)
 { 
-$url = "http://bulksms.niktechsoftware.com/vendorsms/CheckBalance.aspx?user=".$user."&password=".$pass;
+$url = "http://zapsms.co.in/vendorsms/CheckBalance.aspx?user=".$user."&password=".$pass;
 
 
 $ch = curl_init();
@@ -103,7 +105,7 @@ return $Textt;
 }
 
 
-
+//4b6f9cf2a8541df7f5b15d1b09156588
 
 function getAge($dob) {
 	$today = date("Y-m-d");

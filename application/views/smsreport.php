@@ -161,7 +161,9 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 									
 
 										</td>
+
                    <td><a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->msg_id; ?>" class="btn btn-green"> View Sms Detail</a></td> 
+
 										
 									</tr>
 

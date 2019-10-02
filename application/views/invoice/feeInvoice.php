@@ -152,9 +152,9 @@ $tdiscount=0;
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			        <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
-			            <?php //if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
+			            <?php if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
 			           echo "Mobile No. : +91-".$info->mobile_no;
-			           if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{}
+			          // if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{ }
 			           ?>
 			           </span>
 				</td>
@@ -507,7 +507,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
 			           <?php //if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
 			           echo "Mobile No. : +91-".$info->mobile_no;
-			           if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{}
+			           if($info->mobile_no>0){ echo ', '.$info->mobile_no;}else{}
 			           ?>
 			           </span>
 				</td>
@@ -790,7 +790,7 @@ $monthmk[$i]=13;?>
 				  <td class="col-sm-7" rowspan="3" style="color:white;" >
 				  <strong>   Received by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
-This is computer generated invoice and verified by Accountant.
+This is computer generated invoice and verified by accountant.
 				  
 				  </td>
 				
@@ -818,7 +818,8 @@ This is computer generated invoice and verified by Accountant.
     <!--    <button class="btn btn-danger" type="button" onclick="window.print();">Print Reciept </button>-->
     <!--</div>-->
 
-    <?php } else{?>
+    <?php }else{?>
+
     	<div id="printcontent" style="width:100%;">
 
     	<h3 class="text-danger text-center text-uppercase">Student Receipt</h3>
@@ -852,9 +853,9 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			         <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
-			            <?php //if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
+			            <?php if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
 			           echo "Mobile No. : +91-".$info->mobile_no;
-			           if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{}
+			          // if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{}
 			           ?>
 			           </span>
 				</td>
@@ -1139,7 +1140,6 @@ This is computer generated invoice and verified by Accountant.
 	</div>
 </div>
     <?php } ?>
-
 </body>
 <div class="invoice-buttons" style="text-align:center;">
     <button class="button button2" type="button"  onclick="window.print();">

@@ -486,8 +486,11 @@ jQuery(document).ready(function(){
 						$("#empatt1").html(data);
 						});
 					});
-		Main.init();
+	
+	});
+	TableExport.init();
+	Main.init();
 		SVExamples.init();
 		FormElements.init();
-	});
+			
 </script>
