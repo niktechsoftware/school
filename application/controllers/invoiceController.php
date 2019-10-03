@@ -508,11 +508,10 @@ class InvoiceController extends CI_Controller{
 					<br>Thanku You;
 					<br>All the best;
 					 !!!!!!!!!</div>";
-			
-		         }}
+		    }
+								}
 		   else
 		       {
-			
 					 echo "<div class='alert alert-warning'> No Record Found Please Select Valid FSD and Student ID.
 					Please insure possible mistakes.<br>1. Selected Financial Start Date have no exam conducted in current date.
 					<br>2.You have inserted wrong student ID please check it befoure generating Exam result.<br>
@@ -521,12 +520,9 @@ class InvoiceController extends CI_Controller{
 					<br>
 					<br>
 					Sorry !!!!!!!!!</div>";
-		  	       
                  }
-			
             }
 /////////////////////////////////
-		     
 	}
 	
 function result(){

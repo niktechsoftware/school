@@ -7,7 +7,7 @@
 		<!--[if gte IE 9]><!-->
 		
 		<!--<![endif]-->
-		<script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
+	
 		<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/plugins/blockUI/jquery.blockUI.js"></script>
 		<script src="<?php echo base_url(); ?>assets/plugins/iCheck/jquery.icheck.min.js"></script>
@@ -486,8 +486,11 @@ jQuery(document).ready(function(){
 						$("#empatt1").html(data);
 						});
 					});
-		Main.init();
+	
+	});
+	//TableExport.init();
+	Main.init();
 		SVExamples.init();
 		FormElements.init();
-	});
+			
 </script>

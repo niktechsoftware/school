@@ -265,15 +265,25 @@ function getFsd(){
 			$stuname=$student->name;
 			$msg = "Dear Parent your child ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
 		//echo $msg;exit;
-			sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 			$this->db->where("id",$school_code);
+			
+			
 		    $admin_mobile = $this->db->get('school')->row();
-		    if($admin_mobile->id==1){
-			$msg1 = "Dear School Manager your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
-			sms($admin_mobile->mobile_no,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-				$msg2 = "Dear School Principle your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
-			sms(7398863503,$msg2,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+		    $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
+		    $getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
+		    if($getresultm){
+		    	$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+		    	$this->smsmodel->sendReport($getv,$master_id);
 		    }
+		    //sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+		    		
+		   // if($admin_mobile->id==1){
+			//$msg1 = "Dear School Manager your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
+			//sms($admin_mobile->mobile_no,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+				//$msg2 = "Dear School Principle your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
+			//sms(7398863503,$msg2,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+		    //}
 		
 		    //print_r($mode);exit;
 			

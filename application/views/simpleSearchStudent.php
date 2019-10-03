@@ -139,6 +139,7 @@ And also we get Student I card by click on username of that Student.
 									$sno = 1; foreach ($request as $row): 
 									
 										$this->db->where("username",$row->username);
+											$this->db->where("status",1);
 										$snameid  = $this->db->get("student_info")->row();?>
 									<tr>
 										<td><?php echo $sno; ?></td>

@@ -186,96 +186,7 @@ public function addinfo(){
 		$addInfoConfirm2 = $this->newAdmissionModel->addInfo2($datapreschool);
 		
 		
-		//$subjectRows = $this->input->post("subVal");
-		// for($i = 1; $i<=$subjectRows; $i++){
-		// 	$subData = array(
-		// 			"student_id" => $id,
-		// 			"subject" => $this->input->post("subject$i"),
-		// 			//"school_code"=>$this->session->userdata("school_code")
-		// 	);
-		// 	$this->db->insert("students_subject",$subData);
-		// }
 		
-		// $pClassData = array(
-		// 		"student_id" => $id,
-		// 		"pClass" => $this->input->post("pClass"),
-		// 		"pSchool" => $this->input->post("pSchool"),
-		// 		"pYear" => $this->input->post("pYear"),
-		// 		"pRoll" => $this->input->post("pRoll"),
-		// 		"pMarks" => $this->input->post("pMarks"),
-		// 		"pPercentage" => $this->input->post("pPercentage"),
-		// 		"pSubject" => $this->input->post("pSubject"),
-		// 		"school_code"=>$this->session->userdata("school_code")
-		// );
-		// $tranAmount=$this->input->post("pickupAmount");
-		// $discountap=$this->input->post("discount");
-		
-		// $dis = $this->db->query("SELECT * FROM discounttable WHERE school_code='$school_code' AND discount_head='$discountap'")->row();
-												
-		
-		// $this->db->insert("previusSchoolInfo",$pClassData);
-		
-		//define student fee----------------------------------------------  -----------------------------------------
-		//$class_id = $this->input->post("classOfAdmission");
-		//$section = $this->input->post("section");
-		
-		// $val = $this->feemodel->getmonthdeposite($school_code);//check1
-		// if($val->num_rows()>0){
-		// 	foreach($val->result() as $monthfee):
-			
-		// 	$data['student_id']=$id;
-		// 	$data['should_deposite']=$monthfee->deposite_date;
-		// 	$data['month_number']=$monthfee->month_number;
-		// 	$data['status']="pending";
-		// 	$data['finance_start_date']=$this->session->userdata("fsd");
-		// 	$data['school_code']=$this->session->userdata("school_code");
-			
-			// $getfeehead = $this->feemodel->classwisefee($class_id,$section,$school_code,$monthfee->month_number);
-			// if($getfeehead->num_rows()>0){
-			// 	$r=1;$totpable=0;
-			// 	$headamount=0;
-			// 	foreach($getfeehead->result() as $feec):
-			// 	$headamount=$feec->fee_head_amount;
-				// if(strlen($discountap)>0){
-					
-				// 	if($dis->mannual==$feec->fee_head_name){
-				// 		if($dis->discount_amount>0)
-				// 		{
-				// 			$headamount=$feec->fee_head_amount-$dis->discount_amount;
-				// 		}else{
-				// 			$disper = (($feec->fee_head_amount*$dis->discount_persent)/100);
-				// 			$headamount = $feec->fee_head_amount-$disper;
-				// 		}
-				// 	}
-				// 	if($dis->mannual=='Yes'){
-				// 		if($dis->discount_amount>0)
-				// 		{
-				// 			$headamount=$feec->fee_head_amount-$dis->discount_amount;
-				// 		}else{
-				// 			$disper = (($feec->fee_head_amount*$dis->discount_persent)/100);
-				// 			$headamount = $feec->fee_head_amount-$disper;
-				// 		}
-				// 	}
-				// }
-				// $data["fee_head_name$r"]=$feec->fee_head_name;
-				// $data["fee_head_amount$r"]=$headamount;
-				// $r++;
-				// $totpable = $totpable+$headamount;
-				
-				//endforeach;
-				// if($tranAmount){
-				
-				// $data["transport"]=$tranAmount;
-				// $totpable=$totpable+$tranAmount;
-				// }
-				
-			// 	$data['total']=$totpable;
-				
-			// 	$this->db->insert("fee_deposit",$data);
-			// 	unset($data);
-			// }
-			// endforeach;
-		//}
 		
 		if($addInfoConfirm && $addInfoConfirm1 && $addInfoConfirm2){
 
@@ -289,19 +200,23 @@ public function addinfo(){
 			
 			if($isSMS->admission)
 				{
-					$school = $this->session->userdata("your_school_name");
+				$school = $this->session->userdata("your_school_name");
 		 		$f_name=$this->input->post("fatherName");
-					$username = $id;
+				$username = $id;
 				$password = $this->input->post("password");
-
 					$f_mobile = $this->input->post("mobileNumber");
-					echo $f_mobile."<br>";
-					echo $school."<br>";
-					echo $username."<br>";
-					echo $password."<br>";
+					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+					$master_id=$max_id->maxid+1;
+					
+					
 					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail->web_url." Thanks.";	
-					sms($f_mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-						redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
+					
+					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
+					if($getresultm){
+					$getv=sms($f_mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+					$this->smsmodel->sendReport($getv,$master_id);
+					}
+					redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}else{
 				    	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}
@@ -415,10 +330,18 @@ public function addinfo(){
 					$username = $id;
 				$password = $this->input->post("password");
 
+					//$f_mobile = $this->input->post("mobileNumber");
 					$f_mobile = $this->input->post("mobileNumber");
+					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+					$master_id=$max_id->maxid+1;
+						
 					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail->web_url." Thanks.";	
-					sms($f_mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 					
+					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
+					if($getresultm){
+						$getv=sms($f_mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+						$this->smsmodel->sendReport($getv,$master_id);
+					}
 						redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}else{
 				    	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
