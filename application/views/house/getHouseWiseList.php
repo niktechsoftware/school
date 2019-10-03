@@ -4,12 +4,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   <meta name="keywords" content="Enterprise resource planning,school,ERP,system software,attendance,biometric,online, school management,gps,niktech software solution, online result, online admit card,omr">
   <meta name="author" content="School management System software">
 -->
-<?php
+<?php 
 if($clah == "all"):
 //$this->db->where("school_code",$this->session->userdata("school_code"));
+$this->db->where("fsd",$this->session->userdata("fsd"));
 $this->db->where("status",1);
 	$student = $this->db->get("student_info");
-
+//print_r($student->result());
 else:
 //$this->db->where("school_code",$this->session->userdata("school_code"));
 $this->db->where("status",1);
@@ -69,10 +70,13 @@ endif;
 			  				<td><?php echo $count;?></td>
 			  			<td><?php echo $stuDetail->username;?></td>
 			  			<td><?php echo $stuDetail->name;?></td>
-			  			<td><?php  $stuDetail->class_id;
+			  			<td><?php 
+									$stuDetail->class_id;
 	  			                  $this->db->where('school_code',$this->session->userdata("school_code"));
                                   $this->db->where('id',$stuDetail->class_id);
                        $classname=$this->db->get('class_info');
+					   
+					//print_r($stuDetail->class_id);
                        if($classname->num_rows()>0){
                                   $classdf=$classname->row();
                                   $this->db->where("id",$classdf->section);
