@@ -397,9 +397,168 @@ $school_code = $this->session->userdata("school_code");
 							</div>
     
      </div>
+        <div class="col-md-6 col-lg-3 col-sm-6">
+    <div class="panel panel-default panel-white core-box">
+      <div class="panel-body no-padding">
+        <div class="partition-blue text-center core-icon">
+          <i class="fa fa-users fa-2x icon-big"></i>
+
+          </span>
+        </div>
+        <a href="#">
+          <div class="padding-20 core-content">
+            <!-- <h4 class="title block no-margin">Student Admission</h4>-->
+            <h4 class="title block no-margin">Pending Leave Request</h4><br>
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="block no-margin">Employee</h6>
+                </br>
+                <mark><?php 
+               
+					   
+						$this->db->where("school_code",$school_code);
+						$this->db->where("status",0);
+						$data=$this->db->get('emp_leave');
+							if($data->num_rows()>0){
+				      	$count=0;
+						foreach($data->result() as $row):
+						  $leave= $row->total_leave;
+						  $count=$count+$leave;
+						 // echo "<pre>";
+						  endforeach;
+						  echo $count;
+							} else{ echo "No Pending Request";}?></mark>
+              </div>
+              <div class="col-sm-6">
+                <h6 class="block no-margin">Student</h6>
+                </br>
+                <mark> <?php	$this->db->where("school_code",$school_code);
+						$this->db->where("approve","NO");
+						$data=$this->db->get('stu_leave');
+							if($data->num_rows()>0){
+				      	$count=0;
+						foreach($data->result() as $row):
+						  $leave= $row->total_leave;
+						  $count=$count+$leave;
+						 // echo "<pre>";
+						  endforeach;
+						  echo $count;
+							} else{ echo "No Pending Request";}?></mark>
+              </div>
+            </div>
+
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+      <div class="col-md-6 col-lg-3 col-sm-6">
+    <div class="panel panel-default panel-white core-box">
+      <div class="panel-body no-padding">
+        <div class="partition-blue text-center core-icon">
+          <i class="fa fa-users fa-2x icon-big"></i>
+
+          </span>
+        </div>
+        <a href="#">
+          <div class="padding-20 core-content">
+            <!-- <h4 class="title block no-margin">Student Admission</h4>-->
+            <h4 class="title block no-margin">Employee</h4><br>
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="block no-margin"> Pending Leave Request</h6>
+                </br>
+                <mark><?php 
+               
+					   
+						$this->db->where("school_code",$school_code);
+						$this->db->where("status",0);
+						$data=$this->db->get('emp_leave');
+							if($data->num_rows()>0){
+				      	$count=0;
+						foreach($data->result() as $row):
+						  $leave= $row->total_leave;
+						  $count=$count+$leave;
+						 // echo "<pre>";
+						  endforeach;
+						  echo $count;
+							} else{ echo "No Pending Request";}?></mark>
+              </div>
+              <div class="col-sm-6">
+                <h6 class="block no-margin">Approved</h6>
+                </br>
+                <mark> <?php		
+                        $this->db->where("school_code",$school_code);
+						$this->db->where("status",1);
+						$data=$this->db->get('emp_leave');
+							if($data->num_rows()>0){
+				      	$count=0;
+						foreach($data->result() as $row):
+						  $leave= $row->total_leave;
+						  $count=$count+$leave;
+						 // echo "<pre>";
+						  endforeach;
+						  echo $count;
+							} else{ echo "0";}?></mark>
+              </div>
+            </div>
+
+          </div>
+        </a>
+          <a href="#">
+          <div class="padding-20 core-content">
+            <!-- <h4 class="title block no-margin">Student Admission</h4>-->
+            <h4 class="title block no-margin">Student</h4><br>
+            <div class="row">
+              <div class="col-sm-6">
+                <h6 class="block no-margin"> Pending Leave Request</h6>
+                </br>
+                <mark><?php 
+               
+					   
+						$this->db->where("school_code",$school_code);
+						$this->db->where("approve","NO");
+						$data=$this->db->get('stu_leave');
+							if($data->num_rows()>0){
+				      	$count=0;
+						foreach($data->result() as $row):
+						  $leave= $row->total_leave;
+						  $count=$count+$leave;
+						 // echo "<pre>";
+						  endforeach;
+						  echo $count;
+							} else{ echo "No Pending Request";}?></mark>
+              </div>
+              <div class="col-sm-6">
+                <h6 class="block no-margin">Student</h6>
+                </br>
+                <mark> <?php	$this->db->where("school_code",$school_code);
+						$this->db->where("approve","YES");
+						$data=$this->db->get('stu_leave');
+							if($data->num_rows()>0){
+				      	$count=0;
+						foreach($data->result() as $row):
+						  $leave= $row->total_leave;
+						  $count=$count+$leave;
+						 // echo "<pre>";
+						  endforeach;
+						  echo $count;
+							} else{ echo "No Pending Request";}?></mark>
+              </div>
+            </div>
+
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+
+
     
-    
-    
+  </div>
+
+  
     
     
     <!--2nd row end-->
@@ -452,9 +611,8 @@ $school_code = $this->session->userdata("school_code");
                     class="accordion-toggle padding-15">
                     <i class="icon-arrow"></i>
 
-                    <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
-                    Today Morning Student Attendance <?php if($new > 0):?> <span
-                      class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+                     Today Morning Student Attendance  <span
+                      class="label label-danger pull-right"></span>
 
                   </a></h4>
               </div>
@@ -464,11 +622,11 @@ $school_code = $this->session->userdata("school_code");
                     <table class="table">
                     <thead>
                     <th>Sno.</th>
-                    <th>Section Name</th>
-                    <th>Class Name</th>
+                    <th>Section </th>
+                    <th>Class </th>
                     <th>Total Student</th>
-                    <th>Present Student</th>
-                    <th>Absent Student</th>
+                    <th>Present </th>
+                    <th>Absent </th>
                     </thead>
                                  <tbody>
                         <?php $i=1;?>
@@ -492,10 +650,11 @@ $school_code = $this->session->userdata("school_code");
                            $fsd= $this->session->userdata("fsd");
                            
                            $this->db->where("fsd",$fsd);
+                            $this->db->where("status",1);
                           $this->db->where("class_id",$sectiondt->id);
                           $data= $this->db->get("student_info");
                          if($data->num_rows()>0){  
-                              
+                            $this->db->where("status",1);  
                          $this->db->where("class_id",$sectiondt->id);
                          $studata=$this->db->get("student_info");
                          $totstudent= $studata->num_rows();
@@ -519,22 +678,20 @@ $school_code = $this->session->userdata("school_code");
                           $school_atten= $this->db->get("school_attendance");
                           if($school_atten->num_rows()>0){
                           
-                          $this->db->where("stu_id",$studata->row()->id);
-                           $this->db->where("shift_1",1);
-                          $this->db->where("a_date",$date);
-                           $absent=  $this->db->get("attendance")->num_rows();
-                           if($absent>0){
+                    $resultA = $this->db->query("SELECT count(stu_id) as Total_Absent FROM attendance WHERE attendance = 0 AND class_id='$sectiondt->id' AND school_code='$school_code' AND a_date = '$date' ");
+        			  
+                           if($resultA->num_rows()>0){
+                            $absent=$resultA->row()->Total_Absent;
+                          
 
-                          $count=$count+$absent;
-
-                          $presentstu=$totstudent-$count;
+                          $presentstu=$totstudent-$absent;
                           // print_r($count);
                          
                         ?>
                     
                        
                           <td class="center"><?php echo $presentstu;?></td>
-                          <td class="center"><?php echo $count;?></td>
+                          <td class="center"><?php echo $absent;?></td>
                         
                         </tr>
                         <?php  } else{ ?>
@@ -559,27 +716,26 @@ $school_code = $this->session->userdata("school_code");
                 <div class="panel no-radius">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <a href="#collapseOne2" data-parent="#accordion" data-toggle="collapse"
-                    class="accordion-toggle padding-15">
+                  <a href="#collapsetwo2" data-parent="#accordion" data-toggle="collapse"
+                    class="accordion-toggle padding-15 collapsed">
                     <i class="icon-arrow"></i>
 
-                    <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
-                    Today Evening Student Attendance <?php if($new > 0):?> <span
-                      class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
+                    Today Evening Student Attendance  <span
+                      class="label label-danger pull-right"></span>
 
                   </a></h4>
               </div>
-              <div class="panel-collapse collapse in" id="collapseOne2">
+              <div class="panel-collapse collapse in" id="collapsetwo2">
                 <div class="panel-body no-padding partition-light-grey">
                   <a href="<?php echo base_url()?>index.php/login/dayBook">
                     <table class="table">
                     <thead>
                     <th>Sno.</th>
-                    <th>Section Name</th>
-                    <th>Class Name</th>
+                    <th>Section </th>
+                    <th>Class </th>
                     <th>Total Student</th>
-                    <th>Present Student</th>
-                    <th>Absent Student</th>
+                    <th>Present </th>
+                    <th>Absent </th>
                     </thead>
                                  <tbody>
                         <?php $i=1;?>
@@ -603,10 +759,11 @@ $school_code = $this->session->userdata("school_code");
                            $fsd= $this->session->userdata("fsd");
                            
                            $this->db->where("fsd",$fsd);
+                             $this->db->where("status",1);
                           $this->db->where("class_id",$sectiondt->id);
                           $data= $this->db->get("student_info");
                          if($data->num_rows()>0){  
-                              
+                             $this->db->where("status",1);   
                          $this->db->where("class_id",$sectiondt->id);
                          $studata=$this->db->get("student_info");
                          $totstudent= $studata->num_rows();
@@ -630,22 +787,21 @@ $school_code = $this->session->userdata("school_code");
                           $school_atten= $this->db->get("school_attendance");
                           if($school_atten->num_rows()>0){
                           
-                          $this->db->where("stu_id",$studata->row()->id);
-                           $this->db->where("shift_2",1);
-                          $this->db->where("a_date",$date);
-                           $absent=  $this->db->get("attendance")->num_rows();
-                           if($absent>0){
+                           $resultA = $this->db->query("SELECT count(stu_id) as Total_Absent FROM attendance WHERE attendance = 0 AND class_id='$sectiondt->id' AND school_code='$school_code' AND a_date = '$date' ");
+        			  
+                           if($resultA->num_rows()>0){
+                            $absent=$resultA->row()->Total_Absent;
 
-                          $count=$count+$absent;
+                        //  $count=$count+$absent;
 
-                          $presentstu=$totstudent-$count;
+                          $presentstu=$totstudent-$absent;
                           // print_r($count);
                          
                         ?>
                     
                        
                           <td class="center"><?php echo $presentstu;?></td>
-                          <td class="center"><?php echo $count;?></td>
+                          <td class="center"><?php echo $absent;?></td>
                         
                         </tr>
                         <?php  } else{ ?>
@@ -679,12 +835,12 @@ $school_code = $this->session->userdata("school_code");
               </div>
               <div class="panel-collapse collapse" id="collapseTwo2">
                 <div class="panel-body no-padding partition-light-grey">
-                  <a href="<?php echo base_url()?>index.php/login/dayBook">
+                  <a href="#">
                   <table class="table">
                     <thead style="text-align:center;">
 
                     <th>Sno.</th>
-                    <th>Teacher Name</th>
+                    <th>Employee Name</th>
                 
                     <th>Present / Absent </th>
                     </thead>
@@ -703,16 +859,14 @@ $school_code = $this->session->userdata("school_code");
                         $this->db->where("emp_id",$totteacher->id);
                         $this->db->where("a_date",$date);
                        $classdt= $this->db->get("teacher_attendance");
-                 //      print_r($classdt);
-                      
-                          // print_r($count);
+               
                          
                         ?>
                     
                         <tr>
                           <td class="center"><?php echo $i;?></td>
                           <td> <?php echo $totteacher->name ;?>  </td>  
-                    <?php    if($classdt->num_rows()>0){?>   <td class="center"> <span style="color:green;"><?php if(($classdt->row()->attendance)==1){ echo "Present" ;?></span><?php } else{  ?><span style="color:red;"><?php  echo "Absent" ; ?></span></td><?php } } else{?>
+                    <?php    if($classdt->num_rows()>0){?>   <td class="center"> <span style="color:green;"><?php if(($classdt->row()->attendance)==1){ echo "Present" ;?></span><?php } else{  ?><a href ="<?php echo base_url();?>index.php/timetablepanel/arrange_apsentteacher" style="color:red;"> <span style="color:red;"><?php  echo "Absent" ; ?></span> (Arrangement)</a></td><?php } } else{?>
                         <td> Today's Attendance Not Done. </td>  
                          <?php }?>
                         </tr>
@@ -790,7 +944,7 @@ $school_code = $this->session->userdata("school_code");
                     <table class="table">
                     <thead>
                     <th>Sno.</th>
-                    <th>Class Name</th>
+                    <th>Class </th>
                     <th>Total Fee Due</th>
                     </thead>
                       
@@ -1439,620 +1593,7 @@ $school_code = $this->session->userdata("school_code");
 
 
 
-  <div class="row" Style="margin-left:2px;">
-    <div class="col-md-4 col-lg-4">
-      <div class="panel panel-default panel-white ">
-        <div class="panel-body no-padding">
-          <div class="partition-green padding-20 text-center text-bold">
-            <a href="<?php echo base_url(); ?>index.php/smsAjax/smsPanel" class="text-white">
-              Click for SMS Panel
-            </a>
-          </div>
-
-          <div class="padding-20 core-content">
-            <h2 class="title block no-margin"></h2>
-            <br />
-            <span class="subtitle"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--   <div class="col-lg-4 col-md-12"> 
-      <div class="panel panel-white">
-
-        <div class="panel-body no-padding">
-          <div class="padding-10">
-
-            <h4 class="no-margin inline-block padding-5">Attendance Report <span
-                class="block text-small text-left">Total Absent</span></h4>
-
-          </div>
-
-          <div class="tabbable no-margin no-padding partition-dark">
-
-            <div class="tab-content partition-white">
-              <div id="users_tab_example1" class="tab-pane padding-bottom-5 active">
-                <div class="panel-scroll height-230">
-                  <table class="table table-striped table-hover">
-                    <thead>
-                      <tr>
-
-                        <th><span class="">Class Name</span><a href="#" class="btn"></i></a></th>
-                        <th>Total
-                        </th>
-                        <th class="Present">Present
-                        </th>
-                        <th class="Absent">Absent
-                        </th>
-                        <th class="Leave">Leave
-                        </th>
-
-
-                      </tr>
-
-
-                    </thead>
-                    <tbody>
-
-                      <?php $dat=date("Y-m-d") ;
-															
-															$this->db->distinct();
-															//$this->db->select('id');
-															$this->db->where("school_code",$this->session->userdata("school_code"));
-															$dfg = $this->db->get('class_info');
-															if($dfg->num_rows()>0){
-															$vyt=	$dfg->result();
-															  
-															foreach($vyt as $t):
-															
-															$this->db->where("school_code",$this->session->userdata("school_code"));
-															$this->db->where("DATE(a_date)",$dat);
-															$this->db->where("class_id",$t->id);
-															$grt = $this->db->get("attendance");
-															if($grt->num_rows()>0){
-																$ft = $grt->result();
-																$p=0;$l=0;$a=0;
-																	foreach($ft as $f):
-																
-																	if($f->attendance==0){
-																	
-																	$a=$a+1;
-																	}
-																	else{
-																		$p=$p+1;	
-																	}
-																	
-																	endforeach;
-															?>
-                      <tr>
-
-                        <td><span>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $t->class_name;?></span><a href="#"
-                            class="btn"></a></td>
-                        <td class="center"><?php echo $grt->num_rows();?>
-                        </td>
-                        <td class="center"><?php echo $p;?>
-                        </td>
-                        <td class="center"><?php echo $a;?>
-                        </td>
-                        <td class="center"><?php echo $l;?>
-                        </td>
-                      </tr>
-
-                      <?php }else{
-																
-															}
-															endforeach;
-														}
-															?>
-
-
-
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div id="users_tab_example2" class="tab-pane padding-bottom-5">
-                <div class="panel-scroll height-230">
-                  <table class="table table-striped table-hover">
-                    <tbody>
-                      <tr>
-                        <td class="center"><img src="assets/images/avatar-3.jpg" class="img-circle" alt="image" /></td>
-                        <td><span class="text-small block text-light">Visual Designer</span><span
-                            class="text-large">Steven Thompson</span><a href="#" class="btn"><i
-                              class="fa fa-pencil"></i></a></td>
-                        <td class="center">
-                          <div>
-                            <div class="btn-group">
-                              <a class="btn btn-transparent-grey dropdown-toggle btn-sm" data-toggle="dropdown"
-                                href="#">
-                                <i class="fa fa-cog"></i> <span class="caret"></span>
-                              </a>
-                              <ul role="menu" class="dropdown-menu dropdown-dark pull-right">
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-edit"></i> Edit
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-share"></i> Share
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-times"></i> Remove
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="center"><img src="assets/images/avatar-5.jpg" class="img-circle" alt="image" /></td>
-                        <td><span class="text-small block text-light">Senior Designer</span><span
-                            class="text-large">Kenneth Ross</span><a href="#" class="btn"><i
-                              class="fa fa-pencil"></i></a></td>
-                        <td class="center">
-                          <div>
-                            <div class="btn-group">
-                              <a class="btn btn-transparent-grey dropdown-toggle btn-sm" data-toggle="dropdown"
-                                href="#">
-                                <i class="fa fa-cog"></i> <span class="caret"></span>
-                              </a>
-                              <ul role="menu" class="dropdown-menu dropdown-dark pull-right">
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-edit"></i> Edit
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-share"></i> Share
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-times"></i> Remove
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="center"><img src="assets/images/avatar-4.jpg" class="img-circle" alt="image" /></td>
-                        <td><span class="text-small block text-light">Web Editor</span><span class="text-large">Ella
-                            Patterson</span><a href="#" class="btn"><i class="fa fa-pencil"></i></a></td>
-                        <td class="center">
-                          <div>
-                            <div class="btn-group">
-                              <a class="btn btn-transparent-grey dropdown-toggle btn-sm" data-toggle="dropdown"
-                                href="#">
-                                <i class="fa fa-cog"></i> <span class="caret"></span>
-                              </a>
-                              <ul role="menu" class="dropdown-menu dropdown-dark pull-right">
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-edit"></i> Edit
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-share"></i> Share
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-times"></i> Remove
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div id="users_tab_example3" class="tab-pane padding-bottom-5">
-                <div class="panel-scroll height-230">
-                  <table class="table table-striped table-hover">
-                    <tbody>
-                      <tr>
-                        <td class="center"><img src="assets/images/avatar-2.jpg" class="img-circle" alt="image" /></td>
-                        <td><span class="text-small block text-light">Content Designer</span><span
-                            class="text-large">Nicole Bell</span><a href="#" class="btn"><i
-                              class="fa fa-pencil"></i></a></td>
-                        <td class="center">
-                          <div>
-                            <div class="btn-group">
-                              <a class="btn btn-transparent-grey dropdown-toggle btn-sm" data-toggle="dropdown"
-                                href="#">
-                                <i class="fa fa-cog"></i> <span class="caret"></span>
-                              </a>
-                              <ul role="menu" class="dropdown-menu dropdown-dark pull-right">
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-edit"></i> Edit
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-share"></i> Share
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-times"></i> Remove
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="center"><img src="assets/images/avatar-3.jpg" class="img-circle" alt="image" /></td>
-                        <td><span class="text-small block text-light">Visual Designer</span><span
-                            class="text-large">Steven Thompson</span><a href="#" class="btn"><i
-                              class="fa fa-pencil"></i></a></td>
-                        <td class="center">
-                          <div>
-                            <div class="btn-group">
-                              <a class="btn btn-transparent-grey dropdown-toggle btn-sm" data-toggle="dropdown"
-                                href="#">
-                                <i class="fa fa-cog"></i> <span class="caret"></span>
-                              </a>
-                              <ul role="menu" class="dropdown-menu dropdown-dark pull-right">
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-edit"></i> Edit
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-share"></i> Share
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-times"></i> Remove
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="center"><img src="assets/images/avatar-5.jpg" class="img-circle" alt="image" /></td>
-                        <td><span class="text-small block text-light">Senior Designer</span><span
-                            class="text-large">Kenneth Ross</span><a href="#" class="btn"><i
-                              class="fa fa-pencil"></i></a></td>
-                        <td class="center">
-                          <div>
-                            <div class="btn-group">
-                              <a class="btn btn-transparent-grey dropdown-toggle btn-sm" data-toggle="dropdown"
-                                href="#">
-                                <i class="fa fa-cog"></i> <span class="caret"></span>
-                              </a>
-                              <ul role="menu" class="dropdown-menu dropdown-dark pull-right">
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-edit"></i> Edit
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-share"></i> Share
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-times"></i> Remove
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="center"><img src="assets/images/avatar-4.jpg" class="img-circle" alt="image" /></td>
-                        <td><span class="text-small block text-light">Web Editor</span><span class="text-large">Ella
-                            Patterson</span><a href="#" class="btn"><i class="fa fa-pencil"></i></a></td>
-                        <td class="center">
-                          <div>
-                            <div class="btn-group">
-                              <a class="btn btn-transparent-grey dropdown-toggle btn-sm" data-toggle="dropdown"
-                                href="#">
-                                <i class="fa fa-cog"></i> <span class="caret"></span>
-                              </a>
-                              <ul role="menu" class="dropdown-menu dropdown-dark pull-right">
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-edit"></i> Edit
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-share"></i> Share
-                                  </a>
-                                </li>
-                                <li role="presentation">
-                                  <a role="menuitem" tabindex="-1" href="#">
-                                    <i class="fa fa-times"></i> Remove
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    -->
-    <div class="col-lg-4 col-md-12">
-      <div class="panel panel-white">
-        <div class="panel-body no-padding">
-          <div class="padding-10">
-            <h4 class="no-margin inline-block padding-5">Absent Teachers 
-            <!-- <span class="block text-small text-left">Total Absent</span> -->
-            </h4>
-          </div>
-          <div class="tabbable no-margin no-padding partition-dark">
-            <div class="tab-content partition-white">
-              <div id="users_tab_example1" class="tab-pane padding-bottom-5 active">
-                <div class="panel-scroll height-230">
-                  <table class="table table-striped table-hover">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Teacher Name</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                        <!-- <th class="Leave">Leave</th> -->
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <?php 
-                          if($emp_lev->num_rows()>0){ $i=1;                
-                          foreach($emp_lev->result() as $lv_data)
-                          {                           															
-                          ?>
-                      <tr>
-                        <td><?php echo $i;?></td>
-                        <td><?php echo $lv_data->emp_id; ?></td>
-                        <td>Absent</td>
-                        <td><?php echo $lv_data->a_date; ?></td>
-                        <td>
-                            <input type="hidden" id="abc<?php echo $i;?>"  value="<?php echo $lv_data->emp_id; ?>"/>
-                            <input type="button" id="assgin<?php echo $i;?>"  value="Assgin" class="btn btn-danger" />
-                            <input type="button" id="assgined<?php echo $i;?>"  value="Assgined" class="btn btn-success" />
-                        </td>
-                      </tr>
-                      <script>
-                      $("#assgin<?php echo $i;?>").show();
-                      alert("3"); 
-                      $("#assgined<?php echo $i;?>").hide();
-                      </script>
-                      
-                     
-                            <?php 
-														$i++;	}
-														}
-															?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-  </div>
-
-  <div class="row" style="margin-left:2px;">
-    
-    <div class="col-md-4 col-lg-4 col-sm-6">
-      <div class="panel panel-blue core-box">
-
-        <?php              $dt=date('Y-m-d'); ?>
-        <?php $leve = $this->db->query("SELECT * FROM emp_leave WHERE school_code='$school_code' AND  end_date>='$dt' ORDER BY id");?>
-        <?php $is_row=$leve->num_rows();?>
-        <?php if($is_row > 0):?>
-        <div class="e-slider owl-carousel owl-theme">
-          <?php foreach($leve->result() as $row):?>
-          <?php $id = $row->emp_id;?>
-          <?php
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("id",$id); 
-		    $info = $this->db->get("employee_info")->row(); ?>
-
-          <div class="item">
-            <div class="panel-body">
-              <div class="core-box">
-                <div class="text-light text-bold">
-                  Employee Leave Request
-                </div>
-                <br />
-                <table style="width: 100%;">
-                  <tr>
-                    <td rowspan="4" width="30%">
-
-                      <?php if(strlen($info->photo > 0)):?>
-                      <img
-                        src="<?php echo base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->photo; ?>"
-                        alt="" width="90" height="105" />
-                      <?php else:?>
-                      <?php if($info->gender == 'Male'):?>
-                      <img alt="<?php echo $info->name;?>" width="80%"
-                        src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/empMale.png" />
-                      <?php endif;?>
-                      <?php if($info->gender == 'Female'):?>
-                      <img alt="<?php echo $info->name;?>" width="80%"
-                        src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/empFemale.png" />
-                      <?php endif;?>
-                      <?php endif;?>
-                    </td>
-                    <td>Name :
-                      <?php echo $info->name;?>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Start Date : <?php echo date("d-M-Y", strtotime($row->start_date)); ?></td>
-                  </tr>
-                  <tr>
-                    <td>Days : <?php echo $row->total_leave; ?></td>
-                  </tr>
-                  <tr>
-                    <td>End Date : <?php echo date("d-M-Y", strtotime($row->end_date)); ?></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><br />Reason :
-                      <?php echo implode(' ', array_slice(explode(' ', $row->reason), 0, 7)); ?>...</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-            <div class="padding-10">
-              <?php if($row->status==0){?>
-              <a href="<?php echo base_url();?>index.php/adminController/appleaveemp/<?php echo $row->id;?>"
-                class="btn btn-sm btn-light-green"><i class="fa fa-check"></i> Approve</a>
-              <a href="<?php echo base_url();?>index.php/adminController/deleleaveemp/<?php echo $row->id;?>"
-                class="btn btn-sm btn-light-red"><strong>x</strong> Reject</a>
-              <?php } else{?>
-              <a href="#" class="btn btn-sm btn-light-yellow">
-                Approved<i class="fa fa-check"></i>
-              </a>
-              <?php }?>
-            </div>
-          </div>
-
-          <?php endforeach; ?>
-        </div>
-        <?php else: ?>
-        <div class="item">
-          <div class="panel-body">
-            <div class="core-box">
-              <div class="text-light text-bold">
-                Employee Leave Request
-              </div>
-              <br />
-              <h2>There is no request for the day.....</h2>
-            </div>
-          </div>
-        </div>
-        <?php endif;?>
-
-      </div>
-    </div>
-    <div class="col-md-4 col-lg-4 col-sm-6" style="height:auto;">
-      <div class="panel panel-blue core-box">
-        <div class="e-slider owl-carousel owl-theme">
-          <?php $dt=date('Y-m-d');?>
-          <?php $leve = $this->db->query("SELECT * FROM stu_leave WHERE school_code='$school_code' AND end_date>='$dt'  ORDER BY id");?>
-          <?php $is_row=$leve->num_rows();?>
-          <?php if($is_row > 0):?>
-
-          <?php foreach($leve->result() as $row):?>
-          <?php $id = $row->stu_id;?>
-          <?php
-			//$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("id",$id); ?>
-          <?php $info = $this->db->get("student_info")->row(); ?>
-          <div class="item">
-            <div class="panel-body">
-              <div class="core-box">
-                <div class="text-light text-bold">
-                  Student Leave Request
-                </div>
-                <br />
-                <table style="width: 100%;">
-                  <tr>
-                    <td rowspan="4" width="30%">
-
-                      <?php if(strlen($info->photo > 0)):?>
-                      <img alt="<?php echo $info->name;?>" width="80%"
-                        src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $info->photo;?>" />
-                      <?php else:?>
-                      <?php if($info->gender == 'Male'):?>
-                      <img alt="<?php echo $info->name;?>" width="80%"
-                        src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/empMale.png" />
-                      <?php endif;?>
-                      <?php if($info->gender == 'Female'):?>
-                      <img alt="<?php echo $info->name;?>" width="80%"
-                        src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/empFemale.png" />
-                      <?php endif;?>
-                      <?php endif;?>
-                    </td>
-                    <td>Name :
-                      <?php echo $info->name;?>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Start Date : <?php echo date("d-M-Y", strtotime($row->start_date)); ?></td>
-                  </tr>
-                  <tr>
-                    <td>Days : <?php echo $row->total_leave; ?></td>
-                  </tr>
-                  <tr>
-                    <td>End Date : <?php echo date("d-M-Y", strtotime($row->end_date)); ?></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><br />Reason :
-                      <?php echo implode(' ', array_slice(explode(' ', $row->reason), 0, 7)); ?>...</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-            <div class="padding-10">
-              <?php if($row->approve=='NO'){?>
-              <a href="<?php echo base_url();?>index.php/adminController/appleave/<?php echo $row->id;?>"
-                class="btn btn-sm btn-light-green"><i class="fa fa-check"></i> Approve</a>
-              <a href="<?php echo base_url();?>index.php/adminController/deleleave/<?php echo $row->id;?>"
-                class="btn btn-sm btn-light-red"><strong>x</strong> Reject</a>
-              <?php } else{?>
-              <a href="#" class="btn btn-sm btn-light-yellow">
-                Approved<i class="fa fa-check"></i>
-              </a>
-              <?php }?>
-            </div>
-          </div>
-
-          <?php endforeach; ?>
-        </div>
-        <?php else: ?>
-        <div class="item">
-          <div class="panel-body">
-            <div class="core-box">
-              <div class="text-light text-bold">
-                Student Leave Request
-              </div>
-              <br />
-              <h2>There is no request for the day.....</h2>
-            </div>
-          </div>
-        </div>
-        <?php endif;?>
-      </div>
-    </div>
-  </div>
-
+ 
+  
 
   <!-- end: PAGE CONTENT-->
