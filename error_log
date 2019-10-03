@@ -1,0 +1,12 @@
+[01-Oct-2019 14:29:34 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getshift1() on null in /home/schoodhe/public_html/sschool2/application/views/printexamreport.php:96
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/views/includes/mainContent.php(6): CI_Loader->view('printexamreport')
+#3 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/sschool2/application/controllers/examControllers.php(762): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): examControllers->printexamreport()
+#7 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/printexamreport.php on line 96

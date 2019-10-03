@@ -64,8 +64,13 @@
 </head>
 
 <body>
+
    
-           
+           <div id="printcontent">
+        <div id="page-wrap">
+            <div class="row">
+                <div class="col-sm-12">
+
                     <?php
         //   echo $fsd;
         //   echo $classid;
@@ -82,8 +87,8 @@
             <div class="row">
             <div class="col-md-2">
 
-                 <center>
-                        <table style="width: 40%; font-size:12px; font-weight: bold; ">
+                 
+                        <table style="width: 60%; font-size:12px; font-weight: bold;">
                             <tr style="background-color:#188f7f; color:white;">
                                 <?php $this->db->where("id",$this->session->userdata("school_code"));
 				$schoolinfo = $this->db->get("school")->row();
@@ -92,7 +97,7 @@
 		    $tfsd =	$this->db->get("fsd")->row();
 							?><td colspan="3">
 								<img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; border-radius: 50%;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />
-								<h3 style="text-transform:uppercase; text-align:center;color:red;">
+								<h3 style="text-transform:uppercase; text-align:center;">
 									<?php echo $schoolinfo->school_name; ?></h3>
 								<h5 style="font-variant:small-caps; text-align:center;">
 									<?php echo "Mobile No. : +91-".$schoolinfo->mobile_no;?></h5>
@@ -107,7 +112,7 @@
 							</tr>
                             <tr>
                                 <td style="padding:4px; width:220px;">Name</td>
-                                <td style="width:300px;  text-transform: uppercase;color:red;">
+                                <td style="width:300px;  text-transform: uppercase;">
                                     <?php echo $personalInfo->name; ?>
                                 </td>
                                 <td rowspan="8" align="center">
@@ -133,7 +138,7 @@
                                     </div>
                                     <div class="row">
                                         <h4 style="margin-top: 10px; text-align:center;">PRINCIPAL SIGN</h4>
-                                        <div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpeg" alt="" width="100" height="50"  /></div>
+                                        <div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50"  /></div>
                                         <?php if($personalInfo->transport==0){?>
                                      <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
                                    <?php }else{ ?>
@@ -153,11 +158,11 @@
                                 <?php $this->db->select('class_name,section');
 					  $this->db->where('id',$personalInfo->class_id);
 				      $classInfo=$this->db->get('class_info')->row();?>
-                                <td style="color:green;"><?php echo $classInfo->class_name; ?></td>
+                                <td><?php echo $classInfo->class_name; ?></td>
                             </tr>
                             <tr>
                                 <td style="padding:4px">Student ID</td>
-                                <td style="color:red;">
+                                <td>
                                     <?php echo $personalInfo->username; ?>
                                 </td>
                             </tr>
@@ -170,14 +175,14 @@
 
                             <tr>
                                 <td style="padding:4px">Father Name</td>
-                                <td style="text-transform: uppercase;color:blue;">
+                                <td style="text-transform: uppercase;">
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
                             </tr>
                         
                             <tr>
-                                <td style="padding:4px ">Mobile Number</td>
-                                <td style="color:pink;">
+                                <td style="padding:4px">Mobile Number</td>
+                                <td>
                                     <?php echo $personalInfo->mobile; ?>
                                 </td>
                             </tr>
@@ -188,17 +193,18 @@
                                 </td>
                             </tr>
                         </table><br><br>
-                        </center>
                     </div>
-                    
 
+</div>
 
-   </div>
 
 
                     
                      <?php 	} ?>
-               
+               </div>
+               </div>
+               </div>
+               </div>
 
 
 </body>

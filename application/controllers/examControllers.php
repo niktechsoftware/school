@@ -744,109 +744,25 @@ function insertMarksdetail()
 		$data['mainContent'] = 'resultGenerate';
 		$this->load->view("includes/mainContent", $data);
 	}
+		function printexamreport(){
+		   $examid= $this->uri->segment(3);
+	       $this->load->model("examModel");
+	       $shiftid = $this->examModel->getshift1($examid);
+	       $data['shiftid']=$shiftid;
+	        $data['examid']=$examid;
+		  $this->load->view("printexamreport",$data);
+	}
 	function printSub()
 		{
-		$school_code=$this->session->userdata("school_code");?>
-				
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/plugins/select2/select2.css" />
-		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
-		<!-- start: CORE CSS -->
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles-responsive.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/plugins.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/themes/theme-default.css" type="text/css" id="skin_color">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/print.css" type="text/css" media="print"/>
-		<!-- end: CORE CSS -->
-		<link rel="shortcut icon" href="favicon.ico" />
-			
-			
-		<?php 	
-		$m=1;
-		$this->load->model("examModel");
-		$examid=$this->input->post("examName");
-		$shiftid = $this->examModel->getshift1($examid);
-		$res=$this->db->query("SELECT  * FROM class_info where school_code='$school_code'");
-		$getClass = $res->result();
-		$dad=$this->db->query("SELECT * FROM exam_day where exam_id='$examid'");
-		?><table class="table table-striped table-hover" id="sample-table-2">
-			<thead>
-			 <?php $i=1; if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
-             <tr class="<?php echo $rowcss;?>">
-					<th class="column-left"> Date Of Exam/<br>Class & Shift</th>
-				<?php foreach ($dad->result() as $col):
-				//print_r($dad->result());?>
-				<th ><?php echo $col->date1;?></th>
-			<?php endforeach;?>
-		</thead>
-		<tbody><?php $i=1;foreach ($getClass as $rowClass):
-		?>
-		<?php 
-		    foreach ($shiftid->result() as $rowShift):
+		   	$examid=$this->input->post("examName");
+	    	$data['examid']=$examid;
+	
+		$this->load->view("examtimetablereport", $data);
+		    
+		    
+		    
+		    
+		    
 		
-			?>
-		 <?php if($i%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
-            <tr class="<?php echo $rowcss;?>">
-			<td class="column-left"><?php
-			echo $rowClass->class_name;?>-<?php
-			echo $rowShift->shift;
-			?></td><?php 
-			foreach ($dad->result() as $col):
-			$j=1;
-			?><td class="column-right" ><?php
-				$subject=$this->db->query("SELECT subject_id,id FROM exam_time_table where exam_day_id='$col->id'  AND shift_id='$rowShift->id' AND class_id='$rowClass->id' AND school_code='$school_code'");
-				foreach ($subject->result() as $sub):
-					$subjectid=$sub->subject_id;
-					$exam=$sub->id;
-
-				?>
-                  <?php    
-                       $this->db->where('id',$subjectid);
-                         $this->db->where('class_id',$rowClass->id);
-                        $subject1=$this->db->get('subject')->result();            
-                      foreach ($subject1 as  $value) {   
-                           ?>
-
-				
-				<?php echo $value->subject; ?>
-			
-					
-				<?php $m = $j++;
-			}
-				endforeach;
-				?></td>
-				
-				
-							<?php
-			endforeach;
-			?>
-			<?php 
-			endforeach;//claas print loop
-			?>
-			</tr><?php $i++;
-		endforeach;//shift print loops
-		
-		?></tbody></table>
-				
-		
-		
-		<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/select2/select2.min.js"></script>
-		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/tableExport.js"></script>
-		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jquery.base64.js"></script>
-		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/html2canvas.js"></script>
-		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jquery.base64.js"></script>
-		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/libs/sprintf.js"></script>
-		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/jspdf.js"></script>
-		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/libs/base64.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/table-export.js"></script>
-		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-		<!-- start: CORE JAVASCRIPTS  -->
-		<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-		<!-- end: CORE JAVASCRIPTS  -->
-		<script>
-				TableExport.init();
-			
-		</script>							
-		<?php 
-
 	}
 }
