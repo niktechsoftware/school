@@ -21,5 +21,66 @@ class daybookModel extends CI_Model{
 		$a = $this->db->query("select * from cash_payment where school_code ='$school_code' AND expenditure_name = '$expenditure_name' AND date >= '$date1' AND date <= '$date2'");
 		return $a;	
 	}
+	function createxpe($exp){
+		$school_code= $this->session->userdata("school_code");
+		$data=array(
+			'expenditure_name'=>$exp,
+			'school_code'=>$school_code
+		);
+		if(strlen($exp)>1){
+			$this->db->insert('expenditure',$data);
+		}
+		$school_code= $this->session->userdata("school_code");
+			$this->db->where("school_code",$school_code);
+			$query = $this->db->get("expenditure");
+			return $query;
+	}
+		public function createxpee(){
+			$school_code= $this->session->userdata("school_code");
+			$this->db->where("school_code",$school_code);
+			$query = $this->db->get("expenditure");
+			return $query;
+		}
+		function updatexpee($expID,$expName){
+			$val = array(
+				"expenditure_name" => $expName,
+				//"school_code"=>$this->session->userdata("school_code"),
+		);
+		$this->db->where("sno",$expID);
+		$query = $this->db->update("expenditure",$val);
+		return true;
+		}
+		function creatSubexpe($expsub,$subexpid){
+			$school_code= $this->session->userdata("school_code");
+			$data=array(
+				'exp_depart'=>$expsub,
+				//'school_code'=>$school_code
+			);
+			if(strlen($subexpid)>1){
+				$this->db->where("school_code",$school_code);
+				$this->db->where("sno",$subexpid);
+				$this->db->update('expenditure',$data);
+			}
+			$school_code= $this->session->userdata("school_code");
+				$this->db->where("school_code",$school_code);
+				$query = $this->db->get("expenditure");
+				return $query;
+		}
+		public function creatsubexpee(){
+			$school_code= $this->session->userdata("school_code");
+			$this->db->where("school_code",$school_code);
+			$query = $this->db->get("expenditure");
+			return $query;
+		}
+		function updatSubexpee($expID,$expName,$expNameSub){
+			$val = array(
+				"exp_depart" => $expName,
+				//"school_code"=>$this->session->userdata("school_code"),
+		);
+		$this->db->where("sno",$expID);
+		$this->db->where("expenditure_name",$expName);
+		$query = $this->db->update("expenditure",$val);
+		return true;
+		}
 
 }

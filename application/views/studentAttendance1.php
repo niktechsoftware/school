@@ -75,7 +75,7 @@
                         <input type="date" class="form-control" id="date1" name="date1" required="required">
                     
                       </div>
-                      <?php $date=date('m/d/Y');
+                      <?php $date=date('Y-m-d');
                       //echo $date;
                       ?>
                      
@@ -138,6 +138,6 @@
     <!-- end: PAGE CONTENT-->
     <script>
     
-    date1.max = new Date().toISOString().split("T")[0];
+    //date1.max = new Date().toISOString().split("T")[0];
     </script>
 

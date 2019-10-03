@@ -349,8 +349,26 @@ $school_code = $this->session->userdata("school_code");
 													<?php 
 													$this->db->where("school_code",$this->session->userdata("school_code"));
 													$this->db->where("DATE(date)",$datj);
-													$getsmsn = $this->db->get("sent_sms_details");?>
-														 Sent <?php echo $getsmsn->num_rows();?> </a>
+													$getsmsn = $this->db->get("sent_sms_master");
+													$tot = 0;$sent =0; $wrong =0;
+													if($getsmsn->num_rows()>0){
+														
+													foreach($getsmsn->result() as $fty):
+													$this->db->where("sms_master_id",$fty->id);
+													$sentsms = $this->db->get("sent_sms_details");
+                          if($sentsms->num_rows()>0){
+                            $sent+=$sentsms->num_rows();
+                          }
+													
+													$this->db->where("sms_master_id",$fty->id);
+													$wrongsms = $this->db->get("wrong_number_sms");
+                          if($wrongsms->num_rows()>0){
+													$wrong +=$wrongsms->num_rows();
+                      }
+													endforeach;
+													$tot=$sent+$wrong;
+													}?>
+														 Sent <?php echo $tot;?> </a>
 														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
 													</div>
 												</div>
@@ -361,31 +379,18 @@ $school_code = $this->session->userdata("school_code");
 											<div class="panel-body">
 												<div class="core-box">
 													<div class="text-white text-large text-bold">
-														Todays Sent [<?php echo $getsmsn->num_rows();?>]
+														Todays Sent [<?php echo $tot;?>]
 													</div>
 													
-												<!--	<div class="text-white text-large pull-right">
-													<?php 
-												//	$dlv =0; $subn=0; $other=0;
-												//	if($getsmsn->num_rows()>0){
-												//		foreach($getsmsn->result() as $row):
-												//		$get_report  = checkDeliver($sender->uname,$sender->password,$row->msg_id);
-														//echo $get_report;
-														//if($get_report=='#DELIVRD'){
-														//	$dlv=$dlv+1;
-															
-													//	}else{
-														//	if($get_report=='#SUBMITTED'){
-														//		$subn=$subn+1;
-														//	}else{
-														//		$other=$other+1;
-														//	}
-													//	}
-													//	endforeach; } ?>
-														 Delivered =<?php echo $dlv;?>
-														 Submitted = <?php echo $subn;?>
-														 Other =<?php echo $other;?>
-													</div>-->
+
+
+											
+														 Delivered =<?php echo $sent;?>
+														 Wrong = <?php echo $wrong;?>
+														 
+													</div>
+
+
 												</div>
 											</div>
 											
@@ -542,9 +547,11 @@ $school_code = $this->session->userdata("school_code");
                           <td class="center"><?php echo 0;?></td>
                         
                     <?php    }  } else{?>
-                    
-                          <td class="center"><?php echo "Today's Attendence Not Done";?></td>
-                          <td class="center"><?php echo "Today's Attendence Not Done";?></td>
+
+
+                          <td class="center"><?php echo "N/A";?></td>
+                          <td class="center"><?php echo "N/A";?></td>
+
                   <?php  } $i++; } }    endforeach; } ?>
                        
                        
@@ -559,7 +566,11 @@ $school_code = $this->session->userdata("school_code");
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <a href="#collapseOne2" data-parent="#accordion" data-toggle="collapse"
-                    class="accordion-toggle padding-15 collapsed">
+
+
+                    class="accordion-toggle padding-15">
+
+
                     <i class="icon-arrow"></i>
 
                     <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
@@ -654,8 +665,12 @@ $school_code = $this->session->userdata("school_code");
                         
                     <?php    }  } else{?>
                     
-                          <td class="center"><?php echo "Today's Attendence Not Done";?></td>
-                          <td class="center"><?php echo "Today's Attendence Not Done";?></td>
+
+
+                          <td class="center"><?php echo "N/A";?></td>
+                          <td class="center"><?php echo "N/A";?></td>
+
+
                   <?php  } $i++; } }    endforeach; } ?>
                        
                        

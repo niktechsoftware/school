@@ -397,6 +397,7 @@ class InvoiceController extends CI_Controller{
 	
 	}
 	function classwise_reports(){
+		
 		$data['pageTitle'] = 'Student Section';
 		$data['smallTitle'] = 'Student Profile';
 		$data['mainPage'] = 'Student';
@@ -405,19 +406,35 @@ class InvoiceController extends CI_Controller{
 		$data['sectionid'] = $this->uri->segment(5);
         $data['title'] = 'Student Profile';
 /////////////////////////////////////
-
-        	            $this->db->where("id",$this->uri->segment(3));
-        		 $fsd = $this->db->get("fsd")->row();
+				$this->db->where("id",$this->uri->segment(3));
+		$fsd = 	$this->db->get("fsd")->row();
             $futureDate=date('Y-m-d', strtotime('+1 year', strtotime($fsd->finance_start_date )) );
     		$data['fsd']=$this->uri->segment(3);
     		$data['futureDate'] = $futureDate;
-		
-            	      $this->db->Distinct();
+		//for 1st term
+	       $this->db->Distinct();
+	      $this->db->select("exam_id,term");
+		  $this->db->where("school_code",$this->session->userdata("school_code"));
+		   $this->db->where("class_id", $this->uri->segment(4));
+		  $this->db->where("fsd",$this->uri->segment(3) );
+		  $this->db->where("term",1 );
+		 $examTypeResult2 = $this->db->get("exam_info")->result();
+		 //for 2nd term
+		 $this->db->Distinct();
+	      $this->db->select("exam_id,term");
+		  $this->db->where("school_code",$this->session->userdata("school_code"));
+		   $this->db->where("class_id", $this->uri->segment(4));
+		  $this->db->where("fsd",$this->uri->segment(3) );
+		  $this->db->where("term",2 );
+		 $examTypeResult2_2 = $this->db->get("exam_info")->result();
+		 
+		 
+            	     /* $this->db->Distinct();
             	      $this->db->select("exam_id");
             		  $this->db->where("school_code",$this->session->userdata("school_code"));
             		  $this->db->where("fsd",$this->uri->segment(3));
             		  $this->db->where("class_id", $this->uri->segment(4));
-    $examTypeResult2 =$this->db->get("exam_info")->result();
+    $examTypeResult2 =$this->db->get("exam_info")->result();*/
                       $this->db->where("fsd",$this->uri->segment(3) );
     $examTypeResult = $this->db->get("exam_info")->result();
 		
@@ -463,24 +480,11 @@ class InvoiceController extends CI_Controller{
 			
 			$formatedResult[] = $subject;
 			 
-		endforeach;
-        
-        
-        
-        
-////////////////////////////////////////////        
+		endforeach;      
 		$this->db->select("classwisereport_format");
 			$this->db->where("school_code",$this->session->userdata("school_code"));			
 		    $val=$this->db->get("result_format");
-           /*if($val->num_rows()>0)
-            {
-			$val=	$val->row()->classwisereport_format;
-			$callview = "class_wise_report_".$val;
-			$this->load->view("invoice/$callview",$data);
-		     }*/
-		     
-		     
-////////////////////////////////////////////////    
+             
 		     if($val->num_rows()>0)
             {
 		      if($examTypeResult){
@@ -492,6 +496,7 @@ class InvoiceController extends CI_Controller{
 			$data['futureDate'] = $futureDate;
 			$data['resultData'] = $formatedResult;
 			$data['examid']=$examTypeResult2;
+			$data['examid_2']=$examTypeResult2_2;
 			$callview = "class_wise_report_".$val;
 			$this->load->view("invoice/$callview",$data);
 		}
@@ -503,11 +508,10 @@ class InvoiceController extends CI_Controller{
 					<br>Thanku You;
 					<br>All the best;
 					 !!!!!!!!!</div>";
-			
-		         }}
+		    }
+								}
 		   else
 		       {
-			
 					 echo "<div class='alert alert-warning'> No Record Found Please Select Valid FSD and Student ID.
 					Please insure possible mistakes.<br>1. Selected Financial Start Date have no exam conducted in current date.
 					<br>2.You have inserted wrong student ID please check it befoure generating Exam result.<br>
@@ -516,12 +520,9 @@ class InvoiceController extends CI_Controller{
 					<br>
 					<br>
 					Sorry !!!!!!!!!</div>";
-		  	       
                  }
-			
             }
 /////////////////////////////////
-		     
 	}
 	
 function result(){
@@ -532,7 +533,6 @@ function result(){
 		// echo $fsd1;
 		//exit;
 		$resultData = array();
-		
 		/**
 		 * this code block get persional information about a student by given studentID.
 		 */
@@ -559,13 +559,22 @@ function result(){
 		 * [$futureDate defines end of finatial satrt date.]
 		 * @var [Date]
 		 */
+		 //for 1st term
 	       $this->db->Distinct();
-	      $this->db->select("exam_id");
+	      $this->db->select("exam_id,term");
 		  $this->db->where("school_code",$this->session->userdata("school_code"));
-		 // $this->db->where("class_id", $studg->class_id);
 		  $this->db->where("stu_id", $id);
 		  $this->db->where("fsd",$fsd1 );
+		  $this->db->where("term",1 );
 		 $examTypeResult2 = $this->db->get("exam_info")->result();
+		 //for 2nd term
+		 $this->db->Distinct();
+	      $this->db->select("exam_id,term");
+		  $this->db->where("school_code",$this->session->userdata("school_code"));
+		  $this->db->where("stu_id", $id);
+		  $this->db->where("fsd",$fsd1 );
+		  $this->db->where("term",2 );
+		 $examTypeResult2_2 = $this->db->get("exam_info")->result();
 
 		$this->db->where("stu_id", $id);
 		$this->db->where("fsd",$fsd1 );
@@ -649,6 +658,7 @@ function result(){
 			$data['futureDate'] = $futureDate;
 			$data['resultData'] = $formatedResult;
 			$data['examid']=$examTypeResult2;
+			$data['examid_2']=$examTypeResult2_2;
 			$callview = "format_".$val;
 			
 			/**

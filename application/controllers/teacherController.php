@@ -303,13 +303,13 @@ function checkIDOTP(){
 					$sende_Detail =$sender->row();
 					$otp = rand(1000,99999);
 					$msg="Your Discount OTP id = ".$otp." please don't share this.";
-					if($this->session->userdata('school_code')==1){
-						sms($schid->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-					
-					}
-					else{
-					sms($row->mobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-					}
+					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+					$master_id=$max_id->maxid+1;
+					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
+						if($getresultm){
+							$getv=sms($schid->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+							$this->smsmodel->sendReport($getv,$master_id);
+						}
 					$data=array(
 						"otp"=>$otp,
 						"discounter_id"=>$tid,
@@ -509,20 +509,18 @@ function checkIDOTPc(){
 					$this->teacherModel->addstuAttendance($data);
 					if($isSMS->stu_attendance==1)
 			  		{	
-			  			// if($absent==1)
-			  			// {
-			  					
-			  			//  $sende_Detail1=$sende_Detail->row();
-			  			// 	$msg="Dear parent your Child ".$sname." is present today ".date("d-M-Y H:i:s")." . Thanks ".$info->school_name;
-			  			// 	sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			  			// 	//echo $sende_Detail1->sender_id."-".$sende_Detail1->password;
-			  			// }
+			  			
 			  			if($absent==0)
 			  			{
 			                $sende_Detail1=$sende_Detail->row();
+			                $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+			                $master_id=$max_id->maxid+1;
 			  				$msg="Dear parent your Child ".$sname." is Absent on ".date("d-M-Y H:i:s").".Please make sure & let us know. Thanks ".$info->school_name;
-			  				sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			  				
+			  				$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
+			  				if($getresultm){
+			  					$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+			  					$this->smsmodel->sendReport($getv,$master_id);
+			  				}
 			  			}
 						
 			  		}
@@ -604,10 +602,15 @@ function checkIDOTPc(){
 			  			// }
 			  			if($absent==0)
 			  			{
-			                $sende_Detail1=$sende_Detail->row();
-			  				$msg="Dear parent your Child ".$sname." is Absent on after lunch time".date("d-M-Y H:i:s")." without any information.Please make sure & let us know. Thanks ".$info->school_name;
-			  				sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			  				
+			  			$sende_Detail1=$sende_Detail->row();
+			                $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+			                $master_id=$max_id->maxid+1;
+			  				$msg="Dear parent your Child ".$sname." is Absent on ".date("d-M-Y H:i:s").".Please make sure & let us know. Thanks ".$info->school_name;
+			  				$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
+			  				if($getresultm){
+			  					$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+			  					$this->smsmodel->sendReport($getv,$master_id);
+			  				}
 			  			}
 						
 			  		}
