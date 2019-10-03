@@ -123,9 +123,10 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 								</thead>
 								<?php
 								$sender =$this->smsmodel->getsmssender($this->session->userdata("school_code"));
-								
+								$date = date("Y-m-d");
 								if($sender->num_rows()>0){
 									$sende_Detail =$sender->row();
+									$this->db->where("DATE(date)",$date);
 									$this->db->where("school_code",$this->session->userdata("school_code"));
 								//	$this->db->where("status",1);
 									$result = $this->db->get("sent_sms_details");
