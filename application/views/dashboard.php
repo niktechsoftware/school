@@ -328,7 +328,104 @@ $school_code = $this->session->userdata("school_code");
             </div>
         </div>
     </div>
-   
+   	
+							<div class="col-md-5 col-lg-3 col-sm-5">
+								<div class="panel panel-blue core-box">
+									<div class="e-slider owl-carousel owl-theme">
+										<div class="item">
+											<div class="panel-body">
+												<div class="core-box">
+											
+													<div class="text-white text-bold">
+												<h4>	Student Leave Request</h4>
+													</div>
+													<div class="text-white text-large pull-left">
+													    Pending <br>
+														<?php	$this->db->where("school_code",$school_code);
+                                						$this->db->where("approve","NO");
+                                						$data=$this->db->get('stu_leave');
+                                							if($data->num_rows()>0){
+                                				      	$count=0;
+                                						foreach($data->result() as $row):
+                                						  $leave= $row->total_leave;
+                                						  $count=$count+$leave;
+                                						 // echo "<pre>";
+                                						  endforeach;
+                                						  echo $count;
+                                							} else{ echo "No Pending Request";}?>
+													</div>
+													<div class="text-white text-large pull-right">
+											     	Approved <br>
+												
+														  
+                                				<?php	$this->db->where("school_code",$school_code);
+                            						$this->db->where("approve","YES");
+                            						$data=$this->db->get('stu_leave');
+                            							if($data->num_rows()>0){
+                            				      	$count=0;
+                            						foreach($data->result() as $row):
+                            						  $leave= $row->total_leave;
+                            						  $count=$count+$leave;
+                            						 // echo "<pre>";
+                            						  endforeach;
+                            						  echo $count;
+                            							} else{ echo "No Pending Request";}?> </a>
+														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+										<div class="item">
+											<div class="panel-body">
+														<div class="core-box">
+										
+													<div class="text-white text-bold">
+												<h4>Employee Leave Request</h4>
+													</div>
+													<div class="text-white text-large pull-left">
+													   Pending <br>
+													<?php	$this->db->where("school_code",$school_code);
+                                						$this->db->where("status",0);
+                                						$data=$this->db->get('emp_leave');
+                                							if($data->num_rows()>0){
+                                				      	$count=0;
+                                						foreach($data->result() as $row):
+                                						  $leave= $row->total_leave;
+                                						  $count=$count+$leave;
+                                						 // echo "<pre>";
+                                						  endforeach;
+                                						  echo $count;
+                                							} else{ echo "No Pending Request";}?>
+                                						</div>							
+													<div class="text-white text-large pull-right">
+											     	Approved <br>
+												
+														  
+                                				<?php		
+                                                $this->db->where("school_code",$school_code);
+                        						$this->db->where("status",1);
+                        						$data=$this->db->get('emp_leave');
+                        							if($data->num_rows()>0){
+                        				      	$count=0;
+                        						foreach($data->result() as $row):
+                        						  $leave= $row->total_leave;
+                        						  $count=$count+$leave;
+                        						 // echo "<pre>";
+                        						  endforeach;
+                        						  echo $count;
+                        							} else{ echo "0";}?> </a>
+														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+													</div>
+												</div>
+												</div>
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+							
     
     <div class="row">
 							<div class="col-md-5 col-lg-3 col-sm-5">
@@ -395,166 +492,78 @@ $school_code = $this->session->userdata("school_code");
 									</div>
 								</div>
 							</div>
+							
+							
+					
     
      </div>
-        <div class="col-md-6 col-lg-3 col-sm-6">
-    <div class="panel panel-default panel-white core-box">
-      <div class="panel-body no-padding">
-        <div class="partition-blue text-center core-icon">
-          <i class="fa fa-users fa-2x icon-big"></i>
+     
+    
+ 
+    
+    <div class="row" Style="margin-left:2px;">
 
-          </span>
-        </div>
-        <a href="#">
-          <div class="padding-20 core-content">
-            <!-- <h4 class="title block no-margin">Student Admission</h4>-->
-            <h4 class="title block no-margin">Pending Leave Request</h4><br>
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="block no-margin">Employee</h6>
-                </br>
-                <mark><?php 
-               
-					   
-						$this->db->where("school_code",$school_code);
-						$this->db->where("status",0);
-						$data=$this->db->get('emp_leave');
-							if($data->num_rows()>0){
-				      	$count=0;
-						foreach($data->result() as $row):
-						  $leave= $row->total_leave;
-						  $count=$count+$leave;
-						 // echo "<pre>";
-						  endforeach;
-						  echo $count;
-							} else{ echo "No Pending Request";}?></mark>
-              </div>
-              <div class="col-sm-6">
-                <h6 class="block no-margin">Student</h6>
-                </br>
-                <mark> <?php	$this->db->where("school_code",$school_code);
-						$this->db->where("approve","NO");
-						$data=$this->db->get('stu_leave');
-							if($data->num_rows()>0){
-				      	$count=0;
-						foreach($data->result() as $row):
-						  $leave= $row->total_leave;
-						  $count=$count+$leave;
-						 // echo "<pre>";
-						  endforeach;
-						  echo $count;
-							} else{ echo "No Pending Request";}?></mark>
+      
+  <div class="col-lg-4 col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body no-padding">
+          <div class="padding-10">
+            <h4 class="no-margin inline-block padding-5">Absent Teachers 
+            <!-- <span class="block text-small text-left">Total Absent</span> -->
+            </h4>
+          </div>
+          <div class="tabbable no-margin no-padding partition-dark">
+            <div class="tab-content partition-white">
+              <div id="users_tab_example1" class="tab-pane padding-bottom-5 active">
+                <div class="panel-scroll height-230">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Teacher Name</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                        <!-- <th class="Leave">Leave</th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <?php 
+                          if($emp_lev->num_rows()>0){ $i=1;                
+                          foreach($emp_lev->result() as $lv_data)
+                          {    $this->db->where("id",$lv_data->emp_id);
+                               $empname=$this->db->get("employee_info")->row()->name;
+                          ?>
+                      <tr>
+                        <td><?php echo $i;?></td>
+                        <td><?php echo $empname; ?></td>
+                        <td>Absent</td>
+                        <td><?php echo $lv_data->a_date; ?></td>
+                        <td>
+                           <a href="<?php echo base_url();?>index.php/timetablepanel/arrange_apsentteacher/<?php echo $lv_data->emp_id;?>" class="btn btn-danger" >Arrangement</a>
+                        </td>
+                      </tr>
+                      <script>
+                      $("#assgin<?php echo $i;?>").show();
+                      //alert("3"); 
+                      $("#assgined<?php echo $i;?>").hide();
+                      </script>
+                      
+                     
+                            <?php 
+														$i++;	}
+														}
+															?>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-
           </div>
-        </a>
+        </div>
       </div>
     </div>
-  </div>
-      <div class="col-md-6 col-lg-3 col-sm-6">
-    <div class="panel panel-default panel-white core-box">
-      <div class="panel-body no-padding">
-        <div class="partition-blue text-center core-icon">
-          <i class="fa fa-users fa-2x icon-big"></i>
-
-          </span>
-        </div>
-        <a href="#">
-          <div class="padding-20 core-content">
-            <!-- <h4 class="title block no-margin">Student Admission</h4>-->
-            <h4 class="title block no-margin">Employee</h4><br>
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="block no-margin"> Pending Leave Request</h6>
-                </br>
-                <mark><?php 
-               
-					   
-						$this->db->where("school_code",$school_code);
-						$this->db->where("status",0);
-						$data=$this->db->get('emp_leave');
-							if($data->num_rows()>0){
-				      	$count=0;
-						foreach($data->result() as $row):
-						  $leave= $row->total_leave;
-						  $count=$count+$leave;
-						 // echo "<pre>";
-						  endforeach;
-						  echo $count;
-							} else{ echo "No Pending Request";}?></mark>
-              </div>
-              <div class="col-sm-6">
-                <h6 class="block no-margin">Approved</h6>
-                </br>
-                <mark> <?php		
-                        $this->db->where("school_code",$school_code);
-						$this->db->where("status",1);
-						$data=$this->db->get('emp_leave');
-							if($data->num_rows()>0){
-				      	$count=0;
-						foreach($data->result() as $row):
-						  $leave= $row->total_leave;
-						  $count=$count+$leave;
-						 // echo "<pre>";
-						  endforeach;
-						  echo $count;
-							} else{ echo "0";}?></mark>
-              </div>
-            </div>
-
-          </div>
-        </a>
-          <a href="#">
-          <div class="padding-20 core-content">
-            <!-- <h4 class="title block no-margin">Student Admission</h4>-->
-            <h4 class="title block no-margin">Student</h4><br>
-            <div class="row">
-              <div class="col-sm-6">
-                <h6 class="block no-margin"> Pending Leave Request</h6>
-                </br>
-                <mark><?php 
-               
-					   
-						$this->db->where("school_code",$school_code);
-						$this->db->where("approve","NO");
-						$data=$this->db->get('stu_leave');
-							if($data->num_rows()>0){
-				      	$count=0;
-						foreach($data->result() as $row):
-						  $leave= $row->total_leave;
-						  $count=$count+$leave;
-						 // echo "<pre>";
-						  endforeach;
-						  echo $count;
-							} else{ echo "No Pending Request";}?></mark>
-              </div>
-              <div class="col-sm-6">
-                <h6 class="block no-margin">Student</h6>
-                </br>
-                <mark> <?php	$this->db->where("school_code",$school_code);
-						$this->db->where("approve","YES");
-						$data=$this->db->get('stu_leave');
-							if($data->num_rows()>0){
-				      	$count=0;
-						foreach($data->result() as $row):
-						  $leave= $row->total_leave;
-						  $count=$count+$leave;
-						 // echo "<pre>";
-						  endforeach;
-						  echo $count;
-							} else{ echo "No Pending Request";}?></mark>
-              </div>
-            </div>
-
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-  
-
-
     
   </div>
 
@@ -835,12 +844,12 @@ $school_code = $this->session->userdata("school_code");
               </div>
               <div class="panel-collapse collapse" id="collapseTwo2">
                 <div class="panel-body no-padding partition-light-grey">
-                  <a href="#">
+                  <a href="<?php echo base_url()?>index.php/login/dayBook">
                   <table class="table">
                     <thead style="text-align:center;">
 
                     <th>Sno.</th>
-                    <th>Employee Name</th>
+                    <th>Teacher Name</th>
                 
                     <th>Present / Absent </th>
                     </thead>
@@ -859,14 +868,16 @@ $school_code = $this->session->userdata("school_code");
                         $this->db->where("emp_id",$totteacher->id);
                         $this->db->where("a_date",$date);
                        $classdt= $this->db->get("teacher_attendance");
-               
+                 //      print_r($classdt);
+                      
+                          // print_r($count);
                          
                         ?>
                     
                         <tr>
                           <td class="center"><?php echo $i;?></td>
                           <td> <?php echo $totteacher->name ;?>  </td>  
-                    <?php    if($classdt->num_rows()>0){?>   <td class="center"> <span style="color:green;"><?php if(($classdt->row()->attendance)==1){ echo "Present" ;?></span><?php } else{  ?><a href ="<?php echo base_url();?>index.php/timetablepanel/arrange_apsentteacher" style="color:red;"> <span style="color:red;"><?php  echo "Absent" ; ?></span> (Arrangement)</a></td><?php } } else{?>
+                    <?php    if($classdt->num_rows()>0){?>   <td class="center"> <span style="color:green;"><?php if(($classdt->row()->attendance)==1){ echo "Present" ;?></span><?php } else{  ?><span style="color:red;"><?php  echo "Absent" ; ?></span></td><?php } } else{?>
                         <td> Today's Attendance Not Done. </td>  
                          <?php }?>
                         </tr>
@@ -945,108 +956,322 @@ $school_code = $this->session->userdata("school_code");
                     <thead>
                     <th>Sno.</th>
                     <th>Class </th>
+                      <th>Section </th>
                     <th>Total Fee Due</th>
                     </thead>
                       
 
 
                       <tbody>
-                        <?php $i=1;
+                        <?php $k=1;
                         $feecount=0;
                         $date=Date("Y-m-d");
                         $month = date("m", strtotime($date));
                         $yearmonth= date("m-y",strtotime($date));
                        // print_r($rmo);
-                       $this->db->distinct();
-                       $this->db->select('class_name,id');
+                    //   $this->db->distinct();
+                       $this->db->select('class_name,section,id');
                         $this->db->where("school_code",$school_code);
                         $classdt= $this->db->get("class_info");
                         //  print_r($this->session->userdata("fsd"));
-                        //  //print_r($classdt->result());
+                       
                         //  exit();
-                        foreach($classdt->result() as $data):
-                          $this->db->where("class_id",$data->id);
-                          $studt=$this->db->get("student_info");
-                          // echo "<pre>";
-                          // print_r($studt->result());
-                           
-                          // exit();
-                          if($studt->num_rows()>0){
-                           $sum=$studt->num_rows();
-
-                          // print_r($nummo);
-                          // echo "<pre>";
-                          //  exit();
-
-                          $this->db->where("student_id",$studt->row()->id);
-                          $this->db->where("deposite_month",$month);
-                          $feedt=$this->db->get("fee_deposit");
-                          if($feedt->num_rows()>0){
-
-                          }
-                          else{ 
-                            $this->db->select("*");
-                            $this->db->from("deposite_months");
-
-                            $this->db->where("student_id",$studt->row()->id);
-                            $this->db->order_by("deposite_month","Desc");
-                            $this->db->limit("1");
-                           $dmonth= $this->db->get();
-                           if($dmonth->num_rows()>0){
-                          $feemonth= $dmonth->row()->deposite_month;
-                          
-                           $rmo= date("m-y",strtotime($feemonth));
-                          //  print_r($dmonth->row()->deposite_month);
-                          //$nummo=$yearmonth-$rmo;
-                          //  print_r($nummo);
-
-                            $this->db->where("class_id",$data->id);
-                            $this->db->where("fsd",$this->session->userdata("fsd"));
-                           $classiddt= $this->db->get("class_fees");
-                           if($classiddt->num_rows()>0){
-
-                          // $this->db->where("school_code",$school_code);
-                        //   $this->db->where("id",$classiddt->row()->class_id);
-                        //   $classnm= $this->db->get("class_info")->row();
-                         $this->db->select_sum("fee_head_amount");
-                            if($school_code ==1){$this->db->where("cat_id",3);}
-                            	$this->db->where_in("taken_month",13);
-                            $this->db->where("class_id",$data->id);
-                            $this->db->where("fsd",$this->session->userdata("fsd"));
-                           $classfee= $this->db->get("class_fees")->row();
-                           $cfee=$classfee->fee_head_amount;
-
-
+                        foreach($classdt->result() as $data): 
                             
-                            $this->db->select_sum("fee_head_amount");
-                            if($school_code ==1){$this->db->where("cat_id",3);}
-                            	$this->db->where_in("taken_month",$month);
-                            $this->db->where("class_id",$data->id);
-                            $this->db->where("fsd",$this->session->userdata("fsd"));
-                           $classfee= $this->db->get("class_fees");
-                           if($classfee->num_rows()>0){
-                           $fees=$classfee->row()->fee_head_amount;
-                           $fee=$cfee+$fees;
-                           $totfee =$fee*$sum;
+                            // print_r($data->id);
+                            $this->db->where("status",1);
+                    	 	$this->db->where("class_id",$data->id);
+                    	 	$this->db->where("fsd",$this->session->userdata('fsd'));
+                    	 	$student = $this->db->get("student_info");
+                    	 	 if($student->num_rows() > 0){
+                    	$isData = $this->db->count_all("fee_deposit"); 
+                    	if($isData > 0){
+
+                    	   // print_r($isData);
+                    	   // print_r($student->num_rows());
+                    	   
+                    	     $count = 1;
+						$tot=0.00;
+						$this->db->where("id",$fsd);
+						$fdate =	$this->db->get("fsd")->row()->finance_start_date;
+
+						$sum=0;
+								 //$x=0;
+
+				    foreach($student->result() as $stuDetail):
+				    	$stu_id = $stuDetail->id;
+				    	//print_r($school_code);
+				    	$this->db->where("student_id",$stu_id);
+				    	$this->db->where("school_code",$school_code);
+				    	$rows = $this->db->get("guardian_info")->row();
+				    	if($this->session->userdata("fsd")){
+				    		$total = $this->db->query("SELECT SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
+							
+							
+								$this->db->where("student_id",$stu_id);
+								$this->db->where("fsd",$fsd);
+								$fee_record = $this->db->get("deposite_months");
+							
+			               $i=0;
+							foreach($fee_record->result() as $fd):
+							     if($fd->deposite_month<4){
+								$realm=  $fd->deposite_month-4+12;
+					 
+							}else{
+							 $realm= $fd->deposite_month-4;}
+							    $i++; endforeach; 
+							    
+							    	$cd=0;
+			  			if($this->session->userdata("fsd")){
+			  				$this->db->where("school_code",$this->session->userdata("school_code"));
+								$this->db->where("student_id",$stu_id);
+								$this->db->where("finance_start_date",$fsd);
+							//	$this->db->where("status",1);
+								$feedue = $this->db->get("fee_deposit");
+								
+								foreach($feedue->result() as $fd):?>
+																
+								<!-- <span class="label label-success" style="line-height:20px;">
+								<?php //echo date("M-y",strtotime("$fd->diposit_date"));?> 
+								 </span> -->
+								<?php $cd=$cd+$fd->total;?>
+							 <?php  endforeach; 
+			  			   }
+			  			   
+			  			   	$depmonth=array();
+            						$mbk=0;
+								 	$this->db->where('invoice_no',$total->invoice_no); 
+								 	$this->db->where('student_id',$stu_id);
+                                  	$mbalance=$this->db->get('feedue');
+								 	//print_r($mbalance->mbalance);
+								 	if($mbalance->num_rows()>0){
+								 	if(strlen($mbalance->row()->mbalance) > 0){
+								 	    $db=$mbalance->row()->mbalance;
+								 	    
+								 	}}
+									$cdate = date("Y-m-d");
+									$cmonth = date("Y-m",strtotime($cdate));
+									//print_r($stu_id);
+									$this->db->where("student_id",$stu_id);
+									$dipom = $this->db->get("deposite_months");
+									if($dipom->num_rows()>0){
+										$g=0;	
+    									foreach($dipom->result() as $dip):
+    										$depmonth[$g]=$dip->deposite_month;
+    									//	echo $depmonth[$g];
+    										$g++;	
+    									
+    									endforeach;
+    									//	print_r($depmonth);
+										$this->db->where_not_in("month_number",$depmonth);
+										$this->db->where("school_code",$this->session->userdata("school_code"));
+										$fcd = 	$this->db->get("fee_card_detail");
+										if($fcd->num_rows()>0){
+							
+										$searchM[]=0;	$rt=0;$month="";	
+											foreach($fcd->result() as $fcg):
+											if($fcg->month_number<4){
+												$roldm=$fcg->month_number-4+12;
+											//	print_r($roldm);
+												
+											}
+											else{
+												$roldm=$fcg->month_number-4;
+												//	print_r($roldm);
+											}
+									$oldm =  date('Y-m', strtotime("$roldm months", strtotime($fdate)));
+										//print_r($oldm);
+									if($oldm<=$cmonth){
+										$searchM[$rt]=$fcg->month_number;
+									 $duedate= date("M-Y",strtotime($oldm));
+										$month =$month." and ".$duedate;
+									
+										$rt++;
+									//	print_r($month);
+										// $rt;
+								//	echo $cmonth;
+							}
+							//echo $rt;
+									endforeach;
+									
+									if($rt>0){
+								  //  print_r($rt);
+								//$searchM[$rt]=13;
+									//$this->db->distinct();
+								
+									$this->db->select_sum("fee_head_amount");
+									if($school_code ==1){
+										$this->db->where("cat_id",3);}
+									$this->db->where("fsd",$fsd);
+									$this->db->where("class_id",$stuDetail->class_id);
+									
+								 $this->db->where_in("taken_month",13);
+								 $fee_head = $this->db->get("class_fees");
+								 
+								//  	$this->db->select_sum("fee_head_amount");
+								// 	if($school_code ==1){
+								// 		$this->db->where("cat_id",3);}
+								// 	$this->db->where("fsd",$fsd);
+								// 	$this->db->where("class_id",$stuDetail->class_id);
+									
+								//  $this->db->where_in("taken_month",13);
+								//  $fee_head_one = $this->db->get("class_fees")->row()->fee_head_amount;
+								 
+								 if($fee_head->num_rows()>0){ 
+									 $fee_head =$fee_head->row()->fee_head_amount;
+									 $exdate1=Date("y-m-d");
+									 $dte1 = date("m",strtotime($exdate1));
+									 
+									 	$this->db->where("fsd",$fsd);
+									$this->db->where("class_id",$stuDetail->class_id);
+									
+									 $this->db->where_in("taken_month",$searchM[$rt-1]);
+								 
+								 $examfee1 = $this->db->get("class_fees");
+								 if($examfee1->num_rows()>0){
+								     
+								    $exfee1= $examfee1->row()->fee_head_amount;
+								    
+									$totfee2= $fee_head * $rt;
+									$totfee=$totfee2+$exfee1;
+									
+								 } 
+								 else{
+								    
+								//      print_r($stuDetail->username);
+								//  	print_r($fee_head);
+								// 	print_r($rt);
+								 	$totfee=$fee_head * $rt;
+								//  		print_r($totfee);
+								 }
+									 if($stuDetail->transport==1){
+								     $vid=$stuDetail->vehicle_pickup;
+								     $this->db->where("id",$vid);
+								    $rootdt= $this->db->get("transport_root_amount");
+								     if($rootdt->num_rows()>0){
+								       $tfee6=  $rootdt->row()->transport_fee;
+								       $tfee7=$tfee6*($rt);
+								       $totfee=$totfee+ $tfee7;
+								     }
+								     else{
+								         echo "root not define";
+								     }
+								     
+								 } 
+								 else{
+								     $totfee =$totfee;
+								 }
+									// $feehead=$fee_head+($fee_head_one*$rt);
+								 $sum=$sum + ($totfee) ;
+									 
+								//  echo "<br>".($totfee) ;
+								 
+								 }else{
+									 echo "fee Not found";	}
+							 }
+							}else{
+								
+							}
+
+							}else{
+								$this->db->where("school_code",$this->session->userdata("school_code"));
+								$fcd = 	$this->db->get("fee_card_detail");
+								$rt=0;
+									$month="";
+								foreach($fcd->result() as $fcg):
+									if($fcg->month_number<4){
+										$roldm=$fcg->month_number-4+12;
+									}else{
+									$roldm=$fcg->month_number-4;
+									}	$oldm =  date('Y-m', strtotime("$roldm months", strtotime($fdate)));
+									if($oldm<=$cmonth){
+										$searchM[$rt]=$fcg->month_number;
+									 $duedate = date("M-Y",strtotime($oldm));
+							 	    $month =$month." and ".$duedate;
+										$rt++;
+								//	echo $fcg->month_number;
+								//	echo $cmonth;
+									
+							}
+								endforeach;
+									$adable_amount=0;
+						  //	$searchM[$rt]=13;
+								//$this->db->distinct();
+								$this->db->select_sum("fee_head_amount");
+								$this->db->where("fsd",$fsd);
+								$this->db->where("class_id",$stuDetail->class_id);
+							//	print_r($stuDetail->class_id);
+							if($school_code ==1){$this->db->where("cat_id",3);}
+							
+							    $this->db->where_in("taken_month",$searchM[$rt-1]);
+								$fee_head = $this->db->get("class_fees");
+								
+								if($fee_head->num_rows()>0){
+								    
+								     $this->db->select_sum("fee_head_amount");  
+									$this->db->where("class_id",$stuDetail->class_id);
+									$this->db->where("fsd",$fsd);
+									$this->db->where_in("taken_month",13);
+									$one_all_amount = $this->db->get("class_fees");
+									if($one_all_amount->num_rows()>0){
+										$one_all_amount=$one_all_amount->row()->fee_head_amount;
+									
+								// 	    for($ui=0;$ui<$rt;$ui++){
+								// 			if($ui>0){
+								// 				$adable_amount =$one_all_amount+$adable_amount;
+								// 			}
+								// 		}
+								 $fee8=$one_all_amount*($rt);
+								 
+									$fee9 =$fee_head->row()->fee_head_amount;
+									$fee_head=$fee8 + $fee9;
+									
+									if($stuDetail->transport==1){
+								     $vid=$stuDetail->vehicle_pickup;
+								     $this->db->where("id",$vid);
+								    $rootdt= $this->db->get("transport_root_amount");
+								     if($rootdt->num_rows()>0){
+								       $tfee4=  $rootdt->row()->transport_fee;
+								       $tfee5=$tfee4*($rt);
+								       $fee_head=$fee_head+ $tfee5;
+								     }
+								     else{
+								         echo "root not define";
+								     }
+								     
+								 } 
+								 else{
+								     $fee_head =$fee_head;
+								 }
+									
+									$sum=$sum + $fee_head;
+								// echo "<br>".$fee_head;
+							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head;?>"/><?php 
+								}else{ }
+								}else{
+									echo "fee Not found";}
+									} ?>
+									
+										<?php $count++; ?>
+			  		<?php  }else{
+	
+                             }  endforeach;    ?>
+
+                        <tr>
+                          <td class="center"><?php echo $k;?></td>
+                          <td><?php echo $data->class_name;?></td>
+                           <td><?php 
+                           $this->db->where("id",$data->section);
+                          $sec= $this->db->get("class_section");
+                           if($sec->num_rows()>0){
+                                echo $sec->row()->section;
                            }
                            else{
-                           $totfee= $cfee*$sum; 
-                           
-                         
-                           }
-                        //      print_r($sum);
-                        //     print_r($fees);
-                        //   print_r($cfee);
-
-                           //$feecount=$feecount-$classfee;
-                          ?>
-                        <tr>
-                          <td class="center"><?php echo $i;?></td>
-                          <td><?php echo $data->class_name;?></td>
-                          <td><?php echo $totfee; ?></td>
+                           echo "Section Not Found"; }?></td>
+                          <td><?php echo $sum; ?></td>
                           </tr>
 
-                     <?php $i++; } }  }   }  endforeach; ?>
+                     <?php   $k++;  } } endforeach; ?>
                     </table>
                   </a>
                 </div>
