@@ -479,11 +479,15 @@ $school_code = $this->session->userdata("school_code");
 														Todays Sent [<?php echo $tot;?>]
 													</div>
 													
+
+
 											
 														 Delivered =<?php echo $sent;?>
 														 Wrong = <?php echo $wrong;?>
 														 
 													</div>
+
+
 												</div>
 											</div>
 											
@@ -709,9 +713,11 @@ $school_code = $this->session->userdata("school_code");
                           <td class="center"><?php echo 0;?></td>
                         
                     <?php    }  } else{?>
-                    
+
+
                           <td class="center"><?php echo "N/A";?></td>
                           <td class="center"><?php echo "N/A";?></td>
+
                   <?php  } $i++; } }    endforeach; } ?>
                        
                        
@@ -727,6 +733,7 @@ $school_code = $this->session->userdata("school_code");
                 <h4 class="panel-title">
                   <a href="#collapsetwo2" data-parent="#accordion" data-toggle="collapse"
                     class="accordion-toggle padding-15 collapsed">
+
                     <i class="icon-arrow"></i>
 
                     Today Evening Student Attendance  <span
@@ -820,8 +827,12 @@ $school_code = $this->session->userdata("school_code");
                         
                     <?php    }  } else{?>
                     
+
+
                           <td class="center"><?php echo "N/A";?></td>
                           <td class="center"><?php echo "N/A";?></td>
+
+
                   <?php  } $i++; } }    endforeach; } ?>
                        
                        

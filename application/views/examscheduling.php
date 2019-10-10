@@ -174,7 +174,7 @@
 															{?><button type='submit' disabled="disabled"  style="width: 100px;" class="btn btn-xs btn-light-blue" id="scheduling1"><i class="fa fa-check"></i>Exam Done </button>
 														    </td> 
 														    <td>
-														   <a href="<?php echo base_url();?>index.php/examControllers/examdonedeleteExam/<?php echo $row->id;; ?>" class="btn btn-red ">
+														   <a href="<?php echo base_url();?>index.php/examControllers/examdonedeleteExam/<?php echo $row->id; ?>" class="btn btn-red ">
 											          	   <i class="fa fa-arrow-circle-right"></i>Delete Exam</a> 
 														    </td>
 														   

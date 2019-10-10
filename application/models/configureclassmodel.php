@@ -310,7 +310,7 @@ public function getsectionforclass($sectionid)
 	}
 	public function getClassName(){
 		$school_code = $this->session->userdata("school_code");
-		$query = $this->db->query("SELECT * from class_info where school_code='$school_code' ORDER BY id");
+		$query = $this->db->query("SELECT * from class_info where school_code='$school_code' ORDER BY id asc");
 		return $query;
 	}
 	

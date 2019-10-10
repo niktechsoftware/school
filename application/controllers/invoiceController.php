@@ -397,6 +397,7 @@ class InvoiceController extends CI_Controller{
 	
 	}
 	function classwise_reports(){
+		
 		$data['pageTitle'] = 'Student Section';
 		$data['smallTitle'] = 'Student Profile';
 		$data['mainPage'] = 'Student';
@@ -426,6 +427,14 @@ class InvoiceController extends CI_Controller{
 		  $this->db->where("fsd",$this->uri->segment(3) );
 		  $this->db->where("term",2 );
 		 $examTypeResult2_2 = $this->db->get("exam_info")->result();
+		 //for 3rd term
+		 $this->db->Distinct();
+	      $this->db->select("exam_id,term");
+		  $this->db->where("school_code",$this->session->userdata("school_code"));
+		   $this->db->where("class_id", $this->uri->segment(4));
+		  $this->db->where("fsd",$this->uri->segment(3) );
+		  $this->db->where("term",3 );
+		 $examTypeResult2_3 = $this->db->get("exam_info")->result();
 		 
 		 
             	     /* $this->db->Distinct();
@@ -496,6 +505,7 @@ class InvoiceController extends CI_Controller{
 			$data['resultData'] = $formatedResult;
 			$data['examid']=$examTypeResult2;
 			$data['examid_2']=$examTypeResult2_2;
+			$data['examid_3']=$examTypeResult2_3;
 			$callview = "class_wise_report_".$val;
 			$this->load->view("invoice/$callview",$data);
 		}
@@ -574,6 +584,14 @@ function result(){
 		  $this->db->where("fsd",$fsd1 );
 		  $this->db->where("term",2 );
 		 $examTypeResult2_2 = $this->db->get("exam_info")->result();
+		 //for 3rd term
+		 $this->db->Distinct();
+	      $this->db->select("exam_id,term");
+		  $this->db->where("school_code",$this->session->userdata("school_code"));
+		  $this->db->where("stu_id", $id);
+		  $this->db->where("fsd",$fsd1 );
+		  $this->db->where("term",3 );
+		 $examTypeResult2_3 = $this->db->get("exam_info")->result();
 
 		$this->db->where("stu_id", $id);
 		$this->db->where("fsd",$fsd1 );
@@ -658,6 +676,7 @@ function result(){
 			$data['resultData'] = $formatedResult;
 			$data['examid']=$examTypeResult2;
 			$data['examid_2']=$examTypeResult2_2;
+			$data['examid_3']=$examTypeResult2_3;
 			$callview = "format_".$val;
 			
 			/**

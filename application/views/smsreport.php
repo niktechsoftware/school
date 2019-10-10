@@ -119,9 +119,7 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 										<th>Wrong Numbers</th>
 									</tr>
 								</thead>
-								<?php
-								
-								?>
+							
 								<tbody>
 								
 									<?php 

@@ -83,7 +83,7 @@
 		    $tfsd =	$this->db->get("fsd")->row();
 				?> <td colspan="3">
                                     <img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; border-radius: 50%;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />
-                                    <h3 style="text-transform:uppercase; text-align:center;color:red;">
+                                    <h3 style="text-transform:uppercase; text-align:center;color:#8B0000;">
                                         <?php echo $schoolinfo->school_name; ?></h3>
                                     <h5 style="font-variant:small-caps; text-align:center;">
                                         <?php echo "Mobile No. : +91-".$schoolinfo->mobile_no;?></h5>
@@ -99,7 +99,7 @@
 
                             <tr>
                                 <td style="padding:5px; width:220px;">Name</td>
-                                <td style="width:300px;text-transform: uppercase;color:red;">
+                                <td style="width:300px;text-transform: uppercase;color:#188f7f;">
                                     <?php echo $personalInfo->name; ?>
                                 </td>
                                 <td rowspan="8" align="center">
@@ -144,7 +144,7 @@
                                 <?php $this->db->select('class_name,section');
 					  $this->db->where('id',$personalInfo->class_id);
 				      $classInfo=$this->db->get('class_info')->row();?>
-                                <td style="color:green;"><?php echo $classInfo->class_name; ?></td>
+                                <td style="color:#FF00FF;"><?php echo $classInfo->class_name; ?></td>
                             </tr>
                             <tr>
                                 <td style="padding:5px">Student ID</td>
@@ -153,9 +153,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding:5px">DOB</td>
+                                <td style="padding:5px ;">DOB</td>
 
-                                <td>
+                                <td style="color:#006400;">
                                     <?php if(strlen($personalInfo->dob) > 1) {echo $personalInfo->dob; }else echo "N/A"; ?>
                                 </td>
                             </tr>
@@ -168,13 +168,13 @@
                             </tr>
                             <tr>
                                 <td style="padding:5px">Mobile Number</td>
-                                <td style="color:pink;">
+                                <td style="color:#A52A2A;">
                                     <?php echo $personalInfo->mobile; ?>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding:5px">Address</td>
-                                <td>
+                                <td style="color:#008000;">
                                     <?php echo $personalInfo->address1; ?>
                                 </td>
                             </tr>

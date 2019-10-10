@@ -8,7 +8,7 @@
 
 
 
-    	$con1=mysqli_select_db($con,'schoodhe_A');
+    	$con1=mysqli_select_db($con,'schoodhe_C');
 
 
 
