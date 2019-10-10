@@ -481,6 +481,34 @@ class EmployeeController extends CI_Controller{
 		
 	}
 
+	function active_employee(){
+	   $usernam= $this->uri->segment(3);
+	   $this->db->where("username",$usernam);
+	   $data=$this->db->get("employee_info");
+	   if($data->num_rows()>0){
+	      $row= $data->row();
+	      if($row->status==0){
+	          $arr = array(
+	              "status" => 1
+	              );
+	            $this->db->where("username",$usernam);
+	           $data=$this->db->update("employee_info",$arr); 
+	           redirect("login/employeeList");
+	      }
+	      else{
+	           $arr = array(
+	              "status" => 0
+	              );
+	            $this->db->where("username",$usernam);
+	           $data=$this->db->update("employee_info",$arr); 
+	            redirect("login/employeeList");
+	      }
+	      
+	   }
+	   
+	    
+	}
+	
 	public function uploadEmployeeCertificates(){
 		$id = $this->input->post('c_id');
 		$school_code=$this->session->userdata('school_code');
@@ -744,7 +772,21 @@ class EmployeeController extends CI_Controller{
 		$empId =$this->input->post("empId");
 	}
 	
-	function salary(){
+	function configsalary(){
+		$eid = $this->input->post("eid");
+		$ename = $this->input->post("ename");
+		$this->load->model("employeeModel");
+		$this->load->model("teacherModel");
+		$qres = $this->employeeModel->getSalaryDetail($eid);
+		
+			
+			$data['eid'] = $eid;
+			$data['ename'] = $ename;
+			$data['qres'] = $qres;
+			$this->load->view("ajax/isSalConfigFalse",$data);
+				
+	}
+		function salary(){
 		$eid = $this->input->post("eid");
 		$ename = $this->input->post("ename");
 		$this->load->model("employeeModel");

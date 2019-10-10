@@ -5,7 +5,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   <meta name="author" content="School management System software">
 -->
 <!-- start: FORM VALIDATION 1 PANEL -->
-<?php $qs = $qres->row(); ?>
+
 <div class="panel panel-white">
 	<div class="panel-heading panel-red">
 		<h4 class="panel-title">Employee <span class="text-bold">Salary Detail</span></h4>
@@ -56,7 +56,12 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 													$this->db->where("school_code",$this->session->userdata("school_code"));
 													$this->db->where("id",$eid);
 													//$this->db->where('fsd',$this->session->userdata('fsd'));
-													$un= $this->db->get("employee_info")->row();?>
+													$un= $this->db->get("employee_info")->row();
+												    $qs = $qres->row();
+                                                      print_r($qs);
+                                                      exit();
+                                                        
+													?>
 						<input type = "text"  value ="<?php echo $un->username; ?>" class="form-control" />
 						<input type = "hidden" name = "empid" value ="<?php echo $eid; ?>"  />
 					</div>
@@ -67,7 +72,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						<input type="text" name="empname" id="empname"  class="text-uppercase" value ="<?php echo $ename;?>" class="form-control"/>
 					</div>
 					<div class="form-group">
-						<label class="control-label" style="color:#AE566C; font-weight: bolder;">
+						<label class="control-label" style="color:#AE566C; font-weight: bolder;" value="<?php if($qs->basicSalary){ echo $qs->basicSalary; }else{ echo "0.00";}?>">
 							BASIC SALARY
 						</label>
 						<input type="text" class="form-control" name="basicSalary" id="basicSalary"/>

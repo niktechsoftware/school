@@ -159,3 +159,255 @@ Stack trace:
 #7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #8 {main}
   thrown in /home/schoodhe/public_html/school/application/views/dashboard.php on line 1285
+[06-Oct-2019 20:46:24 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 211
+[09-Oct-2019 13:07:08 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getHomeWorkList() on null in /home/schoodhe/public_html/school/application/controllers/homeworkpanel.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Homeworkpanel->topperfstdhomeworkpanel()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/homeworkpanel.php on line 119
+[09-Oct-2019 14:42:17 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(793): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:42:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(793): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:42:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(793): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:42:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(793): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:42:24 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(793): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:42:24 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(793): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:42:25 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(793): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:43:01 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:43:04 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:43:07 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:43:15 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:43:15 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:43:20 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:44:51 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:47:05 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:47:10 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:47:19 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:47:43 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:47:55 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:47:56 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:47:57 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:48:04 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:48:13 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 14:49:19 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on string in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php:8
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/employeeController.php(786): CI_Loader->view('ajax/isSalConfi...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->configsalary()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/isSalConfigFalse.php on line 8
+[09-Oct-2019 17:02:32 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getHomeWorkList() on null in /home/schoodhe/public_html/school/application/controllers/homeworkpanel.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Homeworkpanel->topperfstdhomeworkpanel()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/homeworkpanel.php on line 119
+[10-Oct-2019 14:21:40 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 211
+[10-Oct-2019 14:23:29 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 211
+[10-Oct-2019 14:29:12 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 211

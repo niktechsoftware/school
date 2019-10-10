@@ -200,7 +200,7 @@
 		<?php 
 			$school=$this->session->userdata('school_code');
 			$row2=$this->db->get('db_name')->row()->name;		
-		if($school == 8 && $row2="A"){ ?>
+		if($school == 8 && $row2=="A"){ ?>
 		<tr class="tableHeader">
 			<td class="center" colspan="1" >A. SCHOLASTIC AREAS</td>
 		<td class="center" colspan="4">TERM - 1</td>

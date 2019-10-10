@@ -76,6 +76,22 @@
 			var eid = $('#id<?php echo $j;?>').val();
 			var ename = $('#classSave<?php echo $j;?>').val();
 		//alert(eid+ename);
+			$.post("<?php echo site_url('index.php/employeeController/configsalary') ?>", {eid : eid,ename : ename}, function(data){
+                $("#givenDetail").html(data);
+    		});
+    		
+       		 });
+		<?php }
+	
+	?>
+		<?php $val = $this->db->count_all("employee_info");
+		
+	for($j=1; $j <= $val; $j++)
+	{?>
+		$("#classSave1<?php echo $j;?>").click(function(){
+			var eid = $('#id<?php echo $j;?>').val();
+			var ename = $('#classSave1<?php echo $j;?>').val();
+		//alert(eid+ename);
 			$.post("<?php echo site_url('index.php/employeeController/salary') ?>", {eid : eid,ename : ename}, function(data){
                 $("#givenDetail").html(data);
     		});

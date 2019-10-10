@@ -952,7 +952,7 @@ $school_code = $this->session->userdata("school_code");
               <div class="panel-collapse collapse in" id="collapseOne4">
                 <div class="panel-body no-padding partition-light-grey">
                   <a href="<?php echo base_url()?>index.php/login/dayBook">
-                    <table class="table">
+                       <table class="table">
                     <thead>
                     <th>Sno.</th>
                     <th>Class </th>

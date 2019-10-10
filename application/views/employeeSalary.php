@@ -20,7 +20,8 @@
 												<th style="width: 5%;">SNo.</th>
 												<th style="width: 10%;">Emp. ID.</th>
 												<th style="width: 10%;">Name</th>
-												<th style="width: 15%;">Configure Status</th>
+												<th style="width: 15%;">Configure Salary</th>
+												<th style="width: 15%;">Pay Salary</th>
 												<th style="width: 60%;">Paid Status</th>
 											</tr>
 										</thead>
@@ -38,23 +39,33 @@
 												</td>
 												<td>
 
-													<button class="btn btn-blue btn-sm" id="classSave<?php echo $j;?>" value="<?php echo $row->name;?>">
+												
 							                    		<?php echo $row->name;?>
-							                    	</button>
+							                    
 												</td>
 												<td>
 													<?php
 														$this->load->model("employeeModel");
 													$qres = $this->employeeModel->getSalaryDetail($row->id);
 														if($qres->num_rows()>0)
-														{
-															echo "<b style='color:green;'>Configured</b>";
-														}
+														{?>
+															<button class="btn btn-blue btn-sm" id="classSave<?php echo $j;?>" value="<?php echo $row->name;?>">
+														<?php	echo "<b style='color:white;'>Configure</b>"; ?>
+																</button>
+													<?php	}
 														else
-														{
-															echo "<b style='color:red;'>Not Configure</b>";
-														}
+														{ ?> 
+														<button class="btn btn-blue btn-sm" id="classSave<?php echo $j;?>" value="<?php echo $row->name;?>">
+														<?php	echo "<b style='color:white;'>Re Configure</b>"; ?>
+														</button>
+													<?php	}
 													?>
+												</td>
+													<td>
+													    	<button class="btn btn-blue btn-sm" id="classSave1<?php echo $j;?>" value="<?php echo $row->name;?>">
+													    	    Pay Salary
+                                                               </button>
+							                    
 												</td>
 												<td>
 												<?php

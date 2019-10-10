@@ -158,7 +158,8 @@ class examControllers extends CI_Controller
 			echo $row->exam_date;
 			endforeach;
 		}
-	}
+	} 
+
 	
 	function startScheduling()
 	{ 	
