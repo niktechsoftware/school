@@ -656,6 +656,25 @@ function defineExam1(){
 			}
 			}
  }
+ function deletesubMarks(){
+	 $stuid=$this->input->post('stuid'); 
+	    $marks=$this->input->post('marks');
+	    $mmarks=$this->input->post('mmarks');
+	    $classid=$this->input->post('classid');
+	    $subjectid=$this->input->post('subjectid');
+	    $examid=$this->input->post('examid');
+		$attendence=$this->input->post('attendence');
+		$this->db->where('school_code' ,$this->session->userdata('school_code'));
+		$this->db->where('class_id',$classid);
+		$this->db->where('subject_id',$subjectid);
+		$this->db->where('stu_id',$stuid);
+		$this->db->where('exam_id',$examid);
+	$dt=	$this->db->delete('exam_info');
+	if($dt){
+				echo "Deleted";
+			}
+		
+ }
  
 function insertMarksdetail()
 	{
