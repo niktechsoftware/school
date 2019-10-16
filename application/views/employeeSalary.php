@@ -1,4 +1,4 @@
-			<div class="row">
+<div class="row">
 					<div class="col-sm-12">
 						<div class="panel panel-white">
 
@@ -50,13 +50,13 @@
 														if($qres->num_rows()>0)
 														{?>
 															<button class="btn btn-blue btn-sm" id="classSave<?php echo $j;?>" value="<?php echo $row->name;?>">
-														<?php	echo "<b style='color:white;'>Configure</b>"; ?>
+														<?php	echo "<b style='color:white;'>Re Configure</b>"; ?>
 																</button>
 													<?php	}
 														else
 														{ ?> 
 														<button class="btn btn-blue btn-sm" id="classSave<?php echo $j;?>" value="<?php echo $row->name;?>">
-														<?php	echo "<b style='color:white;'>Re Configure</b>"; ?>
+														<?php	echo "<b style='color:white;'> Configure</b>"; ?>
 														</button>
 													<?php	}
 													?>

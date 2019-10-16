@@ -176,10 +176,10 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			         <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
-			            <?php if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
-			           echo "Mobile No. : +91-".$info->mobile_no;
-			          // if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{}
-			           ?>
+			            <?php echo "Contact No. : " ;
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no ;}
+									if(strlen($info->other_mobile_no > 0 )){echo ", ".$info->other_mobile_no ;}
+									?>
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
@@ -505,10 +505,10 @@ This is computer generated invoice and verified by Accountant.
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			        <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
-			            <?php if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
-			           echo "Mobile No. : +91-".$info->mobile_no;
-			          // if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{ }
-			           ?>
+			            <?php echo "Contact No. : " ;
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no ;}
+									if(strlen($info->other_mobile_no > 0 )){echo ", ".$info->other_mobile_no ;}
+									?>
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
@@ -861,10 +861,10 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			        <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
-			           <?php //if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
-			           echo "Mobile No. : +91-".$info->mobile_no;
-			           if($info->mobile_no>0){ echo ', '.$info->mobile_no;}else{}
-			           ?>
+			           <?php echo "Contact No. : " ;
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no ;}
+									if(strlen($info->other_mobile_no > 0 )){echo ", ".$info->other_mobile_no ;}
+									?>
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
@@ -1210,10 +1210,10 @@ $tdiscount=0;
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			        <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
-			            <?php if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
-			           echo "Mobile No. : +91-".$info->mobile_no;
-			          // if($info->other_mobile_no>0){ echo ', '.$info->other_mobile_no;}else{ }
-			           ?>
+			            <?php echo "Contact No. : " ;
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no ;}
+									if(strlen($info->other_mobile_no > 0 )){echo ", ".$info->other_mobile_no ;}
+									?>
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">
@@ -1563,10 +1563,10 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">,<?php echo $info->state." - ".$info->pin; ?></span><br>
 			        <?php if(strlen($info->fax_no > 0 )){ $mno=$info->fax_no;}else{ $mno=" ";}?>
 			        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:12px">
-			           <?php //if(strlen($info->mobile_no > 0 )){echo "Mobile Number : ".$info->mobile_no.",".$mno ;}else{echo N/A;} 
-			           echo "Mobile No. : +91-".$info->mobile_no;
-			           if($info->mobile_no>0){ echo ', '.$info->mobile_no;}else{}
-			           ?>
+			          <?php echo "Contact No. : " ;
+									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no ;}
+									if(strlen($info->other_mobile_no > 0 )){echo ", ".$info->other_mobile_no ;}
+									?>
 			           </span>
 				</td>
 				<td width="10%" style="border:none; text-align:center">

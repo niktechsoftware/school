@@ -284,7 +284,31 @@ class EmployeeController extends CI_Controller{
 		$data['mainContent'] = 'addemployee';
 		$this->load->view("includes/mainContent", $data);
 	}
-
+function updateSalary(){
+		$emp_id =$this->input->post("empid");
+		$data = array(
+			
+			"basicSalary" => $this->input->post("basic"),
+			"ProvidentFund" => $this->input->post("pf"),
+			"employeeStateInsurance" => $this->input->post("esi"),
+			"medicalAllowance" => $this->input->post("ma"),
+			"transportAllowance" => $this->input->post("ta"),
+			"dearnessAllowance" => $this->input->post("da"),
+			"houseRentAllowance" => $this->input->post("ha"),
+			"skillAllowance" => $this->input->post("sa"),
+			"spcialAllowance" => $this->input->post("spa"),
+			"encentieve" => $this->input->post("encentieve"),
+			"bonus" => $this->input->post("bonus"),
+			"gross_s" => $this->input->post("gross_s"),
+			"created" =>date("Y-m-d"),
+			"fsd" =>$this->session->userdata('fsd'),
+		  "school_code"=>$this->session->userdata("school_code")
+		);
+		$this->db->where("emp_id",$emp_id);
+		$this->db->update("emp_salary_struct",$data);
+		redirect("login/employeeSalary");
+	}
+	
     function empreport()
 	{
             $v=$this->uri->segment(3);
@@ -772,21 +796,22 @@ class EmployeeController extends CI_Controller{
 		$empId =$this->input->post("empId");
 	}
 	
-	function configsalary(){
+      function configsalary(){
 		$eid = $this->input->post("eid");
 		$ename = $this->input->post("ename");
 		$this->load->model("employeeModel");
 		$this->load->model("teacherModel");
 		$qres = $this->employeeModel->getSalaryDetail($eid);
 		
-			
+		
 			$data['eid'] = $eid;
 			$data['ename'] = $ename;
 			$data['qres'] = $qres;
-			$this->load->view("ajax/isSalConfigFalse",$data);
-				
+		
+		
+			$this->load->view("ajax/isSalConfigFalse",$data);	
 	}
-		function salary(){
+	function salary(){
 		$eid = $this->input->post("eid");
 		$ename = $this->input->post("ename");
 		$this->load->model("employeeModel");

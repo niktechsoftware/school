@@ -478,7 +478,7 @@
 	 	$this->db->where("class_id",$cla);
 	 	$this->db->where("fsd",$this->session->userdata('fsd'));
 	 	$student = $this->db->get("student_info");
-      //  print_r($cla);
+        //print_r($student->row());exit;
 
         $school_code = $this->session->userdata("school_code");
         // if($this->input->post("fsd")){
@@ -629,14 +629,12 @@
                                   	$mbalance=$this->db->get('feedue');
 								 	//print_r($mbalance->mbalance);
 								 	if($mbalance->num_rows()>0){
-								 	    // print_r($mbalance->row()->mbalance);
 								 	if(strlen($mbalance->row()->mbalance) > 0){
 								 	    $db=$mbalance->row()->mbalance;
 									echo	$mbk= "Previous Balance ".$db."<br>";
 										?><input type = "hidden" id="amt1<?php echo $count;?>" value="<?php echo $mbalance->row()->mbalance;?>"/><?php
-									}}?>
-									<input type = "hidden" id="amt1<?php echo $count;?>" value="0.00"/>
-									<?php $cdate = date("Y-m-d");
+									}}
+									$cdate = date("Y-m-d");
 									$cmonth = date("Y-m",strtotime($cdate));
 									//print_r($stu_id);
 									$this->db->where("student_id",$stu_id);
@@ -708,7 +706,7 @@
 									 $fee_head =$fee_head->row()->fee_head_amount;
 									 $exdate1=Date("y-m-d");
 									 $dte1 = date("m",strtotime($exdate1));
-								 	// print_r($searchM[$rt]);
+									 
 									 	$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
@@ -718,17 +716,15 @@
 								 if($examfee1->num_rows()>0){
 								     
 								    $exfee1= $examfee1->row()->fee_head_amount;
-								 //   print_r($exfee1);
+								    
 									$totfee2= $fee_head * $rt;
 									$totfee=$totfee2+$exfee1;
-								 //	print_r($exfee1);
+								// 	print_r($exfee1);
 								// 	print_r($fee_head);
 								// 	print_r($rt);
-								
 								 } 
 								 else{
 								 	$totfee=$fee_head * $rt;
-								 	
 								//  		print_r($totfee);
 								 }
 									 if($stuDetail->transport==1){
@@ -796,7 +792,7 @@
 							
 							    $this->db->where_in("taken_month",$searchM);
 								$fee_head = $this->db->get("class_fees");
-							
+								
 								if($fee_head->num_rows()>0){
 								    
 								     $this->db->select_sum("fee_head_amount");  
@@ -815,7 +811,6 @@
 								 $fee8=$one_all_amount*($rt);
 								 
 									$fee9 =$fee_head->row()->fee_head_amount;
-									
 									$fee_head=$fee8 + $fee9;
 									
 									if($stuDetail->transport==1){
@@ -864,7 +859,7 @@
 							var amount = $("#amt<?php echo $count;?>").val();
 							var amount1 = $("#amt1<?php echo $count;?>").val();
 				// alert(amount);
-			
+				// alert(amount1);
 					$.post("<?php echo site_url("index.php/feeControllers/feeRemSms") ?>",{smstodue : smstodue,sname : sname,fname : fname,mnum : mnum,amount : amount,amount1 : amount1}, function(data){
 						$("#smstodew<?php echo $count;?>").html(data);
 					});

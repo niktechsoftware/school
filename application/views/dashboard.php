@@ -479,15 +479,11 @@ $school_code = $this->session->userdata("school_code");
 														Todays Sent [<?php echo $tot;?>]
 													</div>
 													
-
-
 											
 														 Delivered =<?php echo $sent;?>
 														 Wrong = <?php echo $wrong;?>
 														 
 													</div>
-
-
 												</div>
 											</div>
 											
@@ -713,11 +709,9 @@ $school_code = $this->session->userdata("school_code");
                           <td class="center"><?php echo 0;?></td>
                         
                     <?php    }  } else{?>
-
-
+                    
                           <td class="center"><?php echo "N/A";?></td>
                           <td class="center"><?php echo "N/A";?></td>
-
                   <?php  } $i++; } }    endforeach; } ?>
                        
                        
@@ -733,7 +727,6 @@ $school_code = $this->session->userdata("school_code");
                 <h4 class="panel-title">
                   <a href="#collapsetwo2" data-parent="#accordion" data-toggle="collapse"
                     class="accordion-toggle padding-15 collapsed">
-
                     <i class="icon-arrow"></i>
 
                     Today Evening Student Attendance  <span
@@ -827,12 +820,8 @@ $school_code = $this->session->userdata("school_code");
                         
                     <?php    }  } else{?>
                     
-
-
                           <td class="center"><?php echo "N/A";?></td>
                           <td class="center"><?php echo "N/A";?></td>
-
-
                   <?php  } $i++; } }    endforeach; } ?>
                        
                        
@@ -963,7 +952,7 @@ $school_code = $this->session->userdata("school_code");
               <div class="panel-collapse collapse in" id="collapseOne4">
                 <div class="panel-body no-padding partition-light-grey">
                   <a href="<?php echo base_url()?>index.php/login/dayBook">
-                       <table class="table">
+                    <table class="table">
                     <thead>
                     <th>Sno.</th>
                     <th>Class </th>
@@ -1136,7 +1125,7 @@ $school_code = $this->session->userdata("school_code");
 									 	$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
-									 $this->db->where_in("taken_month",$searchM[$rt-1]);
+									 $this->db->where_in("taken_month",$searchM);
 								 
 								 $examfee1 = $this->db->get("class_fees");
 								 if($examfee1->num_rows()>0){
@@ -1214,7 +1203,7 @@ $school_code = $this->session->userdata("school_code");
 							//	print_r($stuDetail->class_id);
 							if($school_code ==1){$this->db->where("cat_id",3);}
 							
-							    $this->db->where_in("taken_month",$searchM[$rt-1]);
+							    $this->db->where_in("taken_month",$searchM);
 								$fee_head = $this->db->get("class_fees");
 								
 								if($fee_head->num_rows()>0){

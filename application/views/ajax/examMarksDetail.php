@@ -101,8 +101,10 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                       
                     <td><?php echo $v->marks;?></td>
 					<td>
+				  <?php $login_type=$this->session->userdata("login_type"); if($login_type == "admin"){ ?>
                      <button class="btn btn-red" id="deletemmarks1<?php echo $i;?>">Delete Marks<i class="fa fa-trash-o"></i>
                      </button>
+				  <?php } ?>
                   </td>
                   </tr>
 				  <script>
