@@ -90,7 +90,9 @@
 		{
 		    body * { visibility: visible; }
 		    .non-printable { display: none; }
-		    .printcontent * { visibility: visible; }
+		    .printcontent * { visibility: visible; 
+		    
+		    }
 		    
 		    @page
 		   {
@@ -138,7 +140,7 @@
     $info =$this->db->get("school")->row();
     
 ?>
-    <table width="98%" class="printcontent"style="margin-top:50px; margin-left:auto; margin-right:auto;">
+    <table width="98%" class="printcontent" style="margin-top:50px; margin-left:auto; margin-right:auto;">
         <tr style="border-top:none;">
             <td class="center" style="border:none;">
                
