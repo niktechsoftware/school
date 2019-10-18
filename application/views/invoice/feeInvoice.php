@@ -14,6 +14,8 @@
 			body * { visibility: hidden; }
 			#printcontent * { visibility: visible; }
 			#printcontent { position: absolute; } 
+			.half_slip { width: 50% ;}
+			.top_shift {margin-top:-700px;}
 	}
 	
 	.button {
@@ -487,8 +489,8 @@ This is computer generated invoice and verified by Accountant.
 ?>
 	<div id="printcontent" style="width:100%;">
 		<div class ="row">
-	<div class="col-md-6">
-	<h3 class="text-danger  text-uppercase">School Receipt  </h3>
+	<div class="col-md-6 half_slip">
+	<h3 class="text-danger text-center text-uppercase">School Receipt  </h3>
 	<div  style="border:1px solid #333; width: 95%; margin: 0 ; auto">
    <div style="margin:5px;">
 		<table style="width: 100%; border:1px solid black; ">
@@ -829,7 +831,7 @@ This is computer generated invoice and verified by Accountant.
 	<!-- <hr> -->
 	<!-- student copy-->
 
-	<div class="col-md-6">
+	<div class="col-md-6 half_slip top_shift" style="float:right;">
 		<h3 class="text-danger text-center text-uppercase">Student Receipt</h3>
 	<div id="" style="border:1px solid #333; width: 95%; margin: 0 ;">
 <?php 
@@ -1172,7 +1174,7 @@ This is computer generated invoice and verified by accountant.
 	</div>
 	</div>
 	</div>
-	    
+
 	
     
  <?php   }else{ 

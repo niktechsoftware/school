@@ -138,7 +138,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                       <td><?php echo $stu->name; ?></td>
                       <td class="hidden-xs text-center">
                       <label class="radio-inline">
-                          <input class="radio" checked type="radio" id="Attendance<?php echo $i; ?>" name="attendence" value="1">
+                          <input class="radio"  type="radio" id="Attendance<?php echo $i; ?>" name="attendence" value="1" checked />
                         P 
                       </label>
                       <label class="radio-inline">

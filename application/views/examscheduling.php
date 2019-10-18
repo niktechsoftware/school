@@ -128,7 +128,7 @@
 										<div class="col-sm-7">
 										<div class="panel panel-calendar">
 												<div class="panel-heading panel-blue border-light">
-													<h4 class="panel-title">Settings</h4>
+													<h4 class="panel-title">Exam List</h4>
 												</div>
 											<div class="panel-body" id="examsetting">
 											<table class="table table-responsive">
@@ -142,7 +142,7 @@
 											</thead>
 											<tbody>
 											
-											<?php $i=1; foreach ($request as $row):
+											<?php $i=1; foreach ($request as $row): 
 											 ?><form action="<?php echo base_url();?>index.php/examControllers/startScheduling" method="post" >
 													
 													<tr>

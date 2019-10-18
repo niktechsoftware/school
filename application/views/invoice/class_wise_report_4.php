@@ -340,16 +340,24 @@ if($classid == 142 && $row2=="A" || $classid == 143 && $row2=="A" || $classid ==
            $pi=1;
 		   $grandtotal=0;
 foreach($resultData as $sub){
+$this->db->where('stu_id',$studentInfo->id);
 $this->db->where('class_id',$classid);
+$this->db->where('subject_id',$sub['subject']);
+//$this->db->where('exam_id',$value->exam_id);
+$this->db->where('fsd',$fsd);
+$subjectname=$this->db->get('exam_info');
+/*$this->db->where('class_id',$classid);
 $this->db->where('id',$sub['subject']);
-$subjectname=$this->db->get('subject'); 
-
+$subjectname=$this->db->get('subject');*/ 
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 	?><?php $totalp+=200;?>
                    <tr class="wight"> 
 					 <td class="subject">	
-                     <?php echo  $subjectname->subject;?> 
+                     <?php 
+								$this->db->where('id',$subjectname->subject_id);
+			echo $subjectname1= $this->db->get('subject')->row()->subject;
+					 ?> 
 					</td>
 			     <?php 
  				$ttal=0;
@@ -498,18 +506,26 @@ if($subjectname->num_rows()>0){
                         $cumulativetotal=0;
            $totalp= 0;   
            $pi=1;
-		   $grandtotal=0;
-foreach($resultData as $sub){
+		   $grandtotal=0; 
+foreach($resultData as $sub){ 
+$this->db->where('stu_id',$studentInfo->id);
 $this->db->where('class_id',$classid);
+$this->db->where('subject_id',$sub['subject']);
+//$this->db->where('exam_id',$value->exam_id);
+$this->db->where('fsd',$fsd);
+$subjectname=$this->db->get('exam_info');
+/*$this->db->where('class_id',$classid);
 $this->db->where('id',$sub['subject']);
-$subjectname=$this->db->get('subject'); 
-
+$subjectname=$this->db->get('subject');*/ 
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 	?><?php $totalp+=200;?>
                    <tr class="wight"> 
 					 <td class="subject">	
-                     <?php echo  $subjectname->subject;?> 
+                     <?php 
+								$this->db->where('id',$subjectname->subject_id);
+			echo $subjectname1= $this->db->get('subject')->row()->subject;
+					 ?> 
 					</td>
 			     <?php 
  				$ttal=0;
@@ -677,15 +693,24 @@ if($subjectname->num_rows()>0){
 					   $pi=1;
 					   $grandtotal=0;
 foreach($resultData as $sub){
-				$this->db->where('class_id',$classid);
-				$this->db->where('id',$sub['subject']);
-$subjectname=	$this->db->get('subject');
+$this->db->where('stu_id',$studentInfo->id);
+$this->db->where('class_id',$classid);
+$this->db->where('subject_id',$sub['subject']);
+//$this->db->where('exam_id',$value->exam_id);
+$this->db->where('fsd',$fsd);
+$subjectname=$this->db->get('exam_info');
+/*$this->db->where('class_id',$classid);
+$this->db->where('id',$sub['subject']);
+$subjectname=$this->db->get('subject');*/ 
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 	?><?php $totalp+=200;?>
                    <tr class="wight"> 
 					 <td class="subject">	
-                     <?php echo  $subjectname->subject;?> 
+                     <?php 
+								$this->db->where('id',$subjectname->subject_id);
+			echo $subjectname1= $this->db->get('subject')->row()->subject;
+					 ?>
 					</td>
 			     <?php 
 					$ttal=0;
@@ -708,7 +733,7 @@ if($subjectname->num_rows()>0){
 					 $grade= $marks->marks;
 					if($grade == "A1"){   $gtptal=$gtptal+100;}else if($grade == "A2"){  $gtptal=$gtptal+90;}else if($grade == "B1"){
 						  $gtptal=$gtptal+80;}else if($grade == "B2"){  $gtptal=$gtptal+70;}else if($grade == "C1"){ $gtptal=$gtptal+60;
-						}else if($grade == "C2"){ $gtptal=$gtptal+50;}else if($grade == "D"){ $gtptal=40;}else{$gtptal=32;}
+						}else if($grade == "C2"){ $gtptal=$gtptal+50;}else if($grade == "D"){ $gtptal=$gtptal+40;}else{$gtptal=$gtptal+32;}
 					}
 							echo $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
@@ -731,10 +756,12 @@ if($subjectname->num_rows()>0){
 				<?php 
                             $grandtotal=$grandtotal+$gtptal;
                             $dhtm=$dhtm+$ttal;
-                            if($ttal>0){  $per=round((($gtptal*100)/$ttal), 2);
-                             if($per <= 100 || $per >= 91){  echo $m="A1";}else if($per <= 90 || $per >= 81){ echo $m="A2";}else if($per <= 80 || $per >= 71){
+                            if($ttal>0){ 
+                                $per=round((($gtptal*100)/$ttal), 2);
+                            /* if($per <= 100 || $per >= 91){  echo $m="A1";}else if($per <= 90 || $per >= 81){ echo $m="A2";}else if($per <= 80 || $per >= 71){
 						    echo $m="B1";}else if($per <= 70 || $per >= 61){echo $m="B2";}else if($per <= 60 || $per >= 51){ echo $m="C1";
-						    }else if($per <= 50 || $per >= 41){ echo $m="C2";}else if($per <= 40 || $per >= 33){ echo $m="D";}else{echo $m="E";}   
+						    }else if($per <= 50 || $per >= 41){ echo $m="C2";}else if($per <= 40 || $per >= 33){ echo $m="D";}else{echo $m="E";}  */ 
+                               if($dhtm>0){echo $gradecal =calculateGrade($per,$classid);}         
                                         } ?> 
                 
                 </td>
@@ -852,16 +879,24 @@ if($subjectname->num_rows()>0){
            $pi=1;
 		   $grandtotal=0;
 foreach($resultData as $sub){
+$this->db->where('stu_id',$studentInfo->id);
 $this->db->where('class_id',$classid);
+$this->db->where('subject_id',$sub['subject']);
+//$this->db->where('exam_id',$value->exam_id);
+$this->db->where('fsd',$fsd);
+$subjectname=$this->db->get('exam_info');
+/*$this->db->where('class_id',$classid);
 $this->db->where('id',$sub['subject']);
-$subjectname=$this->db->get('subject'); 
-
+$subjectname=$this->db->get('subject');*/ 
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 	?><?php $totalp+=200;?>
                    <tr class="wight"> 
 					 <td class="subject">	
-                     <?php echo  $subjectname->subject;?> 
+                     <?php 
+								$this->db->where('id',$subjectname->subject_id);
+			echo $subjectname1= $this->db->get('subject')->row()->subject;
+					 ?> 
 					</td>
 			     <?php 
  				$ttal=0;

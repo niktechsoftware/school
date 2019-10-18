@@ -4,10 +4,8 @@ class InvoiceController extends CI_Controller{
     {
         parent::__construct();
           $this->is_login();
-        
+        $this->load->model("exammodel");
         $school_code = $this->session->userdata("school_code");
-        // print_r($school_code) ;
-        // exit();
     }
     
     function is_login(){

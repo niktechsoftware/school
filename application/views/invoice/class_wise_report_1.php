@@ -1416,7 +1416,10 @@ $cumulativetotal=0;
 			<td colspan="2">ATTENDANCE  </td>
 			<td colspan="3">MARK PERCENTAGE  <?php //echo $totalp;  
 			echo round((($cumulativetotal*100)/$dhtm), 2);?>%  </td>
-			<td colspan="4">RANK</td>
+			<td colspan="4">CLASS RANK : <?php 
+			echo $this->exammodel->getClassRank($studentInfo->id, $classid, $fsd);?></br></br></br>
+			SCHOOL RANK : <?php 
+			echo $this->exammodel->getSchoolRank($studentInfo->id,  $fsd);?></td>
 		</tr>
 		<tr class="pink">
 			<td colspan="2">FINAL RESULT</td>

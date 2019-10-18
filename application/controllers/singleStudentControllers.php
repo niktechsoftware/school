@@ -253,8 +253,8 @@ class singleStudentControllers extends CI_Controller{
 			$data['mainPage'] = 'Student';
 			$data['subPage'] = 'Personal Exam Result';
 			$data['title'] = 'Personal Exam Result';
-			$data['headerCss'] = 'headerCss/studentExamCss';
-			$data['footerJs'] = 'footerJs/studentExamJs';
+			$data['headerCss'] = 'headerCss/noticeCss';
+			$data['footerJs'] = 'footerJs/noticeJs';
 			$data['mainContent'] = 'studentExamResult';
 			$this->load->view("includes/mainContent", $data);
 		}
