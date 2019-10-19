@@ -130,7 +130,11 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 				  }else{?>
                    <tr>
                       <td><?php echo $j; ?></td>
-                      <td>
+                      <td><?php 
+							$this->db->where("id",$examid);
+					$term=  $this->db->get("exam_name")->row()->term;
+					?>
+					<input type="hidden" id="term<?php echo $i; ?>" value="<?php echo $term; ?>" />
                           <input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
                         <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
                         <?php echo $stu->username; ?>
@@ -138,11 +142,11 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                       <td><?php echo $stu->name; ?></td>
                       <td class="hidden-xs text-center">
                       <label class="radio-inline">
-                          <input class="radio"  type="radio" id="Attendance<?php echo $i; ?>" name="attendence" value="1" checked />
+                          <input class="radio"  type="radio" id="Attendance<?php echo $i; ?>" name="attendence<?php echo $i; ?>" value="1" checked />
                         P 
                       </label>
                       <label class="radio-inline">
-                          <input class="radio" type="radio" id="att<?php echo $i; ?>" name="attendence" value="0">
+                          <input class="radio" type="radio" id="att<?php echo $i; ?>" name="attendence<?php echo $i; ?>" value="0">
                             A
                       </label> 
                         </td>
@@ -190,10 +194,11 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 var marks = $("#mark<?php echo $i; ?>").val();
                 var subjectid = $("#subjectId").val();
                 var examid = $("#examid<?php echo $i; ?>").val();
-                var attendence = $("input[name='attendence']:checked").val();
+                var term = $("#term<?php echo $i; ?>").val();
+                var attendence = $("input[name='attendence<?php echo $i; ?>']:checked").val();
     				    //alert(attendence);
     				    if(mmarks!="" && marks!=""){
-    					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+    					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);
     						 $("#submit<?php echo $i;?>").show();
 

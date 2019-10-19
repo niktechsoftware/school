@@ -151,9 +151,15 @@
 
                     <div id="page-wrap" style="margin-top: 70px;height: 1250px;width:960px; border:1px solid #333;">
 
-            <div style="width:100%; height:1250px;margin-left:auto; margin-right:auto; border:1px  solid blue; background-color:#e30e0e;">
-
-                <div style="width:95%; margin-left:auto; margin-right:auto; border:1px  solid yellow; height:auto;">
+           <?php 
+			$school=$this->session->userdata('school_code');
+			$row2=$this->db->get('db_name')->row()->name;		
+		if($school == 13 && $row2=="A"){ ?>
+            <div style="width:100%; height:1250px;margin-left:auto; margin-right:auto; border:1px  solid blue; background-color:#f27c0d;">
+    <?php }else{ ?> 
+    <div style="width:100%; height:1250px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
+        <?php }?> 
+        <div style="width:95%; margin-left:auto; margin-right:auto; border:1px  solid yellow; height:auto;">
                     <?php
 						$school_code = $this->session->userdata("school_code");
 						$this->db->where("id",$school_code);
@@ -164,16 +170,15 @@
                            <td  style="border: none;">
                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
                                     alt="" style="height: 100px;width: 100px;" />
-                                </br><label style="color:white">Aff.No. - <?php echo $info->registration_no;?></label>
-                                </br><label style="color:white">School Code - 70447</label>
+                                </br><label style="">Aff.No. - <?php echo $info->registration_no;?></label>
                             </td>
                             <td colspan="2" style="border: none;" >
-                                <h1 style="color:white;font-size: 35px;">
+                                <h1 style="font-size: 35px;">
                                     <?php echo $info->school_name;?></h1>
-                                <h2 style="color:white;">
+                                <h2 style="">
                                    	<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                                 </h2>
-                                <h2 style="color:white;">
+                                <h2 style="">
                                 <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
 									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->other_mobile_no ;} ?>
                                 </h2>
@@ -192,10 +197,10 @@
                                 </h2></div>
 							</div>-->
 						</tr>
-						 <tr class="wight" style="color: white;font-size: 13px;">
+						 <tr class="wight" style="font-size: 13px;">
 							<td >
 								<span style="text-transform: uppercase;">Scholar ID: <?php echo $studentInfo->username; ?></span><br>
-								<span style="text-transform: uppercase;">Scholar Name: <?php echo strtoupper($studentInfo->name);?> </span><br>
+								<span style="text-transform: uppercase;">Student Name: <?php echo strtoupper($studentInfo->name);?> </span><br>
 							   <?php
 										   $this->db->where('school_code',$school_code);
 										   $this->db->where('id',$classid);
@@ -222,8 +227,12 @@
 						<tr>
 						
 							<td style="border: none;" colspan="3">
-								<center><h2 style="border: 2px solid #000; padding: 5px; width: 200px; color:white;">
-									Progress Report (2019-20) <br>
+								<center><h2 style="border: 2px solid #000; padding: 5px; width: 209px; ">
+									Progress Report [ <?php 
+									        $this->db->where('school_code',$school_code);
+                                            $this->db->where('id',$fsd);
+                                     $fsd2= $this->db->get('fsd')->row()->finance_end_date;
+									echo (date('Y', strtotime('-1 year', strtotime($fsd2)) )."-". date('Y', strtotime($fsd2))) ;?>] <br>
 									<?php 
 									$this->db->where("school_code",$school_code);
 								   $this->db->where("fsd",$this->session->userdata('fsd'));
@@ -309,26 +318,6 @@
                     </tr>
 
 
-                    <!-- Dynamic -->
-					
-                   <!-- <tr>
-                        <th>10</th>
-                        <th>5</th>
-                        <th>5</th>
-                        <th>80</th>
-                        <th>100</th>
-
-                      <th>10</th>
-                        <th>5</th>
-                        <th>5</th>
-                        <th>80</th>
-                        <th>100</th>
-
-                        <th>100</th>
-                    </tr>-->
-
-                    <!--Dynamic Subject-->
-
                     <?php 
                     $dhtm=0;
                         $htotal = 0;  
@@ -375,33 +364,22 @@ if($subjectname->num_rows()>0){
         					$this->db->where('fsd',$fsd);
         			$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
-							$marks=$marks->row();
-					////////////////////////	
+							$marks=$marks->row();	
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
-					////////////////////////
-
-
-							//$gtptal= $gtptal+$marks->marks;
 							echo $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
         					$this->db->where('class_id',$classid);
         					$this->db->where('exam_id',$value->exam_id);
 			    $exammm_row=$this->db->get('exam_max_subject')->row();
 				    $exammm=$exammm_row->max_m;
-		                //$ttal=$ttal+$exammm;
-				        //$dhtm=$exammm+$dhtm;
-				        
-				        
-			//////////////////////
 			if(is_numeric($exammm)){
 					  $ttal=$ttal+$exammm;
 				    $dhtm=$exammm+$dhtm;
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
-			///////////////////////
 						}else if($marks->num_rows()==0){ $exammm=" "; }
 					?><?php echo "/" .$exammm; ?>
 					</td> 
@@ -639,8 +617,8 @@ if($subjectname->num_rows()>0){
 
             <br />
             <div>
-            <p><label style="color: white;text-transform: uppercase;">Instructions</label></p>
-            <p><label style="color: white;">Grading Scale For Scholastic areas:Grades are awarded on a 8-point Grading Scale as Follows-</label></p>
+            <p><label style="text-transform: uppercase;">Instructions</label></p>
+            <p><label style="">Grading Scale For Scholastic areas:Grades are awarded on a 8-point Grading Scale as Follows-</label></p>
             </div></br>
             <div>
                 <table
@@ -705,7 +683,8 @@ if($subjectname->num_rows()>0){
                             Class Teacher :
                         </td>
                         <td>
-                            Principal :<div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50"  /></div>
+                            Principal :<div>	<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->principle_sign;?>" alt="" width="100" height="70" style="margin-top=-60px;" />
+		</div>
                         </td>
                     </tr>
                 </table>

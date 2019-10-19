@@ -1305,7 +1305,8 @@ if($subjectname->num_rows()>0){
                             Class Teacher :
                         </td>
                         <td>
-                            Principal :<div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50"  /></div>
+                            Principal :<div>
+                                <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->principle_sign;?>" alt="" width="100" height="70" style="margin-top=-60px;" /></div>
                         </td>
                     </tr>
                 </table>
