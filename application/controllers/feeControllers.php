@@ -1044,17 +1044,20 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						 if($fd->deposite_month<4){
 							$cdate11=date('Y-m-d');
 							$mno=(int)date('m',strtotime($cdate11));
-							if($mno < $fd->deposite_month){$realm=0;
-							    
+							if($mno < $fd->deposite_month){
+							    $realm=0;
+							 //  print_r($mno);
+							 //    print_r($mno);
 							}else{
 								//echo $mno;
 							$realm= $mno- $fd->deposite_month-1;}
-				           
+				          //  print_r($realm);
 						 }else{
 							$cdate11=date('Y-m-d');
 							if($cdate11>='2020-01-01'){
 							$mno=(int)date('m',strtotime($cdate11));
 						 $realm= $mno-$fd->deposite_month+12-1;
+						// print_r($realm);
 						}else{
 							$mno=(int)date('m',strtotime($cdate11));
 						if($mno<$fd->deposite_month){$realm=0;
@@ -1062,9 +1065,11 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 							}else{
 								
 								//echo $mno;
-							$realm= $mno- $fd->deposite_month-1;
+							$realm= $mno- $fd->deposite_month;
 							
 							}
+						//	print_r($mno);
+					//	print_r($fd->deposite_month);
 						 }
 						}
 						?>

@@ -591,3 +591,4 @@ Stack trace:
 #4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1076
+[22-Oct-2019 16:36:13 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 928

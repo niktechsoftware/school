@@ -378,26 +378,32 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		<?php
 					//echo $rowb->invoice_no;
 					$this->db->where('invoice_number',$rowb->invoice_no);
-				 $eunm = $this->db->get('dis_den_tab');
+				 $eunm1 = $this->db->get('dis_den_tab');
 				 //print_r($eunm->row()->discounter_id);
 				
-			     if($eunm->num_rows()>0){
-				$this->db->where('username',$eunm->row()->discounter_id);
+			     if($eunm1->num_rows()>0){
+			         $l=1;
+			          $totdisc=0;
+			         foreach($eunm1->result() as $eunm):
+				$this->db->where('username',$eunm->discounter_id);
 			     $eid = $this->db->get('employee_info');
 			?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
-					else{ $this->db->where("id",$eunm->row()->discounter_id);
+					else{ $this->db->where("id",$eunm->discounter_id);
 						$getdname = $this->db->get("discounttable");
 						if($getdname->num_rows()>0){
 							echo $getdname->row()->discount_head." "." (DISCOUNT)";
 						 }
 						 else{
 						 echo "DISCOUNT";}} ?></b></td>
-					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->row()->discount_rupee; $i++; ?></td>
+					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
 				</tr>
-				 <?php }else{?>
+				 <?php  $totdisc=$totdisc+$tdiscount; $l++;
+				 endforeach;
+				
+				 }else{?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
@@ -446,7 +452,7 @@ This is computer generated invoice and verified by Accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$tdiscount+$prbalanace); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -736,26 +742,35 @@ This is computer generated invoice and verified by Accountant.
 		<?php
 					//echo $rowb->invoice_no;
 					$this->db->where('invoice_number',$rowb->invoice_no);
-				 $eunm = $this->db->get('dis_den_tab');
+	                 $eunm1 = $this->db->get('dis_den_tab');
 				 //print_r($eunm->row()->discounter_id);
 				
-			     if($eunm->num_rows()>0){
-				$this->db->where('username',$eunm->row()->discounter_id);
+			     if($eunm1->num_rows()>0){
+			         $l=1;
+			          $totdisc=0;
+			         foreach($eunm1->result() as $eunm):
+				$this->db->where('username',$eunm->discounter_id);
 			     $eid = $this->db->get('employee_info');
 			?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
-					else{ $this->db->where("id",$eunm->row()->discounter_id);
+					else{ $this->db->where("id",$eunm->discounter_id);
 						$getdname = $this->db->get("discounttable");
 						if($getdname->num_rows()>0){
 							echo $getdname->row()->discount_head." "." (DISCOUNT)";
 						 }
 						 else{
 						 echo "DISCOUNT";}} ?></b></td>
-					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->row()->discount_rupee; $i++; ?></td>
+					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
 				</tr>
-				 <?php }else{?>
+				 <?php 
+				   $totdisc=$totdisc+$tdiscount;
+				$l++;
+				 endforeach;  
+				
+			
+				 }else{?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
@@ -810,7 +825,7 @@ This is computer generated invoice and verified by Accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$tdiscount+$prbalanace); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -1092,24 +1107,33 @@ $monthmk[$i]=13;?>
 				<!--</tr>-->
 		<?php
 					$this->db->where('invoice_number',$rowb->invoice_no);
-			     $eunm = $this->db->get('dis_den_tab');
-			     if($eunm->num_rows()>0){
-				$this->db->where('username',$eunm->row()->discounter_id);
+			     	 $eunm1 = $this->db->get('dis_den_tab');
+				 //print_r($eunm->row()->discounter_id);
+				
+			     if($eunm1->num_rows()>0){
+			         $l=1;
+			          $totdisc=0;
+			         foreach($eunm1->result() as $eunm):
+				$this->db->where('username',$eunm->discounter_id);
 			     $eid = $this->db->get('employee_info');
 			?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
-					else{ $this->db->where("id",$eunm->row()->discounter_id);
+					else{ $this->db->where("id",$eunm->discounter_id);
 						$getdname = $this->db->get("discounttable");
 						if($getdname->num_rows()>0){
 							echo $getdname->row()->discount_head." "." (DISCOUNT)";
 						 }
 						 else{
-						 echo "Discount";}} ?></b></td>
-					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->row()->discount_rupee; $i++; ?></td>
+						 echo "DISCOUNT";}} ?></b></td>
+					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
 				</tr>
-				 <?php }else{?>
+				 <?php $totdisc=$totdisc+$tdiscount;
+				 $l++;
+				 endforeach; 
+				
+				 }else{?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
@@ -1156,7 +1180,7 @@ This is computer generated invoice and verified by accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$tdiscount+$prbalanace); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -1441,26 +1465,32 @@ $tdiscount=0;
 		<?php
 					//echo $rowb->invoice_no;
 					$this->db->where('invoice_number',$rowb->invoice_no);
-				 $eunm = $this->db->get('dis_den_tab');
+				 $eunm1 = $this->db->get('dis_den_tab');
 				 //print_r($eunm->row()->discounter_id);
 				
-			     if($eunm->num_rows()>0){
-				$this->db->where('username',$eunm->row()->discounter_id);
+			     if($eunm1->num_rows()>0){
+			         $l=1;
+			          $totdisc=0;
+			         foreach($eunm1->result() as $eunm):
+				$this->db->where('username',$eunm->discounter_id);
 			     $eid = $this->db->get('employee_info');
 			?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
-					else{ $this->db->where("id",$eunm->row()->discounter_id);
+					else{ $this->db->where("id",$eunm->discounter_id);
 						$getdname = $this->db->get("discounttable");
 						if($getdname->num_rows()>0){
 							echo $getdname->row()->discount_head." "." (DISCOUNT)";
 						 }
 						 else{
 						 echo "DISCOUNT";}} ?></b></td>
-					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->row()->discount_rupee; $i++; ?></td>
+					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
 				</tr>
-				 <?php }else{?>
+				 <?php  $totdisc=$totdisc+$tdiscount;
+				 $l++;
+				 endforeach;
+				 }else{?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
@@ -1515,7 +1545,7 @@ $tdiscount=0;
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$tdiscount+$prbalanace); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -1791,24 +1821,34 @@ $monthmk[$i]=13;?>
 				<!--</tr>-->
 		<?php
 					$this->db->where('invoice_number',$rowb->invoice_no);
-			     $eunm = $this->db->get('dis_den_tab');
-			     if($eunm->num_rows()>0){
-				$this->db->where('username',$eunm->row()->discounter_id);
+			    	 $eunm1 = $this->db->get('dis_den_tab');
+				 //print_r($eunm->row()->discounter_id);
+				
+			     if($eunm1->num_rows()>0){
+			         $l=1;
+			         $totdisc=0;
+			         foreach($eunm1->result() as $eunm):
+				$this->db->where('username',$eunm->discounter_id);
 			     $eid = $this->db->get('employee_info');
 			?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
-					else{ $this->db->where("id",$eunm->row()->discounter_id);
+					else{ $this->db->where("id",$eunm->discounter_id);
 						$getdname = $this->db->get("discounttable");
 						if($getdname->num_rows()>0){
 							echo $getdname->row()->discount_head." "." (DISCOUNT)";
 						 }
 						 else{
-						 echo "Discount";}} ?></b></td>
-					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->row()->discount_rupee; $i++; ?></td>
+						 echo "DISCOUNT";}} ?></b></td>
+					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
 				</tr>
-				 <?php }else{?>
+				 <?php  $totdisc=$totdisc+$tdiscount;
+				 $l++;
+				 endforeach;
+				//  print_r($totdisc);
+				 
+				 }else{?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
@@ -1855,7 +1895,7 @@ This is computer generated invoice and verified by accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$tdiscount+$prbalanace); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
