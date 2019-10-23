@@ -792,6 +792,7 @@ function admissionSuccess(){
 		$data['email'] = $this->input->post("email");
 		$data['sno'] = $this->input->post("sno");
 		$data['book_no'] = $this->input->post("bookno");
+		$data['house_no'] = $this->input->post("houseno");
 		$data['father_full_name'] = $this->input->post("father_full_name");
 		$data['mother_full_name'] = $this->input->post("mother_full_name");
 		$data['caretaker_name'] = $this->input->post("caretaker_name");

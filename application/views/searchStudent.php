@@ -167,6 +167,12 @@
 						Book Number
 					</label>
 				</div>
+				<div class="col-md-2">
+					<label class="checkbox-inline">
+						<input type="checkbox" name="chk[]" value="houseno" id="houseno">
+						House Name
+					</label>
+				</div>
 			</div>
 <!-- ------------------------------ End Student body ----------------------------------- -->
 			<div class="row">

@@ -193,6 +193,11 @@
 					}else{
 						var bookno = "";
 					}
+					if($('#houseno:checked').val()?true:false){
+						var houseno = $("#houseno").val();
+					}else{
+						var houseno = "";
+					}
 
 					if($('#father_full_name:checked').val()?true:false){
 						var father_full_name = $("#father_full_name").val();
