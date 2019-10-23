@@ -139,15 +139,13 @@
 
 <body>
     <div id="printcontent" align="center">
-        <div id="page-wrap" style="margin-top: 70px;height: 1250px;width:960px; border:1px solid #333;">
+        <div id="page-wrap" style="margin-top: 70px;height: 1280px;width:960px; border:1px solid #333;">
 	<?php 
 			$school=$this->session->userdata('school_code');
 			$row2=$this->db->get('db_name')->row()->name;		
-		if($school == 13 && $row2=="A"){ ?>
-            <div style="width:100%; height:1250px;margin-left:auto; margin-right:auto; border:1px  solid blue; background-color:#f27c0d;">
-    <?php }else{ ?> 
-    <div style="width:100%; height:1250px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
-        <?php }?> 
+		?>
+    <div style="width:100%; height:1280px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
+       
                 <div style="width:95%; margin-left:auto; margin-right:auto; border:1px  solid yellow; height:auto;">
                     <?php
 						$school_code = $this->session->userdata("school_code");
@@ -155,7 +153,7 @@
 						$info =$this->db->get("school")->row();
 					?>
                     <table style="width: 100%;">
-                        <tr>
+                        <tr style="background-color: #b38cb1;">
                            <td  style="border: none;">
                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
                                     alt="" style="height: 100px;width: 100px;" />
@@ -163,7 +161,7 @@
                             </td>
                              <?php if($school == 13 && $row2=="A"){ ?>
                             <td  style="border: none;" >
-                                <h1 style="font-size: 35px;">
+                                <h1 style="font-size: 35px; font-family: Algerian;">
                                     <?php echo $info->school_name;?></h1>
                               <!--  <h2 style="">
                                    	<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
@@ -174,7 +172,8 @@
                                 </h2>-->
                             </td>
                             <td style="border: none;">
-                                <img src="<?php echo base_url(); ?>assets/images/cbse_logo.jpeg" alt="" style="height: 100px;width: 100px;">
+                                <img src="<?php echo base_url(); ?>assets/images/cbse_logo.png" alt="" style="height: 100px;width: 100px;">
+                                <br /><label style="font-size: 14px;">School Code - 70462</label>
                             </td>
                             <?php }else{ ?>
                              <td colspan="2" style="border: none;" >
@@ -266,10 +265,10 @@
             <?php if($school == 13 && $row2=="A"){ ?>
                         <div>
                 <table
-                    style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
+                    style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;font-weight:bold;font-size: 14px;">
                     <tr>
-                        <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
-						<th colspan="5" rowspan="2">TERM 1 (100 MARKS) </th>
+                        <th colspan="1" rowspan="2" style="background-color:#9dfa5b;">SCHOLASTIC AREA </th>
+						<th colspan="5" rowspan="2" style="background-color: #efef70;">TERM 1 (100 MARKS) </th>
 						<!--<th colspan="5" rowspan="2">Term 2 (100 Marks) </th>-->
                        <!-- <th colspan="3">OVERALL</th>-->
 
@@ -281,7 +280,7 @@
 
                     <tr>
 
-                        <th colspan="1" rowspan="1" style="text-transform: uppercase;">Subjects</th>
+                        <th colspan="1" rowspan="1" style="text-transform: uppercase;background-color:#9dfa5b;">Subjects</th>
                         <!--1st term -->
 						<?php 
 							$i=1;
@@ -293,13 +292,13 @@
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?></td>
+						<td colspan="1" style="text-transform: uppercase; font-weight:bold; background-color: #efef70;"><?php echo $examname->exam_name;?></td>
                         <?php 
 						}
 						$i++;
 						endforeach ;
 						if(!$i%2==0){ ?>
-						<td class="center bold" style="text-transform: uppercase;">Total</td> 
+						<td class="center bold" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;">Total</td> 
 						<?php } ?>
 						<!--2nd term-->
 						<?php 
@@ -351,7 +350,7 @@ if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 	?><?php $totalp+=200;?>
                  <tr class="wight"> 
-					 <td class="subject">	
+					 <td class="subject" style="background-color:#9dfa5b;">	
                      <?php echo  $subjectname->subject;?> 
 					</td>
 			     <?php 
@@ -361,7 +360,7 @@ if($subjectname->num_rows()>0){
 					$i=1; $t=0;
 				//	$coltptal=0; 
 					foreach ($examid as $value):?>
-					<td class="center">	
+					<td class="center" style="background-color: #efef70;">	
 					<?php
 					$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid->class_id);
@@ -391,7 +390,7 @@ if($subjectname->num_rows()>0){
 						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
-				<td class="center bold"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
+				<td class="center bold" style="background-color: #efef70;"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
 			   <?php ?></td>
 				<!--<td class="center bold"><?php   echo $gtptal;  ?></td>
 				<td class="center bold"><?php  echo $gtptal;  ?></td>-->
@@ -404,7 +403,7 @@ if($subjectname->num_rows()>0){
             <br>
             <div>
                 <table
-                    style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
+                    style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:orange;font-size: 14px;">
                      <tr>
                         <td> Overall Marks : <?php echo $grandtotal; ?>/<?php echo $dhtm;?> </td>
                         <td> Percentage: <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}?>%  </td>
@@ -573,38 +572,38 @@ if($subjectname->num_rows()>0){
             <?php } ?>
             <br>
 
-            <div style=" width:95%; margin-left:auto; margin-right:auto;">
+            <div style=" width:95%; margin-left:auto; margin-right:auto;font-size: 14px;">
                 <div style="width:50%; float:left;">
 
-                    <table style="width:90%; border:1px solid black; background-color:white;">
-                        <tr>
+                    <table style="width:90%; border:1px solid black;">
+                        <tr style="background-color:#9dfa5b;">
                             <th colspan="3" style="text-transform: uppercase;">Co- SCHOLASTIC Area</th>
                         </tr>
 
-                        <tr>
+                        <tr style="background-color:#9dfa5b;">
                             <th style="text-transform: uppercase;"> Activity </th>
                             <th>TERM 1</th>
                             
                         </tr>
 
                         <!-- Dynamic -->
-                         <tr>
-                            <td ><?php echo $co_scolastic="Work Education"; ?></td>
-                            <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>    
+                         <tr style="background-color: #c3c3f5;">
+                            <td >Work Education</td>
+                            <td><?php  if($per >= 61 && $per < 81 ){ echo "B";}else{if($dhtm>0){echo $gradecal =co_scolastic($per,$classid);}}  ?></td>      
                         </tr>
-                        <tr>
+                        <tr style="background-color: #c3c3f5;">
                             <td>Art Education</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>   
                         </tr>
-                        <tr>
+                        <tr style="background-color: #c3c3f5;">
                             <td>Health & Physical Education</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-                        <tr>
-                            <td><?php echo $co_scolastic="Thinking Skills"; ?></td>
-                            <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
+                        <tr style="background-color: #c3c3f5;">
+                            <td>Thinking Skills</td>
+                            <td><?php  if($per >= 61 && $per < 81 ){ echo "B";}else{if($dhtm>0){echo $gradecal =co_scolastic($per,$classid);}}  ?></td>
                         </tr>
-                        <tr>
+                        <tr style="background-color: #c3c3f5;">
                             <td>Sports</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>   
                         </tr>
@@ -642,7 +641,12 @@ if($subjectname->num_rows()>0){
 							$absnt=$row1->num_rows();
 							$present =$atotal-$absnt;
 							?>
-                            <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $present; ?>/<?php echo $atotal; ?></label></td>
+							 <?php if($school == 13 && $row2=="A"){ ?>
+                            <td style="background-color:orange;">Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label> </label></td>
+                          <?php  }
+                            else {?>
+                              <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $present; ?>/<?php echo $atotal; ?></label></td>
+                              <?php } ?>
                         </tr>
                     </table>
 
@@ -653,12 +657,12 @@ if($subjectname->num_rows()>0){
 
                 <div style="width:50%; float:right;">
 
-                    <table style="width:90%; border:1px solid black; background-color:white;">
+                    <table style="width:90%; border:1px solid black;">
 
-                        <tr>
+                        <tr style=" background-color:#9dfa5b;">
                             <th colspan="3" style="text-transform: uppercase;"> Discipline</th>
                         </tr>
-                        <tr>
+                        <tr style="background-color:#9dfa5b;">
                             <th style="text-transform: uppercase;"> Element </th>
                             <th>TERM 1</th>
                            
@@ -666,23 +670,23 @@ if($subjectname->num_rows()>0){
 
                         
                         <!-- Dynamic -->
-                        <tr>
+                        <tr style="background-color: #c3c3f5;">
                             <td>Regularity & Punctuality</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-                        <tr>
+                        <tr style="background-color: #c3c3f5;">
                             <td>Behaviour & Values</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-                        <tr>
+                        <tr style="background-color: #c3c3f5;">
                             <td>Attitude Towards Teachers</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-                        <tr>
+                        <tr style="background-color: #c3c3f5;">
                             <td>Attitude Towards School-Maltes</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-                        <tr>
+                        <tr style="background-color: #c3c3f5;">
                             <td>Respectfulness For Rules & Reulations</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
@@ -705,7 +709,7 @@ if($subjectname->num_rows()>0){
 
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr>
-                            <td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php if($dhtm>0){echo $gradecal =remarks($per,$classid->class_id);} ?></label></td>
+                            <td style="background-color:orange;">Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php if($dhtm>0){echo $gradecal =remarks($per,$classid->class_id);} ?></label></td>
                         </tr>
                     </table>
 
@@ -720,8 +724,8 @@ if($subjectname->num_rows()>0){
             </div></br>
             <div>
                 <table
-                    style="width:95%;  margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
-                    <tr>
+                    style="width:95%;  margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;font-size: 14px;">
+                    <tr style="background-color: orange;">
                         <th>
                             MARKS RANGE
                         </th>
@@ -731,35 +735,35 @@ if($subjectname->num_rows()>0){
                     </tr>
                     <!-- Dynamic -->
                     <?php if($school == 13 && $row2=="A"){ ?>
-                    <tr>
+                    <tr style="background-color: #d8c4af;">
                         <td>181-200</td>
                         <td>A1</td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #d8c4af;">
                         <td>161-180</td>
                         <td>A2</td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #d8c4af;">
                         <td>141-160</td>
                         <td>B1</td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #d8c4af;">
                         <td>121-140</td>
                         <td>B2</td>
                     </tr>
-                    <tr>
+                    <tr style="background-color: #d8c4af;">
                         <td>101-120</td>
                         <td>C1</td>
                     </tr>
-                     <tr>
+                     <tr style="background-color: #d8c4af;">
                         <td>81-100</td>
                         <td>C2</td>
                     </tr>
-                     <tr>
+                     <tr style="background-color: #d8c4af;">
                         <td>66-80</td>
                         <td>D</td>
                     </tr>
-                     <tr>
+                     <tr style="background-color: #d8c4af;">
                         <td>Needs Improvement</td>
                         <td>E</td>
                     </tr>
@@ -839,7 +843,7 @@ if($subjectname->num_rows()>0){
 							function co_scolastic($val,$classid){
 								if($val > 80):
 									return 'A';
-								elseif($val >= 61 && $val < 81):
+								elseif($val >= 61  && $val < 81 ):
 									return 'A';
 								else:
 									return 'B';
@@ -849,11 +853,11 @@ if($subjectname->num_rows()>0){
             </div>
             <br>
             <div  style="">
-			<div  style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Congratulations! Promoted to Next Class </div>
+		<!--	<div  style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Congratulations! Promoted to Next Class </div>-->
 			</div>
 			<br>
             <div>
-                <table style="width:95%;background-color:white;font-size: 14px;">
+                <table style="width:95%;background-color:#9dfa5b;font-size: 14px;">
 					<tr style="height: 100px;">
 						<td>		
                             Date :
