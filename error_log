@@ -592,3 +592,6 @@ Stack trace:
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1076
 [22-Oct-2019 16:36:13 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 928
+[24-Oct-2019 12:25:05 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/views/ajax/studentList.php on line 164
+[24-Oct-2019 12:25:08 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/views/ajax/studentList.php on line 164
+[24-Oct-2019 12:25:39 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/views/ajax/studentList.php on line 164

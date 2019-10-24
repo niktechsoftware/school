@@ -169,7 +169,7 @@
 				</div>
 				<div class="col-md-2">
 					<label class="checkbox-inline">
-						<input type="checkbox" name="chk[]" value="houseno" id="houseno">
+						<input type="checkbox" name="chk[]" value="house_id" id="house_id">
 						House Name
 					</label>
 				</div>

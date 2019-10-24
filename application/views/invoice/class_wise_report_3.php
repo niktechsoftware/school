@@ -149,7 +149,7 @@
                             $guardian_info=$this->db->get('guardian_info');
                             $parentInfo = $guardian_info->row();?>
 
-                    <div id="page-wrap" style="margin-top: 70px;height: 1280px;width:960px; border:1px solid #333;">
+                    <div id="page-wrap" style="height: 1280px;width:960px; border:1px solid #333;">
 
            <?php 
 			$school=$this->session->userdata('school_code');
@@ -168,12 +168,12 @@
                            <td  style="border: none;">
                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
                                     alt="" style="height: 100px;width: 100px;" />
-                                </br><label style="font-size: 14px;">Aff.No. - <?php echo $info->registration_no;?></label>
+                                </br><label style="font-size: 13px;">Aff.No. - <?php echo $info->registration_no;?></label>
                             </td>
                            
                             <?php if($school == 13 && $row2=="A"){ ?>
                             <td  style="border: none;" >
-                                <h1 style="font-size: 35px;font-family: Algerian;">
+                                <h1 style="font-size: 30px;font-family: Algerian;">
                                     <?php echo $info->school_name;?></h1>
                               <!--  <h2 style="">
                                    	<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
@@ -185,7 +185,7 @@
                             </td>
                             <td style="border: none;">
                                 <img src="<?php echo base_url(); ?>assets/images/cbse_logo.png" alt="" style="height: 100px;width: 100px;">
-                                 <br /><label style="font-size: 14px;">School Code - 70462</label>
+                                 <br /><label style="font-size: 13px;">School Code - 70462</label>
                             </td>
                             <?php }else{ ?>
                              <td colspan="2" style="border: none;" >
@@ -217,7 +217,7 @@
 						 <tr class="wight" style="font-size: 14px;">
 							<td >
 								<span style="text-transform: uppercase;">Scholar ID: <?php echo $studentInfo->username; ?></span><br>
-								<span style="text-transform: uppercase;">Student Name: <?php echo strtoupper($studentInfo->name);?> </span><br>
+								<span style="text-transform: uppercase;">Student's Name: <?php echo strtoupper($studentInfo->name);?> </span><br>
 							   <?php
 										   $this->db->where('school_code',$school_code);
 										   $this->db->where('id',$classid);
@@ -312,6 +312,7 @@
 						endforeach ;
 						if(!$i%2==0){ ?>
 						<td class="center bold" style="text-transform: uppercase;background-color: #efef70;font-weight:bold;">Total</td> 
+							<td class="center bold" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;">Grade</td> 
 						<?php } ?>
 						<!--2nd term-->
 						<?php 
@@ -405,7 +406,7 @@ if($subjectname->num_rows()>0){
 				<?php $i++; $t++;endforeach; ?>
 				<td class="center bold" style="background-color: #efef70;"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
 			   <?php ?></td>
-			   
+			    <td class="center bold" style="background-color: #efef70;"><?php echo calculateGrade($gtptal,$classid);?></td>
 			   
 				<!--<td class="center bold"><?php   echo $gtptal;  ?></td>
 				<td class="center bold"><?php  echo $gtptal;  ?></td>-->
@@ -681,7 +682,7 @@ if($subjectname->num_rows()>0){
 							$present =$atotal-$absnt;
 							?>
                            <?php if($school == 13 && $row2=="A"){ ?>
-                            <td style="background-color:orange;">Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label> </label></td>
+                           <td style="background-color:orange;"><label>. </label></td>
                           <?php  }
                             else {?>
                               <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $present; ?>/<?php echo $atotal; ?></label></td>
@@ -722,11 +723,11 @@ if($subjectname->num_rows()>0){
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid);} ?></td>
                         </tr>
                         <tr style="background-color: #c3c3f5;">
-                            <td>Attitude Towards School-Maltes</td>
+                            <td>Attitude Towards School-Mates</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid);} ?></td>
                         </tr>
                         <tr style="background-color: #c3c3f5;">
-                            <td>Respectfulness For Rules & Reulations</td>
+                            <td>Respectfulness For Rules & Regulations</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid);} ?></td>
                         </tr>
                         
@@ -780,31 +781,31 @@ if($subjectname->num_rows()>0){
                     <!-- Dynamic -->
                     <?php if($school == 13 && $row2=="A"){ ?>
                     <tr style="background-color: #d8c4af;">
-                        <td>181-200</td>
+                        <td>91-100</td>
                         <td>A1</td>
                     </tr>
                     <tr style="background-color: #d8c4af;">
-                        <td>161-180</td>
+                        <td>81-90</td>
                         <td>A2</td>
                     </tr>
                     <tr style="background-color: #d8c4af;">
-                        <td>141-160</td>
+                        <td>71-80</td>
                         <td>B1</td>
                     </tr>
                     <tr style="background-color: #d8c4af;">
-                        <td>121-140</td>
+                        <td>61-70</td>
                         <td>B2</td>
                     </tr>
                     <tr style="background-color: #d8c4af;">
-                        <td>101-120</td>
+                        <td>51-60</td>
                         <td>C1</td>
                     </tr>
                      <tr style="background-color: #d8c4af;">
-                        <td>81-100</td>
+                        <td>41-50</td>
                         <td>C2</td>
                     </tr>
                      <tr style="background-color: #d8c4af;">
-                        <td>66-80</td>
+                        <td>33-40</td>
                         <td>D</td>
                     </tr>
                      <tr style="background-color: #d8c4af;">
@@ -856,23 +857,22 @@ if($subjectname->num_rows()>0){
 			</div>
 			<br>
             <div>
-                <table style="width:95%;font-size: 14px;background-color: #9dfa5b;">
+                <table style="width:95%;font-size: 14px;">
 					<tr style="height: 100px;">
 						<td>		
-                            Date :
+                            </br></br></br></br>Date :
                         </td>
-                        <td>
-                            Class Teacher :
-                        </td>
-                        <td>
-                            Principal :<div>	<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->principle_sign;?>" alt="" width="100" height="70" style="margin-top=-60px;" />
-		</div>
+                        <td></br></br></br></br><lable >Class Teacher Signature:</lable> </td>
+                        <td></br></br></br></br><lable > Principal Signature:</lable>
+                            <div>	
+                            <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->principle_sign;?>" alt="" width="100" height="70" style="margin-top=-60px;" />
+    	                	</div>
                         </td>
                     </tr>
                 </table>
             </div>
         </div></div>
-    </div> <?php 	} ?><?php 
+    </div></br></br></br></br> <?php 	} ?><?php 
 				function calculateGrade($val,$classid){
 								if($val >= 91 && $val < 101):
 									return 'A1';

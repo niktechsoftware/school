@@ -161,8 +161,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 												<?php if(strlen($book_no) > 1):?>
 												<th>Book No.</th>
 												<?php endif; ?>
-												<?php if(strlen($house_no) > 1):?>
-												<th>house Name.</th>
+												<?php if(strlen($house_id) > 1):?>
+												<th>house Name</th>
 												<?php endif; ?>
 												
 												<?php if(strlen($father_full_name) > 1):?>
@@ -341,8 +341,11 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 												<?php if(strlen($book_no) > 1){?>
 										     	<td><?php echo $row->book_no; ?></td>
 												<?php } ?>
-											 	<?php if(strlen($house_no) > 1){?>
-										     	<td><?php echo $row->house_id; ?></td>
+											 	<?php if(strlen($house_id) > 1){?>
+										     	<td><?php  
+										     	    $this->db->where('id',$row->house_id);
+				                      echo  $house_name=  $this->db->get('house')->row()->house_name;
+										     	?></td>
 												<?php } ?>
 												
 												<?php if(strlen($father_full_name) > 1):?>

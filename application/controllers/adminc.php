@@ -95,4 +95,29 @@ class adminc extends CI_Controller{
          endforeach;
      
  }
+ 
+ function updateMobile(){
+    
+	
+    $ts =  $this->db->get("temp");
+     foreach($ts->result() as $t):
+         
+         
+          $this->db->select('id');
+	     $this->db->from('student_info');
+	    
+	     $this->db->where("username",$t->uname);
+	   
+	     $query=$this->db->get()->row();
+	     
+	     $up = array(
+	         "mother_full_name"=> $t->mname
+	         );
+	         
+	        $this->db->where("student_id",$query->id);
+         $this->db->update("guardian_info",$up);
+	     
+         
+         endforeach;
+ }
 }
