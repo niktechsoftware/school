@@ -595,3 +595,9 @@ Stack trace:
 [24-Oct-2019 12:25:05 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/views/ajax/studentList.php on line 164
 [24-Oct-2019 12:25:08 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/views/ajax/studentList.php on line 164
 [24-Oct-2019 12:25:39 Asia/Calcutta] PHP Fatal error:  Can't use function return value in write context in /home/schoodhe/public_html/school/application/views/ajax/studentList.php on line 164
+[30-Oct-2019 10:53:40 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getHomeWorkList() on null in /home/schoodhe/public_html/school/application/controllers/homeworkpanel.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Homeworkpanel->topperfstdhomeworkpanel()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/homeworkpanel.php on line 119

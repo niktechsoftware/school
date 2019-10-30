@@ -119,7 +119,7 @@
                         Select Expenditure Name
                         </div>
                         <div class="col-md-6">
-                        <?php $this->db->where('school_code',$this->session->userdata('school_code'));
+                        <?php //$this->db->where('school_code',$this->session->userdata('school_code'));
                                      $exp= $this->db->get('expenditure');
                                     // print_r($exp);
                                      if($exp->num_rows()>0){ ?>

@@ -1103,8 +1103,18 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 				// 	}else{
 				// 		$realm=0;
 				// 	} 
+				if($school_code==7){
+				    if($this->session->userdata("login_type")=="admin"){
 				?>
-	                 <input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
+				<input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
+	              
+	                 <?php } else{ ?>
+	                 <input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" readonly="" class="form-control" onkeyup="fee();">
+	                 
+	                 <?php }} else{ ?>
+	                  <input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
+	              
+	                 <?php } ?>
 						
 														</div>
 	                                                </div>

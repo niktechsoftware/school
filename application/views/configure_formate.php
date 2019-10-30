@@ -37,9 +37,9 @@
                     <button data-dismiss="alert" class="close">×</button>
                     <h3 class="media-heading text-center">Welcome to Report Card Formate Section</h3>
                     <a class="alert-link" href="#"></a>
-                   please select a formate for view of student report card. after select a formate you can view
-				   the preview of that selected formate.if you like that formate then click save button which is
-				   display in bottom side of that formate. if you want to see another formate you can select another 
+                   please select a formate for view of student report card. After select a formate you can view
+				   the preview of that selected formate.If you like that formate then click save button which is
+				   display in bottom side of that formate. If you want to see another formate you can select another 
 				   formate and then click save button to configure that formate.
                   </div>
                   <div class="row">
@@ -82,9 +82,9 @@
                     </button>
                     <h3 class="media-heading text-center">Welcome to ID Card Formate Section</h3>
                     <a class="alert-link" href="#"></a>
-                    please select a formate for view of student ID card. after select a formate you can view
-				   the preview of that selected formate.if you like that formate then click save button which is
-				   display in bottom side of that formate. if you want to see another formate you can select another 
+                    please select a formate for view of student ID card. After select a formate you can view
+				   the preview of that selected formate.If you like that formate then click save button which is
+				   display in bottom side of that formate. If you want to see another formate you can select another 
 				   formate and then click save button to configure that formate.
                   </div>
 

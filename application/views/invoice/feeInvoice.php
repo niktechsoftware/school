@@ -825,6 +825,14 @@ This is computer generated invoice and verified by Accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
+				  <?php 
+				//   echo "<pre>";
+				 // print_r($total);
+				//   print_r($lfee);
+				//   print_r($transfee);
+				//   print_r($totdisc);
+				//   print_r($prbalanace);
+				  ?>
 				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
 				  </tr>
 				

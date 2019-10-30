@@ -116,6 +116,7 @@ public function findteacherhw()
 
   }
     public function topperfstdhomeworkpanel(){
+        $this->load->model("homeworkmodel");
 			$data['class']= $this->homeworkmodel->getHomeWorkList();
 		$data['pageTitle'] = 'HomeWork Panel';
 		$data['smallTitle'] = 'HomeWork Panel';

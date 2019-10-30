@@ -94,7 +94,7 @@
 				                        			<td>
 							                        	<label>Employee ID <span style="color:#F00">*</span></label> 
 							                            <select id="stu_emp_id" name="id_name" style="width:150px;" required>
-							                                <option value="">-Item Id-</option>
+							                                <option value="">- Select -</option>
 							                                <option value="Employee Id"> Employee Id </option>
 							                               
 							                                <option value="other"> Other </option>
