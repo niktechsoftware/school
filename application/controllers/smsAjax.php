@@ -147,6 +147,8 @@ class SmsAjax extends CI_Controller{
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		$fmobile=$this->session->userdata("mobile_number");
+// 		echo $fmobile;
+// 		exit;
 		if($isSMS->parent_message)
 		{
 		if($query->num_rows() > 0)

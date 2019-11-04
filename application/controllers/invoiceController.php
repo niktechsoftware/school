@@ -21,6 +21,15 @@ class InvoiceController extends CI_Controller{
         }
     }
     
+    function obtn_marks(){
+		$data['sectionid'] = $this->uri->segment(4);
+		$data['subjectid'] = $this->uri->segment(5);
+		$data['examid'] = $this->uri->segment(6);
+		$data['classid']=$this->uri->segment(3);
+		$this->load->view("invoice/obtn_marks",$data);
+	}
+    
+    
     	function printempiCard(){
 			
 		$data['pageTitle'] = 'Employee Section';

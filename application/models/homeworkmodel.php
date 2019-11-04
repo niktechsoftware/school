@@ -10,9 +10,10 @@ class homeWorkModel extends CI_Model{
 		return true;
 	}
 	function getHomeWorkList(){
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$var = $this->db->get("homework");
+	   	$this->db->where("school_code",$this->session->userdata("school_code"));
+		$var = $this->db->get("homework_name");
 		return $var;
+		
 	}
 
 	function getHomeWorkDetail(){

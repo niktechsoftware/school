@@ -25,19 +25,19 @@ class daybookModel extends CI_Model{
 		$school_code= $this->session->userdata("school_code");
 		$data=array(
 			'expenditure_name'=>$exp,
-			'school_code'=>$school_code
+		//	'school_code'=>$school_code
 		);
 		if(strlen($exp)>1){
 			$this->db->insert('expenditure',$data);
 		}
 		$school_code= $this->session->userdata("school_code");
-			$this->db->where("school_code",$school_code);
+		//	$this->db->where("school_code",$school_code);
 			$query = $this->db->get("expenditure");
 			return $query;
 	}
 		public function createxpee(){
 			$school_code= $this->session->userdata("school_code");
-			$this->db->where("school_code",$school_code);
+		//	$this->db->where("school_code",$school_code);
 			$query = $this->db->get("expenditure");
 			return $query;
 		}
@@ -57,18 +57,18 @@ class daybookModel extends CI_Model{
 				//'school_code'=>$school_code
 			);
 			if(strlen($subexpid)>1){
-				$this->db->where("school_code",$school_code);
+			//	$this->db->where("school_code",$school_code);
 				$this->db->where("sno",$subexpid);
 				$this->db->update('expenditure',$data);
 			}
 			$school_code= $this->session->userdata("school_code");
-				$this->db->where("school_code",$school_code);
+			//	$this->db->where("school_code",$school_code);
 				$query = $this->db->get("expenditure");
 				return $query;
 		}
 		public function creatsubexpee(){
 			$school_code= $this->session->userdata("school_code");
-			$this->db->where("school_code",$school_code);
+		//	$this->db->where("school_code",$school_code);
 			$query = $this->db->get("expenditure");
 			return $query;
 		}

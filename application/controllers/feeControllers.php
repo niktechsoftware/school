@@ -137,14 +137,12 @@ function getFsd(){
 
 //echo $this->input->post('fsdid');
 //exit;//start 
-		$stuid=$this->input->post('stuId');
-		//insert data in feedue table
-		$mdata['student_id']=$this->input->post('stuId');
-		$mdata['description']=$this->input->post("disc");
-		$mdata['mbalance']=$this->input->post("cb");
-		$mdata['depositedate']=$this->input->post("subdate");
-		$mdata['invoice_no']=$invoice_number;
-		$mdata['school_code']=$school_code;
+         $cb1=$this->input->post("cb");
+	    	$stuid=$this->input->post('stuId');
+		
+		  $this->db->where("student_id",$studid);
+		  $this->db->where("school_code",$school_code);
+		  $duedt2=  $this->db->get("feedue",$mdata);
 		
 		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
 		$balance = $op1->closing_balance;
@@ -185,12 +183,43 @@ function getFsd(){
 			//"depositedate"=>date('y-m-d'),
 			"updatedate"=>date('y-m-d'),
 			);
-			//$this->db->where("student_id",$this->input->post("stuId"));
-			$this->db->where("invoice_no",$invoice_number);
+			$this->db->where("student_id",$this->input->post("stuId"));
+		//	$this->db->where("invoice_no",$invoice_number);
 			$this->db->where("school_code",$school_code);
 		   $this->db->update("feedue",$mbalance);
 		$this->db->insert("dis_den_tab",$discountv);
-		if( $this->db->insert('day_book',$dayBook) && $this->db->insert("fee_deposit",$updata) && $this->db->insert("feedue",$mdata)){
+		if( $this->db->insert('day_book',$dayBook) && $this->db->insert("fee_deposit",$updata) ){
+		    
+		   if($duedt2->num_rows()>0){
+		      $mbal2=$duedt2->row()->mbalance;
+		      $totmbal=$mbal2+$cb1;
+		      
+    		//insert data in feedue table
+     		$mdata['student_id']=$this->input->post('stuId');
+    		$mdata['description']=$this->input->post("disc");
+    		$mdata['mbalance']=$totmbal;
+    		$mdata['depositedate']=$this->input->post("subdate");
+    		$mdata['invoice_no']=$invoice_number;
+     		$mdata['school_code']=$school_code;
+     		
+ 	     	$this->db->where("student_id",$studid);
+		    $this->db->where("school_code",$school_code);
+		    $this->db->update("feedue",$mdata);
+		 }
+		 else{
+		    $mdata['student_id']=$this->input->post('stuId');
+    		$mdata['description']=$this->input->post("disc");
+    		$mdata['mbalance']=$this->input->post("cb");
+    		$mdata['depositedate']=$this->input->post("subdate");
+    		$mdata['invoice_no']=$invoice_number;
+     		$mdata['school_code']=$school_code;
+     		
+ 	     
+		    $this->db->insert("feedue",$mdata);
+		 }
+		  
+		    
+		    
 			foreach($months as $g):
 				
 		    $fee_deposite_m = array(
@@ -450,8 +479,8 @@ function getFsd(){
 		}
 		function enterDeufee(){
 		    
-          $school_code=$this->session->userdata("school_code");
-			$this->db->where("school_code",$school_code);
+        $school_code=$this->session->userdata("school_code");
+		$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
 		$invoice1=6000+$invoice->num_rows();
 		$invoice_number = $school_code."I19".$invoice1;
@@ -1051,7 +1080,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 							}else{
 								//echo $mno;
 							$realm= $mno- $fd->deposite_month-1;}
-				          //  print_r($realm);
+				          // print_r($realm);
 						 }else{
 							$cdate11=date('Y-m-d');
 							if($cdate11>='2020-01-01'){
@@ -1080,6 +1109,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						$this->db->where('school_code',$school_code);
 						$amt=$this->db->get('late_fees')->row()->late_fee;
                         $latefee1=$amt*$realm;
+                       // echo $latefee1;
 					}else{
 						$cdate11=date('Y-m-d');
 							if($cdate11>='2020-01-01'){

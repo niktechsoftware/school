@@ -578,14 +578,16 @@ function showHomeWork()
 				  			<td><?php echo $lv->givenby;?></td>
 				  			<td><?php echo $lv->work_name;?></td>
 				  			<td><?php
-				  			$this->db->where("id",$lv->class_id);
-                        	$var = $this->db->get("class_info")->row();
+				  		        	$this->db->where("id",$lv->class_id);
+                        	$var =  $this->db->get("class_info")->row();
                             if($lv->class_id==0){echo "No Record Found";}else{ echo $var->class_name;}
                             ?>
                             </td>
 				  			<td><?php
+				  			        $this->db->where("id",$var->section);
                         	$var1 = $this->db->get("class_section")->row();
                         	echo $var1->section;
+                        // echo $var->section;
 				  			?></td>
 				  			<td><?php echo $lv->maximam_marks;?> ( <?php echo $lv->grade;?> )</td>
 				  			<td style="max-width: 151px;"><?php echo $lv->workDiscription;?></td>

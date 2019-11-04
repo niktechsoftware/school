@@ -5,7 +5,7 @@
     if($explist->num_rows()>0){
         ?>
         <div class="panel-body panel-scroll height-450 table-responsive" >
-    <table class="table table-bordered table-hover ">
+    <table class="table table-bordered table-hover " id="sample-table-2">
     <thead>
     <tr class="text-center">
         <th>ID </th>

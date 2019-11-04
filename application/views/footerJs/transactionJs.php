@@ -60,10 +60,22 @@
 		<script src="<?php echo base_url(); ?>assets/plugins/ckeditor/adapters/jquery.js"></script>
 		<script src="<?php echo base_url(); ?>assets/js/form-elements.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/select2/select2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/tableExport/tableExport.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jquery.base64.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/tableExport/html2canvas.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/libs/sprintf.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/jspdf.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/libs/base64.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/table-export.js"></script>
+		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: CORE JAVASCRIPTS  -->
 		<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 		<!-- end: CORE JAVASCRIPTS  -->
 <script>
+
 	jQuery(document).ready(function() {
 $("#conform").hide();
 $("#newpassword").hide();
@@ -122,9 +134,12 @@ $("#newpassword").hide();
 				 $('#expenditurer').html(data);
 			})
 		});
+		 $.post("<?php echo site_url('index.php/dayBookControllers/createxpe') ?>", {expenditure : ''}, function(data){
+         $("#expenditure2").html(data);
+		});
 		$('#createexp').click(function(){
 			var expenditure = $('#expenditure').val();
-			alert(expenditure);
+		//	alert(expenditure);
 			$.post("<?php echo base_url('index.php/dayBookControllers/createxpe') ?>", {expenditure : expenditure
          }, function(data){
                 $("#expenditure2").html(data);
@@ -132,15 +147,16 @@ $("#newpassword").hide();
         $('#expenditure').val("");
 
 		});
+		
+		 $.post("<?php echo site_url('index.php/dayBookControllers/creatsubexp') ?>", {subexp : '',expsub : ''}, function(data){
+         $("#expen").html(data);
+		});
 		$('#createexp1').click(function(){
 			var expsub = $('#expsub').val();
 			var subexp = $('#subexp').val();
-			alert(subexp);
-			alert(expsub);
 			$.post("<?php echo base_url('index.php/dayBookControllers/creatsubexp') ?>", {subexp : subexp,expsub: expsub
          }, function(data){
                 $("#expen").html(data);
-				alert(data);
         });
         $('#expsub').val("");
 
@@ -179,6 +195,7 @@ $("#newpassword").hide();
 		
 	});
 	});
+	TableExport.init();
 		Main.init();
 		SVExamples.init();
 		FormElements.init();

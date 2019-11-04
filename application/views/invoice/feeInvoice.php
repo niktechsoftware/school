@@ -462,8 +462,11 @@ This is computer generated invoice and verified by Accountant.
 				  <tr class='text-uppercase'>
 				  <td class="text-center text-nowrap"  style="background-color:#caf441" ><strong>Balance Due</strong></td>
 				  
-				  <td class="text-center"  style="background-color:#caf441" ><?php if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>
-				  </tr>
+				  <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
+			
+			  <td class="text-center"  style="background-color:#caf441" ><?php $pd=$rowb->total - $rowb->paid;  echo $pd;  ?></td>
+			
+				</tr>
 				  </table>
 	
 		</div>
@@ -827,13 +830,13 @@ This is computer generated invoice and verified by Accountant.
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
 				  <?php 
 				//   echo "<pre>";
-				 // print_r($total);
+				//  print_r($total);
 				//   print_r($lfee);
 				//   print_r($transfee);
 				//   print_r($totdisc);
-				//   print_r($prbalanace);
+				  // print_r($prbalanace);
 				  ?>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$transfee-$totdisc); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -842,8 +845,10 @@ This is computer generated invoice and verified by Accountant.
 				  </tr>
 				  <tr class='text-uppercase'>
 				  <td class="text-center text-nowrap"  style="background-color:#caf441" ><strong>Balance Due</strong></td>
-				 <td class="text-center"  style="background-color:#caf441" ><?php if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>
-				  </tr>
+				   <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
+			
+			  <td class="text-center"  style="background-color:#caf441" ><?php $pd=$rowb->total - $rowb->paid;  echo $pd;  ?></td>
+			 </tr>
 				  </table>
 	
 		</div>
@@ -1188,7 +1193,7 @@ This is computer generated invoice and verified by accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$transfee-$totdisc); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -1197,8 +1202,10 @@ This is computer generated invoice and verified by accountant.
 				  </tr>
 				  <tr class='text-uppercase'>
 				  <td class="text-center text-nowrap"  style="background-color:#caf441" ><strong>Balance Due</strong></td>
-				  <td class="text-center"  style="background-color:#caf441" ><?php if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>
-				  </tr>
+				   <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
+			
+			  <td class="text-center"  style="background-color:#caf441" ><?php $pd=$rowb->total - $rowb->paid;  echo $pd;  ?></td>
+			 </tr>
 				  </table>
 	
 		</div>
@@ -1562,8 +1569,10 @@ $tdiscount=0;
 				  </tr>
 				  <tr class='text-uppercase'>
 				  <td class="text-center text-nowrap"  style="background-color:#caf441" ><strong>Balance Due</strong></td>
-				 <td class="text-center"  style="background-color:#caf441" ><?php if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>
-				  </tr>
+				  <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
+			
+			  <td class="text-center"  style="background-color:#caf441" ><?php $pd=$rowb->total - $rowb->paid;  echo $pd;  ?></td>
+			  </tr>
 				  </table>
 	
 		</div>
@@ -1912,8 +1921,10 @@ This is computer generated invoice and verified by accountant.
 				  </tr>
 				  <tr class='text-uppercase'>
 				  <td class="text-center text-nowrap"  style="background-color:#caf441" ><strong>Balance Due</strong></td>
-				  <td class="text-center"  style="background-color:#caf441" ><?php if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>
-				  </tr>
+				   <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
+			
+			  <td class="text-center"  style="background-color:#caf441" ><?php $pd=$rowb->total - $rowb->paid;  echo $pd;  ?></td>
+			 </tr>
 				  </table>
 	
 		</div>
