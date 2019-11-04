@@ -156,10 +156,7 @@
                         </div>
                       </div> 
                       </div>
-                         <div class="alert alert-danger">
-                         <p>This panel shows the class fee with current FSD .
-                         Here You can not  update or change any anything.</p>
-                        </div>
+                         
                         </div>
                       </div>
                     </div>
