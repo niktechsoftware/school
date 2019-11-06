@@ -158,7 +158,7 @@
 												<td class="text-center"><?php echo $v; ?> </td>
 													<td class="text-center"><?php echo $id->username;?></td>
 													
-													<td class="text-center"><?php $dte= $row->total + $row->late;
+													<td class="text-center"><?php $dte= $row->total;
 													//  if(($row->late)>0){
 													// 	 $latefee=$row->late;
 													// 	 $dte=$latefee+$dte1;

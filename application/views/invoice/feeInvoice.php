@@ -464,7 +464,9 @@ This is computer generated invoice and verified by Accountant.
 				  
 				  <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
 			
-			  <td class="text-center"  style="background-color:#caf441" ><?php $pd=$rowb->total - $rowb->paid;  echo $pd;  ?></td>
+			  <td class="text-center"  style="background-color:#caf441" ><?php  $dt6=  $total+$lfee+$transfee-$totdisc+$prbalanace;
+			 $pd= $dt6-$rowb->paid;
+			   echo $pd;  ?></td>
 			
 				</tr>
 				  </table>
@@ -836,7 +838,7 @@ This is computer generated invoice and verified by Accountant.
 				//   print_r($totdisc);
 				  // print_r($prbalanace);
 				  ?>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$transfee-$totdisc); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$rowb->total); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -1193,7 +1195,7 @@ This is computer generated invoice and verified by accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$transfee-$totdisc); ?> </td>
+				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$rowb->total); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>

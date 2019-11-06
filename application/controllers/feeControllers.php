@@ -139,10 +139,10 @@ function getFsd(){
 //exit;//start 
          $cb1=$this->input->post("cb");
 	    	$stuid=$this->input->post('stuId');
-		
-		  $this->db->where("student_id",$studid);
+		  
+		  $this->db->where("student_id",$stuid);
 		  $this->db->where("school_code",$school_code);
-		  $duedt2=  $this->db->get("feedue",$mdata);
+		  $duedt2=  $this->db->get("feedue");
 		
 		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
 		$balance = $op1->closing_balance;
@@ -183,26 +183,26 @@ function getFsd(){
 			//"depositedate"=>date('y-m-d'),
 			"updatedate"=>date('y-m-d'),
 			);
-			$this->db->where("student_id",$this->input->post("stuId"));
-		//	$this->db->where("invoice_no",$invoice_number);
-			$this->db->where("school_code",$school_code);
-		   $this->db->update("feedue",$mbalance);
+// 			$this->db->where("student_id",$this->input->post("stuId"));
+// 		//	$this->db->where("invoice_no",$invoice_number);
+// 			$this->db->where("school_code",$school_code);
+// 		   $this->db->update("feedue",$mbalance);
 		$this->db->insert("dis_den_tab",$discountv);
 		if( $this->db->insert('day_book',$dayBook) && $this->db->insert("fee_deposit",$updata) ){
 		    
 		   if($duedt2->num_rows()>0){
-		      $mbal2=$duedt2->row()->mbalance;
-		      $totmbal=$mbal2+$cb1;
+		      //$mbal2=$duedt2->row()->mbalance;
+		      //$totmbal=$mbal2+$cb1;
 		      
     		//insert data in feedue table
      		$mdata['student_id']=$this->input->post('stuId');
     		$mdata['description']=$this->input->post("disc");
-    		$mdata['mbalance']=$totmbal;
+    		$mdata['mbalance']=$this->input->post("cb");
     		$mdata['depositedate']=$this->input->post("subdate");
     		$mdata['invoice_no']=$invoice_number;
      		$mdata['school_code']=$school_code;
      		
- 	     	$this->db->where("student_id",$studid);
+ 	     	$this->db->where("student_id",$stuid);
 		    $this->db->where("school_code",$school_code);
 		    $this->db->update("feedue",$mdata);
 		 }
@@ -305,16 +305,7 @@ function getFsd(){
 		    	$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		    	$this->smsmodel->sendReport($getv,$master_id);
 		    }
-		    //sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-		    		
-		   // if($admin_mobile->id==1){
-			//$msg1 = "Dear School Manager your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
-			//sms($admin_mobile->mobile_no,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-				//$msg2 = "Dear School Principle your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
-			//sms(7398863503,$msg2,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-		    //}
-		
-		    //print_r($mode);exit;
+		  
 			
 			redirect("index.php/invoiceController/fee/$invoice_number/$stuid/$fsddate/yes");
 			
@@ -477,13 +468,15 @@ function getFsd(){
 		$data['mainContent'] = 'stufeesdetail';
 		$this->load->view("includes/mainContent", $data);
 		}
+			
 		function enterDeufee(){
 		    
-        $school_code=$this->session->userdata("school_code");
-		$this->db->where("school_code",$school_code);
-		$invoice = $this->db->get("invoice_serial");
-		$invoice1=6000+$invoice->num_rows();
-		$invoice_number = $school_code."I19".$invoice1;
+            $school_code=$this->session->userdata("school_code");
+			$this->db->where("school_code",$school_code);
+    		$invoice = $this->db->get("invoice_serial");
+    		$invoice1=6000+$invoice->num_rows();
+    		$invoice_number = $school_code."I19".$invoice1;
+    		
 			$invoiceDetail = array(
 					"invoice_no" => $invoice_number,
 					"reason" => "Fee Due",
@@ -492,32 +485,7 @@ function getFsd(){
 			);
 			$this->db->insert("invoice_serial",$invoiceDetail);
 			$studid=$this->input->post("studentId");
-			
-			$this->db->where("student_id",$studid);
-		  $this->db->where("school_code",$school_code);
-		  $duedt2=  $this->db->get("feedue",$mdata);
-		  $pbal=$this->input->post("remain");
-		  if($duedt2->num_rows()>0){
-		       $mbal2=$duedt2->row()->mbalance;
-		      $totmbal=$mbal2+$pbal;
 		    $feeDueData = array(
-				"student_id" => $this->input->post("studentId"),
-				//"feecat" => $this->input->post("s_cat"),
-				"mbalance" => $totmbal,
-				//"paid" => $this->input->post("paid"),
-				//"remain" => $this->input->post("remain"),
-				"description" => $this->input->post("desc"),
-				"depositedate" => date("Y-m-d"),
-				'invoice_no'=>$invoice_number,
-				"school_code"=>$this->session->userdata("school_code")
-		);
-			$this->db->where("student_id",$studid);
-		  $this->db->where("school_code",$school_code);
-		  $var=  $this->db->update("feedue",$feeDueData);
-		
-		  }else{
-		      
-		        $feeDueData = array(
 				"student_id" => $this->input->post("studentId"),
 				//"feecat" => $this->input->post("s_cat"),
 				"mbalance" => $this->input->post("remain"),
@@ -528,26 +496,24 @@ function getFsd(){
 				'invoice_no'=>$invoice_number,
 				"school_code"=>$this->session->userdata("school_code")
 		);
-	$var=	$this->db->insert("feedue",$feeDueData);
-		  }
 		$school_code = $this->session->userdata("school_code");
 		
 		$paid=$this->input->post("paid");
 		$cv =	$this->db->query("SELECT mbalance FROM feedue WHERE student_id = '$studid'  AND school_code='$school_code' order by `id` desc limit 1")->row();
 		//$psv =	$this->db->query("SELECT previous_stock_balance FROM fee_deposit WHERE student_id = '$studid' AND school_code='$school_code' order by `id` desc limit 1")->row();
-//         $pri=0;
-// 		$pri = $pri + $cv->mbalance; //+ $psv->previous_stock_balance;
-// 		$remain12=$pri-$paid;
-// 		$da=array(
-// 				'mbalance'=>$remain12
-// 		);
-// 		$this->db->where("school_code",$school_code);
-// 		$this->db->where("invoice_no",$invoice_number);
-// 		$this->db->where("student_id",$studid);
-// 		$this->db->update("feedue",$da);
+        $pri=0;
+		$pri = $pri + $cv->mbalance; //+ $psv->previous_stock_balance;
+		$remain12=$pri-$paid;
+		$da=array(
+				'mbalance'=>$remain12
+		);
+		$this->db->where("school_code",$school_code);
+		$this->db->where("invoice_no",$invoice_number);
+		$this->db->where("student_id",$studid);
+		$this->db->update("feedue",$da);
 		
 		$this->load->model("feeduemodel");
-	//	$var = $this->feeduemodel->enterDetail($feeDueData,$studid);
+		$var = $this->feeduemodel->enterDetail($feeDueData,$studid);
 		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
 		$Clbalance = $op1->closing_balance;
 		$amount=$this->input->post("paid");
@@ -629,7 +595,6 @@ function getFsd(){
 		}
 		redirect(base_url()."invoiceController/printDueFee/".$invoice_number);
 	}		
-		
 		public function checkDetails(){
 			$msg = '<div class="alert alert-info"><button data-dismiss="alert" class="close">&times;</button><strong>New Entry :) </strong></div>';
 			//$studentId = $this->input->post("studentId");
