@@ -281,7 +281,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		            				<table width="80%">
 		                				<tr>
 		                    				<td>
-		                        			<input type="text" class="form-control" required="required" width:100px;" name="period<?php echo $i; ?>" value="<?php echo $row->period; ?>"/>
+		                        			<input type="text" class="form-control" required="required" style="width:100px;" name="period<?php echo $i; ?>" value="<?php echo $row->period; ?>"/>
 	                            			</td>
                                 			<?php 
 											$a = $num / 2;

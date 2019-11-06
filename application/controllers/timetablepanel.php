@@ -69,6 +69,22 @@ class Timetablepanel extends CI_Controller{
 
 
   }
+    public function arrange_apsentteacher()
+  { 
+
+ 	$data['pageTitle'] = 'Timetable Panel';
+		$data['smallTitle'] = 'Timetable Panel';
+		$data['mainPage'] = 'Timetable Panel Area';
+		$data['subPage'] = 'Timetable Panel';
+		$data['title'] = 'Timetable Panel Area ';
+		$data['headerCss'] = 'headerCss/noticeCss';
+		$data['footerJs'] = 'footerJs/timetablejs';
+		$data['mainContent'] = 'panel/timetable/arrange_apsentteacher';
+		$this->load->view("includes/mainContent", $data);
+
+
+
+  }
   public function findclasstime()
   {
 

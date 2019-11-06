@@ -146,6 +146,8 @@ return $query1;
 		$cat = $this->db->get("exam_info");
 		return $cat;
 	}
+	
+	
 
 }
 ?>

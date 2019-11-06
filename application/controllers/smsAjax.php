@@ -311,13 +311,13 @@ class SmsAjax extends CI_Controller{
 		$employee = $this->employeemodel->employeeList($this->session->userdata("school_code"));
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
-		
-		//$fmobile=$this->session->userdata("mobile_number");
+
 		if($isSMS->greeting)
-		{
+		{  
 			
 			foreach($employee->result() as $empmob):
 			$checknum = $this->smsmodel->checknum($empmob->mobile,$msg,$master_id);
+		
 			if($checknum){
 			if($smscount<90){
 				if($smsc==0){
@@ -329,7 +329,10 @@ class SmsAjax extends CI_Controller{
 				$smsc++;
 				$count=$count+1;
 			}
-			else{
+		
+			
+			else{ 	 
+			 //   print_r($fmobile);
 				if($this->input->post("language")==1){
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
@@ -344,6 +347,7 @@ class SmsAjax extends CI_Controller{
 			}
 			endforeach;
 			if($this->input->post("language")==1){
+			    
 				
 					$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
@@ -354,6 +358,7 @@ class SmsAjax extends CI_Controller{
 				
 		
 				foreach($query->result() as $parentmobile):
+				    
 				$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
 				if($checknum){
 					if($smscount<90){
@@ -365,7 +370,11 @@ class SmsAjax extends CI_Controller{
 						$smscount++;
 						$smsc++;
 						$count=$count+1;
+				// 		
 					}else{
+					   // print_r($fmobile);
+					   // exit();
+					    
 						if($this->input->post("language")==1){
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
@@ -380,7 +389,7 @@ class SmsAjax extends CI_Controller{
 				}
 				endforeach;
 			if($this->input->post("language")==1){
-				echo $fmobile;
+				    
 				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
@@ -640,4 +649,5 @@ class SmsAjax extends CI_Controller{
 		$data['mainContent'] = 'wrongsmsdetail';
 		$this->load->view("includes/mainContent", $data);
 }
+
 }

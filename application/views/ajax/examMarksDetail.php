@@ -80,7 +80,10 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 ?>
                   <tr>
                     <td><?php echo $j; ?></td>
-                    <td><?php echo $stu->username; ?> </td>
+                    <td>
+					 <input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
+                        <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
+					<?php echo $stu->username; ?> </td>
                     <td ><span  style="text-transform:uppercase;"><?php echo $stu->name;?></span></td>
                      <?php if($v->Attendance==1)
                     { ?>
@@ -97,8 +100,34 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                     <?php }?>
                       
                     <td><?php echo $v->marks;?></td>
-                  </tr> 
-                  <?php  $j++; }else{?>
+					<td>
+				  <?php $login_type=$this->session->userdata("login_type"); if($login_type == "admin"){ ?>
+                     <button class="btn btn-red" id="deletemmarks1<?php echo $i;?>">Delete Marks<i class="fa fa-trash-o"></i>
+                     </button>
+				  <?php } ?>
+                  </td>
+                  </tr>
+				  <script>
+				  $("#deletemmarks1<?php echo $i;?>").click(function(){
+                           var mmarks = $("#mammarks<?php echo $i; ?>").val();
+							var classid = $("#classId").val();
+							var stuid= $("#stu_id<?php echo $i; ?>").val();
+							var marks = $("#mark<?php echo $i; ?>").val();
+							var subjectid = $("#subjectId").val();
+							var examid = $("#examid<?php echo $i; ?>").val();
+							var attendence = $("input[name='attendence']:checked").val();
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+                      $("#deletemmarks1<?php echo $i;?>").html(data);
+                      alert('Marks Deleted Successfully');
+                      $("#deletemmarks1<?php echo $i;?>").html();
+                    });
+                            
+                 
+                     }); 
+				  </script> 
+                  <?php  $j++; $i++; ?>
+				  <?php
+				  }else{?>
                    <tr>
                       <td><?php echo $j; ?></td>
                       <td>
@@ -176,7 +205,12 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 return false;
             });
             
-		       
+		    
+
+			
+
+
+			
      /*      var abc = Number(getElementById("mark<?php echo $i; ?>").value);
              function check<?php echo $i; ?>(abc){
               if(mark<?php echo $i; ?>.value > Number(<?php echo $result1->max_m;?>)){

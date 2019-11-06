@@ -27,9 +27,10 @@ class feeControllers extends CI_Controller{
         }
     }
     
+   
     function checkID(){
 		$studID=$this->input->post("studid");
-		$fsd=$this->input->post("fsd");
+		$fsd=$this->input->post("fsd"); 
             $this->load->model("feemodel");
             $var=$this->feemodel->getStudData($studID);
            if( $var->num_rows()>0){
@@ -805,7 +806,7 @@ function getFsd(){
 		
         	$this->db->where("id",$school_code);
         	$schoolname=$this->db->get("school")->row();
-		
+	     	$this->load->model("smsmodel");
 		  	$sende_Detail =$sender->row();
 	      	$sdue=$this->input->post("smstodue");
 			echo 'Send';
@@ -813,6 +814,7 @@ function getFsd(){
 			$sname=$this->input->post("sname");
 			$amt=$this->input->post("amount");
 			$amt1=$this->input->post("amount1");
+			
 			
 // 			if($amt==0)	{
 // 			    $amt2=$this->input->post("amount");
@@ -831,15 +833,22 @@ function getFsd(){
 		  	
 // 				sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 //           }else	{
-		  		   
-		  		
+		  			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit soon.".$schoolname->school_name;
+   
+		  		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+					$master_id=$max_id->maxid+1;
+					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
+					if($getresultm){
+						$getv=	sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+						$this->smsmodel->sendReport($getv,$master_id);
+						echo "Sent Success";
+					}
 			
-			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit soon.".$schoolname->school_name;
-// print_r($msg);
+		// print_r($msg);
 // exit();
 	//	$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit it till 5 september.".$schoolname->school_name;
 			
-		//	sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+		//
           //}
 						
 		}

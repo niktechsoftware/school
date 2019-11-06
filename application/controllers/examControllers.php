@@ -11,6 +11,7 @@ class examControllers extends CI_Controller
 	{
 
 		$data=array(
+		    'fsd'=>$this->session->userdata("fsd"),
 	    'term'=>$this->input->post("term"),
 		'exam_name'=>$this->input->post("examName"),
 		'exam_date'=>$this->input->post("datet"),
@@ -157,7 +158,8 @@ class examControllers extends CI_Controller
 			echo $row->exam_date;
 			endforeach;
 		}
-	}
+	} 
+
 	
 	function startScheduling()
 	{ 	
@@ -656,6 +658,25 @@ function defineExam1(){
 			}
 			}
  }
+ function deletesubMarks(){
+	 $stuid=$this->input->post('stuid'); 
+	    $marks=$this->input->post('marks');
+	    $mmarks=$this->input->post('mmarks');
+	    $classid=$this->input->post('classid');
+	    $subjectid=$this->input->post('subjectid');
+	    $examid=$this->input->post('examid');
+		$attendence=$this->input->post('attendence');
+		$this->db->where('school_code' ,$this->session->userdata('school_code'));
+		$this->db->where('class_id',$classid);
+		$this->db->where('subject_id',$subjectid);
+		$this->db->where('stu_id',$stuid);
+		$this->db->where('exam_id',$examid);
+	$dt=	$this->db->delete('exam_info');
+	if($dt){
+				echo "Deleted";
+			}
+		
+ }
  
 function insertMarksdetail()
 	{
@@ -674,6 +695,7 @@ function insertMarksdetail()
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
+	        'term'=>1,
 	        'class_id'=>$classid,
 	        'subject_id'=>$subjectid,
 	        'stu_id'=> $stuid,

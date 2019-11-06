@@ -65,7 +65,8 @@
 		<!-- end: CORE JAVASCRIPTS  -->
 <script>
 	jQuery(document).ready(function() {
-
+$("#conform").hide();
+$("#newpassword").hide();
 		$('#valid_id').hide();
 		$('#emp_id').hide();
 		$('#Other_name').hide();
@@ -144,6 +145,40 @@
         $('#expsub').val("");
 
 		});
+		$("#otp").keyup(function() {
+                       var mobile = $("#student_id").val();
+                       var otp = $("#otp").val();
+                      $.post("<?php echo site_url('index.php/dayBookControllers/deleteexpotp') ?>",{mobile : mobile, otp : otp},
+                   function(data){
+                   $("#validId").html(data);
+                  });
+                 });
+		$("#conform").click(function()
+                          {
+                         var exp_id = $("#exp_id").val();
+                     $.post("<?php echo site_url('index.php/dayBookControllers/Suceesotpdeleteexpby') ?>",{exp_id : exp_id},
+                      function(data)
+                     {
+                       $("#validId").html(data);
+                       $("#conform").hide();
+                        $("#newpassword").hide();
+                         $("#student_id").hide();
+                           $("#otp").hide();
+                            // $("#admin").hide();
+                       });
+
+                      });
+		$("#student_id").keyup(function(){
+			
+	    var admin_id = $("#student_id").val();
+	    var exam_id = $("#exp_id").val();
+	     // alert(exam_id+admin_id);
+	$.post("<?php echo site_url("index.php/dayBookControllers/checkIDforadmin") ?>",{admin_id : admin_id,exam_id:exam_id}, function(data){
+		$("#validId").html(data);
+		
+		
+	});
+	});
 		Main.init();
 		SVExamples.init();
 		FormElements.init();

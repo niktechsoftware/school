@@ -22,7 +22,8 @@ foreach($explist->result() as $row){?>
         <td class="text-center">
         <input type="hidden" id="exp_id<?php echo $i;?>" name="exp_id" value="<?php echo $row->sno; ?>">
         <input type="text" name="exp_name" id="exp_name<?php echo $i;?>" value="<?php echo $row->expenditure_name;?>"></td>
-        <td class="text-center"><a href="#" id="expEdit<?php echo $i;?>" name="expEdit" class="btn btn-warning">Edit</a></td>
+        <td class="text-center"><a href="#" id="expEdit<?php echo $i;?>" name="expEdit" class="btn btn-warning">Edit</a>
+            <a href="<?php echo base_url();?>index.php/dayBookControllers/deleteExpen/<?php echo $row->sno;?>" id="expdelete<?php echo $i;?>" name="expEdit" class="btn btn-danger">delete</a></td>
     </tr>
     <?php  
 $i++;
@@ -50,6 +51,23 @@ $i++;
 					}
 				});
 		        });
+                //  $("#expdelete<?php echo $j; ?>").click(function(){
+                //     var expId = $('#exp_id<?php echo $j; ?>').val();    
+                //     var expName = $('#exp_name<?php echo $j; ?>').val();
+                //   //  alert("your Expenditure is successfully deleted");
+                //     var form_data = {
+                //             expId : expId,
+                //             expName : expName
+                //         };
+                // $.ajax({
+                //     url: "<?php echo site_url("index.php/dayBookControllers/updateExp") ?>",
+                //     type: 'POST',
+                //     data: form_data,
+                //     success: function(msg){
+                //         $("#expenditure2").html(msg);
+                //     }
+                // });
+                // });
 	
 	
                     <?php } ?>   
