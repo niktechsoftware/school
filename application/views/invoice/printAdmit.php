@@ -155,12 +155,12 @@
 				</td>
 				<td style="text-align:center; border:none; width:60%;">
 
-			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#d80606;">
+			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#6b2ed0;">
 			    <b> <span class="schoolTitle"><?php if(($rowc->class_id==98)||($rowc->class_id==99) || ($rowc->class_id==116)||($rowc->class_id== 100) ||($rowc->class_id== 101) ||($rowc->class_id== 102) ||($rowc->class_id== 103) ||($rowc->class_id== 104) ){ echo "THE MANNER SCHOOL";}else{echo $info->school_name;}?></span><?php //echo $info->school_name; ?></b>
-			    </h1><h2 style="font-variant:small-caps;color:#d80606;">
+			    </h1><h2 style="font-variant:small-caps;color:#6b2ed0;">
             		<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
-                <h2 style="font-variant:small-caps;padding-bottom:10px;color:#d80606;">
+                <h2 style="font-variant:small-caps;padding-bottom:10px;color:#6b2ed0;">
             		<?php //echo $info->state." - ".$info->pin.", Contact No. : " ;
             		//if(strlen($info->mobile_no > 0 )){echo $info->phone_no.", ".$info->mobile_no ;} 
             		if(strlen($info->mobile_no)>0){
@@ -282,19 +282,19 @@
              ?>
         </div>
       
-			<table id="items" align="center"  style="width:100%; margin-top:8px;color:#d80606;">
+			<table id="items" align="center"  style="width:100%; margin-top:8px;color:#d80606;font-size: 12px;">
 					<thead>
-						<th style="text-transform: uppercase;">Date</th>
+						<th style="text-transform: uppercase;"><b>Date</b></th>
                         <?php 
 
 if($exam_day->num_rows()){
                         $this->db->where('exam_id',$exam_day->row()->exam_id);
                         $date=$this->db->get('exam_day')->result();
                         foreach($date as $ed):?>
-						<th><?php echo date("d-m-Y",strtotime($ed->date1));?></th>
+						<th><b><?php echo date("d-m-Y",strtotime($ed->date1));?></b></th>
 						<?php endforeach; }?>
 					</thead>
-					<body>
+					<tbody>
                         <?php
                         $this->db->where("exam_id",$exam_name);
                         //$this->db->where("to1",$exam_date);
@@ -336,7 +336,7 @@ if($exam_day->num_rows()){
                             <?php } endforeach;?>
 						</tr>
 					<?php endforeach;?>
-					</body>
+					</tbody>
 			
             </table>
         <br>
