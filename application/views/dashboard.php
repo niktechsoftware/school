@@ -150,10 +150,13 @@ $school_code = $this->session->userdata("school_code");
                 <h6 class="block no-margin">Credit Amount</h6>
                 <mark><?php 
 					$camount=0;
+				// 	$vall = array();
 					 $school_code=   $this->session->userdata("school_code");
+					 $this->db->select_sum('amount');
 					 $this->db->where('school_code',$school_code);
 					 $this->db->where('date(pay_date)',date('Y-m-d'));
-					 $this->db->where('dabit_cradit',1);
+					 $this->db->where_not_in('dabit_cradit',0);
+					// $this->db->or_where('dabit_cradit',2);
 					 $credit_amount=$this->db->get('day_book');
 					 foreach($credit_amount->result() as $cm){
 						 $camount=$camount + $cm->amount;
@@ -352,7 +355,7 @@ $school_code = $this->session->userdata("school_code");
                                 						 // echo "<pre>";
                                 						  endforeach;
                                 						  echo $count;
-                                							} else{ echo "No Pending Request";}?>
+                                							} else{ echo "0";}?>
 													</div>
 													<div class="text-white text-large pull-right">
 											     	Approved <br>
@@ -369,7 +372,7 @@ $school_code = $this->session->userdata("school_code");
                             						 // echo "<pre>";
                             						  endforeach;
                             						  echo $count;
-                            							} else{ echo "No Pending Request";}?> </a>
+                            							} else{ echo "0";}?> </a>
 														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
 													</div>
 												</div>
@@ -492,20 +495,171 @@ $school_code = $this->session->userdata("school_code");
 									</div>
 								</div>
 							</div>
-							
-							
-					
-    
      </div>
-     
-    
- 
-    
     <div class="row" Style="margin-left:2px;">
+      <div class="col-lg-6 col-md-12">
+    		<div class="panel panel-blue core-box">
+									<div class="e-slider owl-carousel owl-theme">
+										<div class="item">
+											<div class="panel-body">
+												<div class="core-box">
+													<div class="text-white text-bold">
+												<h4>	Student Attendence</h4>
+													</div>
+													<div class="text-white text-large pull-left">
+													    	<a href="<?php echo base_url();?>/index.php/attendancepanel/todayatten/3" class="btn btn-xs btn-light-blue">
+													   Morning Attendence <br>
+													   </a>
+													</div>
+													<div class="text-white text-large pull-right">
+											     		<a href="<?php echo base_url();?>/index.php/attendancepanel/todayatten/5" class="btn btn-xs btn-light-blue">
+											     		      Evening Attendence <br>
+												</a>
+														</div>
+												</div>
+											</div>
+										</div>
+										<div class="item">
+											<div class="panel-body">
+													<div class="core-box">
+											
+													<div class="text-white text-bold">
+												<h4>	Student Attendence</h4>
+													</div>
+													<div class="text-white text-large pull-left">
+													    	<a href="<?php echo base_url();?>index.php/attendancepanel/todayatten/3" class="btn btn-xs btn-light-blue">
+													   Morning Attendence <br>
+													   </a>
+														
+													</div>
+													<div class="text-white text-large pull-right">
+											     		<a href="<?php echo base_url();?>index.php/attendancepanel/todayatten/5" class="btn btn-xs btn-light-blue">
+											     		      Evening Attendence <br>
+												</a>
+														  
+                                			
+														</div>
+												</div>
+												</div>
+											</div>
+											
+										</div>
+										
+									</div>
+    
+    
+    
+  </div>
+  <div class="col-lg-6 col-md-12">
+    		<div class="panel panel-blue core-box">
+									<div class="e-slider owl-carousel owl-theme">
+										<div class="item">
+											<div class="panel-body">
+												<div class="core-box">
+											
+													<div class="text-white text-bold">
+												<h4>	Student Due</h4>
+													</div>
+													<div class="text-white text-large pull-left">
+													    	<a href="<?php echo base_url();?>index.php/homeController/duereport/3" class="btn btn-xs btn-light-blue">
+													   Section wise Due <br>
+													   </a>
+													</div>
+													<div class="text-white text-large pull-right">
+											     		<a href="<?php echo base_url();?>index.php/homeController/duereport/5" class="btn btn-xs btn-light-blue">
+											     		     Fsd Wise Due <br>
+												</a>
+														  
+                                			
+														</div>
+												</div>
+											</div>
+											
+										</div>
+										<div class="item">
+											<div class="panel-body">
+													<div class="core-box">
+											
+													<div class="text-white text-bold">
+												<h4>	Student Due</h4>
+													</div>
+													<div class="text-white text-large pull-left">
+													    	<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue">
+													   Section wise Due <br>
+													   </a>
+														
+													</div>
+													<div class="text-white text-large pull-right">
+											     		<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue">
+											     		     Fsd Wise Due <br>
+												</a>
+														  
+                                			
+														</div>
+												</div>
+												</div>
+											</div>
+											
+										</div>
+										
+									</div>
+    </div>
+  </div>
 
-      
-  <div class="col-lg-4 col-md-12">
-      <div class="panel panel-white">
+  
+    
+    
+    <!--2nd row end-->
+<div class="row">
+
+<div class="col-md-6 col-lg-6">
+       <div class="panel panel-blue core-box">
+									<div class="e-slider owl-carousel owl-theme">
+										<div class="item">
+											<div class="panel-body">
+												<div class="core-box">
+													<div class="text-white text-bold">
+												    <h4>Homework Detail</h4>
+													</div>
+													<!--<div class="text-white text-large pull-left">
+													    	<a href="<?php echo base_url();?>index.php/homeController/duereport/3" class="btn btn-xs btn-light-blue">
+													   Section wise Due <br>
+													   </a>
+													</div>-->
+													<div class="text-white text-large pull-right">
+											     		<a href="<?php echo base_url();?>index.php/studentHWControllers/getStudentWork1" class="btn btn-xs btn-light-blue">
+											     		   Homework  Full Detail<br>
+												        </a>
+											        </div>
+												</div>
+											</div>
+										</div>
+										<div class="item">
+										    <div class="panel-body">
+												<div class="core-box">
+													<div class="text-white text-bold">
+												        <h4>Homework Detail</h4>
+													</div>
+												<!--	<div class="text-white text-large pull-left">
+													    	<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue">
+													   Section wise Due <br>
+													   </a>
+													</div>-->
+													<div class="text-white text-large pull-right">
+											     		<a href="<?php echo base_url();?>/index.php/studentHWControllers/getStudentWork1" class="btn btn-xs btn-light-blue">
+											     		    Homework Full Detail <br>
+											        	</a>
+													</div>
+											    </div>
+											</div>
+										</div>
+									</div>
+									</div>
+    </div>
+
+
+<div class="col-md-6 col-lg-6">
+       <div class="panel panel-white">
         <div class="panel-body no-padding">
           <div class="padding-10">
             <h4 class="no-margin inline-block padding-5">Absent Teachers 
@@ -564,281 +718,12 @@ $school_code = $this->session->userdata("school_code");
         </div>
       </div>
     </div>
-    
-      <div class="col-lg-4 col-md-12">
-    		<div class="panel panel-blue core-box">
-									<div class="e-slider owl-carousel owl-theme">
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-											
-													<div class="text-white text-bold">
-												<h4>	Student Attendence</h4>
-													</div>
-													<div class="text-white text-large pull-left">
-													    	<a href="<?php echo base_url();?>/index.php/attendancepanel/todayatten/3" class="btn btn-xs btn-light-blue">
-													   Morning Attendence <br>
-													   </a>
-														
-													</div>
-													<div class="text-white text-large pull-right">
-											     		<a href="<?php echo base_url();?>/index.php/attendancepanel/todayatten/5" class="btn btn-xs btn-light-blue">
-											     		      Evening Attendence <br>
-												</a>
-														  
-                                			
-														</div>
-												</div>
-											</div>
-											
-										</div>
-										<div class="item">
-											<div class="panel-body">
-													<div class="core-box">
-											
-													<div class="text-white text-bold">
-												<h4>	Student Attendence</h4>
-													</div>
-													<div class="text-white text-large pull-left">
-													    	<a href="<?php echo base_url();?>index.php/attendancepanel/todayatten/3" class="btn btn-xs btn-light-blue">
-													   Morning Attendence <br>
-													   </a>
-														
-													</div>
-													<div class="text-white text-large pull-right">
-											     		<a href="<?php echo base_url();?>index.php/attendancepanel/todayatten/5" class="btn btn-xs btn-light-blue">
-											     		      Evening Attendence <br>
-												</a>
-														  
-                                			
-														</div>
-												</div>
-												</div>
-											</div>
-											
-										</div>
-										
-									</div>
-    
-    
-    
-  </div>
-  
-  <div class="col-lg-4 col-md-12">
-    		<div class="panel panel-blue core-box">
-									<div class="e-slider owl-carousel owl-theme">
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-											
-													<div class="text-white text-bold">
-												<h4>	Student Due</h4>
-													</div>
-													<div class="text-white text-large pull-left">
-													    	<a href="<?php echo base_url();?>index.php/homeController/duereport/3" class="btn btn-xs btn-light-blue">
-													   Section wise Due <br>
-													   </a>
-														
-													</div>
-													<div class="text-white text-large pull-right">
-											     		<a href="<?php echo base_url();?>index.php/homeController/duereport/5" class="btn btn-xs btn-light-blue">
-											     		     Fsd Wise Due <br>
-												</a>
-														  
-                                			
-														</div>
-												</div>
-											</div>
-											
-										</div>
-										<div class="item">
-											<div class="panel-body">
-													<div class="core-box">
-											
-													<div class="text-white text-bold">
-												<h4>	Student Due</h4>
-													</div>
-													<div class="text-white text-large pull-left">
-													    	<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue">
-													   Section wise Due <br>
-													   </a>
-														
-													</div>
-													<div class="text-white text-large pull-right">
-											     		<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue">
-											     		     Fsd Wise Due <br>
-												</a>
-														  
-                                			
-														</div>
-												</div>
-												</div>
-											</div>
-											
-										</div>
-										
-									</div>
-    
-    
-    
-  </div>
+
+
+
   </div>
 
-  
-    
-    
-    <!--2nd row end-->
 <div class="row">
-
-<div class="col-md-4 col-lg-4">
-      <div class="panel panel-dark">
-        <div class="panel-heading">
-          <h4 class="panel-title">Today Attendance Report</h4>
-          <div class="panel-tools">
-            <div class="dropdown">
-              <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-white">
-                <i class="fa fa-cog"></i>
-              </a>
-              <ul class="dropdown-menu dropdown-light pull-right" role="menu">
-                <li>
-                  <a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
-                </li>
-                <li>
-                  <a class="panel-refresh" href="#">
-                    <i class="fa fa-refresh"></i> <span>Refresh</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="panel-config" href="#panel-config" data-toggle="modal">
-                    <i class="fa fa-wrench"></i> <span>Configurations</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="panel-expand" href="#">
-                    <i class="fa fa-expand"></i> <span>Fullscreen</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <a class="btn btn-xs btn-link panel-close" href="#">
-              <i class="fa fa-times"></i>
-            </a>
-          </div>
-        </div>
-        <div class="panel-body no-padding">
-          <div class="partition-green padding-15 text-center">
-            <h4 class="no-margin">Attendance Report</h4>
-          </div>
-          <div id="accordion" class="panel-group accordion accordion-white no-margin">
-            <div class="panel no-radius">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a href="#collapseOne1" data-parent="#accordion" data-toggle="collapse"
-                    class="accordion-toggle padding-15">
-                    <i class="icon-arrow"></i>
-
-                     Today Teacher Attendance  <span
-                      class="label label-danger pull-right"></span>
-
-                  </a></h4>
-              </div>
-              <div class="panel-collapse collapse in" id="collapseOne1">
-                <div class="panel-body no-padding partition-light-grey">
-                  <a href="<?php echo base_url()?>index.php/login/dayBook">
-                    <table class="table">
-                    <thead style="text-align:center;">
-
-                    <th>Sno.</th>
-                    <th>Teacher Name</th>
-                
-                    <th>Present / Absent </th>
-                    </thead>
-                      <tbody>
-                      <?php $i=1;
-                         $count=0;
-                         
-                        $totpresent=0;
-                        $date=Date("Y-m-d");
-                        $this->db->where("school_code",$school_code);
-                      //  $this->db->where("job_category",3);
-                       $data= $this->db->get("employee_info");
-
-                       foreach($data->result() as $totteacher):
-                       
-                        $this->db->where("emp_id",$totteacher->id);
-                        $this->db->where("a_date",$date);
-                       $classdt= $this->db->get("teacher_attendance");
-                 //      print_r($classdt);
-                      
-                          // print_r($count);
-                         
-                        ?>
-                    
-                        <tr>
-                          <td class="center"><?php echo $i;?></td>
-                          <td> <?php echo $totteacher->name ;?>  </td>  
-                    <?php    if($classdt->num_rows()>0){?>   <td class="center"> <span style="color:green;"><?php if(($classdt->row()->attendance)==1){ echo "Present" ;?></span><?php } else{  ?><span style="color:red;"><?php  echo "Absent" ; ?></span></td><?php } } else{?>
-                        <td> Today's Attendance Not Done. </td>  
-                         <?php }?>
-                        </tr>
-               <?php     $i++;  endforeach;?>
-                       
-                       
-                     
-                      </tbody>
-                    </table>
-                  </a>
-                </div>
-              </div>
-            </div>
-                <div class="panel no-radius">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a href="#collapsetwo2" data-parent="#accordion" data-toggle="collapse"
-                    class="accordion-toggle padding-15 collapsed">
-                    <i class="icon-arrow"></i>
-
-                  Comming Soon..  <span
-                      class="label label-danger pull-right"></span>
-
-                  </a></h4>
-              </div>
-              <div class="panel-collapse collapse in" id="collapsetwo2">
-                <div class="panel-body no-padding partition-light-grey">
-                  <a href="<?php echo base_url()?>index.php/login/dayBook">
-               No Trasaction done yet...
-                  </a>
-                </div>
-              </div>
-            </div>
-                 <div class="panel no-radius">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a href="#collapseTwo2" data-parent="#accordion" data-toggle="collapse"
-                    class="accordion-toggle padding-15 collapsed">
-                    <i class="icon-arrow"></i>
-                     Comming Soon.. <span
-                      class="label label-danger pull-right"></span>
-                  </a></h4>
-              </div>
-              <div class="panel-collapse collapse" id="collapseTwo2">
-                <div class="panel-body no-padding partition-light-grey">
-                  <a href="<?php echo base_url()?>index.php/login/dayBook">
-                 No Trasaction done yet...
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-  
-
-
 
 <div class="col-md-4 col-lg-4">
       <div class="panel panel-dark">

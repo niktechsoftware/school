@@ -455,6 +455,24 @@ function showHomeWork()
 	}
 	}
 	
+	
+	
+	 public function getStudentWork1(){
+                    $this->load->model("homeWorkModel");
+    	$data['va']=$this->homeWorkModel->today_getHomeWorkDetailStudent();
+      	$data['pageTitle'] = 'Homework Report';
+		$data['smallTitle'] = 'Homework Report';
+		$data['mainPage'] = 'Homework Report';
+		$data['subPage'] = 'Homework Report';
+		$data['title'] = 'Homework Report';
+		$data['headerCss'] = 'headerCss/studentListCss';
+		$data['footerJs'] = 'footerJs/simpleStudentListJs';
+		$data['mainContent'] = 'hw_full_detail';
+		$this->load->view("includes/mainContent", $data);
+  }
+  
+  
+  
         function getStudentWork(){
         	$this->load->model("homeWorkModel");
         	$va=$this->homeWorkModel->getHomeWorkDetailStudent();

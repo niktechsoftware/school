@@ -1,0 +1,106 @@
+[08-Nov-2019 13:10:27 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::orwhere() in /home/schoodhe/public_html/school/application/views/dashboard.php:157
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dashboard')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(100): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dashboard.php on line 157
+[08-Nov-2019 13:27:23 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::where_or() in /home/schoodhe/public_html/school/application/views/dashboard.php:158
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('dashboard')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(100): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/dashboard.php on line 158
+[11-Nov-2019 14:12:06 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')', expecting '[' in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 35
+[11-Nov-2019 14:12:32 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')', expecting '[' in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 35
+[11-Nov-2019 14:12:55 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')', expecting '[' in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 35
+[11-Nov-2019 14:14:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')', expecting '[' in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 35
+[11-Nov-2019 14:14:22 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')', expecting '[' in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 35
+[11-Nov-2019 14:14:26 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')', expecting '[' in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 35
+[11-Nov-2019 14:14:33 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')', expecting '[' in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 35
+[11-Nov-2019 14:14:44 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')', expecting '[' in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 35
+[11-Nov-2019 14:34:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function setHours() in /home/schoodhe/public_html/school/application/models/smsmodel.php:38
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/smsAjax.php(76): Smsmodel->smstest('hello aarju', '19-11-11')
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): SmsAjax->sendNotice()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 38
+[11-Nov-2019 14:35:03 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function setHours() in /home/schoodhe/public_html/school/application/models/smsmodel.php:38
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/smsAjax.php(76): Smsmodel->smstest('hello aarju', '19-11-11')
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): SmsAjax->sendNotice()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 38
+[11-Nov-2019 14:35:41 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function setHours() in /home/schoodhe/public_html/school/application/models/smsmodel.php:38
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/smsAjax.php(76): Smsmodel->smstest('hello aarju', '19-11-11')
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): SmsAjax->sendNotice()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 38
+[11-Nov-2019 14:37:36 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function setHours() in /home/schoodhe/public_html/school/application/models/smsmodel.php:38
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/smsAjax.php(76): Smsmodel->smstest(false, '19-11-11')
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): SmsAjax->sendNotice()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 38
+[11-Nov-2019 15:45:06 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Function name must be a string in /home/schoodhe/public_html/school/application/controllers/smsAjax.php:148
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): SmsAjax->sendallParent()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 148
+[13-Nov-2019 11:49:45 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on array in /home/schoodhe/public_html/school/application/views/invoice/format_3.php:281
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(694): CI_Loader->view('invoice/format_...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->result('4946', '25')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/format_3.php on line 281
+[13-Nov-2019 14:25:07 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getHomeWorkDetailStudent() on null in /home/schoodhe/public_html/school/application/views/hw_full_detail.php:116
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('hw_full_detail')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(471): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->getStudentWork1()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/hw_full_detail.php on line 116
+[13-Nov-2019 14:26:23 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/hw_full_detail.php:116
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('hw_full_detail')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(473): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->getStudentWork1()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/hw_full_detail.php on line 116
+[13-Nov-2019 14:35:41 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 211
+[13-Nov-2019 15:56:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'Y' (T_STRING), expecting ',' or ')' in /home/schoodhe/public_html/school/application/models/homeworkmodel.php on line 42

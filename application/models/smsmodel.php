@@ -18,7 +18,7 @@ class Smsmodel extends CI_Model{
 				"tot_count"=>$totsmssent,
 				"sms"=>$msg,
 				"school_code"=>$schol_code,
-				"date"=>Date("Y-m-d H:s:i")
+				"date"=>Date("Y-m-d G:i:s")
 		
 		);
 		$insertwrongnumber= $this->db->insert("sent_sms_master",$data);
@@ -26,6 +26,41 @@ class Smsmodel extends CI_Model{
 		}	
 	}
 	
+	function smstest($msg,$date){
+	  $school_code=$this->session->userdata("school_code");
+	      $this->db->where("sms",$msg);
+	        $this->db->where("school_code",$school_code);
+	   $this->db->where("Date(date)",$date);
+	   $smsdt= $this->db->get("sent_sms_master");
+	   if($smsdt->num_rows()>0){
+	      $row= $smsdt->row();
+	      
+	       
+	          $smsdate=$row->date;
+	          $cur=date("G",strtotime($smsdate));
+	     
+	          $curhour= date('H');
+	      
+            if($curhour==$cur){
+              
+            return false;
+            }
+            else{
+              
+            return true;
+            }
+	      
+	      
+	         
+	
+	       
+	   }else{
+	         
+	       return true;
+	   }
+	    
+	    
+	}
 	function checknum($cnumber,$msg,$master_id){
 		$cnumber = str_replace(' ', '', $cnumber);
 		if((is_numeric($cnumber)) && (strlen($cnumber)==10)){

@@ -1,19 +1,13 @@
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-
     <title><?php echo $title; ?></title>
-
     <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
-    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/prin_result.css'
-        media="print" />
+    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/prin_result.css' media="print" />
     <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
     <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/example.js'></script>
-
     <style type="text/css">
     @media print {
         body * {
@@ -284,7 +278,7 @@
                         <!--1st term -->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
@@ -304,7 +298,7 @@
 						<!--2nd term-->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							   $this->db->where('term',2);
@@ -360,7 +354,7 @@ if($subjectname->num_rows()>0){
                  //$subtatal=0;
 					$i=1; $t=0;
 				//	$coltptal=0; 
-					foreach ($examid as $value):?>
+					foreach ($examid->result() as $value):?>
 					<td class="center" style="background-color: #efef70;">	
 					<?php
 					$this->db->where('subject_id',$sub['subject']);
@@ -442,7 +436,7 @@ if($subjectname->num_rows()>0){
                         <!--1st term -->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
@@ -461,7 +455,7 @@ if($subjectname->num_rows()>0){
 						<!--2nd term-->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							   $this->db->where('term',2);
@@ -517,7 +511,7 @@ if($subjectname->num_rows()>0){
                  //$subtatal=0;
 					$i=1; $t=0;
 				//	$coltptal=0; 
-					foreach ($examid as $value):?>
+					foreach ($examid->result() as $value):?>
 					<td class="center">	
 					<?php
 					$this->db->where('subject_id',$sub['subject']);
@@ -881,6 +875,4 @@ if($subjectname->num_rows()>0){
     </button>
 	</div>
 </body>
-
-
 </html>
