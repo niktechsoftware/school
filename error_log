@@ -104,3 +104,15 @@ Stack trace:
 #2 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 211
 [13-Nov-2019 15:56:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'Y' (T_STRING), expecting ',' or ')' in /home/schoodhe/public_html/school/application/models/homeworkmodel.php on line 42
+[13-Nov-2019 17:18:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/hw_full_detail.php:70
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('hw_full_detail')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(478): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->getStudentWork1('1')
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/hw_full_detail.php on line 70

@@ -627,7 +627,7 @@ $school_code = $this->session->userdata("school_code");
 													   </a>
 													</div>-->
 													<div class="text-white text-large pull-right">
-											     		<a href="<?php echo base_url();?>index.php/studentHWControllers/getStudentWork1" class="btn btn-xs btn-light-blue">
+											     		<a href="<?php echo base_url();?>index.php/studentHWControllers/getStudentWork1/1" class="btn btn-xs btn-light-blue">
 											     		   Homework  Full Detail<br>
 												        </a>
 											        </div>
@@ -646,7 +646,7 @@ $school_code = $this->session->userdata("school_code");
 													   </a>
 													</div>-->
 													<div class="text-white text-large pull-right">
-											     		<a href="<?php echo base_url();?>/index.php/studentHWControllers/getStudentWork1" class="btn btn-xs btn-light-blue">
+											     		<a href="<?php echo base_url();?>index.php/studentHWControllers/getStudentWork1/1" class="btn btn-xs btn-light-blue">
 											     		    Homework Full Detail <br>
 											        	</a>
 													</div>

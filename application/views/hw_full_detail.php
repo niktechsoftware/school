@@ -42,6 +42,53 @@
 						</a>
 					</div>
 				</div>
+				<?php
+				if($uri==1){ ?><div class="panel-body">
+			<div class="table-responsive" id ="normal">
+<table class="table table-striped table-hover"  id="sample-table-2">
+    <thead>
+        <tr style="background-color:#1ba593; color:white;">
+            <th>Sno</th>
+            <th>Class</th>
+            <th>Section</th>
+            <th>Total Today's Homework</th>
+        </tr>
+    </thead><tbody>
+<?php
+$sno= 1;
+foreach($class as $data)
+            {
+                $id=$data->id;
+                $row1=$data->section;
+                            $this->db->where('id',$row1);
+                $section=   $this->db->get('class_section')->row();
+                        $this->db->where('class_id',$id);
+                        $this->db->where('fsd',$this->session->userdata('fsd'));
+                        $this->db->where('status',1);
+            $class_id=  $this->db->get('student_info');
+?>
+ <?php if($sno%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
+	   <tr class="<?php echo $rowcss;?> text-uppercase">
+            <td><?php echo $sno;?></td>
+            <td><?php echo $data->class_name;?></td>
+            <td><?php echo $section->section;?></td>
+            <td>
+            <a href="<?php echo base_url();?>index.php/studentHWControllers/getStudentWork1/2/<?php echo $id;?>">
+            <?php 
+            $school_code =  $this->session->userdata("school_code");
+                	$date=Date("Y-m-d");
+                                	$this->db->where("workfor",'students');
+            						$this->db->where("school_code",$school_code);
+            						$this->db->where("Date(givenWorkDate)",$date);
+            						$this->db->where("class_id",$id);
+            				$v1 =  $this->db->get('homework_name');
+            echo $v1->num_rows(); ?></a>
+            </td>
+        </tr>
+<?php $sno++; } ?></tbody>
+</table>
+</div></div>
+				<?php }else if($uri==2){ ?>
 				<div class="panel-body">
 				    		
 				    
@@ -67,6 +114,13 @@
 			 $fsd = $this->session->userdata("fsd");
 			?>
               <?php 
+			  $school_code =  $this->session->userdata("school_code");
+    	$date=Date("Y-m-d");
+                    	$this->db->where("workfor",'students');
+						$this->db->where("school_code",$school_code);
+						$this->db->where("Date(givenWorkDate)",$date);
+						$this->db->where("class_id",$classid);
+				$va =  $this->db->get('homework_name');
     		if($va->num_rows()>0){
 			$var1=$va->result();
         	?>
@@ -156,6 +210,11 @@
 	} ?>
 				
 					</div>
+				<?php } ?>
+				
+				
+				
+				
 				</div>
 			</div>
 			<!-- end: EXPORT DATA TABLE PANEL -->

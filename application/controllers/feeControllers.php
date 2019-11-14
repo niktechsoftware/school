@@ -1089,8 +1089,8 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 							$realm= $mno- $fd->deposite_month;
 							
 							}
-							print_r($mno);
-						print_r($fd->deposite_month);
+				// 			print_r($mno);
+				// 		print_r($fd->deposite_month);
 						 }
 						}
 						?>
@@ -1099,30 +1099,34 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						
 						
 						$this->db->where('school_code',$school_code);
-						$latedt =$this->db->get('late_fees')->row();
-					$amt=$latedt->late_fee;
-						if($realm==1){
-						    $date=date("y-m-d");
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+						
+							$this->db->where('month_number',$mno);
+						$this->db->where('school_code',$school_code);
+						$depdate1=$this->db->get('fee_card_detail')->row();
+						$depdate=date("y-m-d", strtotime($depdate1->deposite_date));
+						 $date=date("y-m-d");
+						
+					
+						if($realm==1 && $date<$depdate){
+						   
+						        $latefee1=0.00;
 						    
-						    
-						}
+						}else{
                         $latefee1=$amt*$realm;
-                        echo "aa";
-                         echo $realm;
-                        //  exit;
-                       // echo $latefee1;
+                       
+						}
+                       
 					}else{
 						$cdate11=date('Y-m-d');
 							if($cdate11>='2020-01-01'){
 							$mno=(int)date('m',strtotime($cdate11));
-							echo "bb";
-						//	exit;
+						
 						 $realm= $mno-4+12;
 						}else{
 							$mno=(int)date('m',strtotime($cdate11));
-							//echo $mno;
-							echo "cc";
-						//	exit;
+						
+						
                             $realm= $mno-4;
 						 }?>	
 						<?php 
