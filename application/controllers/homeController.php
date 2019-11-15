@@ -280,8 +280,8 @@ class HomeController extends CI_Controller{
 		// $this->load->view("includes/mainContent", $data);
 	}
    public function duereport(){
-         $uri= $this->uri->segment(3);
-         $data['uri']=$uri;
+        $uri= $this->uri->segment(3);
+        $data['uri']=$uri;
       	$data['pageTitle'] = 'Due Report';
 		$data['smallTitle'] = 'Due Report';
 		$data['mainPage'] = 'Due Report';

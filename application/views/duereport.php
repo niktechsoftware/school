@@ -163,7 +163,8 @@
 								 	if($mbalance->num_rows()>0){
 								 	if(strlen($mbalance->row()->mbalance) > 0){
 								 	    $db=$mbalance->row()->mbalance;
-								 	    
+								 	   
+								 	   // exit;
 								 	}}
 									$cdate = date("Y-m-d");
 									$cmonth = date("Y-m",strtotime($cdate));
@@ -221,8 +222,8 @@
 									$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
-								 $this->db->where_in("taken_month",13);
-								 $fee_head = $this->db->get("class_fees");
+    								 $this->db->where_in("taken_month",13);
+    								 $fee_head = $this->db->get("class_fees");
 								 
 								//  	$this->db->select_sum("fee_head_amount");
 								// 	if($school_code ==1){
@@ -242,8 +243,10 @@
 									$this->db->where("class_id",$stuDetail->class_id);
 									
 									 $this->db->where_in("taken_month",$searchM);
-								 
+								
+								
 								 $examfee1 = $this->db->get("class_fees");
+								
 								 if($examfee1->num_rows()>0){
 								     
 								    $exfee1= $examfee1->row()->fee_head_amount;
@@ -336,12 +339,12 @@
 								// 			if($ui>0){
 								// 				$adable_amount =$one_all_amount+$adable_amount;
 								// 			}
-								// 		}
+								 //		}
 								 $fee8=$one_all_amount*($rt);
 								 
 									$fee9 =$fee_head->row()->fee_head_amount;
 									$fee_head=$fee8 + $fee9;
-									
+								
 									if($stuDetail->transport==1){
 								     $vid=$stuDetail->vehicle_pickup;
 								     $this->db->where("id",$vid);
@@ -358,6 +361,7 @@
 								 } 
 								 else{
 								     $fee_head =$fee_head;
+								    
 								 }
 									
 									$sum=$sum + $fee_head;
@@ -371,7 +375,7 @@
 										<?php $count++; ?>
 			  		<?php  }else{
 	
-                             }  endforeach;    ?>
+                             }  endforeach;  ?>
 
                         <tr>
                           <td class="center"><?php echo $k;?></td>
