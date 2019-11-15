@@ -116,3 +116,9 @@ Stack trace:
 #7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #8 {main}
   thrown in /home/schoodhe/public_html/school/application/views/hw_full_detail.php on line 70
+[15-Nov-2019 06:54:18 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/sschool3/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/sschool3/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/sschool3/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool3/application/controllers/configureClassControllers.php on line 211
