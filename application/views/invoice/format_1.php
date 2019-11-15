@@ -2028,27 +2028,38 @@ $cumulativetotal=0;
 		         ?>
 				<?php  $i=1; $t=0; $coltptal=0;  foreach ($examid->result() as $value):?>
 					<td class="center">	
-					<?php  
-
-					$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('class_id',$classid->class_id);
-					$this->db->where('stu_id',$studentInfo->id);
-					$this->db->where('exam_id',$value->exam_id);
-					$this->db->where('fsd',$fsd);
-					
+					<?php   	$this->db->where('subject_id',$sub['subject']);
+            					$this->db->where('class_id',$classid->class_id);
+            					$this->db->where('stu_id',$studentInfo->id);
+            					$this->db->where('exam_id',$value->exam_id);
+            					$this->db->where('fsd',$fsd);
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
-							$subtatal=$subtatal+$marks->marks;
+						/*	$subtatal=$subtatal+$marks->marks;
 							$gtptal= $gtptal+$marks->marks;
-							$coltptal+=$marks->marks;
+							$coltptal+=$marks->marks; */
+							
+							
+							
+							///////////////////////
+							if(is_numeric($marks->marks) ){
+							    $dfg =$marks->marks;
+							    $subtatal=$subtatal+$marks->marks;
+                      $gtptal= $gtptal+$marks->marks;
+                      $ctotal[$t]+= $marks->marks;
+                    }else{ $gtptal= $gtptal;}
+							/////////////////////////
 							echo $marks->marks;
-							$ctotal[$t]+= $marks->marks;
+						//	$ctotal[$t]+= $marks->marks;
 							
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
 				$exammm=	$this->db->get('exam_max_subject')->row()->max_m;
+				 if(is_numeric($exammm)){
+                echo "/".$exammm;
+               }
 				$dhtm=$exammm+$dhtm;
 						}
 					

@@ -302,6 +302,7 @@ $school_code = $this->session->userdata("school_code");
 				   <!-- <h4 class="title block no-margin">Student Admission</h4>-->
 				   <h4 class="title block no-margin"> New Registration</h4><br>
 				   <div class="row">
+				      
 					   <div class="col-sm-6">
 					   <h6 class="block no-margin">Total Students</h6>
 						<?php //$fsd = $this->session->userdata("fsd");
