@@ -6,8 +6,6 @@ class InvoiceController extends CI_Controller{
           $this->is_login();
         $this->load->model("exammodel");
         $school_code = $this->session->userdata("school_code");
-        // print_r($school_code) ;
-        // exit();
     }
     
     function is_login(){
@@ -22,6 +20,15 @@ class InvoiceController extends CI_Controller{
             redirect("index.php/homeController/lockPage");
         }
     }
+    
+    function obtn_marks(){
+		$data['sectionid'] = $this->uri->segment(4);
+		$data['subjectid'] = $this->uri->segment(5);
+		$data['examid'] = $this->uri->segment(6);
+		$data['classid']=$this->uri->segment(3);
+		$this->load->view("invoice/obtn_marks",$data);
+	}
+    
     
     	function printempiCard(){
 			
@@ -427,6 +434,14 @@ class InvoiceController extends CI_Controller{
 		  $this->db->where("fsd",$this->uri->segment(3) );
 		  $this->db->where("term",2 );
 		 $examTypeResult2_2 = $this->db->get("exam_info")->result();
+		 //for 3rd term
+		 $this->db->Distinct();
+	      $this->db->select("exam_id,term");
+		  $this->db->where("school_code",$this->session->userdata("school_code"));
+		   $this->db->where("class_id", $this->uri->segment(4));
+		  $this->db->where("fsd",$this->uri->segment(3) );
+		  $this->db->where("term",3 );
+		 $examTypeResult2_3 = $this->db->get("exam_info")->result();
 		 
 		 
             	     /* $this->db->Distinct();
@@ -497,6 +512,7 @@ class InvoiceController extends CI_Controller{
 			$data['resultData'] = $formatedResult;
 			$data['examid']=$examTypeResult2;
 			$data['examid_2']=$examTypeResult2_2;
+			$data['examid_3']=$examTypeResult2_3;
 			$callview = "class_wise_report_".$val;
 			$this->load->view("invoice/$callview",$data);
 		}
@@ -559,7 +575,7 @@ function result(){
 		 * [$futureDate defines end of finatial satrt date.]
 		 * @var [Date]
 		 */
-		//for 1st term
+
 	       $this->db->Distinct();
 	      $this->db->select("exam_id,term");
 		  $this->db->where("school_code",$this->session->userdata("school_code"));
@@ -584,7 +600,7 @@ function result(){
 		  $this->db->where("fsd",$fsd1 );
 		  $this->db->where("term",3 );
 		 $examTypeResult2_3 = $this->db->get("exam_info");
-     //   $this->db->where("class_id", $studg->class_id);
+
 		$this->db->where("stu_id", $id);
 		$this->db->where("fsd",$fsd1 );
 		$examTypeResult = $this->db->get("exam_info")->result();

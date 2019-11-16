@@ -52,25 +52,37 @@
                         </tr>
                        <thead>
                        <tbody>
-                       <?php
-                       foreach($class as $data)
+                       <?php $i=1;
+                       foreach($class->result() as $data1)
                        {
-                           $a=$data->submitted_by;
+                           
+                               
+                    		$this->db->where("work_id",$data1->work_name);
+                    		$data = $this->db->get("homework");
+                    		if($data->num_rows()>0){
+                           $dt=$data->row();
+                           
                            //print_r($a);
-                        $this->db->where("username",$a);
-    $this->db->where('class_id',$cls);
-    $dt= $this->db->get("student_info");
-    if($dt->num_rows()>0){
-        $dt1=$dt->row();?>
+                            $this->db->where('id',$data1->class_id);
+                        $dt3= $this->db->get("class_info");
+                        if($dt3->num_rows()>0){
+                            
+                        
+                        $this->db->where("username",$dt->submitted_by );
+                        $this->db->where('class_id',$data1->class_id);
+                        $dt= $this->db->get("student_info");
+                        if($dt->num_rows()>0){
+                            $dt1=$dt->row();
+                              ?>
                        <tr>
-                            <td>Sno</td>
-                            <td>Name</td>
-                            <td>Username</td>
-                            <td>Class</td>
-                            <td>HomeWork</td>
-                            <td>Submitted Date</td>
+                            <td><?php echo $i ; ?></td>
+                            <td><?php echo $dt1->name ; ?></td>
+                            <td><?php echo $data->submitted_by  ; ?></td>
+                            <td><?php echo $dt3->row()->class_name ; ?></td>
+                            <td><?php echo $data1->work_name ; ?></td>
+                            <td><?php echo $data->submitted_date ; ?> Date</td>
                         </tr>
-    <?php } }
+    <?php } } }  $i++; }
     ?>
                        </tbody>
                     </table>

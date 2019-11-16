@@ -43,4 +43,14 @@
 						?>
 					</tbody>
 				</table>
-				<?php $this->load->view('footerjs/noticejs');?>
+			
+				<script>
+				jQuery(document).ready(function(){
+	$('#studattendance').DataTable();
+});
+				
+// 		SVExamples.init();
+// 		FormElements.init();
+			
+</script>
+			

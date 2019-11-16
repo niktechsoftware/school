@@ -96,13 +96,21 @@ elseif($this->uri->segment(3) == 'Parent%20Message'){ ?>
 					// }
 					 ?>
             <form method="post" action="<?php echo base_url();?>index.php/smsAjax/sendallParent">
-          <?php $totmsg=$this->uri->segment(4);
+          <?php 
+         if($this->uri->segment(5)){ ?>
+            	
+					<div class="alert alert-success">This Text Message has been alreary submitted and yet to be delivered keep patience and try after 2 hours.</div> 
+      <?php   }
+         else{
+         
+         
+          $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
 					?>
 					<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
 					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
-          		<?php }
+          		<?php }  }
           			?> 
                      <table class="table">
                       <tr><td>Select Language</td><td><select class="form-control"  name="language" style="width: 200px;" required="required">

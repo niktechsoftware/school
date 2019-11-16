@@ -635,8 +635,8 @@ function daybook()
 	function creatsubexp(){
 		$subexpid= $this->input->post('subexp');
 		$expsub= $this->input->post('expsub');
-		print_r($subexpid);
-		print_r($expsub);
+	//	print_r($subexpid);
+	//	print_r($expsub);
 		$this->load->model('daybookmodel');
 		if($subexpid){
 			$explist = $this->daybookmodel->creatSubexpe($expsub,$subexpid);
@@ -661,6 +661,142 @@ function daybook()
 		}
 
 	}
+	function deleteExpen(){
+		$school_code =$this->session->userdata("school_code");
+		$data['expid'] = $this->uri->segment(3);
+		$data['pageTitle'] = 'Expenditure Delete';
+		$data['smallTitle'] = ' Expenditure';
+		$data['mainPage'] = ' Expenditure';
+		$data['subPage'] = ' Expenditure';
+		$data['title'] = ' Expenditure';
+		$data['headerCss'] = 'headerCss/configureClassCss';
+		$data['footerJs'] = 'footerJs/transactionJs';
+		$data['mainContent'] = 'deleteexpenditure';
+		$this->load->view("includes/mainContent", $data);
+	}
+	function deleteexpotp(){
+		    $otp=$this->input->post('otp');
+              $mobile=$this->input->post('mobile');
+             $this->db->where('school_code',$this->session->userdata('school_code'));
+             $this->db->where('mobile_number',$mobile);
+             $this->db->where('exam_otp',$otp);
+             $row=$this->db->get('common_otp');
+             if($row->num_rows()>0) {   
+             foreach ($row->result() as  $value) {
+             if($value->exam_otp==$otp){
+                    ?><br><br>
+                     <div class="alert alert-success">
+                                <button data-dismiss="alert" class="close">
+                                    &times;
+                                </button>
+                                <?php 
+                                       echo "Match Otp!Click On Delete Button to Delete the Expenditure ";?>
+                                </div>
+                <script>
+                  $("#conform").show();
+                 </script><?php
+                     return true;
+                 }
+             }
+         }
+                 else
+                 {   ?>
+                       <div class="alert alert-danger">
+                          <button data-dismiss="alert" class="close"> &times;</button><?php 
+                           echo "OTP NOT MATCH";?>
+                            </div>
+             <script>
+                  $("#conform").hide();
+                   $("#admin").show();
+                  $("#student_id").show();
+             </script><?php
+             return false;
+            }
+	}
+	public  function Suceesotpdeleteexpby()
 
+          {
+               $expid=$this->input->post('exp_id');
+               $this->db->where('sno',$expid);
+               $this->db->where('school_code',$this->session->userdata('school_code'));
+               $delexamname=$this->db->delete('expenditure');
+                if($delexamname)   {
+                	 ?><br><br>
+                     <div class="alert alert-success">
+                                <button data-dismiss="alert" class="close">
+                                    &times;
+                                </button>
+                                <?php 
+                                       echo "Your Expenditure Detail Successfully Deleted";?>
+                              <a href="<?php echo base_url();?>index.php/login/newexpenditure" class="btn btn-red">
+                                       <i class="fa fa-arrow-circle-right"></i>Go For Add new Expenditure  </a>
+                                </div>
+                      <?php
+                }
+                else
+                {
+                 ?>    <div class="alert alert-danger">
+                                <button data-dismiss="alert" class="close">
+                                    &times;
+                                </button><?php 
+                                       echo "Somthing Wrong!please try after some time";?>
+                        </div><?php 
+                }  
+    }
+    function checkIDforadmin(){
+			   $mobile = $this->input->post("admin_id");
+			    $examid = $this->input->post("exp_id");
+			    $this->load->helper('string');
+			    $this->load->model("smsmodel");
+			   $this->db->where('id',$this->session->userdata('school_code'));
+		       $this->db->where('mobile_no',$mobile);
+		       $school_name=$this->db->get('school');                 
+			  if($school_name->num_rows()>0){
+				$mobilenumber=$school_name->row();
+				?>
+				<div class="alert alert-success">
+					<button data-dismiss="alert" class="close">
+						&times;</button>
+						ADMIN FOUND ! <strong><?php echo $mobilenumber->school_name."". " !OTP SEND ON YOUR MOBILE NUMBER"; ?></strong>
+						<?php	$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+				           if($sender->num_rows()>0){
+					       $sende_Detail =$sender->row();
+					       $otp = rand(1000,99999);
+					        $msg="Your Exam Delete OTP is ".$otp." .please share this to delete exam.";
+					         sms($mobilenumber->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+							    $data2 = array(
+	                             'exam_otp' => $otp,
+	                             'exam_id' => $examid,
+	                              'mobile_number'=>$mobilenumber->mobile_no,
+	                              'date'=>date('Y-m-d H:i:s',time()),
+	                              'school_code'=>$this->session->userdata('school_code'),
+	                                );
+	                             $insert = $this->db->insert('common_otp', $data2);
+	                            ?>
+							</div>
+							<script>
+						  <?php if($insert){?>
+							$("#b1").show();
+							$("#newpassword").show();
+						    <?php }?>
+							</script>
+							<?php 
+						}}
+					else{
+						?>
+					<div class="alert alert-danger">
+						<button data-dismiss="alert" class="close">
+							&times;
+						</button>
+						Sorry :( <strong><?php echo "Admin Mobile Number Not Found ! Wrong Mobile Number"; ?></strong>
+					</div>
+					<script>
+						$("#b1").hide();
+						$("#newpassword").hide();
+						</script>
+				<?php	}
+		
+			}
+    
 }
 

@@ -128,7 +128,7 @@
 										<div class="col-sm-7">
 										<div class="panel panel-calendar">
 												<div class="panel-heading panel-blue border-light">
-													<h4 class="panel-title">Settings</h4>
+													<h4 class="panel-title">Exam List</h4>
 												</div>
 											<div class="panel-body" id="examsetting">
 											<table class="table table-responsive">
@@ -142,7 +142,7 @@
 											</thead>
 											<tbody>
 											
-											<?php $i=1; foreach ($request as $row):
+											<?php $i=1; foreach ($request as $row): 
 											 ?><form action="<?php echo base_url();?>index.php/examControllers/startScheduling" method="post" >
 													
 													<tr>
@@ -174,7 +174,7 @@
 															{?><button type='submit' disabled="disabled"  style="width: 100px;" class="btn btn-xs btn-light-blue" id="scheduling1"><i class="fa fa-check"></i>Exam Done </button>
 														    </td> 
 														    <td>
-														   <a href="<?php echo base_url();?>index.php/examControllers/examdonedeleteExam/<?php echo $row->id;; ?>" class="btn btn-red ">
+														   <a href="<?php echo base_url();?>index.php/examControllers/examdonedeleteExam/<?php echo $row->id; ?>" class="btn btn-red ">
 											          	   <i class="fa fa-arrow-circle-right"></i>Delete Exam</a> 
 														    </td>
 														   

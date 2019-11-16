@@ -67,7 +67,7 @@
 							foreach($request->result() as $row):?>
 							<option value="<?php echo $row->id;?>"><?php echo $row->house_name;?></option>
 							<?php endforeach; ?>
-							<!-- <option value="all">All House/Team</option> -->
+							 <option value="all">All House/Team</option>
 						</select>
 					</div>
 					

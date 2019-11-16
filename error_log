@@ -74,3 +74,4 @@ Stack trace:
 [16-Nov-2019 14:24:47 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
 [16-Nov-2019 14:25:09 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
 [16-Nov-2019 14:25:23 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
+

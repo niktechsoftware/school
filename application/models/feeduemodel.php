@@ -16,7 +16,7 @@
 		$var=$this->db->get("feedue");
 		if($var->num_rows() > 0)
 		{
-			$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("student_id",$studid);
 		$this->db->update("feedue",$data);
 		}

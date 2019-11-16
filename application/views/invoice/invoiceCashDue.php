@@ -107,7 +107,7 @@
 <?php
 	$id = $this->uri->segment(3);
 	//echo $id;
-	$rowb = $this->db->query("select * from feedue where invoice_no = '$id' and school_code = '$school_code'")->row();
+	$rowb = $this->db->query("select * from fee_deposit where invoice_no = '$id' and school_code = '$school_code'")->row();
 	$this->db->where("id",$rowb->student_id);
 	$studetail=$this->db->get("student_info");
 	if($studetail->num_rows()>0)
@@ -157,7 +157,7 @@
                 </tr>
                 <tr>
                     <td class="meta-head">Date</td>
-                    <td><?php echo $rowb->depositedate; ?></td>
+                    <td><?php echo $rowb->diposit_date; ?></td>
                 </tr>
             </table>
             </div>
@@ -170,7 +170,7 @@
 		       <th width="5%">No.</th>
                <th width="30%">Descriptions Of Fee</th>
                <th width="12%">Paid Amount</th>
-               <th width="12%">Remain Amount</th>
+               <!--<th width="12%">Remain Amount</th>-->
                <th width="11%">date</th>
 		  </tr>
 		 <?php $this->db->where('invoice_no',$rowb->invoice_no);
@@ -181,8 +181,8 @@
 		      <td><?php echo 1; ?></td>
 		      <td><?php echo $rowb->description; ?></td>
 		      <td><?php if($amount->num_rows()>0){ echo $amount->row()->amount;}else{echo "0.00";}  ?></td>
-		      <td><?php echo $rowb->mbalance;?></td>
-		      <td><?php echo $rowb->depositedate; ?></td>
+		      <!--<td><?php //echo $rowb->mbalance;?></td>-->
+		      <td><?php echo $rowb->diposit_date; ?></td>
 		  </tr>
 		</table>
 		

@@ -124,7 +124,7 @@ print employee Icard by click on that Employee Id.
 								</thead>
 								<?php
 									$this->db->where("school_code",$this->session->userdata("school_code"));
-									$this->db->where("status",1);
+								// 	$this->db->where("status",1);
 									$result = $this->db->get("employee_info");
 								?>
 								<tbody>
@@ -137,7 +137,9 @@ print employee Icard by click on that Employee Id.
 										<td><?php echo $row->mobile; ?></td>
 										<td><?php echo $row->address ?></td>
 										<td class="text-lowercase"><?php echo $row->email; ?></td>
-										<td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">Full Profile</a></td>
+										<td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">Full Profile</a>
+									<?php if($row->status == 0){ ?><a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-red">InActive</a><?php } else{?>
+									<a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-green">Active</a><?php } ?></td>
 									</tr>
 									<?php $sno++; endforeach; ?>
 								</tbody>

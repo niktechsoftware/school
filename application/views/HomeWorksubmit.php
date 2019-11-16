@@ -178,7 +178,7 @@
          
             <div class="col-sm-6">
               <div class="col-sm-5">&nbsp</div>
-                <div class="col-sm-7"><button class="btn btn-green pull-right" type="submit">Submit</button></div>
+                <div class="col-sm-7"><button class="btn btn-green pull-right" type="submit">SUBMIT</button></div>
 
               </div>
             </div>

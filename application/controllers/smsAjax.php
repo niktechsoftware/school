@@ -72,6 +72,9 @@ class SmsAjax extends CI_Controller{
 		//print_r($sende_Detail->row()->password);exit;
      	
 		$msg =	$this->input->post("meg");
+		$date=date("y-m-d");
+			$tt = $this->smsmodel->smstest($msg,$date);
+		if($tt=="true"){
 		$fmobile1 = $this->input->post("m_number");
 		$str_arr=explode(",",$fmobile1);
 		$totnumb =  sizeof($str_arr);
@@ -121,7 +124,7 @@ class SmsAjax extends CI_Controller{
 			$a[]=0;
 			$this->smsmodel->sendReport($getv,$master_id);
 			redirect("index.php/login/mobileNotice/Notice");
-		}else{
+		} }else{
 			$data['subPage'] = 'Mobile Message And Notice';
 			$data['title'] = 'Mobile Message And Notice';
 			$data['headerCss'] = 'headerCss/noticeCss';
@@ -144,13 +147,16 @@ class SmsAjax extends CI_Controller{
 		$totsmssent = $this->input->post("totsmsv");
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 		$master_id=$max_id->maxid+1;
+		$date=date("y-m-d");
+		$tt = $this->smsmodel->smstest($msg,$date);
+       
+		if($tt=="true"){
 		$getresultm = $this->smsmodel->sentmasterRecord($msg,$totsmssent,$master_id);
 		if($getresultm){
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		$fmobile1=$this->session->userdata("mobile_number");
-//  		echo $fmobile;
-// 		exit;
+
 		if($isSMS->parent_message)
 		{
 		if($query->num_rows() > 0)
@@ -162,18 +168,19 @@ class SmsAjax extends CI_Controller{
 				if($smsc==0){
 					$fmobile =$checknum;
 				}else{
-					$fmobile=$fmobile.",".$checknum;
+					$fmobile=$fmobile1.",".$checknum;
 				}
 				$smscount++;
 				$smsc++;
 				$count=$count+1;
 			}else{
 				if($this->input->post("language")==1){
-				    		sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+
+				  
+	
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				
+				     	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -184,14 +191,15 @@ class SmsAjax extends CI_Controller{
 			}
 			
 			endforeach;
+				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			if($this->input->post("language")==1){
 				//echo $fmobile;
-					sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				
+
+				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
-				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				
+				     	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -210,7 +218,7 @@ class SmsAjax extends CI_Controller{
 		}
 		
 		//redirect("index.php/login/mobileNotice/Parent%20Message/$count");
-	}else
+	}  else
 		{
 			$data['subPage'] = 'Mobile Message And Notice';
 			$data['title'] = 'Mobile Message And Notice';
@@ -219,7 +227,10 @@ class SmsAjax extends CI_Controller{
 			$data['mainContent'] = 'error';
 			$this->load->view("includes/mainContent", $data);
 		}
-		}else{
+	}else{
+	    	redirect("index.php/login/mobileNotice/Parent%20Message/$count/7");
+	   // echo "this message already sent for resend  plz try after some time ";
+	}	}else{
 			echo "Something is wrong";}
 	}
 	
@@ -232,6 +243,10 @@ class SmsAjax extends CI_Controller{
 		if($sender){
 		$sende_Detail =$sender->row();
 		$msg =$this->input->post("meg");
+			$date=date("y-m-d");
+		$tt = $this->smsmodel->smstest($msg,$date);
+	   
+		if($tt=="true"){
 		$totsmssent = $this->input->post("totsmsv");
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 		$master_id=$max_id->maxid+1;
@@ -301,7 +316,13 @@ class SmsAjax extends CI_Controller{
 			$this->load->view("includes/mainContent", $data);
 		}
 	
-	}}
+	} 
+		}else{
+	    	redirect("index.php/login/mobileNotice/Announcement/$count/7");
+	   // echo "this message already sent for resend  plz try after some time ";
+	}
+		    
+		}
 	else{
 	    	$data['subPage'] = 'Mobile Message And Notice';
 			$data['title'] = 'Sender ID Not Approved Error Please Contact Administrator';
@@ -310,6 +331,11 @@ class SmsAjax extends CI_Controller{
 			$data['mainContent'] = 'error';
 			$this->load->view("includes/mainContent", $data);
 	}
+	
+		    
+		
+	
+	
 	}	
 	
 	function sendGreeting(){
@@ -321,6 +347,10 @@ class SmsAjax extends CI_Controller{
 		$sende_Detail =$sender->row();
 		
 		$msg =$this->input->post("meg");
+				$date=date("y-m-d");
+		$tt = $this->smsmodel->smstest($msg,$date);
+	
+		if($tt=="true"){
 		$totsmssent = $this->input->post("totsmsv");
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 		$master_id=$max_id->maxid+1;
@@ -329,13 +359,13 @@ class SmsAjax extends CI_Controller{
 		$employee = $this->employeemodel->employeeList($this->session->userdata("school_code"));
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
-		
-		$fmobile1=$this->session->userdata("mobile_number");
+
 		if($isSMS->greeting)
-		{
+		{  
 			
 			foreach($employee->result() as $empmob):
 			$checknum = $this->smsmodel->checknum($empmob->mobile,$msg,$master_id);
+		
 			if($checknum){
 			if($smscount<90){
 				if($smsc==0){
@@ -347,7 +377,10 @@ class SmsAjax extends CI_Controller{
 				$smsc++;
 				$count=$count+1;
 			}
-			else{
+		
+			
+			else{ 	 
+			 //   print_r($fmobile);
 				if($this->input->post("language")==1){
 				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				
@@ -366,8 +399,7 @@ class SmsAjax extends CI_Controller{
 			}
 			endforeach;
 			if($this->input->post("language")==1){
-			    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				
+
 				
 					$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
@@ -380,6 +412,7 @@ class SmsAjax extends CI_Controller{
 				
 		
 				foreach($query->result() as $parentmobile):
+				    
 				$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
 				if($checknum){
 					if($smscount<90){
@@ -391,7 +424,11 @@ class SmsAjax extends CI_Controller{
 						$smscount++;
 						$smsc++;
 						$count=$count+1;
+				// 		
 					}else{
+					   // print_r($fmobile);
+					   // exit();
+					    
 						if($this->input->post("language")==1){
 						    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				
@@ -410,8 +447,7 @@ class SmsAjax extends CI_Controller{
 				}
 				endforeach;
 			if($this->input->post("language")==1){
-				echo $fmobile;
-					sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+
 				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
@@ -440,6 +476,11 @@ class SmsAjax extends CI_Controller{
 				$this->load->view("includes/mainContent", $data);
 			}
 			//echo $fmobile;
+		
+		}else{
+	    	redirect("index.php/login/mobileNotice/Greeting/$count/7");
+	   // echo "this message already sent for resend  plz try after some time ";
+	}
 		}
 		redirect("index.php/login/mobileNotice/Greeting/$count");
 	}
@@ -454,6 +495,10 @@ class SmsAjax extends CI_Controller{
 		if($sender->num_rows()>0){
 		$sende_Detail =$sender->row();
 		$msg =$this->input->post("meg");
+			$date=date("y-m-d");
+		$tt = $this->smsmodel->smstest($msg,$date);
+	
+		if($tt=="true"){
 		$totsmssent = $this->input->post("totsmsv");
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 		$master_id=$max_id->maxid+1;
@@ -526,6 +571,12 @@ class SmsAjax extends CI_Controller{
 		
 		}}
 	redirect("index.php/login/mobileNotice/classwise/$count");
+	
+		}else{
+	    	redirect("index.php/login/mobileNotice/classwise/$count/7");
+	   // echo "this message already sent for resend  plz try after some time ";
+	}
+	
 		}else
 		{	$data['pageTitle'] = 'SMS Panel';
 		$data['smallTitle'] = 'Mobile SMS';
@@ -549,7 +600,10 @@ class SmsAjax extends CI_Controller{
 		if($sender->num_rows()>0){
 		$sende_Detail =$sender->row();
 		$msg =	$this->input->post("meg");
-		
+			$date=date("y-m-d");
+		$tt = $this->smsmodel->smstest($msg,$date);
+	
+		if($tt=="true"){
 		$totsmssent = $this->input->post("totsmsv");
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 		$master_id=$max_id->maxid+1;
@@ -620,6 +674,12 @@ class SmsAjax extends CI_Controller{
 		}
 	}
 	redirect("index.php/login/mobileNotice/transportwise/$count");
+		}else{
+	    	redirect("index.php/login/mobileNotice/transportwise/$count/7");
+	   // echo "this message already sent for resend  plz try after some time ";
+	}
+	
+	
 		}else
 		{	
 			$data['pageTitle'] = 'SMS Panel';

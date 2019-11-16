@@ -455,6 +455,31 @@ function showHomeWork()
 	}
 	}
 	
+	
+	
+	  public function getStudentWork1(){
+		  $uri= $this->uri->segment(3);
+		  $data['classid']=$this->uri->segment(4);
+         $data['uri']=$uri;
+                   // $this->load->model("homeWorkModel");
+					//$sec=$this->input->post("section");
+    	//$data['va']=$this->homeWorkModel->today_getHomeWorkDetailStudent($classt,$sec);
+		$schoolcode=$this->session->userdata("school_code");
+		$this->db->where('school_code',$schoolcode);
+		$data['class']=$this->db->get('class_info')->result();
+      	$data['pageTitle'] = 'Homework Report';
+		$data['smallTitle'] = 'Homework Report';
+		$data['mainPage'] = 'Homework Report';
+		$data['subPage'] = 'Homework Report';
+		$data['title'] = 'Homework Report';
+		$data['headerCss'] = 'headerCss/studentListCss';
+		$data['footerJs'] = 'footerJs/simpleStudentListJs';
+		$data['mainContent'] = 'hw_full_detail';
+		$this->load->view("includes/mainContent", $data);
+  }
+  
+  
+  
         function getStudentWork(){
         	$this->load->model("homeWorkModel");
         	$va=$this->homeWorkModel->getHomeWorkDetailStudent();
@@ -578,14 +603,16 @@ function showHomeWork()
 				  			<td><?php echo $lv->givenby;?></td>
 				  			<td><?php echo $lv->work_name;?></td>
 				  			<td><?php
-				  			$this->db->where("id",$lv->class_id);
-                        	$var = $this->db->get("class_info")->row();
+				  		        	$this->db->where("id",$lv->class_id);
+                        	$var =  $this->db->get("class_info")->row();
                             if($lv->class_id==0){echo "No Record Found";}else{ echo $var->class_name;}
                             ?>
                             </td>
 				  			<td><?php
+				  			        $this->db->where("id",$var->section);
                         	$var1 = $this->db->get("class_section")->row();
                         	echo $var1->section;
+                        // echo $var->section;
 				  			?></td>
 				  			<td><?php echo $lv->maximam_marks;?> ( <?php echo $lv->grade;?> )</td>
 				  			<td style="max-width: 151px;"><?php echo $lv->workDiscription;?></td>

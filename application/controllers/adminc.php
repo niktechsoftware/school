@@ -95,4 +95,50 @@ class adminc extends CI_Controller{
          endforeach;
      
  }
+ 
+ function updateMobile(){
+    
+	
+    $ts =  $this->db->get("temp");
+     foreach($ts->result() as $t):
+         
+         
+          $this->db->select('id');
+	     $this->db->from('student_info');
+	    
+	     $this->db->where("username",$t->uname);
+	   
+	     $query=$this->db->get()->row();
+	     
+	     $up = array(
+	         "mother_full_name"=> $t->mname
+	         );
+	         
+	        $this->db->where("student_id",$query->id);
+         $this->db->update("guardian_info",$up);
+	     
+         
+         endforeach;
+ }
+ function updateopen(){
+	 $dt1="2019-10-04";
+	 $dt2=Date("y-m-d");
+	 $this->db->order_by("id","asc");
+	 $this->db->where("date(pay_date)>=",$dt1);
+	 $this->db->where("date(pay_date)<=",$dt2);
+	 $this->db->where("school_code",$this->session->userdata("school_code"));
+	 $dt=$this->db->get("day_book");
+	 if($dt->num_rows()>0){
+		 foreach($dt->result() as $data):
+			$clo=$data->closing_balance;
+			$updtclo=$clo+7745800.00;
+			$arr =array(
+				"closing_balance"=>$updtclo
+			);
+			$this->db->where("id",$data->id);
+			$this->db->update("day_book",$arr);
+		endforeach;
+	 }
+
+}
 }

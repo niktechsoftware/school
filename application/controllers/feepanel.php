@@ -229,14 +229,16 @@ class Feepanel extends CI_Controller{
 
   }
 
-      public function duebyfsdfeepanel(){
+      public function currentmonthdue(){
 		$data['pageTitle'] = 'Fee Panel';
 		$data['smallTitle'] = 'Fee Panel';
 		$data['mainPage'] = 'Fee Panel Area';
 		$data['subPage'] = 'Fee Panel';
 		$data['title'] = 'Fee Panel Area ';
-		$data['headerCss'] = 'headerCss/noticeCss';
-		$data['footerJs'] = 'footerJs/noticeJs';
+		$this->load->model("allFormModel");
+		$data['request'] = $this->allFormModel->getsectionfeereport()->result();
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
 		$data['mainContent'] = 'panel/fee/duebyfsd_feepanel';
 		$this->load->view("includes/mainContent", $data);
 
