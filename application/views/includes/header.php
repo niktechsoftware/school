@@ -203,7 +203,7 @@
             <!-- end: LOGO -->
             </div>
         </div>
-        <div class="col-md-2" style="margin-top:10px">
+        <div class="col-md-3" style="margin-top:10px">
         <div class="topbar-tools">
             <!-- start: TOP NAVIGATION MENU -->
             <ul class="nav navbar-right">

@@ -67,7 +67,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                      $this->db->where("status",1);
                       $this->db->where("class_id",$classid);
 
-                      //$this->db->order_by("name","asc");
+                      $this->db->order_by("name","asc");
 
                     $num_row=$this->db->get("student_info");
                   //  print_r($num_row);exit();

@@ -293,5 +293,9 @@ class HomeController extends CI_Controller{
 	        }
 	        endforeach;
 	}
+	function testrank(){
+	   $this->load->model("exammodel");
+	   $this->exammodel->getClassRank('6263','216','3');
+	}
 	
 }

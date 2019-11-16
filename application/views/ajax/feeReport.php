@@ -185,13 +185,16 @@
 							<?php 
 					            	$depmonth=array();
 					            	$mbk=0;
-								 	$this->db->where('invoice_no',$total->invoice_no); 
+					            	
+								 	$this->db->order_by('id','desc'); 
 								 	$this->db->where('student_id',$stu_id);
                                  	$mbalance=$this->db->get('feedue');
 								 	//print_r($mbalance->mbalance);
 								 	if($mbalance->num_rows()>0){
+								 	   
 								 	if(strlen($mbalance->row()->mbalance)>0){
 									echo	$mbk= "Previous Balance ".$mbalance->row()->mbalance."<br>";
+								//	print_r($mbalance->row()->mbalance);
 									?>
 									<input type = "hidden" id="amt1<?php echo $count;?>" value="<?php echo $mbalance->row()->mbalance;?>"/>
 									<?php
@@ -257,7 +260,7 @@
 									 	 //print_r($fsd);
 									 	$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
-									 	 $this->db->where_in("taken_month",$searchM[$rt-1]);
+									 	 $this->db->where_in("taken_month",$searchM);
 								 
 								 $examfee = $this->db->get("class_fees");
 							
@@ -333,7 +336,7 @@
 							//	print_r($stuDetail->class_id);
 							if($school_code ==1){$this->db->where("cat_id",3);}
 							
-							    $this->db->where_in("taken_month",$searchM[$m-1]);
+							    $this->db->where_in("taken_month",$searchM);
 								$fee_head = $this->db->get("class_fees");
 								if($fee_head->num_rows()>0){
 								    
@@ -622,13 +625,19 @@
 							
             						$depmonth=array();
             						$mbk=0;
-								 	$this->db->where('invoice_no',$total->invoice_no); 
+            					//	print_r($total->invoice_no);
+            						
+								 	$this->db->order_by('id','desc'); 
 								 	$this->db->where('student_id',$stu_id);
                                   	$mbalance=$this->db->get('feedue');
+                                  	
 								 	//print_r($mbalance->mbalance);
 								 	if($mbalance->num_rows()>0){
+								 	    
 								 	if(strlen($mbalance->row()->mbalance) > 0){
 								 	    $db=$mbalance->row()->mbalance;
+								 	  //  $db3=$mbalance->row()->invoice_no;
+								 	  //  print_r($db3);
 									echo	$mbk= "Previous Balance ".$db."<br>";
 										?><input type = "hidden" id="amt1<?php echo $count;?>" value="<?php echo $mbalance->row()->mbalance;?>"/><?php
 									}}
@@ -708,7 +717,7 @@
 									 	$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
-									 $this->db->where_in("taken_month",$searchM[$rt-1]);
+									 $this->db->where_in("taken_month",$searchM);
 								 
 								 $examfee1 = $this->db->get("class_fees");
 								 if($examfee1->num_rows()>0){
@@ -788,7 +797,7 @@
 							//	print_r($stuDetail->class_id);
 							if($school_code ==1){$this->db->where("cat_id",3);}
 							
-							    $this->db->where_in("taken_month",$searchM[$rt-1]);
+							    $this->db->where_in("taken_month",$searchM);
 								$fee_head = $this->db->get("class_fees");
 								
 								if($fee_head->num_rows()>0){

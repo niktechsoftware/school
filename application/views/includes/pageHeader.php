@@ -64,17 +64,17 @@
         <center><a class="" style="color: #f5f5f5;" href="#">Customer Care&nbsp;:<br>&nbsp;<i class="fa fa-phone"></i>+91-&nbsp;6389027901,&nbsp;6389027902,&nbsp;6389027903,&nbsp;6389027904,&nbsp;6389027905
                 <br>WhatsApp Number&nbsp;: <i class="fab fa-whatsapp"></i>+91-&nbsp;9580121878</a></center>
     </div>
-    <?php if($this->session->userdata("login_type")=="admin"){?>
+   <!-- <?php if($this->session->userdata("login_type")=="admin"){?>
      <div class="col-sm-3" style="margin-top:15px;">
         <div class="page-header">
         <?php 
         $this->db->where("school_code",$school_code);
 		$sender=$this->db->get("sms_setting")->row(); 
         // $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row(); ?>
-        <a class="button_blink" href="#">Remaining SMS&nbsp;<br><?php echo checkBalSms($sender->uname,$sender->password);?></a>
+        <a class="button_blink" href="#">Remaining SMS&nbsp;<br><?php //echo checkBalSms($sender->uname,$sender->password);?></a>
         </div>
     </div>
-    <?php } ?>
+    <?php } ?>-->
     <!--    <div class="col-sm-3 hidden-xs center">-->
     <!--    <div class="page-header">-->
     <!--        <small>Download our Android App <i class="fa fa-refresh fa-spin"></i> -->

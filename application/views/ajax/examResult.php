@@ -4,8 +4,14 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   <meta name="keywords" content="Enterprise resource planning,school,ERP,system software,attendance,biometric,online, school management,gps,niktech software solution, online result, online admit card,omr">
   <meta name="author" content="School management System software">
 -->
-	
-		<table class="table table-striped table-bordered table-hover" id="datatable">
+<!--<link href="https//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">-->
+<!--	<script src="https//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>-->
+<!--<script>-->
+<!--    	$(document).ready( function () {-->
+<!--    $('#myTable').DataTable();-->
+<!--} );-->
+<!--</script>-->
+		<table class="table table-striped table-bordered table-hover" id="myTable">
                 <thead>
                   <tr>
                     <th>S.No.</th>
@@ -37,8 +43,10 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 //$this->db->distinct();
                 $this->db->where("fsd",$this->session->userdata("fsd"));
                 $this->db->where("status",1);
+                 //$this->db->order_by("name", "asc");
                // $this->db->where("class_id",$dum1->class_id);
                 $this->db->where("id",$dum1->stu_id);
+                $this->db->order_by("username","asc");
                $result12 = $this->db->get("student_info");
                
                ?>

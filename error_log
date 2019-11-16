@@ -15,3 +15,62 @@
 [02-Oct-2019 16:53:16 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 194
 [02-Oct-2019 16:53:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 194
 [03-Oct-2019 01:46:39 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 194
+[11-Oct-2019 11:52:15 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool1/application/views/invoice/class_wise_report_1.php:1076
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/controllers/invoiceController.php(501): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('15', '181', '44')
+#4 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/invoice/class_wise_report_1.php on line 1076
+[11-Oct-2019 15:32:43 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool1/application/views/invoice/class_wise_report_1.php:1076
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/controllers/invoiceController.php(501): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('17', '208', '48')
+#4 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/invoice/class_wise_report_1.php on line 1076
+[12-Oct-2019 10:50:17 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/schoodhe/public_html/sschool1/application/views/invoice/format_1.php on line 1269
+[12-Oct-2019 10:50:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/schoodhe/public_html/sschool1/application/views/invoice/format_1.php on line 1269
+[16-Oct-2019 11:41:15 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getHomeWorkList() on null in /home/schoodhe/public_html/sschool1/application/controllers/homeworkpanel.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): Homeworkpanel->topperfstdhomeworkpanel()
+#1 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/controllers/homeworkpanel.php on line 119
+[16-Oct-2019 11:41:20 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getHomeWorkList() on null in /home/schoodhe/public_html/sschool1/application/controllers/homeworkpanel.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): Homeworkpanel->topperfstdhomeworkpanel()
+#1 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/controllers/homeworkpanel.php on line 119
+[17-Oct-2019 15:58:08 Asia/Calcutta] PHP Fatal error:  Only variables can be passed by reference in /home/schoodhe/public_html/sschool1/application/models/exammodel.php on line 20
+[17-Oct-2019 15:58:39 Asia/Calcutta] PHP Fatal error:  Only variables can be passed by reference in /home/schoodhe/public_html/sschool1/application/models/exammodel.php on line 20
+[17-Oct-2019 15:58:41 Asia/Calcutta] PHP Fatal error:  Only variables can be passed by reference in /home/schoodhe/public_html/sschool1/application/models/exammodel.php on line 20
+[17-Oct-2019 23:58:38 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::ordet_by() in /home/schoodhe/public_html/sschool1/application/models/exammodel.php:14
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/application/controllers/homeController.php(298): examModel->getClassRank(6261, 216, 3)
+#1 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): HomeController->testrank()
+#2 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/models/exammodel.php on line 14
+[18-Oct-2019 00:18:12 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::row() in /home/schoodhe/public_html/sschool1/application/models/exammodel.php:22
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/application/controllers/homeController.php(298): examModel->getClassRank(6261, 216, 3)
+#1 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): HomeController->testrank()
+#2 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/models/exammodel.php on line 22
+[18-Oct-2019 00:19:47 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '.' in /home/schoodhe/public_html/sschool1/application/models/exammodel.php on line 22
+[18-Oct-2019 00:19:49 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '.' in /home/schoodhe/public_html/sschool1/application/models/exammodel.php on line 22
+[16-Nov-2019 13:48:36 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
+[16-Nov-2019 13:49:08 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
+[16-Nov-2019 13:50:01 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
+[16-Nov-2019 13:50:54 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
+[16-Nov-2019 13:51:20 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
+[16-Nov-2019 14:24:47 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
+[16-Nov-2019 14:25:09 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970
+[16-Nov-2019 14:25:23 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1541) in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 2970

@@ -1,4 +1,4 @@
-<?php
+exa<?php
 class examControllers extends CI_Controller
 {
 	function __construct()
@@ -11,6 +11,7 @@ class examControllers extends CI_Controller
 	{
 
 		$data=array(
+		    'fsd'=>$this->session->userdata('fsd'),
 	    'term'=>$this->input->post("term"),
 		'exam_name'=>$this->input->post("examName"),
 		'exam_date'=>$this->input->post("datet"),
@@ -674,6 +675,7 @@ function insertMarksdetail()
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
+	        'term'=>1,
 	        'class_id'=>$classid,
 	        'subject_id'=>$subjectid,
 	        'stu_id'=> $stuid,
@@ -698,7 +700,7 @@ function insertMarksdetail()
 		$data['examName'] = $this->input->post("examName");
 		$data['student_id'] = $this->input->post("student_id");
 		$data['fsd'] = $this->input->post("fsd");
-	    //print_r($data1);exit();
+	    
 		$data['pageTitle'] = 'Result';
 		$data['smallTitle'] = 'Result';
 		$data['mainPage'] = 'Exam';
