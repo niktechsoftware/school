@@ -116,9 +116,11 @@ Stack trace:
 #7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #8 {main}
   thrown in /home/schoodhe/public_html/school/application/views/hw_full_detail.php on line 70
+
 [15-Nov-2019 15:16:13 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function getsectionfeereport() on null in /home/schoodhe/public_html/school/application/controllers/feepanel.php:239
 Stack trace:
 #0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Feepanel->currentmonthdue()
 #1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #2 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/feepanel.php on line 239
+
