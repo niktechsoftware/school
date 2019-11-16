@@ -90,10 +90,10 @@
 
 
                                         <div class="col-sm-4">
-											<a href="<?php echo base_url(); ?>index.php/feepanel/duebyfsdfeepanel">
+											<a href="<?php echo base_url(); ?>index.php/feepanel/currentmonthdue">
 												<button class="btn panel-pink btn-icon btn-block space10">
 
-												<font size="5">	Total Due LIst <br> Fsd Wise</font><span class="badge badge-info partition-black"> 4 </span>
+												<font size="5">	Current Month Due </font><span class="badge badge-info partition-black"> 4 </span>
 												</button>
 											</a>
 										</div>

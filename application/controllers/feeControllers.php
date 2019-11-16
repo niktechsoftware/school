@@ -469,6 +469,19 @@ function getFsd(){
 		$this->load->view("includes/mainContent", $data);
 		}
 			
+		function current_monthreport(){
+		   $fsd= $this->input->post("fsd");
+		   $section= $this->input->post("section");
+		   $classv= $this->input->post("classv");
+		  
+		   $month= $this->input->post("month");
+		 
+		   $data['month']=$month;
+		   $data['studt']=$this->feeModel->getstudent($classv);
+		  
+    		$this->load->view("currentmonthfee", $data);
+		    
+		}
 		function enterDeufee(){
 		    
             $school_code=$this->session->userdata("school_code");
@@ -1474,6 +1487,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 		
 		
 	}
+	
 	
 		$("#latefee2").keyup(function(){
 		    	let fieldValue = parseFloat($(`#latefee2`).val())

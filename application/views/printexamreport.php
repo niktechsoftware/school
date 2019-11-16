@@ -117,7 +117,7 @@
 				$this->db->where('id',$rowClass->section);
 				 $this->db->order_by('id',"asc");
 							$section=$this->db->get('class_section')->row()->section;
-			echo $rowClass->class_name."[".$section."]aarju";?>-<?php
+			echo $rowClass->class_name."[".$section."]";?>-<?php
 			echo $rowShift->shift;
 			?></td><?php 
 			foreach ($dad->result() as $col):
