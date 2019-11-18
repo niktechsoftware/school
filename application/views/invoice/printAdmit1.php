@@ -165,10 +165,10 @@
 					<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" style="width:65%;" />
 				</td>
 				<td style="text-align:center; border:none; width:60%;">
-			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#0a3809;">
+			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#ec1d0d;">
 			    <b> <span class="schoolTitle"><?php if(($rowc->class_id==98)||($rowc->class_id==99) || ($rowc->class_id==116)||($rowc->class_id== 100) ||($rowc->class_id== 101) ||($rowc->class_id== 102) ||($rowc->class_id== 103) ||($rowc->class_id== 104) ){ echo "THE MANNER SCHOOL";}else{echo $info->school_name;}?></span></b>
 			    </h1>
-                <h2 style="font-variant:small-caps;color:#0a3809;">
+                <h2 style="font-variant:small-caps;color:#21901f;">
             		<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#0a3809;">
