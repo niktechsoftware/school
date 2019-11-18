@@ -569,15 +569,16 @@ function getFsd(){
 			'school_code'=>$school_code
 	);
 	$this->db->insert("fee_deposit",$feedepositedata);
-		
+		         $this->db->where("school_code",$school_code);
 		$isSMS = $this->db->get("sms")->row()->fee_submit;
 		$amount1=$this->input->post("paid");
 		$totdue=$this->input->post("totdue");
 		$balance=$this->input->post("remain");
 		
+			
 		//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 		if($isSMS == '1'){
-			
+		   
 			$student_id = $this->input->post("studentId");
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 			$this->db->where("student_id",$student_id);
@@ -710,7 +711,24 @@ function getFsd(){
 			$this->db->where('invoice_no', $invoiceNo);
 			$this->db->where('student_id', $student_id);
 			$uprow = $this->db->get('fee_deposit');
-			
+			$pvt = $uprow->row()->previous_balance;
+		$this->db->where("student_id",$student_id);
+	$pvv = 	$this->db->get("feedue");
+	if($pvv->num_rows()>0){
+	    $updatepv = array(
+	        "mbalance"=>$pvt
+	        );
+	     $this->db->where("student_id",$student_id);
+	     $this->db->update("feedue",$updatepv);
+	        
+	}else{
+	     $updatepv = array(
+	        "mbalance"=>$pvt
+	        );
+	        
+	          $this->db->where("student_id",$student_id);
+	             $this->db->insert("feedue",$updatepv);
+	}
 			if($this->uri->segment(6)){
 			$fristfee = $this->uri->segment(6);
 			$df = $this->uri->segment(5);
