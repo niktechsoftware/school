@@ -1,4 +1,4 @@
-exa<?php
+<?php
 class examControllers extends CI_Controller
 {
 	function __construct()

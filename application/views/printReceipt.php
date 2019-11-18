@@ -133,7 +133,10 @@
 							if($row->category=="Student Id"){
 							$this->db->where('id',$row->valid_id);
 							$sunm=$this->db->get('student_info');}
-							else{
+							else if($row->category=="Employee ID"){
+								$this->db->where('id',$row->valid_id);
+							$sunm=$this->db->get('employee_info');
+							}else{
 								$this->db->where('id',$row->valid_id);
 							$sunm=$this->db->get('employee_info');
 							}
@@ -149,7 +152,19 @@
 					            <td><a href="<?php echo base_url()?>index.php/invoiceController/printSaleReciept/<?php echo $row->bill_no; ?>" target="_blank" class="btn btn-green btn-gradient">Print</a></td>
 					        </tr>
 					<?php 
-					}
+					}else{ 
+					$sunm= "other";
+					?>
+						
+						<tr>
+					        	<td><?php echo $sunm; ?></td>
+					            <td><?php echo $dt2->billno; ?></td>
+					            <td><?php echo $dt2->date; ?></td>
+					             <td><?php echo $dt2->paid; ?></td>
+					            <td><?php echo $dt2->balance; ?></td>
+					            <td><a href="<?php echo base_url()?>index.php/invoiceController/printSaleReciept/<?php echo $row->bill_no; ?>" target="_blank" class="btn btn-green btn-gradient">Print</a></td>
+					        </tr>
+					<?php }
 				}
 
 						}
