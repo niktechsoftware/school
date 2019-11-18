@@ -38,8 +38,9 @@ function __construct()
                     		 $sende_Detail1=$sende_Detail->row();
                          $bln=$getDaybook->closing_balance - $getDaybook->opening_balance;
 						$number ="8382829593";
+
 						$msg ="Dear Sir/Madam [".$dd->school_name."], Today's School Profit Amount is Rs.".$bln.". Credited Amount is Rs.".$credit." and Debited Amount is Rs. ".$dabit."for Query dial 6389027901,2,3 Niktech Software Solutions." ; 
-					
+
 					$mob = $dd->mobile_no;
 					    $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
                 		    $master_id=$max_id->maxid+1;
@@ -47,7 +48,6 @@ function __construct()
                 		    if($getresultm){
                 		    	//$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
                 		    		$getv=sms($dd->mobile_no,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-                		    	
                 		    	$this->smsmodel->sendReport($getv,$master_id);
                 		    }
 					

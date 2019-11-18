@@ -920,6 +920,7 @@ $cumulativetotal=0;
 			</tr>
 		<?php }else{ ?>
 		<!---mla marks table end--->
+
 		<!---others marks table start--->
 		<tr class="tableHeader">
 			<td class="center" colspan="1" >A. SCHOLASTIC AREAS</td>
@@ -946,15 +947,18 @@ $dhtm=0;
              $examname=$this->db->get('exam_name');   
              if ($examname->num_rows()>0){
              $examname=$examname->row();
+
             
              	?>  <td><?php echo $examname->exam_name;?><?php if(($classid==98)||($classid==99)||($classid== 116)){if($i%2==1){echo "[20]";}else{echo "[30]";}}else{
              	if(($classid==100)||($classid==101)||($classid== 102) ||($classid== 103) ||($classid== 104) ){ if($i%2==1){echo "[40]";}else{echo "[60]";}}else{ if($i%2==1){echo "[20]";}else{echo "[80]";}}}?></td>
+
              	<?php 
              }else{
              		?>  <td></td>
              	<?php
              }
 			?>
+
 
           
             <?php if($i%2==0){ ?>
@@ -1042,6 +1046,7 @@ $cumulativetotal=0;
                  $subtatal=0;
 		         ?>
 				<?php  $i=1; $t=0; $coltptal=0;  foreach ($examid as $value):?>
+
 					<td class="center">	
 					<?php  
 
@@ -1054,6 +1059,7 @@ $cumulativetotal=0;
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
+
 							$subtatal=$subtatal+$marks->marks;
 							$gtptal= $gtptal+$marks->marks;
 							$coltptal+=$marks->marks;
@@ -1064,11 +1070,13 @@ $cumulativetotal=0;
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
 				$exammm=	$this->db->get('exam_max_subject')->row()->max_m;
+
 				$dhtm=$exammm+$dhtm;
 						}
 					
 					?>
 					</td>
+
 					<?php if($i%2==0){
 						?>
 						<td class="center bold"><?php echo $subtatal; 
@@ -1084,22 +1092,25 @@ $cumulativetotal=0;
 
 				for($j=$i; $j < 5; $j++){
                ?>
+
               <td class="center bold"></td>
               <?php if($i%2==0){ ?>
               <td class="center"><?php 
 					$ctotal['tot'.$i]+=0;?>
 						</td>
+
 			 <td class="center bold"><?php echo calculateGrade($ctotal['tot'.$i],$classid); ?></td>
                <?php }}
 		           ?>
 				<td class="center bold"><?php  $rty = $gtptal/2; echo $gtptal;  ?></td>
-			   <td class="center bold"><?php echo calculateGrade($rty,$classid)?></td>	
+			   <td class="center bold"><?php echo calculateGrade($rty,$classid)?></td>
 		</tr>
 					<?php } }endforeach;?>
 		<tr class="wight">
 					<td class="subject">GRAND TOTAL</td>
 					<?php $h=1;$i=0; foreach($ctotal as $cd):
 					if($h<5){?>
+
 					<td class="center">
 					<?php echo $ctotal[$i];  ?>
 					</td>
@@ -1126,6 +1137,7 @@ $cumulativetotal=0;
 
 			<td>Grade</td>
 			<td colspan="2" style="text-transform: uppercase;">Descriptive Indicators</td>
+
 			<td>Grade</td>
 			<td colspan="2" class="pink" style="text-transform: uppercase;">Class Teachers Remark</td>
 		</tr>
@@ -1276,6 +1288,7 @@ $cumulativetotal=0;
 					<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
              		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
              	<?php	} ?>
+
 		   </tr>
 		<?php } ?>
 		  
@@ -1370,6 +1383,7 @@ $cumulativetotal=0;
 				<td colspan="7">&nbsp;</td>
 			</tr>
 			<?php } ?>
+
 			<tr class="wight">
 					<td colspan="2" class="subject">DISCIPLINE</td>
 							<?php $this->db->where('subject_id',$arrco[6]);
@@ -1411,6 +1425,7 @@ $cumulativetotal=0;
              		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
              	<?php	} ?>
 				
+
 		</tr>
 		<tr class="blue">
 			<td colspan="2">ATTENDANCE  </td>
@@ -1434,6 +1449,7 @@ $cumulativetotal=0;
 			<br>&emsp;Sign Class Teacher
 			</td>
 			<td colspan="2" class="wight" height="25" style="border-left:none;">
+
 		<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->principle_sign;?>" alt="" width="100" height="70" style="margin-top=-60px;" />
 		Sign Principal
 			</td>
@@ -1458,6 +1474,7 @@ $cumulativetotal=0;
 
 
         </div>
+
     </div>
 </body>
 <div class="invoice-buttons" style="text-align:center;">
@@ -1465,5 +1482,6 @@ $cumulativetotal=0;
         <i class="fa fa-print padding-right-sm"></i> Print
     </button>
 </div>
+
 
 </html>

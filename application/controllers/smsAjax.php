@@ -116,6 +116,8 @@ class SmsAjax extends CI_Controller{
 				echo $fmobile;
 				//exit();
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				// echo	$getv;
+				// exit;
 				}else{
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
@@ -173,6 +175,7 @@ class SmsAjax extends CI_Controller{
 				$count=$count+1;
 			}else{
 				if($this->input->post("language")==1){
+
 				  
 	
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
@@ -191,6 +194,7 @@ class SmsAjax extends CI_Controller{
 				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			if($this->input->post("language")==1){
 				//echo $fmobile;
+
 				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
@@ -268,8 +272,12 @@ class SmsAjax extends CI_Controller{
 				$count=$count+1;
 			}else{
 				if($this->input->post("language")==1){
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -283,9 +291,12 @@ class SmsAjax extends CI_Controller{
 			endforeach;
 			if($this->input->post("language")==1){
 				//echo $fmobile;
-			
+				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -360,7 +371,7 @@ class SmsAjax extends CI_Controller{
 				if($smsc==0){
 					$fmobile =$checknum;
 				}else{
-					$fmobile=$fmobile.",".$checknum;
+					$fmobile=$fmobile1.",".$checknum;
 				}
 				$smscount++;
 				$smsc++;
@@ -371,8 +382,12 @@ class SmsAjax extends CI_Controller{
 			else{ 	 
 			 //   print_r($fmobile);
 				if($this->input->post("language")==1){
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -384,10 +399,12 @@ class SmsAjax extends CI_Controller{
 			}
 			endforeach;
 			if($this->input->post("language")==1){
-			    
+
 				
 					$getv=sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -402,7 +419,7 @@ class SmsAjax extends CI_Controller{
 						if($smsc==0){
 							$fmobile =$checknum;
 						}else{
-							$fmobile=$fmobile.",".$checknum;
+							$fmobile=$fmobile1.",".$checknum;
 						}
 						$smscount++;
 						$smsc++;
@@ -413,8 +430,12 @@ class SmsAjax extends CI_Controller{
 					   // exit();
 					    
 						if($this->input->post("language")==1){
+						    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -426,10 +447,12 @@ class SmsAjax extends CI_Controller{
 				}
 				endforeach;
 			if($this->input->post("language")==1){
-				    
+
 				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -482,7 +505,7 @@ class SmsAjax extends CI_Controller{
 		$getresultm = $this->smsmodel->sentmasterRecord($msg,$totsmssent,$master_id);
 		if($getresultm){
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
-		//$fmobile=$this->session->userdata("mobile_number");
+		$fmobile1=$this->session->userdata("mobile_number");
 		if($isSMS->parent_message)
 		{
 				$query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id);
@@ -496,15 +519,19 @@ class SmsAjax extends CI_Controller{
 				if($smsc==0){
 					$fmobile =$checknum;
 				}else{
-					$fmobile=$fmobile.",".$checknum;
+					$fmobile=$fmobile1.",".$checknum;
 				}
 				$smscount++;
 				$smsc++;
 				$count=$count+1;
 			}else{
 				if($this->input->post("language")==1){
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -518,8 +545,12 @@ class SmsAjax extends CI_Controller{
 			}
 			endforeach;
 			if($this->input->post("language")==1){
+			    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -593,14 +624,18 @@ class SmsAjax extends CI_Controller{
 				if($smsc==0){
 					$fmobile =$checknum;
 				}else{
-					$fmobile=$fmobile.",".$checknum;
+					$fmobile=$fmobile1.",".$checknum;
 				}
 				$smscount++;
 				$smsc++;
 				$count=$count+1;
 			 }else{if($this->input->post("language")==1){
+			     	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
@@ -612,8 +647,12 @@ class SmsAjax extends CI_Controller{
 			 }
 			endforeach;
 	     	if($this->input->post("language")==1){
+	     	    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;

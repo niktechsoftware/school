@@ -257,8 +257,3 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 		                	</table>
                     </div>
              						</div>
-		                
-         
-         
-         
-           

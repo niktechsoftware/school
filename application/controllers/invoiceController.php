@@ -575,7 +575,7 @@ function result(){
 		 * [$futureDate defines end of finatial satrt date.]
 		 * @var [Date]
 		 */
-		  //for 1st term
+
 	       $this->db->Distinct();
 	      $this->db->select("exam_id,term");
 		  $this->db->where("school_code",$this->session->userdata("school_code"));
@@ -625,8 +625,7 @@ function result(){
 		$subject = Array();
 		$subject5 = Array();
 		foreach($examTypeResult as $val):
-		
-			$subject[] = $val->subject_id;
+		    $subject[] = $val->subject_id;
 			
 		endforeach;
 		foreach($examTypeResult1 as $val):

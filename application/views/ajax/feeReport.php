@@ -194,8 +194,9 @@
 								 	   
 								 	if(strlen($mbalance->row()->mbalance)>0){
 									echo	$mbk= "Previous Balance ".$mbalance->row()->mbalance."<br>";
+
 									print_r($mbalance->row()->mbalance);
-								//	exit;
+								
 									?>
 									<input type = "hidden" id="amt1<?php echo $count;?>" value="<?php echo $mbalance->row()->mbalance;?>"/>
 									<?php

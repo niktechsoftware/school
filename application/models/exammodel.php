@@ -15,12 +15,14 @@ function getClassRank($rowstudent,$classid,$fsd){
        $this->db->order_by("stu_id","ASC");
        $totstu=    $this->db->get("exam_info");
        if($totstu->num_rows()>0){
+
       $d2h =0.01; foreach($totstu->result() as $ts):
        
        $totmarks =     $this->db->query("select sum(marks) as getmarks from exam_info where stu_id ='".$ts->stu_id."' and fsd = '".$fsd."'")->row();
        $tota = $totmarks->getmarks+$d2h;
        $rankarray[$ts->stu_id]=$tota;
         $rankarray1[$ts->stu_id]=$tota;
+
         $d2h=$d2h+0.01;
      endforeach;
        
@@ -29,7 +31,6 @@ function getClassRank($rowstudent,$classid,$fsd){
      // print_r($rankarray);
        $key = array_search($rankarray1[$rowstudent], $rankarray);
        $offset = array_search($key, array_keys($rankarray));
-       
        return $offset+1;
        }
    }

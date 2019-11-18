@@ -151,6 +151,7 @@
 
                     <div id="page-wrap" style="height: 1280px;width:960px; border:1px solid #333;">
 
+
            <?php 
 			$school=$this->session->userdata('school_code');
 			$row2=$this->db->get('db_name')->row()->name;		
@@ -158,6 +159,7 @@
     <div style="width:100%; height:1280px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
        
         <div style="width:95%; margin-left:auto; margin-right:auto; border:1px  solid yellow; height:auto;">
+
                     <?php
 						$school_code = $this->session->userdata("school_code");
 						$this->db->where("id",$school_code);
@@ -168,6 +170,7 @@
                            <td  style="border: none;">
                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
                                     alt="" style="height: 100px;width: 100px;" />
+
                                 </br><label style="font-size: 13px;">Aff.No. - <?php echo $info->registration_no;?></label>
                             </td>
                            
@@ -189,6 +192,7 @@
                             </td>
                             <?php }else{ ?>
                              <td colspan="2" style="border: none;" >
+
                                 <h1 style="font-size: 35px;">
                                     <?php echo $info->school_name;?></h1>
                                 <h2 style="">
@@ -199,6 +203,7 @@
 									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->other_mobile_no ;} ?>
                                 </h2>
                             </td>
+
                             <?php } ?>
 							<!--<div class="row">
 							<div class="col-md-2"><img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
@@ -215,6 +220,7 @@
 							</div>-->
 						</tr>
 						 <tr class="wight" style="font-size: 14px;">
+
 							<td >
 								<span style="text-transform: uppercase;">Scholar ID: <?php echo $studentInfo->username; ?></span><br>
 								<span style="text-transform: uppercase;">Student's Name: <?php echo strtoupper($studentInfo->name);?> </span><br>
@@ -244,12 +250,14 @@
 						<tr>
 						
 							<td style="border: none;" colspan="3">
+
 								<center><h2 style="border: 2px solid #000; padding: 5px; width: 209px; ">
 									Progress Report [ <?php 
 									        $this->db->where('school_code',$school_code);
                                             $this->db->where('id',$fsd);
                                      $fsd2= $this->db->get('fsd')->row()->finance_end_date;
 									echo (date('Y', strtotime('-1 year', strtotime($fsd2)) )."-". date('Y', strtotime($fsd2))) ;?>] <br>
+
 									<?php 
 									$this->db->where("school_code",$school_code);
 								   $this->db->where("fsd",$this->session->userdata('fsd'));
@@ -357,16 +365,26 @@
            $pi=1;
 		   $grandtotal=0;
 foreach($resultData as $sub){
+  // $this->db->where('stu_id',$studentInfo->id);
 $this->db->where('class_id',$classid);
+$this->db->where('subject_id',$sub['subject']);
+$this->db->where('exam_id',$value->exam_id);
+$this->db->where('fsd',$fsd);
+$subjectname=$this->db->get('exam_info');
+    
+    
+/*$this->db->where('class_id',$classid);
 $this->db->where('id',$sub['subject']);
-$subjectname=$this->db->get('subject'); 
-
+$subjectname=$this->db->get('subject'); */
+//print_r($subjectname->result());
 if($subjectname->num_rows()>0){
     $subjectname=$subjectname->row();
 	?><?php $totalp+=200;?>
                    <tr class="wight"> 
+
 					 <td class="subject" style="background-color:#9dfa5b;">	
                      <?php echo  $subjectname->subject;?> 
+
 					</td>
 			     <?php 
  				$ttal=0;
@@ -681,12 +699,14 @@ if($subjectname->num_rows()>0){
 							$absnt=$row1->num_rows();
 							$present =$atotal-$absnt;
 							?>
+
                            <?php if($school == 13 && $row2=="A"){ ?>
                            <td style="background-color:orange;"><label>. </label></td>
                           <?php  }
                             else {?>
                               <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $present; ?>/<?php echo $atotal; ?></label></td>
                               <?php } ?>
+
                         </tr>
                     </table>
 
@@ -764,8 +784,10 @@ if($subjectname->num_rows()>0){
 
             <br />
             <div>
+
             <p><label style="text-transform: uppercase;font-size: 14px;">Instructions</label></p>
             <p><label style="font-size: 14px;">Grading Scale For Scholastic areas:Grades are awarded on a 8-point Grading Scale as Follows-</label></p>
+
             </div></br>
             <div>
                 <table
