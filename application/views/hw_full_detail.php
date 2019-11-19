@@ -43,15 +43,18 @@
 					</div>
 				</div>
 				<?php
-				if($uri==1){ ?><div class="panel-body">
+				if($uri==1){ 
+				?><div class="panel-body">
 			<div class="table-responsive" id ="normal">
 <table class="table table-striped table-hover"  id="sample-table-2">
     <thead>
         <tr style="background-color:#1ba593; color:white;">
             <th>Sno</th>
             <th>Class</th>
-            <th>Section</th>
-            <th>Total Today's Homework</th>
+			<th>Total Subject</th>
+            <th>Today's Given Homework</th>
+			<th>Today's left Homework</th>
+			<th>Activity</th>
         </tr>
     </thead><tbody>
 <?php
@@ -66,12 +69,21 @@ foreach($class as $data)
                         $this->db->where('fsd',$this->session->userdata('fsd'));
                         $this->db->where('status',1);
             $class_id=  $this->db->get('student_info');
+			$this->db->where("class_id",$id);
+			//$this->db->group_by("class_id");
+		$result = $this->db->get("subject");
+		$subject=$result->result();
+		$subject_tot=$result->num_rows();
 ?>
  <?php if($sno%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
 	   <tr class="<?php echo $rowcss;?> text-uppercase">
             <td><?php echo $sno;?></td>
-            <td><?php echo $data->class_name;?></td>
-            <td><?php echo $section->section;?></td>
+            <td><?php echo $data->class_name;?><?php echo "[".$section->section . "]";?></td>
+			<td><?php echo $subject_tot. "("; 
+			foreach($subject as $subject1)
+            {echo $subject1->subject.","; }
+			echo ")"; 
+			?></td>
             <td>
             <a href="<?php echo base_url();?>index.php/studentHWControllers/getStudentWork1/2/<?php echo $id;?>">
             <?php 
@@ -81,11 +93,14 @@ foreach($class as $data)
             						$this->db->where("school_code",$school_code);
             						$this->db->where("Date(givenWorkDate)",$date);
             						$this->db->where("class_id",$id);
+									//$this->db->where("subject_id",$id);
             				$v1 =  $this->db->get('homework_name');
             echo $v1->num_rows(); ?></a>
             </td>
+			<td></td>
+			<td><a href="3" style="color:white;" id="sms<?php echo $sno;?>" class="btn btn-warning">Send SMS</a></td>
         </tr>
-<?php $sno++; } ?></tbody>
+			<?php  $sno++; } ?></tbody>
 </table>
 </div></div>
 				<?php }else if($uri==2){ ?>
