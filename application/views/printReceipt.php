@@ -108,7 +108,7 @@
 						</div>
 					</div>
 				<div class="table-responsive">
-					<table class="table table-striped table-hover" id="stock">
+					<table class="table table-striped table-hover" id="sample-table-2">
 						<thead>
 					    	<tr>
 					        	<th>Student Id/Employee Id : </th>
@@ -153,7 +153,7 @@
 					        </tr>
 					<?php 
 					}else{ 
-					$sunm= "other";
+					$sunm= $row->valid_id ;
 					?>
 						
 						<tr>

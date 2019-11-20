@@ -43,15 +43,18 @@
 					</div>
 				</div>
 				<?php
-				if($uri==1){ ?><div class="panel-body">
+				if($uri==1){ 
+				?><div class="panel-body">
 			<div class="table-responsive" id ="normal">
 <table class="table table-striped table-hover"  id="sample-table-2">
     <thead>
         <tr style="background-color:#1ba593; color:white;">
             <th>Sno</th>
             <th>Class</th>
-            <th>Section</th>
-            <th>Total Today's Homework</th>
+			<th>Total Subject</th>
+            <th>Today's Given Homework</th>
+			<th>Today's left Homework</th>
+			<th>Activity</th>
         </tr>
     </thead><tbody>
 <?php
@@ -66,26 +69,66 @@ foreach($class as $data)
                         $this->db->where('fsd',$this->session->userdata('fsd'));
                         $this->db->where('status',1);
             $class_id=  $this->db->get('student_info');
+			$this->db->where("class_id",$id);
+			//$this->db->group_by("class_id");
+		$result = $this->db->get("subject");
+		$subject=$result->result();
+		$subject_tot=$result->num_rows();
 ?>
  <?php if($sno%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
 	   <tr class="<?php echo $rowcss;?> text-uppercase">
             <td><?php echo $sno;?></td>
-            <td><?php echo $data->class_name;?></td>
-            <td><?php echo $section->section;?></td>
+            <td><?php echo $data->class_name;?><?php echo "[".$section->section . "]";?></td>
+			<td><?php echo $subject_tot;
+			/*echo "("; 
+			foreach($subject as $subject1)
+            {echo $subject1->subject.","; }
+			echo ")"; */
+			?></td>
             <td>
             <a href="<?php echo base_url();?>index.php/studentHWControllers/getStudentWork1/2/<?php echo $id;?>">
-            <?php 
-            $school_code =  $this->session->userdata("school_code");
-                	$date=Date("Y-m-d");
+            <?php
+            $school_code=$this->session->userdata("school_code");
+			$date		=Date("Y-m-d");
                                 	$this->db->where("workfor",'students');
             						$this->db->where("school_code",$school_code);
             						$this->db->where("Date(givenWorkDate)",$date);
             						$this->db->where("class_id",$id);
+									$this->db->group_by("subject_id");
             				$v1 =  $this->db->get('homework_name');
-            echo $v1->num_rows(); ?></a>
+									$this->db->where("workfor",'students');
+            						$this->db->where("school_code",$school_code);
+            						$this->db->where("Date(givenWorkDate)",$date);
+            						$this->db->where("class_id",$id);
+									$this->db->where("subject_id",0);
+									$this->db->group_by("subject_id");
+            				$v2 =  $this->db->get('homework_name');
+            echo $g_hw=$v1->num_rows()-$v2->num_rows();
+			echo "("; 
+			
+			foreach($v1->result() as $sub){
+			if($sub->subject_id >0){
+				  $this->db->where("id",$sub->subject_id);
+		$result = $this->db->get("subject");
+		
+		foreach($result->result() as $subject1)
+            {echo $subject1->subject." ,"; }
+									}else{ echo "<label style='color:red;'>ALL SUBJECT ,</label>";}
+									
+			
+			}echo ")";
+			?></a>
             </td>
+			<td><?PHP echo $subject_tot-$g_hw ; ?>
+			<?php 
+			/*echo  "("; 
+			foreach($subject as $subject1)
+            {echo $subject1->id.","; }
+			echo ")"; */
+			?></td>
+			<td><a href="3" style="color:white;" id="sms<?php echo $sno;?>" class="btn btn-warning">Send SMS</a></td>
         </tr>
-<?php $sno++; } ?></tbody>
+			<?php  $sno++; } ?></tbody>
 </table>
 </div></div>
 				<?php }else if($uri==2){ ?>
@@ -137,7 +180,7 @@ foreach($class as $data)
         	<th>Work Description</th>
         	<th>Given Date</th>
         	<th>Submission Date</th>
-        	<th>Action</th>
+        	<!--<th>Action</th>-->
     	</tr>
     	</thead>
     	<tbody>
@@ -156,7 +199,7 @@ foreach($class as $data)
 			  			    	echo "Admin";
 			  			}
 			  		?></td>
-			  		<td><?php
+						<td><?php
 				  		        	$this->db->where("id",$lv->class_id);
                         	$var =  $this->db->get("class_info")->row();
                         	        $this->db->where("id",$var->section);
@@ -165,7 +208,6 @@ foreach($class as $data)
                             ?>
                             </td>
 			  			<td><?php echo $lv->work_name;?></td>
-			  		
 			  			<td><?php $sub= $lv->subject_id;
 			  			if($sub==0){
                             echo "for all subject";
@@ -180,20 +222,7 @@ foreach($class as $data)
 			  			<td style="max-width: 151px;"><?php echo $lv->workDiscription;?></td>
 			  			<td><?php  echo $lv->givenWorkDate; ?></td>
 						<td><?php echo $lv->DueWorkDate; ?></td>
-						<td style=" width: 30%;"><a href="<?php echo $this->config->item("asset_url"); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
-						    <button class="btn btn-info"  width="104" height="142">Download</button></a>
-						<?php	 
-						if($this->session->userdata("login_type")=='admin' ||$this->session->userdata("login_type")==3)
-						{ 
-						?><a href="<?php echo base_url(); ?>index.php/studentHWControllers/deleteHomeWork/<?php echo $lv->s_no;?>" style="color:white;"  class="btn btn-danger">Delete</a>
-						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/viewHomeWork/<?php echo $lv->s_no;?>" style="color:white;" id="view<?php echo $count;?>" class="btn btn-warning">View Detail</a>
-						<?php }
-						else{
-						?>
-						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-						<button class="btn btn-success"  width="104" height="142">Submit</button></a> 
-						<?php } ?>
-						</td>
+						
 			  		</tr>
 			  		<?php $count++; endforeach; ?>
 				</tbody>
