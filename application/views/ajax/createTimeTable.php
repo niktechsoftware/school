@@ -41,7 +41,7 @@ if($var->num_rows()>0){
 							</div>
 							<div id="rahulcc"></div>
 							<h4 class="panel-title">
-							<?php 
+							<?php $daytb=0;
 							if(strlen($monday)>0){
 							
 								$checkTB = $this->periodModel->checkvalue($monday,$period_name);
@@ -104,17 +104,17 @@ if($var->num_rows()>0){
 							<input type="hidden" name="days" value="<?php 
 							if(strlen($monday)>0){
 							    //echo $monday;
-								echo $monday.",";}
+							$daytb = $monday;	echo $monday.",";}
 								if(strlen($tuesday)>0){
-									echo $tuesday.",";}
+								$daytb =$tuesday;	echo $tuesday.",";}
 								if(strlen($wednesday)>0){
-									echo $wednesday.",";}
+								$daytb =$wednesday;	echo $wednesday.",";}
 								if(strlen($thursday)>0){
-									echo $thursday.",";}
+								$daytb=$thursday;	echo $thursday.",";}
 								if(strlen($friday)>0){
-									echo $friday.",";}
+								$daytb=$friday;	echo $friday.",";}
 								if(strlen($saturday)>0){
-									echo $saturday.",";}
+								$daytb=$saturday;	echo $saturday.",";}
 											 ?>"/>
 						</h4>
 						</div>
@@ -189,11 +189,12 @@ if($var->num_rows()>0){
 														<?php
 											
 														foreach($teacher->result() as $tea):
-															$this->db->where('class_id',$row->id);
-															$this->db->where('teacher',$tea->id);
+									$oldv=$this->db->query("SELECT time_table.teacher from time_table join time_table_days WHERE time_table.time_thead_id=time_table_days.time_table_id and time_table_days.days_id='$daytb' and time_table.class_id='$row->id' and time_table.teacher='$tea->id' and time_table.time_thead_id='$period_name' and time_table.period_id='$prid[$tbc]'"); 
+														/*	$this->db->where('time_table.class_id',$row->id);
+															$this->db->where('time_table.teacher',$tea->id);
 															$this->db->where('time_thead_id',$period_name);
 														$this->db->where('period_id',$prid[$tbc]);
-														$oldv = $this->db->get("time_table");
+														$oldv = $this->db->get("time_table");*/
 				 	
 
                                                    			?>
@@ -209,11 +210,13 @@ if($var->num_rows()>0){
 														<option value="N/A">-Select Subject-</option>
 														<?php foreach($subject->result() as $row1):?>	
 
-														<?php $this->db->where('class_id',$row->id);
+														<?php /* $this->db->where('class_id',$row->id);
 														$this->db->where('period_id',$prid[$tbc]);
 														$this->db->where('subject_id',$row1->id);
 														//$this->db->where('time_thead_id',$period_name);
-														$oldv = $this->db->get("time_table"); 
+														$oldv = $this->db->get("time_table");*/
+													$oldv=$this->db->query("SELECT time_table.subject_id from time_table join time_table_days WHERE time_table.time_thead_id=time_table_days.time_table_id and time_table_days.days_id='$daytb' and time_table.class_id='$row->id' and time_table.subject_id='$row1->id' and time_table.time_thead_id='$period_name' and time_table.period_id='$prid[$tbc]'"); 
+										
 
 														?>
 														<option value="<?php echo $row1->id; ?>" <?php if($oldv->num_rows()>0){ $oldt=$oldv->row();if($oldt->subject_id== $row1->id){echo 'selected="selected"';}} ?>>

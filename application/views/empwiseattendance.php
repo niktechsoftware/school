@@ -41,7 +41,7 @@
 
 															<label class="radio-inline">
 
-																<input type="radio" class="grey" value="1" id="pr" name="gender<?php echo $i; ?>">
+																<input type="radio" class="grey" value="1" id="pr" name="gender<?php echo $i; ?>" checked>
 																p
 															</label>
 															<label class="radio-inline">

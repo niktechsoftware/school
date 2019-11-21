@@ -559,14 +559,14 @@ function result(){
 		 * [$futureDate defines end of finatial satrt date.]
 		 * @var [Date]
 		 */
-		 //for 1st term
+		  //for 1st term
 	       $this->db->Distinct();
 	      $this->db->select("exam_id,term");
 		  $this->db->where("school_code",$this->session->userdata("school_code"));
 		  $this->db->where("stu_id", $id);
 		  $this->db->where("fsd",$fsd1 );
 		  $this->db->where("term",1 );
-		 $examTypeResult2 = $this->db->get("exam_info")->result();
+		 $examTypeResult2 = $this->db->get("exam_info");
 		 //for 2nd term
 		 $this->db->Distinct();
 	      $this->db->select("exam_id,term");
@@ -574,7 +574,16 @@ function result(){
 		  $this->db->where("stu_id", $id);
 		  $this->db->where("fsd",$fsd1 );
 		  $this->db->where("term",2 );
-		 $examTypeResult2_2 = $this->db->get("exam_info")->result();
+		 $examTypeResult2_2 = $this->db->get("exam_info");
+		 //print_r($examTypeResult2_2);
+		 //for 3rd term
+		 $this->db->Distinct();
+	      $this->db->select("exam_id,term");
+		  $this->db->where("school_code",$this->session->userdata("school_code"));
+		  $this->db->where("stu_id", $id);
+		  $this->db->where("fsd",$fsd1 );
+		  $this->db->where("term",3 );
+		 $examTypeResult2_3 = $this->db->get("exam_info");
 
 		$this->db->where("stu_id", $id);
 		$this->db->where("fsd",$fsd1 );
@@ -659,6 +668,7 @@ function result(){
 			$data['resultData'] = $formatedResult;
 			$data['examid']=$examTypeResult2;
 			$data['examid_2']=$examTypeResult2_2;
+			$data['examid_3']=$examTypeResult2_3;
 			$callview = "format_".$val;
 			
 			/**

@@ -22,6 +22,7 @@ public function addinfo(){
 		$school_code = $this->session->userdata("school_code");
 		
 		$id1 = $this->db->query("SELECT MAX(maxcount) as maxnumber From guardian_info where school_code =$school_code");
+		
 		 if($id1->num_rows()>0){
 		$id = $id1->row()->maxnumber;
 		}else{
@@ -30,7 +31,7 @@ public function addinfo(){
 	    }
         $db=$this->db->get('db_name')->row()->name;
 		$maxusername=$id+1;
-		$id1 = 3000+$maxusername;
+		$id1 = 4000+$maxusername;
 		$id= $db.$school_code.'S'.$id1;
 		
 		 //print_r($id);exit();
@@ -252,7 +253,7 @@ public function addinfo(){
 	    }
  $db=$this->db->get('db_name')->row()->name;
 		$maxusername=$id+1;
-		$id1 = 3000+$maxusername;
+		$id1 = 4000+$maxusername;
 		$id=$db.$school_code.'S'.$id1;
 		
 		$this->form_validation->set_error_delimiters('<div class="col-sm-12"><label class="text-danger">', '</label></div>');

@@ -120,7 +120,7 @@
     
 
 <?php 
-if($this->session->userdata("school_code")!=9){
+if($this->session->userdata("school_code")!=8){
 $school_code=$this->session->userdata("school_code");
 $tdiscount=0;
 	$this->db->where("id",$school_code);

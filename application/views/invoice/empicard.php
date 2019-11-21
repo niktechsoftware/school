@@ -69,7 +69,7 @@
 				//$gurdianInfo = $gurdianDetail->row();?>
          
 					<div id="page-wrap">
-            <table style="width: 40%; font-size:18px; font-weight: bold;" class="text-uppercase">
+            <table style="width: 65%; font-size:18px; font-weight: bold;" class="text-uppercase">
               <tr style="background-image: linear-gradient(to bottom right, red, yellow); color:white;">
                 <?php $this->db->where("id",$this->session->userdata("school_code"));
 				$schoolinfo = $this->db->get("school")->row();

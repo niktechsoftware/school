@@ -1,0 +1,27 @@
+[25-Oct-2019 10:07:08 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1092
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(501): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('7', '69', '12')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1092
+[25-Oct-2019 11:17:39 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1076
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(501): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('7', '72', '13')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1076
+[06-Nov-2019 13:40:43 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1092
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(501): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('7', '69', '12')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1092

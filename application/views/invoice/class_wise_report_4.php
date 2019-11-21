@@ -247,7 +247,10 @@
                 </table>
             						
             <br><!---------------------------------------------------->
-<?php if($d12->class_id == 142 || $d12->class_id == 143 || $d12->class_id == 147 || $d12->class_id == 148|| $d12->class_id == 293){
+<?php 
+$school=$this->session->userdata('school_code');
+			$row2=$this->db->get('db_name')->row()->name;
+if($classid == 142 && $row2=="A" || $classid == 143 && $row2=="A" || $classid == 147 && $row2=="A" || $classid == 148 && $row2=="A" || $classid == 293 && $row2=="A"){
                ?>
                 <div>
                 <table
@@ -409,7 +412,7 @@ if($subjectname->num_rows()>0){
 					
                 </table>
             </div>
-               <?php     }else if($d12->class_id == 216 || $d12->class_id == 217 || $d12->class_id == 150 || $d12->class_id == 153|| $d12->class_id == 149 || $d12->class_id == 152){ ?>
+               <?php     }else if($classid == 216  || $classid == 217  || $classid == 150  || $classid == 153 || $classid == 149  || $classid == 152 ){ ?>
 			   <!---->
 			   
 			   
