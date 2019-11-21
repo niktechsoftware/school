@@ -1083,6 +1083,7 @@ $cumulativetotal=0;
 			$ctotalmo2[1]=0;
 			$ctotalmo2[3]=0;
 			$ctotalmo2[2]=0;
+			$ctotalmo2[4]=0;
             $dhtm=0;
             $dhtm1=0;
             $dhtm12=0;
@@ -1442,7 +1443,7 @@ $cumulativetotal=0;
 							if(is_numeric($marks->marks) ){
 							    $dfg_2 =$marks->marks;
                       $gtptal_2= $gtptal_2+$marks->marks;
-                      $ctotal[$t]+= $marks->marks;
+                      $ctotal1[$t]+= $marks->marks;
                     }else{ $gtptal_2= $gtptal_2;}
 							echo $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
@@ -1479,7 +1480,7 @@ $cumulativetotal=0;
 							if(is_numeric($marks->marks) ){
 							    $dfg_2 =$marks->marks;
                       $gtptal_2= $gtptal_2+$marks->marks;
-                      $ctotal[$t]+= $marks->marks;
+                      $ctotal1[$t]+= $marks->marks;
                     }else{ $gtptal_2= $gtptal_2;}
 							echo $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
@@ -1515,7 +1516,7 @@ $cumulativetotal=0;
 							if(is_numeric($marks->marks) ){
 							    $dfg_2 =$marks->marks;
                       $gtptal_2= $gtptal_2+$marks->marks;
-                      $ctotal[$t]+= $marks->marks;
+                      $ctotal1[$t]+= $marks->marks;
                     }else{ $gtptal_2= $gtptal_2;}
 							echo $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
@@ -1538,7 +1539,7 @@ $cumulativetotal=0;
 				<?php $i++; $t++;endforeach; ?>
 				<?php } ?>
 					<!--<td class="center bold"><?php echo $subtatal_2; 
-							$ctotal['tot'.$i]+=$subtatal_2;
+							$ctotal1['tot'.$i]+=$subtatal_2;
 							$gradecal_2 =calculateGrade($dfg_2,$classid->class_id);
 						 $subtatal_2=0;?></td>-->
 						<td class="center bold"><?php echo $gradecal_2;?></td>
@@ -1565,7 +1566,7 @@ $cumulativetotal=0;
 				  foreach($ctotal1 as $cd): 
 					if($h1<5){ ?>
 				<td class="center" colspan="1">	<?php  $cumulativetotal1+=$ctotal1[$i1];echo $ctotal1[$i1];  ?>
-				<?php  if($ctotalmo[$i] >0 ){echo "[".$ctotalmo[$i]."]";} ?> </td>
+				<?php  if($ctotalmo2[$i1] >0 ){echo "[".$ctotalmo2[$i1]."]";} ?> </td>
 					<?php $h1++; $i1++; }  endforeach;	?>
 					
 			<td class="center bold"><?php //echo $cumulativetotal;?></td>
