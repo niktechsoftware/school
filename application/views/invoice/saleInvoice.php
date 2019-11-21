@@ -115,6 +115,7 @@
 		$sqlc=mysqli_query($this->db->conn_id,"select * from employee_info where id='$valid_id' AND school_code = '$school_code'");
 		$rowc=mysqli_fetch_object($sqlc);
 	}
+	
 	if($category == "Student Id")
 	{     
 		$sqlc=mysqli_query($this->db->conn_id,"select * from student_info where id='$valid_id' ");
@@ -143,7 +144,7 @@
                     <tr>
                     	<td style="border:none;">
                     	<?php if($category == '04'): ?>
-                    		<?php echo strtoupper($rowb->name); ?>
+                    		<?php echo strtoupper($rowb->valid_id); ?>
                     	<?php else: ?>
                     		<strong><?php echo strtoupper($rowc->name); ?></strong>
                     	<?php endif; ?>

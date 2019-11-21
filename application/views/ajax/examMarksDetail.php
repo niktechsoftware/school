@@ -1,4 +1,72 @@
-<!--  
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+
+    <title>Fee Invoice</title>
+
+    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
+    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/print.css'
+        media="print" />
+    <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/example.js'></script>
+    <style type="text/css">
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #printcontent * {
+            visibility: visible;
+        }
+
+        #printcontent {
+            position: absolute;
+            top: 40px;
+            left: 30px;
+        }
+    }
+
+    .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+
+    .button2 {
+        background-color: #008CBA;
+        color: white;
+        border: 2px solid #008CBA;
+    }
+
+    .button2:hover {
+        background-color: #4CAF50;
+        color: white;
+        border: 2px solid #4CAF50;
+    }
+    </style>
+
+</head>
+
+<body>
+    <div id="printcontent">
+       <!-- <div id="page-wrap">-->
+           <!--  
 Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   <meta name="description" content="Welcome to niktech software School business ERP . we proving school management erp software. we including online attendance with biometric attendance machine and tracking student with GPS technology & many other facilities in our school management erp system">
   <meta name="keywords" content="Enterprise resource planning,school,ERP,system software,attendance,biometric,online, school management,gps,niktech software solution, online result, online admit card,omr">
@@ -257,3 +325,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 		                	</table>
                     </div>
              						</div>
+
+        <!--</div>-->
+    </div>
+<div class="invoice-buttons" style="text-align:center;">
+    <button class="button button2" type="button" onclick="window.print();">
+        <i class="fa fa-print padding-right-sm"></i> Print
+    </button>
+</div>
+</body>
+</html>
