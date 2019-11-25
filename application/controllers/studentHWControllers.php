@@ -458,12 +458,13 @@ function showHomeWork()
 	
 	
 	  public function getStudentWork1(){
-		  $uri= $this->uri->segment(3);
-		  $data['classid']=$this->uri->segment(4);
-         $data['uri']=$uri;
-                   // $this->load->model("homeWorkModel");
-					//$sec=$this->input->post("section");
-    	//$data['va']=$this->homeWorkModel->today_getHomeWorkDetailStudent($classt,$sec);
+		  /* $this->load->model("subjectmodel");
+					$classid=$this->uri->segment(4);
+    	$data['va']=$this->subjectmodel->getSubjectByClassSection($classid);
+		print_r($data);exit();*/
+		$uri= $this->uri->segment(3);
+		$data['classid']=$this->uri->segment(4);
+        $data['uri']=$uri;
 		$schoolcode=$this->session->userdata("school_code");
 		$this->db->where('school_code',$schoolcode);
 		$data['class']=$this->db->get('class_info')->result();
