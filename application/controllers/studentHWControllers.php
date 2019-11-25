@@ -494,6 +494,7 @@ function showHomeWork()
     	<tr>
         	<th>S.no.</th>
         	<th>Given By</th>
+    		<th>Class</th>
         	<th>Assignment Title</th>
         	<th>Subject</th>
         	<th>Marks & Grade</th>
@@ -518,6 +519,14 @@ function showHomeWork()
 			  			    	echo "Admin";
 			  			}
 			  		?></td>
+			  	    	<td><?php 
+			  	    		$this->db->where("id",$lv->class_id);
+                        	$var =  $this->db->get("class_info")->row();
+                            if($lv->class_id==0){echo "No Record Found";}else{ echo $var->class_name;}
+                            $this->db->where("id",$var->section);
+                        	$var1 = $this->db->get("class_section")->row();
+                        	echo "[".$var1->section."]";
+			  	    	?></td>
 			  			<td><?php echo $lv->work_name;?></td>
 			  		
 			  			<td><?php $sub= $lv->subject_id;
@@ -607,6 +616,8 @@ function showHomeWork()
 				  		        	$this->db->where("id",$lv->class_id);
                         	$var =  $this->db->get("class_info")->row();
                             if($lv->class_id==0){echo "No Record Found";}else{ echo $var->class_name;}
+                            
+                            
                             ?>
                             </td>
 				  			<td><?php

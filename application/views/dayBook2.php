@@ -280,7 +280,8 @@ $secname = $this->db->get("class_section")->row()->section;
 <td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
 <td><?php echo $row->pay_date; $v=1;?></td>
 <td>
-      <?php if($row->reason=="Fee Deposit") { ?>
+     <?php if($row->reason=="Fee Deposit") { ?>
+
 <a href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $sinfo->id; ?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>" class="btn btn-blue">
 <?php echo $row->invoice_no; ?>
 <?php } else{ ?>
@@ -288,7 +289,6 @@ $secname = $this->db->get("class_section")->row()->section;
 <?php echo $row->invoice_no;  ?>
 </a>
 <?php }?>
-
 </td>
 </tr>
 <?php $sno++; $count++;}}}
@@ -377,6 +377,7 @@ $secname = $this->db->get("class_section")->row()->section;
 
 <td>
 <?php if(($row->dabit_cradit == 1) ){ ?>
+
  <?php if($row->reason=="Fee Deposit") { ?>
 <a href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $sinfo->id; ?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>" class="btn btn-blue">
 <?php echo $row->invoice_no; ?>
@@ -385,7 +386,6 @@ $secname = $this->db->get("class_section")->row()->section;
 <?php echo $row->invoice_no;  ?>
 </a>
 <?php }?>
-
 <?php } if(($row->dabit_cradit  == 0)){?>
 <a href="<?php echo base_url()?>index.php/dayBookControllers/invoiceCashPayment/<?php echo $row->invoice_no;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>" class="btn btn-blue">
 <?php echo $row->invoice_no; ?>
