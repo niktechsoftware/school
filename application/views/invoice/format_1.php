@@ -1416,10 +1416,10 @@ $cumulativetotal=0;
 					</td>
 				<?php $i++; $t++;endforeach; ?>
 				<?php } ?>
-						<!--<td class="center bold"><?php echo $subtatal; 
-							$ctotal['tot'.$i]+=$subtatal;
-							$gradecal =calculateGrade($dfg,$classid->class_id);
-						 $subtatal=0;?></td>-->
+					<!--	<td class="center bold"><?php
+						$dfg1= round((($dfg*100)/$exammm), 2);
+							$gradecal =calculateGrade($dfg1,$classid->class_id);
+						 ?></td>-->
 						<td class="center bold"><?php echo $gradecal;?></td>
 					<!--1st term exam end-->
 					<!--2nd term exam start-->
@@ -1538,10 +1538,11 @@ $cumulativetotal=0;
 					</td>
 				<?php $i++; $t++;endforeach; ?>
 				<?php } ?>
-					<!--<td class="center bold"><?php echo $subtatal_2; 
-							$ctotal1['tot'.$i]+=$subtatal_2;
-							$gradecal_2 =calculateGrade($dfg_2,$classid->class_id);
-						 $subtatal_2=0;?></td>-->
+					<!--	<td class="center bold"><?php
+						$dfg1_2= round((($dfg_2*100)/$exammm), 2);
+							$gradecal_2 =calculateGrade($dfg1_2,$classid->class_id);
+						 ?></td>-->
+						 
 						<td class="center bold"><?php echo $gradecal_2;?></td>
 					<!--2nd term exam end-->
 				<td class="center bold"><?php  //$rty = $gtptal/2; echo $gtptal;  ?></td>
