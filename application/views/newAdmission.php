@@ -183,14 +183,14 @@
 											Religion <span class="symbol"></span>
 										</label>
 
-									<select value="<?php echo set_value('religion'); ?>" class="form-control" id="religion" name="religion">
+									<select  class="form-control" id="religion" name="religion">
 											<option value="">SELECT RELIGION</option>
-											<option value="HINDUISM">HINDUISM</option>
-											<option value="ISLAM">ISLAM</option>
-											<option value="CHRISTIANITY">CHRISTIANITY</option>
-											<option value="BUDDISM">BUDDISM</option>
-											<option value="JAINISM">JAINISM</option>
-											<option value="OTHER">OTHER</option>
+											<option value="HINDUISM" <?php if(set_value('religion')=="HINDUISM"){echo 'Selected="selected"';}?>>HINDUISM</option>
+											<option value="ISLAM" <?php if(set_value('religion')=="ISLAM"){echo 'Selected="selected"';}?>>ISLAM</option>
+											<option value="CHRISTIANITY" <?php if(set_value('religion')=="CHRISTIANITY"){echo 'Selected="selected"';}?>>CHRISTIANITY</option>
+											<option value="BUDDISM"<?php  if(set_value('religion')=="BUDDISM"){echo 'Selected="selected"';}?> >BUDDISM</option>
+											<option value="JAINISM"<?php if(set_value('religion')=="JAINISM"){echo 'Selected="selected"';}?>>JAINISM</option>
+											<option value="OTHER" <?php if(set_value('religion')=="OTHER"){echo 'Selected="selected"';}?>>OTHER</option>
 										</select>
 									</div>
 								</div>

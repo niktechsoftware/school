@@ -340,6 +340,21 @@ class Attendancepanel extends CI_Controller{
 		$data['view']= $this->attendancepanelmodel->teacheratt($empusername);
 		$this->load->view("includes/mainContent", $data);
  }
+ public function todayatten(){
+     	$atype = $this->uri->segment(3);
+     	$data['uri']=$atype;
+		$data['pageTitle'] = 'Attendance Panel';
+    	$data['smallTitle'] = 'Attendance Panel';
+        $data['mainPage'] = 'Attendance Panel Area';
+    	$data['subPage'] = 'Attendance Panel';
+    	$data['title'] = 'Attendance Panel Area ';
+    	$data['headerCss'] = 'headerCss/noticeCss';
+    	$data['footerJs'] = 'footerJs/noticeJs';
+	    $data['mainContent'] = 'panel/todayattendence';
+	
+		$this->load->view("includes/mainContent", $data);
+     
+ }
 }
 
 ?>

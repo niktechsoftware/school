@@ -279,7 +279,21 @@ class HomeController extends CI_Controller{
 		// $data['mainContent'] = 'classPromotionList';
 		// $this->load->view("includes/mainContent", $data);
 	}
-
+   public function duereport(){
+        $uri= $this->uri->segment(3);
+        $data['uri']=$uri;
+      	$data['pageTitle'] = 'Due Report';
+		$data['smallTitle'] = 'Due Report';
+		$data['mainPage'] = 'Due Report';
+		$data['subPage'] = 'Due Report';
+		$data['title'] = 'Due Report';
+		//$this->load->model("configureclassmodel");
+		//$data['request'] = $this->allFormModel->getClass()->result();
+		$data['headerCss'] = 'headerCss/noticeCss';
+		$data['footerJs'] = 'footerJs/noticeJs';
+		$data['mainContent'] = 'duereport';
+		$this->load->view("includes/mainContent", $data);
+  }
 	public function stufkey(){
 	    $stinfo = $this->db->get("guardian_info")->result();
 	    foreach($stinfo as $rt):
@@ -292,6 +306,10 @@ class HomeController extends CI_Controller{
 	           echo  $rt->student_id."<br>";
 	        }
 	        endforeach;
+	}
+	function testrank(){
+	   $this->load->model("exammodel");
+	   $this->exammodel->getClassRank('6263','216','3');
 	}
 	
 }

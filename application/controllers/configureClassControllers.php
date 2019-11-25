@@ -453,13 +453,11 @@ endforeach;
 							});
 					</script>
 				<?php 
-			}
-			else
-			{?>
-			
+			}	else{?>
+				<script>
 			  $.post("<?php echo site_url('index.php/configureClassControllers/addSection') ?>", function(data){
 					            $("#sectionList").html(data);
-							});
+							});	</script>
 			    
 		<?php	}
 		}

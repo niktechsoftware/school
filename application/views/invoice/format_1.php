@@ -1064,22 +1064,26 @@ $cumulativetotal=0;
 		<!---mla marks table end--->
 		<?php }else if($school == 1 && $row2== "D" || $school == 2 && $row2== "D" || $school == 3 && $row2== "D" || $school == 4 && $row2== "D"){ ?>
 		<!---kerala marks table start--->
-		<!---kerala marks table start--->
 		<tr class="tableHeader">
 			<td class="center" colspan="1" >A. SCHOLASTIC AREAS</td>
-		<td class="center" colspan="10">TERM - 1</td>
-		<!--<td class="center" colspan="4">TERM - 2</td>
-           
-			<td colspan="2">Cumulative Evaluation</td>-->
+			<td class="center" colspan="4">TERM - 1</td>
+			<td class="center" colspan="4">TERM - 2</td>
+			<td colspan="2">Cumulative Evaluation</td>
 		</tr>
 		<tr class="yellow">
-		<td>SUBJECT</td>
+			<td>SUBJECT</td>
 			<?php
 			$ctotalmo=array();
 			$ctotalmo[0]=0;
 			$ctotalmo[1]=0;
-				$ctotalmo[3]=0;
+			$ctotalmo[3]=0;
 			$ctotalmo[2]=0;
+			$ctotalmo2=array();
+			$ctotalmo2[0]=0;
+			$ctotalmo2[1]=0;
+			$ctotalmo2[3]=0;
+			$ctotalmo2[2]=0;
+			$ctotalmo2[4]=0;
             $dhtm=0;
             $dhtm1=0;
             $dhtm12=0;
@@ -1088,60 +1092,176 @@ $cumulativetotal=0;
            $arrco[3]=0;
            $arrco[4]=0;
            $arrco[5]=0;
-            $arrco[6]=0;
-            //print_r($examid);
-           foreach ($examid->result() as $value):
-             $examid1=$value->exam_id;	
-              // $this->db->where('school_code',$this->session->userdata('school_code'));
-             $this->db->where('id',$examid1);
-             $examname=$this->db->get('exam_name');   
+            $arrco[6]=0;?>
+			<!---1st term exam name start--->
+			<?php     if($examid->num_rows()==0){?><td colspan="1" ></td><td colspan="1" ></td><td colspan="1" ></td>
+											<?php }else if($examid->num_rows()==1){ ?>
+          <?php foreach ($examid->result() as $value):
+              $examid1=$value->exam_id;
+						$this->db->where('term',1);			  
+						$this->db->where('id',$examid1);
+             $examname= $this->db->get('exam_name');		 
              if ($examname->num_rows()>0){
-             $examname=$examname->row();?>
-			 <td colspan="6" class="center"><?php echo $examname->exam_name;?><?php 
-         	if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+             $examname=$examname->row();
+             	?>  
+			<td colspan="1" ><td colspan="1" ></td>
+			<?php echo $examname->exam_name; ?><?php
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
          	    echo "[20]";
                         	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
          	                        echo "[50]";  }else{
          	                                        echo "[100]";
-         	                                             }	?>
-			</td>                <?php }else{ ?>  
-     		<td></td>
-         	                            <?php }	?>
- 			<?php $i++; endforeach ;?>
-			 <?php if($i%2==0){ ?>
-            <!--<td class="center bold">Total<br>
-           <?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){echo "[50]";}else{echo "[100]";}?>
-        </td>-->
-			<td class="center bold">Grade</td>
-   <?php } ?>
-			<?php
-for($j=$i; $j < 5; $j++){
-?><!--2nd term section-->
-<!--<td></td>--><!--2nd term section end-->
- 
-					<?php }
+         	                                             }
 			?>
-			<!--<td colspan="1" class="text-center">Cumulative Marks<?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){echo "[100]";}else{echo "[200]";}?></td>
-			<td colspan="1">Grade</td>-->
-		</tr>
-		<?php $htotal = 0;  
-$ctotal =array();
-
-$ctotal[0]=0;
-$ctotal[1]=0;
-$ctotal[2]=0;
-$ctotal[3]=0;
-$ctotal[4]=0;
-$ctotal["tot2"]=0;
-$ctotal["tot4"]=0;
-$ctotal["tot6"]=0;
-$cumulativetotal=0;
-
-       $totalp= 0;   
-       $pi=1;
-		foreach($resultData as $sub):?>
-
+			</td>
+									<?php }else{ ?>  
+			<td colspan="1" ></td>			<?php } ?>
+ 			<?php $i++; endforeach ; ?><td colspan="1" ></td><td colspan="1" ></td>
 			
+			<?php }else if($examid->num_rows()==2){ ?>
+          <?php foreach ($examid->result() as $value):
+              $examid1=$value->exam_id;
+						$this->db->where('term',1);			  
+						$this->db->where('id',$examid1);
+             $examname= $this->db->get('exam_name');		 
+             if ($examname->num_rows()>0){
+             $examname=$examname->row();
+             	?>  
+			<td colspan="1" ><td colspan="1" ></td>
+			<?php echo $examname->exam_name; ?><?php
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+         	    echo "[20]";
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+         	                        echo "[50]";  }else{
+         	                                        echo "[100]";
+         	                                             }
+			?>
+			</td>
+									<?php }else{ ?>  
+			<td colspan="1" ></td>			<?php } ?>
+ 			<?php $i++; endforeach ; ?><td colspan="1" ></td>
+			<?php }else{ ?>
+			<?php foreach ($examid->result() as $value):
+              $examid1=$value->exam_id;
+						$this->db->where('term',1);			  
+						$this->db->where('id',$examid1);
+             $examname= $this->db->get('exam_name');		 
+             if ($examname->num_rows()>0){
+             $examname=$examname->row();
+             	?>  
+			<td colspan="1" >
+			<?php echo $examname->exam_name; ?><?php
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+         	    echo "[20]";
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+         	                        echo "[50]";  }else{
+         	                                        echo "[100]";
+         	                                             }
+			?>
+			</td>
+									<?php }else{ ?>  
+			<td colspan="1" ></td>			<?php } ?>
+ 			<?php $i++; endforeach ; ?>
+			<?php } ?>
+			<td class="center bold">Grade</td> 
+			<!---1st term exam name end--->
+   <!---2nd term exam name start--->
+			<?php     if($examid_2->num_rows()==0){?><td colspan="1" ></td><td colspan="1" ></td><td colspan="1" ></td>
+											<?php }else if($examid_2->num_rows()==1){  ?>
+          <?php foreach ($examid_2->result() as $value):
+              $examid1=$value->exam_id;
+						$this->db->where('term',2);			  
+						$this->db->where('id',$examid1);
+             $examname= $this->db->get('exam_name');		 
+             if ($examname->num_rows()>0){
+             $examname=$examname->row();
+             	?>  
+			<td colspan="1" >
+			<?php echo $examname->exam_name; ?><?php
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+         	    echo "[20]";
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+         	                        echo "[50]";  }else{
+         	                                        echo "[100]";
+         	                                             }
+			?>
+			</td>
+									<?php }else{ ?>  
+			<td colspan="1" ></td>			<?php } ?>
+ 			<?php $i++; endforeach ; ?>
+			<td colspan="1" ></td><td colspan="1" ></td>
+			<?php }else if($examid_2->num_rows()==2){ ?>
+          <?php foreach ($examid_2->result() as $value):
+              $examid1=$value->exam_id;
+						$this->db->where('term',2);			  
+						$this->db->where('id',$examid1);
+             $examname= $this->db->get('exam_name');		 
+             if ($examname->num_rows()>0){
+             $examname=$examname->row();
+             	?>  
+			<td colspan="1" >
+			<?php echo $examname->exam_name; ?><?php
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+         	    echo "[20]";
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+         	                        echo "[50]";  }else{
+         	                                        echo "[100]";
+         	                                             }
+			?>
+			</td>
+									<?php }else{ ?>  
+			<td colspan="1" ></td>			<?php } ?>
+ 			<?php $i++; endforeach ; ?><td colspan="1" ></td>
+			<?php }else{ ?>
+			<?php foreach ($examid_2->result() as $value):
+              $examid1=$value->exam_id;
+						$this->db->where('term',2);			  
+						$this->db->where('id',$examid1);
+             $examname= $this->db->get('exam_name');		 
+             if ($examname->num_rows()>0){
+             $examname=$examname->row();
+             	?>  
+			<td colspan="1" >
+			<?php echo $examname->exam_name; ?><?php
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+         	    echo "[20]";
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+         	                        echo "[50]";  }else{
+         	                                        echo "[100]";
+         	                                             }
+			?>
+			</td>
+									<?php }else{ ?>  
+			<td colspan="1" ></td>			<?php } ?>
+ 			<?php $i++; endforeach ; ?>
+			<?php } ?>
+			<td class="center bold">Grade</td> 
+			<!---2nd term exam name end--->
+			<td colspan="1" class="text-center">Cumulative Marks<?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){echo "[100]";}else{echo "[200]";}?></td>
+			<td colspan="1">Grade</td>
+		</tr>
+		<?php 
+			$htotal = 0;  
+			$ctotal =array();
+			$ctotal[0]=0;
+			$ctotal[1]=0;
+			$ctotal[2]=0;
+			$ctotal[3]=0;
+			$ctotal[4]=0;
+			$ctotal["tot2"]=0;
+			$ctotal["tot4"]=0;
+			$ctotal["tot6"]=0;
+			$ctotal1 =array();
+            $ctotal1[0]=0;
+            $ctotal1[1]=0;
+			$ctotal1[2]=0;
+			$ctotal1[3]=0;
+            $ctotal1["tot2"]=0;
+			$cumulativetotal=0;
+			$cumulativetotal1=0;
+		   $totalp= 0;   
+		   $pi=1;
+		foreach($resultData as $sub):?>
                     <?php 
                     $this->db->where('class_id',$classid->class_id);
                     $this->db->where('id',$sub['subject']);
@@ -1179,42 +1299,31 @@ $cumulativetotal=0;
                  
                     }else{ $totalp+=200;?>
 		<tr class="wight"> 
-					 <td class="subject">	
-                     <?php echo  $subjectname->subject;
-                       ?> 
-					</td>
+					 <td class="subject"> <?php echo  $subjectname->subject;?> </td>
 			     <?php 
- 				
                  $gtptal=0;
                  $subtatal=0;
-		         ?>
-				<?php  $i=1; $t=0; $coltptal=0;  foreach ($examid->result() as $value):?>
-					<td class="center" colspan="6">	
-					<?php  
-
-					$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('class_id',$classid->class_id);
-					$this->db->where('stu_id',$studentInfo->id);
-					$this->db->where('exam_id',$value->exam_id);
-					$this->db->where('fsd',$fsd);
-					
+		         $i=1; $t=0; $coltptal=0;  ?>
+				
+				 <?php   if($examid->num_rows()==0){?><td colspan="1" ></td><td colspan="1" ></td><td colspan="1" ></td>
+											<?php }else if($examid->num_rows()==1){ ?>
+				 <?php foreach ($examid->result() as $value):?>
+					<td class="center" colspan="1" >
+					<?php       $this->db->where("term", 1);
+								$this->db->where('subject_id',$sub['subject']);
+								$this->db->where('class_id',$classid->class_id);
+								$this->db->where('stu_id',$studentInfo->id);
+								$this->db->where('exam_id',$value->exam_id);
+								$this->db->where('fsd',$fsd);
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
-							///////////////////////
-						/*	$subtatal=$subtatal+$marks->marks;
-						    $dfg =$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
-							$coltptal+=$marks->marks;*/
 							if(is_numeric($marks->marks) ){
 							    $dfg =$marks->marks;
                       $gtptal= $gtptal+$marks->marks;
                       $ctotal[$t]+= $marks->marks;
-                       //$ctotalmo[$t]+= $marks->out_of;
                     }else{ $gtptal= $gtptal;}
-							/////////////////////////
 							echo $marks->marks;
-							/*$ctotal[$t]+= $marks->marks;*/
 							$this->db->where('subject_id',$sub['subject']);
         					$this->db->where('class_id',$classid->class_id);
         					$this->db->where('exam_id',$value->exam_id);
@@ -1222,64 +1331,249 @@ $cumulativetotal=0;
                $exammm=    $exammm_row->max_m;
                if(is_numeric($exammm)){
                $ctotalmo[$t]+=$exammm;
-               //$dhtm12 += $exammm;
                 echo "/".$exammm;
                }
-                
 				if($value->exam_id == 31 && $row2=="D" || $value->exam_id == 33 && $row2=="D" || $value->exam_id == 25 && $row2=="D" || $value->exam_id == 26 && $row2=="D"){
 				  if(is_numeric($exammm)){ 
 				      $dhtm=$exammm+$dhtm;
 				  }
 				}
-		
-			                                	}	?>
+											}
+					?>
 					</td>
-					
-				            
 				<?php $i++; $t++;endforeach; ?>
-				
-				<?php if($i%2==0){
-						?>
+				<td colspan="1" ></td><td colspan="1" ></td>
+				<?php }else if($examid->num_rows()==2){ ?>
+				<?php foreach ($examid->result() as $value):?>
+					<td class="center" colspan="1" >
+					<?php       $this->db->where("term", 1);
+								$this->db->where('subject_id',$sub['subject']);
+								$this->db->where('class_id',$classid->class_id);
+								$this->db->where('stu_id',$studentInfo->id);
+								$this->db->where('exam_id',$value->exam_id);
+								$this->db->where('fsd',$fsd);
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();
+							if(is_numeric($marks->marks) ){
+							    $dfg =$marks->marks;
+                      $gtptal= $gtptal+$marks->marks;
+                      $ctotal[$t]+= $marks->marks;
+                    }else{ $gtptal= $gtptal;}
+							echo $marks->marks;
+							$this->db->where('subject_id',$sub['subject']);
+        					$this->db->where('class_id',$classid->class_id);
+        					$this->db->where('exam_id',$value->exam_id);
+				  $exammm_row=    $this->db->get('exam_max_subject')->row();
+               $exammm=    $exammm_row->max_m;
+               if(is_numeric($exammm)){
+               $ctotalmo[$t]+=$exammm;
+                echo "/".$exammm;
+               }
+				if($value->exam_id == 31 && $row2=="D" || $value->exam_id == 33 && $row2=="D" || $value->exam_id == 25 && $row2=="D" || $value->exam_id == 26 && $row2=="D"){
+				  if(is_numeric($exammm)){ 
+				      $dhtm=$exammm+$dhtm;
+				  }
+				}
+											}
+					?>
+					</td>
+				<?php $i++; $t++;endforeach; ?><td colspan="1" ></td>
+				<?php }else{ ?>
+				 <?php foreach ($examid->result() as $value):?>
+					<td class="center" colspan="1" >
+					<?php       $this->db->where("term", 1);
+								$this->db->where('subject_id',$sub['subject']);
+								$this->db->where('class_id',$classid->class_id);
+								$this->db->where('stu_id',$studentInfo->id);
+								$this->db->where('exam_id',$value->exam_id);
+								$this->db->where('fsd',$fsd);
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();
+							if(is_numeric($marks->marks) ){
+							    $dfg =$marks->marks;
+                      $gtptal= $gtptal+$marks->marks;
+                      $ctotal[$t]+= $marks->marks;
+                    }else{ $gtptal= $gtptal;}
+							echo $marks->marks;
+							$this->db->where('subject_id',$sub['subject']);
+        					$this->db->where('class_id',$classid->class_id);
+        					$this->db->where('exam_id',$value->exam_id);
+				  $exammm_row=    $this->db->get('exam_max_subject')->row();
+               $exammm=    $exammm_row->max_m;
+               if(is_numeric($exammm)){
+               $ctotalmo[$t]+=$exammm;
+                echo "/".$exammm;
+               }
+				if($value->exam_id == 31 && $row2=="D" || $value->exam_id == 33 && $row2=="D" || $value->exam_id == 25 && $row2=="D" || $value->exam_id == 26 && $row2=="D"){
+				  if(is_numeric($exammm)){ 
+				      $dhtm=$exammm+$dhtm;
+				  }
+				}
+											}
+					?>
+					</td>
+				<?php $i++; $t++;endforeach; ?>
+				<?php } ?>
 						<!--<td class="center bold"><?php echo $subtatal; 
 							$ctotal['tot'.$i]+=$subtatal;
 							$gradecal =calculateGrade($dfg,$classid->class_id);
 						 $subtatal=0;?></td>-->
-
 						<td class="center bold"><?php echo $gradecal;?></td>
-					<?php } ?>
-				<?php
-					
-
-				?>
-				<!--<td class="center bold"><?php  //$rty = $gtptal/2; echo $gtptal;  ?></td>
-			   <td class="center bold"><?php //echo calculateGrade($rty,$classid->class_id)?></td>-->	
+					<!--1st term exam end-->
+					<!--2nd term exam start-->
+						<?php 
+                 $gtptal_2=0;
+				 $subtatal_2=0;
+		         $i=1; $t=0; $coltptal=0; ?>
+				 <?php   if($examid_2->num_rows()==0){?><td colspan="1" ></td><td colspan="1" ></td><td colspan="1" ></td>
+											<?php }else if($examid_2->num_rows()==1){ ?>
+				 <?php foreach ($examid_2->result() as $value):?>
+					<td class="center" colspan="1" >
+					<?php       $this->db->where("term", 2);
+								$this->db->where('subject_id',$sub['subject']);
+								$this->db->where('class_id',$classid->class_id);
+								$this->db->where('stu_id',$studentInfo->id);
+								$this->db->where('exam_id',$value->exam_id);
+								$this->db->where('fsd',$fsd);
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();
+							if(is_numeric($marks->marks) ){
+							    $dfg_2 =$marks->marks;
+                      $gtptal_2= $gtptal_2+$marks->marks;
+                      $ctotal1[$t]+= $marks->marks;
+                    }else{ $gtptal_2= $gtptal_2;}
+							echo $marks->marks;
+							$this->db->where('subject_id',$sub['subject']);
+        					$this->db->where('class_id',$classid->class_id);
+        					$this->db->where('exam_id',$value->exam_id);
+				  $exammm_row=    $this->db->get('exam_max_subject')->row();
+               $exammm=    $exammm_row->max_m;
+               if(is_numeric($exammm)){
+               $ctotalmo2[$t]+=$exammm;
+                echo "/".$exammm;
+               }
+				if($value->exam_id == 31 && $row2=="D" || $value->exam_id == 33 && $row2=="D" || $value->exam_id == 25 && $row2=="D" || $value->exam_id == 26 && $row2=="D"){
+				  if(is_numeric($exammm)){ 
+				      $dhtm=$exammm+$dhtm;
+				  }
+				}
+											}
+					?>
+					</td>
+				<?php $i++; $t++;endforeach; ?>
+				<td colspan="1" ></td><td colspan="1" ></td>
+				<?php }else if($examid_2->num_rows()==2){ ?>
+				 <?php foreach ($examid_2->result() as $value):?>
+					<td class="center" colspan="1" >
+					<?php       $this->db->where("term", 2);
+								$this->db->where('subject_id',$sub['subject']);
+								$this->db->where('class_id',$classid->class_id);
+								$this->db->where('stu_id',$studentInfo->id);
+								$this->db->where('exam_id',$value->exam_id);
+								$this->db->where('fsd',$fsd);
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();
+							if(is_numeric($marks->marks) ){
+							    $dfg_2 =$marks->marks;
+                      $gtptal_2= $gtptal_2+$marks->marks;
+                      $ctotal1[$t]+= $marks->marks;
+                    }else{ $gtptal_2= $gtptal_2;}
+							echo $marks->marks;
+							$this->db->where('subject_id',$sub['subject']);
+        					$this->db->where('class_id',$classid->class_id);
+        					$this->db->where('exam_id',$value->exam_id);
+				  $exammm_row=    $this->db->get('exam_max_subject')->row();
+               $exammm=    $exammm_row->max_m;
+               if(is_numeric($exammm)){
+               $ctotalmo2[$t]+=$exammm;
+                echo "/".$exammm;
+               }
+				if($value->exam_id == 31 && $row2=="D" || $value->exam_id == 33 && $row2=="D" || $value->exam_id == 25 && $row2=="D" || $value->exam_id == 26 && $row2=="D"){
+				  if(is_numeric($exammm)){ 
+				      $dhtm=$exammm+$dhtm;
+				  }
+				}
+											}
+					?>
+					</td>
+				<?php $i++; $t++;endforeach; ?><td colspan="1" ></td>
+				<?php }else{ ?>
+				 <?php foreach ($examid_2->result() as $value):?>
+					<td class="center" colspan="1" >
+					<?php       $this->db->where("term", 2);
+								$this->db->where('subject_id',$sub['subject']);
+								$this->db->where('class_id',$classid->class_id);
+								$this->db->where('stu_id',$studentInfo->id);
+								$this->db->where('exam_id',$value->exam_id);
+								$this->db->where('fsd',$fsd);
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();
+							if(is_numeric($marks->marks) ){
+							    $dfg_2 =$marks->marks;
+                      $gtptal_2= $gtptal_2+$marks->marks;
+                      $ctotal1[$t]+= $marks->marks;
+                    }else{ $gtptal_2= $gtptal_2;}
+							echo $marks->marks;
+							$this->db->where('subject_id',$sub['subject']);
+        					$this->db->where('class_id',$classid->class_id);
+        					$this->db->where('exam_id',$value->exam_id);
+				  $exammm_row=    $this->db->get('exam_max_subject')->row();
+               $exammm=    $exammm_row->max_m;
+               if(is_numeric($exammm)){
+               $ctotalmo2[$t]+=$exammm;
+                echo "/".$exammm;
+               }
+				if($value->exam_id == 31 && $row2=="D" || $value->exam_id == 33 && $row2=="D" || $value->exam_id == 25 && $row2=="D" || $value->exam_id == 26 && $row2=="D"){
+				  if(is_numeric($exammm)){ 
+				      $dhtm=$exammm+$dhtm;
+				  }
+				}
+											}
+					?>
+					</td>
+				<?php $i++; $t++;endforeach; ?>
+				<?php } ?>
+					<!--<td class="center bold"><?php echo $subtatal_2; 
+							$ctotal1['tot'.$i]+=$subtatal_2;
+							$gradecal_2 =calculateGrade($dfg_2,$classid->class_id);
+						 $subtatal_2=0;?></td>-->
+						<td class="center bold"><?php echo $gradecal_2;?></td>
+					<!--2nd term exam end-->
+				<td class="center bold"><?php  //$rty = $gtptal/2; echo $gtptal;  ?></td>
+			   <td class="center bold"><?php //echo calculateGrade($rty,$classid->class_id)?></td>	
 		</tr>
 					<?php } }endforeach;?>
 		<tr class="wight">
 					<td class="subject">GRAND TOTAL</td>
-					<?php $h=1;$i=0; foreach($ctotal as $cd):
-					   //replace if($h<5) to if($h<3) for samta
-					if($h<3){?>
-					<td class="center" colspan="6">
-					<?php $cumulativetotal+=$ctotal[$i]; if($ctotal[$i] >0){echo $ctotal[$i]; } ?><?php  if($ctotalmo[$i] >0 ){echo "[".$ctotalmo[$i]."]";} ?> 
-					</td>
-					
-					<?php $h++; $i++; $dhtm1=0;} endforeach;	
-					?><?php if($h%2==0){ ?>
+					<?php 
+					$h=1;$i=0; foreach($ctotal as $cd): 
+					if($h<5){ ?>
+				<td class="center" colspan="1">	<?php $cumulativetotal+=$ctotal[$i];echo $ctotal[$i];  ?>
+				<?php  if($ctotalmo[$i] >0 ){echo "[".$ctotalmo[$i]."]";} ?> 
+				</td>
+				<?php $h++; $i++; $dhtm1=0;}  endforeach; ?>
+				<?php if($h%2==0){ ?>
 					<td class="center bold"><?php $cumulativetotal+=$ctotal['tot'.$h];echo $ctotal['tot'.$h];?> </td> 
 					<td class="center bold"></td>
 					<?php 			} ?>
-			<!--<td class="center bold"><?php echo $cumulativetotal;?></td>
-			<td class="center bold"></td>-->
+				<?php	
+				  $h1=1;$i1=0;
+				  foreach($ctotal1 as $cd): 
+					if($h1<5){ ?>
+				<td class="center" colspan="1">	<?php  $cumulativetotal1+=$ctotal1[$i1];echo $ctotal1[$i1];  ?>
+				<?php  if($ctotalmo2[$i1] >0 ){echo "[".$ctotalmo2[$i1]."]";} ?> </td>
+					<?php $h1++; $i1++; }  endforeach;	?>
+					
+			<td class="center bold"><?php //echo $cumulativetotal;?></td>
+			<td class="center bold"></td>
 		</tr>
 		
 		  <tr class="tableHeader">	
-			<!--<td colspan="2" style="text-transform: uppercase;">B. CO-Scholastic Areas</td>
-			<td colspan="3" style="text-transform: uppercase;">Descriptive Indicators</td>
-
-			<td>Grade</td>
-			<td colspan="2" style="text-transform: uppercase;">Descriptive Indicators</td>
-			<td>Grade</td>-->
 			<td colspan="11" class="pink" style="text-transform: uppercase;">Class Teachers Remark</td>
 		</tr>
 		<tr class="wight">
@@ -1311,72 +1605,47 @@ $cumulativetotal=0;
 					<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
 						<?php }
 						if($marksa->num_rows()>0){$marksa = $marksa->row();	?>
-
-					
-					
 					<td colspan="2" style="text-transform: uppercase;"><?= discriptiveindicator($marksa->marks);?></td>
              		<td style="text-transform: uppercase;"><?php echo calculateGrade1($marksa->marks,$classid->class_id)?></td>
-             		
-
              		<?php }else{?>
              		<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
              		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-             		    
              		<?php }}else{?>
-             		    	<td colspan="4"><?php //discriptiveindicator($cumulativetotal);?></td>
+					<td colspan="4"><?php //discriptiveindicator($cumulativetotal);?></td>
 					<td colspan="2"><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
 					<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
              		<td colspan="2"><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
              	<?php	} ?>
-             
-             	<?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){?>
-             	<td rowspan="9" colspan="2"> </td>
-             	<?php }else{?>
-             <!--	<td rowspan="6" colspan="2"> </td>-->
-             	<?php } ?>
 		</tr>
 		<tr class="wight">
-
-			
-				
 					<td class="subject" colspan="1" >WORK EDUCATION <?php //echo $arrco[2];?></td>
-					
-						<?php $this->db->where('subject_id',$arrco[2]);
+					<?php $this->db->where('subject_id',$arrco[2]);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('stu_id',$studentInfo->id);
 					$this->db->where('exam_id',28);
 					$this->db->where('fsd',$fsd);
-					
 						$marks= $this->db->get('exam_info');
-						
 						$this->db->where('subject_id',$arrco[2]);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('stu_id',$studentInfo->id);
 					$this->db->where('exam_id',30);
 					$this->db->where('fsd',$fsd);
 						$marksa= $this->db->get('exam_info');
-
 							if(($marks->num_rows()>0) || ($marksa->num_rows()>0)){
 							if($marks->num_rows()>0){
 							$marks=$marks->row();
 						$marks->marks;
 						?>
-
-					
 					<td colspan="3" style="text-transform: uppercase;"><?= discriptiveindicator($marks->marks);?></td>
 					<td style="text-transform: uppercase;"><?php echo calculateGrade1($marks->marks,$classid->class_id)?></td>
 						<?php }else{
 						?>
-							<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
-
+					<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
 					<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
 						<?php }
 						if($marksa->num_rows()>0){$marksa = $marksa->row();	?>
 					<td colspan="2"><?= discriptiveindicator($marksa->marks);?></td>
-
              		<td style="text-transform: uppercase;"><?php echo calculateGrade1($marksa->marks,$classid->class_id)?></td>
-             		
-
              		<?php }else{?>
              		<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
              		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
@@ -1387,105 +1656,15 @@ $cumulativetotal=0;
              		<td colspan="2"><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
              	<?php	} ?>
 			</tr>
-			<?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){?>
-		   <tr class="wight">
-					<td class="subject" colspan="1">SENSORIAL ACTIVITIES <?php //echo $arrco[4];?></td>
-						<?php 
-								$this->db->where('subject_id',$arrco[4]);
-								$this->db->where('class_id',$classid->class_id);
-								$this->db->where('stu_id',$studentInfo->id);
-								$this->db->where('exam_id',28);
-								$this->db->where('fsd',$fsd);
-						$marks= $this->db->get('exam_info');
-								$this->db->where('subject_id',$arrco[4]);
-								$this->db->where('class_id',$classid->class_id);
-								$this->db->where('stu_id',$studentInfo->id);
-								$this->db->where('exam_id',30);
-								$this->db->where('fsd',$fsd);
-						$marksa=$this->db->get('exam_info');
-							if(($marks->num_rows()>0) || ($marksa->num_rows()>0)){
-							if($marks->num_rows()>0){
-							$marks=$marks->row();
-						$marks->marks;
-						?>
-					<td colspan="3"><?= discriptiveindicator($marks->marks);?></td>
-					<td><?php echo calculateGrade1($marks->marks,$classid->class_id)?></td>
-						<?php }else{ ?>
-					<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
-					<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-						<?php }
-						if($marksa->num_rows()>0){$marksa = $marksa->row();	?>
-					<td colspan="3"><?= discriptiveindicator($marksa->marks);?></td>
-             		<td><?php echo calculateGrade1($marksa->marks,$classid->class_id)?></td>
-             		<?php }else{?>
-             		<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
-             		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-             		<?php }}else{?>
-					<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
-					<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-					<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
-             		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-             	<?php	} ?>
-				
-		</tr>
-		<tr class="wight">
-					<td class="subject" colspan="1">HEALTH & PHYSICAL EDUCATION <?php //echo $arrco[5];?></td>
-						<?php 
-								$this->db->where('subject_id',$arrco[5]);
-								$this->db->where('class_id',$classid->class_id);
-								$this->db->where('stu_id',$studentInfo->id);
-								$this->db->where('exam_id',28);
-								$this->db->where('fsd',$fsd);
-						$marks= $this->db->get('exam_info');
-								$this->db->where('subject_id',$arrco[5]);
-								$this->db->where('class_id',$classid->class_id);
-								$this->db->where('stu_id',$studentInfo->id);
-								$this->db->where('exam_id',30);
-								$this->db->where('fsd',$fsd);
-						$marksa= $this->db->get('exam_info');
-							if(($marks->num_rows()>0) || ($marksa->num_rows()>0)){
-							if($marks->num_rows()>0){
-							$marks=$marks->row();
-						$marks->marks;
-						?>
-					<td colspan="3"><?= discriptiveindicator($marks->marks);?></td>
-					<td><?php echo calculateGrade1($marks->marks,$classid->class_id)?></td>
-												<?php }else{ ?>
-					<td colspan="3"><?php //discriptiveindicator($cumulativetotal);?></td>
-					<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-													<?php } if($marksa->num_rows()>0){
-														$marksa = $marksa->row();	?>
-					<td colspan="3"><?= discriptiveindicator($marksa->marks);?></td>
-             		<td><?php echo calculateGrade1($marksa->marks,$classid->class_id)?></td>
-																				<?php }else{?>
-             		<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
-             		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-																					<?php }   }else{ ?>
-					<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
-					<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-					<td colspan="2"><?php //discriptiveindicator($cumulativetotal);?></td>
-             		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
-																							<?php	} ?>
-			</tr>
-																			<?php } ?>
-			<?php if(($classid->class_id==98)||($classid->class_id==99)||($classid->class_id== 116)){?>
-			<tr class="tableHeader">
-				<td colspan="2">Height & Weight</td>
-				<!--<td colspan="3"><?= $studentInfo->height; ?></td>-->
-				<!--<td colspan="4"><?= $studentInfo->weight; ?></td>-->
-				<td colspan="7">&nbsp;</td>
-			</tr>
-			<?php } ?>
 			<tr class="wight">
 					<td colspan="1" class="subject">DISCIPLINE</td>
-							<?php $this->db->where('subject_id',$arrco[6]);
-					$this->db->where('class_id',$classid->class_id);
-					$this->db->where('stu_id',$studentInfo->id);
-					$this->db->where('exam_id',28);
-					$this->db->where('fsd',$fsd);
-					
-						$marks= $this->db->get('exam_info');
-						
+							<?php 
+							$this->db->where('subject_id',$arrco[6]);
+							$this->db->where('class_id',$classid->class_id);
+							$this->db->where('stu_id',$studentInfo->id);
+							$this->db->where('exam_id',28);
+							$this->db->where('fsd',$fsd);
+					$marks= $this->db->get('exam_info');
 						$this->db->where('subject_id',$arrco[6]);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('stu_id',$studentInfo->id);

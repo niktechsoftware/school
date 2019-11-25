@@ -55,7 +55,7 @@
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: CORE JAVASCRIPTS  -->
 		<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/studentList.js"></script>
+	<!--	<script src="<?php echo base_url(); ?>assets/js/studentList.js"></script>-->
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script>
 			jQuery(document).ready(function() {
@@ -193,6 +193,11 @@
 					}else{
 						var bookno = "";
 					}
+					if($('#house_id:checked').val()?true:false){
+						var house_id = $("#house_id").val();
+					}else{
+						var house_id = "";
+					}
 
 					if($('#father_full_name:checked').val()?true:false){
 						var father_full_name = $("#father_full_name").val();
@@ -304,6 +309,7 @@
 						email : email,
 						sno : sno,
 						bookno : bookno,
+						house_id :house_id,
 						father_full_name : father_full_name,
 						mother_full_name : mother_full_name,
 						caretaker_name : caretaker_name,
@@ -462,6 +468,11 @@
 							}else{
 								var bookno = "";
 							}
+								if($('#house_id:checked').val()?true:false){
+								var house_id = $("#house_id").val();
+							}else{
+								var house_id = "";
+							}
 
 							if($('#father_full_name:checked').val()?true:false){
 								var father_full_name = $("#father_full_name").val();
@@ -576,6 +587,7 @@
 								email : email,
 								sno : sno,			
 								bookno : bookno,
+								house_id :house_id,
 								father_full_name : father_full_name,
 								mother_full_name : mother_full_name,
 								caretaker_name : caretaker_name,

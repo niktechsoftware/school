@@ -6,7 +6,7 @@ class Dashboard_p extends CI_Model
         $date=date("Y-m-d");                               
         $this->db->distinct();
         $wh_value= array("a_date"=>$date, "school_code" => $sc_code, "attendance"=>'0');
-        $this->db->where( $wh_value);
+        $this->db->where($wh_value);
 
         return $this->db->get('teacher_attendance');
     }

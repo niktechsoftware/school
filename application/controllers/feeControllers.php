@@ -137,14 +137,12 @@ function getFsd(){
 
 //echo $this->input->post('fsdid');
 //exit;//start 
-		$stuid=$this->input->post('stuId');
-		//insert data in feedue table
-		$mdata['student_id']=$this->input->post('stuId');
-		$mdata['description']=$this->input->post("disc");
-		$mdata['mbalance']=$this->input->post("cb");
-		$mdata['depositedate']=$this->input->post("subdate");
-		$mdata['invoice_no']=$invoice_number;
-		$mdata['school_code']=$school_code;
+         $cb1=$this->input->post("cb");
+	    	$stuid=$this->input->post('stuId');
+		  
+		  $this->db->where("student_id",$stuid);
+		  $this->db->where("school_code",$school_code);
+		  $duedt2=  $this->db->get("feedue");
 		
 		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
 		$balance = $op1->closing_balance;
@@ -185,12 +183,43 @@ function getFsd(){
 			//"depositedate"=>date('y-m-d'),
 			"updatedate"=>date('y-m-d'),
 			);
-			//$this->db->where("student_id",$this->input->post("stuId"));
-			$this->db->where("invoice_no",$invoice_number);
-			$this->db->where("school_code",$school_code);
-		   $this->db->update("feedue",$mbalance);
+// 			$this->db->where("student_id",$this->input->post("stuId"));
+// 		//	$this->db->where("invoice_no",$invoice_number);
+// 			$this->db->where("school_code",$school_code);
+// 		   $this->db->update("feedue",$mbalance);
 		$this->db->insert("dis_den_tab",$discountv);
-		if( $this->db->insert('day_book',$dayBook) && $this->db->insert("fee_deposit",$updata) && $this->db->insert("feedue",$mdata)){
+		if( $this->db->insert('day_book',$dayBook) && $this->db->insert("fee_deposit",$updata) ){
+		    
+		   if($duedt2->num_rows()>0){
+		      //$mbal2=$duedt2->row()->mbalance;
+		      //$totmbal=$mbal2+$cb1;
+		      
+    		//insert data in feedue table
+     		$mdata['student_id']=$this->input->post('stuId');
+    		$mdata['description']=$this->input->post("disc");
+    		$mdata['mbalance']=$this->input->post("cb");
+    		$mdata['depositedate']=$this->input->post("subdate");
+    		$mdata['invoice_no']=$invoice_number;
+     		$mdata['school_code']=$school_code;
+     		
+ 	     	$this->db->where("student_id",$stuid);
+		    $this->db->where("school_code",$school_code);
+		    $this->db->update("feedue",$mdata);
+		 }
+		 else{
+		    $mdata['student_id']=$this->input->post('stuId');
+    		$mdata['description']=$this->input->post("disc");
+    		$mdata['mbalance']=$this->input->post("cb");
+    		$mdata['depositedate']=$this->input->post("subdate");
+    		$mdata['invoice_no']=$invoice_number;
+     		$mdata['school_code']=$school_code;
+     		
+ 	     
+		    $this->db->insert("feedue",$mdata);
+		 }
+		  
+		    
+		    
 			foreach($months as $g):
 				
 		    $fee_deposite_m = array(
@@ -276,16 +305,7 @@ function getFsd(){
 		    	$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		    	$this->smsmodel->sendReport($getv,$master_id);
 		    }
-		    //sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-		    		
-		   // if($admin_mobile->id==1){
-			//$msg1 = "Dear School Manager your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
-			//sms($admin_mobile->mobile_no,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-				//$msg2 = "Dear School Principle your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
-			//sms(7398863503,$msg2,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-		    //}
-		
-		    //print_r($mode);exit;
+		  
 			
 			redirect("index.php/invoiceController/fee/$invoice_number/$stuid/$fsddate/yes");
 			
@@ -448,13 +468,28 @@ function getFsd(){
 		$data['mainContent'] = 'stufeesdetail';
 		$this->load->view("includes/mainContent", $data);
 		}
+			
+		function current_monthreport(){
+		   $fsd= $this->input->post("fsd");
+		   $section= $this->input->post("section");
+		   $classv= $this->input->post("classv");
+		  
+		   $month= $this->input->post("month");
+		 
+		   $data['month']=$month;
+		   $data['studt']=$this->feeModel->getstudent($classv);
+		  
+    		$this->load->view("currentmonthfee", $data);
+		    
+		}
 		function enterDeufee(){
 		    
-          $school_code=$this->session->userdata("school_code");
+            $school_code=$this->session->userdata("school_code");
 			$this->db->where("school_code",$school_code);
-		$invoice = $this->db->get("invoice_serial");
-		$invoice1=6000+$invoice->num_rows();
-		$invoice_number = $school_code."I19".$invoice1;
+    		$invoice = $this->db->get("invoice_serial");
+    		$invoice1=6000+$invoice->num_rows();
+    		$invoice_number = $school_code."I19".$invoice1;
+    		
 			$invoiceDetail = array(
 					"invoice_no" => $invoice_number,
 					"reason" => "Fee Due",
@@ -534,15 +569,16 @@ function getFsd(){
 			'school_code'=>$school_code
 	);
 	$this->db->insert("fee_deposit",$feedepositedata);
-		
+		         $this->db->where("school_code",$school_code);
 		$isSMS = $this->db->get("sms")->row()->fee_submit;
 		$amount1=$this->input->post("paid");
 		$totdue=$this->input->post("totdue");
 		$balance=$this->input->post("remain");
 		
+			
 		//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 		if($isSMS == '1'){
-			
+		   
 			$student_id = $this->input->post("studentId");
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 			$this->db->where("student_id",$student_id);
@@ -573,7 +609,6 @@ function getFsd(){
 		}
 		redirect(base_url()."invoiceController/printDueFee/".$invoice_number);
 	}		
-		
 		public function checkDetails(){
 			$msg = '<div class="alert alert-info"><button data-dismiss="alert" class="close">&times;</button><strong>New Entry :) </strong></div>';
 			//$studentId = $this->input->post("studentId");
@@ -676,7 +711,24 @@ function getFsd(){
 			$this->db->where('invoice_no', $invoiceNo);
 			$this->db->where('student_id', $student_id);
 			$uprow = $this->db->get('fee_deposit');
-			
+			$pvt = $uprow->row()->previous_balance;
+		$this->db->where("student_id",$student_id);
+	$pvv = 	$this->db->get("feedue");
+	if($pvv->num_rows()>0){
+	    $updatepv = array(
+	        "mbalance"=>$pvt
+	        );
+	     $this->db->where("student_id",$student_id);
+	     $this->db->update("feedue",$updatepv);
+	        
+	}else{
+	     $updatepv = array(
+	        "mbalance"=>$pvt
+	        );
+	        
+	          $this->db->where("student_id",$student_id);
+	             $this->db->insert("feedue",$updatepv);
+	}
 			if($this->uri->segment(6)){
 			$fristfee = $this->uri->segment(6);
 			$df = $this->uri->segment(5);
@@ -805,7 +857,7 @@ function getFsd(){
 		
         	$this->db->where("id",$school_code);
         	$schoolname=$this->db->get("school")->row();
-		
+	     	$this->load->model("smsmodel");
 		  	$sende_Detail =$sender->row();
 	      	$sdue=$this->input->post("smstodue");
 			echo 'Send';
@@ -813,6 +865,7 @@ function getFsd(){
 			$sname=$this->input->post("sname");
 			$amt=$this->input->post("amount");
 			$amt1=$this->input->post("amount1");
+			
 			
 // 			if($amt==0)	{
 // 			    $amt2=$this->input->post("amount");
@@ -831,15 +884,22 @@ function getFsd(){
 		  	
 // 				sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 //           }else	{
-		  		   
-		  		
+		  			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit soon.".$schoolname->school_name;
+   
+		  		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+					$master_id=$max_id->maxid+1;
+					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
+					if($getresultm){
+						$getv=	sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+						$this->smsmodel->sendReport($getv,$master_id);
+						echo "Sent Success";
+					}
 			
-			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit soon.".$schoolname->school_name;
-// print_r($msg);
+		// print_r($msg);
 // exit();
 	//	$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit it till 5 september.".$schoolname->school_name;
 			
-		//	sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+		//
           //}
 						
 		}
@@ -1036,17 +1096,20 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						 if($fd->deposite_month<4){
 							$cdate11=date('Y-m-d');
 							$mno=(int)date('m',strtotime($cdate11));
-							if($mno < $fd->deposite_month){$realm=0;
-							    
+							if($mno < $fd->deposite_month){
+							    $realm=0;
+							 //  print_r($mno);
+							 //    print_r($mno);
 							}else{
 								//echo $mno;
 							$realm= $mno- $fd->deposite_month-1;}
-				           
+				          // print_r($realm);
 						 }else{
 							$cdate11=date('Y-m-d');
 							if($cdate11>='2020-01-01'){
 							$mno=(int)date('m',strtotime($cdate11));
 						 $realm= $mno-$fd->deposite_month+12-1;
+						// print_r($realm);
 						}else{
 							$mno=(int)date('m',strtotime($cdate11));
 						if($mno<$fd->deposite_month){$realm=0;
@@ -1054,9 +1117,11 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 							}else{
 								
 								//echo $mno;
-							$realm= $mno- $fd->deposite_month-1;
+							$realm= $mno- $fd->deposite_month;
 							
 							}
+				// 			print_r($mno);
+				// 		print_r($fd->deposite_month);
 						 }
 						}
 						?>
@@ -1066,15 +1131,33 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						
 						$this->db->where('school_code',$school_code);
 						$amt=$this->db->get('late_fees')->row()->late_fee;
+						
+							$this->db->where('month_number',$mno);
+						$this->db->where('school_code',$school_code);
+						$depdate1=$this->db->get('fee_card_detail')->row();
+						$depdate=date("y-m-d", strtotime($depdate1->deposite_date));
+						 $date=date("y-m-d");
+						
+					
+						if($realm==1 && $date<$depdate){
+						   
+						        $latefee1=0.00;
+						    
+						}else{
                         $latefee1=$amt*$realm;
+                       
+						}
+                       
 					}else{
 						$cdate11=date('Y-m-d');
 							if($cdate11>='2020-01-01'){
 							$mno=(int)date('m',strtotime($cdate11));
+						
 						 $realm= $mno-4+12;
 						}else{
 							$mno=(int)date('m',strtotime($cdate11));
-							//echo $mno;
+						
+						
                             $realm= $mno-4;
 						 }?>	
 						<?php 
@@ -1090,8 +1173,18 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 				// 	}else{
 				// 		$realm=0;
 				// 	} 
+				if($school_code==7){
+				    if($this->session->userdata("login_type")=="admin"){
 				?>
-	                 <input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
+				<input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
+	              
+	                 <?php } else{ ?>
+	                 <input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" readonly="" class="form-control" onkeyup="fee();">
+	                 
+	                 <?php }} else{ ?>
+	                  <input type="text" value="<?php echo  $latefee1; ?>" name ="latefee" id="latefee2" class="form-control" onkeyup="fee();">
+	              
+	                 <?php } ?>
 						
 														</div>
 	                                                </div>
@@ -1412,6 +1505,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 		
 		
 	}
+	
 	
 		$("#latefee2").keyup(function(){
 		    	let fieldValue = parseFloat($(`#latefee2`).val())

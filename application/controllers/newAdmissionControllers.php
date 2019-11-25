@@ -51,7 +51,7 @@ public function addinfo(){
 		$this->form_validation->set_rules('nationality','', 'trim');
 		$this->form_validation->set_rules('mothertongue','', 'trim');
 		$this->form_validation->set_rules('category','', 'trim');
-		$this->form_validation->set_rules('religion','', 'trim');
+		$this->form_validation->set_rules('religion','religion', 'trim');
 		$this->form_validation->set_rules('addLine1','Address', 'trim|required');
 		$this->form_validation->set_rules('addLine2','Area', 'trim|required');
 		$this->form_validation->set_rules('city','City', 'trim|required');

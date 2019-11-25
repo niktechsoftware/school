@@ -33,7 +33,7 @@
 		?>
 		<div>   <p class="alert alert-danger"> Available SMS Balance = <?php $cbs=checkBalSms($sende_Detail->uname,$sende_Detail->password);
 		echo $cbs;?></p>
-		 <p class="alert alert-info"> Note : This is the area you can send Fee reminder to send click send sms button . If you send SMS change to Success Message send SuccessfulLy . <br>
+		 <p class="alert alert-info"> Note : This is the area you can send Fee reminder to send click send sms button . If you send SMS change to Success Message send Successfully . <br>
 		</div>
 	<?php if($cla == "all" && $sec == "all"){?>
 		<div class="table-responsive">
@@ -185,7 +185,8 @@
 							<?php 
 					            	$depmonth=array();
 					            	$mbk=0;
-								 	$this->db->where('invoice_no',$total->invoice_no); 
+					            	
+								 	$this->db->order_by('id','desc'); 
 								 	$this->db->where('student_id',$stu_id);
                                  	$mbalance=$this->db->get('feedue');
 								 	//print_r($mbalance->mbalance);
@@ -193,7 +194,7 @@
 								 	   
 								 	if(strlen($mbalance->row()->mbalance)>0){
 									echo	$mbk= "Previous Balance ".$mbalance->row()->mbalance."<br>";
-								//	print_r($mbalance->row()->mbalance);
+                                	print_r($mbalance->row()->mbalance);
 									?>
 									<input type = "hidden" id="amt1<?php echo $count;?>" value="<?php echo $mbalance->row()->mbalance;?>"/>
 									<?php
@@ -624,13 +625,19 @@
 							
             						$depmonth=array();
             						$mbk=0;
-								 	$this->db->where('invoice_no',$total->invoice_no); 
+            					//	print_r($total->invoice_no);
+            						
+								 	$this->db->order_by('id','desc'); 
 								 	$this->db->where('student_id',$stu_id);
                                   	$mbalance=$this->db->get('feedue');
+                                  	
 								 	//print_r($mbalance->mbalance);
 								 	if($mbalance->num_rows()>0){
+								 	    
 								 	if(strlen($mbalance->row()->mbalance) > 0){
 								 	    $db=$mbalance->row()->mbalance;
+								 	  //  $db3=$mbalance->row()->invoice_no;
+								 	  //  print_r($db3);
 									echo	$mbk= "Previous Balance ".$db."<br>";
 										?><input type = "hidden" id="amt1<?php echo $count;?>" value="<?php echo $mbalance->row()->mbalance;?>"/><?php
 									}}

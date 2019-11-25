@@ -25,3 +25,16 @@ Stack trace:
 #4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
 #5 {main}
   thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1092
+
+[21-Nov-2019 11:51:28 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 11:51:49 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 11:52:02 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 11:52:04 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 11:52:09 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 12:05:43 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 12:11:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 12:11:40 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 12:11:42 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 12:11:56 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 12:12:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578
+[21-Nov-2019 12:12:08 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php on line 578

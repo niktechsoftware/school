@@ -788,7 +788,9 @@
                 </table>
             </div>
             <!--scholar academy end-->
-            <?php }else if($school == 14 && $row2=="C"){ ?>
+
+            <?php }else if($school == 14 && $row2=="C" || $school == 7 && $row2=="D"){ ?>
+
 			 <!--gyanodya result start-->
            <div>
                 <table
@@ -873,7 +875,8 @@
 																							<?php } ?>
 						
 						<!--1st term name end-->
-						<td class="center bold" style="text-transform: uppercase;">U1 +U2+ FT</td>
+
+						<td class="center bold" style="text-transform: uppercase;">Total (Term 1)</td>
 						<!--2nd term name start-->
 						<?php  if($examid_2->num_rows()==0){?>
 						<td colspan="1" ></td><td colspan="1" ></td><td colspan="1" ></td>
@@ -942,10 +945,11 @@
 						endforeach ;?>
 																							<?php } ?>
 						<!--2nd term name end-->
-						<td class="center bold" style="text-transform: uppercase;">U3 +U4+ ST</td>
+
+						<td class="center bold" style="text-transform: uppercase;">Total (Term 2)</td>
 						<!--OVERALL GRADE START-->
-						<td class="center bold" style="text-transform: uppercase;">(U1 +U2+ FT)Grade</td> 
-						<td class="center bold" style="text-transform: uppercase;">(U3 +U4+ ST)Grade</td>
+						<td class="center bold" style="text-transform: uppercase;">(Term 1)Grade</td> 
+						<td class="center bold" style="text-transform: uppercase;">(Term 2)Grade</td>
 						<!--OVERALL GRADE END-->
                     </tr>
 

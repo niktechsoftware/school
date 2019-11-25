@@ -1,4 +1,4 @@
-		<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/js/jquery-2.1.3.min.js"></script>
 		<!--<![endif]-->
 		<script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
@@ -75,6 +75,22 @@
 		$("#classSave<?php echo $j;?>").click(function(){
 			var eid = $('#id<?php echo $j;?>').val();
 			var ename = $('#classSave<?php echo $j;?>').val();
+		//alert(eid+ename);
+			$.post("<?php echo site_url('index.php/employeeController/configsalary') ?>", {eid : eid,ename : ename}, function(data){
+                $("#givenDetail").html(data);
+    		});
+    		
+       		 });
+		<?php }
+	
+	?>
+		<?php $val = $this->db->count_all("employee_info");
+		
+	for($j=1; $j <= $val; $j++)
+	{?>
+		$("#classSave1<?php echo $j;?>").click(function(){
+			var eid = $('#id<?php echo $j;?>').val();
+			var ename = $('#classSave1<?php echo $j;?>').val();
 		//alert(eid+ename);
 			$.post("<?php echo site_url('index.php/employeeController/salary') ?>", {eid : eid,ename : ename}, function(data){
                 $("#givenDetail").html(data);

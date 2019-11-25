@@ -11,6 +11,7 @@ class examControllers extends CI_Controller
 	{
 
 		$data=array(
+
 		    'fsd'=>$this->session->userdata("fsd"),
 	    'term'=>$this->input->post("term"),
 		'exam_name'=>$this->input->post("examName"),
@@ -158,7 +159,8 @@ class examControllers extends CI_Controller
 			echo $row->exam_date;
 			endforeach;
 		}
-	}
+	} 
+
 	
 	function startScheduling()
 	{ 	
@@ -657,10 +659,8 @@ function defineExam1(){
 			}
 			}
  }
- 
-function insertMarksdetail()
-	{
-	    $stuid=$this->input->post('stuid'); 
+ function deletesubMarks(){
+	 $stuid=$this->input->post('stuid'); 
 	    $marks=$this->input->post('marks');
 	    $mmarks=$this->input->post('mmarks');
 	    $classid=$this->input->post('classid');
@@ -672,10 +672,37 @@ function insertMarksdetail()
 		$this->db->where('subject_id',$subjectid);
 		$this->db->where('stu_id',$stuid);
 		$this->db->where('exam_id',$examid);
+	$dt=	$this->db->delete('exam_info');
+	if($dt){
+				echo "Deleted";
+			}
+		
+ }
+ 
+function insertMarksdetail()
+	{
+	    $stuid=$this->input->post('stuid'); 
+	    $marks=$this->input->post('marks');
+	    $mmarks=$this->input->post('mmarks');
+	    $classid=$this->input->post('classid');
+	    $subjectid=$this->input->post('subjectid');
+	    $examid=$this->input->post('examid');
+	     $term=$this->input->post('term');
+		$attendence=$this->input->post('attendence');
+		$this->db->where('school_code' ,$this->session->userdata('school_code'));
+		$this->db->where('class_id',$classid);
+		$this->db->where('subject_id',$subjectid);
+		$this->db->where('stu_id',$stuid);
+		$this->db->where('exam_id',$examid);
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
+<<<<<<< HEAD
 	        'term'=>1,
+=======
+
+	        'term'=>$term,
+>>>>>>> 35b12bb52f425c1c7476bf510ea6552a4913b6fc
 	        'class_id'=>$classid,
 	        'subject_id'=>$subjectid,
 	        'stu_id'=> $stuid,
@@ -700,7 +727,7 @@ function insertMarksdetail()
 		$data['examName'] = $this->input->post("examName");
 		$data['student_id'] = $this->input->post("student_id");
 		$data['fsd'] = $this->input->post("fsd");
-	    //print_r($data1);exit();
+	    
 		$data['pageTitle'] = 'Result';
 		$data['smallTitle'] = 'Result';
 		$data['mainPage'] = 'Exam';

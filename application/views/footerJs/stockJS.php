@@ -43,6 +43,17 @@
 		<!-- end: JAVASCRIPTS REQUIRED FOR SUBVIEW CONTENTS -->
 		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/select2/select2.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/tableExport.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jquery.base64.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/html2canvas.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jquery.base64.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/libs/sprintf.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/jspdf.js"></script>
+		<script src="<?php echo base_url(); ?>assets/plugins/tableExport/jspdf/libs/base64.js"></script>
+		<script src="<?php echo base_url(); ?>assets/js/table-export.js"></script>
+		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+		<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/select2/select2.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/table-data.js"></script>
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: CORE JAVASCRIPTS  -->
@@ -275,7 +286,7 @@
 						document.getElementById('balance').value=a;
 					});
 				
-				
+				TableExport.init();
 				Main.init();
 				SVExamples.init();
 				TableData.init();
