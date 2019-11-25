@@ -64,7 +64,7 @@
 										<td>
 											<button class="btn btn-sm <?php if($fee_submit){echo "btn-light-green"; }else{echo "btn-light-red";}?>" id="fee_submit" value="fee_submit">
 												<i class="<?php if($fee_submit){echo "fa fa-check"; }else{echo "fa fa-times fa fa-white";}?>"></i> 
-												<?php if($fee_submit){echo "YES"; }else{echo "fa fa-times fa fa-white";}?>
+												<?php if($fee_submit){echo "YES"; }else{echo "NO";}?>
 											</button>
 										</td>
 										<td>
