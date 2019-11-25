@@ -575,6 +575,7 @@ function result(){
 		 * [$futureDate defines end of finatial satrt date.]
 		 * @var [Date]
 		 */
+		  //for 1st term
 
 	       $this->db->Distinct();
 	      $this->db->select("exam_id,term");

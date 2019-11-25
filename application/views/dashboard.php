@@ -1,3 +1,4 @@
+
 <!-- start: PAGE CONTENT -->
 <?php
 $school_code = $this->session->userdata("school_code");
@@ -1143,15 +1144,4 @@ $school_code = $this->session->userdata("school_code");
         </div> 
     </div>
     </div>-->
-  
-
-
-
-
-
-
-
- 
-  
-
   <!-- end: PAGE CONTENT-->

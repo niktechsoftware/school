@@ -426,6 +426,7 @@ if($subjectname->num_rows()>0){
 					
                 </table>
             </div>
+
 			<!--for 9th 10th formate of ramdoot end-->
                <?php     }else if($classid == 216  && $row2=="A" || $classid == 217 && $row2=="A"  || $classid == 150 && $row2=="A"  || $classid == 153 && $row2=="A" || $classid == 149 && $row2=="A"  || $classid == 152 && $row2=="A"  ){ ?>
 		   <!--for 12th 11th formate of ramdoot-->

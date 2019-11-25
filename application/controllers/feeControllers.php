@@ -272,7 +272,8 @@ function getFsd(){
 			$this->db->where("student_id",$student->id);
 			$var=$this->db->get("guardian_info")->row();
 			$fmobile=$student->mobile;
-		$fmobile1=$this->session->userdata("mobile_number");
+
+				$fmobile1=$this->session->userdata("mobile_number");
 	
 			$msg1="Dear sir/Mam , Rs. ".$paid."amount has been credited in your account  by ".$student->username;
 		//get fee details

@@ -1,3 +1,4 @@
+
 <?php
 class SmsAjax extends CI_Controller{
 	function __construct()
@@ -365,7 +366,7 @@ class SmsAjax extends CI_Controller{
 			
 			foreach($employee->result() as $empmob):
 			$checknum = $this->smsmodel->checknum($empmob->mobile,$msg,$master_id);
-		
+		    
 			if($checknum){
 			if($smscount<90){
 				if($smsc==0){
