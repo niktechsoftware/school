@@ -154,8 +154,8 @@
                             </tr>
 
                             <tr>
-                                <td style="padding:6px;text-transform: uppercase;">Father Name</td>
-                                <td>
+                                <td style="padding:6px;">Father Name</td>
+                                <td style="text-transform: uppercase;">
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
                             </tr>

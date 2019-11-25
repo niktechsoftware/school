@@ -122,15 +122,13 @@
     
 
 <?php 
+
  $row2=$this->db->get('db_name')->row()->name;
 $school= $this->session->userdata("school_code");
 
 
 if($this->session->userdata("school_code") ==  9){
-    
-   	
-		    
-		    
+
 $school_code=$this->session->userdata("school_code");
 $tdiscount=0;
 	$this->db->where("id",$school_code);

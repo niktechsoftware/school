@@ -1,3 +1,4 @@
+
 <?php
 class SmsAjax extends CI_Controller{
 	function __construct()

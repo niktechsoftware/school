@@ -711,6 +711,7 @@ function insertMarksdetail()
 	if($v->num_rows()<1){
 	    $data=array(
 
+
 	        'term'=>$term,
 	        'class_id'=>$classid,
 	        'subject_id'=>$subjectid,
