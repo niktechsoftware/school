@@ -1420,7 +1420,7 @@ $cumulativetotal=0;
 						$dfg1= round((($dfg*100)/$exammm), 2);
 							$gradecal =calculateGrade($dfg1,$classid->class_id);
 						 ?></td>-->
-						<td class="center bold"><?php echo $gradecal;?></td>
+						<td class="center bold"><?php  if($examid->num_rows() >0){echo $gradecal;}else{echo "";}?></td>
 					<!--1st term exam end-->
 					<!--2nd term exam start-->
 						<?php 
@@ -1538,12 +1538,12 @@ $cumulativetotal=0;
 					</td>
 				<?php $i++; $t++;endforeach; ?>
 				<?php } ?>
-					<!--	<td class="center bold"><?php
+						<!--<td class="center bold"><?php 
 						$dfg1_2= round((($dfg_2*100)/$exammm), 2);
 							$gradecal_2 =calculateGrade($dfg1_2,$classid->class_id);
 						 ?></td>-->
 						 
-						<td class="center bold"><?php echo $gradecal_2;?></td>
+						<td class="center bold"><?php  if($examid_2->num_rows() >0){echo $gradecal_2;}else{echo " ";} ?></td>
 					<!--2nd term exam end-->
 				<td class="center bold"><?php  //$rty = $gtptal/2; echo $gtptal;  ?></td>
 			   <td class="center bold"><?php //echo calculateGrade($rty,$classid->class_id)?></td>	
@@ -1555,7 +1555,7 @@ $cumulativetotal=0;
 					$h=1;$i=0; foreach($ctotal as $cd): 
 					if($h<5){ ?>
 				<td class="center" colspan="1">	<?php $cumulativetotal+=$ctotal[$i];echo $ctotal[$i];  ?>
-				<?php  if($ctotalmo[$i] >0 ){echo "[".$ctotalmo[$i]."]";} ?> 
+				<?php  if($ctotalmo[$i] >0 ){echo "/".$ctotalmo[$i];} ?> 
 				</td>
 				<?php $h++; $i++; $dhtm1=0;}  endforeach; ?>
 				<?php if($h%2==0){ ?>
@@ -1567,7 +1567,7 @@ $cumulativetotal=0;
 				  foreach($ctotal1 as $cd): 
 					if($h1<5){ ?>
 				<td class="center" colspan="1">	<?php  $cumulativetotal1+=$ctotal1[$i1];echo $ctotal1[$i1];  ?>
-				<?php  if($ctotalmo2[$i1] >0 ){echo "[".$ctotalmo2[$i1]."]";} ?> </td>
+				<?php  if($ctotalmo2[$i1] >0 ){echo "/".$ctotalmo2[$i1];} ?> </td>
 					<?php $h1++; $i1++; }  endforeach;	?>
 					
 			<td class="center bold"><?php //echo $cumulativetotal;?></td>
