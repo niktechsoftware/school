@@ -1,3 +1,4 @@
+
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,6 +12,7 @@
     <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
     <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/print.css'
         media="print" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap/css/bootstrap.min.css">
     <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
     <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/example.js'></script>
     <style type="text/css">
@@ -84,13 +86,18 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   <!--          <input type="hidden" name="row" value="<?php //echo $num_row1; ?>" />-->
            
                      <?php 
+					 
+					  $fsd = $this->uri->segment(3);
+							$examid = $this->uri->segment(4);
+							$classid = $this->uri->segment(5);
+							$subjectid = $this->uri->segment(6);
                             $this->db->where('school_code',$school_code);
                            $this->db->where('id',$classid);
                           $classname=$this->db->get('class_info')->row()->class_name;
 
-                           $this->db->where('school_code',$school_code);
+                         /*  $this->db->where('school_code',$school_code);
                            $this->db->where('id',$sectionid);
-                          $sectionname=$this->db->get('class_section')->row()->section;
+                          $sectionname=$this->db->get('class_section')->row()->section;*/
 
                            $this->db->where('class_id',$classid);
                            $this->db->where('id',$subjectid);
@@ -101,7 +108,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
  <table class="table table-striped table-bordered table-hover" >
                   <tr>
 
-                    <th><?php echo $classname; ?> - <?php echo $sectionname; ?> - <?php echo $subjectname; ?></th>
+                    <th><?php echo $classname; ?> - <?php //echo $sectionname; ?> - <?php echo $subjectname; ?></th>
                     <th><?php 
 						date_default_timezone_set("Asia/Calcutta");
 						$day = date('d-m-Y');
@@ -137,19 +144,22 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                       //$this->db->order_by("name","asc");
 
                     $num_row=$this->db->get("student_info");
-                  //  print_r($num_row);exit();
                 if($num_row->num_rows()>0){
                 foreach ($num_row->result() as $stu):
                  $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND fsd = '$fsd' and school_code='$school_code' AND stu_id='$stu->id'");
-	        if($val->num_rows()>0){
+	  					
+		   if($val->num_rows()>0){
 	            $v=$val->row();
-                
+                 
                 ?>
                   <tr>
                     <td><?php echo $j; ?></td>
                     <td>
 					 <input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
                         <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
+						 <input type="hidden" id="fsd<?php echo $i; ?>" value="<?php echo $fsd; ?>" />
+                        <input type="hidden" id="classid<?php echo $i; ?>" value="<?php echo $classid; ?>" />
+						<input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
 					<?php echo $stu->username; ?> </td>
                     <td ><span  style="text-transform:uppercase;"><?php echo $stu->name;?></span></td>
                      <?php if($v->Attendance==1)
@@ -163,13 +173,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 
                  <?php if($result1)
                     { ?>
-                    <td><?php echo $result1->max_m; ?></td>
+                    <td> <input type="text" id="mammarks<?php echo $i;?>" value="<?php echo $m = $result1->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/>  <?php //echo $result1->max_m; ?></td>
                     <?php }?>
                       
-                    <td><?php echo $v->marks;?></td>
+                    <td><input type="text" id="mark<?php echo $i; ?>"  name="marks<?php echo $i; ?>" value="<?php echo $v->marks; ?>" readonly /><?php //echo $v->marks;?></td>
 					<td>
 				  <?php $login_type=$this->session->userdata("login_type"); if($login_type == "admin"){ ?>
-                     <button class="btn btn-red" id="deletemmarks1<?php echo $i;?>">Delete Marks<i class="fa fa-trash-o"></i>
+                     <button class="btn btn-danger" id="deletemmarks1<?php echo $i;?>">Delete Marks<i class="fa fa-trash-o"></i>
                      </button>
 				  <?php } ?>
                   </td>
@@ -177,12 +187,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 				  <script>
 				  $("#deletemmarks1<?php echo $i;?>").click(function(){
                            var mmarks = $("#mammarks<?php echo $i; ?>").val();
-							var classid = $("#classId").val();
+							var classid = $("#classid<?php echo $i; ?>").val();
 							var stuid= $("#stu_id<?php echo $i; ?>").val();
 							var marks = $("#mark<?php echo $i; ?>").val();
-							var subjectid = $("#subjectId").val();
+							var subjectid = $("#subjectid<?php echo $i; ?>").val();
 							var examid = $("#examid<?php echo $i; ?>").val();
 							var attendence = $("input[name='attendence']:checked").val();
+							//alert(classid +" "+ subjectid +" "+examid);
                     $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
                       $("#deletemmarks1<?php echo $i;?>").html(data);
                       alert('Marks Deleted Successfully');
@@ -203,6 +214,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					?>
 					<input type="hidden" id="term<?php echo $i; ?>" value="<?php echo $term; ?>" />
                           <input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
+						  <input type="hidden" id="classid<?php echo $i; ?>" value="<?php echo $classid; ?>" />
+						  <input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
                         <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
                         <?php echo $stu->username; ?>
                       </td>
@@ -236,7 +249,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                       
                       <td>
                 		  <div class="invoice-buttons">
-                            <input type="submit"  class="btn btn-dark-purple" value ="Insert Marks" id="submit<?php echo $i;?>"/>
+                            <input type="submit"  class="btn btn-info" value ="Insert Marks" id="submit<?php echo $i;?>"/>
                        </div>
                        </td>
                         </tr> 
@@ -256,14 +269,14 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 
               $("#submit<?php echo $i;?>").click(function(){
                 var mmarks = $("#mammarks<?php echo $i; ?>").val();
-                var classid = $("#classId").val();
+                var classid = $("#classid<?php echo $i; ?>").val();
                 var stuid= $("#stu_id<?php echo $i; ?>").val();
                 var marks = $("#mark<?php echo $i; ?>").val();
-                var subjectid = $("#subjectId").val();
+                var subjectid = $("#subjectid<?php echo $i; ?>").val();
                 var examid = $("#examid<?php echo $i; ?>").val();
                 var term = $("#term<?php echo $i; ?>").val();
                 var attendence = $("input[name='attendence<?php echo $i; ?>']:checked").val();
-    				    //alert(attendence);
+    				  // alert(marks +" "+ subjectid +" "+examid);
     				    if(mmarks!="" && marks!=""){
     					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);

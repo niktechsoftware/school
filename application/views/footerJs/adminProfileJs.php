@@ -93,6 +93,8 @@
 					var nationality = $("#nationality").val();
 					
 					var mobile_number = $("#mobile_number").val();
+					var other_mobile_no = $("#other_mobile_no").val();
+					var phone_no = $("#phone_no").val();
 					var fax_number = $("#fax_number").val();
 					var email1 = $("#email1").val();
 					var email2 = $("#email2").val();
@@ -117,6 +119,8 @@
 						nationality : nationality,
 						
 						mobile_number : mobile_number,
+						phone_no : phone_no,
+						other_mobile_no : other_mobile_no,
 						fax_number : fax_number,
 						email1 : email1,
 						email2 : email2
