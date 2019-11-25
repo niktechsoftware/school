@@ -710,12 +710,9 @@ function insertMarksdetail()
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
-<<<<<<< HEAD
-	        'term'=>1,
-=======
+
 
 	        'term'=>$term,
->>>>>>> 35b12bb52f425c1c7476bf510ea6552a4913b6fc
 	        'class_id'=>$classid,
 	        'subject_id'=>$subjectid,
 	        'stu_id'=> $stuid,

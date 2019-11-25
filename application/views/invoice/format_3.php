@@ -791,7 +791,7 @@
 
             <?php }else if($school == 14 && $row2=="C" || $school == 7 && $row2=="D"){ ?>
 
-			 <!--gyanodya result start-->
+			 <!--gyanodya, mkd result start-->
            <div>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -1220,10 +1220,10 @@
                     </tr>
                 </table>
             </div>
-            <!--gyanodya result end-->
+            <!--gyanodya, mkd result end-->
 			
 			<?php }else{ ?>
-            <!--other result start(SPRING DALE & SARVODYA)-->
+            <!--other result start(SPRING DALE & SARVODYA & BSD)-->
             <div>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -1535,7 +1535,7 @@
                     </tr>
                 </table>
             </div>
-            <!--other result end-->
+            <!--other result end (SPRING DALE & SARVODYA & BSD)-->
             <?php } ?>
             <br>
 
