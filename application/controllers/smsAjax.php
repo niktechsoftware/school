@@ -359,7 +359,7 @@ class SmsAjax extends CI_Controller{
 		$employee = $this->employeemodel->employeeList($this->session->userdata("school_code"));
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
-
+    	$fmobile1=$this->session->userdata("mobile_number");
 		if($isSMS->greeting)
 		{  
 			

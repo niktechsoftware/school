@@ -272,7 +272,9 @@ function getFsd(){
 			$this->db->where("student_id",$student->id);
 			$var=$this->db->get("guardian_info")->row();
 			$fmobile=$student->mobile;
-			
+		$fmobile1=$this->session->userdata("mobile_number");
+	
+			$msg1="Dear sir/Mam , Rs. ".$paid."amount has been credited in your account  by ".$student->username;
 		//get fee details
 	         	$this->db->where("invoice_no",$invoice_number);
                     	//$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -302,6 +304,7 @@ function getFsd(){
 		    $master_id=$max_id->maxid+1;
 		    $getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
 		    if($getresultm){
+		        sms($fmobile1,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		    	$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		    	$this->smsmodel->sendReport($getv,$master_id);
 		    }
