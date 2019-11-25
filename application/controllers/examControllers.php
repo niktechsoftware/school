@@ -467,7 +467,20 @@ function defineExam1(){
 		
 	
 	function enterMarks()
-	{ 	$fsd =$this->session->userdata("fsd");
+	{ 	//$fsd =$this->session->userdata("fsd");
+		// $classid = $this->input->post("classid");
+		// $subjectid =$this->input->post("subjectid");
+		// $examid =$this->input->post("examid");
+		$data['t_id'] = $this->input->post("teacherid");
+		$data['classid'] = $this->input->post("classid");
+		$data['sectionid'] = $this->input->post("sectionid");
+		$data['subjectid'] = $this->input->post("subjectid");
+		$data['examid'] = $this->input->post("examid");
+	//$this->load->view("ajax/examMarksDetail",$data);	
+   $this->load->view("print_obtain",$data);		
+	}
+	function print_obtain()
+	{ 	/*$fsd =$this->session->userdata("fsd");
 		 $classid = $this->input->post("classid");
 		 $subjectid =$this->input->post("subjectid");
 		 $examid =$this->input->post("examid");
@@ -475,8 +488,8 @@ function defineExam1(){
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
-		$data['examid'] = $this->input->post("examid");
-	$this->load->view("ajax/examMarksDetail",$data);		
+		$data['examid'] = $this->input->post("examid");*/
+	$this->load->view("ajax/examMarksDetail");		
 	}
 
 	function maxmumsubMarks()

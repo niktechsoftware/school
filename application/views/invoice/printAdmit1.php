@@ -158,7 +158,8 @@
 	   $cyear = date('Y', strtotime($date->finance_start_date));
 		$nyear = date('Y', strtotime($date->finance_end_date));
 ?>	
-	<div  style="height: 480px;width:550px; border: 1px solid black; outline: 1px solid black; solid #333;">
+
+	<div id="page-wrap" style="height: 540px;width:800px; border: 1px solid black; outline: 1px solid black; solid #333;">
 
 		<table>
 			<tr>

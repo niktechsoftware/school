@@ -37,6 +37,7 @@
 				 // $check = mysqli_query($this->db->conn_id,"select * from sale_info WHERE school_code='$school_code' GROUP BY bill_no");
 					// $num =$check->num_rows;
 				 $this->db->where("school_code",$school_code);
+				 $this->db->group_by('bill_no');
 				 $dt=$this->db->get("sale_info");
 						//print_r($dt );
 					if($dt->num_rows()> 0){

@@ -21,9 +21,10 @@ function __construct()
                    if($getDaybook->num_rows()>0){
                        $getDaybook = $getDaybook->row();
                           $query3=$this->db->query("select sum(amount) as cradit from day_book where dabit_cradit='1' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."'");
+                           $oldfee=$this->db->query("select sum(amount) as cradit from day_book where dabit_cradit='2' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."'");
                           $query4=$this->db->query("select sum(amount) as dabit from day_book where dabit_cradit='0' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."'");
                           if($query3->num_rows()>0){
-                              $credit = $query3->row()->cradit;
+                              $credit = $query3->row()->cradit+$oldfee;
                           }else{
                                $credit =0;
                           }

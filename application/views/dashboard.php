@@ -1,3 +1,4 @@
+
 <!-- start: PAGE CONTENT -->
 <?php
 $school_code = $this->session->userdata("school_code");
@@ -86,7 +87,18 @@ $school_code = $this->session->userdata("school_code");
                 </br>
                 <mark><?php 
 					
-					 echo $totalIncome;
+					  $school_code=   $this->session->userdata("school_code");
+					 $this->db->select_sum("paid");
+					 $this->db->where('school_code',$school_code);
+					 $this->db->where('date(diposit_date)',date('Y-m-d'));
+				//	 $this->db->where('dabit_cradit',1);
+					$stocktotal=$this->db->get('fee_deposit')->row();
+					if($stocktotal->paid){
+           echo $stocktotal->paid;
+          } 
+          else{
+            echo "0";
+          }
 					?>
                 </mark>
               </div>
@@ -1132,15 +1144,4 @@ $school_code = $this->session->userdata("school_code");
         </div> 
     </div>
     </div>-->
-  
-
-
-
-
-
-
-
- 
-  
-
   <!-- end: PAGE CONTENT-->
