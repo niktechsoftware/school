@@ -1705,7 +1705,7 @@ $cumulativetotal=0;
 		if($ctotal[2] > 0){echo round((($ctotal[2]*100)/$dhtm), 2);}else{}
 		?>%  </td>
 			<td colspan="6">CLASS RANK: <?php 
-			echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd); ?></td>
+			//echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd); ?></td>
 		</tr>
 			<!---kerala marks table end--->
 			<?php }else if($school == 5 && $row2== "C"){ ?>
