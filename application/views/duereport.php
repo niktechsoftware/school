@@ -99,7 +99,8 @@
                     	 	$this->db->where("class_id",$data->id);
                     	 	$this->db->where("fsd",$this->session->userdata('fsd'));
                     	 	$student = $this->db->get("student_info");
-                    	 	 if($student->num_rows() > 0){
+                    	 	 if($student->num_rows() > 0){ 
+                    	 	     //print_r($student->num_rows());
                     	$isData = $this->db->count_all("fee_deposit"); 
                     	if($isData > 0){
 
@@ -165,7 +166,13 @@
 								 	    $db=$mbalance->row()->mbalance;
 								 	   
 								 	   // exit;
-								 	}}
+								 	}
+								 	   else{
+								 	    $db=0;
+								 	} 
+								 	}else{
+								 	    $db=0;
+								 	}
 									$cdate = date("Y-m-d");
 									$cmonth = date("Y-m",strtotime($cdate));
 									//print_r($stu_id);
@@ -364,8 +371,8 @@
 								    
 								 }
 									
-									$sum=$sum + $fee_head;
-								// echo "<br>".$fee_head;
+									$sum=$sum + $fee_head+$db;
+								//  echo "<br>".$fee_head;
 							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head;?>"/><?php 
 								}else{ }
 								}else{

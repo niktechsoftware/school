@@ -133,13 +133,23 @@
 
 <body>
     <div id="printcontent" align="center">
-        <div id="page-wrap" style="margin-top: 70px;height: 1330px;width:960px; border:1px solid #333;">
 	<?php 
-			$school=$this->session->userdata('school_code');
-			$row2=$this->db->get('db_name')->row()->name;		
-		?>
-    <div style="width:100%; height:1330px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
-       
+				$school=$this->session->userdata('school_code');
+				$row2=$this->db->get('db_name')->row()->name;		
+			?>
+	<?php if($school == 10 && $row2=="D"){ ?>
+		<!--sarvodya size start-->
+        <div id="page-wrap" style="margin-top: 70px;height: 1130px;width:960px; border:1px solid #333;">
+		<div style="width:100%; height:1130px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
+		<!--sarvodya size end-->
+       <?php }else{ ?>
+		<!--other size start-->
+		<div style="width:100%; height:1330px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
+		<div style="width:100%; height:1330px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
+		<!--other size end-->
+		<?php } ?>
+		
+		
                 <div style="width:95%; margin-left:auto; margin-right:auto; border:1px  solid yellow; height:auto;">
                     <?php
 						$school_code = $this->session->userdata("school_code");
@@ -158,13 +168,6 @@
                             <td  style="border: none;" >
                                 <h1 style="font-size: 30px; font-family: Algerian;">
                                     <?php echo $info->school_name;?></h1>
-                              <!--  <h2 style="">
-                                   	<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
-                                </h2>
-                                <h2 style="">
-                                <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
-									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->other_mobile_no ;} ?>
-                                </h2>-->
                             </td>
                             <td style="border: none;">
                                 <img src="<?php echo base_url(); ?>assets/images/cbse_logo.png" alt="" style="height: 100px;width: 100px;">
@@ -174,28 +177,16 @@
                              <td colspan="2" style="border: none;" >
                                 <h1 style="font-size: 35px;">
                                     <?php echo $info->school_name;?></h1>
-                                <h2 style="">
+                                <h2 style="margin-left: 76px;">
                                    	<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                                 </h2>
-                                <h2 style="">
+                                <h2 style="margin-left: 26px;">
                                 <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
 									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->other_mobile_no ;} ?>
                                 </h2>
                             </td>
                             <?php } ?>
-							<!--<div class="row">
-							<div class="col-md-2"><img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
-                                    alt="" width="120" /></div>
-							<div class="col-md-10"><h1 style="color:white;text-align: center;font-size: 30px;">
-                                    <?php echo $info->school_name;?></h1>
-                                <h2 style="color:white;text-align: center;">
-                                   	<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
-                                </h2>
-                                <h2 style="color:white;text-align: center;">
-                                <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
-									if(strlen($info->mobile_no > 0 )){echo $info->mobile_no.", ".$info->mobile_no ;} ?>
-                                </h2></div>
-							</div>-->
+							
 						</tr>
 						 <tr class="wight" style="font-size: 14px;">
 							<td >
@@ -1234,7 +1225,7 @@
 			 <!--sarvodya start-->
            <div>
                 <table
-                    style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
+                    style="font-size: 15px;width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
                     <tr>
                         <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
 						<th colspan="3" rowspan="2">TERM 1 (100 MARKS) </th>
@@ -1260,11 +1251,8 @@
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;
-						$this->db->where('exam_id',$value->exam_id);
-						$exammm=	$this->db->get('exam_max_subject')->row()->max_m;	
-						echo "[".$exammm."]";
-						?></td>
+						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1281,11 +1269,8 @@
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;
-						$this->db->where('exam_id',$value->exam_id);
-						$exammm=	$this->db->get('exam_max_subject')->row()->max_m;	
-						echo "[".$exammm."]";
-						?></td>
+						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1303,11 +1288,8 @@
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;
-									$this->db->where('exam_id',$value->exam_id);
-						$exammm=	$this->db->get('exam_max_subject')->row()->max_m;	
-						echo "[".$exammm."]";
-						?></td>
+						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1329,11 +1311,8 @@
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" ><?php echo $examname->exam_name;
-						$this->db->where('exam_id',$value->exam_id);
-						$exammm=	$this->db->get('exam_max_subject')->row()->max_m;	
-						echo "[".$exammm."]";
-						?></td>
+						<td colspan="1" ><?php echo $examname->exam_name;?>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1350,11 +1329,8 @@
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" ><?php echo $examname->exam_name;
-						$this->db->where('exam_id',$value->exam_id);
-						$exammm=	$this->db->get('exam_max_subject')->row()->max_m;	
-						echo "[".$exammm."]";
-						?></td>
+						<td colspan="1" ><?php echo $examname->exam_name;?>
+						<?php   if($i <=2 ){echo "&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1371,11 +1347,8 @@
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" ><?php echo $examname->exam_name;
-						$this->db->where('exam_id',$value->exam_id);
-						$exammm=	$this->db->get('exam_max_subject')->row()->max_m;	
-						echo "[".$exammm."]";
-						?></td>
+						<td colspan="1" ><?php echo $examname->exam_name;?>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1649,12 +1622,13 @@
             <br>
             <div>
                 <table
-                    style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
+                    style="font-size: 15px;width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
                      <tr>
                         <td>Overall Marks : <?php echo $grandtotal; ?>/<?php echo $dhtm;?></td>
                         <td>Percentage  : <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}?>% </td>
                         <td >Grade  : <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade_sarvodya($per,$classid->class_id);}?></label></td>
-                        <td>Rank :</td>
+                        <td>Rank :<?php 
+			echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);?></td>
                     </tr>
                 </table>
             </div>
@@ -2200,7 +2174,7 @@
 					<table style="width:90%; border:1px solid black;">
 					<thead> 
 						<tr >
-							<th colspan="3" >Grading Scale For Co-Scholastic & Scholastic Areas</th>
+							<th colspan="3" >Grading Scale For Scholastic Areas</th>
 						</tr>
 						<tr >
 							<th colspan="3">( Grades are awarded on 8-point Grading Scale )</th>
