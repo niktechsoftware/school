@@ -62,6 +62,7 @@ class Smsmodel extends CI_Model{
 	    
 	}
 	function checknum($cnumber,$msg,$master_id){
+	  
 		$cnumber = str_replace(' ', '', $cnumber);
 		if((is_numeric($cnumber)) && (strlen($cnumber)==10)){
 			return $cnumber;
@@ -81,6 +82,7 @@ class Smsmodel extends CI_Model{
 	
 	
 	function sendReport($getv,$master_id){
+	  
 		foreach ($getv as $key => $rowValue):
 			if($rowValue['sent_number']){
 				$number=$rowValue['sent_number'];
