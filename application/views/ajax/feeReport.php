@@ -540,7 +540,7 @@
 
 						$sum=0;
 								 //$x=0;
-
+                //  print_r($student->num_rows());
 				    foreach($student->result() as $stuDetail):
 				    	$stu_id = $stuDetail->id;
 				    	//print_r($school_code);
