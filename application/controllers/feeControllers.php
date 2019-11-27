@@ -305,7 +305,9 @@ function getFsd(){
 		    $master_id=$max_id->maxid+1;
 		    $getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
 		    if($getresultm){
+		        if($this->session->userdata("school_code")!=9){
 		        sms($fmobile1,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+		        }
 		    	$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		    	$this->smsmodel->sendReport($getv,$master_id);
 		    }

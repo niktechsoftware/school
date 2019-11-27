@@ -52,3 +52,12 @@ Stack trace:
 [25-Nov-2019 17:17:25 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 754
 [25-Nov-2019 17:17:37 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 754
 [25-Nov-2019 17:17:58 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 754
+[27-Nov-2019 10:24:54 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade_sarvodya() in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1643
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/controllers/invoiceController.php(695): CI_Loader->view('invoice/format_...', Array)
+#3 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): InvoiceController->result('6367', '12')
+#4 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 1643
