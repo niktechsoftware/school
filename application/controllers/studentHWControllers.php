@@ -4,7 +4,7 @@ class studentHWControllers extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 			$this->is_login();
-	
+	$this->load->model("smsmodel");
 	}
 	
 	
@@ -52,6 +52,52 @@ class studentHWControllers extends CI_Controller{
 	}
 	
 	
+	public function hwSms(){
+		$smscount=0;
+		$count=0;
+		 $class_id = $this->input->post("classid");
+		 $fmobile=$this->session->userdata("mobile_number");
+		 $school_code=$this->session->userdata("school_code");
+		 $date=Date("Y-m-d");
+				$this->db->where("workfor",'students');
+				$this->db->where("school_code",$school_code);
+				$this->db->where("Date(givenWorkDate)",$date);
+				$this->db->where("class_id",$class_id);
+		 $dt= 	$this->db->get("homework_name");
+		 foreach($dt->result() as $hw):
+		// $term_arr[]=$hw1['hw'];
+		// print_r($hw1['hw']);
+		 $this->db->where("id",$hw->subject_id);
+		$result = $this->db->get("subject");
+		 $sub=$result->row()->subject;
+		 $work=$hw->workDiscription;
+		echo $data=$sub."[".$work ."],";
+		 endforeach;
+		 $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+		 $sende_Detail =$sender->row();
+		 $msg="Dear Student please done your homework which is assigned today in Subjects:".$data."For more info visit login to you account";
+		// print_r($msg);
+		 $query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id);
+		if($query->num_rows() > 0)
+		{ 
+		if($fmobile){
+			foreach($query->result() as $parentmobile):
+			if($parentmobile->mobile){
+			if($smscount<90){
+				$fmobile =$fmobile.",".$parentmobile->mobile;
+				$count=$count+1;
+				$smscount++;
+			}else{
+				//sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				$fmobile="8382829593";
+				$smscount=0;
+				}
+										}
+			endforeach;
+					}
+			//sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+		}
+  }
 	
 	function addHomeWork(){
 	    $school_code = $this->session->userdata("school_code");
@@ -454,7 +500,6 @@ function showHomeWork()
 		echo "<div style='color:red;'>home Work not Assign.</div>";
 	}
 	}
-	
 	
 	
 	  public function getStudentWork1(){

@@ -58,13 +58,15 @@ zx		<!--[if lt IE 9]>
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script>
 			jQuery(document).ready(function() {
+				
 				TableExport.init();
 				Main.init();
 				SVExamples.init();
 			});
 			
-			 
+			 <?php $sno=1; ?>
                 jQuery(document).ready(function() {
+					
                     $('#aarju').DataTable();
                 } );
            
