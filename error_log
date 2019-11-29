@@ -56,3 +56,119 @@ Stack trace:
 [27-Nov-2019 14:42:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$sum' (T_VARIABLE) in /home/schoodhe/public_html/school/application/views/duereport.php on line 115
 [27-Nov-2019 14:42:23 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$sum' (T_VARIABLE) in /home/schoodhe/public_html/school/application/views/duereport.php on line 115
 
+[29-Nov-2019 15:21:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$msg' (T_VARIABLE) in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 74
+[29-Nov-2019 15:42:41 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:44 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:46 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:46 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:48 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:48 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:48 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:48 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:50 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 15:42:57 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[29-Nov-2019 16:14:01 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 76

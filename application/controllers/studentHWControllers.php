@@ -59,6 +59,26 @@ class studentHWControllers extends CI_Controller{
 		 $fmobile=$this->session->userdata("mobile_number");
 		 $school_code=$this->session->userdata("school_code");
 		 $date=Date("Y-m-d");
+		 
+		 $this->db->select("homework_name.workDiscription,subject.subject");
+		 $this->db->where("workfor","students");
+		 $this->db->where("school_code",$school_code);
+		 $this->db->where("homework_name.class_id",$class_id);
+		 $this->db->where("Date(givenWorkDate)",$date);
+		// $this->db->where("class_id",$class_id);
+		 $this->db->from("homework_name");
+ 	  
+		$this->db->join("subject","homework_name.subject_id = subject.id");
+	   $cdt=$this->db->get()->result();
+	   //print_r($cdt);
+	  
+
+	   $msg="Dear Student please done your homework which is assigned today in Subjects:".$cdt[0]."For more info visit login to you account";
+	   print_r($msg);
+	   exit;
+	   
+		 
+		 
 				$this->db->where("workfor",'students');
 				$this->db->where("school_code",$school_code);
 				$this->db->where("Date(givenWorkDate)",$date);
@@ -72,6 +92,7 @@ class studentHWControllers extends CI_Controller{
 		 $sub=$result->row()->subject;
 		 $work=$hw->workDiscription;
 		echo $data=$sub."[".$work ."],";
+		exit;
 		 endforeach;
 		 $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		 $sende_Detail =$sender->row();
