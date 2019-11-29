@@ -78,7 +78,8 @@ foreach($class as $data)
  <?php if($sno%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
 	   <tr class="<?php echo $rowcss;?> text-uppercase">
             <td><?php echo $sno;?></td>
-            <td><?php echo $data->class_name;?><?php echo "[".$section->section . "]";?></td>
+            <td><input type = "hidden" id="classid<?php echo $sno;?>" value="<?php echo $id;?>"/>
+									<?php echo $data->class_name;?><?php echo "[".$section->section . "]";?></td>
 			<td><?php echo $subject_tot;
 			/*echo "("; 
 			foreach($subject as $subject1)
@@ -126,7 +127,16 @@ foreach($class as $data)
             {echo $subject1->id.","; }
 			echo ")"; */
 			?></td>
-			<td><a href="3" style="color:white;" id="sms<?php echo $sno;?>" class="btn btn-warning">Send SMS</a></td>
+			<td><a href="#" style="color:white;" id="sms<?php echo $sno;?>" class="btn btn-warning">Send SMS</a></td>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script>
+			  		$("#sms<?php echo $sno;?>").click(function(){
+			  				var classid = $("#classid<?php echo $sno;?>").val();
+					$.post("<?php echo site_url("index.php/studentHWControllers/hwSms") ?>",{classid : classid}, function(data){
+						$("#sms<?php echo $sno;?>").html(data);
+					});
+																});
+				</script>
         </tr>
 			<?php  $sno++; } ?></tbody>
 </table>
