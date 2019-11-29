@@ -500,7 +500,7 @@
 					$gtptal_2=0;
 					$i=1; $t=0;?>
 					<!--1st term marks start-->
-					<?php  if($examid->num_rows()==0){?>
+					<?php  if($examid->num_rows()==0){ ?>
 						<td colspan="1" style="background-color: #efef70;"></td>
 						<td colspan="1" style="background-color: #efef70;"></td>
 						<td colspan="1" style="background-color: #efef70;"></td>
@@ -536,7 +536,8 @@
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
+						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 					<td colspan="1" style="background-color: #efef70;"></td>
@@ -573,12 +574,13 @@
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
+						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 				<td colspan="1" style="background-color: #efef70;"></td>
 				<td colspan="1" style="background-color: #efef70;"></td>
-				<?php }else if($examid->num_rows()==2){ ?>
+				<?php }else if($examid->num_rows()==3){ ?>
 												<?php
 					foreach ($examid->result() as $value):?>
 					<td class="center" style="background-color: #efef70;">	
@@ -609,12 +611,13 @@
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
+						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
-				<?php $i++; $t++;endforeach; ?><td colspan="1" style="background-color: #efef70;"></td>
-				
+				<?php $i++; $t++;endforeach; ?>
+				<td colspan="1" style="background-color: #efef70;"></td>
 				<?php }else{ ?>
-																				<?php foreach ($examid->result() as $value):?>
+					<?php foreach ($examid->result() as $value):?>
 					<td class="center" style="background-color: #efef70;">	
 					<?php
 					$this->db->where("term", 1);
@@ -643,7 +646,8 @@
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+						}else if($marks->num_rows()==0){ $exammm=" "; } ?><?php //echo "/" .$exammm;
+						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 																						<?php } ?>
@@ -651,7 +655,7 @@
 			   <?php ?></td>
 			    <!--1st term marks end-->
 				<!--2nd term marks start-->
-				<?php  if($examid_2->num_rows()==0){?>
+				<?php  if($examid_2->num_rows()==0){ ?>
 						<td colspan="1" style="background-color: #efef70;"></td>
 						<td colspan="1" style="background-color: #efef70;"></td>
 						<td colspan="1" style="background-color: #efef70;"></td>
@@ -684,7 +688,8 @@
 					}else{ $ttal_2= $ttal_2;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
+						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 				<td colspan="1" style="background-color: #efef70;"></td>
@@ -718,11 +723,45 @@
 					}else{ $ttal_2= $ttal_2;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
+						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 				<td colspan="1" style="background-color: #efef70;"></td>
 				<td colspan="1"style="background-color: #efef70;" ></td>
+				<?php }else if($examid_2->num_rows()==3){ ?>
+				<?php foreach ($examid_2->result() as $value):?>
+					<td class="center" style="background-color: #efef70;">	
+					<?php
+								$this->db->where("term", 2);
+								$this->db->where('subject_id',$sub['subject']);
+								$this->db->where('class_id',$classid->class_id);
+								$this->db->where('stu_id',$studentInfo->id);
+								$this->db->where('exam_id',$value->exam_id);
+								$this->db->where('fsd',$fsd);
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();	
+					if(is_numeric($marks->marks)){
+					  $gtptal_2= $gtptal_2+$marks->marks;
+					}else{ $gtptal_2= $gtptal_2;}
+							echo $marks->marks;
+							$this->db->where('subject_id',$sub['subject']);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('exam_id',$value->exam_id);
+			$exammm_row=	$this->db->get('exam_max_subject')->row();
+				$exammm=	$exammm_row->max_m;
+			if(is_numeric($exammm)){
+					  $ttal_2=$ttal_2+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal_2= $ttal_2;
+					 $dhtm= $dhtm;   
+					}
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
+						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
+					</td> 
+				<?php $i++; $t++;endforeach; ?>
+				<td colspan="1" style="background-color: #efef70;"></td>
 																				<?php }else{ ?>
 				<?php foreach ($examid_2->result() as $value):?>
 					<td class="center" style="background-color: #efef70;">	
@@ -751,7 +790,8 @@
 					}else{ $ttal_2= $ttal_2;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
+						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 																						<?php } ?>
@@ -1248,7 +1288,7 @@
 							   $examname=$examname->row();
 						?> 
 						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?>
-						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[60]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1266,14 +1306,13 @@
 							   $examname=$examname->row();
 						?> 
 						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?>
-						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[60]";} ?></td>
                         <?php 
 						}
 						$i++;
 						endforeach ; ?>
 						<td colspan="1" ></td>
-						
-						<?php  }else{ ?>
+                        <?php  }else{ ?>
 						<?php 
 							$i=1;
 							 foreach ($examid->result() as $value):
@@ -1285,7 +1324,7 @@
 							   $examname=$examname->row();
 						?> 
 						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?>
-						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[60]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1308,13 +1347,13 @@
 							   $examname=$examname->row();
 						?> 
 						<td colspan="1" ><?php echo $examname->exam_name;?>
-						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[60]";} ?></td>
                         <?php 
 						}
 						$i++;
 						endforeach ;?>
 						<td colspan="1" ></td><td colspan="1" ></td>
-<?php }else if($examid_2->num_rows()==2){ ?>
+                                                     <?php }else if($examid_2->num_rows()==2){ ?>
 						<?php 
 							$i=1;
 							 foreach ($examid_2->result() as $value):
@@ -1326,7 +1365,7 @@
 							   $examname=$examname->row();
 						?> 
 						<td colspan="1" ><?php echo $examname->exam_name;?>
-						<?php   if($i <=2 ){echo "&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
+						<?php   if($i <=2 ){echo "&nbsp;[20]";}else{echo "&nbsp;&nbsp;[60]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -1344,7 +1383,7 @@
 							   $examname=$examname->row();
 						?> 
 						<td colspan="1" ><?php echo $examname->exam_name;?>
-						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[80]";} ?></td>
+						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[60]";} ?></td>
                         <?php 
 						}
 						$i++;
