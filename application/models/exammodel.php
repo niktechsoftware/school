@@ -17,7 +17,7 @@ function getClassRank($rowstudent,$classid,$fsd){
        if($totstu->num_rows()>0){
 
       $d2h =0.01; foreach($totstu->result() as $ts):
-       
+       //print_r($ts);
        $totmarks =     $this->db->query("select sum(marks) as getmarks from exam_info where stu_id ='".$ts->stu_id."' and fsd = '".$fsd."'")->row();
        $tota = $totmarks->getmarks+$d2h;
        $rankarray[$ts->stu_id]=$tota;
