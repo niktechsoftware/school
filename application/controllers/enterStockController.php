@@ -151,7 +151,8 @@
 		    $school_code = $this->session->userdata("school_code");
 
 			$this->db->where("school_code",$school_code);
-			$billno = $this->db->order_by('id',"desc")->limit(1)->get('invoice_serial')->row()->id;
+			$billno = $this->db->count_all("invoice_serial");
+			
 //$billno= $billno4->num_rows();
 		//print_r($billno);exit();
 

@@ -34,6 +34,35 @@ function getClassRank($rowstudent,$classid,$fsd){
        return $offset+1;
        }
    }
+/*function getClassRank($rowstudent,$classid,$fsd){
+       $rankarray=array();
+         $rankarray1=array();
+       $class_id =$classid;
+       $this->db->distinct();
+       $this->db->select("stu_id");
+       $this->db->where("class_id",$classid);
+       $this->db->order_by("stu_id","ASC");
+       $totstu=    $this->db->get("exam_info");
+       if($totstu->num_rows()>0){
+      $d2h =0.01; 
+	  foreach($totstu->result() as $ts):
+		$totmarks =     $this->db->query("select sum(marks) as getmarks from exam_info  where stu_id ='".$ts->stu_id."' and fsd = '".$fsd."' ORDER BY marks ASC")->row();
+		$totmarks_out =     $this->db->query("select sum(out_of) as getmarks_out from exam_info where stu_id ='".$ts->stu_id."' and fsd = '".$fsd."'")->row();
+		 if($totmarks_out->getmarks_out >0){ $tota=round((($totmarks->getmarks*100)/$totmarks_out->getmarks_out), 2);}
+		//echo $per;
+		//$tota = $totmarks->getmarks+$d2h;
+		$rankarray[$ts->stu_id]=$tota;
+		$rankarray1[$ts->stu_id]=$tota;
+		$d2h=$d2h+0.01;
+     endforeach;
+        print_r($rankarray);
+      krsort($rankarray);
+     
+       $key = array_search($rankarray1[$rowstudent], $rankarray);
+       $offset = array_search($key, array_keys($rankarray));
+       return $offset+1;
+       }
+   }*/
    function getSchoolRank($rowstudent,$fsd){
        $rankarray=array();
         $rankarray1=array();
