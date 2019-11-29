@@ -52,3 +52,5 @@ Stack trace:
 [25-Nov-2019 17:17:25 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 754
 [25-Nov-2019 17:17:37 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 754
 [25-Nov-2019 17:17:58 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 754
+[27-Nov-2019 14:42:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$sum' (T_VARIABLE) in /home/schoodhe/public_html/school/application/views/duereport.php on line 115
+[27-Nov-2019 14:42:23 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$sum' (T_VARIABLE) in /home/schoodhe/public_html/school/application/views/duereport.php on line 115
