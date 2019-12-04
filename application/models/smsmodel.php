@@ -131,7 +131,7 @@ class Smsmodel extends CI_Model{
 			$this->db->where("student_info.status",1);
 			$query=$this->db->get();
 			
-	
+
 		return $query;
 	}
 	

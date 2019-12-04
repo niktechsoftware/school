@@ -1526,10 +1526,10 @@ $tdiscount=0;
 					else{ $this->db->where("id",$eunm->discounter_id);
 						$getdname = $this->db->get("discounttable");
 						if($getdname->num_rows()>0){
-							echo $getdname->row()->discount_head." "." (DISCOUNT)";
+							echo $getdname->row()->discount_head." "." (DISCOUNT) (".$rowb->description .")";
 						 }
 						 else{
-						 echo "DISCOUNT";}} ?></b></td>
+						 echo "DISCOUNT ( ".$rowb->description .")";}} ?></b></td>
 					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
 				</tr>
 				 <?php  $totdisc=$totdisc+$tdiscount;

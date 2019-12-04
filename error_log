@@ -53,8 +53,16 @@ Stack trace:
 [25-Nov-2019 17:17:37 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 754
 [25-Nov-2019 17:17:58 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '===' (T_IS_IDENTICAL), expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 754
 
-[27-Nov-2019 14:42:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$sum' (T_VARIABLE) in /home/schoodhe/public_html/school/application/views/duereport.php on line 115
-[27-Nov-2019 14:42:23 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$sum' (T_VARIABLE) in /home/schoodhe/public_html/school/application/views/duereport.php on line 115
+[27-Nov-2019 10:24:54 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade_sarvodya() in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php:1643
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/controllers/invoiceController.php(695): CI_Loader->view('invoice/format_...', Array)
+#3 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): InvoiceController->result('6367', '12')
+#4 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/invoice/format_3.php on line 1643
+[29-Nov-2019 11:28:19 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/sschool1/application/views/invoice/saleInvoice.php on line 298
 
 [29-Nov-2019 15:21:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$msg' (T_VARIABLE) in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 74
 [29-Nov-2019 15:42:41 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php:73
@@ -172,3 +180,9 @@ Stack trace:
 #2 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
 [29-Nov-2019 16:14:01 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 76
+[30-Nov-2019 10:33:06 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[30-Nov-2019 10:33:52 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[30-Nov-2019 10:33:54 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[30-Nov-2019 10:33:54 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[30-Nov-2019 10:34:37 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73
+[30-Nov-2019 10:34:40 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 73

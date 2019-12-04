@@ -70,54 +70,109 @@ class studentHWControllers extends CI_Controller{
  	  
 		$this->db->join("subject","homework_name.subject_id = subject.id");
 	   $cdt=$this->db->get()->result();
-	   //print_r($cdt);
-	  
-
-	   $msg="Dear Student please done your homework which is assigned today in Subjects:".$cdt[0]."For more info visit login to you account";
-	   print_r($msg);
-	   exit;
+	
+	   foreach($cdt as $row1){
+	      $array1[]= $row1->subject." - ".$row1->workDiscription;
+	   }
+	   $mss = implode(',',$array1);
 	   
-		 
-		 
-				$this->db->where("workfor",'students');
-				$this->db->where("school_code",$school_code);
-				$this->db->where("Date(givenWorkDate)",$date);
-				$this->db->where("class_id",$class_id);
-		 $dt= 	$this->db->get("homework_name");
-		 foreach($dt->result() as $hw):
-		// $term_arr[]=$hw1['hw'];
-		// print_r($hw1['hw']);
-		 $this->db->where("id",$hw->subject_id);
-		$result = $this->db->get("subject");
-		 $sub=$result->row()->subject;
-		 $work=$hw->workDiscription;
-		echo $data=$sub."[".$work ."],";
-		exit;
-		 endforeach;
-		 $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-		 $sende_Detail =$sender->row();
-		 $msg="Dear Student please done your homework which is assigned today in Subjects:".$data."For more info visit login to you account";
-		// print_r($msg);
-		 $query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id);
-		if($query->num_rows() > 0)
-		{ 
-		if($fmobile){
-			foreach($query->result() as $parentmobile):
-			if($parentmobile->mobile){
-			if($smscount<90){
-				$fmobile =$fmobile.",".$parentmobile->mobile;
-				$count=$count+1;
-				$smscount++;
-			}else{
-				//sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				$fmobile="8382829593";
-				$smscount=0;
-				}
-										}
+
+	   $msg="Dear Student please done your homework which is assigned today in Subjects:".$mss."For more info visit login to you account";
+	  
+	  	$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+	if($sender->num_rows()>0){
+		$sende_Detail =$sender->row();
+		$date=date("y-m-d");
+		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
+		$fmobile1=$this->session->userdata("mobile_number");
+	  if($isSMS->homework){
+		$tt = $this->smsmodel->smstest($msg,$date);
+	     $smsc=0;
+		if($tt=="true"){
+		   $query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id);
+    		if($query->num_rows() > 0)
+    		{   
+        		 $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+        		$master_id=$max_id->maxid+1;
+        		$getresultm = $this->smsmodel->sentmasterRecord($msg,$query->num_rows(),$master_id);
+        		if($getresultm){
+        		   
+        		  foreach($query->result() as $parentmobile):
+        			$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
+        			if($checknum){
+        			  
+        			if($smscount<90){
+        				if($smsc==0){
+        					$fmobile =$checknum;
+        				
+        				}else{
+        					$fmobile=$fmobile.",".$checknum;
+        				
+        				}
+        				$smscount++;
+        				$smsc++;
+        				$count=$count+1;
+				
+            			}else{
+            				if($this->input->post("language")==1){
+            				   
+            				    
+            				    // 	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				
+            					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				}else{
+            				    	
+            				    // 	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				
+            					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				}	
+            			$a[]=0;
+            		
+            			$this->smsmodel->sendReport($getv,$master_id);
+            				$fmobile=$checknum;
+            				$smscount=0;
+            
+            			
+            			}
+            			
+            		}
 			endforeach;
-					}
-			//sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+		
+				if($this->input->post("language")==1){
+				//echo $fmobile;
+				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+		$smsdt=	$this->smsmodel->sendReport($getv,$master_id);
+		if($smsdt){
+		    	echo  "Sms Sent .";
 		}
+	        	}
+	    	} 
+	    		else{
+	           echo "student number not found .";
+        	}
+		    
+		}
+		else{
+	           echo "this sms already sent .";
+    	}
+		
+	  }
+     	else{
+	    echo "home work setting is off .";
+	   }
+	}
+	else{
+	    echo "sender id not approve .";
+	}
+
   }
 	
 	function addHomeWork(){

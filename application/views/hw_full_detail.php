@@ -127,7 +127,14 @@ foreach($class as $data)
             {echo $subject1->id.","; }
 			echo ")"; */
 			?></td>
-			<td><a href="#" style="color:white;" id="sms<?php echo $sno;?>" class="btn btn-warning">Send SMS</a></td>
+			<td>
+			   <?php if($v1->num_rows()>0){ ?>
+			    <a href="#" style="color:white;" id="sms<?php echo $sno;?>" class="btn btn-warning">Send SMS</a></td>
+			   
+			  	  <?php }else{  ?>
+			     <a href="#" style="color:white;"  class="btn btn-danger"> Homework Not Assign</a></td>
+		
+			    <?php }?>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 			<script>
 			  		$("#sms<?php echo $sno;?>").click(function(){

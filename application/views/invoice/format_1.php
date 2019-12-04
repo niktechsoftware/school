@@ -2362,8 +2362,10 @@ $cumulativetotal=0;
 				return 'C2';
 			elseif($val >= 33 && $val < 41):
 				return 'D';
-			else:
+			elseif($val >= 0 && $val < 33):
 				return 'E';
+			else:
+				return ' ';
 			endif;
 		}
 		function calculateGrade1($val,$classid){
