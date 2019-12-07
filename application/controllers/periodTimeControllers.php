@@ -433,7 +433,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		$this->db->where("nop_id",$period_name);
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$data['countPeriod'] = $this->db->get("period")->num_rows();
-       $this->load->model("periodModel");
+       
 		$data['className'] = $this->periodModel->getClass();
 		$data['teacher'] = $this->periodModel->getTeacherName();
 		$this->load->view('ajax/createTimeTable',$data);

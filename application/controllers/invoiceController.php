@@ -4,10 +4,8 @@ class InvoiceController extends CI_Controller{
     {
         parent::__construct();
           $this->is_login();
-        
+        $this->load->model("exammodel");
         $school_code = $this->session->userdata("school_code");
-        // print_r($school_code) ;
-        // exit();
     }
     
     function is_login(){
@@ -22,6 +20,15 @@ class InvoiceController extends CI_Controller{
             redirect("index.php/homeController/lockPage");
         }
     }
+    
+    function obtn_marks(){
+		$data['sectionid'] = $this->uri->segment(4);
+		$data['subjectid'] = $this->uri->segment(5);
+		$data['examid'] = $this->uri->segment(6);
+		$data['classid']=$this->uri->segment(3);
+		$this->load->view("invoice/obtn_marks",$data);
+	}
+    
     
     	function printempiCard(){
 			

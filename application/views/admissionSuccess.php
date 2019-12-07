@@ -29,6 +29,9 @@
 		?>
 		<div class="tabbable">
 			<ul class="nav nav-tabs tab-padding tab-space-3 tab-blue text-uppercase" id="myTab4">
+				
+				
+				<?php if($this->session->userdata('login_type') == '1'){ ?><?php }else{ ?>
 				<li<?php if(strlen($this->uri->segment(4)) <= 0){ echo ' class="active"';}?>>
 					<a data-toggle="tab" href="#panel_overview">
 						Profile
@@ -38,7 +41,8 @@
 					<a data-toggle="tab" href="#panel_edit_account">
 						Edit Profile
 					</a>
-				</li>
+				</li><?php } ?>
+				
 				<?php if($personalInfo->status){?>
 				<li<?php if($this->uri->segment(4) == 'certificate'){ echo ' class="active"';}?>>
 					<a data-toggle="tab" href="#certificates">
@@ -77,6 +81,7 @@
 				</li><?php } ?>
 			</ul>
 			<div class="tab-content">
+			    <?php if($this->session->userdata('login_type') == '1'){ ?><?php }else{ ?>
 				<div id="panel_overview" class="tab-pane fade <?php if(strlen($this->uri->segment(4)) <= 0){ echo "in active";}?>">
 					<div class="row">
 						<div class="col-sm-5 col-md-4">
@@ -1536,6 +1541,7 @@
 </form>
 
 					</div>
+				<?php }?>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 				<div id="certificates" class="tab-pane fade <?php if($this->uri->segment(4) == 'certificate'){ echo "in active";}?>">
 					<div class="panel-body">

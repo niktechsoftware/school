@@ -112,7 +112,7 @@
             </li>
         </ol>
 
-        <?php if(($this->session->userdata('login_type') == 'admin') ||($this->session->userdata('login_type') == 'accountent')){?>        
+        <?php if(($this->session->userdata('login_type') == 'admin') ||($this->session->userdata('login_type') == '1')){?>        
 
         <a class="button_responsive btn btn-grey" style="margin:3px;" href="<?php echo base_url(); ?>index.php/smsAjax/smsPanel">SMS Panel</a>
         <a class="button_responsive btn btn-orange" style="margin:3px;" href="<?php echo base_url(); ?>index.php/studentController/studentPanel">Student Panel</a>

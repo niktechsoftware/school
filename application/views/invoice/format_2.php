@@ -477,7 +477,7 @@
 			  			</tr>
 			  			<tr>
 			  				<td class="nob"></br>Sig. of the Principal :</td>
-			  				<td class="nob"></br>____________</br></td>
+			  				<td class="nob"></br><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->principle_sign;?>" alt="" width="100" height="70" style="margin-top=-60px;" /></br></td>
 			  			</tr>
 		  			</table>
 		  			

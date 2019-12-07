@@ -82,9 +82,9 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   <?php }?>             
   					     
                  <td><button class="btn btn-red" id="updtmmarks<?php echo $i;?>">Update Your Marks<i class="fa fa-arrow-circle-right"></i>
-                     </button>
+                     </button> <?php $login_type=$this->session->userdata("login_type"); if($login_type == "admin"){ ?>
                      <button class="btn btn-red" id="deletemmarks<?php echo $i;?>">Delete Marks<i class="fa fa-trash-o"></i>
-                     </button>
+                     </button><?php } ?>
                   </td>
                   <input type="hidden" id="viid<?php echo $i;?>" value="<?php echo $val->row()->id; ?>" />
                   <input type="hidden" id="examid1<?php echo $i;?>" value="<?php echo $examid; ?>" />
@@ -279,9 +279,9 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  </td>
                   <?php }?>             
                  <td><button class="btn btn-red" id="updtmmarks">Update Your Marks<i class="fa fa-arrow-circle-right"></i>
-                     </button>
+                     </button><?php $login_type=$this->session->userdata("login_type"); if($login_type == "admin"){ ?>
                      <button class="btn btn-red" id="deletemmarks">Delete Marks<i class="fa fa-trash-o"></i>
-                     </button>
+                     </button><?php } ?>
                   </td>
                   <input type="hidden" id="viid" value="<?php echo $val->row()->id; ?>" />
                   <input type="hidden" id="classid1" value="<?php echo $classid; ?>" />

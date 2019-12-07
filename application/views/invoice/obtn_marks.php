@@ -1,55 +1,77 @@
-<!--  
-Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
-  <meta name="description" content="Welcome to niktech software School business ERP . we proving school management erp software. we including online attendance with biometric attendance machine and tracking student with GPS technology & many other facilities in our school management erp system">
-  <meta name="keywords" content="Enterprise resource planning,school,ERP,system software,attendance,biometric,online, school management,gps,niktech software solution, online result, online admit card,omr">
-  <meta name="author" content="School management System software">
--->
-<?php $school_code=$this->session->userdata("school_code");?>
-		
-		<!--<form method="post" action="<?php //echo base_url();?>/index.php/examControllers/marksSave">-->
-  <!--          <input type="hidden" name="teacherid" value="<?php //echo $t_id; ?>" />-->
-  <!--          <input type="hidden" name="examid" value="<?php //echo $examid; ?>" />-->
-           
-  <!--          <input type="hidden" name="classid" value="<?php //echo $classid; ?>" />-->
-  <!--          <input type="hidden" name="sectionid" value="<?php //echo $sectionid; ?>" />-->
-  <!--          <input type="hidden" name="subjectid" value="<?php //echo $subjectid; ?>" />-->
-  <!--          <input type="hidden" name="row" value="<?php //echo $num_row1; ?>" />-->
-           
-                     <?php 
-                            $this->db->where('school_code',$school_code);
-                           $this->db->where('id',$classid);
-                          $classname=$this->db->get('class_info')->row()->class_name;
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-                           $this->db->where('school_code',$school_code);
-                           $this->db->where('id',$sectionid);
-                          $sectionname=$this->db->get('class_section')->row()->section;
+<head>
 
-                           $this->db->where('class_id',$classid);
-                           $this->db->where('id',$subjectid);
-                          $subjectname=$this->db->get('subject')->row()->subject;
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 
-                     ?>
-                     <br><br>
- <table class="table table-striped table-bordered table-hover" >
-                  <tr>
+    <title>Fee Invoice</title>
 
-                    <th><?php echo $classname; ?> - <?php echo $sectionname; ?> - <?php echo $subjectname; ?></th>
-                    <th><?php 
-						date_default_timezone_set("Asia/Calcutta");
-						$day = date('d-m-Y');
-						echo date("l jS F, Y", strtotime("$day"));  
-					
-           $result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
+    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
+    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/print.css'
+        media="print" />
+    <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/example.js'></script>
+    <style type="text/css">
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #printcontent * {
+            visibility: visible;
+        }
+
+        #printcontent {
+            position: absolute;
+            top: 40px;
+            left: 30px;
+        }
+    }
+
+    .button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+
+    .button2 {
+        background-color: #008CBA;
+        color: white;
+        border: 2px solid #008CBA;
+    }
+
+    .button2:hover {
+        background-color: #4CAF50;
+        color: white;
+        border: 2px solid #4CAF50;
+    }
+    </style>
+
+</head>
+
+<body>
+   <?php  $fsd=$this->session->userdata('fsd');
+   $school_code=$this->session->userdata("school_code");
+   $result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
             $result1=$result1->row();
-           ?>
-                    </th>
-                  </tr>
-              </table>
-              <br><br>
-                <?php  $fsd=$this->session->userdata('fsd');?>
-              			<div class="table-responsive">
-						<div class="table-responsive">
-               <table class="table table-striped table-bordered table-hover" id="sample-table-2">
+   ?>
+            <!--print cntent start--> 
+			<div id="printcontent">  
+			<table class="table table-striped table-bordered table-hover" id="sample-table-2">
                 <thead>
                   <tr>
                     <th>S.No</th>
@@ -57,14 +79,14 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                     <th>Student Name</th>
                     <th>Attendance</th>
                     <th>Maximum Marks</th>
-                  <th>Marks Obtained</th>
-                   <th>Activity</th>
+					<th>Marks Obtained</th>
+					<th>Activity</th>
                   </tr>
                 </thead>
                 <tbody>
-                <?php $i = 1;$j=1;
-                     $this->db->where("status",1);
-                      $this->db->where("class_id",$classid);
+                <?php 	$i = 1;$j=1;
+						$this->db->where("status",1);
+						$this->db->where("class_id",$classid);
 
                       //$this->db->order_by("name","asc");
 
@@ -255,10 +277,15 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                     echo "Student Not Enrolled";}?> 
                     </tbody>    
 		                	</table>
-                    </div>
-             						</div>
-		                
-         
-         
-         
-           
+		
+    </div>
+<div class="invoice-buttons" style="text-align:center;">
+    <button class="button button2" type="button" onclick="window.print();">
+        <i class="fa fa-print padding-right-sm"></i> Print
+    </button>
+</div>
+
+</body>
+
+
+</html>

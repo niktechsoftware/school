@@ -87,6 +87,7 @@
 				$("#report_1").hide();
 				$("#report_2").hide();
 				$("#report_3").hide();
+				$("#report_4").hide();
 				
 				
 				
@@ -96,17 +97,25 @@
 			 $("#report_1").show();
 			  $("#report_2").hide();
 				  $("#report_3").hide();
+				   $("#report_4").hide();
 			 }else if(formate_rep== 2){
 				  $("#report_1").hide();
 					$("#report_2").show();
 						$("#report_3").hide();
+						$("#report_4").hide();
 				 }else if(formate_rep== 3){
 					  $("#report_1").hide();
 						$("#report_2").hide();
+						  $("#report_4").hide();
 							$("#report_3").show();
+					 }else if(formate_rep== 4){
+					  $("#report_1").hide();
+						$("#report_2").hide();
+						  $("#report_3").hide();
+							$("#report_4").show();
 					 }
     		});
-			<!--id formate-->
+			///////id formate/////////
 			$("#id_formate_save").click(function(){
         	var formate_id = $('#formate_id').val();
 			$.post("<?php echo site_url('index.php/configureClassControllers/id_formate_save') ?>", {formate_id : formate_id}, function(data){
@@ -134,7 +143,7 @@
 							$("#id_3").show();
 					 }
     		});
-			<!--tc formate-->
+			//////tc formate////
 			$("#tc_formate_save").click(function(){
         	var formate_tc = $('#formate_tc').val();
 			$.post("<?php echo site_url('index.php/configureClassControllers/tc_formate_save') ?>", {formate_tc : formate_tc}, function(data){
@@ -161,7 +170,8 @@
 							$("#tc_3").show();
 					 }
     		});
-			<!--cc formate-->
+    		
+			///////////cc formate///////////////
 			$("#cc_formate_save").click(function(){
         	var formate_cc = $('#formate_cc').val();
 			$.post("<?php echo site_url('index.php/configureClassControllers/cc_formate_save') ?>", {formate_cc : formate_cc}, function(data){
@@ -200,7 +210,7 @@
         	
             $("#feeList1").html(data);
 		});
-       <!---->
+       
         $.post("<?php echo site_url('index.php/configureClassControllers/addSection') ?>", {sectionName : ''}, function(data){
             $("#sectionList").html(data);
             //alert(data);

@@ -686,6 +686,7 @@ function insertMarksdetail()
 	    $classid=$this->input->post('classid');
 	    $subjectid=$this->input->post('subjectid');
 	    $examid=$this->input->post('examid');
+	     $term=$this->input->post('term');
 		$attendence=$this->input->post('attendence');
 		$this->db->where('school_code' ,$this->session->userdata('school_code'));
 		$this->db->where('class_id',$classid);
@@ -695,7 +696,7 @@ function insertMarksdetail()
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
-	        'term'=>1,
+	        'term'=>$term,
 	        'class_id'=>$classid,
 	        'subject_id'=>$subjectid,
 	        'stu_id'=> $stuid,

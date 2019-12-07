@@ -102,7 +102,7 @@
 								<div class="row space15">
 									<div class="col-md-5">Paid</div>
 									<div class="col-md-7">
-										<input type="number" class="form-control" id="paid" name="paid"
+				                      <input type="number" class="form-control" id="paid" name="paid"
 											>
 									</div>
 								</div>

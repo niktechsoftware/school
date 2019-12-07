@@ -63,6 +63,7 @@ return $query1;
 	
 	function checkvalue($data,$time_thead_id)
 	{	
+		
 	    $query = $this->db->query("SELECT * FROM time_table WHERE time_thead_id='$time_thead_id'");
 		return $query;
 	}

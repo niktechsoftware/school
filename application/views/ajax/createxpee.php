@@ -23,7 +23,8 @@ foreach($explist->result() as $row){?>
         <input type="hidden" id="exp_id<?php echo $i;?>" name="exp_id" value="<?php echo $row->sno; ?>">
         <input type="text" name="exp_name" id="exp_name<?php echo $i;?>" value="<?php echo $row->expenditure_name;?>"></td>
         <td class="text-center"><a href="#" id="expEdit<?php echo $i;?>" name="expEdit" class="btn btn-warning">Edit</a>
-            <a href="<?php echo base_url();?>index.php/dayBookControllers/deleteExpen/<?php echo $row->sno;?>" id="expdelete<?php echo $i;?>" name="expEdit" class="btn btn-danger">delete</a></td>
+          <!--  <a href="<?php echo base_url();?>index.php/dayBookControllers/deleteExpen/<?php echo $row->sno;?>" id="expdelete<?php echo $i;?>" name="expEdit" class="btn btn-danger">delete</a>
+            --></td>
     </tr>
     <?php  
 $i++;

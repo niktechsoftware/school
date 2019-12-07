@@ -635,8 +635,8 @@ function daybook()
 	function creatsubexp(){
 		$subexpid= $this->input->post('subexp');
 		$expsub= $this->input->post('expsub');
-		print_r($subexpid);
-		print_r($expsub);
+	//	print_r($subexpid);
+	//	print_r($expsub);
 		$this->load->model('daybookmodel');
 		if($subexpid){
 			$explist = $this->daybookmodel->creatSubexpe($expsub,$subexpid);

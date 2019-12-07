@@ -216,7 +216,7 @@
 		<?php 
 			$school=$this->session->userdata('school_code');
 			$row2=$this->db->get('db_name')->row()->name;		
-		if($school == 8 && $row2="A"){ ?>
+		if($school == 8 && $row2=="A"){ ?>
 		<tr class="tableHeader">
 			<td class="center" colspan="1" >A. SCHOLASTIC AREAS</td>
 		<td class="center" colspan="4">TERM - 1</td>
@@ -580,7 +580,7 @@ $cumulativetotal=0;
              		<td><?php //echo calculateGrade1($coltptal,$studentInfo->class_id)?></td>
              	<?php	} ?>
 			</tr>
-		<?php }else if($school == 1 && $row2="A"){ ?>
+		<?php }else if($school == 1 && $row2=="A"){ ?>
 		<!---dds manner marks table end--->
 		<!---mla marks table start--->
 		<tr class="tableHeader">
@@ -1416,7 +1416,10 @@ $cumulativetotal=0;
 			<td colspan="2">ATTENDANCE  </td>
 			<td colspan="3">MARK PERCENTAGE  <?php //echo $totalp;  
 			echo round((($cumulativetotal*100)/$dhtm), 2);?>%  </td>
-			<td colspan="4">RANK</td>
+			<td colspan="4">CLASS RANK : <?php 
+			echo $this->exammodel->getClassRank($studentInfo->id, $classid, $fsd);?></br></br></br>
+			SCHOOL RANK : <?php 
+			echo $this->exammodel->getSchoolRank($studentInfo->id,  $fsd);?></td>
 		</tr>
 		<tr class="pink">
 			<td colspan="2">FINAL RESULT</td>
@@ -1431,8 +1434,8 @@ $cumulativetotal=0;
 			<br>&emsp;Sign Class Teacher
 			</td>
 			<td colspan="2" class="wight" height="25" style="border-left:none;">
-			<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="70" height="70" style="margin-top=-60px;" />
-			Sign Principal
+		<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->principle_sign;?>" alt="" width="100" height="70" style="margin-top=-60px;" />
+		Sign Principal
 			</td>
 		</tr>
         <tr style="border:none;"><?php	
