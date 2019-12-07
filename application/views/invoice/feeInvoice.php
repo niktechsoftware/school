@@ -1590,7 +1590,7 @@ $tdiscount=0;
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
+			 <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$rowb->total); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -1599,10 +1599,10 @@ $tdiscount=0;
 				  </tr>
 				  <tr class='text-uppercase'>
 				  <td class="text-center text-nowrap"  style="background-color:#caf441" ><strong>Balance Due</strong></td>
-				  <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
+				   <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
 			
 			  <td class="text-center"  style="background-color:#caf441" ><?php $pd=$rowb->total - $rowb->paid;  echo $pd;  ?></td>
-			  </tr>
+			 </tr>
 				  </table>
 	
 		</div>
@@ -1942,7 +1942,7 @@ This is computer generated invoice and verified by accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
+				   <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$rowb->total); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>

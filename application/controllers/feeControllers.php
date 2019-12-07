@@ -1118,7 +1118,8 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						// print_r($realm);
 						}else{
 							$mno=(int)date('m',strtotime($cdate11));
-						if($mno<$fd->deposite_month){$realm=0;
+						if($mno<$fd->deposite_month){
+						    $realm=0;
 							    
 							}else{
 								

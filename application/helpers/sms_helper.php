@@ -40,7 +40,17 @@ for($i=0; $i<$numn;$i++){
 	curl_close($ch);
 return $object1;
 }
+function mysms($authkey,$msg,$sid,$number){
 
+ $url = "http://mysms.sms7.biz/rest/services/sendSMS/sendGroupSms?AUTH_KEY=4947cf80573bb1b355d918ad91fe35fd&message=".urlencode($msg)."&senderId=GFINCH&routeId=1&mobileNos=".$number."&smsContentType=english";
+ 	$ch = curl_init();
+	curl_setopt($ch,CURLOPT_URL,$url);
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+	$output=curl_exec($ch);
+	$rt=json_decode($output,true);
+	curl_close($ch);
+
+}
 function smshindi($number,$msg,$user,$pass,$senderid)
 {
 	$url="http://bulksms.niktechsoftware.com/vendorsms/pushsms.aspx?user=".$user."&password=".$pass."&msisdn=".$number."&sid=".$senderid."&msg=".urlencode($msg)."&fl=0&dc=8&gwid=2";
