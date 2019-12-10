@@ -24,12 +24,12 @@ function __construct()
                            $oldfee=$this->db->query("select sum(amount) as cradite from day_book where dabit_cradit='2' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."'");
                           $query4=$this->db->query("select sum(amount) as dabit from day_book where dabit_cradit='0' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."'");
                           if($oldfee->num_rows()>0){
-                              $trv =$oldfee->num_rows()->cradite;
+                              $trv =$oldfee->row()->cradite;
                           }else{
                               $trv=0;
                           }
                           if($query3->num_rows()>0){
-                              $credit = $query3->row()->cradit+$trv;
+                              $credit = $query3->row()->cradit + $trv;
                           }else{
                                $credit =0;
                           }
@@ -51,13 +51,11 @@ function __construct()
 					$mob = $dd->mobile_no;
 					    $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
                 		    $master_id=$max_id->maxid+1;
-                		    $getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
-                		    if($getresultm){
-
-                		    	//$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-                		    		$getv=sms($dd->mobile_no,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-                		    	$this->smsmodel->sendReport($getv,$master_id);
-                		    }
+                		     $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$dd->mobile_no);
+				 
+                		    	//	$getv=sms($dd->mobile_no,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+                		     $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$dd->id);
+                		    
 					
                         }      
                     endforeach;

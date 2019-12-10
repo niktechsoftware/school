@@ -573,8 +573,11 @@ function defineExam1(){
 				           if($sender->num_rows()>0){
 					       $sende_Detail =$sender->row();
 					       $otp = rand(1000,99999);
+					       $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
 					        $msg="Your Exam Delete OTP is ".$otp." .please share this to delete exam.";
-					         sms($mobilenumber->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+					        $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$mobilenumber->mobile_no);
+					        $this->smsmodel->sentmasterRecord($msg,1,$master_id,$getv);
 							    $data2 = array(
 	                             'exam_otp' => $otp,
 	                             'exam_id' => $examid,

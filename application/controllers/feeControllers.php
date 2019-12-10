@@ -7,6 +7,7 @@ class feeControllers extends CI_Controller{
         $this->load->model("teacherModel");
         $this->load->model("allFormModel");
         $this->load->model("feeModel");
+        $this->load->model("smsmodel");
         $school_code = $this->session->userdata("school_code");
     }
     
@@ -134,9 +135,6 @@ function getFsd(){
 		$updata['school_code']=$school_code;
 		$updata['finance_start_date']=$fsddate;
 
-
-//echo $this->input->post('fsdid');
-//exit;//start 
          $cb1=$this->input->post("cb");
 	    	$stuid=$this->input->post('stuId');
 		  
@@ -183,18 +181,12 @@ function getFsd(){
 			//"depositedate"=>date('y-m-d'),
 			"updatedate"=>date('y-m-d'),
 			);
-// 			$this->db->where("student_id",$this->input->post("stuId"));
-// 		//	$this->db->where("invoice_no",$invoice_number);
-// 			$this->db->where("school_code",$school_code);
-// 		   $this->db->update("feedue",$mbalance);
+
 		$this->db->insert("dis_den_tab",$discountv);
 		if( $this->db->insert('day_book',$dayBook) && $this->db->insert("fee_deposit",$updata) ){
 		    
 		   if($duedt2->num_rows()>0){
-		      //$mbal2=$duedt2->row()->mbalance;
-		      //$totmbal=$mbal2+$cb1;
-		      
-    		//insert data in feedue table
+		     
      		$mdata['student_id']=$this->input->post('stuId');
     		$mdata['description']=$this->input->post("disc");
     		$mdata['mbalance']=$this->input->post("cb");
@@ -298,22 +290,19 @@ function getFsd(){
 			$msg = "Dear Parent your child ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
 		//echo $msg;exit;
 			$this->db->where("id",$school_code);
-			
-			
 		    $admin_mobile = $this->db->get('school')->row();
 		    $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 		    $master_id=$max_id->maxid+1;
-		    $getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
-		    if($getresultm){
-		        if($this->session->userdata("school_code")!=9){
-		        sms($fmobile1,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+		     if($this->session->userdata("school_code")!=9){
+		          $getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$fmobile1);
+		           $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+		          	$master_id=$master_id+1;
+		       // sms($fmobile1,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		        }
-		    	$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-		    	$this->smsmodel->sendReport($getv,$master_id);
-		    }
-		  
-			
-			redirect("index.php/invoiceController/fee/$invoice_number/$stuid/$fsddate/yes");
+		        $getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$fmobile);
+		     $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+		    
+		   redirect("index.php/invoiceController/fee/$invoice_number/$stuid/$fsddate/yes");
 			
 		
 		}
@@ -601,16 +590,27 @@ function getFsd(){
 		    $this->db->where("school_code",$school_code);
 	     	$sender=$this->db->get("sms_setting");
 		  	$sende_Detail =$sender->row();
-				
-			$msg = "Dear Parent your child ".$stuname." fee ".$amount1.",is diposited of total ".$totdue."/-with due balance Rs.".$balance."/-".$schoolname->school_name;
-			sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
+		
+		//	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+		
+			 $master_id=$master_id+1;
 			$this->db->where("id",$school_code);
         	$schoolname=$this->db->get("school")->row();
+        		$msg = "Dear Parent your child ".$stuname." fee ".$amount1.",is diposited of total ".$totdue."/-with due balance Rs.".$balance."/-".$schoolname->school_name;
+		
+			$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
+				 $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 			if($schoolname->id==1){
 			    $msg1 = "Dear school principle student ".$stuname." fee ".$amount1.",is diposited of total ".$totdue."/-with due balance Rs.".$balance."/-".$schoolname->school_name;
-			sms($schoolname->mobile_no,$msg1,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			 	$getv=mysms($sende_Detail->auth_key,$msg1,$sende_Detail->sender_id,$schoolname->mobile_no);   
+			 $this->smsmodel->sentmasterRecord($msg1,2,$master_id,$getv);
+			 	 $master_id=$master_id+1;
 			 $msg2 = "Dear school principle student ".$stuname." fee ".$amount1.",is diposited of total ".$totdue."/-with due balance Rs.".$balance."/-".$schoolname->school_name;
-			sms(7398863503,$msg2,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+	            	$getv=mysms($sende_Detail->auth_key,$msg2,$sende_Detail->sender_id,"7398863503");   
+			 $this->smsmodel->sentmasterRecord($msg2,2,$master_id,$getv);	
+		
 			}
 		}
 		redirect(base_url()."invoiceController/printDueFee/".$invoice_number);
@@ -894,12 +894,12 @@ function getFsd(){
    
 		  		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
-					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
-					if($getresultm){
-						$getv=	sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-						$this->smsmodel->sendReport($getv,$master_id);
+				
+					
+						 $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$mnum);
+						 $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 						echo "Sent Success";
-					}
+					//}
 			
 		// print_r($msg);
 // exit();

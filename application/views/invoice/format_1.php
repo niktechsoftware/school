@@ -828,13 +828,13 @@ $cumulativetotal=0;
 				$ttt = strlen(str_replace(" ","",$subjectname->subject));
 				$ttt3 = $ttt -4;
 				$oral= substr(str_replace(" ","",$subjectname->subject),$ttt3);
-				
-				if($oral=="oral"){
+				// echo $oral;
+				if($oral=="ORAL"){
 				  
 				 ?> <td></td>
 					<td class="center"  >
 					<?php      $this->db->where("term", 1);
-								$this->db->where('subject_id',$sub['subject']);
+								$this->db->where('subject_id',$subjectname->id);
 								$this->db->where('class_id',$classid->class_id);
 								$this->db->where('stu_id',$studentInfo->id);
 								$this->db->where('exam_id',$value->exam_id);
@@ -856,11 +856,12 @@ $cumulativetotal=0;
 						}
 					?>
 					</td>
-					<td></td>
+					<td><?= $gtptal ;?></td>
 				<?php	}else{ ?>
 					<td> 
-					<?php      $this->db->where("term", 1);
-								$this->db->where('subject_id',$sub['subject']);
+					<?php  // echo "hh";
+					            $this->db->where("term", 1);
+								$this->db->where('subject_id',$subjectname->id);
 								$this->db->where('class_id',$classid->class_id);
 								$this->db->where('stu_id',$studentInfo->id);
 								$this->db->where('exam_id',$value->exam_id);
@@ -882,7 +883,7 @@ $cumulativetotal=0;
 						} ?>
 					</td>
 					<td></td>
-					<td></td>
+					<td><?= $gtptal ;?></td>
 					<?php } ?>
 				
 				<?php 
