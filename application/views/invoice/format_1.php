@@ -823,45 +823,13 @@ $cumulativetotal=0;
                  $subtatal=0;
 		         $i=1; $t=0; $coltptal=0;  ?>
 				 <?php  if($examid->num_rows()==0){?><td></td><td></td><td></td><?php }else{
-				 foreach ($examid->result() as $value): 
-				//  $substr1= ;
-				$ttt = strlen(str_replace(" ","",$subjectname->subject));
-				$ttt3 = $ttt -4;
-				$oral= substr(str_replace(" ","",$subjectname->subject),$ttt3);
-				// echo $oral;
-				if($oral=="ORAL"){
-				  
-				 ?> <td></td>
-					<td class="center"  >
-					<?php      $this->db->where("term", 1);
-								$this->db->where('subject_id',$subjectname->id);
-								$this->db->where('class_id',$classid->class_id);
-								$this->db->where('stu_id',$studentInfo->id);
-								$this->db->where('exam_id',$value->exam_id);
-								$this->db->where('fsd',$fsd);
-						$marks= $this->db->get('exam_info');
-						if($marks->num_rows()>0){
-							$marks=$marks->row();
-							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
-							$coltptal+=$marks->marks;
-							echo $marks->marks;
-							$ctotal[$t]+= $marks->marks;
-							$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('class_id',$classid->class_id);
-					$this->db->where('exam_id',$value->exam_id);
-				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-				 echo "/".$exammm;
-				 $dhtm=$exammm+$dhtm;
-						}
-					?>
-					</td>
-					<td><?= $gtptal ;?></td>
-				<?php	}else{ ?>
+				 foreach ($examid->result() as $value): ?>
+		
 					<td> 
 					<?php  // echo "hh";
 					            $this->db->where("term", 1);
 								$this->db->where('subject_id',$subjectname->id);
+								$this->db->where('sub_type',1);
 								$this->db->where('class_id',$classid->class_id);
 								$this->db->where('stu_id',$studentInfo->id);
 								$this->db->where('exam_id',$value->exam_id);
@@ -882,9 +850,34 @@ $cumulativetotal=0;
 				 $dhtm=$exammm+$dhtm;
 						} ?>
 					</td>
-					<td></td>
+					<td>
+					<?php  // echo "hh";
+					      $this->db->where("term", 1);
+								$this->db->where('subject_id',$subjectname->id);
+								$this->db->where('sub_type',0);
+								$this->db->where('class_id',$classid->class_id);
+								$this->db->where('stu_id',$studentInfo->id);
+								$this->db->where('exam_id',$value->exam_id);
+								$this->db->where('fsd',$fsd);
+						$marks= $this->db->get('exam_info');
+						if($marks->num_rows()>0){
+							$marks=$marks->row();
+							$subtatal=$subtatal+$marks->marks;
+							$gtptal= $gtptal+$marks->marks;
+							$coltptal+=$marks->marks;
+							echo $marks->marks;
+							$ctotal[$t]+= $marks->marks;
+							$this->db->where('subject_id',$sub['subject']);
+							$this->db->where('sub_type',0);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('exam_id',$value->exam_id);
+				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
+				 echo "/".$exammm;
+				 $dhtm=$exammm+$dhtm;
+						} ?>
+					</td>
 					<td><?= $gtptal ;?></td>
-					<?php } ?>
+					<?php //} ?>
 				
 				<?php 
 				 $i++; $t++;endforeach;}
@@ -914,6 +907,7 @@ $cumulativetotal=0;
 							echo $marks->marks;
 							$ctotal[$t]+= $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
+							$this->db->where('sub_type',1);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
 				$exammm=	$this->db->get('exam_max_subject')->row()->max_m;
