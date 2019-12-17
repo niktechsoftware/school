@@ -34,6 +34,38 @@ function getClassRank($rowstudent,$classid,$fsd){
        return $offset+1;
        }
    }
+/*function getClassRank($rowstudent,$classid,$fsd){
+      $rankarray=array();
+         $rankarray1=array();
+		 $arrayq=array();
+       $class_id =$classid;
+       $this->db->distinct();
+       $this->db->select("stu_id");
+       $this->db->where("class_id",$classid);
+       $this->db->order_by("stu_id","ASC");
+       $totstu=    $this->db->get("exam_info");
+       if($totstu->num_rows()>0){
+		foreach($totstu->result() as $ts):
+		$this->db->select_sum('marks','getmarks' );
+		$this->db->select('stu_id' );
+		$this->db->where('stu_id',$ts->stu_id);
+		$this->db->where('fsd',$fsd);
+		$xs = $this->db->get('exam_info')->row();
+		$arrayq[] = $xs->getmarks;
+		endforeach;
+		arsort($arrayq);
+		$i=0;
+	  foreach ($arrayq as $k => $vall ) 
+	 { "Key=" . $k . ", Value=" . $vall;
+			 $i."<br>";
+			$i++;
+			$rankarray[$i]=$vall;
+			$rankarray1[$i]=$vall;
+	 }
+      // print_r($rankarray);
+     return $rankarray;
+       }
+   }*/
    function getSchoolRank($rowstudent,$fsd){
        $rankarray=array();
         $rankarray1=array();

@@ -152,7 +152,7 @@
 
 			$this->db->where("school_code",$school_code);
 			$billno = $this->db->count_all("invoice_serial");
-			//$billno= $billno4->num_rows();
+
 		//print_r($billno);exit();
 
 			$this->load->model("daybookModel");
@@ -376,7 +376,7 @@
 								$fname=$var->father_full_name;
 								$fmobile=$var->f_mobile;
 								$msg="Hi ".$stu->first_name.". Thank you for purchasing. Your total bill is Rs.".$total."/- and paid Rs.".$paid1." with balance Rs.".$balance."/-. For more information. Please logon to Your Account : ".$val->web_url;
-								sms($authkey, $msg,$senderiD,$fmobile);
+								mysms($authkey, $msg,$senderiD,$fmobile);
 								
 							}
 							else if(strlen($this->input->post("empID"))>0){
@@ -386,14 +386,14 @@
 								$stu =$this->db->get("employee_info")->row();
 								$fmobile=$stu->mobile;
 								$msg="Hi ".$stu->first_name.". Thank you for purchasing. Your total bill is Rs.".$total."/- and paid Rs.".$paid1." with balance Rs.".$balance."/-. For more information. Please logon to Your Account : ".$val->web_url;
-								sms($authkey, $msg,$senderiD,$fmobile);
+								mysms($authkey, $msg,$senderiD,$fmobile);
 							
 							
 							}else {
 								$empname1=$this->input->post("empFirstName");
 								$emp_phone=$this->input->post("empphone");
 								$msg="Hi ".$empname1.". Thank you for purchasing. Your total bill is Rs.".$total."/- and paid Rs.".$paid1." with balance Rs.".$balance."/-. For more information. Please logon to Your Account : ".$val->web_url;
-								sms($authkey, $msg,$senderiD,$emp_phone);
+								mysms($authkey, $msg,$senderiD,$emp_phone);
 							}
 							
 						//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
@@ -502,7 +502,7 @@ function editSaleStock(){
          $this->db->where('invoice_no',$billno);
 	      $this->db->where('reason',"From sale Stock");
 	    	$query = $this->db->update("day_book", $daybook);
-		  print_r($query2);
+		 // print_r($query2);
 			redirect("index.php/invoiceController/printSaleReciept/$billno");
 		
 }

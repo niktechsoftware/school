@@ -47,9 +47,9 @@
     
       	 <?php
       $id= $this->uri->segment(3);
-      	$this->db->where("sms_master_id",$id);
-		$var = $this->db->get("sent_sms_details");
-		$this->db->where("id",$id);
+      	$this->db->where("requestId",$id);
+		$var = $this->db->get("savesms");
+		$this->db->where("response_id",$id);
 		$ssm = $this->db->get("sent_sms_master")->row();
 	if($var->num_rows()>0){
        ?>
@@ -70,30 +70,15 @@
 								<tbody><?php $i=1; foreach($var->result() as $lv): ?>
 								<tr>
 								<td><?php echo $i; ?></td>
-								<td><?php echo $lv->sent_number;?></td>
+								<td><?php echo $lv->mobileNumber;?></td>
 								<td><?php echo $ssm->sms; ?></td>
-								<td ><?php echo $lv->msg_id; ?>
-								<input type="hidden" id="smsid<?php echo $i;?>" value ="<?php echo $lv->msg_id;?>"></td>
-								<td><?php echo $lv->date; ?></td>
-								<td>Sent</td>
-								<td><button class="btn btn-info" id="track<?php echo $i;?>" width="104" height="142">Track</button>
-							
-								<input type="text" id="trackvalue<?php echo $i;?>"  readonly="readonly"/>
-								</td>
-								
+								<td ><?php echo $lv->requestId; ?>
+								<input type="hidden" id="smsid<?php echo $i;?>" value ="<?php echo $lv->requestId;?>"></td>
+								<td><?php echo $lv->deliveryDateTime; ?></td>
+								<td><?php echo $lv->status; ?></td>
+									<td><?php echo $lv->senderId; ?></td>
 								</tr>
-								<script>
-										$('#track<?php echo $i;?>').click(function(){
-											var msgid=$('#smsid<?php echo $i;?>').val();
-											//alert(msgid);
-										  	$.post('<?php echo site_url("smsAjax/updatesms_status");?>' , {msgid : msgid } , function(data){
-														$('#trackvalue<?php echo $i;?>').val(data);
-													
-										});
-
-									});
-									
-									</script>
+							
 							<?php $i++; endforeach; ?>
 							</tbody>
 			</table>

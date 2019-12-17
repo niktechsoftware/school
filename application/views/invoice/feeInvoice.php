@@ -1526,10 +1526,10 @@ $tdiscount=0;
 					else{ $this->db->where("id",$eunm->discounter_id);
 						$getdname = $this->db->get("discounttable");
 						if($getdname->num_rows()>0){
-							echo $getdname->row()->discount_head." "." (DISCOUNT)";
+							echo $getdname->row()->discount_head." "." (DISCOUNT) (".$rowb->description .")";
 						 }
 						 else{
-						 echo "DISCOUNT";}} ?></b></td>
+						 echo "DISCOUNT ( ".$rowb->description .")";}} ?></b></td>
 					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
 				</tr>
 				 <?php  $totdisc=$totdisc+$tdiscount;
@@ -1590,7 +1590,7 @@ $tdiscount=0;
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
+			 <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$rowb->total); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>
@@ -1599,10 +1599,10 @@ $tdiscount=0;
 				  </tr>
 				  <tr class='text-uppercase'>
 				  <td class="text-center text-nowrap"  style="background-color:#caf441" ><strong>Balance Due</strong></td>
-				  <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
+				   <!--<td class="text-center"  style="background-color:#caf441" ><?php //if($mbalance->num_rows()>0) { echo sprintf('%0.2f',$mbalance->row()->mbalance);}else{ echo '0.00';} ?></td>-->
 			
 			  <td class="text-center"  style="background-color:#caf441" ><?php $pd=$rowb->total - $rowb->paid;  echo $pd;  ?></td>
-			  </tr>
+			 </tr>
 				  </table>
 	
 		</div>
@@ -1732,7 +1732,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
                 </tr>
                 <tr class='text-uppercase'>
                      <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Fee For The Month </b></td>
-                    <td style="padding: 0 5px 0 5px; font-size:12px;">
+                   <td style="padding: 0 5px 0 5px; font-size:12px;">
 
                     	<?php 
                     		$this->db->where("invoice_no",$rowb->invoice_no);
@@ -1741,13 +1741,17 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 					$monthmk=array();
 					$demont = $rty->num_rows();
                    $i=0; foreach($rty->result() as $tyu):
-                        $ffffu= $tyu->deposite_month-4;
+                       if($tyu->deposite_month<4){
+                         $ffffu=  $tyu->deposite_month-4+12;
+                    
+                       }else{
+                        $ffffu= $tyu->deposite_month-4;}
 					
 						echo  date('M-Y', strtotime("$ffffu months", strtotime($fsddate))).", ";
 						$monthmk[$i]=$tyu->deposite_month;
                     	//echo date("d-M-y", $rdt);
 					$i++; endforeach;						
-$monthmk[$i]=13;?>
+                  $monthmk[$i]=13;?>
                 </td></tr>
             </tbody></table>
             </div>
@@ -1942,7 +1946,7 @@ This is computer generated invoice and verified by accountant.
 				  </td>
 				
 				  <td class="col-sm-2 text-center"  style="background-color:#caf441" > <strong>Total</strong> </td>
-				  <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$total+$lfee+$transfee-$totdisc+$prbalanace); ?> </td>
+				   <td class="col-sm-3 text-center"  style="background-color:#caf441"   ><?php echo sprintf('%0.2f',$rowb->total); ?> </td>
 				  </tr>
 				
 				  <tr class='text-uppercase'>

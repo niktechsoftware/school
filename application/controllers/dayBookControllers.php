@@ -257,11 +257,12 @@ function daybook()
 		$date = date('Y-m-d');
 		
 		// Calculat and update Invoice serial start
+		$school_code=	$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
-		$invoice12 = $this->db->count_all("invoice_serial");
-	//	$num1=$num1+1000;
-		$invoice1=6000+$invoice12;
-		$num1 = $school_code."I".$invoice1;
+		$invoice = $this->db->get("invoice_serial");
+		$invoice1=6000+$invoice->num_rows();
+		$invoice_number = $school_code."I19".$invoice1;
+		$num1=$invoice_number;
 		$invoice = array(
 				"invoice_no" =>$num1,
 				"reason" => "Cash Payment handover",
@@ -357,14 +358,16 @@ function daybook()
 		$id_name = $this->input->post('id_name');
 		$bank_name = $this->input->post('bank_name');
 		$account_no = $this->input->post('account_no');
+	$school_code=	$this->session->userdata("school_code");
 		$amount = $this->input->post('amount');
 		$chequeTran_no = $this->input->post('chequeTranNum');
 		$remark = $this->input->post('remark');
 		$date = date('Y-m-d');
-		$school_code=$this->session->userdata('school_code');
-		$num11 = $this->db->count_all("invoice_serial");
-		$n1=1000+$num11;
-		$num1 = $school_code."I".$n1;
+		$this->db->where("school_code",$school_code);
+		$invoice = $this->db->get("invoice_serial");
+		$invoice1=6000+$invoice->num_rows();
+		$invoice_number = $school_code."I19".$invoice1;
+		$num1=	$invoice_number;
 		$invoice = array(
 				"invoice_no" =>$num1,
 				"reason" => "Bank Transaction",
@@ -488,9 +491,12 @@ function daybook()
 		$name = $this->input->post('name');
 		$disc = $this->input->post('disc');
 		$date = date('Y-m-d');
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$num1 = $this->db->count_all("invoice_serial");
-		$num1=$num1+1000;
+			$school_code=	$this->session->userdata("school_code");
+		$this->db->where("school_code",$school_code);
+		$invoice = $this->db->get("invoice_serial");
+		$invoice1=6000+$invoice->num_rows();
+		$invoice_number = $school_code."I19".$invoice1;
+		$num1=$invoice_number;
 		$invoice = array(
 				"invoice_no" =>$num1,
 				"reason" => "Director Transaction",

@@ -142,7 +142,7 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 										<td class="text-lowercase"><?php echo $row->date; ?></td>
 										<td class="text-lowercase"><?php echo $sentsms->num_rows()+ $wrongsms->num_rows(); ?></td>
 										<td class="text-lowercase">
-										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->id; ?>" class="btn btn-green"> Success <?php echo $sentsms->num_rows();?></a></td> 
+										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->response_id; ?>" class="btn btn-green"> Success <?php echo $sentsms->num_rows();?></a></td> 
 									</td>
 
                   					<td class="text-lowercase">

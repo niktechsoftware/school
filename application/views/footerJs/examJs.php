@@ -104,6 +104,21 @@
 
 				
 				
+				$("#subjectId").change(function(){
+				   
+					var classid = $("#classId").val();
+					var teacherid = $("#teacherid").val();
+					var examid = $("#exam_name").val();
+					var sectionid = $("#sectionId").val();
+					//var mm = $("#mm").val();
+					var subjectid = $("#subjectId").val();
+				
+					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
+			
+						$("#enterMarks").html(data);
+						});
+					
+					});
 				
 				$("#teacherid").keyup(function(){
 					var teacherid = $("#teacherid").val();
@@ -148,19 +163,6 @@
 
 			
 
-				$("#subjectId").change(function(){
-					var classid = $("#classId").val();
-					var teacherid = $("#teacherid").val();
-					var examid = $("#exam_name").val();
-					var sectionid = $("#sectionId").val();
-					//var mm = $("#mm").val();
-					var subjectid = $("#subjectId").val();
-				// alert(classid);
-					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
-						$("#enterMarks").html(data);
-						});
-					
-					});
 			
 			$("#subjectIdmarks").change(function(){
 					var classid = $("#classId").val();
