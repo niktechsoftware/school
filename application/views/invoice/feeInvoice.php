@@ -1732,7 +1732,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
                 </tr>
                 <tr class='text-uppercase'>
                      <td class="meta-head" style="padding: 0 5px 0 5px; font-size:12px;"> <b>Fee For The Month </b></td>
-                    <td style="padding: 0 5px 0 5px; font-size:12px;">
+                   <td style="padding: 0 5px 0 5px; font-size:12px;">
 
                     	<?php 
                     		$this->db->where("invoice_no",$rowb->invoice_no);
@@ -1741,13 +1741,17 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 					$monthmk=array();
 					$demont = $rty->num_rows();
                    $i=0; foreach($rty->result() as $tyu):
-                        $ffffu= $tyu->deposite_month-4;
+                       if($tyu->deposite_month<4){
+                         $ffffu=  $tyu->deposite_month-4+12;
+                    
+                       }else{
+                        $ffffu= $tyu->deposite_month-4;}
 					
 						echo  date('M-Y', strtotime("$ffffu months", strtotime($fsddate))).", ";
 						$monthmk[$i]=$tyu->deposite_month;
                     	//echo date("d-M-y", $rdt);
 					$i++; endforeach;						
-$monthmk[$i]=13;?>
+                  $monthmk[$i]=13;?>
                 </td></tr>
             </tbody></table>
             </div>

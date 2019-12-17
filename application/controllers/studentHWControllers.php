@@ -56,8 +56,11 @@ class studentHWControllers extends CI_Controller{
 		$smscount=0;
 		$count=0;
 		 $class_id = $this->input->post("classid");
+		
+		 
 		 $fmobile=$this->session->userdata("mobile_number");
 		 $school_code=$this->session->userdata("school_code");
+		 
 		 $date=Date("Y-m-d");
 		 
 		 $this->db->select("homework_name.workDiscription,subject.subject");
@@ -90,12 +93,13 @@ class studentHWControllers extends CI_Controller{
 	     $smsc=0;
 		if($tt=="true"){
 		   $query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id);
+		 
     		if($query->num_rows() > 0)
     		{   
         		 $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
         		$master_id=$max_id->maxid+1;
-        		$getresultm = $this->smsmodel->sentmasterRecord($msg,$query->num_rows(),$master_id);
-        		if($getresultm){
+        // 		$getresultm = $this->smsmodel->sentmasterRecord($msg,$query->num_rows(),$master_id);
+        // 		if($getresultm){
         		   
         		  foreach($query->result() as $parentmobile):
         			$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
@@ -117,18 +121,19 @@ class studentHWControllers extends CI_Controller{
             				if($this->input->post("language")==1){
             				   
             				    
-            				    // 	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				     	mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile1);
             				
-            					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            					$getv=	mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
             				}else{
             				    	
-            				    // 	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				     	mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile1);
             				
             					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
             				}	
             			$a[]=0;
             		
-            			$this->smsmodel->sendReport($getv,$master_id);
+            // 			$this->smsmodel->sendReport($getv,$master_id);
+            $this->smsmodel->sentmasterRecord($msg,$query->num_rows(),$master_id,$getv);
             				$fmobile=$checknum;
             				$smscount=0;
             
@@ -140,20 +145,22 @@ class studentHWControllers extends CI_Controller{
 		
 				if($this->input->post("language")==1){
 				//echo $fmobile;
-				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				
-					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				$getv=	mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				}else{
-				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				    // 	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
 			$a[]=0;
-		$smsdt=	$this->smsmodel->sendReport($getv,$master_id);
+// 		$smsdt=	$this->smsmodel->sendReport($getv,$master_id);
+         $smsdt =$this->smsmodel->sentmasterRecord($msg,$query->num_rows(),$master_id);
 		if($smsdt){
 		    	echo  "Sms Sent .";
 		}
-	        	}
+	        	
+	        
 	    	} 
 	    		else{
 	           echo "student number not found .";

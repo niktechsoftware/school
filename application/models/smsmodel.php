@@ -192,6 +192,7 @@ function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 			$this->db->from('student_info');
 			$this->db->join('class_info','class_info.id=student_info.class_id');
 			$this->db->where("student_info.class_id",$classid);
+			$this->db->where("class_info.school_code",$school_code);
 			$this->db->where("student_info.status",1);
 			$query=$this->db->get();
 			

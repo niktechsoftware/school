@@ -890,13 +890,14 @@ function getFsd(){
 		  	
 // 				sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 //           }else	{
-		  			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit soon.".$schoolname->school_name;
+		  			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit the fee before the exam otherwise Your ward will not allow to take the exam.".$schoolname->school_name;
    
 		  		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
+			
 				
-					
 						 $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$mnum);
+					
 						 $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 						echo "Sent Success";
 					//}

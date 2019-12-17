@@ -667,7 +667,10 @@ function defineExam1(){
 		$data =array(
 				'max_m'=> $marks,
 				);
-				$this->db->where('id', $rowid);
+				// $this->db->where('id', $rowid);
+				$this->db->where('exam_id', $examid);
+				$this->db->where('class_id', $classid);
+				$this->db->where('subject_id', $subjectid);
 			$deletedt=	$this->db->delete("exam_max_subject");
 			if($deletedt){
 				$this->db->where('sub_type', $subtype);

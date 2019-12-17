@@ -53,7 +53,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                    $subjectid=$subject->id;
                     $val=$this->db->query("select * from exam_max_subject WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' order by id");
                     // print_r($val->result());exit;
-                    if($val->num_rows()>2){
+                    if($val->num_rows()>0){
             ?>
             <tbody>
                 <tr>
@@ -85,6 +85,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  <option >Select</option>
                  <option value="1">Written</option>
                  <option value="0">Oral</option>
+                   <option value="2">Theory</option> 
+                   <option value="3">Practical</option>
                  </select> 
                  </td>
                   <?php }?>             
@@ -129,6 +131,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  <option >Select</option>
                  <option value="1">Written</option>
                  <option value="0">Oral</option>
+                  <option value="2">Theory</option> 
+                   <option value="3">Practical</option>
                  </select> 
                  </td> 
                 	         <button class="btn btn-green" id="savemax<?php echo $i;?>">Save Maximum Marks<i class="fa fa-arrow-circle-save"></i>
@@ -158,6 +162,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  <option >Select</option>
                  <option value="1">Written</option>
                  <option value="0">Oral</option>
+                  <option value="2">Theory</option> 
+                   <option value="3">Practical</option>
                  </select> 
                  </td>         
          	             <td>
@@ -274,6 +280,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                      });  
 
                      $("#deletemmarks<?php echo $i;?>").click(function(){
+                         alert("aarju");
                            var subtype = $("#sub_type<?php echo $i;?>").val();
                             var mark = $("#mmmark<?php echo $i;?>").val();
                             var examid = $("#examid1<?php echo $i;?>").val();
@@ -372,8 +379,12 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   <td >
                  <?php if($valrow->sub_type==1){
                    echo "Written";
-                 }else{
+                 }elseif($valrow->sub_type==0){
                    echo "Oral";
+                 }elseif($valrow->sub_type==2){
+                   echo "Theory";
+                 }else{
+                   echo "Practical";
                  } ?>
                  </td>             
                  <td><button class="btn btn-red" id="updtmmarks<?php echo $i ;?>">Update Your Marks<i class="fa fa-arrow-circle-right"></i>
@@ -381,7 +392,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                      <button class="btn btn-red" id="deletemmarks<?php echo $i ;?>">Delete Marks<i class="fa fa-trash-o"></i>
                      </button><?php } ?>
                   </td>
-                  <input type="hidden" id="viid" value="<?php echo $val->row()->id; ?>" />
+                  <input type="hidden" id="viid<?php echo $i ;?>" value="<?php echo $val->row()->id; ?>" />
                   <input type="hidden" id="classid1" value="<?php echo $classid; ?>" />
                 <input type="hidden" id="examid1" value="<?php echo $examid; ?>" />
                 <input type="hidden" id="subjectid1" value="<?php echo $subjectid; ?>" />
@@ -389,6 +400,52 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   
                  
                     </tbody> 
+                    <script>
+                       $("#updtmmarks<?php echo $i ;?>").click(function(){
+                          var subtype = $("#sub_type<?php echo $i ;?>").val();
+                            var mark = $("#mmmark<?php echo $i;?>").val();
+                            var examid = $("#examid1").val();
+                            var classid = $("#classid1").val();
+                            var subjectid = $("#subjectid1").val();
+                           // var marks_grade = $("#marks_grade").val();
+                            var viid = $("#viid<?php echo $i ;?>").val();
+                            //alert(mark);
+                            if(mark!=""){
+                                //alert(mark+viid);
+                            $.post("<?php echo site_url("index.php/examControllers/updatesubmaxiMarks") ?>",{subtype , subtype ,mark : mark,viid : viid,examid : examid, classid : classid, subjectid : subjectid,}, function(data){
+                            $("#updtmmarks<?php echo $i ;?>").html(data);
+                              alert('Maximum Marks Updated Successfully');
+                               $("#<?php echo $i ;?>").html();
+                                //window.location.reload();
+                            });
+                            }else{
+                                alert('Please fill Marks');
+                            }
+                     });  
+                     $("#deletemmarks<?php echo $i ;?>").click(function(){
+                      var subtype = $("#sub_type<?php echo $i ;?>").val();
+                            var mark = $("#mmmark<?php echo $i;?>").val();
+                            var examid = $("#examid1").val();
+                            var classid = $("#classid1").val();
+                            var subjectid = $("#subjectid1").val();
+                            var viid = $("#viid<?php echo $i ;?>").val();
+                            if(mark!=""){
+                               confirm('Do you really want to delete Maximum Marks?');
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubmaxiMarks") ?>",{subtype : subtype ,mark : mark,viid : viid, examid : examid, classid : classid, subjectid : subjectid,}, function(data){
+                     
+                      $("#deletemmarks<?php echo $i ;?>").html(data);
+                      alert('Maximum Marks Deleted Successfully');
+                      $("#deletemmarks<?php echo $i ;?>").html();
+                     // $("#mmmark<?php echo $i;?>").show();
+                      // $("#updtmmarks<?php echo $i;?>").hide();
+                       // window.location.reload();
+                    });
+                            }else{
+                                alert('Please fill Marks');
+                            }
+                 
+                     });  
+                </script>
                      <?php $i++; endforeach; }               
                 else
                 {
@@ -418,6 +475,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  <option >Select</option>
                  <option value="1">Written</option>
                  <option value="0">Oral</option>
+                  <option value="2">Theory</option> 
+                   <option value="3">Practical</option>
                  </select> 
                  </td>         
          	             <td>
@@ -447,6 +506,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  <option >Select</option>
                  <option value="1">Written</option>
                  <option value="0">Oral</option>
+                  <option value="2">Theory</option> 
+                   <option value="3">Practical</option>
                  </select> 
                  </td>         
          	             <td>
@@ -548,7 +609,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                             var classid = $("#classid1").val();
                             var subjectid = $("#subjectid1").val();
                            // var marks_grade = $("#marks_grade").val();
-                            var viid = $("#viid").val();
+                            var viid = $("#viid<?php echo $i ;?>").val();
                             //alert(mark);
                             if(mark!=""){
                                 //alert(mark+viid);
@@ -568,7 +629,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                             var examid = $("#examid1").val();
                             var classid = $("#classid1").val();
                             var subjectid = $("#subjectid1").val();
-                            var viid = $("#viid").val();
+                            var viid = $("#viid<?php echo $i ;?>").val();
                             if(mark!=""){
                                confirm('Do you really want to delete Maximum Marks?');
                     $.post("<?php echo site_url("index.php/examControllers/deletesubmaxiMarks") ?>",{subtype : subtype ,mark : mark,viid : viid, examid : examid, classid : classid, subjectid : subjectid,}, function(data){
