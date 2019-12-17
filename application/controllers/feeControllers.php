@@ -118,7 +118,13 @@ function getFsd(){
 		$updata['student_id']=$this->input->post('stuId');
 		$updata['late']=$this->input->post("latefee");
 	//	$updata['monthly_fee']=$this->input->post("monthfee");
-		$updata['transport']=$this->input->post("transport_fee");
+	
+	if($school_code==14){
+		$updata['transport']=$this->input->post("dtransport_fee");
+	}else{
+	    	$updata['transport']=$this->input->post("transport_fee");
+
+	}
 		$updata['deposite_month ']=	$cmnum;
 		$updata['feecat']=$feecat;
 		$updata['description']=$this->input->post("disc");
@@ -305,7 +311,7 @@ function getFsd(){
 		    $master_id=$max_id->maxid+1;
 		    $getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
 		    if($getresultm){
-		        if($this->session->userdata("school_code")!=9){
+		        if($this->session->userdata("school_code")!=9 && $this->session->userdata("school_code")!=8){
 		        sms($fmobile1,$msg1,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		        }
 		    	$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
@@ -1221,10 +1227,15 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Transport Fee</div>
 	                                                    <div class="col-sm-7">
-	                                                   
-	                                                        <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
+	                                                   <?php if($school_code==14){ ?>
+	                                                        <!--<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">-->
+	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
+	                                                   <?php } else{ ?>
+	                                                   <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
 	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
-	                                                    <?php $totfees+=$transfee;?>
+	                                                 <?php $totfees+=$transfee;?>
+	                                                   <?php } ?>
+	                                                  
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -1371,9 +1382,17 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                            <div class="col-sm-12">
 	                                                <div class="col-sm-6 text-uppercase">Total</div>
 	                                                <div class="col-sm-6">
+	                                                 <?php   if($school_code==14){
+	                                                     ?>
+	                                                    
 	                                                    <input type="hidden" id="total1"  value="<?php echo $totfees+$latefee1;?>" name="total1" />
 	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
 	                                                    <input type="text" id="total"  value="<?php echo $totfees+$latefee1;?>" class="form-control" readonly/>
+	                                                    <?php } else { ?>
+	                                                     <input type="hidden" id="total1"  value="<?php echo $totfees+$latefee1;?>" name="total1" />
+	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
+	                                                    <input type="text" id="total"  value="<?php echo $totfees+$latefee1;?>" class="form-control" readonly/>
+	                                                    <?php } ?>
 	                                                </div>
 	                                            </div>
 	                                        </div>
@@ -1421,6 +1440,26 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                 	
 ?>
 	<script>
+	$("#dtransport_fee1").change(function(){
+	   
+	    	var tran=Number($("#dtransport_fee1").val());
+	   // 	alert(($("#dtransport_fee1").val()).length);
+	      if(tran.toString().length>0){
+	          
+	    		var tot = Number($("#total1").val());
+	    			//alert(tran + " "+ tot);
+	    		var totfee= tran + tot;
+	    		alert(totfee);
+	    		$("#total1").val(totfee);
+	    		$("#total").val(totfee);
+	    }else{
+	        var tot = Number($("#total1").val());
+	    		
+	    		alert(tot);
+	    		$("#total1").val(tot);
+	    		$("#total").val(tot);
+	    }
+	});
 	$("#discountprint").hide();
 	$("#discounterOTP").hide();
 	

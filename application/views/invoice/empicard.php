@@ -144,8 +144,9 @@
               </tr>
               <tr>
                 <td style="padding:4px">Job Title</td>
-                <td>
-                  <?php  if($personalInfo->job_title==1){ echo "Accountant";} elseif($personalInfo->job_title==2){ echo "Employee" ;} elseif($personalInfo->job_title==3){ echo "Teacher" ;} else{ echo "Principal" ; } ?>
+                <td class="text-uppercase">
+                  <?php    if($personalInfo->job_title){ echo $personalInfo->job_title; } else{
+                   if($personalInfo->job_category==1){ echo "Accountant";} elseif($personalInfo->job_category==2){ echo "Employee" ;} elseif($personalInfo->job_category==3){ echo "Teacher" ;} else{ echo "Principal" ; } } ?>
                 </td>
               </tr>
               <tr>

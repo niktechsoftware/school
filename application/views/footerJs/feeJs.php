@@ -266,7 +266,11 @@
 				value = text_value.replace(/[^(0-9-.)]*/g, "");
 				document.getElementById("latefee2").value=value;
 			}
-
+	       function trans() {
+				var text_value = document.getElementById("dtransport_fee1").value;
+				value = text_value.replace(/[^(0-9-.)]*/g, "");
+				document.getElementById("dtransport_fee1").value=value;
+			}
 
 			function stuBirthPlace() {
                     var text_value = document.getElementById("studid").value;

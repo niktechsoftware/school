@@ -50,15 +50,32 @@ return $query1;
 }
 
 	function uniqueClass($period)
-	{
-		$var = $this->db->query("SELECT DISTINCT class_id FROM time_table Where time_thead_id='$period'");
+	
+	{ 
+	   if($this->session->userdata("login_type") =="admin"){
+	        $var = $this->db->query("SELECT DISTINCT class_id FROM time_table Where time_thead_id='$period'");
+	   
+	       }else{
+	            $tid= $this->session->userdata("id");
+	
+	        	$var = $this->db->query("SELECT DISTINCT class_id FROM time_table Where time_thead_id='$period' and teacher=$tid");
+	 
+	     	
+	   }
 		return $var;
 	}
 	
 	function uniquePeriod($period)
-	{
-		$var = $this->db->query("SELECT DISTINCT period_id FROM time_table WHERE  time_thead_id='$period'");
+	{    
+	   if($this->session->userdata("login_type") =="admin" ){
+	       	  $var = $this->db->query("SELECT DISTINCT period_id FROM time_table WHERE  time_thead_id='$period' ");
+	 
+	       }else{
+	            $tid= $this->session->userdata("id");
+	        	$var = $this->db->query("SELECT DISTINCT period_id FROM time_table WHERE  time_thead_id='$period' and teacher=$tid");
+	       }
 		return $var;
+	    
 	}
 	
 	function checkvalue($data,$time_thead_id)

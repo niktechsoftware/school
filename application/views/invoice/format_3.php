@@ -781,7 +781,7 @@
             </div>
             <!--scholar academy end-->
 
-            <?php }else if($school == 14 && $row2=="C" || $school == 7 && $row2=="D"){ ?>
+            <?php }else if($school == 14 && $row2=="C" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
 
 			 <!--gyanodya, mkd result start-->
            <div>

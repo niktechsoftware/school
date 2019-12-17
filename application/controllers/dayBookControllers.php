@@ -328,10 +328,16 @@ function daybook()
 			$this->db->where("id",$this->session->userdata("school_code"));
 		    $mobile=$this->db->get("school")->row();
 			$msg = "Dear Sir/Ma'am ".$nm.", Cash Amount Rs " . $amount . "/- expend by Admin for expenditure " . $expenditure . " from your Account.";
-			sms($mobile->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			if($school_code==8){
+		//	sms($mobile->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}else{
+			    sms($mobile->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			}
 			if($mobile->id==1){
 				$msg = "Dear Sir/Ma'am ".$nm.", Cash Amount Rs " . $amount . "/- expend by Admin for expenditure " . $expenditure . " from your Account.";
-				sms(7398863503,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			
+				  sms(7398863503,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);  
+				
 			}
 				redirect("dayBookControllers/invoiceCashPayment/$num1");
 			else:

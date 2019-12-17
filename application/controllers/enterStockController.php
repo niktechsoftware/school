@@ -159,7 +159,7 @@
 			$this->load->model("enterStockModel");
 			$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
-		$invoice1=1+6000+$invoice->num_rows();
+		$invoice1=6000+$invoice->num_rows();
 		$invoice_number = $school_code."I19".$invoice1;
 	     	$billno = $invoice_number;
 	     	

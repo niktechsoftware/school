@@ -735,13 +735,15 @@ function insertMarksdetail()
 	function resultRender(){
 		$school_code =$this->session->userdata("school_code");
 		$data['examName'] = $this->input->post("examName");
-		$data['student_id'] = $this->input->post("student_id");
+		$data1['student_id'] = $this->input->post("student_id");
 		$data['fsd'] = $this->input->post("fsd");
 	    
 		$data['pageTitle'] = 'Result';
 		$data['smallTitle'] = 'Result';
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Result';
+		print_r($data1);
+		exit;
 		
 		$data['title'] = 'Result';
 		$data['headerCss'] = 'headerCss/generateResultCss';
