@@ -105,7 +105,9 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 
                      ?>
                      <br><br>
- <table class="table table-striped table-bordered table-hover" >
+      
+                     	<div class="table-responsive">
+ <table class="table table-striped table-bordered table-hover" id="sample-table-2">
                   <tr>
 
                     <th><?php echo $classname; ?> - <?php //echo $sectionname; ?> - <?php echo $subjectname; ?></th>
@@ -137,11 +139,14 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   </tr>
                 </thead>
                 <tbody>
-                <?php $i = 1;$j=1;
+                <?php
+                
+                $i = 1;$j=1;
+                  $this->db->order_by("name","asc");
                      $this->db->where("status",1);
                       $this->db->where("class_id",$classid);
-
-                      //$this->db->order_by("name","asc");
+                      
+                    
 
                     $num_row=$this->db->get("student_info");
                 if($num_row->num_rows()>0){
@@ -336,8 +341,17 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                     echo "Student Not Enrolled";}?> 
                     </tbody>    
 		                	</table>
+		                	</div>
                     </div>
              						</div>
+             						 <script>
+                      	Main.init();
+        				// SVExamples.init();
+        				// FormElements.init();
+        				TableExport.init();
+        				// UIModals.init();
+                  </script>
+
 
         <!--</div>-->
     </div>

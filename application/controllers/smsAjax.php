@@ -114,11 +114,9 @@ class SmsAjax extends CI_Controller{
 			//echo $fmobile;
 			
 			if($this->input->post("language")==1){
-				echo $fmobile;
-				//exit();
+			
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				// echo	$getv;
-				// exit;
+				
 				}else{
 					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}	
@@ -137,7 +135,7 @@ class SmsAjax extends CI_Controller{
 	
 	
 	
-	function sendallParent(){
+		function sendallParent(){
 		$smscount=0;
 		$count=0;
 		$smsc =0;
@@ -556,7 +554,7 @@ class SmsAjax extends CI_Controller{
 			endforeach;
 			if($this->input->post("language")==1){
 			    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				    print_r($fmobile);
+				    // print_r($fmobile);
 					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				}else{
 				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);

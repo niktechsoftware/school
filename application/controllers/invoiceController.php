@@ -228,6 +228,7 @@ class InvoiceController extends CI_Controller{
 		$this->db->select("studenticard_format");
 			$this->db->where("school_code",$this->session->userdata("school_code"));			
 		    $val=$this->db->get("result_format");
+		  
            if($val->num_rows()>0)
             {
 			$val=	$val->row()->studenticard_format;
@@ -425,7 +426,7 @@ class InvoiceController extends CI_Controller{
 		   $this->db->where("class_id", $this->uri->segment(4));
 		  $this->db->where("fsd",$this->uri->segment(3) );
 		  $this->db->where("term",1 );
-		 $examTypeResult2 = $this->db->get("exam_info")->result();
+		 $examTypeResult2 = $this->db->get("exam_info");
 		 //for 2nd term
 		 $this->db->Distinct();
 	      $this->db->select("exam_id,term");
@@ -433,7 +434,7 @@ class InvoiceController extends CI_Controller{
 		   $this->db->where("class_id", $this->uri->segment(4));
 		  $this->db->where("fsd",$this->uri->segment(3) );
 		  $this->db->where("term",2 );
-		 $examTypeResult2_2 = $this->db->get("exam_info")->result();
+		 $examTypeResult2_2 = $this->db->get("exam_info");
 		 //for 3rd term
 		 $this->db->Distinct();
 	      $this->db->select("exam_id,term");
@@ -441,7 +442,7 @@ class InvoiceController extends CI_Controller{
 		   $this->db->where("class_id", $this->uri->segment(4));
 		  $this->db->where("fsd",$this->uri->segment(3) );
 		  $this->db->where("term",3 );
-		 $examTypeResult2_3 = $this->db->get("exam_info")->result();
+		 $examTypeResult2_3 = $this->db->get("exam_info");
 		 
 		 
             	     /* $this->db->Distinct();

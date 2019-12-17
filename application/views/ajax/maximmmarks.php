@@ -3,7 +3,36 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   <meta name="description" content="Welcome to niktech software School business ERP . we proving school management erp software. we including online attendance with biometric attendance machine and tracking student with GPS technology & many other facilities in our school management erp system">
   <meta name="keywords" content="Enterprise resource planning,school,ERP,system software,attendance,biometric,online, school management,gps,niktech software solution, online result, online admit card,omr">
   <meta name="author" content="School management System software">
--->
+<!---->
+			<div class="row">
+			<div class="col-md-12 space20">
+				<div class="btn-group pull-right">
+					<button data-toggle="dropdown" class="btn btn-green dropdown-toggle">
+						Export <i class="fa fa-angle-down"></i>
+					</button>
+					<ul class="dropdown-menu dropdown-light pull-right">
+						<li>
+							<a href="#" class="export-excel" data-table="#sample-table-2" >
+								Export to Excel
+							</a>
+						</li>
+
+						<li>
+							<a href="#" class="export-csv" data-table="#sample-table-2" >
+								Save as CSV
+							</a>
+						</li>
+						<li>
+							<a href="#" class="export-doc" data-table="#sample-table-2" data-ignoreColumn ="3,4">
+								Export to Word
+							</a>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+           
 <?php $school_code=$this->session->userdata("school_code");?>
 		 <?php 
                             $this->db->where('school_code',$school_code);
@@ -15,7 +44,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                           $sectionname=$this->db->get('class_section')->row()->section;
                          
                           if($subjectid=="all"){?>
-	
+
             <table class="table table-striped table-bordered table-hover" id="datatable">
                    <tr>
                     <th><?php echo $classname; ?> - <?php echo $sectionname; ?> - <?php echo  "All Subject"; ?></th>
@@ -28,7 +57,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   </tr>
               </table>
               <br><br>
-                
+                	<div class="table-responsive">
                <table class="table table-striped table-bordered table-hover" id="sample-table-2">
                 <thead>
                   <tr>
@@ -212,7 +241,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
         	    <?php $i++; }?>
         	   </table>
         	   
-		       
+		       </div>
                          <?php     
                          }else{
                              $this->db->where('class_id',$classid);
@@ -237,6 +266,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
               $val=$this->db->query("select * from exam_max_subject WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' order by id");
               		// print_r($val->result());exit;
               		?>
+              			<div class="table-responsive">
                <table class="table table-striped table-bordered table-hover" id="sample-table-2">
                 <thead>
                   <tr>
@@ -321,7 +351,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                      </tr>
                   <?php }?>
     	       </table>
-		                	                
+		              </div>  	                
 		       <script type="text/javascript">
                     $("#savemax").click(function(){
                         var examid = $("#examid").val();
@@ -404,9 +434,18 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                             }
                  
                      });  
+                     
+                     				
+			
                 </script>
-                <?php } ?>
-                  
+                     <?php } ?>
+                  <script>
+                      	Main.init();
+        				// SVExamples.init();
+        				// FormElements.init();
+        				TableExport.init();
+        				// UIModals.init();
+                  </script>
 
 
         

@@ -156,7 +156,7 @@
 						$this->db->where("id",$school_code);
 						$info =$this->db->get("school")->row();
 					?>
-                    <table style="width: 100%;"> <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+                    <table style="width: 100%;"> <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
 					<tr style="background-color: #b38cb1;"><?php }else{ ?><tr >
 					<?php } ?>
                            <td  style="border: none;width: 240px;">
@@ -164,7 +164,7 @@
                                     alt="" style="height: 100px;width: 100px;" />
                                 </br><label style="font-size: 13px;">Aff.No. - <?php echo $info->registration_no;?></label>
                             </td>
-                             <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+                             <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                             <td  style="border: none;" >
                                 <h1 style="font-size: 30px; font-family: Algerian;">
                                     <?php echo $info->school_name;?></h1>
@@ -249,7 +249,7 @@
             
             <br>
              <!-- scholar & mkd accademy start -->
-            <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+            <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <div>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;font-weight:bold;font-size: 14px;">
@@ -1663,7 +1663,8 @@
                         <td>Percentage  : <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}?>% </td>
                         <td >Grade  : <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade_sarvodya($per,$classid->class_id);}?></label></td>
                         <td>Rank :<?php 
-			echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);?></td>
+			//echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);
+			?></td>
                     </tr>
                 </table>
             </div>
@@ -2084,42 +2085,42 @@
 					<?php }else{ ?>
 					<!--scholar,mkd,bsd,spring SCHOLASTIC start-->
                     <table style="width:90%; border:1px solid black;">
-					<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+					<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
 						<tr style="background-color:#9dfa5b;"><?php }else{ ?><tr><?php } ?>
                             <th colspan="3" style="text-transform: uppercase;">Co- SCHOLASTIC Area</th>
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
 						<tr style="background-color:#9dfa5b;"><?php }else{ ?><tr><?php } ?>
                             <th style="text-transform: uppercase;"> Activity </th>
                             <th>TERM 1</th>
                         </tr>
                         <!-- Dynamic -->
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
 						<tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td >Work Education</td>
                             <td><?php  if($per >= 61 && $per < 81 ){ echo "B";}else{if($dhtm>0){echo $gradecal =co_scolastic($per,$classid);}}  ?></td>      
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Art Education</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>   
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Health & Physical Education</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"  || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Thinking Skills</td>
                             <td><?php  if($per >= 61 && $per < 81 ){ echo "B";}else{if($dhtm>0){echo $gradecal =co_scolastic($per,$classid);}}  ?></td>
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Sports</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>   
                         </tr>
-                         <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+                         <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <?php }else{ ?>
                         <tr>
                             <td>Scientific Skills</td>
@@ -2156,7 +2157,7 @@
 							$absnt=$row1->num_rows();
 							$present =$atotal-$absnt;
 							?>
-							 <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+							 <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"  || $school == 9 && $row2=="D"){ ?>
                             <td style="background-color:orange;"><label> .</label></td>
                           <?php  }
                             else {?>
@@ -2265,42 +2266,42 @@
 					<?php }else{ ?>
 					<!--scholar,spring,mkd,bsd DISCIPLINE start-->
                     <table style="width:90%; border:1px solid black;">
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style=" background-color:#9dfa5b;"><?php }else{ ?><tr><?php } ?>
                             <th colspan="3" style="text-transform: uppercase;"> Discipline</th>
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color:#9dfa5b;"><?php }else{ ?><tr><?php } ?>
                             <th style="text-transform: uppercase;"> Element </th>
                             <th>TERM 1</th>
                         </tr>
                         <!-- Dynamic -->
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Regularity & Punctuality</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Behaviour & Values</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Attitude Towards Teachers</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Attitude Towards School Mates</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Respectfulness For Rules & Regulations</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>
                         </tr>
-                        <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+                        <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <?php }else{ ?>
                         <tr>
                             <td>Sincerity</td>
@@ -2319,7 +2320,7 @@
 				<?php } ?>
                     <table style="width:70%; border:1px solid black; background-color:white;">
                         <tr> 
-						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
 							<!--scholar & mkd remark start-->
 							<td style="background-color:orange;">Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php if($dhtm>0){echo $gradecal =remarks($per,$classid->class_id);} ?></label></td>
 							<!--scholar  & mkd remark end-->							
@@ -2350,7 +2351,7 @@
 						<tr style="background-color: orange;">
 							<th>MARKS RANGE </th>
 							<th>GRADE</th>
-							<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+							<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
 							<!--for scholar & mkd title grade chart start-->
 							<!--for scholar & mkd title grade chart end-->
 							<?php }elseif($school == 14 && $row2=="C"){ ?>
@@ -2365,7 +2366,7 @@
 					<tbody>
                     <!-- Dynamic -->
 					<!--for scholar & mkd grade chart start-->
-                    <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+                    <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                     <tr style="background-color: #d8c4af;">
                         <td>91-100</td>
                         <td>A1</td>

@@ -151,15 +151,15 @@
 		    $school_code = $this->session->userdata("school_code");
 
 			$this->db->where("school_code",$school_code);
-			$billno = $this->db->order_by('id',"desc")->limit(1)->get('invoice_serial')->row()->id;
-//$billno= $billno4->num_rows();
+			$billno = $this->db->count_all("invoice_serial");
+			//$billno= $billno4->num_rows();
 		//print_r($billno);exit();
 
 			$this->load->model("daybookModel");
 			$this->load->model("enterStockModel");
 			$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
-		$invoice1=1+6000+$invoice->num_rows();
+		$invoice1=6000+$invoice->num_rows();
 		$invoice_number = $school_code."I19".$invoice1;
 	     	$billno = $invoice_number;
 	     	
