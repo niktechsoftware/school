@@ -77,10 +77,13 @@ class examControllers extends CI_Controller
      }
      
 	 function maximarks()
-   { 
-			$data = array(
-				"sub_type" => $this->input->post("subtype"),
+   {
+       //echo $this->input->post("examid");
+   //exit;
+		     	$data = array(
+			     	"sub_type" => $this->input->post("subtype"),
 					"exam_id" => $this->input->post("examid"),
+					
 					"class_id" => $this->input->post("classid"),
 					"subject_id" => $this->input->post("subjectid"),
 					"marks_grade" => $this->input->post("marks_grade"),
