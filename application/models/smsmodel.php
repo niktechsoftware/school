@@ -15,7 +15,7 @@ class Smsmodel extends CI_Model{
 		return true;
 	}
 	
-	function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
+function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 		$schol_code = $this->session->userdata("school_code");
 		$this->db->where("id",$master_id);
 		$getcheck = $this->db->get("sent_sms_master");
@@ -27,6 +27,26 @@ class Smsmodel extends CI_Model{
 				"tot_count"=>$totsmssent,
 				"sms"=>$msg,
 				"school_code"=>$schol_code,
+				"date"=>Date("Y-m-d G:i:s"),
+				"response_id"=>$response_id
+		
+		);
+		$insertwrongnumber= $this->db->insert("sent_sms_master",$data);
+		return true;
+		}	
+	}
+	function sentmasterRecord1($msg,$totsmssent,$master_id,$response_id,$school_code){
+		//$schol_code = $this->session->userdata("school_code");
+		$this->db->where("id",$master_id);
+		$getcheck = $this->db->get("sent_sms_master");
+		if($getcheck->num_rows()>0){
+			return false;
+		}else{
+		$data=array(
+				"id"=>$master_id,
+				"tot_count"=>$totsmssent,
+				"sms"=>$msg,
+				"school_code"=>$school_code,
 				"date"=>Date("Y-m-d G:i:s"),
 				"response_id"=>$response_id
 		
@@ -71,6 +91,40 @@ class Smsmodel extends CI_Model{
 	    
 	    
 	}
+	function getMobile($str_arr,$msg,$master_id,$mv){
+	    if($mv==1){
+	        $sessionv = 0;
+	    $fmobile =$this->session->userdata("mobile_number");
+	    	foreach($str_arr as $xuv):
+			$checknum = $this->checknum($xuv,$msg,$master_id);
+			if($checknum){
+				if(!($sessionv)){
+				    $sessionv=1;
+					$fmobile =$checknum;
+				}else{
+					$fmobile=$fmobile.",".$checknum;
+				}
+			
+			}
+			endforeach;
+			return $fmobile;
+	    }else{
+	         $fmobile =$this->session->userdata("mobile_number");
+	    	foreach($str_arr as $xuv):
+			$checknum = $this->checknum($xuv->mobile,$msg,$master_id);
+			if($checknum){
+				if(!($this->session->userdata("mobile_number"))){
+					$fmobile =$checknum;
+				}else{
+					$fmobile=$fmobile.",".$checknum;
+				}
+			
+			}
+			endforeach;
+			return $fmobile;
+	    }
+	}
+	
 	function checknum($cnumber,$msg,$master_id){
 	  
 		$cnumber = str_replace(' ', '', $cnumber);
@@ -138,6 +192,7 @@ class Smsmodel extends CI_Model{
 			$this->db->from('student_info');
 			$this->db->join('class_info','class_info.id=student_info.class_id');
 			$this->db->where("student_info.class_id",$classid);
+			$this->db->where("class_info.school_code",$school_code);
 			$this->db->where("student_info.status",1);
 			$query=$this->db->get();
 			
