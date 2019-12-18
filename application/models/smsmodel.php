@@ -79,6 +79,15 @@ class Smsmodel extends CI_Model{
 			
 	}
 	
+		function sendReportmy($getv,$mid){
+		    $data =array(
+		        "response"=>$getv,
+		        "mid"=>$mid
+		        );
+	  
+		$this->db->insert("savesmsResponce",$data);
+		return true;
+	}
 	
 	
 	function sendReport($getv,$master_id){

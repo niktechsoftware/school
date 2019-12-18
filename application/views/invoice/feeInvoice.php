@@ -509,7 +509,7 @@ This is computer generated invoice and verified by Accountant.
     <!--    <button class="btn btn-danger" type="button" onclick="window.print();">Print Reciept </button>-->
     <!--</div>-->
 
-    <?php }elseif($school == 7 && $row2=="A"){
+    <?php }elseif($school == 14 && $row2=="A"){
         // print_r($school);
         // print_r($row2);
         
