@@ -22,7 +22,20 @@ class feeModel extends CI_Model{
 		$val = $this->db->get("fee_deposit");
 		return $val;
 	}
-
+    function getstudent($classv){
+       
+           
+               
+                $this->db->where("class_id",$classv);
+              $studt=  $this->db->get("student_info");
+              if($studt->num_rows()>0){
+                  return $studt;
+              }
+              else{
+              return false;
+              }
+           
+        }
 	function insertocanddaybook($bal,$data){
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("opening_date",date('Y-m-d'));

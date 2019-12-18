@@ -101,6 +101,15 @@
 					}
 				})
 				
+				$("#fsd1").change(function(){
+					if($("#fsd1").val() == '') {
+						$("#classv1").attr("disabled", "disabled");
+					}
+					else {
+						$('#classv1').removeAttr("disabled");
+					}
+				})
+				
 				
 			$("#classv").change(function(){
 					var sectionid = $("#classv").val();
@@ -135,6 +144,7 @@
 					}
 				});
 				
+			
 
 			$("#sectionId").change(function(){
 					var fsd = $("#fsd").val();
@@ -157,7 +167,30 @@
 					})
 					
 				});
-
+	$('#fmonth').change(function(){
+	    
+					var fsd = $("#fsd").val();
+					var classv = $("#sectionId1").val();
+					var section = $("#classv").val();
+					var month = $("#fmonth").val();
+		
+					$.ajax({
+						"url": "<?= base_url() ?>index.php/feeControllers/current_monthreport",
+						"method": 'POST',
+						"data": {fsd : fsd,section : section,classv : classv,month : month},
+						beforeSend: function(data) {
+							$("#rahul").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+						},
+						success: function(data) {
+							$("#rahul").html(data);
+						},
+						error: function(data) {
+							$("#rahul").html(data)
+						}
+					})
+				
+					
+				});
 
 				
 				$("#fsd1").change(function(){

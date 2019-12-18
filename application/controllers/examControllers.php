@@ -11,6 +11,7 @@ class examControllers extends CI_Controller
 	{
 
 		$data=array(
+
 		    'fsd'=>$this->session->userdata("fsd"),
 	    'term'=>$this->input->post("term"),
 		'exam_name'=>$this->input->post("examName"),
@@ -466,7 +467,20 @@ function defineExam1(){
 		
 	
 	function enterMarks()
-	{ 	$fsd =$this->session->userdata("fsd");
+	{ 	//$fsd =$this->session->userdata("fsd");
+		// $classid = $this->input->post("classid");
+		// $subjectid =$this->input->post("subjectid");
+		// $examid =$this->input->post("examid");
+		$data['t_id'] = $this->input->post("teacherid");
+		$data['classid'] = $this->input->post("classid");
+		$data['sectionid'] = $this->input->post("sectionid");
+		$data['subjectid'] = $this->input->post("subjectid");
+		$data['examid'] = $this->input->post("examid");
+	//$this->load->view("ajax/examMarksDetail",$data);	
+   $this->load->view("print_obtain",$data);		
+	}
+	function print_obtain()
+	{ 	/*$fsd =$this->session->userdata("fsd");
 		 $classid = $this->input->post("classid");
 		 $subjectid =$this->input->post("subjectid");
 		 $examid =$this->input->post("examid");
@@ -474,8 +488,8 @@ function defineExam1(){
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
-		$data['examid'] = $this->input->post("examid");
-	$this->load->view("ajax/examMarksDetail",$data);		
+		$data['examid'] = $this->input->post("examid");*/
+	$this->load->view("ajax/examMarksDetail");		
 	}
 
 	function maxmumsubMarks()
@@ -696,6 +710,8 @@ function insertMarksdetail()
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
+
+
 	        'term'=>$term,
 	        'class_id'=>$classid,
 	        'subject_id'=>$subjectid,
@@ -721,7 +737,7 @@ function insertMarksdetail()
 		$data['examName'] = $this->input->post("examName");
 		$data['student_id'] = $this->input->post("student_id");
 		$data['fsd'] = $this->input->post("fsd");
-	    //print_r($data1);exit();
+	    
 		$data['pageTitle'] = 'Result';
 		$data['smallTitle'] = 'Result';
 		$data['mainPage'] = 'Exam';

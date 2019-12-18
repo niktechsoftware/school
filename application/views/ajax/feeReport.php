@@ -194,8 +194,7 @@
 								 	   
 								 	if(strlen($mbalance->row()->mbalance)>0){
 									echo	$mbk= "Previous Balance ".$mbalance->row()->mbalance."<br>";
-									print_r($mbalance->row()->mbalance);
-								//	exit;
+                                	print_r($mbalance->row()->mbalance);
 									?>
 									<input type = "hidden" id="amt1<?php echo $count;?>" value="<?php echo $mbalance->row()->mbalance;?>"/>
 									<?php
@@ -541,7 +540,7 @@
 
 						$sum=0;
 								 //$x=0;
-
+                //  print_r($student->num_rows());
 				    foreach($student->result() as $stuDetail):
 				    	$stu_id = $stuDetail->id;
 				    	//print_r($school_code);

@@ -299,7 +299,7 @@ function checkIDOTP(){
 				$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 				$findvalue=$this->db->where('id',$this->session->userdata('school_code'));
 				$schid=$this->db->get('school')->row();
-				if($sender->num_rows()>0){
+				 if($sender->num_rows()>0){
 					$sende_Detail =$sender->row();
 					$otp = rand(1000,99999);
 					$msg="Your Discount OTP id = ".$otp." please don't share this.";

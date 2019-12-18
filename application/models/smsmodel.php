@@ -5,8 +5,17 @@ class Smsmodel extends CI_Model{
 		$row = $this->db->get("sms")->row();
 		return $row;
 	}
+		function sendReportmy($getv,$mid){
+		    $data =array(
+		        "response"=>$getv,
+		        "mid"=>$mid
+		        );
+	  
+		$this->db->insert("savesmsResponce",$data);
+		return true;
+	}
 	
-	function sentmasterRecord($msg,$totsmssent,$master_id){
+	function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 		$schol_code = $this->session->userdata("school_code");
 		$this->db->where("id",$master_id);
 		$getcheck = $this->db->get("sent_sms_master");
@@ -18,7 +27,8 @@ class Smsmodel extends CI_Model{
 				"tot_count"=>$totsmssent,
 				"sms"=>$msg,
 				"school_code"=>$schol_code,
-				"date"=>Date("Y-m-d H:s:i")
+				"date"=>Date("Y-m-d G:i:s"),
+				"response_id"=>$response_id
 		
 		);
 		$insertwrongnumber= $this->db->insert("sent_sms_master",$data);
@@ -26,7 +36,43 @@ class Smsmodel extends CI_Model{
 		}	
 	}
 	
+	function smstest($msg,$date){
+	  $school_code=$this->session->userdata("school_code");
+	      $this->db->where("sms",$msg);
+	        $this->db->where("school_code",$school_code);
+	   $this->db->where("Date(date)",$date);
+	   $smsdt= $this->db->get("sent_sms_master");
+	   if($smsdt->num_rows()>0){
+	      $row= $smsdt->row();
+	      
+	       
+	          $smsdate=$row->date;
+	          $cur=date("G",strtotime($smsdate));
+	     
+	          $curhour= date('H');
+	      
+            if($curhour==$cur){
+              
+            return false;
+            }
+            else{
+              
+            return true;
+            }
+	      
+	      
+	         
+	
+	       
+	   }else{
+	         
+	       return true;
+	   }
+	    
+	    
+	}
 	function checknum($cnumber,$msg,$master_id){
+	  
 		$cnumber = str_replace(' ', '', $cnumber);
 		if((is_numeric($cnumber)) && (strlen($cnumber)==10)){
 			return $cnumber;
@@ -46,6 +92,7 @@ class Smsmodel extends CI_Model{
 	
 	
 	function sendReport($getv,$master_id){
+	  
 		foreach ($getv as $key => $rowValue):
 			if($rowValue['sent_number']){
 				$number=$rowValue['sent_number'];
@@ -94,7 +141,7 @@ class Smsmodel extends CI_Model{
 			$this->db->where("student_info.status",1);
 			$query=$this->db->get();
 			
-	
+
 		return $query;
 	}
 	

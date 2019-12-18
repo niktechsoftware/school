@@ -40,11 +40,11 @@
 						Profile
 					</a>
 				</li>
-				<li<?php if($this->uri->segment(4) == 'Fee Report'){ echo ' class="active"';}?>>
-					<a data-toggle="tab" href="#fee_report">
-						Fee Report
-					</a>
-				</li>
+				<!--<li<?php // if($this->uri->segment(4) == 'Fee Report'){ echo ' class="active"';}?>>-->
+				<!--	<a data-toggle="tab" href="#fee_report">-->
+				<!--		Fee Report-->
+				<!--	</a>-->
+				<!--</li>-->
 				<li<?php if($this->uri->segment(4) == 'Attendance'){ echo ' class="active"';}?>>
 					<a data-toggle="tab" href="#attendance_report">
 						Attendance

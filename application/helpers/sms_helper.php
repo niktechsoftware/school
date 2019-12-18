@@ -40,7 +40,58 @@ for($i=0; $i<$numn;$i++){
 	curl_close($ch);
 return $object1;
 }
+function mysms($authkey,$msg,$sid,$number){
 
+ $url = "http://mysms.sms7.biz/rest/services/sendSMS/sendGroupSms?AUTH_KEY=".$authkey."&message=".urlencode($msg)."&senderId=".$sid."&routeId=1&mobileNos=".$number."&smsContentType=english";
+ 	$ch = curl_init();
+	curl_setopt($ch,CURLOPT_URL,$url);
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+	$output=curl_exec($ch);
+	$rt=json_decode($output,true);
+
+//echo $rt['response'];
+
+	$dat =  $rt['response'];
+
+
+	curl_close($ch);
+return $dat;;
+}
+
+function mysmsHindi($authkey,$msg,$sid,$number,$smsid){
+
+ $url = "http://mysms.sms7.biz/rest/services/sendSMS/sendGroupSms?AUTH_KEY=".$authkey."&message=".urlencode($msg)."&senderId=".$sid."&routeId=1&mobileNos=".$number."&smsContentType=Unicode";
+ 	$ch = curl_init();
+	curl_setopt($ch,CURLOPT_URL,$url);
+	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+	$output=curl_exec($ch);
+	$rt=json_decode($output,true);
+
+//echo $rt['response'];
+
+	$dat =  $rt['response'];
+
+
+	curl_close($ch);
+return $dat;;
+}
+
+function checkBalSms($user,$pass)
+{ 
+$url = "http://mysms.sms7.biz/getBalance?userName=".$user."&password=".$pass;
+
+
+$ch = curl_init();
+curl_setopt($ch,CURLOPT_URL,$url);
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+$output=curl_exec($ch);
+	$rt=json_decode($output,true);
+
+	$dat =  $rt[0]['routeBalance'];
+
+curl_close($ch);
+return $dat;
+}
 function smshindi($number,$msg,$user,$pass,$senderid)
 {
 	$url="http://bulksms.niktechsoftware.com/vendorsms/pushsms.aspx?user=".$user."&password=".$pass."&msisdn=".$number."&sid=".$senderid."&msg=".urlencode($msg)."&fl=0&dc=8&gwid=2";
@@ -78,7 +129,7 @@ for($i=0; $i<$numn;$i++){
 return $object1;
 }
 
-function checkBalSms($user,$pass)
+/*function checkBalSms($user,$pass)
 { 
 $url = "http://zapsms.co.in/vendorsms/CheckBalance.aspx?user=".$user."&password=".$pass;
 
@@ -89,7 +140,7 @@ curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 $Textt=curl_exec($ch);
 curl_close($ch);
 return $Textt;
-}
+}*/
 
 function checkDeliver($user,$pass,$messageid)
 { 

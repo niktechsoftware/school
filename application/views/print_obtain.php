@@ -48,8 +48,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-sm-12">
-						<IFRAME SRC="<?php echo base_url(); ?>index.php/invoiceController/classwise_reports/<?php echo $fsd;?>/<?php echo $classid;?>/<?php echo $sectionid;?>" width="100%" height="150px" id="iframe1" style="border: 1px;" onLoad="autoResize('iframe1');"></iframe>
+					<div class="col-sm-12"><?php $fsd =$this->session->userdata("fsd"); ?>
+						<IFRAME SRC="<?php echo base_url(); ?>index.php/examControllers/print_obtain/<?php echo $fsd; ?>/<?php echo $examid; ?>/<?php echo $classid; ?>/<?php echo $subjectid; ?>" width="100%" height="150px" id="iframe1" style="border: 1px;" onLoad="autoResize('iframe1');"></iframe>
 					</div>
 				</div>
 			</div>

@@ -115,6 +115,7 @@
 		$sqlc=mysqli_query($this->db->conn_id,"select * from employee_info where id='$valid_id' AND school_code = '$school_code'");
 		$rowc=mysqli_fetch_object($sqlc);
 	}
+	
 	if($category == "Student Id")
 	{     
 		$sqlc=mysqli_query($this->db->conn_id,"select * from student_info where id='$valid_id' ");
@@ -143,7 +144,7 @@
                     <tr>
                     	<td style="border:none;">
                     	<?php if($category == '04'): ?>
-                    		<?php echo strtoupper($rowb->name); ?>
+                    		<?php echo strtoupper($rowb->valid_id); ?>
                     	<?php else: ?>
                     		<strong><?php echo strtoupper($rowc->name); ?></strong>
                     	<?php endif; ?>
@@ -174,13 +175,8 @@
                     <td class="meta-head" colspan="2"><h3>Purchase Order</h3></td>
                 </tr>
                 <tr>
-                    <td class="meta-head">
-                    	Reciept No.
-                    </td>
-                    <td><?php
-							echo $id;
-							?>
-                            </td>
+                    <td class="meta-head">Reciept No.</td>
+                    <td><?php echo $id;	?></td>
                 </tr>
                 <tr>
                     <td class="meta-head">
@@ -198,7 +194,22 @@
 							}
 							?>
                     </td>
-                    <td><?php echo $valid_id; ?></td>
+                    <td><?php //echo $valid_id; ?>
+                   <?php if($category=="Student Id"){
+						          $this->db->where('id',$valid_id);
+							$sunm=$this->db->get('student_info');
+                                                    }
+							else if($row->category=="Employee ID"){
+								  $this->db->where('id',$valid_id);
+							$sunm=$this->db->get('employee_info');
+						                                    	}else{
+								  $this->db->where('id',$valid_id);
+							$sunm=$this->db->get('employee_info');
+						                                        	}
+						                                        	if($sunm->num_rows()>0){
+							echo	$sunm= $sunm->row()->username;}
+						            ?>
+                    </td>
                 </tr>
                 <tr>
                     <td class="meta-head">Date</td>

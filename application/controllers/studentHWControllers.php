@@ -4,7 +4,7 @@ class studentHWControllers extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 			$this->is_login();
-	
+	$this->load->model("smsmodel");
 	}
 	
 	
@@ -52,6 +52,128 @@ class studentHWControllers extends CI_Controller{
 	}
 	
 	
+	public function hwSms(){
+		$smscount=0;
+		$count=0;
+		 $class_id = $this->input->post("classid");
+		 $fmobile=$this->session->userdata("mobile_number");
+		 $school_code=$this->session->userdata("school_code");
+		 $date=Date("Y-m-d");
+		 
+		 $this->db->select("homework_name.workDiscription,subject.subject");
+		 $this->db->where("workfor","students");
+		 $this->db->where("school_code",$school_code);
+		 $this->db->where("homework_name.class_id",$class_id);
+		 $this->db->where("Date(givenWorkDate)",$date);
+		// $this->db->where("class_id",$class_id);
+		 $this->db->from("homework_name");
+ 	  
+		$this->db->join("subject","homework_name.subject_id = subject.id");
+	   $cdt=$this->db->get()->result();
+	
+	   foreach($cdt as $row1){
+	      $array1[]= $row1->subject." - ".$row1->workDiscription;
+	   }
+	   $mss = implode(',',$array1);
+	   
+
+	   $msg="Dear Student please done your homework which is assigned today in Subjects:".$mss."For more info visit login to you account";
+	  
+	  	$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+	if($sender->num_rows()>0){
+		$sende_Detail =$sender->row();
+		$date=date("y-m-d");
+		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
+		$fmobile1=$this->session->userdata("mobile_number");
+	  if($isSMS->homework){
+		$tt = $this->smsmodel->smstest($msg,$date);
+	     $smsc=0;
+		if($tt=="true"){
+		   $query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id);
+    		if($query->num_rows() > 0)
+    		{   
+        		 $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+        		$master_id=$max_id->maxid+1;
+        		$getresultm = $this->smsmodel->sentmasterRecord($msg,$query->num_rows(),$master_id);
+        		if($getresultm){
+        		   
+        		  foreach($query->result() as $parentmobile):
+        			$checknum = $this->smsmodel->checknum($parentmobile->mobile,$msg,$master_id);
+        			if($checknum){
+        			  
+        			if($smscount<90){
+        				if($smsc==0){
+        					$fmobile =$checknum;
+        				
+        				}else{
+        					$fmobile=$fmobile.",".$checknum;
+        				
+        				}
+        				$smscount++;
+        				$smsc++;
+        				$count=$count+1;
+				
+            			}else{
+            				if($this->input->post("language")==1){
+            				   
+            				    
+            				    // 	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				
+            					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				}else{
+            				    	
+            				    // 	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				
+            					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+            				}	
+            			$a[]=0;
+            		
+            			$this->smsmodel->sendReport($getv,$master_id);
+            				$fmobile=$checknum;
+            				$smscount=0;
+            
+            			
+            			}
+            			
+            		}
+			endforeach;
+		
+				if($this->input->post("language")==1){
+				//echo $fmobile;
+				sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
+					$getv=	sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}else{
+				    	sms($fmobile1,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				
+					$getv = smshindi($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				}	
+			$a[]=0;
+		$smsdt=	$this->smsmodel->sendReport($getv,$master_id);
+		if($smsdt){
+		    	echo  "Sms Sent .";
+		}
+	        	}
+	    	} 
+	    		else{
+	           echo "student number not found .";
+        	}
+		    
+		}
+		else{
+	           echo "this sms already sent .";
+    	}
+		
+	  }
+     	else{
+	    echo "home work setting is off .";
+	   }
+	}
+	else{
+	    echo "sender id not approve .";
+	}
+
+  }
 	
 	function addHomeWork(){
 	    $school_code = $this->session->userdata("school_code");
@@ -455,6 +577,31 @@ function showHomeWork()
 	}
 	}
 	
+	
+	  public function getStudentWork1(){
+		  /* $this->load->model("subjectmodel");
+					$classid=$this->uri->segment(4);
+    	$data['va']=$this->subjectmodel->getSubjectByClassSection($classid);
+		print_r($data);exit();*/
+		$uri= $this->uri->segment(3);
+		$data['classid']=$this->uri->segment(4);
+        $data['uri']=$uri;
+		$schoolcode=$this->session->userdata("school_code");
+		$this->db->where('school_code',$schoolcode);
+		$data['class']=$this->db->get('class_info')->result();
+      	$data['pageTitle'] = 'Homework Report';
+		$data['smallTitle'] = 'Homework Report';
+		$data['mainPage'] = 'Homework Report';
+		$data['subPage'] = 'Homework Report';
+		$data['title'] = 'Homework Report';
+		$data['headerCss'] = 'headerCss/studentListCss';
+		$data['footerJs'] = 'footerJs/simpleStudentListJs';
+		$data['mainContent'] = 'hw_full_detail';
+		$this->load->view("includes/mainContent", $data);
+  }
+  
+  
+  
         function getStudentWork(){
         	$this->load->model("homeWorkModel");
         	$va=$this->homeWorkModel->getHomeWorkDetailStudent();
@@ -468,6 +615,7 @@ function showHomeWork()
     	<tr>
         	<th>S.no.</th>
         	<th>Given By</th>
+    		<th>Class</th>
         	<th>Assignment Title</th>
         	<th>Subject</th>
         	<th>Marks & Grade</th>
@@ -492,6 +640,14 @@ function showHomeWork()
 			  			    	echo "Admin";
 			  			}
 			  		?></td>
+			  	    	<td><?php 
+			  	    		$this->db->where("id",$lv->class_id);
+                        	$var =  $this->db->get("class_info")->row();
+                            if($lv->class_id==0){echo "No Record Found";}else{ echo $var->class_name;}
+                            $this->db->where("id",$var->section);
+                        	$var1 = $this->db->get("class_section")->row();
+                        	echo "[".$var1->section."]";
+			  	    	?></td>
 			  			<td><?php echo $lv->work_name;?></td>
 			  		
 			  			<td><?php $sub= $lv->subject_id;
@@ -581,6 +737,8 @@ function showHomeWork()
 				  		        	$this->db->where("id",$lv->class_id);
                         	$var =  $this->db->get("class_info")->row();
                             if($lv->class_id==0){echo "No Record Found";}else{ echo $var->class_name;}
+                            
+                            
                             ?>
                             </td>
 				  			<td><?php
