@@ -103,7 +103,6 @@ class SmsAjax extends CI_Controller{
 		if($sender->num_rows()>0){
 		$sende_Detail =$sender->row();
 		$msg =$this->input->post("meg");
-	
 		$totsmssent = $this->input->post("totsmsv");
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 		$master_id=$max_id->maxid+1;

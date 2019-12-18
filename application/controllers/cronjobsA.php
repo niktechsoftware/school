@@ -7,8 +7,6 @@ function __construct()
 		
 	}
  function getCronA(){
-   
-         
           $res = $this->db->get("school");
           if($res->num_rows()>0)
           {
@@ -60,7 +58,8 @@ function __construct()
 					
                         }      
                     endforeach;
-          }}
+          }
+ }
 
 
 }

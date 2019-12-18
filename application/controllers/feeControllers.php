@@ -901,6 +901,7 @@ function getFsd(){
    
 		  		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
+
 			
 				
 						 $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$mnum);
@@ -908,6 +909,7 @@ function getFsd(){
 						 $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 						echo "Sent Success";
 					//}
+
 			
 		// print_r($msg);
 // exit();

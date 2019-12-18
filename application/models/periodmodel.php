@@ -79,8 +79,10 @@ return $query1;
 	}
 	
 	function checkvalue($data,$time_thead_id)
+
 	{	$data = str_replace(',','',$data);
 	    $query = $this->db->query("SELECT * FROM time_table,time_table_days WHERE time_table.time_thead_id=time_table_days.time_table_id and days_id='$data'");
+
 		return $query;
 	}
 	

@@ -143,15 +143,6 @@ function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 			
 	}
 	
-		function sendReportmy($getv,$mid){
-		    $data =array(
-		        "response"=>$getv,
-		        "mid"=>$mid
-		        );
-	  
-		$this->db->insert("savesmsResponce",$data);
-		return true;
-	}
 	
 	
 	function sendReport($getv,$master_id){
