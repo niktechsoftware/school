@@ -50,25 +50,26 @@
 		</div>
 		
 		<?php  
-		//echo $student_id;
+	//	echo $student_id;
 		           $this->db->where("username",$student_id);
 		           $studentInfo =$this->db->get("student_info");
 				//$this->db->where("school_code",$this->session->userdata("school_code"));
 					if($studentInfo->num_rows() > 0){
 					    	$ras=$studentInfo->row();
-					}else{
-					    echo "please correct student ID";
-					}
-					//echo $ras->id;
+			
 				?>
 		<div class="panel-body">
+
 			<div class="row">
 				<div class="col-sm-12"><?php //echo $examName;?>
-					<IFRAME SRC="<?php echo base_url(); ?>index.php/invoiceController/result/<?php echo $ras->id; ?>/<?php echo $ras->fsd;?>" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
+					<IFRAME SRC="<?php echo base_url(); ?>index.php/invoiceController/result/<?php echo $ras->id; ?>/<?php echo $ras->fsd;?>/" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
 
 				</div>
 			</div>
 		</div>
+		<?php	}else{
+					    echo "please correct student ID";
+					} ?>
 	</div>
 	<!-- end: INLINE TABS PANEL -->
 	</div>

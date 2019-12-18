@@ -290,7 +290,7 @@ function updatemaximum()
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
 		$data['title'] = 'Exam Scheduling';
-		$data['headerCss'] = 'headerCss/examCss';
+		$data['headerCss'] = 'headerCss/feeCss';
 		$data['footerJs'] = 'footerJs/examJs';
 		$data['mainContent'] = 'exammarksentry';
 		$this->load->view("includes/mainContent", $data);
@@ -937,6 +937,7 @@ function createSchedule()
 		$data['mainContent'] = 'examTimeTable';
 		$this->load->view("includes/mainContent", $data);
 	}
+	
 	
 	function examDetail(){
 		$data['pageTitle'] = 'Exam Details';

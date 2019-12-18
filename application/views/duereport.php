@@ -84,17 +84,14 @@
                         $date=Date("Y-m-d");
                         $month = date("m", strtotime($date));
                         $yearmonth= date("m-y",strtotime($date));
-                       // print_r($rmo);
-                    //   $this->db->distinct();
+                      
                        $this->db->select('class_name,section,id');
                         $this->db->where("school_code",$school_code);
                         $classdt= $this->db->get("class_info");
-                        //  print_r($this->session->userdata("fsd"));
                        
-                        //  exit();
                         foreach($classdt->result() as $data): 
                             
-                            // print_r($data->id);
+                            
                             $this->db->where("status",1);
                     	 	$this->db->where("class_id",$data->id);
                     	 	$this->db->where("fsd",$this->session->userdata('fsd'));
@@ -104,9 +101,6 @@
                     	$isData = $this->db->count_all("fee_deposit"); 
                     	if($isData > 0){
 
-                    	   // print_r($isData);
-                    	   // print_r($student->num_rows());
-                    	   
                     	     $count = 1;
 						$tot=0.00;
 						$this->db->where("id",$fsd);
@@ -157,14 +151,14 @@
 			  			   
 			  			   	$depmonth=array();
             						$mbk=0;
-								 	$this->db->where('invoice_no',$total->invoice_no); 
+								//  	$this->db->where('invoice_no',$total->invoice_no); 
 								 	$this->db->where('student_id',$stu_id);
                                   	$mbalance=$this->db->get('feedue');
 								 	//print_r($mbalance->mbalance);
 								 	if($mbalance->num_rows()>0){
 								 	if(strlen($mbalance->row()->mbalance) > 0){
 								 	    $db=$mbalance->row()->mbalance;
-								 	   
+								 	  // 	echo $db;
 								 	   // exit;
 								 	}
 								 	   else{
@@ -173,6 +167,7 @@
 								 	}else{
 								 	    $db=0;
 								 	}
+								 
 									$cdate = date("Y-m-d");
 									$cmonth = date("Y-m",strtotime($cdate));
 									//print_r($stu_id);
@@ -211,17 +206,12 @@
 										$month =$month." and ".$duedate;
 									
 										$rt++;
-									//	print_r($month);
-										// $rt;
-								//	echo $cmonth;
+
 							}
-							//echo $rt;
+						
 									endforeach;
-									
+								
 									if($rt>0){
-								  //  print_r($rt);
-								//$searchM[$rt]=13;
-									//$this->db->distinct();
 								
 									$this->db->select_sum("fee_head_amount");
 									if($school_code ==1){
@@ -232,15 +222,7 @@
     								 $this->db->where_in("taken_month",13);
     								 $fee_head = $this->db->get("class_fees");
 								 
-								//  	$this->db->select_sum("fee_head_amount");
-								// 	if($school_code ==1){
-								// 		$this->db->where("cat_id",3);}
-								// 	$this->db->where("fsd",$fsd);
-								// 	$this->db->where("class_id",$stuDetail->class_id);
-									
-								//  $this->db->where_in("taken_month",13);
-								//  $fee_head_one = $this->db->get("class_fees")->row()->fee_head_amount;
-								 
+							
 								 if($fee_head->num_rows()>0){ 
 									 $fee_head =$fee_head->row()->fee_head_amount;
 									 $exdate1=Date("y-m-d");

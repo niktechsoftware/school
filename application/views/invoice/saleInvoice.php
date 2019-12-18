@@ -175,13 +175,8 @@
                     <td class="meta-head" colspan="2"><h3>Purchase Order</h3></td>
                 </tr>
                 <tr>
-                    <td class="meta-head">
-                    	Reciept No.
-                    </td>
-                    <td><?php
-							echo $id;
-							?>
-                            </td>
+                    <td class="meta-head">Reciept No.</td>
+                    <td><?php echo $id;	?></td>
                 </tr>
                 <tr>
                     <td class="meta-head">
@@ -199,7 +194,22 @@
 							}
 							?>
                     </td>
-                    <td><?php echo $valid_id; ?></td>
+                    <td><?php //echo $valid_id; ?>
+                   <?php if($category=="Student Id"){
+						          $this->db->where('id',$valid_id);
+							$sunm=$this->db->get('student_info');
+                                                    }
+							else if($row->category=="Employee ID"){
+								  $this->db->where('id',$valid_id);
+							$sunm=$this->db->get('employee_info');
+						                                    	}else{
+								  $this->db->where('id',$valid_id);
+							$sunm=$this->db->get('employee_info');
+						                                        	}
+						                                        	if($sunm->num_rows()>0){
+							echo	$sunm= $sunm->row()->username;}
+						            ?>
+                    </td>
                 </tr>
                 <tr>
                     <td class="meta-head">Date</td>

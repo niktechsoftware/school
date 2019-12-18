@@ -91,6 +91,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 							$examid = $this->uri->segment(4);
 							$classid = $this->uri->segment(5);
 							$subjectid = $this->uri->segment(6);
+							$sub_type = $this->uri->segment(7);
                             $this->db->where('school_code',$school_code);
                            $this->db->where('id',$classid);
                           $classname=$this->db->get('class_info')->row()->class_name;
@@ -105,7 +106,9 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 
                      ?>
                      <br><br>
- <table class="table table-striped table-bordered table-hover" >
+      
+                     	<div class="table-responsive">
+ <table class="table table-striped table-bordered table-hover" id="sample-table-2">
                   <tr>
 
                     <th><?php echo $classname; ?> - <?php //echo $sectionname; ?> - <?php echo $subjectname; ?></th>
@@ -114,8 +117,17 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						$day = date('d-m-Y');
 						echo date("l jS F, Y", strtotime("$day"));  
 					
-           $result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
+           $result1=$this->db->query("select * from exam_max_subject where exam_id='$examid' and sub_type= 0  and subject_id='$subjectid' and class_id='$classid'  ORDER BY id");
             $result1=$result1->row();
+
+            $result2=$this->db->query("select * from exam_max_subject where exam_id='$examid' and sub_type= 1  and subject_id='$subjectid' and class_id='$classid'  ORDER BY id");
+            $result2=$result2->row();
+            
+            $result3=$this->db->query("select * from exam_max_subject where exam_id='$examid' and sub_type= 2  and subject_id='$subjectid' and class_id='$classid'  ORDER BY id");
+            $result3=$result3->row();
+
+            $result4=$this->db->query("select * from exam_max_subject where exam_id='$examid' and sub_type= 3  and subject_id='$subjectid' and class_id='$classid'  ORDER BY id");
+            $result4=$result4->row();
            ?>
                     </th>
                   </tr>
@@ -132,24 +144,27 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                     <th>Student Name</th>
                     <th>Attendance</th>
                     <th>Maximum Marks</th>
-                  <th>Marks Obtained</th>
+                    <th>Marks Obtained</th>
                    <th>Activity</th>
                   </tr>
                 </thead>
                 <tbody>
-                <?php $i = 1;$j=1;
-                     $this->db->where("status",1);
-                      $this->db->where("class_id",$classid);
-
-                      //$this->db->order_by("name","asc");
-
+                <?php
+                    $i = 1;$j=1;
+                    $this->db->order_by("name","asc");
+                    $this->db->where("status",1);
+                    $this->db->where("class_id",$classid);
                     $num_row=$this->db->get("student_info");
                 if($num_row->num_rows()>0){
                 foreach ($num_row->result() as $stu):
-                 $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND fsd = '$fsd' and school_code='$school_code' AND stu_id='$stu->id'");
+                 $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND fsd = '$fsd' and sub_type=1 and school_code='$school_code' AND stu_id='$stu->id'");
 	  					
 		   if($val->num_rows()>0){
 	            $v=$val->row();
+	             $val1=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND fsd = '$fsd' and sub_type=0 and school_code='$school_code' AND stu_id='$stu->id'");
+	  					
+		   if($val1->num_rows()>0){
+	            $v1=$val1->row();
                  
                 ?>
                   <tr>
@@ -173,10 +188,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 
                  <?php if($result1)
                     { ?>
-                    <td> <input type="text" id="mammarks<?php echo $i;?>" value="<?php echo $m = $result1->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/>  <?php //echo $result1->max_m; ?></td>
+                    <td> <input type="text" id="mammarks<?php echo $i;?>" value="<?php echo $m = $result1->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/>
+                    <input type="text" id="mammarks1<?php echo $i;?>" value="<?php echo $m = $result2->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/>  <?php //echo $result1->max_m; ?></td>
                     <?php }?>
                       
-                    <td><input type="text" id="mark<?php echo $i; ?>"  name="marks<?php echo $i; ?>" value="<?php echo $v->marks; ?>" readonly /><?php //echo $v->marks;?></td>
+                    <td><input type="text" id="mark2<?php echo $i; ?>"  name="marks<?php echo $i; ?>" value="<?php echo $v->marks; ?>" readonly />
+                    <input type="text" id="mark3<?php echo $i; ?>"  name="marks1<?php echo $i; ?>" value="<?php echo $v1->marks; ?>" readonly />
+                    <?php //echo $v->marks;?></td>
 					<td>
 				  <?php $login_type=$this->session->userdata("login_type"); if($login_type == "admin"){ ?>
                      <button class="btn btn-danger" id="deletemmarks1<?php echo $i;?>">Delete Marks<i class="fa fa-trash-o"></i>
@@ -189,12 +207,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                            var mmarks = $("#mammarks<?php echo $i; ?>").val();
 							var classid = $("#classid<?php echo $i; ?>").val();
 							var stuid= $("#stu_id<?php echo $i; ?>").val();
-							var marks = $("#mark<?php echo $i; ?>").val();
+							var marks = $("#mark2<?php echo $i; ?>").val();
+							var marks1 = $("#mark3<?php echo $i; ?>").val();
 							var subjectid = $("#subjectid<?php echo $i; ?>").val();
 							var examid = $("#examid<?php echo $i; ?>").val();
 							var attendence = $("input[name='attendence']:checked").val();
-							//alert(classid +" "+ subjectid +" "+examid);
-                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+				// 			alert(marks +" "+ marks1);
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{ marks1 : marks1,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
                       $("#deletemmarks1<?php echo $i;?>").html(data);
                       alert('Marks Deleted Successfully');
                       $("#deletemmarks1<?php echo $i;?>").html();
@@ -205,7 +224,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 				  </script> 
                   <?php  $j++; $i++; ?>
 				  <?php
-				  }else{?>
+				  } } else{?>
                    <tr>
                       <td><?php echo $j; ?></td>
                       <td><?php 
@@ -235,17 +254,54 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                       <td>
                           <?php 
                           if($result1)
-                          { ?>
-                        <input type="text" id="mammarks<?php echo $i;?>" value="<?php echo $m = $result1->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/>   
+                          { ?>Oral:
+                        <input type="text" id="mammarks<?php echo $i;?>" value="<?php echo $m = $result1->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/> </br>  
                          <?php 
                           }else
                             {
-                              echo "<span style='color:red'>*Please define Maximum Marks*</span> ";
+                              echo "<span style='color:red'>*Oral Maximum Marks not defined*</span> </br>";
+                            }
+                                                
+                          ?>
+                           <?php 
+                          if($result2)
+                          { ?>Written:
+                        <input type="text" id="mammarks1<?php echo $i;?>" value="<?php echo $m = $result2->max_m;?>" readonly  name="mammarks1<?php echo $i; ?>"/> </br>  
+                         <?php 
+                          }else
+                            {
+                              echo "<span style='color:red'>*Written Maximum Marks not defined*</span></br>";
+                            }
+                                                
+                          ?>
+                          <?php 
+                          if($result3)
+                          { ?>Theory:
+                        <input type="text" id="mammarks2<?php echo $i;?>" value="<?php echo $m = $result3->max_m;?>" readonly  name="mammarks2<?php echo $i; ?>"/>  </br> 
+                         <?php 
+                          }else
+                            {
+                              echo "<span style='color:red'>*Theory Maximum Marks not defined*</span></br> ";
+                            }
+                                                
+                          ?><?php 
+                          if($result3)
+                          { ?>Prectical:
+                        <input type="text" id="mammarks3<?php echo $i;?>" value="<?php echo $m = $result4->max_m;?>" readonly  name="mammarks3<?php echo $i; ?>"/> </br>  
+                         <?php 
+                          }else
+                            {
+                              echo "<span style='color:red'>*Prectical Maximum Marks not defined*</span></br> ";
                             }
                                                 
                           ?>
                       </td>
-                      <td><input type="text" id="mark<?php echo $i; ?>" minlength="1" maxlength="3" onBlur="check<?php echo $i; ?>(); return false;"  onkeypress="return isNumber(event)" name="marks<?php echo $i; ?>"/></td>
+                      <td>
+                        <input type="text" id="mark<?php echo $i; ?>"  minlength="1" maxlength="3" onBlur="check<?php echo $i; ?>(); return false;"   name="mark<?php echo $i; ?>"  placeholder="Enter Oral marks..."  /></br>
+                        <input type="text" id="mark1<?php echo $i; ?>"  minlength="1" maxlength="3" onBlur="check<?php echo $i; ?>(); return false;"   name="mark1<?php echo $i; ?>" placeholder="Enter Written marks..."/></br>
+                        <input type="text" id="mark2<?php echo $i; ?>"  minlength="1" maxlength="3" onBlur="check<?php echo $i; ?>(); return false;"   name="mark2<?php echo $i; ?>" placeholder="Enter Theory marks..." /></br>
+                        <input type="text" id="mark3<?php echo $i; ?>" minlength="1" maxlength="3" onBlur="check<?php echo $i; ?>(); return false;"   name="marks3<?php echo $i; ?>" placeholder="Enter Prectical marks..."/></br>
+                    </td>
                       
                       <td>
                 		  <div class="invoice-buttons">
@@ -258,6 +314,18 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
               $("#mark<?php echo $i; ?>").keyup(function(){
                   var max = Number ($('#mammarks<?php echo $i;?>').val());
                   var notmax =Number( $("#mark<?php echo $i; ?>").val());
+                 
+                if(notmax > max){
+                  $('#submit<?php echo $i;?>').hide();
+                  alert("You can't fill greater than Maximum Marks " );
+                }else{
+                  $('#submit<?php echo $i;?>').show()
+                }
+                });
+
+                $("#mark1<?php echo $i; ?>").keyup(function(){
+                  var max = Number ($('#mammarks1<?php echo $i;?>').val());
+                  var notmax =Number( $("#mark1<?php echo $i; ?>").val());
                 if(notmax > max){
                   $('#submit<?php echo $i;?>').hide();
                   alert("You can't fill greater than Maximum Marks " );
@@ -268,34 +336,34 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 
 
               $("#submit<?php echo $i;?>").click(function(){
+                   var mmarks2 = $("#mammarks2<?php echo $i; ?>").val();
+                    var mmarks3 = $("#mammarks3<?php echo $i; ?>").val();
+                var mmarks1 = $("#mammarks1<?php echo $i; ?>").val();
                 var mmarks = $("#mammarks<?php echo $i; ?>").val();
                 var classid = $("#classid<?php echo $i; ?>").val();
                 var stuid= $("#stu_id<?php echo $i; ?>").val();
                 var marks = $("#mark<?php echo $i; ?>").val();
+                var marks1 = $("#mark1<?php echo $i; ?>").val();
+                var marks2 = $("#mark2<?php echo $i; ?>").val();
+                var marks3 = $("#mark3<?php echo $i; ?>").val();
                 var subjectid = $("#subjectid<?php echo $i; ?>").val();
                 var examid = $("#examid<?php echo $i; ?>").val();
                 var term = $("#term<?php echo $i; ?>").val();
                 var attendence = $("input[name='attendence<?php echo $i; ?>']:checked").val();
-    				  // alert(marks +" "+ subjectid +" "+examid);
-    				    if(mmarks!="" && marks!=""){
-    					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+    				   alert(mmarks2 +" "+mmarks3+" "+ mmarks1 +" "+mmarks);
+    				   /* if(mmarks!="" && marks!=""){*/
+    				        
+    					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{mmarks1 : mmarks1,mmarks2 : mmarks2,mmarks3 : mmarks3, marks1 : marks1,marks2 : marks2,marks3 : marks3,term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);
     						 $("#submit<?php echo $i;?>").show();
-
     					});
-    				    }else{
+    					
+    				   /* }else{
     				        alert('Please fill all Boxes');
-                }
+                }*/
                 
                 return false;
             });
-            
-		    
-
-			
-
-
-			
      /*      var abc = Number(getElementById("mark<?php echo $i; ?>").value);
              function check<?php echo $i; ?>(abc){
               if(mark<?php echo $i; ?>.value > Number(<?php echo $result1->max_m;?>)){
@@ -320,24 +388,25 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                                     return true;
                                 }*/
 			
-                    </script>
-            
-                   
-                               
-                	                 
-                	                  <?php $j++; $i++; }  endforeach;?>
-                	                  	
-             					
-             						
-             					 <br>
+                    </script> 
+                    <?php $j++; $i++; }  endforeach; ?> <br>
               			
 		             	 <?php 
 		                }else{
-                    echo "Student Not Enrolled";}?> 
+                    echo "Student Not Enrolled";} ?> 
                     </tbody>    
 		                	</table>
+		                	</div>
                     </div>
              						</div>
+             						 <script>
+                      	Main.init();
+        				// SVExamples.init();
+        				// FormElements.init();
+        				TableExport.init();
+        				// UIModals.init();
+                  </script>
+
 
         <!--</div>-->
     </div>

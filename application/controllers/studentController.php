@@ -272,28 +272,6 @@ class StudentController extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	}
 
-// 	function admissionSuccess(){
-// 		$data['pageTitle'] = 'Student Section'; 
-// 		$data['smallTitle'] = 'Student Profile';
-// 		$data['mainPage'] = 'Student';
-// 		$data['subPage'] = 'Profile';
-// 		$studentId = $this->uri->segment(3);
-// 		$this->load->model("feemodel");
-// 		$stDetail = $this->studentModel->getStudentDetail($studentId);
-// 		//$data['gurdianDetail'] = $this->studentModel->getGurdianDetail($stDetail->row()->username);
-// 		$data['gurdianDetail'] = $this->studentModel->getGurdianDetail($stDetail->row()->id);
-// 		$data['className'] = $this->allFormModel->getClass();
-// 		$data['sectionName'] = $this->allFormModel->getSection();
-// 		$personalInfo = $stDetail->row();
-// 		$className = $personalInfo->class_id; 
-// 		$data['subjectList'] = $this->subjectModel->getSubjectByClassSection($className);
-// 		$data['studentProfile'] = $stDetail;
-// 		$data['title'] = 'Student Profile';
-// 		$data['headerCss'] = 'headerCss/admissionSuccessCss';
-// 		$data['footerJs'] = 'footerJs/admissionSuccessJs';
-// 		$data['mainContent'] = 'admissionSuccess'; 
-// 		$this->load->view("includes/mainContent", $data);
-// 	}
 function admissionSuccess(){
 		$data['pageTitle'] = 'Student Section'; 
 		$data['smallTitle'] = 'Student Profile';

@@ -18,15 +18,11 @@ class newAdmissionControllers extends CI_Controller{
 	}
 	
 public function addinfo(){
-	
 		$school_code = $this->session->userdata("school_code");
-		
 		$id1 = $this->db->query("SELECT MAX(maxcount) as maxnumber From guardian_info where school_code =$school_code");
-		
 		 if($id1->num_rows()>0){
 		$id = $id1->row()->maxnumber;
 		}else{
-		
 		$id=0;
 	    }
         $db=$this->db->get('db_name')->row()->name;
@@ -208,15 +204,9 @@ public function addinfo(){
 					$f_mobile = $this->input->post("mobileNumber");
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
-					
-					
-					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail->web_url." Thanks.";	
-					
-					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
-					if($getresultm){
-					$getv=sms($f_mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-					$this->smsmodel->sendReport($getv,$master_id);
-					}
+					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	
+				$getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$f_mobile);
+				    $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 					redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}else{
 				    	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
@@ -331,18 +321,16 @@ public function addinfo(){
 					$username = $id;
 				$password = $this->input->post("password");
 
-					//$f_mobile = $this->input->post("mobileNumber");
+				//	$f_mobile = $this->input->post("mobileNumber");
 					$f_mobile = $this->input->post("mobileNumber");
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
 						
-					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail->web_url." Thanks.";	
-					
-					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
-					if($getresultm){
-						$getv=sms($f_mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-						$this->smsmodel->sendReport($getv,$master_id);
-					}
+						
+					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	
+			
+					$getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$f_mobile);
+				    $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 						redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}else{
 				    	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");

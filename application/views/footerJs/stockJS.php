@@ -241,7 +241,7 @@
 							var name = $('#item_price<?php echo $i; ?>').val();
 							var name1 = Number($('#item_quantity<?php echo $i; ?>').val());
 							var name2 = Number($('#item_quantity1<?php echo $i; ?>').val());
-                             if(name2>name1){
+                             if(name2 >= name1){
 							var total = name * name1;
 							document.getElementById('total_price<?php echo $i; ?>').value=total;
 							document.getElementById('sub_total<?php echo $i; ?>').value=total;
