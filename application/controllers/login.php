@@ -19,11 +19,11 @@ class Login extends CI_Controller{
 		$logtype = $this->session->userdata('login_type');
 		if(($logtype == "admin")||($logtype == "2")||($logtype == "3")||($logtype == "9")||($logtype == "1")){
 			
-		echo "loginpass";
+	
 		} else{
 		    	redirect("index.php/homeController/index");
 		}
-			echo "loginpass1";
+		
 	if(!$is_login){
 			//echo $is_login;
 			redirect("index.php/homeController/index");
