@@ -305,11 +305,11 @@ function checkIDOTP(){
 					$msg="Your Discount OTP id = ".$otp." please don't share this.";
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
-					$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
-						if($getresultm){
-							$getv=sms($schid->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-							$this->smsmodel->sendReport($getv,$master_id);
-						}
+				
+						$fmobile=$row->mobile.",".$this->session->userdata("mobile_number");
+					  $getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
+		            $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+		         
 					$data=array(
 						"otp"=>$otp,
 						"discounter_id"=>$tid,
@@ -516,11 +516,11 @@ function checkIDOTPc(){
 			                $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 			                $master_id=$max_id->maxid+1;
 			  				$msg="Dear parent your Child ".$sname." is Absent on ".date("d-M-Y H:i:s").".Please make sure & let us know. Thanks ".$info->school_name;
-			  				$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
-			  				if($getresultm){
-			  					$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			  					$this->smsmodel->sendReport($getv,$master_id);
-			  				}
+			  				
+			  				
+			  			  $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$fmobile);
+			  				$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+			
 			  			}
 						
 			  		}
@@ -606,11 +606,10 @@ function checkIDOTPc(){
 			                $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 			                $master_id=$max_id->maxid+1;
 			  				$msg="Dear parent your Child ".$sname." is Absent on ".date("d-M-Y H:i:s").".Please make sure & let us know. Thanks ".$info->school_name;
-			  				$getresultm = $this->smsmodel->sentmasterRecord($msg,1,$master_id);
-			  				if($getresultm){
-			  					$getv=sms($fmobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			  					$this->smsmodel->sendReport($getv,$master_id);
-			  				}
+			  				
+			  			    $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$fmobile);
+			  				$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+			
 			  			}
 						
 			  		}

@@ -31,12 +31,13 @@
 			<ul class="nav nav-tabs tab-padding tab-space-3 tab-blue text-uppercase" id="myTab4">
 				
 				
-				<?php if($this->session->userdata('login_type') == '1'){ ?><?php }else{ ?>
+			
 				<li<?php if(strlen($this->uri->segment(4)) <= 0){ echo ' class="active"';}?>>
 					<a data-toggle="tab" href="#panel_overview">
 						Profile
 					</a>
 				</li>
+					<?php if($this->session->userdata('login_type') == '1'){ ?><?php }else{ ?>
 				<li<?php if($this->uri->segment(4) == 'updateInfo'){ echo ' class="active"';}?>>
 					<a data-toggle="tab" href="#panel_edit_account">
 						Edit Profile
@@ -81,7 +82,7 @@
 				</li><?php } ?>
 			</ul>
 			<div class="tab-content">
-			    <?php if($this->session->userdata('login_type') == '1'){ ?><?php }else{ ?>
+			    
 				<div id="panel_overview" class="tab-pane fade <?php if(strlen($this->uri->segment(4)) <= 0){ echo "in active";}?>">
 					<div class="row">
 						<div class="col-sm-5 col-md-4">
@@ -576,6 +577,7 @@
 						</div>
 					</div>
 				</div>
+				<?php if($this->session->userdata('login_type') == '1'){ ?><?php }else{ ?>
 				<div id="panel_edit_account" class="tab-pane fade <?php if($this->uri->segment(4) == 'updateInfo'){ echo "in active";}?>">
 						<div class="row">
 							<div class="col-md-4">
@@ -1801,9 +1803,10 @@
 												<th class="text-center">Total Fees</th>
 												<th class="text-center">Deposite Month</th>
 												<th class="text-center">Payment Mode </th>
-                                               <!-- <th class="text-center">Late Fees</th> -->
+                                             
 												<th class="text-center">Paid Amount</th>
 												<th class="text-center">Pending Amount</th>
+												   <th class="text-center">Deposite Date</th>
 													<th class="text-center">Invoice Number</th>
 												<th class="text-center">Activity</th>
 												<!-- <th>Activity</th> -->
@@ -1848,6 +1851,7 @@
 												 	<!-- <td class="text-center"><?php echo $row->late;?></td>  -->
 												 	<td class="text-center"><?php $pd= $row->paid; echo $pd?></td> 
 												 	<td class="text-center"><?php $cr=$dte-$pd; echo $cr;?></td> 
+												 		<td class="text-center"><?php  echo $row->diposit_date;?></td> 
 												 		<td class="text-center"><?php  echo $row->invoice_no;?></td> 
 													 <td>
 													<?php //$fsdt=$this->uri->segment(4);

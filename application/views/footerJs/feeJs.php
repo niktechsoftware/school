@@ -61,8 +61,8 @@
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script>
 		$(document).ready(function() {
-    $('#sample-table-12').DataTable();
-    } );
+        $('#sample-table-12').DataTable();
+        } );
 
 			$(document).ready(function() {
     $('#a_tb').DataTable();
@@ -111,6 +111,81 @@
 				})
 				
 				
+					$("#subjectIdmarks").change(function(){
+					var classid = $("#classId").val();
+					//var select = $("#select").val();
+					var examid = $("#exam_name").val();
+					var sectionid = $("#sectionId").val();
+					//var mm = $("#mm").val();
+					var subjectid = $("#subjectIdmarks").val();
+					 $.ajax({
+						"url": "<?= base_url() ?>index.php/examControllers/maxmumsubMarks",
+						"method": 'POST',
+						"data": {examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid},
+						beforeSend: function(data) {
+							$("#showMarks").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+						},
+						success: function(data) {
+							$("#showMarks").html(data);
+						},
+						error: function(data) {
+							$("#showMarks").html(data)
+						}
+					})
+					
+					});
+					
+					
+						$("#classv").change(function(){
+					var streamid = $("#classv").val();
+					
+					$.post("<?php echo site_url("index.php/teacherController/getSectionforexam") ?>",{streamid : streamid}, function(data){
+						$("#sectionId").html(data);
+						});
+					
+					});
+				$("#sectionId").change(function(){
+					var streamid = $("#classv").val();
+					
+					var sectionid = $("#sectionId").val();
+					//alert(sectionid +"-"+streamid);
+					$.post("<?php echo site_url("index.php/teacherController/getclassforexam") ?>",{streamid : streamid,sectionid : sectionid}, function(data){
+						$("#classId").html(data);
+						});
+					
+					});
+				$("#classId").change(function(){
+					//var streamid = $("#classv").val();
+					//var sectionid = $("#sectionId").val();
+					var classid = $("#classId").val();
+					
+					$.post("<?php echo site_url("index.php/teacherController/getSubjecforexam") ?>",{classid:classid}, 
+						function(data){
+						$("#subjectId").html(data);
+							$("#subjectIdresult").html(data);
+								$("#subjectIdmarks").html(data);
+						});
+					
+					});
+				
+
+			
+
+				$("#subjectId").change(function(){
+					var classid = $("#classId").val();
+					var teacherid = $("#teacherid").val();
+					var examid = $("#exam_name").val();
+					var sectionid = $("#sectionId").val();
+					//var mm = $("#mm").val();
+					var subjectid = $("#subjectId").val();
+				// alert(classid);
+					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
+						$("#enterMarks").html(data);
+						});
+					
+					});
+			
+				
 			$("#classv").change(function(){
 					var sectionid = $("#classv").val();
 					//alert(sectionid);
@@ -144,7 +219,30 @@
 					}
 				});
 				
-			
+				$("#subjectIdmarks").change(function(){
+					var classid = $("#classId").val();
+					//var select = $("#select").val();
+					var examid = $("#exam_name").val();
+					var sectionid = $("#sectionId").val();
+					//var mm = $("#mm").val();
+					var subjectid = $("#subjectIdmarks").val();
+					 $.ajax({
+						"url": "<?= base_url() ?>index.php/examControllers/maxmumsubMarks",
+						"method": 'POST',
+						"data": {examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid},
+						beforeSend: function(data) {
+							$("#showMarks").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+						},
+						success: function(data) {
+							$("#showMarks").html(data);
+						},
+						error: function(data) {
+							$("#showMarks").html(data)
+						}
+					})
+					
+					});
+					
 
 			$("#sectionId").change(function(){
 					var fsd = $("#fsd").val();

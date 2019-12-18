@@ -160,19 +160,19 @@
 			    </h1><h2 style="font-variant:small-caps;color:#21901f;">
             		<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
+                <?php 
+                $row2=$this->db->get('db_name')->row()->name;
+                if($school_code == 13 && $row2=="A"){ ?><?php }else{ ?>
                 <h2 style="font-variant:small-caps;padding-bottom:10px;color:#0a3809;">
-            		<?php //echo $info->state." - ".$info->pin.", Contact No. : " ;
-            		//if(strlen($info->mobile_no > 0 )){echo $info->phone_no.", ".$info->mobile_no ;} 
+            		<?php 
             		if(strlen($info->mobile_no)>0){
             		echo "Mobile No. : +91-".$info->mobile_no;}
             		else{
             		echo "Mobile No. : +91-".$info->other_mobile_no; }
             		?>
-
-
-
                 </h2>
-    						<h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
+                <?php } ?>
+                <h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
 							<?php 
 							$this->db->where("id",$exam_name);
 						$exname  =	$this->db->get("exam_name")->row()->exam_name;
@@ -357,8 +357,9 @@ if($exam_day->num_rows()){
 		can give their left paper with same exam time.	
 		<!--for daffodils end-->
 		<!--for scholar start-->
-		<?php }else if($school_code==13){
-		?>	&nbsp;Note: 1)The reporting time to school will be at 7:20 am and dispersal timing will be at 11:00 am. </br>
+		<?php }else if($school_code==13 && $row2=="A"){
+		?>	&nbsp;Note: 1)The reporting time to school will be at <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->from1)); endforeach; ?> and dispersal timing will be at <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->to1)); endforeach; ?>. 
+	    </br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		2)Bring this admit card and all necessary instruments (Pen, Pencil box, Geometry box etc.) during exam is compulsory. </br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
