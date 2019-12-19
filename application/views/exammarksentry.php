@@ -242,7 +242,19 @@ if($school_code == 9 && $row2 == "A"){ ?>
 											 <div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Subject
-												<select class="form-control" id="subjectIdmarks" name="subject" style="width: 220px;" required=""></select>
+												<select class="form-control" id="subjectIdmarks" name="subject" style="width: 180px;" required=""></select>
+											</label>
+											</div>
+											 <div class="col-lg-2 col-md-4 col-sm-6">
+											<label>
+												Subject Type
+												<select class="form-control" id="subjecttypem" name="subject" style="width: 180px;" required="">
+												<option >Select</option>
+												<option value="1">Written</option>
+												<option value="0">Oral</option>
+												<option value="2">Theory</option>
+												<option value="3">Practical</option>
+												</select>
 											</label>
 											</div>
 										</div>
@@ -250,5 +262,5 @@ if($school_code == 9 && $row2 == "A"){ ?>
 									</div>
 								</div>
 							</div>
-						</div>ooooooooooooooooooooooooooo
+						</div>
 <?PHP } ?>

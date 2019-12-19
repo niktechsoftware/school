@@ -101,6 +101,8 @@ if($school_code == 9 && $row2 == "A"){
 					"subject_id" => $this->input->post("subjectid"),
 					"marks_grade" => $this->input->post("marks_grade"),
 					"max_m" => $this->input->post("mark"));
+					$insert=$this->db->insert("exam_max_subject",$data);
+					echo "Updated Your Marks";
 					}else{
 						$data = array(
 			     	"sub_type" => $this->input->post("subtype"),
@@ -108,11 +110,14 @@ if($school_code == 9 && $row2 == "A"){
 					"class_id" => $this->input->post("classid"),
 					"subject_id" => $this->input->post("subjectid"),
 					"marks_grade" => $this->input->post("marks_grade"),
-					"max_m" => $this->input->post("mark"));
+					"max_m" => $this->input->post("mark")
+				);
+			
+				$insert=$this->db->insert("exam_max_subject",$data);
+				echo "Updated Your Marks";
 					}
 			
-		    $insert=$this->db->insert("exam_max_subject",$data);
-             echo "Updated Your Marks";
+		   
 	}
 
 
@@ -522,6 +527,7 @@ function defineExam1(){
 		 $subjectid =$this->input->post("subjectid");
 		 $examid =$this->input->post("examid");
 		
+		$data['subtypeid'] = $this->input->post("subtypeid");
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
@@ -744,6 +750,7 @@ if($school_code == 9 && $row2 == "A"){
 				'max_m'=> $marks,
 				);
 				// $this->db->where('id', $rowid);
+				$this->db->where('sub_type', $subtype);
 				$this->db->where('exam_id', $examid);
 				$this->db->where('class_id', $classid);
 				$this->db->where('subject_id', $subjectid);
