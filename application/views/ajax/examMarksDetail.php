@@ -508,11 +508,12 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 							var classid = $("#classid<?php echo $i; ?>").val();
 							var stuid= $("#stu_id<?php echo $i; ?>").val();
 							var marks = $("#mark<?php echo $i; ?>").val();
+							var sub_type = $("#sub_type<?php echo $i; ?>").val();
 							var subjectid = $("#subjectid<?php echo $i; ?>").val();
 							var examid = $("#examid<?php echo $i; ?>").val();
 							var attendence = $("input[name='attendence']:checked").val();
 							//alert(classid +" "+ subjectid +" "+examid);
-                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{sub_type : sub_type ,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
                       $("#deletemmarks1<?php echo $i;?>").html(data);
                       alert('Marks Deleted Successfully');
                       $("#deletemmarks1<?php echo $i;?>").html();
