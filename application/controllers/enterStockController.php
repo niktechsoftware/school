@@ -152,8 +152,7 @@
 
 			$this->db->where("school_code",$school_code);
 			$billno = $this->db->count_all("invoice_serial");
-			
-//$billno= $billno4->num_rows();
+
 		//print_r($billno);exit();
 
 			$this->load->model("daybookModel");

@@ -228,6 +228,7 @@ class InvoiceController extends CI_Controller{
 		$this->db->select("studenticard_format");
 			$this->db->where("school_code",$this->session->userdata("school_code"));			
 		    $val=$this->db->get("result_format");
+		  
            if($val->num_rows()>0)
             {
 			$val=	$val->row()->studenticard_format;

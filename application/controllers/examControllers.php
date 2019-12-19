@@ -75,6 +75,24 @@ class examControllers extends CI_Controller
             }
    
      }
+     
+	 function maximarks()
+   {
+       //echo $this->input->post("examid");
+   //exit;
+		     	$data = array(
+			     	"sub_type" => $this->input->post("subtype"),
+					"exam_id" => $this->input->post("examid"),
+					
+					"class_id" => $this->input->post("classid"),
+					"subject_id" => $this->input->post("subjectid"),
+					"marks_grade" => $this->input->post("marks_grade"),
+					"max_m" => $this->input->post("mark"),
+					
+		        	);
+		    $insert=$this->db->insert("exam_max_subject",$data);
+             echo "Updated Your Marks";
+	}
 
 
    public  function Suceesotpdeleteexamby()
@@ -437,20 +455,7 @@ function defineExam1(){
 		echo "Edited";
 	}
 
-   function maximarks()
-   { 
-			$data = array(
-				"sub_type" => $this->input->post("subtype"),
-					"exam_id" => $this->input->post("examid"),
-					"class_id" => $this->input->post("classid"),
-					"subject_id" => $this->input->post("subjectid"),
-					"marks_grade" => $this->input->post("marks_grade"),
-					"max_m" => $this->input->post("mark"),
-					
-		        	);
-		    $insert=$this->db->insert("exam_max_subject",$data);
-             echo "Updated Your Marks";
-	}
+  
 			
 
 	function deleteExam(){
@@ -503,10 +508,7 @@ function defineExam1(){
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
 		$data['examid'] = $this->input->post("examid");
-		//$data['out_of'] = $this->input->post("mm");
-// 	    $result = $this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
-// 		$data['class_info'] = $result->row();
-	$data['footerJs'] = 'footerJs/examJs';
+
 	  $this->load->view("ajax/maximmmarks",$data);		
 	}
 	

@@ -157,12 +157,12 @@
 			?>
 	<?php if($school == 10 && $row2=="D"){ ?>
 		<!--sarvodya size start-->
-        <div id="page-wrap" style="margin-top: 70px;height: 1130px;width:960px; border:1px solid #333;">
-		<div style="width:100%; height:1130px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
+        <div id="page-wrap" style="margin-top: 30px;height: 1200px;width:960px; ">
+		<div style="width:100%; height:1200px;margin-left:auto; margin-right:auto; ">
 		<!--sarvodya size end-->
        <?php }else{ ?>
 		<!--other size start-->
-	 <div id="page-wrap" style="margin-top: 70px;height: 1330px;width:960px; border:1px solid #333;">
+	 <div id="page-wrap" style="height: 1330px;width:960px; border:1px solid #333;">
 		<div style="width:100%; height:1330px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
 		<!--other size end-->
 		<?php } ?>
@@ -177,14 +177,14 @@
                     <table style="width: 100%;"> <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
 					<tr style="background-color: #b38cb1;"><?php }else{ ?><tr >
 					<?php } ?>
-                           <td  style="border: none;width: 240px;">
+                           <td  style="border: none;width: 150px;">
                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
                                     alt="" style="height: 100px;width: 100px;" />
                                 </br><label style="font-size: 13px;">Aff.No. - <?php echo $info->registration_no;?></label>
                             </td>
                              <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
-                            <td  style="border: none;" >
-                                <h1 style="font-size: 30px; font-family: Algerian;">
+                            <td  style="border: none; width:900px;text-align: center; " >
+                                <h1 style="font-size: 30px; font-family: Algerian; ">
                                     <?php echo $info->school_name;?></h1>
                             </td>
                             <td style="border: none;">
@@ -206,8 +206,10 @@
                             <?php } ?>
 							
 						</tr>
+						</table>
+						<table style="width: 100%;">
 						 <tr class="wight" style="font-size: 14px;">
-							<td 
+							<td  style="width:200px;">
 								<span style="text-transform: uppercase;">Scholar ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:red;"> <?= $studentInfo->username; ?></span><br>
 								<span style="text-transform: uppercase;">Student's Name: </span><span style="text-transform: uppercase;color:red;"> <?= strtoupper($studentInfo->name);?> </span><br>
 							   <?php
@@ -225,12 +227,12 @@
 								 <?php } else { echo "something wrong please try again";  }?>
 							
 							</td>
-							<td >
+							<td style="width:150px;">
 								<span style="text-transform: uppercase;">Date of Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:red;"> <?= date("d-M-Y", strtotime($studentInfo->dob)); ?></span><br>
 								 <span style="text-transform: uppercase;">Mother's Name&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:red;">  <?= strtoupper($parentInfo->mother_full_name); ?></span><br>
 								<span style="text-transform: uppercase;">Father's Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:red;"> <?= strtoupper($parentInfo->father_full_name); ?></span><br>
 							</td>
-							<td class="">
+							<td class="" style="width:90px;">
 								<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/stuImage/<?php echo $studentInfo->photo; ?>"  alt="" width="90" height="105" />
 							</td>
 						</tr>
@@ -1681,7 +1683,8 @@
                         <td>Percentage  : <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}?>% </td>
                         <td >Grade  : <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade_sarvodya($per,$classid);}?></label></td>
                         <td>Rank :<?php 
-			echo $this->exammodel->getClassRank($studentInfo->id, $classid, $fsd);?></td>
+			//echo $this->exammodel->getClassRank($studentInfo->id, $classid, $fsd);
+			?></td>
                     </tr>
                 </table>
             </div>
@@ -2691,7 +2694,9 @@
     </div>
 	
 	
-	
+	</br>
+    </br>
+    </br>
 	<?php 	} ?><?php 
 				function calculateGrade($val,$classid){
 								if($val >= 91 && $val < 101):
@@ -2808,6 +2813,10 @@
 							?>
              
     </div>
+    </div>
+    </br>
+    </br>
+    </br>
    
     <div class="invoice-buttons" style="text-align:center;">
     <button class="button button2" type="button" onclick="window.print();">
