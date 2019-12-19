@@ -164,17 +164,18 @@
 			
 
 			
-			$("#subjectIdmarks").change(function(){
+			$("#subjecttypem").change(function(){
 					var classid = $("#classId").val();
 					//var select = $("#select").val();
 					var examid = $("#exam_name").val();
 					var sectionid = $("#sectionId").val();
-					//var mm = $("#mm").val();
+					var subtypeid = $("#subjecttypem").val();
+					
 					var subjectid = $("#subjectIdmarks").val();
 					 $.ajax({
 						"url": "<?= base_url() ?>index.php/examControllers/maxmumsubMarks",
 						"method": 'POST',
-						"data": {examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid},
+						"data": {examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid,subtypeid : subtypeid },
 						beforeSend: function(data) {
 							$("#showMarks").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
 						},
