@@ -785,7 +785,7 @@ function getFsd(){
 			    // );
 			   // $this->db->where("student_id",$student_id);
 
-			   if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))&&($this->feemodel->del_feedue($invoiceNo,$student_id))){
+			   if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))){
 				redirect(base_url()."index.php/feeControllers/feesDetail/".$student_id."/".$df); 
 			   }else{
 				   echo "Please Contact to Admin";

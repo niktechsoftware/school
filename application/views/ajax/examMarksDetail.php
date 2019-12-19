@@ -115,6 +115,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						echo date("l jS F, Y", strtotime("$day"));  
 					
            $result1=$this->db->query("select * from exam_max_subject where exam_id='$examid' and sub_type=1  and subject_id='$subjectid' and class_id='$classid' and sub_type=1 ORDER BY id");
+          
             $result1=$result1->row();
 
             $result2=$this->db->query("select * from exam_max_subject where exam_id='$examid' and sub_type=0  and subject_id='$subjectid' and class_id='$classid' and sub_type=0 ORDER BY id");

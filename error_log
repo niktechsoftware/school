@@ -803,3 +803,6 @@ Stack trace:
 #1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #2 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 211
+[18-Dec-2019 11:36:52 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')' in /home/schoodhe/public_html/school/application/controllers/feeControllers.php on line 788
+[18-Dec-2019 11:37:01 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')' in /home/schoodhe/public_html/school/application/controllers/feeControllers.php on line 788
+[18-Dec-2019 11:37:07 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')' in /home/schoodhe/public_html/school/application/controllers/feeControllers.php on line 788

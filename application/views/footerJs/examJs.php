@@ -261,9 +261,9 @@
 				    
 		
 				
-				Main.init();
-				FormElements.init();
-				SVExamples.init();
+				// Main.init();
+				// FormElements.init();
+				// SVExamples.init();
 				TableExport.init();
 
 
