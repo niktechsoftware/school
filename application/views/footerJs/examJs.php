@@ -161,9 +161,38 @@
 					});
 				
 
-			
+					<?php
+    $school_code = $this->session->userdata("school_code");
+    $row2=$this->db->get('db_name')->row()->name;
+
+if($school_code == 9 && $row2 == "A"){ ?>			
 
 			
+			$("#subjectIdmarks").change(function(){
+					var classid = $("#classId").val();
+					//var select = $("#select").val();
+					var examid = $("#exam_name").val();
+					var sectionid = $("#sectionId").val();
+					//var mm = $("#mm").val();
+					var subjectid = $("#subjectIdmarks").val();
+					 $.ajax({
+						"url": "<?= base_url() ?>index.php/examControllers/maxmumsubMarks",
+						"method": 'POST',
+						"data": {examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid},
+						beforeSend: function(data) {
+							$("#showMarks").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+						},
+						success: function(data) {
+							$("#showMarks").html(data);
+						},
+						error: function(data) {
+							$("#showMarks").html(data)
+						}
+					})
+					
+					});
+				<?php } else{ ?>
+					
 			$("#subjecttypem").change(function(){
 					var classid = $("#classId").val();
 					//var select = $("#select").val();
@@ -189,6 +218,7 @@
 					
 					});
 					
+				<?php } ?>
 								
 				$("#subjectIdresult").change(function(){
 				   var classid = $("#classId").val();
