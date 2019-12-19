@@ -499,16 +499,13 @@ function defineExam1(){
 		
 	
 	function enterMarks()
-	{ 	//$fsd =$this->session->userdata("fsd");
-		// $classid = $this->input->post("classid");
-		// $subjectid =$this->input->post("subjectid");
-		// $examid =$this->input->post("examid");
+	{ 	
+		$data['sub_type'] =$this->input->post("sub_type");
 		$data['t_id'] = $this->input->post("teacherid");
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
 		$data['examid'] = $this->input->post("examid");
-	//$this->load->view("ajax/examMarksDetail",$data);	
    $this->load->view("print_obtain",$data);		
 	}
 	function print_obtain()
@@ -790,118 +787,86 @@ if($school_code == 9 && $row2 == "A"){
  }
  
 function insertMarksdetail()
-	{
-		 $school_code = $this->session->userdata("school_code");
-    $row2=$this->db->get('db_name')->row()->name;
-
-if($school_code == 9 && $row2 == "A"){
-	$stuid=$this->input->post('stuid'); 
-	    $marks=$this->input->post('marks');
-	    $mmarks=$this->input->post('mmarks');
-	    $classid=$this->input->post('classid');
-	    $subjectid=$this->input->post('subjectid');
-	    $examid=$this->input->post('examid');
-	     $term=$this->input->post('term');
-		$attendence=$this->input->post('attendence');
-		$this->db->where('school_code' ,$this->session->userdata('school_code'));
-		$this->db->where('class_id',$classid);
-		$this->db->where('subject_id',$subjectid);
-		$this->db->where('stu_id',$stuid);
-		$this->db->where('exam_id',$examid);
-	$v=	$this->db->get('exam_info');
-	if($v->num_rows()<1){
-	    $data=array(
-
-	        'term'=>$term,
-	        'class_id'=>$classid,
-	        'subject_id'=>$subjectid,
-	        'stu_id'=> $stuid,
-	         'out_of'=>$mmarks,
-	         'marks'=> $marks,
-	         'exam_id'=>$examid,
-	         'Attendance'=>$attendence,
-	         'fsd'=>$this->session->userdata('fsd'),
-	         'school_code'=>$this->session->userdata('school_code'),
-	         "created" => date('Y-m-d'),
-			);
-	        $this->db->insert('exam_info',$data);
-	         echo "inserted";
-		  } else{
-			  echo "marks already given";
-		  }
-	
-	
-}else{
-	    $stuid=$this->input->post('stuid'); 
+	{		$stuid=$this->input->post('stuid'); 
 			$marks=$this->input->post('marks');
-			$marks1=$this->input->post('marks1');
-			$mmarks1=$this->input->post('mmarks1');
-	    $mmarks=$this->input->post('mmarks');
-	    $classid=$this->input->post('classid');
-	    $subjectid=$this->input->post('subjectid');
-	    $examid=$this->input->post('examid');
-	     $term=$this->input->post('term');
-		$attendence=$this->input->post('attendence');
-		$this->db->where('school_code' ,$this->session->userdata('school_code'));
-		$this->db->where('class_id',$classid);
-		$this->db->where('sub_type',1);
-		$this->db->where('subject_id',$subjectid);
-		$this->db->where('stu_id',$stuid);
-		$this->db->where('exam_id',$examid);
+			$mmarks=$this->input->post('mmarks');
+			$classid=$this->input->post('classid');
+			$subjectid=$this->input->post('subjectid');
+			$sub_type=$this->input->post('sub_type');
+			$examid=$this->input->post('examid');
+			$term=$this->input->post('term');
+			$attendence=$this->input->post('attendence');
+			
+		$school_code = 	$this->session->userdata("school_code");
+		$row2=			$this->db->get('db_name')->row()->name;
+		if($school_code == 9 && $row2 == "A"){
+			//for ramdoot start
+				/*$stuid=$this->input->post('stuid'); 
+				$marks=$this->input->post('marks');
+				$mmarks=$this->input->post('mmarks');
+				$classid=$this->input->post('classid');
+				$subjectid=$this->input->post('subjectid');
+				$examid=$this->input->post('examid');
+				$term=$this->input->post('term');
+				$attendence=$this->input->post('attendence');*/
+				
+				$this->db->where('school_code' ,$this->session->userdata('school_code'));
+				$this->db->where('class_id',$classid);
+				$this->db->where('subject_id',$subjectid);
+				$this->db->where('stu_id',$stuid);
+				$this->db->where('exam_id',$examid);
+			$v=	$this->db->get('exam_info');
+			if($v->num_rows()<1){
+				$data=array(
+					'term'=>$term,
+					'class_id'=>$classid,
+					'subject_id'=>$subjectid,
+					'stu_id'=> $stuid,
+					 'out_of'=>$mmarks,
+					 'marks'=> $marks,
+					 'exam_id'=>$examid,
+					 'Attendance'=>$attendence,
+					 'fsd'=>$this->session->userdata('fsd'),
+					 'school_code'=>$this->session->userdata('school_code'),
+					 "created" => date('Y-m-d'),
+					);
+					$this->db->insert('exam_info',$data);
+					 echo "inserted";
+				  } else{
+					  echo "marks already given";
+				  }
+			//for ramdoot end
+		}else{
+			
+			
+			$this->db->where('school_code' ,$this->session->userdata('school_code'));
+			$this->db->where('class_id',$classid);
+			$this->db->where('sub_type',$sub_type);
+			$this->db->where('subject_id',$subjectid);
+			$this->db->where('stu_id',$stuid);
+			$this->db->where('exam_id',$examid);
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
-
-
-	        'term'=>$term,
-	        'class_id'=>$classid,
-	        'subject_id'=>$subjectid,
-	        'stu_id'=> $stuid,
-					 'out_of'=>$mmarks,
-					 'sub_type'=>1,
-	         'marks'=> $marks,
-	         'exam_id'=>$examid,
-	         'Attendance'=>$attendence,
-	         'fsd'=>$this->session->userdata('fsd'),
-	         'school_code'=>$this->session->userdata('school_code'),
-	         "created" => date('Y-m-d'),
+			'term'=>$term,
+			'class_id'=>$classid,
+			'subject_id'=>$subjectid,
+			'stu_id'=> $stuid,
+			'out_of'=>$mmarks,
+			'sub_type'=>$sub_type,
+			'marks'=> $marks,
+			'exam_id'=>$examid,
+			'Attendance'=>$attendence,
+			'fsd'=>$this->session->userdata('fsd'),
+			'school_code'=>$this->session->userdata('school_code'),
+			"created" => date('Y-m-d'),
 			);
 	        $this->db->insert('exam_info',$data);
 	         echo "inserted";
 		  } else{
 			  echo "marks already given";
 			} 
-			
-			$this->db->where('school_code' ,$this->session->userdata('school_code'));
-			$this->db->where('class_id',$classid);
-			$this->db->where('sub_type',0);
-			$this->db->where('subject_id',$subjectid);
-			$this->db->where('stu_id',$stuid);
-			$this->db->where('exam_id',$examid);
-		$v1=	$this->db->get('exam_info');
-		if($v1->num_rows()<1){
-				$data1=array(
-	
-	
-						'term'=>$term,
-						'class_id'=>$classid,
-						'subject_id'=>$subjectid,
-						'stu_id'=> $stuid,
-						 'out_of'=>$mmarks1,
-						 'sub_type'=>0,
-						 'marks'=> $marks1,
-						 'exam_id'=>$examid,
-						 'Attendance'=>$attendence,
-						 'fsd'=>$this->session->userdata('fsd'),
-						 'school_code'=>$this->session->userdata('school_code'),
-						 "created" => date('Y-m-d'),
-				);
-						$this->db->insert('exam_info',$data1);
-						 echo "inserted";
-				} else{
-					echo "marks already given";
-				}
-}
+		}
 	}
 	function resultRender(){
 		$school_code =$this->session->userdata("school_code");

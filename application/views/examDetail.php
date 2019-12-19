@@ -171,7 +171,7 @@ if($school_code == 9 && $row2 == "A"){ ?>
 									<?php	}?>
 										<div class="row">
 										    <div id="validId"></div>
-										    <div class="col-lg-2 col-md-4 col-sm-6">
+										    <div class="col-lg-1 col-md-4 col-sm-6">
 											<label>
 												Teacher ID
 												<div>
@@ -213,22 +213,35 @@ if($school_code == 9 && $row2 == "A"){ ?>
 												</select>
 											</label>
 											</div>
- 	                                        <div class="col-lg-2 col-md-4 col-sm-6">
+ 	                                        <div class="col-lg-1 col-md-4 col-sm-6">
 											<label>
 												Section
-												<select class="form-control" id="sectionId" name="section" style="width: 130px;"></select>
+												<select class="form-control" id="sectionId" name="section" style="width: 90px;"></select>
 											</label>
 											</div>
 												<div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Class
-												<select class="form-control" id="classId" name="class" style="width: 130px;"></select>
+												<select class="form-control" id="classId" name="class" style="width: 90px;"></select>
 											</label>
 											</div>
-												<div class="col-lg-2 col-md-4 col-sm-6">
+											<div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Subject
-												<select class="form-control" id="subjectId" name="subject" style="width:150px;"></select>
+												<select class="form-control" id="subjectId" name="subject" style="width: 90px;"></select>
+											</label>
+											</div>
+											
+											<div class="col-lg-2 col-md-4 col-sm-6">
+											<label>
+												Subject Type
+												<select class="form-control" id="sub_type" name="sub_type" style="width: 90px;">
+													<option >--Select--</option>
+													<option value="0">Oral</option>
+													<option value="1">Written</option>
+													<option value="2">Theory</option> 
+													<option value="3">Practical</option>
+												 </select> 
 											</label>
 											</div>
 										</div>
@@ -237,5 +250,5 @@ if($school_code == 9 && $row2 == "A"){ ?>
 								</div>
 							</div>
 
-						</div>jkjkjljkl
+						</div>
 <?PHP } ?>

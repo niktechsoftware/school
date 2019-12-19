@@ -104,21 +104,8 @@
 
 				
 				
-				$("#subjectId").change(function(){
-				   
-					var classid = $("#classId").val();
-					var teacherid = $("#teacherid").val();
-					var examid = $("#exam_name").val();
-					var sectionid = $("#sectionId").val();
-					//var mm = $("#mm").val();
-					var subjectid = $("#subjectId").val();
 				
-					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
-			
-						$("#enterMarks").html(data);
-						});
-					
-					});
+				
 				
 				$("#teacherid").keyup(function(){
 					var teacherid = $("#teacherid").val();
@@ -287,3 +274,39 @@ if($school_code == 9 && $row2 == "A"){ ?>
 				SVExamples.init();
 				TableExport.init();
 		</script>
+<?php
+    $school_code = $this->session->userdata("school_code");
+    $row2=$this->db->get('db_name')->row()->name;
+if($school_code == 9 && $row2 == "A"){ ?>
+<script>
+				$("#subjectId").change(function(){
+					var classid = $("#classId").val();
+					var teacherid = $("#teacherid").val();
+					var examid = $("#exam_name").val();
+					var sectionid = $("#sectionId").val();
+					var subjectid = $("#subjectId").val();
+					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
+			
+						$("#enterMarks").html(data);
+						});
+					
+					});
+</script>
+<?php }else{ ?>
+<script>
+$("#sub_type").change(function(){
+					var classid = $("#classId").val();
+					var teacherid = $("#teacherid").val();
+					var examid = $("#exam_name").val();
+					var sectionid = $("#sectionId").val();
+					var sub_type = $("#sub_type").val();
+					var subjectid = $("#subjectId").val();
+					//alert(sub_type);
+					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{sub_type : sub_type,teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
+			
+						$("#enterMarks").html(data);
+						});
+					
+					});
+</script>
+<?php }?>
