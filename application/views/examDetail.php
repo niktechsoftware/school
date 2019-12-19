@@ -1,3 +1,4 @@
+
 <?php
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
