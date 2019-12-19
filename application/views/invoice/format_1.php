@@ -175,10 +175,10 @@
         <tr class="wight" style="border-top:none;">
             <td colspan="12" style="border:none;" >
                 <span style="">यह प्रमाणित किया जाता है कि This is to certify that: <?= strtoupper($studentInfo->name);?></span></br>
-                <span style="">अनुक्रमांक Roll No:   </span></br>
+                <span style="">Student ID: <?= strtoupper($studentInfo->username); ?>  </span></br>
                 <span style="">माता का नाम Mother's Name: <?= strtoupper($parentInfo->mother_full_name); ?></span></br>
                 <span style="">पिता/संरक्षक का नाम Father's / Guardian's Name: <?= strtoupper($parentInfo->father_full_name); ?></span></br>
-                <span style="">जन्म-तिथि Date of Birth: <?= strtoupper($parentInfo->father_full_name); ?></span></br>
+                <span style="">जन्म-तिथि Date of Birthat: <?= strtoupper($studentInfo->dob); ?></span></br>
                 <span style="">विद्यालय School: <?php echo $info->school_name; ?><?php echo $info->address1." ".$info->address2." ".$info->city." ".$info->state." - ".$info->pin; ?></span></br>
                 <span style="">की शैक्षणिक उपलब्धियां निम्नानुसार हैं has achieved scholastic Achievements as under :</span>
                <?php
@@ -2395,7 +2395,8 @@ $cumulativetotal=0;
 			<td class="subject" colspan="1" > </td>
 			<td class="subject" colspan="1" ><?php echo  $subjectname->subject; ?> </td>
 			     <?php 
-                 $gtptal=0;
+					$ttal=0;
+					$gtptal=0;
                  $subtatal=0;
 		         $i=1; $t=0; $coltptal=0;  ?>
 				 <?php  if($examid->num_rows()==0){?><td></td><td></td><td></td><td></td><?php }else{
@@ -2404,7 +2405,7 @@ $cumulativetotal=0;
 			<?php  
 			            $this->db->where("term", 1);
 						$this->db->where('subject_id',$subjectname->id);
-						$this->db->where('sub_type',1);
+						$this->db->where('sub_type',2);
 						$this->db->where('class_id',$classid->class_id);
 						$this->db->where('stu_id',$studentInfo->id);
 						$this->db->where('exam_id',$value->exam_id);
@@ -2418,19 +2419,26 @@ $cumulativetotal=0;
 					echo $marks->marks;
 					$ctotal[$t]+= $marks->marks;
 					$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('sub_type',1);
+					$this->db->where('sub_type',2);
 			$this->db->where('class_id',$classid->class_id);
 			$this->db->where('exam_id',$value->exam_id);
 		 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-		 echo "/".$exammm;
+		 //echo "/".$exammm;
 		 $dhtm=$exammm+$dhtm;
+		 if(is_numeric($exammm)){
+					  $ttal=$ttal+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal= $ttal;
+					 $dhtm= $dhtm;   
+					}
+		 
 				} ?>
 			</td>
 			<td>
 			<?php  
 			            $this->db->where("term", 1);
 						$this->db->where('subject_id',$subjectname->id);
-						$this->db->where('sub_type',0);
+						$this->db->where('sub_type',3);
 						$this->db->where('class_id',$classid->class_id);
 						$this->db->where('stu_id',$studentInfo->id);
 						$this->db->where('exam_id',$value->exam_id);
@@ -2444,21 +2452,33 @@ $cumulativetotal=0;
 					echo $marks->marks;
 					$ctotal[$t]+= $marks->marks;
 					$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('sub_type',0);
+					$this->db->where('sub_type',3);
 			$this->db->where('class_id',$classid->class_id);
 			$this->db->where('exam_id',$value->exam_id);
 		 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-		 echo "/".$exammm;
+		 //echo "/".$exammm;
 		 $dhtm=$exammm+$dhtm;
+		 if(is_numeric($exammm)){
+					  $ttal=$ttal+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal= $ttal;
+					 $dhtm= $dhtm;   
+					}
+		 
 				} ?>
 			</td>
 			<td><?= $gtptal ;?></td>
-			<td><?= $gtptal ;?></td>
+			<td><?php echo numberTowords($gtptal); ?></td>
 				<?php  $i++; $t++; endforeach; } ?>
-				<td class="center bold"><?php  $rty = $gtptal/2; echo $gtptal;  ?></td>	
+			<td class="center bold"><?php // $rty = $gtptal/2; 
+				//echo $gtptal . "/" . $ttal;
+				if($ttal>0){ $per=round((($gtptal*100)/$ttal), 2);}
+				if($ttal>0){echo $gradecal =calculateGrade($per,$classid->class_id);}?>
+			</td>	
 				<!--1st term marks end-->
 				<!--2nd term marks start-->
 				 <?php 
+					$ttal_2=0;
                  $gtptal_2=0;
                  $subtatal=0;
 		         $i=1; $t=0; $coltptal=0;  ?>
@@ -2468,7 +2488,7 @@ $cumulativetotal=0;
 					<?php  
 					            $this->db->where("term", 2);
 								$this->db->where('subject_id',$subjectname->id);
-								$this->db->where('sub_type',1);
+								$this->db->where('sub_type',2);
 								$this->db->where('class_id',$classid->class_id);
 								$this->db->where('stu_id',$studentInfo->id);
 								$this->db->where('exam_id',$value->exam_id);
@@ -2477,24 +2497,30 @@ $cumulativetotal=0;
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
 							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
+							$gtptal_2= $gtptal_2+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
 							$ctotal[$t]+= $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
-							$this->db->where('sub_type',1);
+							$this->db->where('sub_type',2);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-				 echo "/".$exammm;
+				 //echo "/".$exammm;
 				 $dhtm=$exammm+$dhtm;
+		 if(is_numeric($exammm)){
+					  $ttal_2=$ttal_2+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal_2= $ttal_2;
+					 $dhtm= $dhtm;   
+					}
 						} ?>
 					</td>
 					<td>
 					<?php  
 					            $this->db->where("term", 2);
 								$this->db->where('subject_id',$subjectname->id);
-								$this->db->where('sub_type',0);
+								$this->db->where('sub_type',3);
 								$this->db->where('class_id',$classid->class_id);
 								$this->db->where('stu_id',$studentInfo->id);
 								$this->db->where('exam_id',$value->exam_id);
@@ -2503,23 +2529,31 @@ $cumulativetotal=0;
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
 							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
+							$gtptal_2= $gtptal_2+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
 							$ctotal[$t]+= $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
-							$this->db->where('sub_type',0);
+							$this->db->where('sub_type',3);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-				 echo "/".$exammm;
+				 //echo "/".$exammm;
 				 $dhtm=$exammm+$dhtm;
+				 if(is_numeric($exammm)){
+					  $ttal_2=$ttal_2+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal_2= $ttal_2;
+					 $dhtm= $dhtm;   
+					}
 						} ?>
 					</td>
-					<td><?= $gtptal ;?></td>
-					<td><?= $gtptal ;?></td>
+					<td><?= $gtptal_2 ;?></td>
+					<td><?php echo numberTowords($gtptal_2); ?></td>
 				<?php  $i++; $t++;endforeach; } ?>
-				<td class="center bold"><?php  $rty = $gtptal_2/2; echo $gtptal_2;  ?></td>
+				<td class="center bold"><?php 
+				if($ttal_2>0){ $per_2=round((($gtptal_2*100)/$ttal_2), 2);}
+				if($ttal_2>0){echo $gradecal =calculateGrade($per_2,$classid->class_id);}?></td>
 				<!--2nd term marks end-->
 				
 		</tr>
@@ -2978,14 +3012,14 @@ $cumulativetotal=0;
                 <span style="">परीक्षा नियंत्रक Controller of Examinations :</span>
             </td>
 		</tr>
-		<tr class="wight">
+		<!--<tr class="wight">
             <td colspan="12"  style="border-bottom: none;
     border-left: none;
     border-right: none;">
                 <span style="">सह-शैक्षणिक उपलब्धियां: सह शैक्षणिक एवम् अनुशासन क्षेत्र में ट्रेडिंग विद्यालय द्वारा अपने स्तर पर बोर्ड द्वारा जारी प्रारुपनुसार प्रदान की जाती है | </span></br>
              <span style="">Co-Scholastic achievements : Grading for Co- Scholastic and Displine area is being issued by the school as per format prescribed by the Board.</span></br>
             </td>
-		</tr>
+		</tr>-->
 		<?php }else{ ?>
 		<!---other school footer section --->
 		<tr class="pink">
@@ -3067,11 +3101,98 @@ $cumulativetotal=0;
 				return 'Need to improve';
 			endif;
 		}
+		
+		
+		
+		function numberTowords($num)
+                    { 
+                    $ones = array( 
+                    1 => "one", 
+                    2 => "two", 
+                    3 => "three", 
+                    4 => "four", 
+                    5 => "five", 
+                    6 => "six", 
+                    7 => "seven", 
+                    8 => "eight", 
+                    9 => "nine", 
+                    10 => "ten", 
+                    11 => "eleven", 
+                    12 => "twelve", 
+                    13 => "thirteen", 
+                    14 => "fourteen", 
+                    15 => "fifteen", 
+                    16 => "sixteen", 
+                    17 => "seventeen", 
+                    18 => "eighteen", 
+                    19 => "nineteen" 
+                    ); 
+                    $tens = array( 
+                    1 => "ten",
+                    2 => "twenty", 
+                    3 => "thirty", 
+                    4 => "forty", 
+                    5 => "fifty", 
+                    6 => "sixty", 
+                    7 => "seventy", 
+                    8 => "eighty", 
+                    9 => "ninety" 
+                    ); 
+                    $hundreds = array( 
+                    "hundred", 
+                    "thousand", 
+                    "million", 
+                    "billion", 
+                    "trillion", 
+                    "quadrillion" 
+                    ); //limit t quadrillion 
+                    $num = number_format($num,2,".",","); 
+                    $num_arr = explode(".",$num); 
+                    $wholenum = $num_arr[0]; 
+                    $decnum = $num_arr[1]; 
+                    $whole_arr = array_reverse(explode(",",$wholenum)); 
+                    krsort($whole_arr); 
+                    $rettxt = ""; 
+					$ones[0]="";
+                    foreach($whole_arr as $key => $i){ 
+                    if($i < 20){ 
+                    $rettxt .= $ones[$i]; 
+                    }elseif($i < 100){ 
+                    $rettxt .= $tens[substr($i,0,1)]; 
+                    $rettxt .= " ".$ones[substr($i,1,1)]; 
+                    }else{ 
+                    $rettxt .= $ones[substr($i,0,1)]." ".$hundreds[0]; 
+                    $rettxt .= " ".$tens[substr($i,1,1)]; 
+                    $rettxt .= " ".$ones[substr($i,2,1)]; 
+                    } 
+                    if($key > 0){ 
+                    $rettxt .= " ".$hundreds[$key]." "; 
+                    } 
+                    } 
+                    if($decnum > 0){ 
+                    $rettxt .= " and "; 
+                    if($decnum < 20){ 
+                    $rettxt .= $ones[$decnum]; 
+                    }elseif($decnum < 100){ 
+                    $rettxt .= $tens[substr($decnum,0,1)]; 
+                    $rettxt .= " ".$ones[substr($decnum,1,1)]; 
+                    } 
+                    } 
+                    return $rettxt; 
+                    } 
+
+/*extract($_POST);
+if(isset($convert))
+{
+echo "<p align='center' style='color:blue'>".numberTowords(200)."</p>";
+}*/
+		
+		
 	?>
 </div>
 <div class="invoice-buttons" id ="non-printable" style="text-align:center;">
     <button class="button button2" type="button"  onclick="window.print();">
-      <i class="fa fa-print padding-right-sm"></i> Print
+      <i class="fa fa-print padding-right-sm"></i> Print 
     </button>
   </div>
 </body>
