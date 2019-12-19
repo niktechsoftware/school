@@ -230,14 +230,6 @@
 						});
 					
 					});
-				// Main.init();
-				// FormElements.init();
-				// SVExamples.init();
-				TableExport.init();
-
-
-
-
 				var select = document.getElementById('examName1');
                      var input1 = document.getElementById('upexam');
                        select.onchange = function() {
