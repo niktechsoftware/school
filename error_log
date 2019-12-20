@@ -804,6 +804,7 @@ Stack trace:
 #1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #2 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/configureClassControllers.php on line 211
+
 [17-Dec-2019 16:59:43 Asia/Calcutta] PHP Fatal error:  Cannot redeclare examControllers::maximarks() in /home/schoodhe/public_html/sschool1/application/controllers/examControllers.php on line 453
 
 [18-Dec-2019 00:01:16 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function mysmsHindi(), 4 passed in /home/schoodhe/public_html/sschool2/application/controllers/smsAjax.php on line 89 and exactly 5 expected in /home/schoodhe/public_html/sschool2/application/helpers/sms_helper.php:61
@@ -813,6 +814,7 @@ Stack trace:
 #2 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
 #3 {main}
   thrown in /home/schoodhe/public_html/sschool2/application/helpers/sms_helper.php on line 61
+
 [18-Dec-2019 18:55:53 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
 [18-Dec-2019 19:25:44 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
 [18-Dec-2019 19:25:51 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
@@ -914,3 +916,13 @@ Stack trace:
 [18-Dec-2019 20:36:44 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
 [18-Dec-2019 20:36:56 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
 [18-Dec-2019 20:40:14 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
+
+[19-Dec-2019 11:19:16 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php:161
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(346): CI_Loader->view('invoice/saleInv...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->saleInvoice('2733')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 161

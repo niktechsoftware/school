@@ -76,11 +76,8 @@ class examControllers extends CI_Controller
    
      }
      
-	 function maximarks()
-   {
-       //echo $this->input->post("examid");
-   //exit;
-		     	$data = array(
+	/* function maximarks()
+   {$data = array(
 			     	"sub_type" => $this->input->post("subtype"),
 					"exam_id" => $this->input->post("examid"),
 					
@@ -92,6 +89,35 @@ class examControllers extends CI_Controller
 		        	);
 		    $insert=$this->db->insert("exam_max_subject",$data);
              echo "Updated Your Marks";
+	}*/
+	function maximarks()
+   { 
+   $school_code = $this->session->userdata("school_code");
+    $row2=$this->db->get('db_name')->row()->name;
+if($school_code == 9 && $row2 == "A"){ 
+					$data = array(
+					"exam_id" => $this->input->post("examid"),
+					"class_id" => $this->input->post("classid"),
+					"subject_id" => $this->input->post("subjectid"),
+					"marks_grade" => $this->input->post("marks_grade"),
+					"max_m" => $this->input->post("mark"));
+					$insert=$this->db->insert("exam_max_subject",$data);
+					echo "Updated Your Marks";
+					}else{
+						$data = array(
+			     	"sub_type" => $this->input->post("subtype"),
+					"exam_id" => $this->input->post("examid"),
+					"class_id" => $this->input->post("classid"),
+					"subject_id" => $this->input->post("subjectid"),
+					"marks_grade" => $this->input->post("marks_grade"),
+					"max_m" => $this->input->post("mark")
+				);
+			
+				$insert=$this->db->insert("exam_max_subject",$data);
+				echo "Updated Your Marks";
+					}
+			
+		   
 	}
 
 
@@ -473,16 +499,13 @@ function defineExam1(){
 		
 	
 	function enterMarks()
-	{ 	//$fsd =$this->session->userdata("fsd");
-		// $classid = $this->input->post("classid");
-		// $subjectid =$this->input->post("subjectid");
-		// $examid =$this->input->post("examid");
+	{ 	
+		$data['sub_type'] =$this->input->post("sub_type");
 		$data['t_id'] = $this->input->post("teacherid");
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
 		$data['examid'] = $this->input->post("examid");
-	//$this->load->view("ajax/examMarksDetail",$data);	
    $this->load->view("print_obtain",$data);		
 	}
 	function print_obtain()
@@ -504,6 +527,7 @@ function defineExam1(){
 		 $subjectid =$this->input->post("subjectid");
 		 $examid =$this->input->post("examid");
 		
+		$data['subtypeid'] = $this->input->post("subtypeid");
 		$data['classid'] = $this->input->post("classid");
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
@@ -633,6 +657,35 @@ function defineExam1(){
 	}
 
 	function updatesubmaxiMarks(){
+    $school_code = $this->session->userdata("school_code");
+    $row2=$this->db->get('db_name')->row()->name;
+
+if($school_code == 9 && $row2 == "A"){
+ $marks= $this->input->post("mark");
+		 $rowid =  $this->input->post("viid");
+		 $examid =  $this->input->post("examid");
+		 $classid =  $this->input->post("classid");
+		 $subjectid =  $this->input->post("subjectid");
+
+	   $data =array(
+	       'max_m'=> $marks,
+	       );
+	       $this->db->where('id', $rowid);
+				$updt= $this->db->update("exam_max_subject",$data);
+				if($updt){
+					$examinfo =array(
+						'out_of'=> $marks,
+					);
+					$this->db->where('exam_id', $examid);
+					$this->db->where('class_id', $classid);
+					$this->db->where('subject_id', $subjectid);
+				$dt=	$this->db->update('exam_info',$examinfo);
+				if($dt){
+	       echo "Updated";
+				} }
+
+
+	}else{
 		 $marks= $this->input->post("mark");
 		 $subtype= $this->input->post("subtype");
 		 $rowid =  $this->input->post("viid");
@@ -657,9 +710,36 @@ function defineExam1(){
 				if($dt){
 	       echo "Updated";
 				} }
+}
 	}
 	
 	function deletesubmaxiMarks(){
+		$school_code = $this->session->userdata("school_code");
+    $row2=$this->db->get('db_name')->row()->name;
+
+if($school_code == 9 && $row2 == "A"){
+	$marks= $this->input->post("mark");
+		$rowid =  $this->input->post("viid");
+		$examid =  $this->input->post("examid");
+		 $classid =  $this->input->post("classid");
+		 $subjectid =  $this->input->post("subjectid");
+		$data =array(
+				'max_m'=> $marks,
+				);
+				$this->db->where('id', $rowid);
+			$deletedt=	$this->db->delete("exam_max_subject");
+			if($deletedt){
+				$this->db->where('exam_id', $examid);
+				$this->db->where('class_id', $classid);
+				$this->db->where('subject_id', $subjectid);
+			$dt=	$this->db->delete('exam_info');
+			if($dt){
+				echo "Deleted";
+			}
+			}
+	
+	
+}else{
 		$subtype= $this->input->post("subtype");
 		$marks= $this->input->post("mark");
 		$rowid =  $this->input->post("viid");
@@ -670,6 +750,7 @@ function defineExam1(){
 				'max_m'=> $marks,
 				);
 				// $this->db->where('id', $rowid);
+				$this->db->where('sub_type', $subtype);
 				$this->db->where('exam_id', $examid);
 				$this->db->where('class_id', $classid);
 				$this->db->where('subject_id', $subjectid);
@@ -683,11 +764,12 @@ function defineExam1(){
 			if($dt){
 				echo "Deleted";
 			}
-			}
+}}
  }
  function deletesubMarks(){
 	 $stuid=$this->input->post('stuid'); 
 	    $marks=$this->input->post('marks');
+	    $sub_type=$this->input->post('sub_type');
 	    $mmarks=$this->input->post('mmarks');
 	    $classid=$this->input->post('classid');
 	    $subjectid=$this->input->post('subjectid');
@@ -695,6 +777,7 @@ function defineExam1(){
 		$attendence=$this->input->post('attendence');
 		$this->db->where('school_code' ,$this->session->userdata('school_code'));
 		$this->db->where('class_id',$classid);
+			$this->db->where('sub_type',$sub_type);
 		$this->db->where('subject_id',$subjectid);
 		$this->db->where('stu_id',$stuid);
 		$this->db->where('exam_id',$examid);
@@ -706,79 +789,86 @@ function defineExam1(){
  }
  
 function insertMarksdetail()
-	{
-	    $stuid=$this->input->post('stuid'); 
+	{		$stuid=$this->input->post('stuid'); 
 			$marks=$this->input->post('marks');
-			$marks1=$this->input->post('marks1');
-			$mmarks1=$this->input->post('mmarks1');
-	    $mmarks=$this->input->post('mmarks');
-	    $classid=$this->input->post('classid');
-	    $subjectid=$this->input->post('subjectid');
-	    $examid=$this->input->post('examid');
-	     $term=$this->input->post('term');
-		$attendence=$this->input->post('attendence');
-		$this->db->where('school_code' ,$this->session->userdata('school_code'));
-		$this->db->where('class_id',$classid);
-		$this->db->where('sub_type',1);
-		$this->db->where('subject_id',$subjectid);
-		$this->db->where('stu_id',$stuid);
-		$this->db->where('exam_id',$examid);
+			$mmarks=$this->input->post('mmarks');
+			$classid=$this->input->post('classid');
+			$subjectid=$this->input->post('subjectid');
+			$sub_type=$this->input->post('sub_type');
+			$examid=$this->input->post('examid');
+			$term=$this->input->post('term');
+			$attendence=$this->input->post('attendence');
+			
+		$school_code = 	$this->session->userdata("school_code");
+		$row2=			$this->db->get('db_name')->row()->name;
+		if($school_code == 9 && $row2 == "A"){
+			//for ramdoot start
+				/*$stuid=$this->input->post('stuid'); 
+				$marks=$this->input->post('marks');
+				$mmarks=$this->input->post('mmarks');
+				$classid=$this->input->post('classid');
+				$subjectid=$this->input->post('subjectid');
+				$examid=$this->input->post('examid');
+				$term=$this->input->post('term');
+				$attendence=$this->input->post('attendence');*/
+				
+				$this->db->where('school_code' ,$this->session->userdata('school_code'));
+				$this->db->where('class_id',$classid);
+				$this->db->where('subject_id',$subjectid);
+				$this->db->where('stu_id',$stuid);
+				$this->db->where('exam_id',$examid);
+			$v=	$this->db->get('exam_info');
+			if($v->num_rows()<1){
+				$data=array(
+					'term'=>$term,
+					'class_id'=>$classid,
+					'subject_id'=>$subjectid,
+					'stu_id'=> $stuid,
+					 'out_of'=>$mmarks,
+					 'marks'=> $marks,
+					 'exam_id'=>$examid,
+					 'Attendance'=>$attendence,
+					 'fsd'=>$this->session->userdata('fsd'),
+					 'school_code'=>$this->session->userdata('school_code'),
+					 "created" => date('Y-m-d'),
+					);
+					$this->db->insert('exam_info',$data);
+					 echo "inserted";
+				  } else{
+					  echo "marks already given";
+				  }
+			//for ramdoot end
+		}else{
+			
+			
+			$this->db->where('school_code' ,$this->session->userdata('school_code'));
+			$this->db->where('class_id',$classid);
+			$this->db->where('sub_type',$sub_type);
+			$this->db->where('subject_id',$subjectid);
+			$this->db->where('stu_id',$stuid);
+			$this->db->where('exam_id',$examid);
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
-
-
-	        'term'=>$term,
-	        'class_id'=>$classid,
-	        'subject_id'=>$subjectid,
-	        'stu_id'=> $stuid,
-					 'out_of'=>$mmarks,
-					 'sub_type'=>1,
-	         'marks'=> $marks,
-	         'exam_id'=>$examid,
-	         'Attendance'=>$attendence,
-	         'fsd'=>$this->session->userdata('fsd'),
-	         'school_code'=>$this->session->userdata('school_code'),
-	         "created" => date('Y-m-d'),
+			'term'=>$term,
+			'class_id'=>$classid,
+			'subject_id'=>$subjectid,
+			'stu_id'=> $stuid,
+			'out_of'=>$mmarks,
+			'sub_type'=>$sub_type,
+			'marks'=> $marks,
+			'exam_id'=>$examid,
+			'Attendance'=>$attendence,
+			'fsd'=>$this->session->userdata('fsd'),
+			'school_code'=>$this->session->userdata('school_code'),
+			"created" => date('Y-m-d'),
 			);
 	        $this->db->insert('exam_info',$data);
 	         echo "inserted";
 		  } else{
 			  echo "marks already given";
 			} 
-			
-			$this->db->where('school_code' ,$this->session->userdata('school_code'));
-			$this->db->where('class_id',$classid);
-			$this->db->where('sub_type',0);
-			$this->db->where('subject_id',$subjectid);
-			$this->db->where('stu_id',$stuid);
-			$this->db->where('exam_id',$examid);
-		$v1=	$this->db->get('exam_info');
-		if($v1->num_rows()<1){
-				$data1=array(
-	
-	
-						'term'=>$term,
-						'class_id'=>$classid,
-						'subject_id'=>$subjectid,
-						'stu_id'=> $stuid,
-						 'out_of'=>$mmarks1,
-						 'sub_type'=>0,
-						 'marks'=> $marks1,
-						 'exam_id'=>$examid,
-						 'Attendance'=>$attendence,
-						 'fsd'=>$this->session->userdata('fsd'),
-						 'school_code'=>$this->session->userdata('school_code'),
-						 "created" => date('Y-m-d'),
-				);
-						$this->db->insert('exam_info',$data1);
-						 echo "inserted";
-				} else{
-					echo "marks already given";
-				}
-			?>
-	      
-	       <?php
+		}
 	}
 	function resultRender(){
 		$school_code =$this->session->userdata("school_code");

@@ -282,7 +282,7 @@ if($classid == 142 && $row2=="A" || $classid == 143 && $row2=="A" || $classid ==
                         <!--1st term -->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
@@ -301,7 +301,7 @@ if($classid == 142 && $row2=="A" || $classid == 143 && $row2=="A" || $classid ==
 						<!--2nd term-->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							   $this->db->where('term',2);
@@ -365,7 +365,7 @@ if($subjectname->num_rows()>0){
                  //$subtatal=0;
 					$i=1; $t=0; 
 					//$coltptal=0; 
-					foreach ($examid as $value):?>
+					foreach ($examid->result() as $value):?>
 					<td class="center">	
 					<?php 
         					$this->db->where('subject_id',$sub['subject']);
@@ -451,7 +451,7 @@ if($subjectname->num_rows()>0){
                         <!--1st term -->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
@@ -532,7 +532,7 @@ if($subjectname->num_rows()>0){
  				$ttal=0;
                  $gtptal=0;
 					$i=1; $t=0;
-					foreach ($examid as $value):?>
+					foreach ($examid->result() as $value):?>
 					<td class="center">	
 					<?php $this->db->where("term", 1);
         					$this->db->where('subject_id',$sub['subject']);
@@ -637,7 +637,7 @@ if($subjectname->num_rows()>0){
                         <!--1st term -->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
@@ -656,7 +656,7 @@ if($subjectname->num_rows()>0){
 						<!--2nd term-->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							   $this->db->where('term',2);
@@ -717,7 +717,7 @@ if($subjectname->num_rows()>0){
 					$ttal=0;
 					$gtptal=0;
 					$i=1; $t=0; 
-					foreach ($examid as $value):?>
+					foreach ($examid->result() as $value):?>
 					<td class="center">	
 					<?php 
         					$this->db->where('subject_id',$sub['subject']);
@@ -801,7 +801,7 @@ if($subjectname->num_rows()>0){
                         <!--1st term -->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
@@ -820,7 +820,7 @@ if($subjectname->num_rows()>0){
 						<!--2nd term-->
 						<?php 
 							$i=1;
-							 foreach ($examid as $value):
+							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							   $this->db->where('term',2);
@@ -905,7 +905,7 @@ if($subjectname->num_rows()>0){
                  //$subtatal=0;
 					$i=1; $t=0; 
 					//$coltptal=0; 
-					foreach ($examid as $value):?>
+					foreach ($examid->result() as $value):?>
 					<td class="center">	
 					<?php 
         					$this->db->where('subject_id',$sub['subject']);

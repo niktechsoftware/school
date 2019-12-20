@@ -84,27 +84,35 @@
 											</div>
 
 
-                      <div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/homeworkpanel/hworkteachhomeworkpanel">
+                                      <div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/homeworkpanel/hworkteachhomeworkpanel">
 												<button class="btn panel-pink btn-icon btn-block space10">
 
-												<font size="5">	Home Work <br> Teacher Wise<span class="badge badge-info partition-black"> 4 </span>
+												<font size="5">	Home Work <br> Teacher Wise<span class="badge badge-info partition-black"> 7 </span>
 												</button>
 												</a>
 											</div>
 										<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/homeworkpanel/notsubmitstdhomeworkpanel">
 												<button class="btn panel-blue btn-icon btn-block space10">
 
-													<font size="5">Home Work NOT Submit<br>Student Wise</font><span class="badge badge-info partition-blue"> 5 </span>
+													<font size="5">Home Work NOT Submit<br>Student Wise</font><span class="badge badge-info partition-blue"> 8 </span>
 												</button>
 												</a>
 											</div>
 										<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/homeworkpanel/notsubmitteachhomeworkpanel">
 												<button class="btn panel-pink btn-icon btn-block space10">
 
-													<font size="5">Home Work NOT Submit <br>Teacher Wise </font><span class="badge badge-info partition-red"> 6 </span>
+													<font size="5">Home Work NOT Submit <br>Teacher Wise </font><span class="badge badge-info partition-red"> 9 </span>
 												</button>
 												</a>
 											</div>
+												<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/homeworkpanel/dateiselist">
+												<button class="btn panel-pink btn-icon btn-block space10">
+
+													<font size="5">Date Wise <br>Homework List </font><span class="badge badge-info partition-red"> 10 </span>
+												</button>
+												</a>
+											</div>
+										
 
 
 								</div>
