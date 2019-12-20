@@ -82,6 +82,7 @@ Class Singlefee extends CI_Controller{
       foreach($arr as $tfee):
          print_r($tfee);
          
+
         // for($i=0 ; $i <=$asize-1; $i++){
         //   if($arr[$i]==$tfee->month){
         //     echo "</pre>";
