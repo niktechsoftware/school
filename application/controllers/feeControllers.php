@@ -792,7 +792,7 @@ function getFsd(){
 			    // );
 			   // $this->db->where("student_id",$student_id);
 
-			   if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))&&($this->feemodel->del_feedue($invoiceNo,$student_id))){
+			   if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))){
 				redirect(base_url()."index.php/feeControllers/feesDetail/".$student_id."/".$df); 
 			   }else{
 				   echo "Please Contact to Admin";
@@ -901,6 +901,7 @@ function getFsd(){
    
 		  		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
+
 			
 				
 						 $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$mnum);
@@ -908,6 +909,7 @@ function getFsd(){
 						 $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 						echo "Sent Success";
 					//}
+
 			
 		// print_r($msg);
 // exit();

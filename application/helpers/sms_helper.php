@@ -58,7 +58,9 @@ function mysms($authkey,$msg,$sid,$number){
 return $dat;;
 }
 
+
 function mysmsHindi($authkey,$msg,$sid,$number){
+
 
  $url = "http://mysms.sms7.biz/rest/services/sendSMS/sendGroupSms?AUTH_KEY=".$authkey."&message=".urlencode($msg)."&senderId=".$sid."&routeId=1&mobileNos=".$number."&smsContentType=Unicode";
  	$ch = curl_init();

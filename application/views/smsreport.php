@@ -124,9 +124,10 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 								
 									<?php 
 									if($result->num_rows()>0){
-									$sno = 1; foreach ($result->result() as $row): 
-								$this->db->where("requestId",$row->response_id);
-									$sentsms = $this->db->get("savesms");
+									$sno = 1; 
+									foreach ($result->result() as $row): 
+                                            $this->db->where("requestId",$row->response_id);
+                                            $sentsms = $this->db->get("savesms");
 									
 									$this->db->where("sms_master_id",$row->id);
 									$wrongsms = $this->db->get("wrong_number_sms");

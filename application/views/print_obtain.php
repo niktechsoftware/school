@@ -1,3 +1,4 @@
+
 <style type="text/css">
     #printable { display: block; }
     @media print
@@ -48,112 +49,80 @@
 			</div>
 			<div class="panel-body">
 			       <?php
-              $school=$this->session->userdata('school_code');
-               	$row2=$this->db->get('db_name')->row()->name;
-               	 if($school == 1 && $row2=="D" || $school == 2 && $row2=="D" || $school == 3 && $row2=="D" || $school == 4 && $row2=="D" ){
-         
-               $school_code=$this->session->userdata("school_code");?>
-		
-		<!--<form method="post" action="<?php //echo base_url();?>/index.php/examControllers/marksSave">-->
-  <!--          <input type="hidden" name="teacherid" value="<?php //echo $t_id; ?>" />-->
-  <!--          <input type="hidden" name="examid" value="<?php //echo $examid; ?>" />-->
-           
-  <!--          <input type="hidden" name="classid" value="<?php //echo $classid; ?>" />-->
-  <!--          <input type="hidden" name="sectionid" value="<?php //echo $sectionid; ?>" />-->
-  <!--          <input type="hidden" name="subjectid" value="<?php //echo $subjectid; ?>" />-->
-  <!--          <input type="hidden" name="row" value="<?php //echo $num_row1; ?>" />-->
-           
-                     <?php 
-					 
-					  $fsd =$this->session->userdata("fsd");
-				// 			$examid = $this->uri->segment(4);
-				// 			$classid = $this->uri->segment(5);
-				// 			$subjectid = $this->uri->segment(6);
-                            $this->db->where('school_code',$school_code);
-                           $this->db->where('id',$classid);
-                          $classname=$this->db->get('class_info')->row()->class_name;
-
-                         /*  $this->db->where('school_code',$school_code);
-                           $this->db->where('id',$sectionid);
-                          $sectionname=$this->db->get('class_section')->row()->section;*/
-
-                           $this->db->where('class_id',$classid);
-                           $this->db->where('id',$subjectid);
-                          $subjectname=$this->db->get('subject')->row()->subject;
-
-                     ?>
+						$fsd =$this->session->userdata("fsd");
+						$school_code=$this->session->userdata("school_code");
+						$row2=$this->db->get('db_name')->row()->name;
+               	 if($school_code == 1 && $row2=="D" || $school_code == 2 && $row2=="D" || $school_code == 3 && $row2=="D" || $school_code == 4 && $row2=="D" ){
+					?>
+					<!--kerala obtain mark list start(datatable)-->
+					<?php	
+								   $this->db->where('school_code',$school_code);
+								   $this->db->where('id',$classid);
+						$classname=$this->db->get('class_info')->row()->class_name;
+								   $this->db->where('class_id',$classid);
+								   $this->db->where('id',$subjectid);
+					    $subjectname=$this->db->get('subject')->row()->subject;
+						?>
                      <br><br>
-                        
 					<div class="row">
 						<div class="col-md-12 space20">
 							<div class="btn-group pull-right">
 								<button data-toggle="dropdown" class="btn btn-green dropdown-toggle">
 									Export <i class="fa fa-angle-down"></i>
 								</button>
-							
 								<ul class="dropdown-menu dropdown-light pull-right">
-								
 									<li>
 										<a href="#" class="export-excel" data-table="#sample-table-2" >
 											Export to Excel
 										</a>
 									</li>
-								
 								</ul>
-							
 							</div>
 						</div>
 					</div>
-      <div class="row">
+					<div class="row">
                      	<div class="table-responsive">
- <table class="table table-striped table-bordered table-hover" id="sample-table-2">
-                  <tr>
-
-                    <th><?php echo $classname; ?> - <?php //echo $sectionname; ?> - <?php echo $subjectname; ?></th>
-                    <th><?php 
-						date_default_timezone_set("Asia/Calcutta");
-						$day = date('d-m-Y');
-						echo date("l jS F, Y", strtotime("$day"));  
-					
-           $result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
-            $result1=$result1->row();
-           ?>
-                    </th>
-                  </tr>
-              </table>
-              <br><br>
-                <?php  $fsd=$this->session->userdata('fsd');?>
-              			<div class="table-responsive">
-						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover" id="sample-table-2">
+							  <tr>
+								<th><?php echo $classname; ?> - <?php //echo $sectionname; ?> - <?php echo $subjectname; ?></th>
+								<th><?php 
+									date_default_timezone_set("Asia/Calcutta");
+									$day = date('d-m-Y');
+									echo date("l jS F, Y", strtotime("$day"));
+								   $result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
+									$result1=$result1->row();
+									?>
+								</th>
+							  </tr>
+						</table>
+					<br><br>
+                <?php  //$fsd=$this->session->userdata('fsd');?>
+			<div class="table-responsive">
+				<div class="table-responsive">
                <table class="table table-striped table-bordered table-hover" id="sample-table-2">
-                <thead>
-                  <tr>
-                    <th>S.No</th>
-                    <th>Student ID</th>
-                    <th>Student Name</th>
-                    <th>Attendance</th>
-                    <th>Maximum Marks</th>
-                  <th>Marks Obtained</th>
-                   <th>Activity</th>
-                  </tr>
-                </thead>
-                <tbody>
+					<thead>
+					  <tr>
+						<th>S.No</th>
+						<th>Student ID</th>
+						<th>Student Name</th>
+						<th>Attendance</th>
+						<th>Maximum Marks</th>
+					  <th>Marks Obtained</th>
+					   <th>Activity</th>
+					  </tr>
+					</thead>
+					<tbody>
                 <?php
-                
-                $i = 1;$j=1;
-                     $this->db->where("status",1);
+					$i = 1;$j=1;
+                      $this->db->where("status",1);
                       $this->db->where("class_id",$classid);
-                      
                       $this->db->order_by("name","asc");
-
                     $num_row=$this->db->get("student_info");
                 if($num_row->num_rows()>0){
                 foreach ($num_row->result() as $stu):
                  $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND fsd = '$fsd' and school_code='$school_code' AND stu_id='$stu->id'");
-	  					
-		   if($val->num_rows()>0){
+	  			if($val->num_rows()>0){
 	            $v=$val->row();
-                 
                 ?>
                   <tr>
                     <td><?php echo $j; ?></td>
@@ -186,7 +155,7 @@
                      </button>
 				  <?php } ?>
                   </td>
-                  </tr>
+				</tr>
 				  <script>
 				  $("#deletemmarks1<?php echo $i;?>").click(function(){
                            var mmarks = $("#mammarks<?php echo $i; ?>").val();
@@ -209,34 +178,31 @@
                   <?php  $j++; $i++; ?>
 				  <?php
 				  }else{?>
-                   <tr>
-                      <td><?php echo $j; ?></td>
-                      <td><?php 
-							$this->db->where("id",$examid);
-					$term=  $this->db->get("exam_name")->row()->term;
-					?>
-					<input type="hidden" id="term<?php echo $i; ?>" value="<?php echo $term; ?>" />
-                          <input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
-						  <input type="hidden" id="classid<?php echo $i; ?>" value="<?php echo $classid; ?>" />
-						  <input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
-                        <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
-                        <?php echo $stu->username; ?>
-                      </td>
-                      <td><?php echo $stu->name; ?></td>
-                      <td class="hidden-xs text-center">
-                      <label class="radio-inline">
+				<tr>
+					<td><?php echo $j; ?></td>
+					<td><?php 
+								$this->db->where("id",$examid);
+						$term=  $this->db->get("exam_name")->row()->term;
+							?>
+							<input type="hidden" id="term<?php echo $i; ?>" value="<?php echo $term; ?>" />
+							<input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
+							<input type="hidden" id="classid<?php echo $i; ?>" value="<?php echo $classid; ?>" />
+							<input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
+							<input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
+							<?php echo $stu->username; ?>
+					</td>
+					<td><?php echo $stu->name; ?></td>
+					<td class="hidden-xs text-center">
+						<label class="radio-inline">
                           <input class="radio"  type="radio" id="Attendance<?php echo $i; ?>" name="attendence<?php echo $i; ?>" value="1" checked />
                         P 
-                      </label>
-                      <label class="radio-inline">
+						</label>
+						<label class="radio-inline">
                           <input class="radio" type="radio" id="att<?php echo $i; ?>" name="attendence<?php echo $i; ?>" value="0">
                             A
-                      </label> 
-                        </td>
-                              
-
-                      <td>
-                          <?php 
+						</label> 
+					</td>
+					<td><?php 
                           if($result1)
                           { ?>
                         <input type="text" id="mammarks<?php echo $i;?>" value="<?php echo $m = $result1->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/>   
@@ -244,20 +210,16 @@
                           }else
                             {
                               echo "<span style='color:red'>*Please define Maximum Marks*</span> ";
-                            }
-                                                
+                            }                  
                           ?>
-                      </td>
-                      <td><input type="text" id="mark<?php echo $i; ?>" minlength="1" maxlength="3" onBlur="check<?php echo $i; ?>(); return false;"  onkeypress="return isNumber(event)" name="marks<?php echo $i; ?>"/></td>
-                      
-                      <td>
-                		  <div class="invoice-buttons">
-                            <input type="submit"  class="btn btn-info" value ="Insert Marks" id="submit<?php echo $i;?>"/>
+					</td>
+					<td><input type="text" id="mark<?php echo $i; ?>" minlength="1" maxlength="3" onBlur="check<?php echo $i; ?>(); return false;"  onkeypress="return isNumber(event)" name="marks<?php echo $i; ?>"/></td>
+                    <td><div class="invoice-buttons">
+						<input type="submit"  class="btn btn-info" value ="Insert Marks" id="submit<?php echo $i;?>"/>
                        </div>
-                       </td>
-                        </tr> 
+					</td>
+				</tr> 
         <script>
-
               $("#mark<?php echo $i; ?>").keyup(function(){
                   var max = Number ($('#mammarks<?php echo $i;?>').val());
                   var notmax =Number( $("#mark<?php echo $i; ?>").val());
@@ -292,71 +254,29 @@
                 
                 return false;
             });
-            
-		    
-
 			
-
-
-			
-     /*      var abc = Number(getElementById("mark<?php echo $i; ?>").value);
-             function check<?php echo $i; ?>(abc){
-              if(mark<?php echo $i; ?>.value > Number(<?php echo $result1->max_m;?>)){
-                alert("Marks Obtained can not be greater than Maximum Marks");
-                setTimeout(function() {
-                  document.getElementById('mark<?php echo $i; ?>').focus();
-                }, 0);
-                return false;
-                  }
-				} 
-			
-				function isNumber(evt) {
-                                    evt = (evt) ? evt : window.event;
-                                    var charCode = (evt.which) ? evt.which : evt.keyCode;
-                                    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-                                               alert("Please Input numbers only.");
-                                                   setTimeout(function() {
-                                          document.getElementById('mark<?php echo $i; ?>');
-                }, 0);
-                                                          return false;
-                                    }
-                                    return true;
-                                }*/
-			
-                    </script>
-            
-                   
-                               
-                	                 
-                	                  <?php $j++; $i++; }  endforeach;?>
-                	                  	
-             					
-             						
-             					 <br>
-              			
-		             	 <?php 
-		                }else{
-                    echo "Student Not Enrolled";}?> 
+		</script>
+			<?php $j++; $i++; }  endforeach; ?> <br>
+			<?php  }else{
+                    echo "Student Not Enrolled";}
+			?> 
                     </tbody>    
-		                	</table>
-		                	</div>
-                    </div>
-             						</div>
-               	</div>
-               		 <script>
-                    //   	Main.init();
-        				//  SVExamples.init();
-        				// FormElements.init();
-        				TableExport.init();
-        				// UIModals.init();
-                  </script>
-               	
-               	<?php } else{ ?>
+					</table>
+				</div>
+			</div>
+			</div></div>
+				<script>
+					TableExport.init();
+				</script>
+			<!--kerala obtain mark list end(datatable)-->
+			<?php } else{ ?>
+			<!--other obtain mark list start(print button)-->
 				<div class="row">
-					<div class="col-sm-12"><?php $fsd =$this->session->userdata("fsd"); ?>
-						<IFRAME SRC="<?php echo base_url(); ?>index.php/examControllers/print_obtain/<?php echo $fsd; ?>/<?php echo $examid; ?>/<?php echo $classid; ?>/<?php echo $subjectid; ?>" width="100%" height="150px" id="iframe1" style="border: 1px;" onLoad="autoResize('iframe1');"></iframe>
+					<div class="col-sm-12"><?php //$fsd =$this->session->userdata("fsd"); ?>
+						<IFRAME SRC="<?php echo base_url(); ?>index.php/examControllers/print_obtain/<?php echo $fsd; ?>/<?php echo $examid; ?>/<?php echo $classid; ?>/<?php echo $subjectid; ?>/<?php echo $sub_type; ?>" width="100%" height="150px" id="iframe1" style="border: 1px;" onLoad="autoResize('iframe1');"></iframe>
 					</div>
 				</div>
+			<!--other obtain mark list end(print button)-->
 				<?php } ?>
 				
 			</div>
