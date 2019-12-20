@@ -125,7 +125,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 <tbody>
                 <?php
                 $i = 1;$j=1;
-								$this->db->order_by("name","asc");
+								$this->db->order_by("username","asc");
 								$this->db->where("status",1);
 								$this->db->where("class_id",$classid);
                     $num_row=	$this->db->get("student_info");
