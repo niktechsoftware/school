@@ -813,3 +813,12 @@ Stack trace:
 #2 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
 #3 {main}
   thrown in /home/schoodhe/public_html/sschool2/application/helpers/sms_helper.php on line 61
+[19-Dec-2019 09:50:26 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/sschool2/application/views/ajax/transport.php:184
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/feeControllers.php(862): CI_Loader->view('ajax/transport', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): feeControllers->transReport()
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/ajax/transport.php on line 184

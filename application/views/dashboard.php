@@ -467,8 +467,8 @@ $school_code = $this->session->userdata("school_code");
 													if($getsmsn->num_rows()>0){
 														
 													foreach($getsmsn->result() as $fty):
-													$this->db->where("sms_master_id",$fty->id);
-													$sentsms = $this->db->get("sent_sms_details");
+													$this->db->where("requestId",$fty->response_id);
+									$sentsms = $this->db->get("savesms");
                           if($sentsms->num_rows()>0){
                             $sent+=$sentsms->num_rows();
                           }
