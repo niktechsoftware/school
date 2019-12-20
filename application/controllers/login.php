@@ -113,7 +113,18 @@ class Login extends CI_Controller{
 		$data['mainContent'] = 'staffcategory';
 		$this->load->view("includes/mainContent", $data);
 	}
-
+    function	indivisualfee(){
+			$data['pageTitle'] = 'Collect Invisual Fee';
+			$data['smallTitle'] = 'Collect Invisual Fee';
+			$data['mainPage'] = 'Collect Invisual Fee';
+			$data['subPage'] = 'Collect Invisual Fee';
+			$data['title'] =   'Collect Invisual Fee';
+			$data['headerCss'] = 'headerCss/staffcategory';
+			$data['footerJs'] = 'footerJs/singlefeejs';
+			$data['mainContent'] = 'indivisualfee';
+			$this->load->view("includes/mainContent", $data);
+    		
+    	}
 	
 	function classteacher()
 	{
