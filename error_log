@@ -925,3 +925,360 @@ Stack trace:
 #4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 161
+[20-Dec-2019 12:46:18 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:20 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:21 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:21 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:22 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:23 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:23 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:23 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:26 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:48 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:48 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:48 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:49 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:49 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:50 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:51 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:51 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:52 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:52 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:46:52 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:47:23 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:47:25 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:47:46 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:47:55 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:48:05 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:48:13 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:48:14 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:48:32 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:48:32 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:48:33 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:48:33 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:48:41 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 6, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:02 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:02 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:02 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:02 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:02 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:02 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:03 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:03 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:03 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:04 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:04 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:04 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:05 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:05 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:05 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:05 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:05 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:06 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
+[20-Dec-2019 12:49:06 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Smsmodel::sentmasterRecord(), 3 passed in /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php on line 158 and exactly 4 expected in /home/schoodhe/public_html/school/application/models/smsmodel.php:18
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/studentHWControllers.php(158): Smsmodel->sentmasterRecord('Dear Student pl...', 2, 16546)
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): studentHWControllers->hwSms()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
