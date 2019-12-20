@@ -2398,8 +2398,10 @@ $cumulativetotal=0;
 					$ttal=0;
 					$gtptal=0;
                  $subtatal=0;
-		         $i=1; $t=0; $coltptal=0;  ?>
-				 <?php  if($examid->num_rows()==0){?><td></td><td></td><td></td><td></td><?php }else{
+		         $i=1; $t=0; $coltptal=0; 
+				 if($examid->num_rows()==0){
+					 ?><td></td><td></td><td></td><td></td>
+									<?php }else{
 				 foreach ($examid->result() as $value): ?>
 			<td> 
 			<?php  
@@ -2420,10 +2422,10 @@ $cumulativetotal=0;
 					$ctotal[$t]+= $marks->marks;
 					$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('sub_type',2);
-			$this->db->where('class_id',$classid->class_id);
-			$this->db->where('exam_id',$value->exam_id);
+					$this->db->where('class_id',$classid->class_id);
+					$this->db->where('exam_id',$value->exam_id);
 		 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-		 //echo "/".$exammm;
+		// echo "/".$exammm;
 		 $dhtm=$exammm+$dhtm;
 		 if(is_numeric($exammm)){
 					  $ttal=$ttal+$exammm;
@@ -2996,7 +2998,7 @@ $cumulativetotal=0;
                 </br>
                 </br>
                 </br>
-                <span style="">दिल्ली Delhi:</span></br>
+                <!--<span style="">दिल्ली Delhi:</span></br>-->
                 <span style="">दिनांक Dated :</span>
             </td>
             <td colspan="6" style="border:none;">
