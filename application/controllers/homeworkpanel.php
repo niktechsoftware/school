@@ -104,6 +104,36 @@ class Homeworkpanel extends CI_Controller{
 
 
   }
+  function dateiselist(){
+      	$data['pageTitle'] = 'HomeWork Panel';
+		$data['smallTitle'] = 'HomeWork Panel';
+		$data['mainPage'] = 'HomeWork Panel Area';
+		$data['subPage'] = 'HomeWork Panel';
+		$data['title'] = 'HomeWork Panel Area ';
+		$data['headerCss'] = 'headerCss/noticeCss';
+		$data['footerJs'] = 'footerJs/noticeJs';
+		$data['mainContent'] = 'panel/homework/dateiselist';
+		$this->load->view("includes/mainContent", $data);
+  }
+      function datewiserecord(){
+          $school=$this->session->userdata("school_code");
+         $stdt= $this->input->post("strt");
+          $end=$this->input->post("enddt");
+          $this->db->where("school_code",$school);
+          $this->db->where("givenWorkDate >= ", $stdt);
+           $this->db->where("givenWorkDate <= ", $end);
+        $data=  $this->db->get("homework_name");
+        if($data->num_rows()>0){
+            $dt['result']=$data;
+            $dt['strt']=$stdt;
+            $dt['endt']=$end;
+            $this->load->view("panel/homework/datewiserecord",$dt);
+        }
+        else{
+            echo "Homework Not Assign In this given Date";
+        }
+      }
+  
 public function findteacherhw()
   {	
  	$teacherid=$this->input->post("teacherid");

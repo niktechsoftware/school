@@ -94,10 +94,8 @@ class SmsAjax extends CI_Controller{
 			redirect("index.php/login/mobileNotice/Notice");
 		
 }
-	
 
 		function sendallParent(){
-
 		$smscount=0;
 		$count=0;
 		$smsc =0;
@@ -114,16 +112,18 @@ class SmsAjax extends CI_Controller{
 		if($isSMS->parent_message)
 		{
 		if($query->num_rows() > 0)
+
 		{   $totnumb=$query->num_rows();
 		    $i=1;	$fmobile = $this->smsmodel->getMobile($query->result(),$msg,$master_id,2);
-	
 				if($this->input->post("language")==1){
 				  $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				  
+
 				}else{
 				  $getv= mysmsHindi($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				     }	
 		        $this->smsmodel->sentmasterRecord($msg,$totnumb,$master_id,$getv);
+
 			}
 			redirect("index.php/login/mobileNotice/Parent%20Message/$count");
 		}
@@ -167,6 +167,7 @@ class SmsAjax extends CI_Controller{
 		    $i=1;	$fmobile = $this->smsmodel->getMobile($employee->result(),$msg,$master_id,2);
 	
 				if($this->input->post("language")==1){
+
 				  $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				  
 				}else{
@@ -225,6 +226,7 @@ class SmsAjax extends CI_Controller{
 		    $i=1;	$fmobile = $this->smsmodel->getMobile($employee->result(),$msg,$master_id,2);
 	
 				if($this->input->post("language")==1){
+
 				  $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				  
 				}else{

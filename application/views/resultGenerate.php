@@ -59,7 +59,7 @@
 			
 				?>
 		<div class="panel-body">
-		  
+
 			<div class="row">
 				<div class="col-sm-12"><?php //echo $examName;?>
 					<IFRAME SRC="<?php echo base_url(); ?>index.php/invoiceController/result/<?php echo $ras->id; ?>/<?php echo $ras->fsd;?>/" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>

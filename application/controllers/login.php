@@ -10,7 +10,7 @@ class Login extends CI_Controller{
         $this->load->model("allFormModel");
         $this->load->model("configureclassmodel");
         $this->load->model("smsmodel");
-        $school_code = $this->session->userdata("school_code");
+       
 	}
 
 	function is_login(){
@@ -19,10 +19,11 @@ class Login extends CI_Controller{
 		$logtype = $this->session->userdata('login_type');
 		if(($logtype == "admin")||($logtype == "2")||($logtype == "3")||($logtype == "9")||($logtype == "1")){
 			
-		
+	
 		} else{
 		    	redirect("index.php/homeController/index");
 		}
+		
 	if(!$is_login){
 			//echo $is_login;
 			redirect("index.php/homeController/index");
