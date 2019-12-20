@@ -814,6 +814,7 @@ Stack trace:
 #2 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
 #3 {main}
   thrown in /home/schoodhe/public_html/sschool2/application/helpers/sms_helper.php on line 61
+
 [18-Dec-2019 18:55:53 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
 [18-Dec-2019 19:25:44 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
 [18-Dec-2019 19:25:51 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Smsmodel::sendReportmy() in /home/schoodhe/public_html/sschool3/application/models/smsmodel.php on line 146
