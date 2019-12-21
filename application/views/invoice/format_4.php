@@ -224,9 +224,11 @@
                 </table>
             
             <br>
+           
           <?php 
 		  $row2=$this->db->get('db_name')->row()->name;
 		  if($d12->class_id == 142 && $row2=="A" || $d12->class_id == 143 && $row2=="A" || $d12->class_id == 147 && $row2=="A" || $d12->class_id == 148 && $row2=="A" || $d12->class_id == 293 && $row2=="A"){ ?>
+				 <!--9th, 10th start-->
 					<div>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -377,7 +379,8 @@ if($subjectname->num_rows()>0){
 					
 					
                 </table>
-            </div>
+            </div> 
+            <!--9th, 10th end-->
              <!-- <div>
                 <h2>SCHOLASTIC AREA</h2>
                 <table
@@ -420,7 +423,7 @@ if($subjectname->num_rows()>0){
             </div>-->
                     <?php 
             } else if($d12->class_id == 216 || $d12->class_id == 217 || $d12->class_id == 150 || $d12->class_id == 153|| $d12->class_id == 149 || $d12->class_id == 152){ ?>
-			
+			 <!--11th, 12th start-->
 			<div>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -617,8 +620,9 @@ if($subjectname->num_rows()>0){
                     
                     
                 </table>
-            </div>
+            </div><!--11th, 12th end-->
 			<?php }else if($d12->class_id == 131 && $row2=="A" || $d12->class_id == 132 && $row2=="A" || $d12->class_id == 133 && $row2=="A"){ ?>
+			<!--pg, lkg,ukg start-->
 			 <div>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -803,7 +807,9 @@ if($subjectname->num_rows()>0){
                     
                 </table>
             </div>
+            <!--pg, lkg,ukg end-->
 			<?php }else{?>
+			<!--1 to 8 class start-->
             <div>
                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
@@ -979,6 +985,7 @@ if($subjectname->num_rows()>0){
                     
                 </table>
             </div>
+            <!--1 to 8 class end-->
         <?php } ?>
             <br>
             <div>

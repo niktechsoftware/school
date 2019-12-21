@@ -53,7 +53,7 @@
 						<?php 
 							$stud_id = $this->input->post("stud_id");
 						?>
-						<IFRAME SRC="<?php echo base_url(); ?>invoiceController/printTC1/<?php echo $stud_id; ?>" width="854px;" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
+						<IFRAME SRC="<?php echo base_url(); ?>invoiceController/printTC1/<?php echo $stud_id; ?>" width="1000px;" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
 					</div>
 				</div>
 			</div>

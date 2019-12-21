@@ -124,7 +124,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					</thead>
                 <tbody>
                 <?php
-                $i = 1;$j=1;
+								$i = 1;$j=1;
+								//FOR RAMDOOT ORDER BY NAME
 								$this->db->order_by("username","asc");
 								$this->db->where("status",1);
 								$this->db->where("class_id",$classid);
@@ -464,7 +465,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					</thead>
                 <tbody>
                 <?php
-                $i = 1;$j=1;
+								$i = 1;$j=1;
+								//FOR KERALA AND SARVODYA ORDER BY NAME
 								$this->db->order_by("name","asc");
 								$this->db->where("status",1);
 								$this->db->where("class_id",$classid);
@@ -490,7 +492,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					<td><?php echo 'P'?></td><?php }?>
 					<?php if($v->Attendance==0){ ?>
 					<td><?php echo 'A'?></td><?php }?>
-					<td><?php echo $sub_type; ?></td>					
+					<td><?php if($sub_type == 0){echo "ORAL"; }else if($sub_type == 1){ echo "WRITTEN";}else if($sub_type == 2){echo "THEORY";}else{ echo "PRECTICAL";} ?></td>					
 					<?php if($result1){ ?>
                     <td> <input type="text" id="mammarks<?php echo $i;?>" value="<?php echo $m = $result1->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/>  <?php //echo $result1->max_m; ?></td>
                     <?php }?>
@@ -551,7 +553,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                       </label> 
                         </td>
                               
-						<td><?php echo $sub_type; ?></td>
+						<td><?php  if($sub_type == 0){echo "ORAL"; }else if($sub_type == 1){ echo "WRITTEN";}else if($sub_type == 2){echo "THEORY";}else{ echo "PRECTICAL";} ?></td>
                       <td>
                           <?php 
                           if($result1)
