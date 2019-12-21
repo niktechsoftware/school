@@ -375,7 +375,7 @@
 							 foreach ($examid_2->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
-							    $this->db->where('term',1);
+							    $this->db->where('term',2);
 							   $examname=$this->db->get('exam_name');   
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
@@ -398,7 +398,7 @@
 							 foreach ($examid_2->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
-							    $this->db->where('term',1);
+							    $this->db->where('term',2);
 							   $examname=$this->db->get('exam_name');   
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
@@ -420,7 +420,7 @@
 							 foreach ($examid_2->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
-							    $this->db->where('term',1);
+							    $this->db->where('term',2);
 							   $examname=$this->db->get('exam_name');   
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
@@ -441,7 +441,7 @@
 							 foreach ($examid_2->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
-							    $this->db->where('term',1);
+							    $this->db->where('term',2);
 							   $examname=$this->db->get('exam_name');   
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();

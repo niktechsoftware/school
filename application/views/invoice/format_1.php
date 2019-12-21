@@ -178,7 +178,7 @@
                 <span style="">Student ID: <?= strtoupper($studentInfo->username); ?>  </span></br>
                 <span style="">माता का नाम Mother's Name: <?= strtoupper($parentInfo->mother_full_name); ?></span></br>
                 <span style="">पिता/संरक्षक का नाम Father's / Guardian's Name: <?= strtoupper($parentInfo->father_full_name); ?></span></br>
-                <span style="">जन्म-तिथि Date of Birthat: <?= strtoupper($studentInfo->dob); ?></span></br>
+                <span style="">जन्म-तिथि Date of Birthdate: <?= strtoupper($studentInfo->dob); ?></span></br>
                 <span style="">विद्यालय School: <?php echo $info->school_name; ?><?php echo $info->address1." ".$info->address2." ".$info->city." ".$info->state." - ".$info->pin; ?></span></br>
                 <span style="">की शैक्षणिक उपलब्धियां निम्नानुसार हैं has achieved scholastic Achievements as under :</span>
                <?php
