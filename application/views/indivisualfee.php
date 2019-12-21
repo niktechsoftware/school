@@ -32,6 +32,7 @@
 										</div>
 									</div>
 			                        <div class="panel-body">
+															<form  action="<?= base_url();?>index.php/PayTransportFee" method="post">
 										<div class="alert alert-info">
 										    <h3 class="media-heading text-center">Welcome to Maximum Marks Detail Of Subject  Area.</h3>
 										    <p class="media-timestamp">In this page we can enter the maximum marks of a particular  subject Please select following Dropdown 
@@ -60,8 +61,8 @@
                             <label>
                               Select Deposite Month
                               
-                              <select name="fee" id="fee" class="form-control" required="">
-                                <option value="">-Select Month-</option>
+                              <select name="month" id="month" class="form-control" required="">
+                             
                             
                               </select>
                             </label>
@@ -69,7 +70,12 @@
 											
 											
 										</div>
-										<div id="showMarks"></div>
+										</br>
+
+										<div class="row">
+										<div id="getfeedata"></div>
+										</div>
+										</form>
 									</div>
 								</div>
 							</div>
