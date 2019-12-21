@@ -77,9 +77,24 @@
           $.post("<?= site_url();?>index.php/singlefee/getfeemonth",
           {feehead : feehead, stuid : stuid},
           function(data){
+						//alert(data);
+						$('#month').html(data);
 
           });
         });
+
+				$('#month').change(function(){
+					var monnumber =$('#month').val();
+					var stuid= $('#stuid').val();
+					$.post("<?= site_url();?>index.php/singlefee/getfeedata",
+					{ monnumber : monnumber, stuid :stuid },
+					function(data){
+						alert(data);
+						$('#getfeedata').html(data);
+
+					});
+
+				});
 
 			});
 			
