@@ -8,6 +8,8 @@ class TeacherModel extends CI_Model{
 		$td = $this->db->get("employee_info");
 		return $td;
 	}
+
+	
 	
 	function checkTeacherAtten($date1)
 	{   $this->db->where("school_code",$this->session->userdata("school_code"));

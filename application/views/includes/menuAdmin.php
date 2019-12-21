@@ -264,6 +264,11 @@
             </a>
         </li>
 
+        <li>
+            <a href="<?php echo base_url(); ?>index.php/singleFee">
+                <span class="title">Collect Indivisual Fee </span>
+            </a>
+        </li>
     </ul>
 </li>
 <li>

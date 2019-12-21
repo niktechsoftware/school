@@ -162,4 +162,23 @@ class feeModel extends CI_Model{
 			return False;
 		}
 	}
+
+	function checkstuid1($stuid){
+		$this->db->where("fsd",$this->session->userdata("fsd"));
+		$this->db->where("username",$stuid);
+	  $studata=	$this->db->get("student_info");
+    	if($studata->num_rows()>0){
+    		$studentrow=$studata->row();
+    		$this->db->where("class_id",$studentrow->class_id);
+			 $classfee=	$this->db->get("class_fees");
+			 if($classfee->num_rows()>0){
+				 return $classfee;
+			 }else{
+				 return $classfee;
+			 }
+    	}else{
+				return $studata;
+			}
+
+	}
 }

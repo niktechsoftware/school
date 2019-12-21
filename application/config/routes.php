@@ -39,6 +39,7 @@
 */
 
 $route['default_controller'] = 'homeController';
+$route['singleFee'] = 'login/indivisualfee';
 $route['404_override'] = '';
 
 
