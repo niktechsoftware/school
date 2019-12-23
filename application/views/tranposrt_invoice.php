@@ -28,7 +28,7 @@
 		<!-- start: INLINE TABS PANEL -->
 		<div class="panel panel-white">
 			<div class="panel-heading">
-				<div class="panel-tools">										
+				<div class="panel-tools">
 					<div class="dropdown">
 					<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
 						<i class="fa fa-cog"></i>
@@ -42,7 +42,7 @@
 						</li>
 						<li>
 							<a class="panel-expand" href="#"> <i class="fa fa-expand"></i> <span>Fullscreen</span></a>
-						</li>										
+						</li>
 					</ul>
 					</div>
 				</div>
@@ -50,10 +50,10 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-12">
-						<?php 
-							$stud_id = $this->input->post("stud_id");
+						<?php
+							
 						?>
-						<IFRAME SRC="<?php echo base_url(); ?>invoiceController/printTC1/<?php echo $stud_id; ?>" width="1000px;" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
+						<IFRAME SRC="<?php echo base_url(); ?>index.php/singlefee/tfeeInvoice/<?php echo $stuid; ?>/<?php echo $month; ?>/<?php echo $invoice; ?>" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
 					</div>
 				</div>
 			</div>

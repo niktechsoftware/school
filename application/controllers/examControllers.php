@@ -94,7 +94,7 @@ class examControllers extends CI_Controller
    { 
    $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
-if($school_code == 9 && $row2 == "A"){ 
+if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){ 
 					$data = array(
 					"exam_id" => $this->input->post("examid"),
 					"class_id" => $this->input->post("classid"),
@@ -660,7 +660,7 @@ function defineExam1(){
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
 
-if($school_code == 9 && $row2 == "A"){
+if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
  $marks= $this->input->post("mark");
 		 $rowid =  $this->input->post("viid");
 		 $examid =  $this->input->post("examid");
@@ -717,7 +717,7 @@ if($school_code == 9 && $row2 == "A"){
 		$school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
 
-if($school_code == 9 && $row2 == "A"){
+if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 	$marks= $this->input->post("mark");
 		$rowid =  $this->input->post("viid");
 		$examid =  $this->input->post("examid");
@@ -801,7 +801,7 @@ function insertMarksdetail()
 			
 		$school_code = 	$this->session->userdata("school_code");
 		$row2=			$this->db->get('db_name')->row()->name;
-		if($school_code == 9 && $row2 == "A"){
+		if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 			//for ramdoot start
 				/*$stuid=$this->input->post('stuid'); 
 				$marks=$this->input->post('marks');
