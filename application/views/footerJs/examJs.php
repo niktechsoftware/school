@@ -151,7 +151,7 @@
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
 
-if($school_code == 9 && $row2 == "A"){ ?>			
+if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){ ?>			
 
 			
 			$("#subjectIdmarks").change(function(){
@@ -276,7 +276,7 @@ if($school_code == 9 && $row2 == "A"){ ?>
 <?php
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
-if($school_code == 9 && $row2 == "A"){ ?>
+if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){ ?>
 <script>
 				$("#subjectId").change(function(){
 					var classid = $("#classId").val();
