@@ -166,7 +166,7 @@ function payfee(){
   $invoice = $this->db->get("invoice_serial");
   $invoice1=6000+$invoice->num_rows();
   $invoice_number = $school_code."I19".$invoice1;
-  
+ 
   	//---------------------------------------------- Invoice SErial Start-------------------------------------------
 			
 		
@@ -177,7 +177,7 @@ function payfee(){
     "school_code"=>$school_code
   );
   
-
+  $this->db->insert("invoice_serial",$invoicedata);
   	//---------------------------------------------- Invoice Serial  End -------------------------------------------
       
     $tranportdat=array(
@@ -213,7 +213,7 @@ function payfee(){
 			
   $daybook=array(
     "paid_to" =>$this->session->userdata("username"),
-    "paid-by"=>$studid,
+    "paid_by"=>$studid,
     "dabit_cradit"=>1,
     "amount"=>$paid_amount,
     "closing_balance"=>$close1,
@@ -223,8 +223,8 @@ function payfee(){
   );
 
   
-  if(($this->db->insert("transport_fee_month",$tranportdat)) || ($this->db->insert("day_book",$daybook)) || ($this->db->insert("invoice_serial",$invoicedata))){
-
+  if(($this->db->insert("transport_fee_month",$tranportdat)) && ($this->db->insert("day_book",$daybook)) ){
+   
     $data['stuid']=$studid;
     $data['month']=$month;
     $data['invoice']=$invoice_number;

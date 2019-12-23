@@ -29,8 +29,8 @@ class feeControllers extends CI_Controller{
     }
     
     function checkID(){
-		$studID=$this->input->post("studid");
-		$fsd=$this->input->post("fsd");
+				$studID=$this->input->post("studid");
+				$fsd=$this->input->post("fsd");
             $this->load->model("feemodel");
             $var=$this->feemodel->getStudData($studID);
            if( $var->num_rows()>0){
@@ -1232,14 +1232,32 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Transport Fee</div>
 	                                                    <div class="col-sm-7">
-	                                                   <?php if($school_code==14){ ?>
-	                                                        <!--<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">-->
+	                                                   <?php if($school_code==14){ 
+																											$tmno=implode("",$month);
+																											 $this->db->where("month",$tmno);
+																											 $this->db->where("stu_id",$stuid);
+																											 $tamount=$this->db->get("transport_fee_month");
+																											 if($tamount->num_rows()>0){ ?>
+																											 <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
+																											<?php }else{
+																											 ?>
+	                                                        <!--<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php // echo $transfee;?>" class="form-control">-->
 	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
-	                                                   <?php } else{ ?>
+	                                                   <?php  } } else{ 
+																											//  print_r($month);
+																											//  exit;
+																											$tmno=implode("",$month);
+																											 $this->db->where("month",$tmno);
+																											 $this->db->where("stu_id",$stuid);
+																											 $tamount=$this->db->get("transport_fee_month");
+																											 if($tamount->num_rows()>0){  ?>
+																												<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo "Paid";?>" class="form-control">
+																												<input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo "Paid";?>" class="form-control" disabled="disabled">
+																									<?php		}else{ ?>
 	                                                   <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
 	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
 	                                                 <?php $totfees+=$transfee;?>
-	                                                   <?php } ?>
+	                                                   <?php  } } ?>
 	                                                  
 	                                                    </div>
 	                                                </div>
