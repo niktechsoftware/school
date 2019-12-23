@@ -88,6 +88,7 @@
 								<th><?php 
 									date_default_timezone_set("Asia/Calcutta");
 									$day = date('d-m-Y');
+								echo $sub_type;
 									echo date("l jS F, Y", strtotime("$day"));
 								   $result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
 									$result1=$result1->row();

@@ -3,7 +3,7 @@
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
 
-if($school_code == 9 && $row2 == "A"){ ?>
+if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){ ?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -92,15 +92,17 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                         $subjectname=	$this->db->get('subject')->row()->subject;
 				?>
                      <br><br>
+                    
                      	<div class="table-responsive">
  <table class="table table-striped table-bordered table-hover" id="sample-table-2">
                   <tr>
-                    <th><?php echo $classname; ?> - <?php //echo $sectionname; ?> - <?php echo $subjectname; ?></th>
+                    <th><?php echo $classname;  ?> - <?php //echo $sectionname; ?> - <?php echo $subjectname; ?></th>
                     <th><?php 
 						date_default_timezone_set("Asia/Calcutta");
 						$day = date('d-m-Y');
 						echo date("l jS F, Y", strtotime("$day")); 
-						$result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
+						//echo $this->input->post("sub_type");
+						$result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' and sub_type=' ORDER BY id");
 						$result1=$result1->row();
 						?>
                     </th>
@@ -436,11 +438,11 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 				<table class="table table-striped table-bordered table-hover" id="sample-table-2">
                   <tr>
                     <th><?php echo $classname; ?> - <?php //echo $sectionname; ?> - <?php echo $subjectname; ?></th>
-                    <th><?php 
+                    <th><?php  
 						date_default_timezone_set("Asia/Calcutta");
 						$day = date('d-m-Y');
 						echo date("l jS F, Y", strtotime("$day")); 
-						$result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' ORDER BY id");
+						$result1=$this->db->query("select * from exam_max_subject where exam_id='$examid'  and subject_id='$subjectid' and class_id='$classid' and sub_type='$sub_type' ORDER BY id");
 						$result1=$result1->row();
 						?>
                     </th>

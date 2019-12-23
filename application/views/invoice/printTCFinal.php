@@ -137,7 +137,7 @@ table h1, h2, h3, h4 {
 		<!--</table>-->
 		<div class="row">      
     <div class="col-md-2">
-        <img src="<?php echo base_url();?>assets/<?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" alt="" width="80" />
+        <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" alt="" width="80" />
     </div>
 	<div class="col-md-8">
 	<h2 align="center" style="text-transform:uppercase;"><b><?php echo $info->school_name; ?></b></h2>
