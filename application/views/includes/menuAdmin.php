@@ -269,6 +269,11 @@
                 <span class="title">Collect Indivisual Fee </span>
             </a>
         </li>
+        <li>
+            <a href="<?php echo base_url(); ?>index.php/Report_Transport_Fee">
+                <span class="title">Indivisual Fee Report</span>
+            </a>
+        </li>
     </ul>
 </li>
 <li>
@@ -516,13 +521,19 @@
                Day Book<i class="icon-arrow"></i>
             </a>
 
-                </li>
-                <li>
+            </li>
+         <li>
             <a href="<?php echo base_url(); ?>login/cashPayment">
               Transaction <i class="icon-arrow"></i>
             </a>
 
-            </li>
+         </li>
+         <li>
+            <a href="<?php echo base_url(); ?>login/cashPaymentreort">
+              Transaction Report<i class="icon-arrow"></i>
+            </a>
+
+        </li>
       </ul>
     </li>
 

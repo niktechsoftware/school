@@ -363,7 +363,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
-					<td class="text-center"><?php echo $transfee; $i++; ?></td>
+					<td class="text-center"><?php echo $rowb->transport; $i++; ?></td>
 					<?php    }} else{
 							if($stuid_details->vehicle_pickup){
 							$paid=	$rowb->paid;
@@ -389,7 +389,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 						?>
 					  <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
-					<td class="text-center"><?php echo $transfee; $i++; ?></td>
+					<td class="text-center"><?php echo $rowb->transport; $i++; ?></td>
 					<?php } } } } } 
 					
 				//	print_r($transfee);

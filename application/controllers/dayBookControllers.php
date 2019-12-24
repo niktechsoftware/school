@@ -359,7 +359,41 @@ function daybook()
 		$data['mainContent'] = 'invoiceCashPayment';
 		$this->load->view("includes/mainContent", $data);
 	}
-	
+	function deletecashinvoice(){
+		$invoice_number= $this->uri->segment(3);
+   
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("receipt_no",$invoice_number);
+	 $feemonth= $this->db->get("cash_payment");
+		if($feemonth->num_rows()>0){
+			$amount= $feemonth->row()->amount;
+		 
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("opening_date",date("y-m-d"));
+			$closing=$this->db->get("opening_closing_balance");
+	 
+			$close=$closing->row()->closing_balance;
+			$bal=$close + $amount;
+			$clos_arr=array(
+				 "closing_balance"=>$bal
+			);
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("opening_date",date("y-m-d"));
+			$this->db->update("opening_closing_balance",$clos_arr);
+	 
+			$this->db->where("invoice_no",$invoice_number);
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		 $dfee= $this->db->delete("day_book");
+	 
+			$this->db->where("receipt_no",$invoice_number);
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+		 $tfee= $this->db->delete("cash_payment");
+    if($tfee && $dfee){
+redirect("login/cashPaymentreort");
+		}
+
+	}
+}
 	function bankTransactionDb(){
 		$id_name = $this->input->post('id_name');
 		$bank_name = $this->input->post('bank_name');

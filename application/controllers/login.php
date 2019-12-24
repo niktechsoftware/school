@@ -589,7 +589,17 @@ function updatemaximum()
 		$this->load->view("includes/mainContent", $data);
 	}
 	
-	
+	function cashPaymentreort(){
+		$data['pageTitle'] = 'Cash Payment Report ';
+		$data['smallTitle'] = 'Cash Payment Report';
+		$data['mainPage'] = 'Cash Payment Report';
+		$data['subPage'] = 'Cash Payment Report';
+		$data['title'] = 'Cash Payment Report';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'transactionreport';
+		$this->load->view("includes/mainContent", $data);
+	}
 
 	function feeReport(){
 		$data['pageTitle'] = 'Fee Report';

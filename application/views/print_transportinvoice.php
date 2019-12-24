@@ -182,12 +182,11 @@ $transportdt=$this->db->get("transport_fee_month");
 		  </tr>
 	  <?php if($transportdt->num_rows()>0){ 
       $rowb=$transportdt->row(); ?>
-		  <tr class="item-row">
+		  <tr>
 
-		      <td><cenetr><?php echo 1; ?></cenetr></td>
+		      <td><center><?php echo 1; ?></center></td>
 		      <td><center><?php echo $rowb->total_amount; ?></center></td>
-		      <td><center>
-			  	<?php $rowb->paid_amount; ?></center> </td>
+		      <td><center><?php echo $rowb->paid_amount; ?></center> </td>
           <td><center><?php
           $month_name = date("F", mktime(0, 0, 0, $rowb->month, 10));
            echo strtoupper($month_name); ?></center></td>

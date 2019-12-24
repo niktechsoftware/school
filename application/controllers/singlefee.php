@@ -166,7 +166,7 @@ function payfee(){
   $invoice = $this->db->get("invoice_serial");
   $invoice1=6000+$invoice->num_rows();
   $invoice_number = $school_code."I19".$invoice1;
-  
+ 
   	//---------------------------------------------- Invoice SErial Start-------------------------------------------
 			
 		
@@ -177,7 +177,7 @@ function payfee(){
     "school_code"=>$school_code
   );
   
-
+  $this->db->insert("invoice_serial",$invoicedata);
   	//---------------------------------------------- Invoice Serial  End -------------------------------------------
       
     $tranportdat=array(
@@ -213,7 +213,7 @@ function payfee(){
 			
   $daybook=array(
     "paid_to" =>$this->session->userdata("username"),
-    "paid-by"=>$studid,
+    "paid_by"=>$studid,
     "dabit_cradit"=>1,
     "amount"=>$paid_amount,
     "closing_balance"=>$close1,
@@ -223,17 +223,17 @@ function payfee(){
   );
 
   
-  if(($this->db->insert("transport_fee_month",$tranportdat)) || ($this->db->insert("day_book",$daybook)) || ($this->db->insert("invoice_serial",$invoicedata))){
-
+  if(($this->db->insert("transport_fee_month",$tranportdat)) && ($this->db->insert("day_book",$daybook)) ){
+   
     $data['stuid']=$studid;
     $data['month']=$month;
     $data['invoice']=$invoice_number;
 
-    $data['pageTitle'] = 'Sale Invoice';
-		$data['smallTitle'] = 'Sale Invoice';
+    $data['pageTitle'] = 'Transport Fee Invoice';
+		$data['smallTitle'] = 'Transport Fee Invoice';
 		$data['mainPage'] = 'invoice';
-		$data['subPage'] = 'Print Sale Invoice';
-		$data['title'] = 'Print Sale Invoice';
+		$data['subPage'] = 'Transport Fee Invoice';
+		$data['title'] = 'Transport Fee Invoice';
 		$data['headerCss'] = 'headerCss/configureClassCss';
 		$data['footerJs'] = 'footerJs/configureClassJs';
 		$data['mainContent'] = 'tranposrt_invoice';
@@ -253,6 +253,72 @@ function payfee(){
     $data['invoice']= $this->uri->segment(5);
     $this->load->view("print_transportinvoice",$data);
   } 
+
+  function transfeereport(){
+    $data['pageTitle'] = 'Transport Fee Report ';
+		$data['smallTitle'] = 'Transport Fee Report ';
+		$data['mainPage'] = 'Transport Fee Report ';
+		$data['subPage'] = 'Transport Fee Report ';
+		$data['title'] = 'Transport Fee Report ';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'tranposrt_feereport';
+		$this->load->view("includes/mainContent", $data);
+  }
+  function printinvoice(){
+    $data['stuid']=$this->uri->segment(3);
+    $data['month']=$this->uri->segment(4);
+    $data['invoice']=$this->uri->segment(5);
+
+    $data['pageTitle'] = 'Transport Fee Invoice';
+		$data['smallTitle'] = 'Transport Fee Invoice';
+		$data['mainPage'] = 'invoice';
+		$data['subPage'] = 'Transport Fee Invoice';
+		$data['title'] = 'Transport Fee Invoice';
+		$data['headerCss'] = 'headerCss/configureClassCss';
+		$data['footerJs'] = 'footerJs/configureClassJs';
+		$data['mainContent'] = 'tranposrt_invoice';
+		$this->load->view("includes/mainContent", $data);
+  }
+
+  function deleteinvoice(){
+    
+   $student_id= $this->uri->segment(2);
+   $invoice_number= $this->uri->segment(3);
+   
+   $this->db->where("stu_id",$student_id);
+   $this->db->where("invoice_number",$invoice_number);
+  $feemonth= $this->db->get("transport_fee_month");
+  if($feemonth->num_rows()>0){
+   $amount= $feemonth->row()->paid_amount;
+  
+   $this->db->where("school_code",$this->session->userdata("school_code"));
+   $this->db->where("opening_date",date("y-m-d"));
+   $closing=$this->db->get("opening_closing_balance");
+
+   $close=$closing->row()->closing_balance;
+   $bal=$close - $amount;
+   $clos_arr=array(
+      "closing_balance"=>$bal
+   );
+   $this->db->where("school_code",$this->session->userdata("school_code"));
+   $this->db->where("opening_date",date("y-m-d"));
+   $this->db->update("opening_closing_balance",$clos_arr);
+
+   $this->db->where("invoice_no",$invoice_number);
+   $this->db->where("school_code",$this->session->userdata("school_code"));
+  $dfee= $this->db->delete("day_book");
+
+   $this->db->where("invoice_number",$invoice_number);
+   $this->db->where("school_code",$this->session->userdata("school_code"));
+  $tfee= $this->db->delete("transport_fee_month");
+ 
+   if($dfee && $tfee){
+   redirect("singlefee/transfeereport");
+   }
+  }
+
+  }
 
 }
 

@@ -29,8 +29,8 @@ class feeControllers extends CI_Controller{
     }
     
     function checkID(){
-		$studID=$this->input->post("studid");
-		$fsd=$this->input->post("fsd");
+				$studID=$this->input->post("studid");
+				$fsd=$this->input->post("fsd");
             $this->load->model("feemodel");
             $var=$this->feemodel->getStudData($studID);
            if( $var->num_rows()>0){
@@ -121,11 +121,11 @@ function getFsd(){
 	//	$updata['monthly_fee']=$this->input->post("monthfee");
 	
 	if($school_code==14){
-		$updata['transport']=$this->input->post("dtransport_fee");
-	}else{
-	    	$updata['transport']=$this->input->post("transport_fee");
-
-	}
+		$updata['transport']=	$this->input->post("dtransport_fee");
+	 }else{
+		$updata['transport']	=$this->input->post("transport_fee");
+	 }
+	
 		$updata['deposite_month ']=	$cmnum;
 		$updata['feecat']=$feecat;
 		$updata['description']=$this->input->post("disc");
@@ -146,8 +146,9 @@ function getFsd(){
 		  
 		  $this->db->where("student_id",$stuid);
 		  $this->db->where("school_code",$school_code);
-		  $duedt2=  $this->db->get("feedue");
+			$duedt2=  $this->db->get("feedue");
 		
+	
 		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
 		$balance = $op1->closing_balance;
 		$close1 = $balance + $this->input->post("paid");
@@ -235,7 +236,29 @@ function getFsd(){
 		$this->db->update("deposite_months",$fee_deposite_m);
 		   }else{
 		       $this->db->insert("deposite_months",$fee_deposite_m);
-		   }
+			 }
+			 
+			 if($school_code==14){
+		   $trnsfeemon=	$this->input->post("dtransport_fee");
+			}else{
+				$trnsfeemon	=$this->input->post("transport_fee");
+			}
+						if($trnsfeemon>0){
+		
+							$tranportdat=array(
+								"stu_id"=>$this->input->post('stuId'),
+								"month"=>$g,
+								"total_amount"=>$this->input->post("transport_fee"),
+								"paid_amount"=>$this->input->post("transport_fee"),
+								"invoice_number"=>$invoice_number,
+								"school_code"=>$school_code,
+								"date"=>date("y-m-d")
+					
+							);
+							$this->db->insert("transport_fee_month",$tranportdat);
+						}
+			
+
 		endforeach;
 		//---------------------------------------------- Opening Colsing Balance Start -----------------------------------------
 		$bal = array(
@@ -1232,14 +1255,37 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Transport Fee</div>
 	                                                    <div class="col-sm-7">
-	                                                   <?php if($school_code==14){ ?>
-	                                                        <!--<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">-->
+	                                                   <?php if($school_code==14){ 
+																											$tmno=implode("",$month);
+																											
+																											 $this->db->where("month",$tmno);
+																											 $this->db->where("stu_id",$stuid);
+																											 $tamount=$this->db->get("transport_fee_month");
+																											 if($tamount->num_rows()>0){ ?>
+																											 <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
+																											<?php }else{
+																											 ?>
+	                                                        <!--<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php // echo $transfee;?>" class="form-control">-->
 	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
-	                                                   <?php } else{ ?>
+	                                                   <?php  } } else{ 
+																											
+																											//  print_r($month);
+																											//  exit;
+																											$tmno=implode("",$month);
+																											
+																											 $this->db->where("month",$tmno);
+																											 $this->db->where("stu_id",$stuid);
+																											 $tamount=$this->db->get("transport_fee_month");
+																											//  print_r($tamount->row());
+																											//  exit;
+																											 if($tamount->num_rows()>0){  ?>
+																												<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo "Paid";?>" class="form-control">
+																												<input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo "Paid";?>" class="form-control" disabled="disabled">
+																									<?php		}else{ ?>
 	                                                   <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
 	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
 	                                                 <?php $totfees+=$transfee;?>
-	                                                   <?php } ?>
+	                                                   <?php  } } ?>
 	                                                  
 	                                                    </div>
 	                                                </div>
