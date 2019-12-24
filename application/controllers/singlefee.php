@@ -260,8 +260,8 @@ function payfee(){
 		$data['mainPage'] = 'Transport Fee Report ';
 		$data['subPage'] = 'Transport Fee Report ';
 		$data['title'] = 'Transport Fee Report ';
-		$data['headerCss'] = 'headerCss/configureClassCss';
-		$data['footerJs'] = 'footerJs/configureClassJs';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
 		$data['mainContent'] = 'tranposrt_feereport';
 		$this->load->view("includes/mainContent", $data);
   }
@@ -312,6 +312,7 @@ function payfee(){
    $this->db->where("invoice_number",$invoice_number);
    $this->db->where("school_code",$this->session->userdata("school_code"));
   $tfee= $this->db->delete("transport_fee_month");
+ 
    if($dfee && $tfee){
    redirect("singlefee/transfeereport");
    }
