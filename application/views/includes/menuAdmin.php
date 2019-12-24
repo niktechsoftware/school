@@ -269,6 +269,11 @@
                 <span class="title">Collect Indivisual Fee </span>
             </a>
         </li>
+        <li>
+            <a href="<?php echo base_url(); ?>index.php/Report_Transport_Fee">
+                <span class="title">Indivisual Fee Report</span>
+            </a>
+        </li>
     </ul>
 </li>
 <li>

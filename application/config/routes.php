@@ -41,6 +41,8 @@
 $route['default_controller'] = 'homeController';
 $route['Pay_Transport_Fee'] = 'login/indivisualfee';
 $route['PayTransportFee'] = 'singlefee/payfee';
+$route['Report_Transport_Fee']='singlefee/transfeereport';
+$route['Delete_Invoice/(:any)/(:any)']='singlefee/deleteinvoice/<?= $tdt->stu_id; ?>/<?= $tdt->invoice_number;?>';
 $route['404_override'] = '';
 
 
