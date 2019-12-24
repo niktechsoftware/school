@@ -76,61 +76,48 @@
 								<thead>
 									<tr style="background-color:#1ba593; color:white;">
 										<th>SNo.</th>
-										<th>Username</th>
-										<th>Student Name</th>
+										<th>Expenditure Name</th>
+										<th>Expenditure Name</th>
 									
-										<th>Class</th>
-										<th>Section</th>
-								    <th>Fee of Month</th>
-										<th>Total</th>
-										<th>Paid</th>
+										<th>Paid To</th>
+										<th>Reason</th>
+								    <th>Paid amount</th>
+										<th>Date</th>
 										<th>Invoice Number</th>
-										<th>Delete</th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
-									$this->db->where("school_code",$this->session->userdata("school_code"));
-                  $transportdata=$this->db->get("transport_fee_month");
+                  $this->db->where("school_code",$this->session->userdata("school_code"));
+                  $transportdata=$this->db->get("cash_payment");
                   if($transportdata->num_rows()>0){
 
                   $sno = 1; foreach ($transportdata->result() as $tdt): 
-                    $this->db->where("id",$tdt->stu_id);
-                    $stdt= $this->db->get("student_info");
-                    if($stdt->num_rows()>0){
-									$row=$stdt->row();
+                  
 										?>
 									<tr>
 										<td><?php echo $sno; ?></td>
-										<!--<td><?php echo $row->username; ?></td>-->
-										<td><a href="<?php echo base_url(); ?>index.php/studentController/invoice/<?php echo $row->id; ?>"><?php echo $row->username; ?></a></td>
-										<td><?php echo strtoupper($row->name); ?></td>
-										
+										<td><?php echo $tdt->expenditure_name; ?></td>
+										<td><?php echo $tdt->exp_depart; ?></td>
+                    <td><?php
+                    if(strlen($tdt->id_name)>0){
+                      echo $tdt->name ."[ " .$tdt->phone_no ."]";
+                    }else{
+                      echo $tdt->valid_id;
+                    } ?></td>
+										<td><?php echo $tdt->reason; ?></td>
+                    <td><?php echo $tdt->amount; ?></td>
+                    <td><?php echo $tdt->date; ?></td>
+                    <td><a href="<?php echo base_url(); ?>index.php/dayBookControllers/invoiceCashPayment/<?= $tdt->receipt_no;?>/<?= $this->session->userdata("fsd"); ?>" class="btn btn-info"><?php echo $tdt->receipt_no; ?></a></td>
 									
-										<?php  $this->db->select('class_name,section');
-											  $this->db->where('id',$row->class_id);
-										      $classInfo=$this->db->get('class_info')->row();?>
-										<td><?php //echo $row->class_id; 
-										echo strtoupper($classInfo->class_name)." "."[".($row->class_id)."]"; ?></td>
-										<?php $this->db->select('section');
-											  $this->db->where('id',$classInfo->section);
-											  $this->db->where("school_code",$this->session->userdata("school_code"));
-										      $sectionInfo=$this->db->get('class_section')->row();?>
-										<td><?php echo $sectionInfo->section; ?></td>
-										<td><?php
-										$month_name = date("F", mktime(0, 0, 0, $tdt->month, 10));
-										echo $month_name; ?></td>
-										<td><?php echo $tdt->total_amount; ?></td>
-										<td><?php echo $tdt->paid_amount; ?></td>
-										<td><a href="<?= base_url();?>index.php/singlefee/printinvoice/<?= $tdt->stu_id;?>/<?= $tdt->month;?>/<?= $tdt->invoice_number;?>" class="btn btn-info"> <?php echo $tdt->invoice_number; ?></a></td>
-										
-										<td>
+									
 										<?php if($this->session->userdata('login_type') == 'admin'){ ?>
-
-										<a href="<?php echo base_url(); ?>index.php/Delete_Invoice/<?= $tdt->stu_id;?>/<?= $tdt->invoice_number;?>" class="btn btn-danger">Delete</a></td>
+                    <td>
+										<a href="<?php echo base_url(); ?>index.php/dayBookControllers/deletecashinvoice/<?= $tdt->receipt_no;?>/<?= $this->session->userdata("fsd"); ?>" class="btn btn-danger">Delete</a></td>
 										<?php }?>
 									</tr>
-									<?php $sno++; } endforeach; } ?>
+									<?php $sno++;  endforeach; } ?>
 								</tbody>
 							</table>
 						</div>

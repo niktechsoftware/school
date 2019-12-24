@@ -276,7 +276,7 @@ class SubjectController extends CI_Controller{
 		$subjectId = $this->input->post("subjectId");
 		$scode=$this->session->userdata("school_code");
 
-		$this->db->where('school_code',$scode);
+		//$this->db->where('school_code',$scode);
 		$timetable=$this->db->get('time_table')->result();
 		foreach($timetable as $data)
 		{

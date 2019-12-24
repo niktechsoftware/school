@@ -1272,10 +1272,12 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 																											//  print_r($month);
 																											//  exit;
 																											$tmno=implode("",$month);
-																											 
+																											
 																											 $this->db->where("month",$tmno);
 																											 $this->db->where("stu_id",$stuid);
 																											 $tamount=$this->db->get("transport_fee_month");
+																											//  print_r($tamount->row());
+																											//  exit;
 																											 if($tamount->num_rows()>0){  ?>
 																												<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo "Paid";?>" class="form-control">
 																												<input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo "Paid";?>" class="form-control" disabled="disabled">
