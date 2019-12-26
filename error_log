@@ -1284,3 +1284,7 @@ Stack trace:
 #3 {main}
   thrown in /home/schoodhe/public_html/school/application/models/smsmodel.php on line 18
 
+[24-Dec-2019 10:33:45 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$school_code' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/views/examDetail.php on line 6
+[24-Dec-2019 10:33:58 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$school_code' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/views/examDetail.php on line 6
+[24-Dec-2019 10:34:08 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$school_code' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/views/examDetail.php on line 6
+[24-Dec-2019 10:34:22 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$school_code' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/views/footerJs/examJs.php on line 274

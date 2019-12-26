@@ -52,7 +52,7 @@
 						$fsd =$this->session->userdata("fsd");
 						$school_code=$this->session->userdata("school_code");
 						$row2=$this->db->get('db_name')->row()->name;
-               	 if($school_code == 1 && $row2=="D" || $school_code == 2 && $row2=="D" || $school_code == 3 && $row2=="D" || $school_code == 4 && $row2=="D" ){
+               	 if($school_code == 1 && $row2=="D" || $school_code == 2 && $row2=="D" || $school_code == 3 && $row2=="D" || $school_code == 4 && $row2=="D" || $school_code == 10 && $row2=="D" ){
 					?>
 					<!--kerala obtain mark list start(datatable)-->
 					<?php	
