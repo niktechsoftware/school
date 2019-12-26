@@ -1397,6 +1397,7 @@ $cumulativetotal=0;
 			$cumulativetotal=0;
 			$totalp= 0;   
 			$pi=1;$grnd_1=0;$grnd_2=0;$grnd_3=0;
+			$grndt_1=0;$grndt_2=0;$grndt_3=0;
 			foreach($resultData as $sub):
 			?><?php 
 							 $this->db->where('class_id',$classid->class_id);
@@ -1410,7 +1411,7 @@ $cumulativetotal=0;
 			     <?php 
                  $gtptal=0;
                  $subtatal=0;
-		         $i=1; $t=0; $coltptal=0;  ?>
+		         $i=1; $t=0; $coltptal=0; $ttal=0; ?>
 				 <?php  if($examid->num_rows()==0){?>
 					<td></td><td></td>
 				 <?php }else if($examid->num_rows()==1){ ?>
@@ -1435,7 +1436,14 @@ $cumulativetotal=0;
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
 				 echo "/".$exammm;
-				 $dhtm=$exammm+$dhtm;			} ?>
+				 $dhtm=$exammm+$dhtm;			
+				  if(is_numeric($exammm)){
+					  $ttal=$ttal+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal= $ttal;
+					 $dhtm= $dhtm;   
+					}
+				 } ?>
 					</td>
 					<td></td>
 				<?php  $i++; $t++; endforeach; ?>
@@ -1461,7 +1469,14 @@ $cumulativetotal=0;
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
 				 echo "/".$exammm;
-				 $dhtm=$exammm+$dhtm;			} ?>
+				 $dhtm=$exammm+$dhtm;	
+if(is_numeric($exammm)){
+					  $ttal=$ttal+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal= $ttal;
+					 $dhtm= $dhtm;   
+					}
+				 } ?>
 					</td>
 				<?php  $i++; $t++; endforeach; ?>
 				<?php } ?>
@@ -1470,7 +1485,7 @@ $cumulativetotal=0;
 				 <?php 
                  $gtptal_2=0;
                  $subtatal=0;
-		         $i=1; $t=0; $coltptal=0;  ?>
+		         $i=1; $t=0; $coltptal=0; $ttal_2=0; ?>
 				 <?php  if($examid_2->num_rows()==0){?>
 					<td></td><td></td>
 				 <?php }else if($examid_2->num_rows()==1){ ?>
@@ -1487,7 +1502,7 @@ $cumulativetotal=0;
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
 							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
+							$gtptal_2= $gtptal_2+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
 							$ctotal[$t]+= $marks->marks;
@@ -1496,7 +1511,14 @@ $cumulativetotal=0;
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
 				 echo "/".$exammm;
-				 $dhtm=$exammm+$dhtm;			} ?>
+				 $dhtm=$exammm+$dhtm;		
+ if(is_numeric($exammm)){
+					  $ttal_2=$ttal_2+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal_2= $ttal_2;
+					 $dhtm= $dhtm;   
+					}
+				 } ?>
 					</td>
 					<td></td>
 				<?php  $i++; $t++; endforeach; ?>
@@ -1513,7 +1535,7 @@ $cumulativetotal=0;
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
 							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
+							$gtptal_2= $gtptal_2+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
 							$ctotal[$t]+= $marks->marks;
@@ -1522,7 +1544,14 @@ $cumulativetotal=0;
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
 				 echo "/".$exammm;
-				 $dhtm=$exammm+$dhtm;			} ?>
+				 $dhtm=$exammm+$dhtm;	
+ if(is_numeric($exammm)){
+					  $ttal_2=$ttal_2+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal_2= $ttal_2;
+					 $dhtm= $dhtm;   
+					}
+				 } ?>
 					</td>
 				<?php  $i++; $t++; endforeach; ?>
 				<?php } ?>
@@ -1531,7 +1560,7 @@ $cumulativetotal=0;
 				 <?php 
                  $gtptal_3=0;
                  $subtatal=0;
-		         $i=1; $t=0; $coltptal=0;?>
+		         $i=1; $t=0; $coltptal=0; $ttal_3=0; ?>
 				 <?php  if($examid_3->num_rows()==0){?>
 					<td></td><td></td>
 				 <?php }else if($examid_3->num_rows()==1){ ?>
@@ -1547,7 +1576,7 @@ $cumulativetotal=0;
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
 							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
+							$gtptal_3= $gtptal_3+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
 							$ctotal[$t]+= $marks->marks;
@@ -1556,7 +1585,14 @@ $cumulativetotal=0;
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
 				 echo "/".$exammm;
-				 $dhtm=$exammm+$dhtm;			} ?>
+				 $dhtm=$exammm+$dhtm;		
+				if(is_numeric($exammm)){
+					  $ttal_3=$ttal_3+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal_3= $ttal_3;
+					 $dhtm= $dhtm;   
+					}
+				 } ?>
 					</td>
 					<td></td>
 				<?php  $i++; $t++; endforeach; ?>
@@ -1573,7 +1609,7 @@ $cumulativetotal=0;
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
 							$subtatal=$subtatal+$marks->marks;
-							$gtptal= $gtptal+$marks->marks;
+							$gtptal_3= $gtptal_3+$marks->marks;
 							$coltptal+=$marks->marks;
 							echo $marks->marks;
 							$ctotal[$t]+= $marks->marks;
@@ -1582,16 +1618,28 @@ $cumulativetotal=0;
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
 				 echo "/".$exammm;
-				 $dhtm=$exammm+$dhtm;			} ?>
+				 $dhtm=$exammm+$dhtm;	
+				if(is_numeric($exammm)){
+					  $ttal_3=$ttal_3+$exammm;
+				    $dhtm=$exammm+$dhtm;
+					}else{ $ttal_3= $ttal_3;
+					 $dhtm= $dhtm;   
+					}
+				 } ?>
 					</td>
 				<?php  $i++; $t++; endforeach; ?>
 				<?php } ?>
 				<!--3rd term marks end-->
 				<!--Cumulative Evaluation start-->
 				<td class="center bold" colspan="2" ><?php   echo $gtptal_grand= $gtptal+$gtptal_2+$gtptal_3;
+				$g_ttal=$ttal + $ttal_2 + $ttal_3;
+				echo "/".$g_ttal;
 				 $grnd_1=$grnd_1+$gtptal;
 				 $grnd_2=$grnd_2+$gtptal_2;
 				 $grnd_3=$grnd_3+$gtptal_3;
+				 $grndt_1=$grndt_1+$ttal;
+				 $grndt_2=$grndt_2+$ttal_2;
+				 $grndt_3=$grndt_3+$ttal_3;
 				?></td>
 			   <!--Cumulative Evaluation end-->
 		</tr>
@@ -1603,7 +1651,7 @@ $cumulativetotal=0;
 				foreach($ctotal as $cd):
 					if($h<2){ ?>
 					<td class="center" ></td>
-					<td class="center" ><?php //echo $grnd_1;?></td>
+					<td class="center" ><?php  //echo $grnd_1; ?></td>
 					<td class="center" ></td>
 					<td class="center" ><?php //echo $grnd_2;?></td>
 					<td class="center" ></td>
@@ -1612,12 +1660,38 @@ $cumulativetotal=0;
 							} 
 				endforeach;	
 				?>
-				<td class="center bold" colspan="2"><?php echo $cumulativetotal;?></td>
+				<td class="center bold" colspan="2"><?php //echo $cumulativetotal;?></td>
 		</tr>
+		
+		
+		
+		
+		<!--<tr class="wight">
+					<td class="subject">GRAND TOTAL</td>
+					<?php $h=1;$i=0; foreach($ctotal as $cd):
+					if($h<5){?>
+					<td class="center">
+					<?php echo $ctotal[$i];  ?>
+					</td>
+					<?php if($h%2==0){ ?>
+					<td class="center bold"><?php $cumulativetotal+=$ctotal['tot'.$h];echo $ctotal['tot'.$h];?> </td> 
+					<td class="center bold"></td>
+					<?php 			} ?>
+					<?php $h++; $i++; } endforeach;	
+					?>
+			<td class="center bold"><?php echo $cumulativetotal;?></td>
+			<td class="center bold"></td>
+		</tr>-->
+		
+		
+		
 		<tr class="blue">
 			<td colspan="2">ATTENDANCE  </td>
-			<td colspan="6">MARK PERCENTAGE  <?php  
-			echo round((($cumulativetotal*100)/$dhtm), 2);?>%  </td>
+			<td colspan="6">MARK PERCENTAGE  <?php   $a= $grnd_1+$grnd_2+$grnd_3;
+			$b=$grndt_1+$grndt_2+$grndt_3;
+			echo round((($a*100)/$b), 2);
+			//echo round((($cumulativetotal*100)/$dhtm), 2);
+			?>%  </td>
 			<td colspan="6">RANK</td>
 		</tr>
 		<!---samrat ashok marks table end--->
