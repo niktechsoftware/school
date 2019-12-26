@@ -2713,12 +2713,12 @@ $cumulativetotal=0;
 			<!---2nd term end--->
 		</tr>
 		<tr class="yellow">
-			<td class="center" >लिखित THEORY [80]</td>
-			<td class="center" >आं.मू.IR/PR[20]</td>
+			<td class="center" >लिखित THEORY</td>
+			<td class="center" >आं.मू.IR/PR</td>
 			<td class="center" >योग TOTAL[100]</td>
 			<td class="center" >योग (शब्दों में )TOTAL(IN WORDS)</td>
-		    <td class="center" >लिखित THEORY [80]</td>
-			<td class="center" >आं.मू.IR/PR[20]</td>
+		    <td class="center" >लिखित THEORY </td>
+			<td class="center" >आं.मू.IR/PR</td>
 			<td class="center" >योग TOTAL[100]</td>
 			<td class="center" >योग (शब्दों में)TOTAL(IN WORDS)</td>
 		</tr>
@@ -2805,7 +2805,7 @@ $cumulativetotal=0;
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
 		 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-		// echo "/".$exammm;
+		 echo "/".$exammm;
 		 $dhtm=$exammm+$dhtm;
 		 if(is_numeric($exammm)){
 					  $ttal=$ttal+$exammm;
@@ -2838,7 +2838,7 @@ $cumulativetotal=0;
 			$this->db->where('class_id',$classid->class_id);
 			$this->db->where('exam_id',$value->exam_id);
 		 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-		 //echo "/".$exammm;
+		 echo "/".$exammm;
 		 $dhtm=$exammm+$dhtm;
 		 if(is_numeric($exammm)){
 					  $ttal=$ttal+$exammm;
@@ -2888,7 +2888,7 @@ $cumulativetotal=0;
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-				 //echo "/".$exammm;
+				 echo "/".$exammm;
 				 $dhtm=$exammm+$dhtm;
 		 if(is_numeric($exammm)){
 					  $ttal_2=$ttal_2+$exammm;
@@ -2920,7 +2920,7 @@ $cumulativetotal=0;
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
-				 //echo "/".$exammm;
+				 echo "/".$exammm;
 				 $dhtm=$exammm+$dhtm;
 				 if(is_numeric($exammm)){
 					  $ttal_2=$ttal_2+$exammm;
