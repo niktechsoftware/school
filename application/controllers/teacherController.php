@@ -307,6 +307,8 @@ function checkIDOTP(){
 					$master_id=$max_id->maxid+1;
 				
 						$fmobile=$row->mobile.",".$this->session->userdata("mobile_number");
+						print_r($fmobile);
+						exit;
 					  $getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 		            $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 		         

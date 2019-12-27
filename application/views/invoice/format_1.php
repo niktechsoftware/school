@@ -2713,13 +2713,13 @@ $cumulativetotal=0;
 			<!---2nd term end--->
 		</tr>
 		<tr class="yellow">
-			<td class="center" >लिखित THEORY</td>
-			<td class="center" >आं.मू.IR/PR</td>
-			<td class="center" >योग TOTAL</td>
+			<td class="center" >लिखित THEORY [80]</td>
+			<td class="center" >आं.मू.IR/PR[20]</td>
+			<td class="center" >योग TOTAL[100]</td>
 			<td class="center" >योग (शब्दों में )TOTAL(IN WORDS)</td>
-		    <td class="center" >लिखित THEORY</td>
-			<td class="center" >आं.मू.IR/PR</td>
-			<td class="center" >योग TOTAL</td>
+		    <td class="center" >लिखित THEORY [80]</td>
+			<td class="center" >आं.मू.IR/PR[20]</td>
+			<td class="center" >योग TOTAL[100]</td>
 			<td class="center" >योग (शब्दों में)TOTAL(IN WORDS)</td>
 		</tr>
 		<?php 

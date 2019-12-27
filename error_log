@@ -1288,3 +1288,21 @@ Stack trace:
 [24-Dec-2019 10:33:58 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$school_code' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/views/examDetail.php on line 6
 [24-Dec-2019 10:34:08 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$school_code' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/views/examDetail.php on line 6
 [24-Dec-2019 10:34:22 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$school_code' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/views/footerJs/examJs.php on line 274
+[26-Dec-2019 12:08:56 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:373
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('14', '104', '29')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 373
+[26-Dec-2019 12:09:38 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:373
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('14', '104', '29')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 373
