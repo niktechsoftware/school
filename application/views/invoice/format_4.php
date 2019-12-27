@@ -371,6 +371,7 @@
 					$ttal=0;
 					$ttal_2=0;
 					$gtptal=0;
+					$gtptal11=0;
 					$gtptal_2=0;
 					$i=1; $t=0;?>
 					<!--1st term marks start-->
@@ -452,18 +453,34 @@
 				<?php $i++; $t++;endforeach; ?>
 				<td colspan="1" ></td>
 				<?php }else{ ?>
-					<?php foreach ($examid->result() as $value):?>
+					<?php foreach ($examid->result() as $value):
+					
+							/* $this->db->select('marks');
+							$this->db->where("term", 1);
+							$this->db->where('subject_id',$sub['subject']);
+							$this->db->where('class_id',$classid->class_id);
+							$this->db->where('stu_id',$studentInfo->id);
+							$this->db->where('exam_id',$value->exam_id);
+							$this->db->where('fsd',$fsd);
+					$marks11= $this->db->get('exam_info'); 
+					//$marks11=$this->db->query("select * from exam_info where exam_id='".$value->exam_id."' AND term= '1' AND subject_id = '".$sub['subject']."' AND class_id= '".$classid->class_id."' AND stu_id = '".$studentInfo->id."' AND fsd = '".$fsd."' ");
+					if($marks11->num_rows()>0){
+							$marks11=$marks11->row();
+							if(is_numeric($marks->marks)){
+					  $gtptal11= $gtptal11+$marks->marks;
+					}else{ $gtptal11= $gtptal11;}
+							}else if($marks11->num_rows()==0){  }*/ ?>
 					<td class="center" >	
-					<?php
-					$this->db->where("term", 1);
-					$this->db->where('subject_id',$sub['subject']);
-					$this->db->where('class_id',$classid->class_id);
-					$this->db->where('stu_id',$studentInfo->id);
-					$this->db->where('exam_id',$value->exam_id);
-					$this->db->where('fsd',$fsd);
-						$marks= $this->db->get('exam_info');
+					<?php 
+							$this->db->where("term", 1);
+							$this->db->where('subject_id',$sub['subject']);
+							$this->db->where('class_id',$classid->class_id);
+							$this->db->where('stu_id',$studentInfo->id);
+							$this->db->where('exam_id',$value->exam_id);
+							$this->db->where('fsd',$fsd);
+					$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
-							$marks=$marks->row();	
+							$marks=$marks->row();
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
@@ -484,10 +501,10 @@
 						}else if($marks->num_rows()==0){ $exammm=" "; } ?><?php //echo "/" .$exammm;
 						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
-				<?php $i++; $t++;endforeach; ?>
+				<?php $i++; $t++;endforeach;  ?>
 																						<?php } ?>
-				<td class="center bold" ><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
-			   <?php ?></td>
+				<!--<td class="center bold" ><?php  //$grandtotal=$grandtotal+$gtptal; echo $gtptal; echo $gtptal11; ?>/<?php print_r($ttal);?></td>-->
+				<td class="center bold" ><?php echo $bb= round((($gtptal)/2), 2); 	?>/10</td>
 			    <!--1st term marks end-->
 				<!--2nd term marks start-->
 				<?php  if($examid_2->num_rows()==0){ ?>
@@ -559,12 +576,21 @@
 					}
 						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
-				<?php if($ii%2==1){ ?><td colspan="1" style="text-transform: uppercase; font-weight:bold;" ><?php   echo $overall= $gtptal_2+$gtptal;  ?>/<?php echo $overall_tot=$ttal_2+$ttal; ?></td><?php } ?>
+				<?php if($ii%2==1){ ?>
+				<!--<td colspan="1" style="text-transform: uppercase; font-weight:bold;" ><?php   //echo $overall= $gtptal_2+$gtptal;  ?>/<?php //echo $overall_tot=$ttal_2+$ttal; ?></td>-->
+				<td colspan="1" style="text-transform: uppercase; font-weight:bold;" ><?php   echo $overall= $gtptal_2+$bb;  ?>/<?php echo $overall_tot=$ttal_2+10; ?>
+				<?php } ?>
 				<?php $i++; $t++; $ii++; endforeach; ?>                             <?php } ?>
 				<!--2nd term marks end-->
-				<td class="center bold"><?php   echo $overall= $gtptal_2+$gtptal;  ?>/<?php echo $overall_tot=$ttal_2+$ttal;
-				if($overall_tot>0){ $per=round((($overall*100)/$overall_tot), 2);}
-				?></td>
+				
+				<!--<td class="center bold"><?php   //echo $overall= $gtptal_2+$gtptal;  ?>/<?php //echo $overall_tot=$ttal_2+$ttal;
+				//if($overall_tot>0){ $per=round((($overall*100)/$overall_tot), 2);} ?>
+				</td>-->
+				<td class="center bold"><?php   echo $overall= $gtptal_2+$bb;  ?>/<?php echo $overall_tot=$ttal_2+10;
+				 $grandtotal_2=$grandtotal_2+$overall;
+				 $grandtotal=$grandtotal+$overall_tot;	
+				if($overall_tot>0){ $per=round((($overall*100)/$overall_tot), 2);} ?>
+				</td>
 				<td class="center bold"><?php echo calculateGrade($per,$classid->class_id);?></td>
 				</tr>
                     <?php }} ?>
@@ -1738,22 +1764,21 @@ if($subjectname->num_rows()>0){
                         </td>
                         <td>Rank</td>
                     </tr>
+<?php }else if($d12->class_id == 142 && $row2=="A" || $d12->class_id == 143 && $row2=="A" || $d12->class_id == 147 && $row2=="A" || $d12->class_id == 148 && $row2=="A" || $d12->class_id == 293 && $row2=="A"){ ?>
+					<tr> 
+					     <td>Total Marks : <?php echo $overttl= $grandtotal_2; ?>/<?php echo $grandtotal;?></td>
+                        <td>Percentage: <?php if($grandtotal>0){echo $per=round((($overttl*100)/$grandtotal), 2);}?>%</td>
+                        <td>Grade: <label style="text-transform: uppercase;"><?php if($grandtotal>0){echo $gradecal =calculateGrade($per,$classid->class_id);}?></label>
+                        </td>
+                        <td>Rank</td>
+                    </tr>
 <?php }else{ ?>
                     <tr>
-                    
-                        <td>
-                            Total Marks : <?php echo $overttl= $grandtotal_2+$grandtotal; ?>/<?php echo $dhtm;?>
-                           
+                        <td>Total Marks : <?php echo $overttl= $grandtotal_2+$grandtotal; ?>/<?php echo $dhtm;?></td>
+                        <td>Percentage: <?php if($dhtm>0){echo $per=round((($overttl*100)/$dhtm), 2);}?>%</td>
+                        <td>Grade: <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade($per,$classid->class_id);}?></label>
                         </td>
-                        <td>
-                            Percentage: <?php if($dhtm>0){echo $per=round((($overttl*100)/$dhtm), 2);}?>% 
-                        </td>
-                        <td >
-                             Grade: <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade($per,$classid->class_id);}?></label>
-                        </td>
-                        <td>
-                            Rank
-                        </td>
+                        <td>Rank</td>
                     </tr>
 <?php } ?>
                 </table>
