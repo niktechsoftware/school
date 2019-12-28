@@ -6,11 +6,11 @@
 - Change the value of PAYTM_MERCHANT_WEBSITE constant with details received from Paytm.
 - Above details will be different for testing and production environment.
 */
- $sccode=$this->session->userdata("school_code");
- print_r($sccode);
- exit();
+//  $sccode=$this->session->userdata("school_code");
 
- if($sccode==9){
+//  if($sccode == 9){
+   
+  
 
 define('PAYTM_ENVIRONMENT', 'PROD'); // PROD
 define('PAYTM_MERCHANT_KEY', 'jwQHtwG&JCaFKwrn'); //Change this constant's value with Merchant key received from Paytm.
@@ -28,26 +28,26 @@ define('PAYTM_REFUND_URL', '');
 define('PAYTM_STATUS_QUERY_URL', $PAYTM_STATUS_QUERY_NEW_URL);
 define('PAYTM_STATUS_QUERY_NEW_URL', $PAYTM_STATUS_QUERY_NEW_URL);
 define('PAYTM_TXN_URL', $PAYTM_TXN_URL);
-}
-else{
+
+// }
+// else{
     
-define('PAYTM_ENVIRONMENT', ''); // PROD
-define('PAYTM_MERCHANT_KEY', ''); //Change this constant's value with Merchant key received from Paytm.
-define('PAYTM_MERCHANT_MID', ''); //Change this constant's value with MID (Merchant ID) received from Paytm.
-define('PAYTM_MERCHANT_WEBSITE', ''); //Change this constant's value with Website name received from Paytm.
+// define('PAYTM_ENVIRONMENT', ''); // PROD
+// define('PAYTM_MERCHANT_KEY', ''); //Change this constant's value with Merchant key received from Paytm.
+// define('PAYTM_MERCHANT_MID', ''); //Change this constant's value with MID (Merchant ID) received from Paytm.
+// define('PAYTM_MERCHANT_WEBSITE', ''); //Change this constant's value with Website name received from Paytm.
 
-$PAYTM_STATUS_QUERY_NEW_URL='';
-$PAYTM_TXN_URL='';
-if (PAYTM_ENVIRONMENT == '') {
-	$PAYTM_STATUS_QUERY_NEW_URL='';
-	$PAYTM_TXN_URL='';
-}
+// $PAYTM_STATUS_QUERY_NEW_URL='';
+// $PAYTM_TXN_URL='';
+// if (PAYTM_ENVIRONMENT == '') {
+// 	$PAYTM_STATUS_QUERY_NEW_URL='';
+// 	$PAYTM_TXN_URL='';
+// }
 
-define('PAYTM_REFUND_URL', '');
-define('PAYTM_STATUS_QUERY_URL', $PAYTM_STATUS_QUERY_NEW_URL);
-define('PAYTM_STATUS_QUERY_NEW_URL', $PAYTM_STATUS_QUERY_NEW_URL);
-define('PAYTM_TXN_URL', $PAYTM_TXN_URL);
+// define('PAYTM_REFUND_URL', '');
+// define('PAYTM_STATUS_QUERY_URL', $PAYTM_STATUS_QUERY_NEW_URL);
+// define('PAYTM_STATUS_QUERY_NEW_URL', $PAYTM_STATUS_QUERY_NEW_URL);
+// define('PAYTM_TXN_URL', $PAYTM_TXN_URL);
 
-    echo " ?><h1><center>your payment gateway not approved</centery</h1><?php ";
-}
+   //}
 ?>

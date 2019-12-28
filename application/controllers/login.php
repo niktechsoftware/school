@@ -34,9 +34,10 @@ class Login extends CI_Controller{
 	}
 
 	function index(){
-			$school_code=$this->session->userdata("school_code");
-		$this->db->where("school_code",$school_code);
-		$this->db->where("DATE(opening_date)",date("Y-m-d"));
+			$school_code=   $this->session->userdata("school_code");
+			
+                    		$this->db->where("school_code",$school_code);
+                    		$this->db->where("DATE(opening_date)",date("Y-m-d"));
 		$checkopeningclo  = $this->db->get("opening_closing_balance");
 		if($checkopeningclo->num_rows()>0){
 
@@ -87,6 +88,11 @@ class Login extends CI_Controller{
 		$data['totalIncome']=$total;
 		$this->load->model('dashboard_p');
 		$data['emp_lev']=$this->dashboard_p->emp_leave($sc_code);
+		///////////////////
+		$this->load->model('client_model');
+        $data1['client_due_list'] = $this->client_model->list_product();
+	//	print_r($data1);
+		//////////////
 		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
 		$data['mainPage'] = 'Dashboard';

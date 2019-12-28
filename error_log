@@ -1306,3 +1306,239 @@ Stack trace:
 #4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 373
+[27-Dec-2019 15:25:58 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/schoodhe/public_html/school/application/third_party/PaytmKit/lib/config_paytm.php on line 54
+[27-Dec-2019 15:26:10 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting variable (T_VARIABLE) or ${ (T_DOLLAR_OPEN_CURLY_BRACES) or {$ (T_CURLY_OPEN) in /home/schoodhe/public_html/school/application/third_party/PaytmKit/lib/config_paytm.php on line 54
+[28-Dec-2019 01:12:53 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_Loader::spark() in /home/schoodhe/public_html/school/application/libraries/Rest.php:68
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(1100): REST->__construct()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(976): CI_Loader->_ci_init_class('rest', '', NULL, NULL)
+#2 /home/schoodhe/public_html/school/system/core/Loader.php(217): CI_Loader->_ci_load_class('Rest', NULL, NULL)
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(1179): CI_Loader->library('rest')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(153): CI_Loader->_ci_autoloader()
+#5 /home/schoodhe/public_html/school/system/core/Controller.php(52): CI_Loader->initialize()
+#6 /home/schoodhe/public_html/school/application/controllers/login.php(7): CI_Controller->__construct()
+#7 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(309): Login->__construct()
+#8 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+ in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 68
+[28-Dec-2019 01:18:23 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_Loader::spark() in /home/schoodhe/public_html/school/application/libraries/Rest.php:68
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(1100): REST->__construct()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(976): CI_Loader->_ci_init_class('rest', '', NULL, NULL)
+#2 /home/schoodhe/public_html/school/system/core/Loader.php(217): CI_Loader->_ci_load_class('Rest', NULL, NULL)
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(1179): CI_Loader->library('rest')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(153): CI_Loader->_ci_autoloader()
+#5 /home/schoodhe/public_html/school/system/core/Controller.php(52): CI_Loader->initialize()
+#6 /home/schoodhe/public_html/school/application/controllers/login.php(7): CI_Controller->__construct()
+#7 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(309): Login->__construct()
+#8 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+ in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 68
+[28-Dec-2019 01:19:35 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:24:28 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function create() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:239
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'https://niktech...', NULL, 'json')
+#1 /home/schoodhe/public_html/school/application/controllers/login.php(44): REST->get('https://niktech...', Array, 'json')
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 239
+[28-Dec-2019 01:25:14 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function create() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:239
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'https://niktech...', NULL, 'json')
+#1 /home/schoodhe/public_html/school/application/controllers/login.php(44): REST->get('https://niktech...', Array, 'json')
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 239
+[28-Dec-2019 01:25:40 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function create() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:239
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'https://niktech...', NULL, 'json')
+#1 /home/schoodhe/public_html/school/application/controllers/login.php(44): REST->get('https://niktech...', Array, 'json')
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 239
+[28-Dec-2019 01:26:28 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function option() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:279
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'https://niktech...', NULL, 'json')
+#1 /home/schoodhe/public_html/school/application/controllers/login.php(44): REST->get('https://niktech...', Array, 'json')
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 279
+[28-Dec-2019 01:26:51 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function get() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:282
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'https://niktech...', NULL, 'json')
+#1 /home/schoodhe/public_html/school/application/controllers/login.php(44): REST->get('https://niktech...', Array, 'json')
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 282
+[28-Dec-2019 01:27:05 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:285
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'https://niktech...', NULL, 'json')
+#1 /home/schoodhe/public_html/school/application/controllers/login.php(44): REST->get('https://niktech...', Array, 'json')
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 285
+[28-Dec-2019 01:27:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:35:19 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:40:40 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function debug_request() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:325
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/login.php(51): REST->debug()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 325
+[28-Dec-2019 01:41:57 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:43:11 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:45:09 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function execute() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:285
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'api/Item/7', NULL, '')
+#1 /home/schoodhe/public_html/school/application/controllers/login.php(50): REST->get('api/Item/7', false, '')
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 285
+[28-Dec-2019 01:45:45 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:47:36 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:48:54 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function REST::_format_response(), 0 passed in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 288 and exactly 1 expected in /home/schoodhe/public_html/school/application/libraries/Rest.php:428
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(288): REST->_format_response()
+#1 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'api/Item/7', NULL, '')
+#2 /home/schoodhe/public_html/school/application/controllers/login.php(51): REST->get('api/Item/7', false, '')
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 428
+[28-Dec-2019 01:49:03 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function REST::_format_response(), 0 passed in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 288 and exactly 1 expected in /home/schoodhe/public_html/school/application/libraries/Rest.php:428
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/Rest.php(288): REST->_format_response()
+#1 /home/schoodhe/public_html/school/application/libraries/Rest.php(124): REST->_call('get', 'api/Item/7', NULL, '')
+#2 /home/schoodhe/public_html/school/application/controllers/login.php(51): REST->get('api/Item/7', false, '')
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 428
+[28-Dec-2019 01:50:39 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:52:18 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:53:43 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 01:54:14 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:76
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 76
+[28-Dec-2019 02:00:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_Loader::spark() in /home/schoodhe/public_html/school/application/libraries/Rest.php:68
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(1100): REST->__construct()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(976): CI_Loader->_ci_init_class('rest', '', NULL, NULL)
+#2 /home/schoodhe/public_html/school/system/core/Loader.php(217): CI_Loader->_ci_load_class('Rest', NULL, NULL)
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(1179): CI_Loader->library('rest')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(153): CI_Loader->_ci_autoloader()
+#5 /home/schoodhe/public_html/school/system/core/Controller.php(52): CI_Loader->initialize()
+#6 /home/schoodhe/public_html/school/application/controllers/login.php(7): CI_Controller->__construct()
+#7 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(309): Login->__construct()
+#8 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+ in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 68
+[28-Dec-2019 02:02:29 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_Loader::spark() in /home/schoodhe/public_html/school/application/libraries/Rest.php:68
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(1100): REST->__construct()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(976): CI_Loader->_ci_init_class('rest', '', NULL, NULL)
+#2 /home/schoodhe/public_html/school/system/core/Loader.php(217): CI_Loader->_ci_load_class('Rest', NULL, NULL)
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(1179): CI_Loader->library('rest')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(153): CI_Loader->_ci_autoloader()
+#5 /home/schoodhe/public_html/school/system/core/Controller.php(52): CI_Loader->initialize()
+#6 /home/schoodhe/public_html/school/application/controllers/login.php(7): CI_Controller->__construct()
+#7 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(309): Login->__construct()
+#8 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+ in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 68
+[28-Dec-2019 02:02:34 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_Loader::spark() in /home/schoodhe/public_html/school/application/libraries/Rest.php:68
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(1100): REST->__construct()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(976): CI_Loader->_ci_init_class('rest', '', NULL, NULL)
+#2 /home/schoodhe/public_html/school/system/core/Loader.php(217): CI_Loader->_ci_load_class('Rest', NULL, NULL)
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(1179): CI_Loader->library('rest')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(153): CI_Loader->_ci_autoloader()
+#5 /home/schoodhe/public_html/school/system/core/Controller.php(52): CI_Loader->initialize()
+#6 /home/schoodhe/public_html/school/application/controllers/login.php(7): CI_Controller->__construct()
+#7 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(309): Login->__construct()
+#8 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+ in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 68
+[28-Dec-2019 02:04:09 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function set_defaults() on null in /home/schoodhe/public_html/school/application/libraries/Rest.php:77
+Stack trace:
+#0 [internal function]: REST->__destruct()
+#1 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/Rest.php on line 77
+[28-Dec-2019 11:09:05 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function get() on null in /home/schoodhe/public_html/school/application/models/product_model.php:11
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/login.php(111): Product_model->list_product()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/product_model.php on line 11
+[28-Dec-2019 11:11:34 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function get() on null in /home/schoodhe/public_html/school/application/models/product_model.php:11
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/login.php(111): Product_model->list_product()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/product_model.php on line 11
+[28-Dec-2019 11:18:11 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Class 'Product_model' not found in /home/schoodhe/public_html/school/system/core/Loader.php:304
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/login.php(109): CI_Loader->model('Product_model')
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/core/Loader.php on line 304
+[28-Dec-2019 11:30:19 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Client_model::list_client() in /home/schoodhe/public_html/school/application/controllers/login.php:110
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/login.php on line 110
+[28-Dec-2019 11:30:57 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Client_model::list_client() in /home/schoodhe/public_html/school/application/controllers/login.php:110
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->index()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/login.php on line 110
