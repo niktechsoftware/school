@@ -8,17 +8,17 @@ class Client_model extends CI_Model {
 		$this->API="https://niktechsoftware.com/AdminPanel";
 	}
 
-	function list_product(){
+	function list_product($cid){
+	  //  print_r($cid);
 		return json_decode($this->restclient->get());
 	}
 
-	function product($id){
+/*	function product($id){
 		$params = array('customer_id'=>  $id);
-	    //print_r($params);
 		return json_decode($this->restclient->get($params),true);
 	}
 
-/*	function save($array)
+	function save($array)
 	{
 		$this->restclient->post($array);
 	}
