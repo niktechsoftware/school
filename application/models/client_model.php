@@ -13,7 +13,8 @@ class Client_model extends CI_Model {
 	}
 
 	function product($id){
-		$params = array('id'=>  $id);
+		$params = array('customer_id'=>  $id);
+	    //print_r($params);
 		return json_decode($this->restclient->get($params),true);
 	}
 

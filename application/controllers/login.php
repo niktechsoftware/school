@@ -35,7 +35,8 @@ class Login extends CI_Controller{
 
 	function index(){
 			$school_code=   $this->session->userdata("school_code");
-			
+            			    $this->db->where("id",$school_code);
+            		$cid  = $this->db->get("school")->row()->customer_id;
                     		$this->db->where("school_code",$school_code);
                     		$this->db->where("DATE(opening_date)",date("Y-m-d"));
 		$checkopeningclo  = $this->db->get("opening_closing_balance");
@@ -90,8 +91,8 @@ class Login extends CI_Controller{
 		$data['emp_lev']=$this->dashboard_p->emp_leave($sc_code);
 		///////////////////
 		$this->load->model('client_model');
-        $data1['client_due_list'] = $this->client_model->list_product();
-	//	print_r($data1);
+        $data1['client_due_list'] = $this->client_model->product($cid);
+		//print_r($data1);
 		//////////////
 		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
