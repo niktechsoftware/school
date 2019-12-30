@@ -9,8 +9,7 @@ class Client_model extends CI_Model {
 	}
 
 	function list_product($cid){
-	  //  print_r($cid);
-		return json_decode($this->restclient->get());
+		return json_decode($this->restclient->get1($cid));
 	}
 
 /*	function product($id){

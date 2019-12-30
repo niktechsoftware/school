@@ -95,15 +95,19 @@ class SmsAjax extends CI_Controller{
 		
 }
 
-		function sendallParent(){
+	function sendallParent(){
 		$smscount=0;
 		$count=0;
 		$smsc =0;
+		$totsmssent = $this->input->post("totsmsv");
+		$totbal = $this->input->post("totbal");
+	
+		if($totbal > $totsmssent){
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender->num_rows()>0){
 		$sende_Detail =$sender->row();
 		$msg =$this->input->post("meg");
-		$totsmssent = $this->input->post("totsmsv");
+		
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 		$master_id=$max_id->maxid+1;
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
@@ -139,7 +143,9 @@ class SmsAjax extends CI_Controller{
 	}else{
 	    	redirect("index.php/login/mobileNotice/Parent%20Message/$count/7");
 	   // echo "this message already sent for resend  plz try after some time ";
-	}	
+	}	}else{ 
+	     redirect("index.php/login/mobileNotice/Parent%20Message/$count/9");
+	}
 	}
 	
 	

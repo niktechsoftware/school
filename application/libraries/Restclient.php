@@ -29,6 +29,17 @@ class Restclient{
          }
      }
 
+function get1($id)
+      { 
+         $curl_handle = curl_init();
+         curl_setopt($curl_handle, CURLOPT_URL, $this->API.$id);
+         curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+         $buffer = curl_exec($curl_handle);
+         return $buffer;
+      }
+
+
+
     /* function post($array)
      {
           $curl_handle = curl_init();

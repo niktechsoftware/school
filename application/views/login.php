@@ -25,6 +25,7 @@
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+		<script data-ad-client="ca-pub-5093838037340612" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->

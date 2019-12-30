@@ -20,6 +20,7 @@
     <!-- end: META -->
   
     <!-- start: MAIN CSS -->
+    	<script data-ad-client="ca-pub-5093838037340612" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <?php echo $this->load->view($headerCss); ?>
 </head>
 <!-- end: HEAD -->

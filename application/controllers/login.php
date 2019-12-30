@@ -10,6 +10,7 @@ class Login extends CI_Controller{
         $this->load->model("allFormModel");
         $this->load->model("configureclassmodel");
         $this->load->model("smsmodel");
+        $this->load->model('client_model');
        
 	}
 
@@ -90,9 +91,9 @@ class Login extends CI_Controller{
 		$this->load->model('dashboard_p');
 		$data['emp_lev']=$this->dashboard_p->emp_leave($sc_code);
 		///////////////////
-		$this->load->model('client_model');
-        $data1['client_due_list'] = $this->client_model->list_product($cid);
-//		print_r($data1);
+		
+        $data['client_due_list'] = $this->client_model->list_product($cid);
+	//	print_r($data1);
 		//////////////
 		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
