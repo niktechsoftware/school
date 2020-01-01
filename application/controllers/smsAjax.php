@@ -5,6 +5,8 @@ class SmsAjax extends CI_Controller{
 	{
 		parent::__construct();
 		$this->is_login();
+		include APPPATH . 'third_party/PaytmKit/lib/config_paytm1.php';
+		include APPPATH . 'third_party/PaytmKit/lib/encdec_paytm.php';
 		$this->load->model("smsmodel");
 		$this->load->model("employeemodel");
 		}
@@ -68,10 +70,14 @@ class SmsAjax extends CI_Controller{
 	$count=0;
 		$smsc =0;
 		$smscount=0;
+		$totsmssent = $this->input->post("totsmsv");
+		$totbal = $this->input->post("totbal");
+	
+		if($totbal > $totsmssent){
 		$school=$this->session->userdata("school_code");
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		$sende_Detail =$sender->row();
-		print_r($sende_Detail);
+// 		print_r($sende_Detail);
 		$msg =	$this->input->post("meg");
 	
 		$fmobile1 = $this->input->post("m_number");
@@ -92,7 +98,10 @@ class SmsAjax extends CI_Controller{
 			
 
 			redirect("index.php/login/mobileNotice/Notice");
-		
+		}
+		else{ 
+	     redirect("index.php/login/mobileNotice/Notice/$count/9");
+	}
 }
 
 	function sendallParent(){
@@ -153,6 +162,10 @@ class SmsAjax extends CI_Controller{
 		$smscount=0;
 		$count=0;
 		$smsc =0;
+		$totsmssent = $this->input->post("totsmsv");
+		$totbal = $this->input->post("totbal");
+	
+		if($totbal > $totsmssent){
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender){
 		$sende_Detail =$sender->row();
@@ -205,13 +218,19 @@ class SmsAjax extends CI_Controller{
 			$this->load->view("includes/mainContent", $data);
 	}
 	
-		    
+		}else{ 
+	     redirect("index.php/login/mobileNotice/Announcement/$count/9");
+	}	    
 	}	
 	
 	function sendGreeting(){
 		$smscount=0;
 		$count=0;
 		$smsc =0;
+		$totsmssent = $this->input->post("totsmsv");
+		$totbal = $this->input->post("totbal");
+	
+		if($totbal > $totsmssent){
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender){
 		$sende_Detail =$sender->row();
@@ -269,12 +288,19 @@ class SmsAjax extends CI_Controller{
 	
 		}
 		redirect("index.php/login/mobileNotice/Greeting/$count");
+		}else{ 
+	     redirect("index.php/login/mobileNotice/Greeting/$count/9");
+	}	  
 	}
 	function classwise(){	
 		$smscount=0;
 		$count=0;
 		$smsc =0;
 		$fmobile=0;
+		$totsmssent = $this->input->post("totsmsv");
+		$totbal = $this->input->post("totbal");
+	
+		if($totbal > $totsmssent){
 		$class_id = $this->input->post("class");
 	//	$section_id = $this->input->post("section");
 	
@@ -334,7 +360,9 @@ class SmsAjax extends CI_Controller{
 			$data['mainContent'] = 'Error';
 			$this->load->view("includes/mainContent", $data);
 		}
-	   
+		}else{ 
+	     redirect("index.php/login/mobileNotice/classwise/$count/9");
+	}	  
 	}
 	
 	function transportwise(){	
@@ -454,5 +482,188 @@ class SmsAjax extends CI_Controller{
 		$data['mainContent'] = 'wrongsmsdetail';
 		$this->load->view("includes/mainContent", $data);
 }
+
+  function buysms(){
+    	header("Pragma: no-cache");
+		header("Cache-Control: no-cache");
+		header("Expires: 0");
+		
+		$checkSum = "";
+		$paramList = array();
+
+       $smsid= $this->input->post("vehicle");
+       $this->db->where("id",$smsid);
+       $smsrow=$this->db->get("sms_plan");
+       
+     if($smsrow->num_rows()>0){
+         $school_code=$this->session->userdata("school_code");
+            $quant= $smsrow->row()->sms_quantity;
+            $amount= $smsrow->row()->amount;
+            $tot=$quant*$amount;
+            $rannum=rand(10000,99999);
+            $orderno="ORD".$rannum;
+            $arr=array(
+               "order_id" =>$orderno,
+               "txn_date_time"=>date("Y-m-d H:i:s"),
+               "reason"=>"buysms",
+                "sms_quantity"=>$quant,
+               "total_amount"=>$tot,
+               "school_code"=>$this->session->userdata("school_code")
+               
+               );
+           
+           $this->db->insert("sms_transaction",$arr);
+           	$ORDER_ID = $orderno;
+           		$CUST_ID=$school_code;
+           	$INDUSTRY_TYPE_ID = "Retail";
+
+		$CHANNEL_ID = "WEB";
+		$TXN_AMOUNT = $tot;
+		
+		// Create an array having all required parameters for creating checksum.
+		
+		$paramList["MID"] = PAYTM_MERCHANT_MID;
+		$paramList["ORDER_ID"] = $ORDER_ID;
+			$paramList["CUST_ID"] = $CUST_ID;
+		$paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;
+		$paramList["CHANNEL_ID"] = $CHANNEL_ID;
+		$paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
+		$paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
+       
+
+		$paramList["CALLBACK_URL"] = "https://www.schoolerp-niktech.in/school/index.php/smsAjax/payStatus/";
+	
+		/*$paramList["MSISDN"] = $MSISDN; //Mobile number of customer
+		$paramList["EMAIL"] = $EMAIL; //Email ID of customer
+		$paramList["VERIFIED_BY"] = "EMAIL"; //
+		$paramList["IS_USER_VERIFIED"] = "YES"; //
+
+		*/
+
+		//Here checksum string will return by getChecksumFromArray() function.
+		$checkSum = getChecksumFromArray($paramList,PAYTM_MERCHANT_KEY);
+
+		?>
+		<html>
+		<head>
+		<title>Merchant Check Out Page</title>
+		</head>
+		<body>
+			<center><h1>Please do not refresh this page...</h1></center>
+				<form method="post" action="<?php echo PAYTM_TXN_URL ?>" name="f1">
+				<table border="1">
+					<tbody>
+					<?php
+					foreach($paramList as $name => $value) {
+						echo '<input type="hidden" name="' . $name .'" value="' . $value . '">';
+					}
+				
+					?>
+					<input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
+					</tbody>
+				</table>
+				<script type="text/javascript">
+					document.f1.submit();
+				</script>
+			</form>
+		</body>
+		</html>
+  <?php }
+}
+
+
+function pgResponse(){
+
+		header("Pragma: no-cache");
+		header("Cache-Control: no-cache");
+		header("Expires: 0");
+
+		$paytmChecksum = "";
+		$paramList = array();
+		$isValidChecksum = "FALSE";
+
+		$paramList = $_POST;
+		$paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : ""; //Sent by Paytm pg
+
+		//Verify all parameters received from Paytm pg to your application. Like MID received from paytm pg is same as your application’s MID, TXN_AMOUNT and ORDER_ID are same as what was sent by you to Paytm PG for initiating transaction etc.
+		$isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum); //will return TRUE or FALSE string.
+
+
+		if($isValidChecksum == "TRUE") {
+			echo "<b>Checksum matched and following are the transaction details:</b>" . "<br/>";
+			if ($_POST["STATUS"] == "TXN_SUCCESS") {
+				echo "<b>Transaction status is success</b>" . "<br/>";
+				//Process your transaction here as success transaction.
+				//Verify amount & order id received from Payment gateway with your application's order id and amount.
+			}
+			else {
+				echo "<b>Transaction status is failure</b>" . "<br/>";
+			}
+
+			if (isset($_POST) && count($_POST)>0 )
+			{ 
+				foreach($_POST as $paramName => $paramValue) {
+						echo "<br/>" . $paramName . " = " . $paramValue;
+				}
+				
+			}
+			
+
+		}
+		else {
+			echo "<b>Checksum mismatched.</b>";
+			//Process transaction as suspicious.
+		}
+
+
+			}
+			
+public function payStatus(){
+
+        header("Pragma: no-cache");
+		header("Cache-Control: no-cache");
+		header("Expires: 0");
+
+       
+        	$data['pageTitle'] = 'View SMS Report';
+		$data['smallTitle'] = 'View SMS Report';
+		$data['mainPage'] = 'View SMS Report';
+		$data['subPage'] = 'View SMS Report';
+		$data['title'] = 'View SMS Report ';
+		$data['headerCss'] = 'headerCss/smsCss';
+		$data['footerJs'] = 'footerJs/smsJs';
+		$data['mainContent'] = 'paysmsStatus';
+		$this->load->view("includes/mainContent", $data);
+    }
+   
+   function requestsms(){
+   $smsid= $this->input->post("vehicle");
+   $this->db->where("id",$smsid);
+   $smsrow=$this->db->get("sms_plan");
+   if($smsrow->num_rows()>0){
+      $quant= $smsrow->row()->sms_quantity;
+       $amount= $smsrow->row()->amount;
+       $tot=$quant*$amount;
+       $rannum=rand(10000,99999);
+       $orderno="ORD".$rannum;
+       $arr=array(
+           "order_id" =>$orderno,
+           "txn_date_time"=>date("Y-m-d H:i:s"),
+           "reason"=>"requestsms",
+           "sms_quantity"=>$quant,
+           "total_amount"=>$tot,
+           "school_code"=>$this->session->userdata("school_code")
+           
+           );
+           
+          $dt= $this->db->insert("sms_transaction",$arr);
+          if($dt){
+              redirect("login/mobileNotice/requestsms");
+          }
+   }
+   
+   }
+   
+
 
 }

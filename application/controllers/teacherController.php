@@ -288,7 +288,15 @@ function checkIDOTP(){
 	$var = $this->teacherModel->checkID($tid);
 	//print_r($var);
 	if($var->num_rows() > 0){
-		$row=	$var->row()		?>
+		$row=$var->row();
+	   $school=$this->session->userdata("school_code");
+	   $dbnm=$this->db->get("db_name")->row()->name;
+		$sotp= $school.$dbnm."1275";
+		
+		
+		
+		
+		?>
 				<div class="alert alert-success">
 					<button data-dismiss="alert" class="close">
 						&times;
@@ -307,13 +315,13 @@ function checkIDOTP(){
 					$master_id=$max_id->maxid+1;
 				
 						$fmobile=$row->mobile.",".$this->session->userdata("mobile_number");
-						print_r($fmobile);
-						exit;
+				
 					  $getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 		            $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 		         
 					$data=array(
 						"otp"=>$otp,
+						"s_otp"=>$sotp,
 						"discounter_id"=>$tid,
 						"discount_rupee"=>$discountv,
 						"school_code"=>$this->session->userdata("school_code"),
@@ -360,9 +368,14 @@ function checkIDOTP(){
 function checkIDOTPc(){
 	
 	$discounterIDv = $this->input->post("discounterIDv");
+	$this->db->order_by("id","desc");
+	$this->db->limit("1");
 	$this->db->where("otp",$discounterIDv);
+	$this->db->or_where("s_otp",$discounterIDv);
 	$this->db->where("school_code",$this->session->userdata("school_code"));
 	$vrt = $this->db->get("dis_den_tab");
+// 	print_r($vrt);
+// 	exit;
 	if($vrt->num_rows() > 0){
 		$vrt=$vrt->row();
 		$itemData = array(
@@ -373,7 +386,7 @@ function checkIDOTPc(){
 			else{
 				$itemData = array(
 				"sms" =>"no",
-						"dis"=>0
+				"dis"=>0
 		);
 				
 			}

@@ -1563,3 +1563,80 @@ Stack trace:
 #7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #8 {main}
   thrown in /home/schoodhe/public_html/school/application/views/dashboard.php on line 354
+[31-Dec-2019 12:17:18 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function assets_url() in /home/schoodhe/public_html/school/application/views/print_transportinvoice.php:81
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/singlefee.php(254): CI_Loader->view('print_transport...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Singlefee->tfeeInvoice('6823', '4', '4I196564')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/print_transportinvoice.php on line 81
+[31-Dec-2019 12:18:51 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function asset_url() in /home/schoodhe/public_html/school/application/views/print_transportinvoice.php:81
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/singlefee.php(254): CI_Loader->view('print_transport...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Singlefee->tfeeInvoice('6823', '4', '4I196564')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/print_transportinvoice.php on line 81
+[31-Dec-2019 12:30:22 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function CI_Session::userdata(), 0 passed in /home/schoodhe/public_html/school/application/controllers/teacherController.php on line 293 and exactly 1 expected in /home/schoodhe/public_html/school/system/libraries/Session.php:448
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/teacherController.php(293): CI_Session->userdata()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): TeacherController->checkIDOTP()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/libraries/Session.php on line 448
+[31-Dec-2019 12:30:22 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function CI_Session::userdata(), 0 passed in /home/schoodhe/public_html/school/application/controllers/teacherController.php on line 293 and exactly 1 expected in /home/schoodhe/public_html/school/system/libraries/Session.php:448
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/teacherController.php(293): CI_Session->userdata()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): TeacherController->checkIDOTP()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/libraries/Session.php on line 448
+[31-Dec-2019 12:30:28 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function CI_Session::userdata(), 0 passed in /home/schoodhe/public_html/school/application/controllers/teacherController.php on line 293 and exactly 1 expected in /home/schoodhe/public_html/school/system/libraries/Session.php:448
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/teacherController.php(293): CI_Session->userdata()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): TeacherController->checkIDOTP()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/libraries/Session.php on line 448
+[31-Dec-2019 12:30:28 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function CI_Session::userdata(), 0 passed in /home/schoodhe/public_html/school/application/controllers/teacherController.php on line 293 and exactly 1 expected in /home/schoodhe/public_html/school/system/libraries/Session.php:448
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/teacherController.php(293): CI_Session->userdata()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): TeacherController->checkIDOTP()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/libraries/Session.php on line 448
+[31-Dec-2019 12:30:46 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function CI_Session::userdata(), 0 passed in /home/schoodhe/public_html/school/application/controllers/teacherController.php on line 293 and exactly 1 expected in /home/schoodhe/public_html/school/system/libraries/Session.php:448
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/teacherController.php(293): CI_Session->userdata()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): TeacherController->checkIDOTP()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/libraries/Session.php on line 448
+[31-Dec-2019 12:30:46 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function CI_Session::userdata(), 0 passed in /home/schoodhe/public_html/school/application/controllers/teacherController.php on line 293 and exactly 1 expected in /home/schoodhe/public_html/school/system/libraries/Session.php:448
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/teacherController.php(293): CI_Session->userdata()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): TeacherController->checkIDOTP()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/libraries/Session.php on line 448
+[31-Dec-2019 12:31:30 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function CI_Session::userdata(), 0 passed in /home/schoodhe/public_html/school/application/controllers/teacherController.php on line 293 and exactly 1 expected in /home/schoodhe/public_html/school/system/libraries/Session.php:448
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/teacherController.php(293): CI_Session->userdata()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): TeacherController->checkIDOTP()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/libraries/Session.php on line 448
+[31-Dec-2019 12:31:30 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function CI_Session::userdata(), 0 passed in /home/schoodhe/public_html/school/application/controllers/teacherController.php on line 293 and exactly 1 expected in /home/schoodhe/public_html/school/system/libraries/Session.php:448
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/teacherController.php(293): CI_Session->userdata()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): TeacherController->checkIDOTP()
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/system/libraries/Session.php on line 448
+[31-Dec-2019 15:24:03 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 505
+[31-Dec-2019 15:24:10 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 505
+[31-Dec-2019 15:24:18 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 505

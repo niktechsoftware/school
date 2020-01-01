@@ -133,7 +133,7 @@ class Login extends CI_Controller{
 			$this->load->view("includes/mainContent", $data);
     		
     	}
-	
+
 	function classteacher()
 	{
 		$data['pageTitle'] = 'Class/Class Teacher';

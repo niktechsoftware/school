@@ -49,6 +49,22 @@
 		<script>
 		
 			jQuery(document).ready(function() {
+				$('#standered').hide();
+				$('#stanrow').hide();
+				$('#standlbl').hide();
+				
+				$('#jobCategory').change(function(){
+				  var category= $('#jobCategory').val(); 
+				  if(category==3){
+				      $('#standered').show();
+				      	$('#stanrow').show();
+				      	$('#standlbl').show();
+				  }else{
+				      $('#standered').hide();
+				      	$('#stanrow').hide();
+				      	$('#standlbl').hide();
+				  }
+				});
 				
 					$("#empState").change(function(){
 						var state = $("#empState").val();
