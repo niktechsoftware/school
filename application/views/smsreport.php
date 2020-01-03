@@ -115,7 +115,8 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 										<th>Sms</th>
                     					<th>Date</th>
 										<th>Total</th>
-										<th>Sent Success</th>
+										<th> Success</th>
+										<th> Expired/Undelivered</th>
 										<th>Wrong Numbers</th>
 									</tr>
 								</thead>
@@ -127,11 +128,42 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 
 									$sno = 1; 
 									foreach ($result->result() as $row): 
+									    
+									       $this->db->where("requestId",$row->response_id);
+                                            $tot = $this->db->get("savesms");
+									    
                                             $this->db->where("requestId",$row->response_id);
-                                            $sentsms = $this->db->get("savesms");
+                                            $this->db->where("status","Delivered");
+                                            $dels = $this->db->get("savesms");
+        
+                                            $this->db->where("requestId",$row->response_id);
+                                            $this->db->where("status","DELIVRD");
+                                            $delc = $this->db->get("savesms");
+                                            
+                                             $delsms =$delc->num_rows() + $dels->num_rows();
+                                             
+                                            $this->db->where("requestId",$row->response_id);
+                                            $this->db->where("status","Undelivered");
+                                            $undel = $this->db->get("savesms");
+                                            
+                                             $this->db->where("requestId",$row->response_id);
+                                             $this->db->where("status","Expired");
+                                             $exp = $this->db->get("savesms");
+                                             
+                                            
+                                            
+                                             
+                                            
+                                          
+                                           $undelsms=$undel->num_rows();
+                                           
+                                            // $sentsms= $exp  + $undelsms;
+                                            
+                                            
                                             $this->db->where("sms_master_id",$row->id);
-									$wrongsms = $this->db->get("wrong_number_sms");
+								     	$wrongsms = $this->db->get("wrong_number_sms");
 										
+                                            
 									?>
 									<tr class="text-uppercase">
 										<td><?php echo $sno; ?></td>
@@ -141,9 +173,13 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 										<td><?php echo $row->sms; ?></td>
 										<!-- <td><?php// echo $row->status ?></td> -->
 										<td class="text-lowercase"><?php echo $row->date; ?></td>
-										<td class="text-lowercase"><?php echo $sentsms->num_rows()+ $wrongsms->num_rows(); ?></td>
+										<td class="text-lowercase"><?php echo  $wrongsms->num_rows() + $tot->num_rows(); ?></td>
 										<td class="text-lowercase">
-										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->response_id; ?>" class="btn btn-green"> Success <?php echo $sentsms->num_rows();?></a></td> 
+										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->response_id; ?>/1/2" class="btn btn-green"> Success <?php echo $delsms;?></a></td> 
+									</td>
+									
+										<td class="text-lowercase">
+										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->response_id; ?>/3/4" class="btn btn-info"> Expired <?php echo $exp->num_rows()+$undelsms  ; ?></a></td> 
 									</td>
 
                   					<td class="text-lowercase">

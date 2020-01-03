@@ -1563,3 +1563,109 @@ Stack trace:
 #7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #8 {main}
   thrown in /home/schoodhe/public_html/school/application/views/dashboard.php on line 354
+[02-Jan-2020 11:07:40 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Item::index_get(), 0 passed in /home/schoodhe/public_html/sschool1/application/libraries/REST_Controller.php on line 739 and exactly 1 expected in /home/schoodhe/public_html/sschool1/application/controllers/api/Item.php:24
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/application/libraries/REST_Controller.php(739): Item->index_get()
+#1 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/controllers/api/Item.php on line 24
+[02-Jan-2020 11:54:53 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php:61
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): cronjobsA->getCronA()
+#1 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php on line 61
+[02-Jan-2020 11:55:14 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php:61
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): cronjobsA->getCronA()
+#1 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php on line 61
+[02-Jan-2020 11:55:35 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php:62
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): cronjobsA->getCronA()
+#1 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php on line 62
+[02-Jan-2020 12:16:29 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function MONTH() in /home/schoodhe/public_html/sschool1/application/models/studentmodel.php:83
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php(62): StudentModel->dobStudentList('1')
+#1 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): cronjobsA->getCronA()
+#2 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/models/studentmodel.php on line 83
+[02-Jan-2020 12:18:12 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function DAY() in /home/schoodhe/public_html/sschool1/application/models/studentmodel.php:84
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php(62): StudentModel->dobStudentList('1')
+#1 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): cronjobsA->getCronA()
+#2 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/models/studentmodel.php on line 84
+[02-Jan-2020 12:19:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function MONTH() in /home/schoodhe/public_html/sschool1/application/models/studentmodel.php:83
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/application/controllers/cronjobsA.php(62): StudentModel->dobStudentList('1')
+#1 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): cronjobsA->getCronA()
+#2 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/models/studentmodel.php on line 83
+[03-Jan-2020 12:14:52 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/sschool1/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/sschool1/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/smsreport.php on line 155
+[03-Jan-2020 13:02:02 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/sschool1/application/views/smsreport.php:159
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/sschool1/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/smsreport.php on line 159
+[03-Jan-2020 13:02:55 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/sschool1/application/views/smsreport.php:159
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/sschool1/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/smsreport.php on line 159
+[03-Jan-2020 13:03:42 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/sschool1/application/views/smsreport.php:184
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/sschool1/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/smsreport.php on line 184
+[03-Jan-2020 13:04:33 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/sschool1/application/views/smsreport.php:184
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/sschool1/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/smsreport.php on line 184

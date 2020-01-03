@@ -2,7 +2,7 @@
    
 require APPPATH . 'libraries/REST_Controller.php';
      
-class Item extends REST_Controller {
+class Student extends REST_Controller {
     
 	  /**
      * Get All Data from this method.
@@ -13,24 +13,21 @@ class Item extends REST_Controller {
        parent::__construct();
        $this->load->database();
     }
-    
-
-       
+     
     /**
      * Get All Data from this method.
      *
      * @return Response
     */
-	public function index_get($id)
+	public function index_get($id = 0)
 	{
         if(!empty($id)){
-            //$data = $this->db->get_where("employee_info", ['school_code' => $id])->result();
-            
                     $this->db->where("status",1);
-                    $this->db->where("school_code",$id);
-            $data = $this->db->get("employee_info")->result();
+                    $this->db->where("fsd",$id);
+            $data['stu'] = $this->db->get("student_info")->result();
+            //$data['classdetail'] = $this->db->get("class_info")->result();
         }else{
-            $data = $this->db->get("employee_info")->result();
+            $data = $this->db->get("student_info")->result();
         }
      
         $this->response($data, REST_Controller::HTTP_OK);
