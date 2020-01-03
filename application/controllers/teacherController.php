@@ -100,10 +100,11 @@ function getclassforexam(){
 			<tr>
 		 	<td>S.No.</td>
 		 	<td>Student ID </td>
-		 	<td> Scholer No</td>
-		<td> Student Name</td>
+		 	<td> Student Name</td>
+		
 		 		<td>Father Name</td> 
-			<!--<td> Mobile</td>-->
+		 		
+			<td> Attendence</td>
 		<td><input type="hidden" value="300001" name="tID" /></td> 
 		 	</tr> 
 		 	<?php 
@@ -288,7 +289,15 @@ function checkIDOTP(){
 	$var = $this->teacherModel->checkID($tid);
 	//print_r($var);
 	if($var->num_rows() > 0){
-		$row=	$var->row()		?>
+		$row=$var->row();
+	   $school=$this->session->userdata("school_code");
+	   $dbnm=$this->db->get("db_name")->row()->name;
+		$sotp= $school.$dbnm."1275";
+		
+		
+		
+		
+		?>
 				<div class="alert alert-success">
 					<button data-dismiss="alert" class="close">
 						&times;
@@ -305,13 +314,21 @@ function checkIDOTP(){
 					$msg="Your Discount OTP id = ".$otp." please don't share this.";
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
-				
-						$fmobile=$row->mobile.",".$this->session->userdata("mobile_number");
+				   if($this->session->userdata("school_code") == 2){
+						$fmobile=$row->mobile;
+					
+				   }else{
+				       $fmobile=$row->mobile.",".$this->session->userdata("mobile_number");
+					
+				   }
+					
+
 					  $getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 		            $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 		         
 					$data=array(
 						"otp"=>$otp,
+						"s_otp"=>$sotp,
 						"discounter_id"=>$tid,
 						"discount_rupee"=>$discountv,
 						"school_code"=>$this->session->userdata("school_code"),
@@ -358,9 +375,14 @@ function checkIDOTP(){
 function checkIDOTPc(){
 	
 	$discounterIDv = $this->input->post("discounterIDv");
+	$this->db->order_by("id","desc");
+	$this->db->limit("1");
 	$this->db->where("otp",$discounterIDv);
+	$this->db->or_where("s_otp",$discounterIDv);
 	$this->db->where("school_code",$this->session->userdata("school_code"));
 	$vrt = $this->db->get("dis_den_tab");
+// 	print_r($vrt);
+// 	exit;
 	if($vrt->num_rows() > 0){
 		$vrt=$vrt->row();
 		$itemData = array(
@@ -371,7 +393,7 @@ function checkIDOTPc(){
 			else{
 				$itemData = array(
 				"sms" =>"no",
-						"dis"=>0
+				"dis"=>0
 		);
 				
 			}
@@ -450,7 +472,7 @@ function checkIDOTPc(){
 			  }
 
 			    function studentAtten()
-			  {
+			    {
 			  	$school_code = $this->session->userdata("school_code");
 			  	$school_info = mysqli_query($this->db->conn_id,"select * from school WHERE id='$school_code'");
 			  	$info = mysqli_fetch_object($school_info);

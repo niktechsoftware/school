@@ -54,7 +54,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','encrypt', 'session', 'xmlrpc', 'form_validation' );
+$autoload['libraries'] = array('database','encrypt', 'session', 'xmlrpc', 'form_validation');
 
 
 /*
@@ -111,7 +111,7 @@ $autoload['language'] = array( 'login', 'dashboard');
 |
 */
 
-$autoload['model'] = array('loginModel');
+$autoload['model'] = array('loginModel','client_model');
 
 
 /* End of file autoload.php */

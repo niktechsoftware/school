@@ -1015,7 +1015,7 @@ function getFsd(){
 	                                                 <div  class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Enter OTP</div>
 	                                                    <div class="col-sm-7">
-	                                                        <input type="text" name ="discounterOTPv" id="discounterOTPv"  class="form-control" onkeyup="OTP();">
+	                                                        <input type="text" name ="discounterOTPv" id="discounterOTPv"  class="form-control" >
 	                                                    </div>
 	                                                </div>
 	                                            </div>

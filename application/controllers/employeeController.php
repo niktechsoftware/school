@@ -78,7 +78,7 @@ class EmployeeController extends CI_Controller{
 		$this->form_validation->set_rules('jobTitle','Job Title', 'trim|required');
 		$this->form_validation->set_rules('jobCategory','Job Category', 'trim|required');
 		$this->form_validation->set_rules('empName','Full Name', 'trim|required');
-		//$this->form_validation->set_rules('empLastName','Last Name', 'trim|required');
+		$this->form_validation->set_rules('standered','standered', 'trim|required');
 		//$this->form_validation->set_rules('empMiddleName','Middle Name', 'trim');
 		$this->form_validation->set_rules('empDob','Date Of Birth', 'trim|required');
 		$this->form_validation->set_rules('gender','Gender', 'trim|required');
@@ -113,6 +113,7 @@ class EmployeeController extends CI_Controller{
 					//"emp_no" => $eid,
 					"job_title" => $this->input->post("jobTitle"),
 					"job_category" => $this->input->post("jobCategory"),
+					"standered" => $this->input->post("standered"),
 					"name" => $this->input->post("empName"),
 					"maxcount" => $maxusername,
 					//"mid_name" => $this->input->post("empMiddleName"),
@@ -213,6 +214,7 @@ class EmployeeController extends CI_Controller{
 		$this->form_validation->set_rules('empName','Full Name', 'trim|required');
 		
 		$this->form_validation->set_rules('gender','Gender', 'trim|required');
+		$this->form_validation->set_rules('standered','standered', 'trim|required');
 		$this->form_validation->set_rules('employeeAddLine1','Address', 'trim|required');
 		$this->form_validation->set_rules('j_date','Joining Date', 'trim|required');
 		$this->form_validation->set_rules('empmobileNumber','Mobile Number','trim|required|numeric|min_length[10]|max_length[10]');
@@ -229,6 +231,7 @@ class EmployeeController extends CI_Controller{
 				"maxcount" => $maxusername,
 				"gender" => $this->input->post("gender"),
 				"join_date" => $this->input->post("j_date"),
+				"standered" => $this->input->post("standered"),
 				"address" => $this->input->post("employeeAddLine1"),
 				"mobile" => $this->input->post("empmobileNumber"),
 				"status" => 1,

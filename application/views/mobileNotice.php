@@ -44,10 +44,25 @@ if($this->uri->segment(3) == 'Notice'){ ?>
                     you can also see your credit SMS Balance . you can also see Number of Character in your message and Number of 
                      Unit SMS<br><strong> (where 1 Unit = 140 SMS Character)</strong>
         </div>
-                    
+                            <?php 
+      	$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
+        ?>
                     <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?></p>
                     
                      <form method="post" action="<?php echo base_url();?>index.php/smsAjax/sendNotice">
+                          <?php 
+         $totmsg=$this->uri->segment(4);
+          if($totmsg)
+          		{
+					?>
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+          		<?php } else{
+          		     if($this->uri->segment(5) == 9){?>
+          		      
+	                <script>alert("You have not sufficient Balance Please Contact Admin or purchase. SMS not sent");</script>
+	  
+					<div class="alert alert-danger">You have not sufficient Balance Please Contact Admin or purchase sms. SMS not sent.</div>
+          		  <?php   }}?> 
                       <div>  </div>
                      <table class="table">
                      	<tr>
@@ -70,6 +85,9 @@ if($this->uri->segment(3) == 'Notice'){ ?>
                      		<td colspan="2"><textarea name="meg" class="form-control" id="textArea" rows="5"></textarea></td>
                      	</tr>
                      	<tr>
+                     	    	<input type="hidden" name="totbal" value="<?php echo $cbs; ?>" class="btn btn-dark-purple" />
+                     		<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
+                   
                      		<td colspan="2">
                      			<input type="submit" name="Send_Message" value="Send Message" class="btn btn-dark-purple" />
                      		</td>
@@ -97,21 +115,18 @@ elseif($this->uri->segment(3) == 'Parent%20Message'){ ?>
 					 ?>
             <form method="post" action="<?php echo base_url();?>index.php/smsAjax/sendallParent">
           <?php 
-         if($this->uri->segment(5)){ ?>
-            	
-					<div class="alert alert-success">This Text Message has been alreary submitted and yet to be delivered keep patience and try after 2 hours.</div> 
-      <?php   }
-         else{
-         
-         
-          $totmsg=$this->uri->segment(4);
+         $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
 					?>
-					<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
 					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
-          		<?php }  }
-          			?> 
+          		<?php } else{
+          		     if($this->uri->segment(5) == 9){?>
+          		      
+	                <script>alert("You have not sufficient Balance Please Contact Admin or purchase. SMS not sent");</script>
+	  
+					<div class="alert alert-danger">You have not sufficient Balance Please Contact Admin or purchase sms. SMS not sent.</div>
+          		  <?php   }}?> 
                      <table class="table">
                       <tr><td>Select Language</td><td><select class="form-control"  name="language" style="width: 200px;" required="required">
                                
@@ -121,7 +136,8 @@ elseif($this->uri->segment(3) == 'Parent%20Message'){ ?>
                                 <option value="2">HINDI[Unicode Hindi]</option>
                               </select></td></tr>
                      	<tr>
-
+ <input type ="hidden" name = "totbal" value="<?php echo $cbs;?>" >
+					<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
                      		<td>Message : </td>
                      		<td>
                             	<input type="hidden" name="section" value="Parent Message" />
@@ -152,6 +168,9 @@ elseif($this->uri->segment(3) == 'Announcement'){
 	//	$a= $result->result();
 	//	print_r($a);
         ?>
+         <?php 
+      	$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
+        ?>
 			<p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?><br>Available Contacts of Employees to send SMS =<?php echo $result->num_rows();?>  SMS for admin </p>
             <?php
 					 //if(!($auth->announcement == 'yes')){
@@ -160,15 +179,19 @@ elseif($this->uri->segment(3) == 'Announcement'){
 					 ?>
              <form method="post" action="<?php echo base_url();?>index.php/smsAjax/sendAnnuncement">
                     
-                      <?php $totmsg=$this->uri->segment(4);
+                      <?php 
+         $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
 					?>
-					<input type ="hidden" name = "totsmsv" value="<?php echo $result->num_rows();?>" >
-					
 					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
-          		<?php }
-          			?> 
+          		<?php } else{
+          		     if($this->uri->segment(5) == 9){?>
+          		      
+	                <script>alert("You have not sufficient Balance Please Contact Admin or purchase. SMS not sent");</script>
+	  
+					<div class="alert alert-danger">You have not sufficient Balance Please Contact Admin or purchase sms. SMS not sent.</div>
+          		  <?php   }}?> 
                      <table class="table">
                      	<tr>
                          <tr><td>Select Language</td><td><select class="form-control"  name="language" style="width: 200px;" required="required">
@@ -181,6 +204,9 @@ elseif($this->uri->segment(3) == 'Announcement'){
                       
                      		<td>Message : </td>
                      		<td>
+                     		    <input type="hidden" name="totbal" value="<?php echo $cbs; ?>" class="btn btn-dark-purple" />
+                     		<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
+                   
                             	<input type="hidden" name="section" value="Announcement" />
                             	<textarea name="meg" class="form-control" id="textArea" rows="5"></textarea>
                             </td>
@@ -207,20 +233,27 @@ elseif($this->uri->segment(3) == 'Greeting'){ ?>
                     you can also see your credit SMS Balance . you can also see Number of Character in your message and Number of 
                      Unit SMS . <br><strong> (where 1 Unit = 140 SMS Character)</strong>
         </div>
+         <?php 
+      	$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
+        ?>
 			 <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?><br>Available Contacts to send SMS =<?php echo $result->num_rows()+$query->num_rows();?></p>
             
            
           
             <form method="post" action="<?php echo base_url();?>index.php/smsAjax/sendGreeting">
-                     <?php $totmsg=$this->uri->segment(4);
+                  <?php 
+         $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
 					?>
-					<input type ="hidden" name = "totsmsv" value="<?php echo $result->num_rows()+$query->num_rows();;?>" >
-					
 					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
-          		<?php }
-          			?> 
+          		<?php } else{
+          		     if($this->uri->segment(5) == 9){?>
+          		      
+	                <script>alert("You have not sufficient Balance Please Contact Admin or purchase. SMS not sent");</script>
+	  
+					<div class="alert alert-danger">You have not sufficient Balance Please Contact Admin or purchase sms. SMS not sent.</div>
+          		  <?php   }}?> 
                      <table class="table">
                      	<tr>
                          <tr><td>Select Language</td><td><select class="form-control"  name="language" style="width: 200px;" required="required">
@@ -237,6 +270,9 @@ elseif($this->uri->segment(3) == 'Greeting'){ ?>
                             	<textarea name="meg" class="form-control" id="textArea" rows="5"></textarea>
                             </td>
                      	</tr>
+                     	 <input type="hidden" name="totbal" value="<?php echo $cbs; ?>" class="btn btn-dark-purple" />
+                     		<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
+                   
                      	<tr>
                      		<td colspan="2">
                      			<input type="submit" name="Send_Message" value="Send Message" class="btn btn-dark-purple" />
@@ -255,22 +291,28 @@ elseif($this->uri->segment(3) == 'classwise'){ ?>
         </div>
 		<!--	<p class="alert alert-info"> This is the area you are able to send Message Class Wise to Student . select the class and Type the message in textbox and press send.</p>-->
              <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?></p>
-           
+            <?php 
+      	$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
+        ?>
             <?php
 					 //if(!($auth->greeting == 'yes')){
 						 //echo '<font color=" color="#FF0000">Greeting Not Activated. Please activat it first, from SMS setting.</font>';
 					 //}
 					 ?>
             <form method="post" action="<?php echo base_url();?>index.php/smsAjax/classwise">
-                     <?php $totmsg=$this->uri->segment(4);
+                     <?php 
+         $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
 					?>
-					<input type ="hidden" name = "totsmsv" value="<?php //echo $query->num_rows()+1;?>" >
-					
 					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
-          		<?php }
-          			?> 
+          		<?php } else{
+          		     if($this->uri->segment(5) == 9){?>
+          		      
+	                <script>alert("You have not sufficient Balance Please Contact Admin or purchase. SMS not sent");</script>
+	  
+					<div class="alert alert-danger">You have not sufficient Balance Please Contact Admin or purchase sms. SMS not sent.</div>
+          		  <?php   }}?> 
                      <table class="table">
                      	<tr>
                      	
@@ -312,6 +354,9 @@ elseif($this->uri->segment(3) == 'classwise'){ ?>
                             	<textarea name="meg" class="form-control" id="textArea" rows="5"></textarea>
                             </td>
                      	</tr>
+                     	<input type="hidden" name="totbal" value="<?php echo $cbs; ?>" class="btn btn-dark-purple" />
+                     		<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
+                   
                      	<tr>
                      		<td colspan="2">
                      			<input type="submit" name="Send_Message" value="Send Message" class="btn btn-dark-purple" />
@@ -323,16 +368,23 @@ elseif($this->uri->segment(3) == 'classwise'){ ?>
 elseif($this->uri->segment(3) == 'transportwise'){ ?>
 			<p class="alert alert-info"> This is the area you are able to send Message Vehicle Wise to Student . select the Vehicle and Type the message in textbox and press send.</p>
              <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?></p>
-           
+            <?php 
+      	$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
+        ?>
             <form method="post" action="<?php echo base_url();?>index.php/smsAjax/transportwise">
-                     <?php $totmsg=$this->uri->segment(4);
+                   <?php 
+         $totmsg=$this->uri->segment(4);
           if($totmsg)
           		{
-					?><input type ="hidden" name = "totsmsv" value="<?php //echo $query->num_rows()+1;?>" >
-					
+					?>
 					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
-          		<?php }
-          			?> 
+          		<?php } else{
+          		     if($this->uri->segment(5) == 9){?>
+          		      
+	                <script>alert("You have not sufficient Balance Please Contact Admin or purchase. SMS not sent");</script>
+	  
+					<div class="alert alert-danger">You have not sufficient Balance Please Contact Admin or purchase sms. SMS not sent.</div>
+          		  <?php   }}?> 
                      <table class="table">
                      	<tr>
                      		<td><strong>Select Vehicle</strong> </td>
@@ -360,9 +412,105 @@ elseif($this->uri->segment(3) == 'transportwise'){ ?>
                             	<textarea name="meg" class="form-control" id="textArea" rows="5"></textarea>
                             </td>
                      	</tr>
+                     		<input type="hidden" name="totbal" value="<?php echo $cbs; ?>" class="btn btn-dark-purple" />
+                     		<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
+                   
                      	<tr>
                      		<td colspan="2">
                      			<input type="submit" name="Send_Message" value="Send Message" class="btn btn-dark-purple" />
+                     		</td>
+                     	</tr>
+		          </table>
+              </form>
+
+												<?php }
+												
+elseif($this->uri->segment(3) == 'buysms'){ ?>
+			<p class="alert alert-info"> This is the area you are able to send Message Vehicle Wise to Student . select the Vehicle and Type the message in textbox and press send.</p>
+             <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?></p>
+           
+            <form method="post" action="<?php echo base_url();?>index.php/smsAjax/buysms">
+                     <?php 
+         $totmsg=$this->uri->segment(4);
+          if($totmsg)
+          		{
+					?>
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+          		<?php } else{
+          		     if($this->uri->segment(5) == 9){?>
+          		      
+	                <script>alert("You have not sufficient Balance Please Contact Admin or purchase. SMS not sent");</script>
+	  
+					<div class="alert alert-danger">You have not sufficient Balance Please Contact Admin or purchase sms. SMS not sent.</div>
+          		  <?php   }}?> 
+                     <table class="table">
+                     	<tr>
+                     		<td><strong>Select Quantity</strong> </td>
+                     		<td> <?php
+												
+												$sub = $this->db->query("SELECT * FROM sms_plan" );
+												if($sub->num_rows()>0){?>
+												  <div>
+														<select class="form-control" id="vehicle"
+															name="vehicle" required="required">
+															<option value=""> Select Quantity</option>
+															<?php 	foreach($sub->result() as $row):
+
+															echo '<option value="'.$row->id.'">'.$row->sms_quantity."[".$row->amount." rs./sms ]".'</option>';
+															endforeach;?>
+														</select>
+													</div>
+											<?php } ?>
+														</td>
+                     	</tr>
+                     
+                     	<tr>
+                     		<td colspan="2">
+                     			<input type="submit" name="Send_Message" value="Pay Amount" class="btn btn-dark-purple" />
+                     		</td>
+                     	</tr>
+		          </table>
+              </form>
+
+												<?php }
+
+elseif($this->uri->segment(3) == 'requestsms'){ ?>
+			<p class="alert alert-info"> This is the area you are able to send Message Vehicle Wise to Student . select the Vehicle and Type the message in textbox and press send.</p>
+             <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?></p>
+           
+            <form method="post" action="<?php echo base_url();?>index.php/smsAjax/requestsms">
+                     <?php $totmsg=$this->uri->segment(4);
+          if($totmsg)
+          		{
+					?><input type ="hidden" name = "totsmsv" value="<?php //echo $query->num_rows()+1;?>" >
+					
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+          		<?php }
+          			?> 
+                    <table class="table">
+                     	<tr>
+                     		<td><strong>Select Quantity</strong> </td>
+                     		<td> <?php
+												
+												$sub = $this->db->query("SELECT * FROM sms_plan" );
+												if($sub->num_rows()>0){?>
+												  <div>
+														<select class="form-control" id="vehicle"
+															name="vehicle" required="required">
+															<option value=""> Select Quantity</option>
+															<?php 	foreach($sub->result() as $row):
+
+															echo '<option value="'.$row->id.'">'.$row->sms_quantity."[".$row->amount." rs./sms ]".'</option>';
+															endforeach;?>
+														</select>
+													</div>
+											<?php } ?>
+														</td>
+                     	</tr>
+                     
+                     	<tr>
+                     		<td colspan="2">
+                     			<input type="submit" name="Send_Message" value="Pay Amount" class="btn btn-dark-purple" />
                      		</td>
                      	</tr>
 		          </table>

@@ -25,38 +25,34 @@
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+	
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
 	<body class="login">
 		<div class="row">
-			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-				<!-- <div class="logo"> -->
-					<!-- <img src="<?php echo base_url(); ?>assets/images/logo.png"> -->
-					<div style="text-align:center; color:white; font-size:20px;">
+		    <div class="col-md-3" style="padding: 0px; margin-top: 155px; margin-left: 100px;">
+	           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5093838037340612"
+     data-ad-slot="7535568800"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+	        </div>
+			<div class="col-md-4" style="padding: 0px; margin-top: 70px; ">
+			    	<div style="text-align:center; color:white; font-size:20px;">
 					<h1 style=""> NIKTECH SOFTWARE SOLUTIONS </h1>
 					</div>
-
-					<!----
-text-shadow: 0 1px 0 #ccc, 
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 5px 0 #aaa,
-               0 6px 1px rgba(0,0,0,.1),
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
-			   -->
-
-				<!-- </div> -->
+			
 				
 				<!-- start: LOGIN BOX -->
 				<div class="box-login" style="border: 1px solid #808909; margin-top: 40px;">
-				<img style="height:70px; width:70px; float:right;"src="<?php echo base_url(); ?>assets/images/newwlogo.png">
+				    
+				<img style="height:70px; width:70px; float:right;" src="<?php echo base_url(); ?>assets/images/newwlogo.png">
 					<h3><?php echo $this->lang->line('login_welcome_message'); ?></h3>
 					
 					<p>
@@ -81,7 +77,9 @@ text-shadow: 0 1px 0 #ccc,
 									<a class="forgot" href="#">
 										<?php echo $this->lang->line('login_forgot'); ?>
 									</a> </span>
+														
 							</div>
+	
 								<!--  <div class="form-group form-actions">
 								<span class="input-icon">
 									<input type="text" class="form-control password" name="mobile" placeholder="<?php echo $this->lang->line('login_mobile'); ?>">
@@ -148,20 +146,36 @@ text-shadow: 0 1px 0 #ccc,
 					<!-- end: COPYRIGHT -->
 				</div>
 				<!-- end: FORGOT BOX -->
-			</div>
 			
+				<br>
+			<br>
+			<br><br>
+				<br>
+			<br><br>
+			<br>
+			<br><br>
+				<br>
+			<br><br>
+			<br>
+			</div>
+		
+			<div class="col-md-4" style="padding: 0px; margin-top: 175px; ">
+	            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- schooldemo -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5093838037340612"
+                     data-ad-slot="7883601903"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+	        </div>
 			
 				<!-- end: FORGOT BOX -->
 			</div>
-			
-		</div>
-		<!-- start: MAIN JAVASCRIPTS -->
-		<!--[if lt IE 9]>
-		<script src="assets/plugins/respond.min.js"></script>
-		<script src="assets/plugins/excanvas.min.js"></script>
-		<script type="text/javascript" src="assets/plugins/jQuery/jquery-1.11.1.min.js"></script>
-		<![endif]-->
-		<!--[if gte IE 9]><!-->
+	
 			<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
 		<!--<![endif]-->
 		<script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>

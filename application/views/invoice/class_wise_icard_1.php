@@ -83,11 +83,9 @@
             $this->db->where('student_id',$personalInfo->id);
             $guardian_info=$this->db->get('guardian_info');
             $gurdianInfo = $guardian_info->row();?>
-            <div class="row">
-            <div class="col-md-2">
-
+            <div class="col-sd-6">
                  <center>
-                        <table style="width: 60%; font-size:12px; font-weight: bold; ">
+                        <table style="width: 65%; font-size:12px; font-weight: bold; ">
                             <tr style="background-color:#188f7f; color:white;">
                                 <?php $this->db->where("id",$this->session->userdata("school_code"));
 				$schoolinfo = $this->db->get("school")->row();
@@ -110,7 +108,7 @@
 							 </td>
 							</tr>
                             <tr>
-                                <td style="padding:4px; width:220px;">Name</td>
+                                <td style="padding:3px; width:220px;">Name</td>
                                 <td style="width:300px;  text-transform: uppercase;color:#188f7f;">
                                     <?php echo $personalInfo->name; ?>
                                 </td>
@@ -118,9 +116,9 @@
                                     <div>
                                         <!--<div class="fileupload fileupload-new" data-provides="fileupload">-->
                                             <div
-                                                style="width:150px; height:150px; border: 1px solid #ccc; margin:auto;">
+                                                style="width:150px; height:120px; border: 1px solid #ccc; margin:auto;">
                                                 <?php if(strlen($personalInfo->photo > 0)):?>
-                                                <img alt="<?php echo $personalInfo->name;?>" height="148" width="138"
+                                                <img alt="<?php echo $personalInfo->name;?>" height="120" width="138"
                                                     src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $personalInfo->photo;?>" />
                                                 <?php else:?>
                                                 <?php if($personalInfo->gender == 1):?>
@@ -153,40 +151,40 @@
                             </tr>
 
                             <tr>
-                                <td style="padding:4px">Class</td>
+                                <td style="padding:3px">Class</td>
                                 <?php $this->db->select('class_name,section');
 					  $this->db->where('id',$personalInfo->class_id);
 				      $classInfo=$this->db->get('class_info')->row();?>
                                 <td style="color:#FF00FF;"><?php echo $classInfo->class_name; ?></td>
                             </tr>
                             <tr>
-                                <td style="padding:4px">Student ID</td>
+                                <td style="padding:3px">Student ID</td>
                                 <td style="color:red;">
                                     <?php echo $personalInfo->username; ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding:4px">DOB</td>
+                                <td style="padding:3px">DOB</td>
                                 <td style="color:#006400;">
                                     <?php if(strlen($personalInfo->dob) > 1) {echo $personalInfo->dob; }else echo "N/A"; ?>
                                 </td>
                             </tr>
 
                             <tr>
-                                <td style="padding:4px">Father Name</td>
+                                <td style="padding:3px">Father Name</td>
                                 <td style="text-transform: uppercase;color:blue;">
                                     <?php echo $gurdianInfo->father_full_name; ?>
                                 </td>
                             </tr>
                         
                             <tr>
-                                <td style="padding:4px ">Mobile Number</td>
+                                <td style="padding:3px ">Mobile Number</td>
                                 <td style="color:#A52A2A;" >
                                     <?php echo $personalInfo->mobile; ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding:4px">Address</td>
+                                <td style="padding:3px">Address</td>
                                 <td style="color:#008000;">
                                     <?php echo $personalInfo->address1; ?>
                                 </td>
@@ -194,12 +192,6 @@
                         </table><br><br>
                         </center>
                     </div>
-                    
-
-
-   </div>
-
-
                     
                      <?php 	} ?>
                  </div>

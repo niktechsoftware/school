@@ -462,6 +462,7 @@ function admissionSuccess(){
 		}else{
 			$update_date = "0000-00-00 00:00:00";
 		}
+	
 		$datastudent = array(
 		    "sno" => $this->input->post("serialNumber"),
 		    "book_no" => $this->input->post("bookNumber"),
