@@ -266,11 +266,11 @@ function payfee(){
 		$this->load->view("includes/mainContent", $data);
   }
   function printinvoice(){
-    $data['stuid']=$this->uri->segment(3);
-    $data['month']=$this->uri->segment(4);
-    $data['invoice']=$this->uri->segment(5);
+        $data['stuid']=$this->uri->segment(3);
+        $data['month']=$this->uri->segment(4);
+        $data['invoice']=$this->uri->segment(5);
 
-    $data['pageTitle'] = 'Transport Fee Invoice';
+        $data['pageTitle'] = 'Transport Fee Invoice';
 		$data['smallTitle'] = 'Transport Fee Invoice';
 		$data['mainPage'] = 'invoice';
 		$data['subPage'] = 'Transport Fee Invoice';

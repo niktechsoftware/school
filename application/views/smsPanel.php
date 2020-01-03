@@ -110,6 +110,20 @@
 												</button>
 												</a>
 											</div>
+												<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/login/mobileNotice/buysms">
+												<button class="btn panel-green btn-block btn-icon space10 ">
+
+											<font size="5">	Buy SMS <span class="badge badge-purple partition-orenge"> 10 </span>
+												</button>
+												</a>
+											</div>
+												<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/login/mobileNotice/requestsms">
+												<button class="btn panel-purple btn-block btn-icon space10 ">
+
+											<font size="5">	Request to Admin for SMS <span class="badge badge-blue partition-orenge"> 11 </span>
+												</button>
+												</a>
+											</div>
 											<!-- <div class="col-sm-4">
 												<button class="btn panel-azure btn-block  btn-icon space10">
 

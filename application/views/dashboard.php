@@ -185,7 +185,6 @@ $school_code = $this->session->userdata("school_code");
       </div>
     </div>
   </div>
-
   <div class="col-md-6 col-lg-3 col-sm-6">
     <div class="panel panel-default panel-white core-box">
       <div class="panel-body no-padding">
@@ -212,7 +211,6 @@ $school_code = $this->session->userdata("school_code");
       </div>
     </div>
   </div>
-
   <div class="col-md-6 col-lg-3 col-sm-6">
     <div class="panel panel-default panel-white core-box">
       <div class="panel-body no-padding">
@@ -258,7 +256,6 @@ $school_code = $this->session->userdata("school_code");
       </div>
     </div>
   </div>
-
   <!--<div class="col-md-6 col-lg-3 col-sm-6">-->
   <!--        <div class="panel panel-default panel-white core-box">-->
   <!--            <div class="panel-body no-padding">-->
@@ -279,239 +276,108 @@ $school_code = $this->session->userdata("school_code");
 <!--1st row end-->
 <!--2nd row start-->
 <div class="row">
-<div class="col-md-6 col-lg-3 col-sm-6">
-        <div class="panel panel-default panel-white core-box">
-            <div class="panel-body no-padding">
-                <div class="partition-pink text-center core-icon">
-                    <i class="fa fa-users fa-2x icon-big"></i>
-                     <br>
-                    	<span class="subtitle"> <?php 
-                    	$this->db->where("school_code",$this->session->userdata("school_code"));
-			            $this->db->where("status",1); 
-			             $this->db->where("job_category",3);
-		                 $info = $this->db->get("employee_info")->num_rows();
-		                 echo $info ;
-                    	?>  </span>
+    <div class="col-md-6 col-lg-3 col-sm-6">
+            <div class="panel panel-default panel-white core-box">
+                <div class="panel-body no-padding">
+                    <div class="partition-pink text-center core-icon">
+                        <i class="fa fa-users fa-2x icon-big"></i>
+                         <br>
+                        	<span class="subtitle"> <?php 
+                        	$this->db->where("school_code",$this->session->userdata("school_code"));
+    			            $this->db->where("status",1); 
+    			             $this->db->where("job_category",3);
+    		                 $info = $this->db->get("employee_info")->num_rows();
+    		                 echo $info ;
+                        	?>  </span>
+                    </div>
+                    <a href="<?php echo base_url(); ?>index.php/login/classteacher">
+                    <div class="padding-20 core-content">
+                        <h4 class="title block no-margin">Total Teachers</h4>
+                        <br/>
+                        <span class="subtitle"> Access To Class Teachers. </span>
+                    </div>
+                    </a>
                 </div>
-                <a href="<?php echo base_url(); ?>index.php/login/classteacher">
-                <div class="padding-20 core-content">
-                    <h4 class="title block no-margin">Total Teachers</h4>
-                    <br/>
-                    <span class="subtitle"> Access To Class Teachers. </span>
-                </div>
-                </a>
             </div>
         </div>
-    </div>
-	<div class="col-md-6 col-lg-3 col-sm-6">
-        <div class="panel panel-default panel-white core-box">
-            <div class="panel-body no-padding">
-                <div class="partition-blue text-center core-icon">
-                    <i class="fa fa-users fa-2x icon-big"></i>
-                   </div>
-                <a href="<?php echo base_url(); ?>index.php/login/newAdmission">
-				<div class="padding-20 core-content">
-				   <!-- <h4 class="title block no-margin">Student Admission</h4>-->
-				   <h4 class="title block no-margin"> New Registration</h4><br>
-				   <div class="row">
-				      
-					   <div class="col-sm-6">
-					   <h6 class="block no-margin">Total Students</h6>
-						<?php //$fsd = $this->session->userdata("fsd");
-						$this->db->select('*');
-							$this->db->from('student_info');
-							$this->db->join('class_info','class_info.id=student_info.class_id');
-							$this->db->where("class_info.school_code",$school_code);
-							$query=$this->db->get();
-							echo $query->num_rows() ;?>
-					   </div>
-					   <div class="col-sm-6">
-					   <h6 class="block no-margin">Current Year Students</h6>
-					   <?php $fsd = $this->session->userdata("fsd");
-						$this->db->select('*');
-							$this->db->from('student_info');
-							$this->db->join('class_info','class_info.id=student_info.class_id');
-							$this->db->where("class_info.school_code",$school_code);
-							$this->db->where("student_info.status",1);
-							$this->db->where("student_info.fsd",$fsd);
-							$query=$this->db->get();
-							echo $query->num_rows() ;?>
-					   </div>
-				   </div>
-				  
+    <div class="col-md-6 col-lg-3 col-sm-6">
+            <div class="panel panel-default panel-white core-box">
+                <div class="panel-body no-padding">
+                    <div class="partition-blue text-center core-icon">
+                        <i class="fa fa-users fa-2x icon-big"></i>
+                       </div>
+                    <a href="<?php echo base_url(); ?>index.php/login/newAdmission">
+    				<div class="padding-20 core-content">
+    				   <!-- <h4 class="title block no-margin">Student Admission</h4>-->
+    				   <h4 class="title block no-margin"> New Registration</h4><br>
+    				   <div class="row">
+    				      
+    					   <div class="col-sm-6">
+    					   <h6 class="block no-margin">Total Students</h6>
+    						<?php //$fsd = $this->session->userdata("fsd");
+    						$this->db->select('*');
+    							$this->db->from('student_info');
+    							$this->db->join('class_info','class_info.id=student_info.class_id');
+    							$this->db->where("class_info.school_code",$school_code);
+    							$query=$this->db->get();
+    							echo $query->num_rows() ;?>
+    					   </div>
+    					   <div class="col-sm-6">
+    					   <h6 class="block no-margin">Current Year Students</h6>
+    					   <?php $fsd = $this->session->userdata("fsd");
+    						$this->db->select('*');
+    							$this->db->from('student_info');
+    							$this->db->join('class_info','class_info.id=student_info.class_id');
+    							$this->db->where("class_info.school_code",$school_code);
+    							$this->db->where("student_info.status",1);
+    							$this->db->where("student_info.fsd",$fsd);
+    							$query=$this->db->get();
+    							echo $query->num_rows() ;?>
+    					   </div>
+    				   </div>
+    				  
+                    </div>
+                    </a>
                 </div>
-                </a>
             </div>
         </div>
-    </div>
-   	
-							<div class="col-md-5 col-lg-3 col-sm-5">
-								<div class="panel panel-blue core-box">
-									<div class="e-slider owl-carousel owl-theme">
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-											
-													<div class="text-white text-bold">
-												<h4>	Student Leave Request</h4>
-													</div>
-													<div class="text-white text-large pull-left">
-													    Pending <br>
-														<?php	$this->db->where("school_code",$school_code);
-                                						$this->db->where("approve","NO");
-                                						$data=$this->db->get('stu_leave');
-                                							if($data->num_rows()>0){
-                                				      	$count=0;
-                                						foreach($data->result() as $row):
-                                						  $leave= $row->total_leave;
-                                						  $count=$count+$leave;
-                                						 // echo "<pre>";
-                                						  endforeach;
-                                						  echo $count;
-                                							} else{ echo "0";}?>
-													</div>
-													<div class="text-white text-large pull-right">
-											     	Approved <br>
-												
-														  
-                                				<?php	$this->db->where("school_code",$school_code);
-                            						$this->db->where("approve","YES");
-                            						$data=$this->db->get('stu_leave');
-                            							if($data->num_rows()>0){
-                            				      	$count=0;
-                            						foreach($data->result() as $row):
-                            						  $leave= $row->total_leave;
-                            						  $count=$count+$leave;
-                            						 // echo "<pre>";
-                            						  endforeach;
-                            						  echo $count;
-                            							} else{ echo "0";}?> </a>
-														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-										<div class="item">
-											<div class="panel-body">
-														<div class="core-box">
-										
-													<div class="text-white text-bold">
-												<h4>Employee Leave Request</h4>
-													</div>
-													<div class="text-white text-large pull-left">
-													   Pending <br>
-													<?php	$this->db->where("school_code",$school_code);
-                                						$this->db->where("status",0);
-                                						$data=$this->db->get('emp_leave');
-                                							if($data->num_rows()>0){
-                                				      	$count=0;
-                                						foreach($data->result() as $row):
-                                						  $leave= $row->total_leave;
-                                						  $count=$count+$leave;
-                                						 // echo "<pre>";
-                                						  endforeach;
-                                						  echo $count;
-                                							} else{ echo "No Pending Request";}?>
-                                						</div>							
-													<div class="text-white text-large pull-right">
-											     	Approved <br>
-												
-														  
-                                				<?php		
-                                                $this->db->where("school_code",$school_code);
-                        						$this->db->where("status",1);
-                        						$data=$this->db->get('emp_leave');
-                        							if($data->num_rows()>0){
-                        				      	$count=0;
-                        						foreach($data->result() as $row):
-                        						  $leave= $row->total_leave;
-                        						  $count=$count+$leave;
-                        						 // echo "<pre>";
-                        						  endforeach;
-                        						  echo $count;
-                        							} else{ echo "0";}?> </a>
-														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
-													</div>
-												</div>
-												</div>
-											</div>
-											
-										</div>
-										
-									</div>
-								</div>
-							
-    
-    <div class="row">
-							<div class="col-md-5 col-lg-3 col-sm-5">
-								<div class="panel panel-blue core-box">
-									<div class="e-slider owl-carousel owl-theme">
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-												<?php   $this->db->where("school_code",$school_code);
-		$sender=$this->db->get("sms_setting")->row(); ?>
-													<div class="text-white text-bold">
-														Available SMS [<?php echo checkBalSms($sender->uname,$sender->password);?>]
-													</div>
-													<div class="text-white text-large pull-left">
-														<?php $datj=date("Y-m-d");echo date("d-m-Y");?>
-													</div>
-													<div class="text-white text-large pull-right">
-													<?php 
-													$this->db->where("school_code",$this->session->userdata("school_code"));
-													$this->db->where("DATE(date)",$datj);
-													$getsmsn = $this->db->get("sent_sms_master");
-													$tot = 0;$sent =0; $wrong =0;
-													if($getsmsn->num_rows()>0){
-														
-													foreach($getsmsn->result() as $fty):
-													$this->db->where("requestId",$fty->response_id);
-									$sentsms = $this->db->get("savesms");
-                          if($sentsms->num_rows()>0){
-                            $sent+=$sentsms->num_rows();
-                          }
-													
-													$this->db->where("sms_master_id",$fty->id);
-													$wrongsms = $this->db->get("wrong_number_sms");
-                          if($wrongsms->num_rows()>0){
-													$wrong +=$wrongsms->num_rows();
-                      }
-													endforeach;
-													$tot=$sent+$wrong;
-													}?>
-														 Sent <?php echo $tot;?> </a>
-														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-										<div class="item">
-											<div class="panel-body">
-												<div class="core-box">
-													<div class="text-white text-large text-bold">
-														Todays Sent [<?php echo $tot;?>]
-													</div>
-													
-											
-														 Delivered =<?php echo $sent;?>
-														 Wrong = <?php echo $wrong;?>
-														 
-													</div>
-												</div>
-											</div>
-											
-										</div>
-										
-									</div>
-								</div>
-							</div>
-     </div>
-    <div class="row" Style="margin-left:2px;">
-      <div class="col-lg-6 col-md-12">
-    		<div class="panel panel-blue core-box">
+   <!-- <div class="col-md-6 col-lg-3 col-sm-6">
+            <div class="panel panel-default panel-white core-box">
+                <div class="panel-body no-padding">
+                    <div class="partition-pink text-center core-icon">
+                        <i class="fa fa-users fa-2x icon-big"></i>
+                         <br><span class="subtitle">  </span>
+                    </div>
+                    <a href="#">
+                    <div class="padding-20 core-content">
+                        <h4 class="title block no-margin">Your Due Amount</h4>
+                        <br/><span class="subtitle"> <?php //if($client_due_list){echo $client_due_list->amount;}else{ echo "0";} ?> </span>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>-->
+    <div class="col-md-6 col-lg-3 col-sm-6">
+            <div class="panel panel-default panel-white core-box">
+                <div class="panel-body no-padding">
+                    <div class="partition-blue text-center core-icon">
+                        <i class="fa fa-users fa-2x icon-big"></i>
+                       </div>
+                    <a href="<?php echo base_url();?>/index.php/login/smsreport">
+    				<div class="padding-20 core-content">
+    				   <h4 class="title block no-margin">Your SMS Balance</h4><br>
+    				    <span class="subtitle"><?php echo $cbs;?>  </span>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+</div>
+<!--2nd row end-->
+<!--3rd row start-->
+<div class="row">
+    <div class="col-md-6 col-lg-3 col-sm-6">
+    								<div class="panel panel-blue core-box">
 									<div class="e-slider owl-carousel owl-theme">
 										<div class="item">
 											<div class="panel-body">
@@ -559,12 +425,9 @@ $school_code = $this->session->userdata("school_code");
 										</div>
 										
 									</div>
-    
-    
-    
-  </div>
-  <div class="col-lg-6 col-md-12">
-    		<div class="panel panel-blue core-box">
+    								</div>
+    <div class="col-md-6 col-lg-3 col-sm-6">
+    								<div class="panel panel-blue core-box">
 									<div class="e-slider owl-carousel owl-theme">
 										<div class="item">
 											<div class="panel-body">
@@ -616,15 +479,170 @@ $school_code = $this->session->userdata("school_code");
 										</div>
 										
 									</div>
-    </div>
-  </div>
-
-  
-    
-    
-    <!--2nd row end-->
+    								</div>
+    <div class="col-md-6 col-lg-3 col-sm-6">
+    								<div class="panel panel-blue core-box">
+    									<div class="e-slider owl-carousel owl-theme">
+    										<div class="item">
+    											<div class="panel-body">
+    												<div class="core-box">
+    											
+    													<div class="text-white text-bold">
+    												<h4>	Student Leave Request</h4>
+    													</div>
+    													<div class="text-white text-large pull-left">
+    													    Pending <br>
+    														<?php	$this->db->where("school_code",$school_code);
+                                    						$this->db->where("approve","NO");
+                                    						$data=$this->db->get('stu_leave');
+                                    							if($data->num_rows()>0){
+                                    				      	$count=0;
+                                    						foreach($data->result() as $row):
+                                    						  $leave= $row->total_leave;
+                                    						  $count=$count+$leave;
+                                    						 // echo "<pre>";
+                                    						  endforeach;
+                                    						  echo $count;
+                                    							} else{ echo "0";}?>
+    													</div>
+    													<div class="text-white text-large pull-right">
+    											     	Approved <br>
+    												
+    														  
+                                    				<?php	$this->db->where("school_code",$school_code);
+                                						$this->db->where("approve","YES");
+                                						$data=$this->db->get('stu_leave');
+                                							if($data->num_rows()>0){
+                                				      	$count=0;
+                                						foreach($data->result() as $row):
+                                						  $leave= $row->total_leave;
+                                						  $count=$count+$leave;
+                                						 // echo "<pre>";
+                                						  endforeach;
+                                						  echo $count;
+                                							} else{ echo "0";}?> </a>
+    														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+    													</div>
+    												</div>
+    											</div>
+    											
+    										</div>
+    										<div class="item">
+    											<div class="panel-body">
+    														<div class="core-box">
+    										
+    													<div class="text-white text-bold">
+    												<h4>Employee Leave Request</h4>
+    													</div>
+    													<div class="text-white text-large pull-left">
+    													   Pending <br>
+    													<?php	$this->db->where("school_code",$school_code);
+                                    						$this->db->where("status",0);
+                                    						$data=$this->db->get('emp_leave');
+                                    							if($data->num_rows()>0){
+                                    				      	$count=0;
+                                    						foreach($data->result() as $row):
+                                    						  $leave= $row->total_leave;
+                                    						  $count=$count+$leave;
+                                    						 // echo "<pre>";
+                                    						  endforeach;
+                                    						  echo $count;
+                                    							} else{ echo "No Pending Request";}?>
+                                    						</div>							
+    													<div class="text-white text-large pull-right">
+    											     	Approved <br>
+    												
+    														  
+                                    				<?php		
+                                                    $this->db->where("school_code",$school_code);
+                            						$this->db->where("status",1);
+                            						$data=$this->db->get('emp_leave');
+                            							if($data->num_rows()>0){
+                            				      	$count=0;
+                            						foreach($data->result() as $row):
+                            						  $leave= $row->total_leave;
+                            						  $count=$count+$leave;
+                            						 // echo "<pre>";
+                            						  endforeach;
+                            						  echo $count;
+                            							} else{ echo "0";}?> </a>
+    														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+    													</div>
+    												</div>
+    												</div>
+    											</div>
+    											
+    										</div>
+    										
+    									</div>
+    								</div>
+    <div class="col-md-6 col-lg-3 col-sm-6">
+    								<div class="panel panel-blue core-box">
+    									<div class="e-slider owl-carousel owl-theme">
+    										<div class="item">
+    											<div class="panel-body">
+    												<div class="core-box">
+    												<?php   $this->db->where("school_code",$school_code);
+    		$sender=$this->db->get("sms_setting")->row(); ?>
+    													<div class="text-white text-bold">
+    														Available SMS [<?php echo checkBalSms($sender->uname,$sender->password);?>]
+    													</div>
+    													<div class="text-white text-large pull-left">
+    														<?php $datj=date("Y-m-d");echo date("d-m-Y");?>
+    													</div>
+    													<div class="text-white text-large pull-right">
+    													<?php 
+    													$this->db->where("school_code",$this->session->userdata("school_code"));
+    													$this->db->where("DATE(date)",$datj);
+    													$getsmsn = $this->db->get("sent_sms_master");
+    													$tot = 0;$sent =0; $wrong =0;
+    													if($getsmsn->num_rows()>0){
+    														
+    													foreach($getsmsn->result() as $fty):
+    													$this->db->where("requestId",$fty->response_id);
+    									$sentsms = $this->db->get("savesms");
+                              if($sentsms->num_rows()>0){
+                                $sent+=$sentsms->num_rows();
+                              }
+    													
+    													$this->db->where("sms_master_id",$fty->id);
+    													$wrongsms = $this->db->get("wrong_number_sms");
+                              if($wrongsms->num_rows()>0){
+    													$wrong +=$wrongsms->num_rows();
+                          }
+    													endforeach;
+    													$tot=$sent+$wrong;
+    													}?>
+    														 Sent <?php echo $tot;?> </a>
+    														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+    													</div>
+    												</div>
+    											</div>
+    											
+    										</div>
+    										<div class="item">
+    											<div class="panel-body">
+    												<div class="core-box">
+    													<div class="text-white text-large text-bold">
+    														Todays Sent [<?php echo $tot;?>]
+    													</div>
+    													
+    											
+    														 Delivered =<?php echo $sent;?>
+    														 Wrong = <?php echo $wrong;?>
+    														 
+    													</div>
+    												</div>
+    											</div>
+    											
+    										</div>
+    										
+    									</div>
+    								</div>
+</div>
+<!--3rd row end-->
+<!--4rth row start-->
 <div class="row">
-
 <div class="col-md-6 col-lg-6">
        <div class="panel panel-blue core-box">
 									<div class="e-slider owl-carousel owl-theme">
@@ -735,7 +753,7 @@ $school_code = $this->session->userdata("school_code");
 
 
   </div>
-
+<!--4rth row end-->
 <div class="row">
 
 <div class="col-md-4 col-lg-4">
