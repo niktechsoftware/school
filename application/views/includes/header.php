@@ -188,6 +188,8 @@
             <a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
             <i class="fa fa-bars"></i>
             </a>
+            
+            <?php if($this->session->userdata('login_type') == 'admin'){ ?>
             <a style="margin-left:120px;"  href="https://niktechsoftware.com/index.php/welcome/pay" target="_blank"> 
             <span class="button_blink" style="margin-top:-5px;">Due Ammount : <?php
             	$school_code=   $this->session->userdata("school_code");
@@ -196,6 +198,8 @@
              $client_due_list = $this->client_model->list_product($cid);
             if($client_due_list){echo $client_due_list->amount;}else{ echo "0";} ?> </span>
             </a>
+            <?php }?>
+            
         </div>
         <div class="col-md-2" style="margin-top:10px">
             <a style="margin-left:120px;"  href="<?php echo base_url();?>assets/apk/niktech_software.apk" target="_blank"> 

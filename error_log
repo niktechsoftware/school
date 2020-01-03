@@ -1689,3 +1689,356 @@ Stack trace:
 #8 {main}
   thrown in /home/schoodhe/public_html/school/application/views/includes/header.php on line 197
 [02-Jan-2020 16:36:13 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/controllers/api/bday_data.php on line 34
+[03-Jan-2020 11:30:29 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:29
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 29
+[03-Jan-2020 11:49:41 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function query() on string in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:29
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 29
+[03-Jan-2020 11:50:55 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function query() on string in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:29
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 29
+[03-Jan-2020 11:59:28 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Conn::db() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:27
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 27
+[03-Jan-2020 11:59:57 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Conn::db() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:27
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 27
+[03-Jan-2020 12:03:08 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Class 'Product' not found in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:28
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 28
+[03-Jan-2020 12:08:29 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Class 'Product' not found in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:35
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 35
+[03-Jan-2020 12:09:48 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Conn::prepare() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:28
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/api/common_user.php(36): Common_user->common_user()
+#1 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 28
+[03-Jan-2020 12:10:13 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Conn::prepare() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:28
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/api/common_user.php(36): Common_user->common_user()
+#1 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 28
+[03-Jan-2020 12:11:30 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Conn::prepare() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:29
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/api/common_user.php(37): Common_user->common_user()
+#1 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 29
+[03-Jan-2020 12:19:54 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_query() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:44
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 44
+[03-Jan-2020 12:21:33 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_query() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:44
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 44
+[03-Jan-2020 12:24:08 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect() in /home/schoodhe/public_html/school/application/models/conn.php:4
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/api/common_user.php(42): Conn->db()
+#1 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/models/conn.php on line 4
+[03-Jan-2020 12:44:15 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_selectdb() in /home/schoodhe/public_html/school/application/views/conn.php:3
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/api/common_user.php(15): CI_Loader->view('conn')
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(309): Common_user->__construct()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/conn.php on line 3
+[03-Jan-2020 12:46:10 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 12:52:12 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_fetch_array() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:32
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 32
+[03-Jan-2020 13:09:21 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('24', '317', '79')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1084
+[03-Jan-2020 13:28:30 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:28:45 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:28:50 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:28:57 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:30:51 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:32:44 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:40:43 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:40:59 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:45:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 13:56:03 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 14:03:56 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on integer in /home/schoodhe/public_html/school/application/views/smsreport.php:155
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('smsreport')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/login.php(1410): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->smsreport()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/smsreport.php on line 155
+[03-Jan-2020 14:38:54 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_result() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:37
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(739): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 37
+[03-Jan-2020 15:18:06 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 374
+[03-Jan-2020 15:18:13 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 374
+[03-Jan-2020 15:20:48 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 374
+[03-Jan-2020 15:22:15 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 374
+[03-Jan-2020 15:23:03 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 374
+[03-Jan-2020 15:31:46 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Unsupported operand types in /home/schoodhe/public_html/school/application/views/invoice/format_4.php:523
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(696): CI_Loader->view('invoice/format_...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->result('3216', '20')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 523
+[03-Jan-2020 16:08:19 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ':', expecting ';' in /home/schoodhe/public_html/school/application/libraries/REST_Controller.php on line 993
+[03-Jan-2020 16:20:13 Asia/Calcutta] PHP Fatal error:  Class 'REST_Controller' not found in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 5
+[03-Jan-2020 16:20:26 Asia/Calcutta] PHP Fatal error:  Class 'REST_Controller' not found in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 5
+[03-Jan-2020 16:21:19 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Class 'REST_Controller' not found in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:39
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(738): Common_user->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller1->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 39
+[03-Jan-2020 16:21:32 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Class 'REST_Controller' not found in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:39
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(738): Common_user->index_get('index_post')
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller1->_remap('index_post', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 39
+[03-Jan-2020 16:28:09 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_Input::method() in /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php:1473
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(477): REST_Controller1->_parse_put()
+#1 /home/schoodhe/public_html/school/application/controllers/api/common_user.php(13): REST_Controller1->__construct()
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(309): Common_user->__construct()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php on line 1473
+[03-Jan-2020 16:28:21 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_Input::method() in /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php:1473
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(477): REST_Controller1->_parse_put()
+#1 /home/schoodhe/public_html/school/application/controllers/api/common_user.php(13): REST_Controller1->__construct()
+#2 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(309): Common_user->__construct()
+#3 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#4 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php on line 1473
+[03-Jan-2020 16:38:46 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Common_user::index_post(), 0 passed in /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php on line 738 and exactly 3 expected in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:47
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(738): Common_user->index_post()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller1->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 47
+[03-Jan-2020 16:39:48 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Common_user::index_post(), 0 passed in /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php on line 738 and exactly 3 expected in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:52
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(738): Common_user->index_post()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller1->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 52
+[03-Jan-2020 16:55:38 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on array in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:57
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(738): Common_user->index_post()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller1->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 57
+[03-Jan-2020 17:02:59 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:58
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(738): Common_user->index_post()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller1->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 58
+[03-Jan-2020 17:03:24 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:58
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(738): Common_user->index_post()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller1->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 58

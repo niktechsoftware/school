@@ -67,13 +67,14 @@ class SmsAjax extends CI_Controller{
 	}
 	
 	function sendNotice(){
-	$count=0;
+    	$count=0;
 		$smsc =0;
 		$smscount=0;
 		$totsmssent = $this->input->post("totsmsv");
 		$totbal = $this->input->post("totbal");
 	
 		if($totbal > $totsmssent){
+
 		$school=$this->session->userdata("school_code");
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		$sende_Detail =$sender->row();
@@ -482,7 +483,42 @@ class SmsAjax extends CI_Controller{
 		$data['mainContent'] = 'wrongsmsdetail';
 		$this->load->view("includes/mainContent", $data);
 }
+function resendsms(){
+    
+    	$count=0;
+		$smsc =0;
+		$smscount=0;
+// 		$totsmssent = $this->input->post("totsmsv");
+// 		$totbal = $this->input->post("totbal");
+	
+// 		if($totbal > $totsmssent){
 
+		$school=$this->session->userdata("school_code");
+		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+		$sende_Detail =$sender->row();
+// 		print_r($sende_Detail);
+		$msg =	$this->input->post("meg");
+	
+		$fmobile1 = $this->input->post("m_number");
+		$str_arr=explode(",",$fmobile1);
+		$totnumb =  sizeof($str_arr);
+		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		$master_id=$max_id->maxid+1;
+		
+		$fmobile = $this->smsmodel->getMobile($str_arr,$msg,$master_id,1);
+	
+				if($this->input->post("language")==1){
+				  $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
+				  
+				}else{
+				  $getv= mysmsHindi($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
+				     }	
+		$dt= $this->smsmodel->sentmasterRecord($msg,$totnumb,$master_id,$getv);
+		if($dt){
+		   echo "Sent"; 
+		}	
+
+}
   function buysms(){
     	header("Pragma: no-cache");
 		header("Cache-Control: no-cache");

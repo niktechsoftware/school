@@ -353,12 +353,15 @@
                         $ctotal["tot4"]=0;
 						$ctotal["tot5"]=0;
                         $ctotal["tot6"]=0;
+                        	
                         $cumulativetotal=0;
 					   $totalp= 0;   
 					  // $pi=1;
 					   $grandtotal=0;
 					   $grandtotal_2=0;
+					   
 				foreach($resultData as $sub){
+				     $m1=array();
 				$this->db->where('class_id',$classid->class_id);
 				$this->db->where('id',$sub['subject']);
 				$subjectname=$this->db->get('subject'); 
@@ -371,6 +374,7 @@
 					$ttal=0;
 					$ttal_2=0;
 					$gtptal=0;
+				    // $m1[]=array();
 					$gtptal11=0;
 					$gtptal_2=0;
 					$i=1; $t=0;?>
@@ -392,10 +396,13 @@
 					$this->db->where('fsd',$fsd);
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
-							$marks=$marks->row();	
+							$marks=$marks->row();
+							  
 					if(is_numeric($marks->marks)){
+					  $m1[]=$marks->marks;
 					  $gtptal= $gtptal+$marks->marks;
-					}else{ $gtptal= $gtptal;}
+					}else{ //$m1=array();
+					    $gtptal= $gtptal;}
 					
 							echo $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
@@ -429,10 +436,14 @@
 					$this->db->where('fsd',$fsd);
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
-							$marks=$marks->row();	
+							$marks=$marks->row();
+							 
 					if(is_numeric($marks->marks)){
+					     $m1[]=$marks->marks;
 					  $gtptal= $gtptal+$marks->marks;
-					}else{ $gtptal= $gtptal;}
+					}else{ 
+					     //$m1=array();
+					    $gtptal= $gtptal;}
 					
 							echo $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
@@ -481,9 +492,12 @@
 					$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
+							 
 					if(is_numeric($marks->marks)){
+					     $m1[]=$marks->marks;
 					  $gtptal= $gtptal+$marks->marks;
-					}else{ $gtptal= $gtptal;}
+					}else{  //$m1=array();
+					    $gtptal= $gtptal;}
 					
 							echo $marks->marks;
 							$this->db->where('subject_id',$sub['subject']);
@@ -504,7 +518,15 @@
 				<?php $i++; $t++;endforeach;  ?>
 																						<?php } ?>
 				<!--<td class="center bold" ><?php  //$grandtotal=$grandtotal+$gtptal; echo $gtptal; echo $gtptal11; ?>/<?php print_r($ttal);?></td>-->
-				<td class="center bold" ><?php echo $bb= round((($gtptal)/2), 2); 	?>/10</td>
+				<td class="center bold" ><?php 
+				
+			      sort($m1);
+				 array_shift($m1);
+				
+				$m2=$m1[0];
+				$m3=$m1[1];
+				$avgm=$m2+$m3;
+				echo $bb= round((($avgm)/2), 2); 	?>/10</td>
 			    <!--1st term marks end-->
 				<!--2nd term marks start-->
 				<?php  if($examid_2->num_rows()==0){ ?>
@@ -539,12 +561,13 @@
 					}else{ $ttal_2= $ttal_2;
 					 $dhtm= $dhtm;   
 					}
+					
 						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
 						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 				<td colspan="1" >
-					<?php   echo $overall= $gtptal_2+$gtptal;  ?>/<?php echo $overall_tot=$ttal_2+$ttal; ?></td>
+					<?php   echo $overall= $gtptal_2+$bb;  ?>/<?php echo $overall_tot=$ttal_2+10; ?></td>
 				<td colspan="1" ></td>
 				<?php }else{ 	$ii=1; ?>
 				<?php foreach ($examid_2->result() as $value):?>
@@ -570,6 +593,7 @@
 				$exammm=	$exammm_row->max_m;
 			if(is_numeric($exammm)){
 					  $ttal_2=$ttal_2+$exammm;
+					  print_r($ttal_2);
 				    $dhtm=$exammm+$dhtm;
 					}else{ $ttal_2= $ttal_2;
 					 $dhtm= $dhtm;   

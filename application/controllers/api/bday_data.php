@@ -48,17 +48,16 @@ class Bday_data extends REST_Controller {
                     // $data[] =$sm."hiii".$cm;
                     if(($cd==$sd) && ($cm==$sm))
                     {
-                         $data = "khjkj";//$cd."=".$sd."|".$cm."=".$cm;
                         $this->db->where('id',$s_data->class_id);
                         $scl = $this->db->get('class_info')->row();
                         
                         $this->db->where('id',$scl->section);
                         $ss = $this->db->get('class_section')->row();
-                        $data = array("stud_name" => $s_data->name,
-                                    "class" => $scl->class_name,
-                                    "section" => $ss->section);
-                       
-                                    print_r($data);exit;
+                        $data[] = array("stud_id" => $s_data->id,
+                                        "image" => $s_data->photo,
+                                        "stud_name" => $s_data->name,
+                                        "clas" => $scl->class_name,
+                                        "section" => $ss->section);
                     }
                 }
             }
