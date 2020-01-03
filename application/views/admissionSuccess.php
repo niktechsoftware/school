@@ -37,7 +37,7 @@
 						Profile
 					</a>
 				</li>
-					<?php if($this->session->userdata('login_type') == '1'){ ?><?php }else{ ?>
+					<?php if($this->session->userdata('login_type') == '3'){ ?><?php }else{ ?>
 				<li<?php if($this->uri->segment(4) == 'updateInfo'){ echo ' class="active"';}?>>
 					<a data-toggle="tab" href="#panel_edit_account">
 						Edit Profile
@@ -577,7 +577,7 @@
 						</div>
 					</div>
 				</div>
-				<?php if($this->session->userdata('login_type') == '1'){ ?><?php }else{ ?>
+				<?php if($this->session->userdata('login_type') == '3'){ ?><?php }else{ ?>
 				<div id="panel_edit_account" class="tab-pane fade <?php if($this->uri->segment(4) == 'updateInfo'){ echo "in active";}?>">
 						<div class="row">
 							<div class="col-md-4">
@@ -876,11 +876,19 @@
 									<label class="control-label text-uppercase">
 										Transport Status <span class="symbol"></span>
 									</label>
+									<?php if($this->session->userdata("login_type")=="1"){ ?>
+									<input type="hidden" name ="ts" value="<?php echo $personalInfo->transport ;?>"  >
+									
+									<input type="text"  value="<?php  if($personalInfo->transport==1){ echo "YES";}else{ echo "NO" ;} ;?>" readonly >
+										
+									<?php } else{?>
 									<select class="form-control text-uppercase"  name="ts" id="ts">
 											<option value="">SELECT</option>
 											<option value="1" <?php if($personalInfo->transport==1){echo 'selected="selected"';}?>>YES</option>
 											<option value="0" <?php if($personalInfo->transport==0){echo 'selected="selected"';}?>>NO</option>
-										</select></div>
+										</select>
+										<?php }?> 
+										</div>
 							</div>
 							<div class="col-md-6">
 									<div class="form-group">

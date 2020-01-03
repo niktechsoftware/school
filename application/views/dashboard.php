@@ -341,7 +341,7 @@ $school_code = $this->session->userdata("school_code");
                 </div>
             </div>
         </div>
-    <div class="col-md-6 col-lg-3 col-sm-6">
+   <!-- <div class="col-md-6 col-lg-3 col-sm-6">
             <div class="panel panel-default panel-white core-box">
                 <div class="panel-body no-padding">
                     <div class="partition-pink text-center core-icon">
@@ -351,19 +351,19 @@ $school_code = $this->session->userdata("school_code");
                     <a href="#">
                     <div class="padding-20 core-content">
                         <h4 class="title block no-margin">Your Due Amount</h4>
-                        <br/><span class="subtitle"> <?php if($client_due_list){echo $client_due_list->amount;}else{ echo "0";} ?> </span>
+                        <br/><span class="subtitle"> <?php //if($client_due_list){echo $client_due_list->amount;}else{ echo "0";} ?> </span>
                     </div>
                     </a>
                 </div>
             </div>
-        </div>
+        </div>-->
     <div class="col-md-6 col-lg-3 col-sm-6">
             <div class="panel panel-default panel-white core-box">
                 <div class="panel-body no-padding">
                     <div class="partition-blue text-center core-icon">
                         <i class="fa fa-users fa-2x icon-big"></i>
                        </div>
-                    <a href="#">
+                    <a href="<?php echo base_url();?>/index.php/login/smsreport">
     				<div class="padding-20 core-content">
     				   <h4 class="title block no-margin">Your SMS Balance</h4><br>
     				    <span class="subtitle"><?php echo $cbs;?>  </span>

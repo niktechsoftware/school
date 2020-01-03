@@ -6,8 +6,9 @@
 -->
 <html lang="en">
 <!-- start: HEAD -->
-<?php $school_code = $this->session->userdata("school_code");?>
+
 <head>
+    	<script data-ad-client="ca-pub-5093838037340612" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <title><?php echo $title; ?></title>
     <!-- start: META -->
     <meta charset="utf-8" />
@@ -20,7 +21,7 @@
     <!-- end: META -->
   
     <!-- start: MAIN CSS -->
-    	<script data-ad-client="ca-pub-5093838037340612" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <?php $school_code = $this->session->userdata("school_code");?>
     <?php echo $this->load->view($headerCss); ?>
 </head>
 <!-- end: HEAD -->
@@ -186,6 +187,14 @@
         <div class="col-md-2" style="margin-top:10px"> 
             <a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
             <i class="fa fa-bars"></i>
+            </a>
+            <a style="margin-left:120px;"  href="https://niktechsoftware.com/index.php/welcome/pay" target="_blank"> 
+            <span class="button_blink" style="margin-top:-5px;">Due Ammount : <?php
+            	$school_code=   $this->session->userdata("school_code");
+            			    $this->db->where("id",$school_code);
+            		$cid  = $this->db->get("school")->row()->customer_id;
+             $client_due_list = $this->client_model->list_product($cid);
+            if($client_due_list){echo $client_due_list->amount;}else{ echo "0";} ?> </span>
             </a>
         </div>
         <div class="col-md-2" style="margin-top:10px">

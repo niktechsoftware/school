@@ -2,7 +2,7 @@
    
 require APPPATH . 'libraries/REST_Controller.php';
      
-class Item extends REST_Controller {
+class Get_fsd extends REST_Controller {
     
 	  /**
      * Get All Data from this method.
@@ -12,8 +12,6 @@ class Item extends REST_Controller {
     public function __construct() {
        parent::__construct();
        $this->load->database();
-       // $db = mysqli_connect ("208.91.198.93", "schoodhe_school", "Rahul!123singh!@", "schoodhe_website");
-       //$this->conn = $db;
     }
     
 
@@ -23,12 +21,18 @@ class Item extends REST_Controller {
      *
      * @return Response
     */
-	public function index_get($id = 0)
+	public function index_get($s_code)
 	{
-        if(!empty($id)){
-            $data = $this->db->get_where("employee_info", ['school_code' => $id])->result();
+        if(!empty($s_code)){
+            //$data = $this->db->get_where("employee_info", ['school_code' => $id])->result();
+            
+                    
+                    $this->db->where("school_code",$s_code);
+            $data_r = $this->db->get("general_settings")->row();
+            $data = $data_r->fsd_id;
         }else{
-            $data = $this->db->get("employee_info")->result();
+            $data= "data not found";
+            // $data = $this->db->get("employee_info")->result();
         }
      
         $this->response($data, REST_Controller::HTTP_OK);

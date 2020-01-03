@@ -1640,3 +1640,52 @@ Stack trace:
 [31-Dec-2019 15:24:03 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 505
 [31-Dec-2019 15:24:10 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 505
 [31-Dec-2019 15:24:18 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) in /home/schoodhe/public_html/school/application/controllers/smsAjax.php on line 505
+[02-Jan-2020 14:34:21 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function list_product() on null in /home/schoodhe/public_html/school/application/views/includes/header.php:197
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(2): CI_Loader->view('includes/header')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/employeeController.php(193): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->quickreg()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/includes/header.php on line 197
+[02-Jan-2020 14:34:34 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function list_product() on null in /home/schoodhe/public_html/school/application/views/includes/header.php:197
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(2): CI_Loader->view('includes/header')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/employeeController.php(193): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->quickreg()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/includes/header.php on line 197
+[02-Jan-2020 14:35:00 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function list_product() on null in /home/schoodhe/public_html/school/application/views/includes/header.php:197
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(2): CI_Loader->view('includes/header')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/employeeController.php(193): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->quickreg()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/includes/header.php on line 197
+[02-Jan-2020 14:36:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function list_product() on null in /home/schoodhe/public_html/school/application/views/includes/header.php:197
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(2): CI_Loader->view('includes/header')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/employeeController.php(193): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): EmployeeController->quickreg()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/includes/header.php on line 197
+[02-Jan-2020 16:36:13 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/controllers/api/bday_data.php on line 34
