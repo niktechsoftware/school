@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  * @version         3.0.0
  */
-abstract class REST_Controller extends \CI_Controller {
+abstract class Sunbeem extends \CI_Controller {
 
     // Note: Only the widely used HTTP status codes are documented
 
@@ -449,6 +449,7 @@ abstract class REST_Controller extends \CI_Controller {
 
         // How is this request being made? GET, POST, PATCH, DELETE, INSERT, PUT, HEAD or OPTIONS
         $this->request->method = $this->_detect_method();
+
         // Check for CORS access request
         $check_cors = $this->config->item('check_cors');
         if ($check_cors === TRUE)
@@ -989,7 +990,8 @@ abstract class REST_Controller extends \CI_Controller {
             // Get the request method as a lowercase string
            // $method = $this->input->method();
         }
-        return in_array($method, $this->allowed_http_methods) && method_exists($this, '_parse_' . $method) ? $method : 'get' ;
+
+        return in_array($method, $this->allowed_http_methods) && method_exists($this, '_parse_' . $method) ? $method : 'get';
     }
 
     /**

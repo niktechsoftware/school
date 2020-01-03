@@ -179,7 +179,8 @@ Here you can see all the sent sms Detals, if you want to Download click export B
 									</td>
 									
 										<td class="text-lowercase">
-										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->response_id; ?>/3/4" class="btn btn-info"> Expired <?php echo $exp->num_rows()+$undelsms  ; ?></a></td> 
+										<a href="<?php echo base_url();?>index.php/smsAjax/viewsmsdetail/<?php echo $row->response_id; ?>/3/4" class="btn btn-green"> Expired <?php echo $exp->num_rows()+$undelsms  ; ?></a></td> 
+
 									</td>
 
                   					<td class="text-lowercase">

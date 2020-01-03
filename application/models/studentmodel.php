@@ -69,8 +69,7 @@ class StudentModel extends CI_Model{
 		$result = $this->db->get("old_student_info");
 		return $result;
 	}
-	
-		function dobStudentList($school_code){
+	function dobStudentList($school_code){
 		  
 		    $da = date("Y-m-d");
 	$datem = date("m",strtotime($da));
@@ -85,5 +84,7 @@ class StudentModel extends CI_Model{
 	    $result=$this->db->get();
 		return $result;
 	}
+	
+		
 	
 }

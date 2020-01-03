@@ -111,7 +111,7 @@ $autoload['language'] = array( 'login', 'dashboard');
 |
 */
 
-$autoload['model'] = array('loginModel');
+$autoload['model'] = array('loginModel','client_model');
 
 
 /* End of file autoload.php */

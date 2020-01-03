@@ -10,7 +10,7 @@ class Login extends CI_Controller{
         $this->load->model("allFormModel");
         $this->load->model("configureclassmodel");
         $this->load->model("smsmodel");
-        $this->load->model('client_model');
+        //$this->load->model('client_model');
        
 	}
 
@@ -133,7 +133,7 @@ class Login extends CI_Controller{
 			$this->load->view("includes/mainContent", $data);
     		
     	}
-	
+
 	function classteacher()
 	{
 		$data['pageTitle'] = 'Class/Class Teacher';

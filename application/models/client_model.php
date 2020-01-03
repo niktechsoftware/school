@@ -11,6 +11,11 @@ class Client_model extends CI_Model {
 	function list_product($cid){
 		return json_decode($this->restclient->get1($cid));
 	}
+	function get_emp_detail(){
+	    $query = $this->db->query("SELECT * FROM employee_info ORDER BY id DESC LIMIT 1");
+        $result = $query->result_array();
+		return $result;
+	}
 
 /*	function product($id){
 		$params = array('customer_id'=>  $id);

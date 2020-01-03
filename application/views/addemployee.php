@@ -108,6 +108,30 @@
                 </div>
 
               </div>
+              
+              <div class="form-group" id="stanrow">
+                <div class="col-sm-5">
+                  <label class="col-sm-5" id="standlbl">
+                    Select Standered <span class="symbol required"></span>
+                  </label>
+                  <div class="col-sm-7">
+                    <select class="form-control text-uppercase" id="standered" name="standered"
+                      value="<?php echo set_value('standered'); ?>" required="required">
+                      <option value="0">-Standered-</option>
+                      <option value="1">PG to UKG</option>
+                      <option value="2">1 to 5</option>
+                      <option value="3">6 to 8</option>
+                      <option value="4">9 to 10</option>
+                      <option value="5">11 to 12</option>
+                    </select>
+                  </div>
+                  <?php echo form_error('standered'); ?>
+                </div>
+                <div class="col-sm-5">
+                 
+                </div>
+
+              </div>
 
               <div class="form-group">
                 <div class="col-sm-5">

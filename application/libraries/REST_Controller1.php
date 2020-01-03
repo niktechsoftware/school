@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @link            https://github.com/chriskacerguis/codeigniter-restserver
  * @version         3.0.0
  */
-abstract class REST_Controller extends \CI_Controller {
+abstract class REST_Controller1 extends \CI_Controller {
 
     // Note: Only the widely used HTTP status codes are documented
 
@@ -989,7 +989,7 @@ abstract class REST_Controller extends \CI_Controller {
             // Get the request method as a lowercase string
            // $method = $this->input->method();
         }
-        return in_array($method, $this->allowed_http_methods) && method_exists($this, '_parse_' . $method) ? $method : 'get' ;
+        return in_array($method, $this->allowed_http_methods) && method_exists($this, '_parse_' . $method) ? $method : 'post' ;
     }
 
     /**

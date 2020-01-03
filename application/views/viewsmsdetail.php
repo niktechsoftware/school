@@ -97,8 +97,8 @@
 							               
 							                var m_number=$('#number<?php echo $i;?>').val();
 							                  var meg=$('#msg<?php echo $i;?>').val();
-							                 $.post("<?php echo site_url();?>index.php/smsAjax/resendsms",{m_number : m_number ,meg : meg},function(data){
-							                     
+							                 $.post("<?php echo site_url();?>smsAjax/resendsms",{m_number : m_number ,meg : meg},function(data){
+							                      $('#sms<?php echo $i;?>').html(data);
 							                 })
 							                  
 							                 
