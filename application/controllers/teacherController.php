@@ -100,10 +100,11 @@ function getclassforexam(){
 			<tr>
 		 	<td>S.No.</td>
 		 	<td>Student ID </td>
-		 	<td> Scholer No</td>
-		<td> Student Name</td>
+		 	<td> Student Name</td>
+		
 		 		<td>Father Name</td> 
-			<!--<td> Mobile</td>-->
+		 		
+			<td> Attendence</td>
 		<td><input type="hidden" value="300001" name="tID" /></td> 
 		 	</tr> 
 		 	<?php 
@@ -305,8 +306,14 @@ function checkIDOTP(){
 					$msg="Your Discount OTP id = ".$otp." please don't share this.";
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
-				
-						$fmobile=$row->mobile.",".$this->session->userdata("mobile_number");
+				   if($this->session->userdata("school_code") == 2){
+						$fmobile=$row->mobile;
+					
+				   }else{
+				       $fmobile=$row->mobile.",".$this->session->userdata("mobile_number");
+					
+				   }
+					
 					  $getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 		            $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 		         
@@ -450,7 +457,7 @@ function checkIDOTPc(){
 			  }
 
 			    function studentAtten()
-			  {
+			    {
 			  	$school_code = $this->session->userdata("school_code");
 			  	$school_info = mysqli_query($this->db->conn_id,"select * from school WHERE id='$school_code'");
 			  	$info = mysqli_fetch_object($school_info);
