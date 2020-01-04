@@ -2042,3 +2042,172 @@ Stack trace:
 #2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #3 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 58
+[04-Jan-2020 13:10:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method Client_model::get_stu_detail() in /home/schoodhe/public_html/school/application/controllers/api/common_user.php:65
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller1.php(738): Common_user->index_post()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller1->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/common_user.php on line 65
+[04-Jan-2020 13:59:06 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:07 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:07 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:11 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:21 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:36 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:37 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:42 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:45 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:47 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:51 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:51 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:54 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:57 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:57 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:57 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:58 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 13:59:58 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:02 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:04 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:09 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:15 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:16 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:16 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:20 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:28 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:28 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:30 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:31 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:32 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:32 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:34 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:34 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:35 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:35 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:35 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:36 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:45 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:00:53 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:15 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:25 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:33 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:33 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:34 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:36 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:47 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:49 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:49 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:49 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:50 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:51 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:52 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:52 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:52 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:53 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:53 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:53 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:54 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:54 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:54 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:55 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:55 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:57 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:57 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:57 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:58 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:01:58 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:01 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:01 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:01 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:01 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:02 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:02 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:03 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:03 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:09 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:09 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:09 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:10 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:10 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:10 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:11 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:12 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:13 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:13 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:13 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:13 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:14 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:15 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:15 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:16 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:16 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:17 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:17 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:17 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:18 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:19 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:19 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:20 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:20 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:24 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:24 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:24 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:25 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:26 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:27 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:27 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:30 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:30 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:30 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:32 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:33 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:33 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:34 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:34 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:35 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:36 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:36 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:39 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:39 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:40 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:40 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:42 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:54 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:56 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:59 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:02:59 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:00 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:01 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:03 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:07 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:15 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:15 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:23 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:23 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:23 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:29 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:47 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:47 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:47 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:54 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:58 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:03:59 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:04:05 Asia/Calcutta] PHP Fatal error:  Cannot redeclare Client_model::get_db_detail() in /home/schoodhe/public_html/school/application/models/client_model.php on line 24
+[04-Jan-2020 14:05:33 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Bday_data::index_get(), 0 passed in /home/schoodhe/public_html/school/application/libraries/REST_Controller.php on line 738 and exactly 1 expected in /home/schoodhe/public_html/school/application/controllers/api/bday_data.php:24
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(738): Bday_data->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/bday_data.php on line 24
