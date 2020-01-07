@@ -16,6 +16,20 @@ class Client_model extends CI_Model {
         $result = $query->result_array();
 		return $result;
 	}
+	function get_stu_detail(){
+	    $query = $this->db->query("SELECT * FROM student_info ORDER BY id DESC LIMIT 1");
+        $result = $query->result_array();
+		return $result;
+	}
+	function get_admin_detail(){
+	    $query = $this->db->query("SELECT * FROM general_settings ORDER BY id DESC LIMIT 1");
+        $result = $query->result_array();
+		return $result;
+	}
+	function get_db_detail(){
+	    $result=$this->db->get('db_name')->row()->name;
+		return $result;
+	}
 
 /*	function product($id){
 		$params = array('customer_id'=>  $id);

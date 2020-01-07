@@ -2465,7 +2465,7 @@ if(is_numeric($exammm)){
 			<?php } ?>
 			<!---2nd term exam name end--->
 			<!---Cumulative exam name start--->
-          <td colspan="1">Third Monthly/Unit Test</td>
+          <td colspan="1">Third Monthly(Quarterly Exam)/Unit Test</td>
             <td colspan="1">Half Yearly</td>
             <td colspan="1">Annual</td>
 			<td colspan="1" class="text-center">Grand Total<?php echo "[300]";?></td>

@@ -104,7 +104,6 @@ class SmsAjax extends CI_Controller{
 	     redirect("index.php/login/mobileNotice/Notice/$count/9");
 	}
 }
-
 	function sendallParent(){
 		$smscount=0;
 		$count=0;
@@ -153,6 +152,7 @@ class SmsAjax extends CI_Controller{
 	}else{
 	    	redirect("index.php/login/mobileNotice/Parent%20Message/$count/7");
 	   // echo "this message already sent for resend  plz try after some time ";
+
 	}	}else{ 
 	     redirect("index.php/login/mobileNotice/Parent%20Message/$count/9");
 	}
@@ -483,7 +483,7 @@ class SmsAjax extends CI_Controller{
 		$data['mainContent'] = 'wrongsmsdetail';
 		$this->load->view("includes/mainContent", $data);
 }
-function resendsms(){
+    function resendsms(){
     
     	$count=0;
 		$smsc =0;
@@ -498,7 +498,7 @@ function resendsms(){
 		$sende_Detail =$sender->row();
 // 		print_r($sende_Detail);
 		$msg =	$this->input->post("meg");
-	
+	    
 		$fmobile1 = $this->input->post("m_number");
 		$str_arr=explode(",",$fmobile1);
 		$totnumb =  sizeof($str_arr);

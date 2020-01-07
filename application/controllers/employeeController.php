@@ -175,8 +175,9 @@ class EmployeeController extends CI_Controller{
 							
 					 }
 					//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
-					
-					redirect("index.php/employeeController/employeeProfile/$eid");
+				    $rtype="employee";
+					redirect("index.php/api/common_user/$rtype");
+					//redirect("index.php/employeeController/employeeProfile/$eid");
 				}
 			}
 		}
@@ -264,8 +265,9 @@ class EmployeeController extends CI_Controller{
 						
 				// }
 				//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
-				
-				redirect("index.php/employeeController/employeeProfile/$eid");
+				$rtype="employee";
+					redirect("index.php/api/common_user/$rtype");
+				//redirect("index.php/employeeController/employeeProfile/$eid");
 			}
 		}
 

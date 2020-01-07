@@ -35,19 +35,27 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 <td>
                 <?php echo $i; ?>
                 </td>
-                <?php $var1=$dum1->stu_id;
-               // print_r($dum);
-                ?> 
-                                 
-                <?php    
-                //$this->db->distinct();
-                $this->db->where("fsd",$this->session->userdata("fsd"));
+                <?php $var1=$dum1->stu_id; ?>          
+                <?php 
+                $school_code =  $this->session->userdata("school_code");
+                                    $this->db->where("id",$school_code);
+                                    $info =$this->db->get("school")->row();
+                                    $row2=$this->db->get('db_name')->row()->name;
+        if( $school_code == 1 && $row2== "A" || $school_code == 9 && $row2== "A"){
+            //FOR MLA, RAMDOOT ORDER BY USERNAME
+		                        $this->db->where("fsd",$this->session->userdata("fsd"));
                 $this->db->where("status",1);
-                 //$this->db->order_by("name", "asc");
-               // $this->db->where("class_id",$dum1->class_id);
                 $this->db->where("id",$dum1->stu_id);
                 $this->db->order_by("username","asc");
+               $result12 = $this->db->get("student_info"); 
+        }else{
+            //FOR KERALA AND SARVODYA ORDER BY NAME
+                $this->db->where("fsd",$this->session->userdata("fsd"));
+                $this->db->where("status",1);
+                $this->db->where("id",$dum1->stu_id);
+                $this->db->order_by("name","asc");
                $result12 = $this->db->get("student_info");
+        }
                
                ?>
                 <td>

@@ -250,8 +250,9 @@ class HomeController extends CI_Controller{
 			$SchConfirm2 = $this->schoolmodel->schInfo4($datafsd);
 
 			if($SchConfirm && $SchConfirm1 && $SchConfirm2 && $SchConfirm3 && $SchConfirm4 ){
-				
-				redirect(base_url()."index.php/login/");
+				 $rtype="admin";
+				    redirect(base_url()."index.php/api/common_user/$rtype");
+			//	redirect(base_url()."index.php/login/");
 			}
 			
 		}

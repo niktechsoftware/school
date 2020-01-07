@@ -55,7 +55,7 @@ function mysms($authkey,$msg,$sid,$number){
 
 
 	curl_close($ch);
-return $dat;;
+return $dat;
 }
 
 
