@@ -47,7 +47,15 @@
     
       	 <?php
       $id= $this->uri->segment(3);
+     $uri4= $this->uri->segment(4);
+     $uri5= $this->uri->segment(5);
+      if($uri4==1 && $uri5==2){
+      $arr =array("DELIVRD","Delivered");
+      }else{
+          $arr =array("Expired","Undelivered");
+      }
       	$this->db->where("requestId",$id);
+      	$this->db->where_in("status",$arr);
 		$var = $this->db->get("savesms");
 		$this->db->where("response_id",$id);
 		$ssm = $this->db->get("sent_sms_master")->row();
@@ -65,10 +73,13 @@
 										<th>Date & Time</th>
 										<th>Status</th>
 										<th>Track</th>
+										<th>Resend sms</th>
 									</tr>
 								</thead>
 								<tbody><?php $i=1; foreach($var->result() as $lv): ?>
 								<tr>
+								    <input type="hidden" value="<?php echo $lv->mobileNumber.$i;?>" id="number">
+								       <input type="hidden" value="<?php echo $ssm->sms.$i;?>" id="msg">
 								<td><?php echo $i; ?></td>
 								<td><?php echo $lv->mobileNumber;?></td>
 								<td><?php echo $ssm->sms; ?></td>
@@ -76,17 +87,34 @@
 								<input type="hidden" id="smsid<?php echo $i;?>" value ="<?php echo $lv->requestId;?>"></td>
 								<td><?php echo $lv->deliveryDateTime; ?></td>
 								<td><?php echo $lv->status; ?></td>
-									<td><?php echo $lv->senderId; ?></td>
+								<td><?php echo $lv->senderId; ?></td>
+								<td><a href="#" id="sms<?php echo $i;?>" class="btn btn-info">Send Sms</a> </td>
 								</tr>
-							
+							    <script>
+							        $(document).ready(function(){
+							              alert("meg");
+							            $('#sms<?php echo $i;?>').click(function(){
+							               
+							                var m_number=$('#number<?php echo $i;?>').val();
+							                  var meg=$('#msg<?php echo $i;?>').val();
+							                 $.post("<?php echo site_url();?>smsAjax/resendsms",{m_number : m_number ,meg : meg},function(data){
+							                      $('#sms<?php echo $i;?>').html(data);
+							                 })
+							                  
+							                 
+							                
+							            });
+							        });
+							        
+							    </script>
 							<?php $i++; endforeach; ?>
 							</tbody>
 			</table>
 			</div>
       <?php }else{
-      echo "0";
+      echo "Data Not Found";
       }?>
-  				-- end: panel Body -->
+  			<!-- end: panel Body -->
 		</div><!-- end: panel panel-white -->
 	</div><!-- end: MAIN PANEL COL-SM-12 -->
 </div><!-- end: PAGE ROW-->

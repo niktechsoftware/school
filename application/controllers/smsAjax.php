@@ -104,7 +104,6 @@ class SmsAjax extends CI_Controller{
 	     redirect("index.php/login/mobileNotice/Notice/$count/9");
 	}
 }
-
 	function sendallParent(){
 		$smscount=0;
 		$count=0;
@@ -153,6 +152,7 @@ class SmsAjax extends CI_Controller{
 	}else{
 	    	redirect("index.php/login/mobileNotice/Parent%20Message/$count/7");
 	   // echo "this message already sent for resend  plz try after some time ";
+
 	}	}else{ 
 	     redirect("index.php/login/mobileNotice/Parent%20Message/$count/9");
 	}

@@ -4,6 +4,7 @@ function __construct()
 	{
 		parent::__construct();
 	$this->load->model("smsmodel");
+	$this->load->model("studentmodel");
 		
 	}
  function getCronA(){
@@ -56,7 +57,9 @@ function __construct()
                 		     $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$dd->id);
                 		    
 					
-                        }      
+                        }   
+                        
+                     
                     endforeach;
           }
  }

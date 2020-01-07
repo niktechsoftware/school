@@ -85,4 +85,6 @@ class StudentModel extends CI_Model{
 		return $result;
 	}
 	
+
+	
 }

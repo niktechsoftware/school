@@ -19,6 +19,16 @@ class TeacherModel extends CI_Model{
 	
 	}
 	function getPresenti($classid){
+	    $this->db->order_by("username");
+		$this->db->where("class_id",$classid);
+		//$this->db->where("section",$section);
+		$this->db->where("status",1);
+		$req = $this->db->get("student_info");
+		return $req;
+	}
+	
+	function getPresenti_name($classid){
+	    $this->db->order_by("name");
 		$this->db->where("class_id",$classid);
 		//$this->db->where("section",$section);
 		$this->db->where("status",1);
