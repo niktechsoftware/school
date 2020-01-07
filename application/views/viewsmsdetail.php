@@ -78,8 +78,8 @@
 								</thead>
 								<tbody><?php $i=1; foreach($var->result() as $lv): ?>
 								<tr>
-								    <input type="hidden" value="<?php echo $lv->mobileNumber.$i;?>" id="number">
-								       <input type="hidden" value="<?php echo $ssm->sms.$i;?>" id="msg">
+								    <input type="hidden" value="<?php echo $lv->mobileNumber;?>" id="number<?php echo $i;?>">
+								       <input type="hidden" value="<?php echo $ssm->sms;?>" id="msg<?php echo $i;?>">
 								<td><?php echo $i; ?></td>
 								<td><?php echo $lv->mobileNumber;?></td>
 								<td><?php echo $ssm->sms; ?></td>
@@ -92,11 +92,12 @@
 								</tr>
 							    <script>
 							        $(document).ready(function(){
-							              alert("meg");
+							             
 							            $('#sms<?php echo $i;?>').click(function(){
 							               
 							                var m_number=$('#number<?php echo $i;?>').val();
 							                  var meg=$('#msg<?php echo $i;?>').val();
+							                 alert(meg)
 							                 $.post("<?php echo site_url();?>smsAjax/resendsms",{m_number : m_number ,meg : meg},function(data){
 							                      $('#sms<?php echo $i;?>').html(data);
 							                 })
