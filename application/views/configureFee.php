@@ -406,7 +406,7 @@
                                     value="<?php echo date('Y-m-d',strtotime($rt->applied_date));?>"></td>
 
                                 <td> <select class="form-control" id="mannual<?php echo $y;?>">
-                                   
+                                   <option value="all">ALL</option>
 
                                     <?php 
                                      $school_code = $this->session->userdata("school_code");
@@ -558,6 +558,7 @@
                                 <td> <input type="text" class="form-control" id="dper<?php echo $p;?>" maxlength="5" minlength="2" onkeypress="return isNumber(event)"></td>
                                 <td> <input type="date" required class="form-control" style="font-size: 10pt; height: 34px;" id="applied_date<?php echo $p;?>"> </td>
                                 <td> <select class="form-control" required id="mannual<?php echo $p;?>">
+                                    <option value="all">ALL</option>
                                    <?php  $school_code = $this->session->userdata("school_code");  
                                     $query = $this->db->query("SELECT DISTINCT(class_fees.fee_head_name) FROM class_info INNER JOIN class_fees ON class_info.id = class_fees.class_id where class_info.school_code=$school_code");
                                     foreach($query->result() as $row){?>
