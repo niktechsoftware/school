@@ -27,3 +27,21 @@ Stack trace:
 #1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #2 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/feeControllers.php on line 1488
+[10-Jan-2020 13:03:10 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/school/application/views/currentmonthfee.php:76
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(510): CI_Loader->view('currentmonthfee', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->current_monthreport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/currentmonthfee.php on line 76
+[10-Jan-2020 13:03:19 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/school/application/views/currentmonthfee.php:76
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(510): CI_Loader->view('currentmonthfee', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->current_monthreport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/currentmonthfee.php on line 76

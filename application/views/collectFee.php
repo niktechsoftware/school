@@ -299,7 +299,12 @@
 												                                           ?>
 												                                            <div class="progress-bar <?php echo $color[$i];?>" style="width: 8.33%">
 												                                            <?php
-												                                            $deposite_month =$mdf->deposite_month-4;
+												                                            if($mdf->deposite_month<3){
+												                                                $deposite_month =$mdf->deposite_month-4+12;
+												                                            }else{
+												                                              $deposite_month =$mdf->deposite_month-4;  
+												                                            }
+												                                            
 												                                            $rdt =date('Y-m-d', strtotime("$deposite_month months", strtotime($fsddate)));
 												                                            //$rdt = "01-".$fd->month_number."-2019";
 												                                            echo date("M-y",strtotime("$rdt"));

@@ -417,7 +417,8 @@
 					}else{ //$m1=array();
 					    $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -458,7 +459,8 @@
 					     //$m1=array();
 					    $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -512,7 +514,8 @@
 					}else{  //$m1=array();
 					    $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+						//	echo $marks->marks;
+						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -562,7 +565,8 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+						//	echo $marks->marks;
+						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -598,7 +602,8 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -825,7 +830,8 @@
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -862,7 +868,8 @@
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+						//	echo $marks->marks;
+						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -897,7 +904,8 @@
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -937,7 +945,8 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -971,7 +980,8 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1004,7 +1014,8 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1176,7 +1187,8 @@ if($subjectname->num_rows()>0){
 						  $gtptal=$gtptal+80;}else if($grade == "B2"){  $gtptal=$gtptal+70;}else if($grade == "C1"){  $gtptal=$gtptal+60;
 						}else if($grade == "C2"){  $gtptal=$gtptal+50;}else if($grade == "D"){  $gtptal=$gtptal+40;}else{  $gtptal=$gtptal+32;}
 						}
-						echo $marks->marks;
+						//echo $marks->marks;
+						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
                             $this->db->where('subject_id',$sub['subject']);
                     $this->db->where('class_id',$classid);
                     $this->db->where('exam_id',$value->exam_id);
@@ -1473,7 +1485,8 @@ if($subjectname->num_rows()>0){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1511,7 +1524,8 @@ if($subjectname->num_rows()>0){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+						//	echo $marks->marks;
+						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1548,7 +1562,8 @@ if($subjectname->num_rows()>0){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+						//	echo $marks->marks;
+						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1583,7 +1598,10 @@ if($subjectname->num_rows()>0){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+						//	echo $marks->marks;
+							/////////////////////
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+							//////////////////////
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1626,7 +1644,8 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+						//	echo $marks->marks;
+						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1661,7 +1680,8 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1695,7 +1715,8 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+							//echo $marks->marks;
+							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1728,7 +1749,8 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo $marks->marks;
+						//	echo $marks->marks;
+						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
