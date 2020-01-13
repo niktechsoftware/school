@@ -252,11 +252,11 @@ table h1, h2, h3, h4 {
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">2. माता का नाम / Father's Name : <strong style="color:black;text-transform:uppercase;"><?php echo $fname;?></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">2. पिता का नाम / Father's Name : <strong style="color:black;text-transform:uppercase;"><?php echo $fname;?></strong></div>
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;" >3. पिता का नाम / Mother's Name : <strong style="color:black;text-transform:uppercase;"><?php echo $mname;?></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;" >3. माता का नाम / Mother's Name : <strong style="color:black;text-transform:uppercase;"><?php echo $mname;?></strong></div>
 	
 	</div>
 	<div class="row">
@@ -273,7 +273,7 @@ table h1, h2, h3, h4 {
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">7.क्या विद्यार्थी का परिक्षा परिणाम अनुतीर्ण है /  Whether the student is failed : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->student_status)>1){echo $tccerti->student_status;}else{ echo "N/A";};?>" id="status" class="renewed text-uppercase disable"/></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">7.क्या विद्यार्थी का परीक्षा परिणाम अनुतीर्ण है /  Whether the student is failed : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->student_status)>1){echo $tccerti->student_status;}else{ echo "N/A";};?>" id="status" class="renewed text-uppercase disable"/></strong></div>
 
 	</div>
 	<div class="row">
@@ -299,7 +299,7 @@ table h1, h2, h3, h4 {
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">10.पिछले विद्यालय / बोर्ड परिक्षा एवं  परिणाम / School/Board/Annual Examination last taken with result : <strong style="color:black; text-transform:uppercase">Passed </strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">10.पिछले विद्यालय / बोर्ड परीक्षा एवं  परिणाम / School/Board/Annual Examination last taken with result : <strong style="color:black; text-transform:uppercase">Passed </strong></div>
 
 	</div>
 	<div class="row">
@@ -323,7 +323,7 @@ table h1, h2, h3, h4 {
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">13.क्या विद्यार्थी को कोई शुल्क रियासत प्रदान की गयी थी , यदि हाँ , तो उसकी प्रकृति : Whether the pupil was in reciept of any 
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">13.क्या विद्यार्थी को कोई शुल्क रियायत प्रदान की गयी थी , यदि हाँ , तो उसकी प्रकृति : Whether the pupil was in reciept of any 
 	    </br></br>&nbsp;&nbsp;&nbsp;fee concession,if so the nature of the such concession : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->any_fee_concession)>1){echo $tccerti->any_fee_concession;}else{ echo "N/A";};?>" id="concession" class="renewed text-uppercase disable"/></strong></div>
 
 	</div>
@@ -352,7 +352,7 @@ table h1, h2, h3, h4 {
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">20.विद्यालय का वर्ग सरकारी / माइनोरिटी / स्ववित्तपोषी श्रके  अंतर्गत  Whether School is under Govt./Minority/Independent</br></br>&nbsp;&nbsp;&nbsp; category : <strong style="color:black; text-transform:uppercase">Independent </strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">20.विद्यालय का वर्ग सरकारी / माइनोरिटी / स्ववित्तपोषी के  अंतर्गत  Whether School is under Govt./Minority/Independent</br></br>&nbsp;&nbsp;&nbsp; category : <strong style="color:black; text-transform:uppercase">Independent </strong></div>
 
 	</div>
 	<div class="row">

@@ -528,7 +528,7 @@
 				
 				$m2=$m1[0];
 				$m3=$m1[1];
-				$avgm=$m2+$m3;
+				 $avgm=$m2+$m3;
 				echo $bb= round((($avgm)/2), 2); 	?>/10</td>
 			    <!--1st term marks end-->
 				<!--2nd term marks start-->

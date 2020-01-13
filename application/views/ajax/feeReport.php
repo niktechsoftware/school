@@ -256,7 +256,7 @@
 								 $fee_head = $this->db->get("class_fees");
 								 if($fee_head->num_rows()>0){
 									 $fee_head_one =$fee_head->row()->fee_head_amount;
-									// print_r($fee_head->row()->fee_head_amount);
+								//	 print_r($fee_head->row()->fee_head_amount);
 									 	 //print_r($fsd);
 									 	$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
@@ -267,7 +267,7 @@
 								 if($examfee->num_rows()>0){
 								   //  print_r($examfee->num_rows());
 								    $exfee= $examfee->row()->fee_head_amount;
-								    // 	 print_r($exfee);
+								    //	 print_r($exfee);
 									$totfee2= $fee_head_one * $rt;
 									$totfee=$totfee2+$exfee;
 									
