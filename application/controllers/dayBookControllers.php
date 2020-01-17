@@ -84,7 +84,9 @@ function daybook()
 		$dt1        = $this->input->post("st_date");
 		$dt2        = $this->input->post("end_date");
 		$q          = $this->input->post("check_list");
-		if($q=='Cash Payment'){
+	
+	echo $q;
+		if($q==1){
 			$a = $this->db->query("select DISTINCT expenditure_name from cash_payment where date >= '$dt1' AND date <= '$dt2' AND school_code='$school_code'");
 			
 			$b = $a->num_rows();
@@ -120,30 +122,71 @@ function daybook()
 			}
 		}
 	
-// 			if($b > 0){
-// 				$data['dt1']=$dt1;
-// 				$data['dt2']=$dt2;
-// 				$data['pageTitle'] = 'Day Book Report';
-// 				$data['smallTitle'] = 'Day Book Report';
-// 				$data['mainPage'] = 'Configuration';
-// 				$data['subPage'] = 'Class, Section, Subject Stream';
-// 				$data['condition'] = $condition;
-// 				$this->load->model("configureClassModel");
-// 				$result = $this->configureClassModel->getClassList();
-// 				$data['classList'] = $result->result();
-// 				$data['title'] = 'Configure Class/Section';
-// 				$data['headerCss'] = 'headerCss/daybookCss';
-// 				$data['footerJs'] = 'footerJs/daybookJs';
-// 				$data['mainContent'] = 'dayBook3';
-// 				$data['feeDetail'] = $feeData;
-// 				$data['a']=$a;
-// 				$data['b']=$b;
-// 				$data['dabit']=0;
-// 				$data['cradit']=0;
-// 				$this->load->view("includes/mainContent", $data);
-// 			}
+	if(($q==2)||($q==3)||($q==4)||($q==5)||($q==6)||($q==7)||($q==8) ||($q==9)){
+	        if(($q==2)){
+	             $reason = "by salary";
+		 }
+	          if(($q==4)){
+	              $reason = "Diposti to Director";
+	          }
+	        if(($q==3)){
+	            $reason="Diposit To Bank";
+	                 }
+	         if(($q==2)){
+	             $reason="By Salary";
+	                   }
+	         if(($q==9)){
+	              $reason="Recieve From Director";
+	                }
+	         if(($q==5)){
+	               $reason="Fee Deposit";
+	                }
+	         if(($q==6)){
+	              $reason="From sale Stock";
+	                 }
+	        if(($q==7)){
+	             $reason="Receive From Bank";
+	                 }
+	        if(($q==8)){
+	              $reason="Admission Fee + 1 Month Fee";
+	              }
+	       echo $reason;
+	        $a = $this->db->query("select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code' AND reason='$reason'");
+			$b = $a->num_rows();
+			
+			
+			$dabit = 0;
+			$cradit = 0;
+			if($b > 0){
+			    //	echo "rahul";
+				$data['dt1']=$dt1;
+				$data['dt2']=$dt2;
+				$data['pageTitle'] = 'Day Book Report';
+				$data['smallTitle'] = 'Day Book Report';
+				$data['mainPage'] = 'Configuration';
+				$data['subPage'] = 'Class, Section, Subject Stream';
+				$data['condition'] = $condition;
+				
+				$this->load->model("configureClassModel");
+				$result = $this->configureClassModel->getClassList();
+				$data['classList'] = $result->result();
+				$data['title'] = 'Configure Class/Section';
+				$data['headerCss'] = 'headerCss/daybookCss';
+				$data['footerJs'] = 'footerJs/daybookJs';
+				$data['mainContent'] = 'dayBook5';
+				$data['a']=$a;
+				$data['b']=$b;
+				$data['dabit']=0;
+				$data['cradit']=0;
+				
+				$this->load->view("includes/mainContent", $data);
+			}
+			else{
+			    redirect("index.php/login/dayBook/9");
+			}
+		}
 		
-		if($q=='all'){
+		if($q==10){
 			$school_code = $this->session->userdata("school_code");
 			$a = mysqli_query($this->db->conn_id,"select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code'");
 			$b = mysqli_num_rows($a);
