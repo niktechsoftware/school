@@ -68,7 +68,7 @@
            <div id="printcontent">
         <div id="page-wrap">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-lg-12">
            
                     <?php
         //   echo $fsd;
@@ -83,9 +83,9 @@
             $this->db->where('student_id',$personalInfo->id);
             $guardian_info=$this->db->get('guardian_info');
             $gurdianInfo = $guardian_info->row();?>
-            <div class="col-sd-6">
-                 <center>
-                        <table style="width: 65%; font-size:12px; font-weight: bold; ">
+            <div class="col-lg-6" style="margin-top:20px">
+                 <!--<center>-->
+                        <table style=" width:540px; height:348px; font-size:12px; font-weight: bold; ">
                             <tr style="background-color:#188f7f; color:white;">
                                 <?php $this->db->where("id",$this->session->userdata("school_code"));
 				$schoolinfo = $this->db->get("school")->row();
@@ -93,7 +93,7 @@
 			  $this->db->where("id",$fsd);
 		    $tfsd =	$this->db->get("fsd")->row();
 							?><td colspan="3">
-								<img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; border-radius: 50%;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />
+								<img style="margin-right: -80px; float: left; margin-left: 10px; margin-top: 10px; width: 50px; height: 45px; border-radius: 50%;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $schoolinfo->logo;?>" alt="Logo" />
 								<h3 style="text-transform:uppercase; text-align:center;color:#8B0000;">
 									<?php echo $schoolinfo->school_name; ?></h3>
 								<h5 style="font-variant:small-caps; text-align:center;">
@@ -189,8 +189,8 @@
                                     <?php echo $personalInfo->address1; ?>
                                 </td>
                             </tr>
-                        </table><br><br>
-                        </center>
+                        </table>
+                        <!--</center>-->
                     </div>
                     
                      <?php 	} ?>

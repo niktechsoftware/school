@@ -1,0 +1,201 @@
+[03-Jan-2020 17:26:07 Asia/Calcutta] PHP Fatal error:  Cannot redeclare StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/models/studentmodel.php on line 90
+[03-Jan-2020 17:26:32 Asia/Calcutta] PHP Fatal error:  Cannot redeclare StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/models/studentmodel.php on line 90
+[05-Jan-2020 12:35:09 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '111', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[07-Jan-2020 14:35:56 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_fetch_object() in /home/schoodhe/public_html/sschool2/application/views/dayBook5.php:299
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/views/includes/mainContent.php(6): CI_Loader->view('dayBook5')
+#3 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/sschool2/application/controllers/dayBookControllers.php(183): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#7 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/dayBook5.php on line 299
+[07-Jan-2020 14:37:13 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_result::num_rows() in /home/schoodhe/public_html/sschool2/application/controllers/dayBookControllers.php:157
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/dayBookControllers.php on line 157
+[07-Jan-2020 14:37:21 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_result::num_rows() in /home/schoodhe/public_html/sschool2/application/controllers/dayBookControllers.php:157
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/dayBookControllers.php on line 157
+[07-Jan-2020 14:38:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_result::num_rows() in /home/schoodhe/public_html/sschool2/application/controllers/dayBookControllers.php:157
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): dayBookControllers->daybook()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/dayBookControllers.php on line 157
+[08-Jan-2020 10:30:07 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[09-Jan-2020 10:30:02 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[10-Jan-2020 10:30:03 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[11-Jan-2020 10:30:02 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[12-Jan-2020 10:30:03 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[13-Jan-2020 10:10:45 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/sschool2/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/configureClassControllers.php on line 211
+[13-Jan-2020 10:12:17 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/sschool2/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/configureClassControllers.php on line 211
+[13-Jan-2020 10:30:02 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[13-Jan-2020 12:29:31 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '107', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[13-Jan-2020 12:42:42 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '110', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[13-Jan-2020 12:43:26 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '109', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[13-Jan-2020 12:43:45 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '111', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[14-Jan-2020 10:30:02 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[14-Jan-2020 12:47:26 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '111', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[15-Jan-2020 10:11:32 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on boolean in /home/schoodhe/public_html/sschool2/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/configureClassControllers.php on line 211
+[15-Jan-2020 10:14:06 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on null in /home/schoodhe/public_html/sschool2/application/controllers/configureClassControllers.php:211
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): ConfigureClassControllers->addfsd()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/configureClassControllers.php on line 211
+[15-Jan-2020 10:30:02 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[16-Jan-2020 09:33:58 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '111', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[16-Jan-2020 09:34:44 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '111', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[16-Jan-2020 10:30:02 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[16-Jan-2020 12:27:16 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool2/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool2/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('10', '111', '17')
+#4 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/views/invoice/class_wise_report_1.php on line 1084
+[17-Jan-2020 10:30:03 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method StudentModel::dobStudentList() in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php:19
+Stack trace:
+#0 /home/schoodhe/public_html/sschool2/system/core/CodeIgniter.php(360): cronjobsBirth->getCronBirth()
+#1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[17-Jan-2020 21:20:57 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/teacherController.php on line 531
+[17-Jan-2020 21:22:38 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/teacherController.php on line 531
+[17-Jan-2020 21:23:14 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/teacherController.php on line 531
+[17-Jan-2020 21:25:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/teacherController.php on line 531
