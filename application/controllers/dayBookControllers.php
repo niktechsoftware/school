@@ -437,6 +437,59 @@ redirect("login/cashPaymentreort");
 
 	}
 }
+
+function deleteBanTrans(){
+	$invoiceid = $this->input->post("invoice_id");
+	$this->db->where("invoice_no",$invoiceid);
+	$getrow = $this->db->get("day_book");
+	if($getrow->num_rows()>0){
+		$rowt = $getrow->row();
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("opening_date",date("y-m-d"));
+		$closing=$this->db->get("opening_closing_balance");
+		
+		$close=$closing->row()->closing_balance;
+		if($rowt->dabit_cradit){
+			$dc = 0;
+			$bal=$close - $rowt->amount;
+		}else{
+			$dc = 1;
+			$bal=$close + $rowt->amount;
+		}
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("opening_date",date("y-m-d"));
+		$closing=$this->db->get("opening_closing_balance");
+		
+		$close=$closing->row()->closing_balance;
+		
+		$clos_arr=array(
+				"closing_balance"=>$bal
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("opening_date",date("y-m-d"));
+		$this->db->update("opening_closing_balance",$clos_arr);
+		$dataa = array(
+				"paid_to"		=>$rowt->paid_by,
+				"paid_by"		=>$rowt->paid_to,
+				"reason"		=>"Wrong ".$rowt->invoice_no."-".$rowt->reason,
+				"dabit_cradit"	=>$dc,
+				"amount"		=>$rowt->amount,
+				"closing_balance"=>$bal,
+				"pay_date"		=>date("Y-m-d"),
+				"pay_mode"		=>1,
+				"invoice_no"	=>"Deleted",
+				"school_code"	=>$rowt->school_code
+		);
+	}
+	$this->db->insert("day_book",$dataa);
+	$this->db->where("invoice_no",$invoiceid);
+	$getrow = $this->db->delete("day_book");
+	$this->db->where("receipt_no",$invoiceid);
+	$this->db->delete("bank_transaction");
+	$this->db->where("receipt_no",$invoiceid);
+	$this->db->delete("director_transaction");
+	echo "del";
+}
 	function bankTransactionDb(){
 		$id_name = $this->input->post('id_name');
 		$bank_name = $this->input->post('bank_name');
