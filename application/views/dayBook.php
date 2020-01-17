@@ -29,23 +29,24 @@
             	<div class="row">
             		 <div class="col-md-12 space20">
             		 	<div class="col-md-2">
-            		 			<input type="radio" name="check_list"  checked="checked" value="all" required="required">
+            		 			<input type="radio" name="check_list"  checked="checked" value="10" required="required">
                        			 All
                     	</div>
                      	<div class="col-md-2">
-                        		<input type="radio" name="check_list" value="Fee Deposit" required="required">
+                        		<input type="radio" name="check_list" value="5" required="required">
                        			 Monthly Fee
                      	</div>
                      	<div class="col-md-2">
-                        		<input type="radio" name="check_list" value="From sale Stock" required="required">
+                        		<input type="radio" name="check_list" value="6" required="required">
                         		Stock Sale
                      	</div>
                      	<div class="col-md-2">
-                        		<input type="radio" name="check_list" value="Recieve From Bank" required="required">
+                        		<input type="radio" name="check_list" value="7" required="required">
                         		Bank Withdrawal
+                        		<!--Recieve From Bank-->
                      	</div>
                      	<div class="col-md-3">
-                        		<input type="radio" name="check_list" value="Admission Fee + 1 Month Fee" required="required">
+                        		<input type="radio" name="check_list" value="8" required="required">
                        		 	Admission + 1 Month Fee
                      	</div>
                     </div>
@@ -53,23 +54,23 @@
                 <div class="row">
             		 <div class="col-md-12 space20" >
             		 	<div class="col-md-2">
-                        		<input type="radio" name="check_list" value="Recieve From Director" required="required">
+                        		<input type="radio" name="check_list" value="9" required="required">
                        			Receive From Director
                      	</div>
                      	<div class="col-md-2">
-                       			<input type="radio" name="check_list" value="Cash Payment" required="required">
+                       			<input type="radio" name="check_list" value="1" required="required">
                        			 Cash Payment
                      	</div>
                      	<div class="col-md-2">
-                     			<input type="radio" name="check_list" value="By Salary" required="required">
+                     			<input type="radio" name="check_list" value="2" required="required">
                         		Salary
                      	</div>
                      	<div class="col-md-2">
-                        		<input type="radio" name="check_list" value="Diposit in Bank" required="required">
+                        		<input type="radio" name="check_list" value="3" required="required">
                        			 Bank Deposits
                      	</div>
                      	<div class="col-md-3">
-                        		<input type="radio" name="check_list" value="Diposit to Director" required="required">
+                        		<input type="radio" name="check_list" value="4" required="required">
                         		Handover To Director
                     	</div>
                		</div>

@@ -483,7 +483,7 @@ class SmsAjax extends CI_Controller{
 		$data['mainContent'] = 'wrongsmsdetail';
 		$this->load->view("includes/mainContent", $data);
 }
-function resendsms(){
+    function resendsms(){
     
     	$count=0;
 		$smsc =0;
@@ -498,7 +498,7 @@ function resendsms(){
 		$sende_Detail =$sender->row();
 // 		print_r($sende_Detail);
 		$msg =	$this->input->post("meg");
-	
+	    
 		$fmobile1 = $this->input->post("m_number");
 		$str_arr=explode(",",$fmobile1);
 		$totnumb =  sizeof($str_arr);

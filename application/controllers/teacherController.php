@@ -160,8 +160,18 @@ function getclassforexam(){
 		$tid= $this->input->post("teacherid");
 		
 		$data['check'] = $this->teacherModel->checkPresenti($sec,$date1);
-
-		$data['var'] = $this->teacherModel->getPresenti($sec);
+		$school_code = $this->session->userdata("school_code");
+        $this->db->where("id",$school_code);
+        $info =$this->db->get("school")->row();
+        $row2=$this->db->get('db_name')->row()->name;
+        if($school_code == 9 && $row2== "A" || $school_code == 1 && $row2== "A"){
+            //FOR MLA, RAMDOOT ORDER BY USERNAME
+		$data['var'] = $this->teacherModel->getPresenti($sec);   
+        }else{
+            //FOR KERALA AND SARVODYA ORDER BY NAME
+		$data['var'] = $this->teacherModel->getPresenti_name($sec);  
+        }
+        
 		$this->load->view("ajax/studenceAtten",$data);
 	}
 	
@@ -287,6 +297,7 @@ function checkIDOTP(){
 	$this->load->model("teacherModel");
 	$this->load->model("smsmodel");
 	$var = $this->teacherModel->checkID($tid);
+	echo $tid;
 	//print_r($var);
 	if($var->num_rows() > 0){
 		$row=$var->row();
@@ -517,8 +528,10 @@ function checkIDOTPc(){
 			  		$this->db->where("school_code",$this->session->userdata("school_code"));
 			  		$this->db->where("student_id",$stu_id);
 					$var=$this->db->get("guardian_info")->row();
+					$this->db->where("id",$stu_id);
+					$varsudent=$this->db->get("student_info")->row();
 					$fname=$var->father_full_name;
-					$fmobile=$var->f_mobile;
+					$fmobile=$varsudent->mobile;
 					$this->db->where("school_code",$this->session->userdata("school_code"));
 					//$class_id = mysqli_query($this->db->conn_id,"select * from class_info WHERE school_code='$this->session->userdata('school_code')");
 					$class_id = $this->db->get("class_info");
@@ -602,8 +615,10 @@ function checkIDOTPc(){
 			  		$this->db->where("school_code",$this->session->userdata("school_code"));
 			  		$this->db->where("student_id",$stu_id);
 					$var=$this->db->get("guardian_info")->row();
+					$this->db->where("id",$stu_id);
+					$varsudent=$this->db->get("student_info")->row();
 					$fname=$var->father_full_name;
-					$fmobile=$var->f_mobile;
+					$fmobile=$varsudent->mobile;
 					$this->db->where("school_code",$this->session->userdata("school_code"));
 					$class_id = $this->db->get("class_info");
 					$this->db->where("status",1);

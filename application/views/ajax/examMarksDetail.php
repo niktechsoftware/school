@@ -128,7 +128,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 <tbody>
                 <?php
 								$i = 1;$j=1;
-								//FOR RAMDOOT ORDER BY NAME
+								//FOR RAMDOOT ORDER BY username 
 								$this->db->order_by("username","asc");
 								$this->db->where("status",1);
 								$this->db->where("class_id",$classid);
@@ -469,11 +469,27 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 <tbody>
                 <?php
 								$i = 1;$j=1;
-								//FOR KERALA AND SARVODYA ORDER BY NAME
-								$this->db->order_by("name","asc");
+								
+								
+                    
+                    $school_code =  $this->session->userdata("school_code");
+                                    $this->db->where("id",$school_code);
+                                    $info =$this->db->get("school")->row();
+                                    $row2=$this->db->get('db_name')->row()->name;
+        if( $school_code == 1 && $row2== "A"){
+            //FOR MLA ORDER BY USERNAME
+		                        $this->db->order_by("username","asc");
 								$this->db->where("status",1);
 								$this->db->where("class_id",$classid);
-                    $num_row=	$this->db->get("student_info");
+                    $num_row=	$this->db->get("student_info");  
+        }else{
+            //FOR KERALA AND SARVODYA ORDER BY NAME
+	                        	$this->db->order_by("name","asc");
+								$this->db->where("status",1);
+								$this->db->where("class_id",$classid);
+                    $num_row=	$this->db->get("student_info");  
+        }
+                    
                 if($num_row->num_rows()>0){
                 foreach ($num_row->result() as $stu):
                  $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND sub_type='$sub_type' AND fsd = '$fsd' and school_code='$school_code' AND stu_id='$stu->id'");
