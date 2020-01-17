@@ -195,3 +195,7 @@ Stack trace:
 #1 /home/schoodhe/public_html/sschool2/index.php(208): require_once('/home/schoodhe/...')
 #2 {main}
   thrown in /home/schoodhe/public_html/sschool2/application/controllers/cronjobsBirth.php on line 19
+[17-Jan-2020 21:20:57 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/teacherController.php on line 531
+[17-Jan-2020 21:22:38 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/teacherController.php on line 531
+[17-Jan-2020 21:23:14 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/teacherController.php on line 531
+[17-Jan-2020 21:25:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home/schoodhe/public_html/sschool2/application/controllers/teacherController.php on line 531

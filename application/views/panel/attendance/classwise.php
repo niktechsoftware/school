@@ -45,7 +45,9 @@
 	<tr>
     <th>S no.</th>
 	<th>Student Name</th>
+
 	<th>Total Present</th>
+
 	<th>Total Absent</th>
 	<th>Taken Attendance</th></tr></thead>
 	

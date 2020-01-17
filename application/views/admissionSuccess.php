@@ -1184,12 +1184,26 @@
 								</div>
 							</div>
 								<?php $school_code=$this->session->userdata('school_code');?>
+								
 									<div class="col-md-3">
 										<div class="form-group">
 											<label class="control-label text-uppercase">
 												Stream <span class="symbol required"></span>
 											</label>
-											<select class="form-control text-uppercase" id="stream" name="stream" required>
+											
+										<?php if($this->session->userdata("login_type")=="1"){ ?>
+												<?php
+												$sub = $this->db->query("SELECT DISTINCT stream FROM class_info WHERE school_code='$school_code'");
+												if($sub->num_rows()>0){
+												foreach($sub->result() as $row):
+												$this->db->where("id",$row->stream);
+												$sname = $this->db->get("stream")->row();
+												echo '<input type="hidden" id="stream" name ="stream" value=" '. $row->stream  .'"  >';
+												endforeach;}
+												?>
+												<input type="text" class="form-control" value="<?php  echo $sname->stream ;?>" readonly >
+												
+											<!--<select class="form-control text-uppercase" id="stream" name="stream" readonly>
 												<option> SELECT STREAM</option>
 												<?php
 												$sub = $this->db->query("SELECT DISTINCT stream FROM class_info WHERE school_code='$school_code'");
@@ -1200,7 +1214,27 @@
 												echo '<option value="'.$row->stream.'">'.$sname->stream.'</option>';
 												endforeach;}
 												?>
+											</select>-->
+										
+									<?php } else{?>
+									<select class="form-control text-uppercase" id="stream" name="stream" required>
+												<option> SELECT STREAM</option>
+												<?php
+												$sub = $this->db->query("SELECT DISTINCT stream FROM class_info WHERE school_code='$school_code'");
+												if($sub->num_rows()>0){
+												foreach($sub->result() as $row):
+												$this->db->where("id",$row->stream);
+												$sname = $this->db->get("stream")->row(); ?>
+												<option value="<?php echo $row->stream; ?>" <?php if($row->stream){echo 'selected="selected"';} ?> ><?php echo $sname->stream; ?></option>
+												<?php
+												//echo '<option value="'.$row->stream.'">'.$sname->stream.'</option>';
+												endforeach;}
+												?>
 											</select>
+										<?php }?> 
+											
+											
+											
 										</div>
 									</div>
 
@@ -1216,10 +1250,18 @@
 										<div class="form-group">
 											<label class="control-label text-uppercase">
 												Section <span id="error" Style="color:red;" ></span>
-											</label>
+											</label>            
+											<?php if($this->session->userdata("login_type")=="1"){ ?>
+											<input type="hidden" id="section1" name ="section" value="<?php  echo $clfg->section ;?>"  >
+											<input type="text" class="form-control" value="<?php  echo $section ;?>" readonly >
+											<!--<select class="form-control text-uppercase" id="section1" name="section" readonly>
+										     <?php	echo '<option value="'.$clfg->section.'">'.$section.'</option>';?>
+										    </select>-->
+											<?php }else{ ?>
 											<select class="form-control text-uppercase" id="section1" name="section" required>
-											     <?php	echo '<option value="'.$clfg->section.'">'.$section.'</option>';?>
-											</select>
+										     <?php	echo '<option value="'.$clfg->section.'">'.$section.'</option>';?>
+										    </select>
+											<?php } ?>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -1227,9 +1269,18 @@
 											<label class="control-label text-uppercase">
 												Class Of Admission <span class="symbol required"></span>
 											</label>
+											<?php if($this->session->userdata("login_type")=="1"){ ?>
+											<input type="hidden" id="classOfAdmission1" name ="classOfAdmission" value="<?php  echo $personalInfo->class_id;?>"  >
+											<input type="text" class="form-control" value="<?php  echo $clfg->class_name ;?>" readonly >
+										<!--	<select class="form-control text-uppercase" id="classOfAdmission1" name="classOfAdmission" readonly>
+										    <?php	echo '<option value="'.$personalInfo->class_id.'">'.$clfg->class_name.'</option>';?>
+										    </select>-->
+											<?php }else{ ?>
 											<select class="form-control text-uppercase" id="classOfAdmission1" name="classOfAdmission" required>
-											    <?php	echo '<option value="'.$personalInfo->class_id.'">'.$clfg->class_name.'</option>';?>
-											</select>
+										    <?php	echo '<option value="'.$personalInfo->class_id.'">'.$clfg->class_name.'</option>';?>
+										    </select>
+										    <?php } ?>
+											
 										</div>
 									</div>
 									<?php }?>

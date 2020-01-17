@@ -168,8 +168,8 @@ table h1, h2, h3 {
 			<div class="tcbody">
 			<div>
 				This is to certify that <strong><?php echo $stuname; ?></strong>, S/O / D/O <strong><?php echo $fname;?></strong>
-				 of <strong><?php echo $add;?></strong>. He had
-				been studying in this school. So for as I know, he is a child of moral and character . He did not take part in any activity subversive to the state. I wish him every success.
+				 of <strong><?php echo $add;?></strong>. He/She had
+				been studying in this school. So for as I know, he/she is a child of moral and character . He/She did not take part in any activity subversive to the state. I wish him every success.
 				
 			</div>
 			<div>

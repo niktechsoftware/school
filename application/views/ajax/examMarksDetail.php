@@ -435,6 +435,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                         $subjectname=	$this->db->get('subject')->row()->subject;
 				?>
                      <br><br>
+                     
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover" id="sample-table-2">
                   <tr>

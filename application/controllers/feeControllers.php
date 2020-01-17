@@ -306,12 +306,14 @@ function getFsd(){
 					$fsd1=$this->db->get('fsd')->row();
 					$demont = $rty->num_rows();
                    $i=0;$printMonth=""; foreach($rty->result() as $tyu):
+
                          if($tyu->deposite_month<4){
                             $ffffu= $tyu->deposite_month-4+12;
                          }else{
                             $ffffu= $tyu->deposite_month-4;
                          }
 					
+
 						$printMonth= $printMonth."".date('M-Y', strtotime("$ffffu months", strtotime($fsd1->finance_start_date))).", ";
 						$monthmk[$i]=$tyu->deposite_month;
                     	//echo date("d-M-y", $rdt);
@@ -633,7 +635,6 @@ function getFsd(){
 			$this->db->where("id",$school_code);
         	$schoolname=$this->db->get("school")->row();
         		$msg = "Dear Parent your child ".$stuname." fee ".$amount1.",is diposited of total ".$totdue."/-with due balance Rs.".$balance."/-".$schoolname->school_name;
-		
 			$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				 $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 			if($schoolname->id==1){
