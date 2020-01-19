@@ -1,0 +1,126 @@
+[14-Jan-2020 14:31:59 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::num_rows() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_4.php:500
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('20', '147', '35')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_4.php on line 500
+[14-Jan-2020 14:36:32 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::num_rows() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_4.php:502
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('20', '147', '35')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_4.php on line 502
+[14-Jan-2020 14:55:25 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 1978
+[14-Jan-2020 14:56:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ')' in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 1978
+[14-Jan-2020 15:06:30 Asia/Calcutta] PHP Fatal error:  Cannot use [] for reading in /home/schoodhe/public_html/school/application/views/invoice/format_4.php on line 401
+[14-Jan-2020 16:21:51 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/schoodhe/public_html/school/application/views/invoice/printcCFinal.php on line 216
+[17-Jan-2020 08:58:19 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:373
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('7', '116', '29')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 373
+[17-Jan-2020 08:59:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:373
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('7', '98', '29')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 373
+[17-Jan-2020 08:59:48 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:373
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('7', '98', '29')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 373
+[17-Jan-2020 12:02:07 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('5', '227', '55')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1084
+[17-Jan-2020 12:02:56 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('5', '226', '55')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1084
+[17-Jan-2020 12:04:57 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('5', '226', '55')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1084
+[17-Jan-2020 12:11:33 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('5', '226', '55')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1084
+[17-Jan-2020 12:46:54 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('5', '226', '55')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1084
+[17-Jan-2020 12:53:11 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('5', '227', '55')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1084
+[17-Jan-2020 13:03:15 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:1084
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('5', '227', '55')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 1084
+[17-Jan-2020 13:06:48 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:3618) in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 3618
+[17-Jan-2020 13:07:59 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:3621) in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 3621
+[17-Jan-2020 13:10:20 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined function calculateGrade() in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:3502
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(518): CI_Loader->view('invoice/class_w...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->classwise_reports('5', '227', '55')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 3502
+[17-Jan-2020 13:11:48 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:3620) in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 3620
+[17-Jan-2020 13:12:42 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:3620) in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 3620
+[17-Jan-2020 13:15:23 Asia/Calcutta] PHP Fatal error:  Cannot redeclare calculateGrade() (previously declared in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php:3620) in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_1.php on line 3620

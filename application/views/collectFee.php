@@ -304,7 +304,7 @@
 												                                            }else{
 												                                              $deposite_month =$mdf->deposite_month-4;  
 												                                            }
-												                                            
+												                                            //echo $fsddate;
 												                                            $rdt =date('Y-m-d', strtotime("$deposite_month months", strtotime($fsddate)));
 												                                            //$rdt = "01-".$fd->month_number."-2019";
 												                                            echo date("M-y",strtotime("$rdt"));

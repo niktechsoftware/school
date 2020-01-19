@@ -1705,7 +1705,8 @@ if(is_numeric($exammm)){
 			$b=$grndt_1+$grndt_2+$grndt_3;
 			echo round((($a*100)/$b), 2);
 			?>%  </td>
-			<td colspan="6">RANK</td>
+		<td colspan="6">Class Rank:<?php 
+			echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);?></td>
 		</tr>
 		<!---samrat ashok marks table end--->
 		<?php }else if($school == 1 && $row2== "D" || $school == 2 && $row2== "D" || $school == 3 && $row2== "D" || $school == 4 && $row2== "D"){ ?>

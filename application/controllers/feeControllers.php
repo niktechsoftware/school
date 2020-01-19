@@ -1140,19 +1140,25 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 							if($mno < $fd->deposite_month){
 							    $realm=0;
 							 //  print_r($mno);
+							
 							 //    print_r($mno);
 							}else{
+							   
 								//echo $mno;
-							$realm= $mno- $fd->deposite_month-1;}
+							$realm= $mno- $fd->deposite_month-1;
+							    
+							}
 				          // print_r($realm);
-						 }else{
-							$cdate11=date('Y-m-d');
-							if($cdate11>='2020-01-01'){
-							$mno=(int)date('m',strtotime($cdate11));
+						 }else{ 
+							$cdate12=date('Y-m-d');
+							if($cdate12>='2020-01-01'){
+							  $mno=(int)date('m',strtotime($cdate12));
+						
 						 $realm= $mno-$fd->deposite_month+12-1;
 						// print_r($realm);
 						}else{
-							$mno=(int)date('m',strtotime($cdate11));
+						   
+							$mno=(int)date('m',strtotime($cdate12));
 						if($mno<$fd->deposite_month){
 						    $realm=0;
 							    
@@ -1166,6 +1172,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 				// 		print_r($fd->deposite_month);
 						 }
 						}
+					
 						?>
 								
 						<?php $i++; endforeach; 
@@ -1182,11 +1189,11 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 						
 					
 						if($realm==1 && $date<$depdate){
-						   
-						        $latefee1=0.00;
+						  
+						        $latefee1=$amt;
 						    
-						}else{
-                        $latefee1=$amt*$realm;
+						}else{ 
+                                $latefee1=$amt*$realm;
                        
 						}
                        

@@ -185,7 +185,7 @@ table h1, h2, h3, h4 {
 	 <table>
 	     <tr>
 	        <td>
-            <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">विद्यालय  स.  /School No : 
+            <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">विद्यालय संख्या   /School No : 
             <strong style="color:black;">
                 <?php if($info->school_recognition){echo $info->school_recognition;}else{} ?>
                 </strong></span>
@@ -212,21 +212,21 @@ table h1, h2, h3, h4 {
      <table>
         <tr>
             <td>
-    <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">पुस्तक स./  Book No : <strong style="color:black;"><?php echo $rowb->book_no;?> </strong></span></div>
+    <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">पुस्तक संख्या /  Book No : <strong style="color:black;"><?php echo $rowb->book_no;?> </strong></span></div>
             </td>
             <td>
             <div class="" style="padding-top:8px; padding-bottom:8px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
             </td>
             <td>
-                <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">क्र.स./  S.No. : <strong style="color:black;"><?php echo $rowb->sno;?> </strong></span></div>
+                <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">क्रम संख्या /  S.No. : <strong style="color:black;"><?php echo $rowb->sno;?> </strong></span></div>
 		    </td>
 		    <td>
             <div class="" style="padding-top:8px; padding-bottom:8px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
             </td>
 		    <td>
-		        <div class=" " style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">प्रवेश स./ Admission No : <strong style="color:black;"><?php echo $rowb->scholer_no;?> </strong></span></div>
+		        <div class=" " style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">प्रवेश संख्या / Admission No : <strong style="color:black;"><?php echo $rowb->scholer_no;?> </strong></span></div>
             </td>
         </tr>
    </table>
@@ -332,7 +332,7 @@ table h1, h2, h3, h4 {
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">15. विद्यालय से विद्यार्थी के नाम कटे जाने की तिथि :Date of which pupil name was struck off the rolls of the vidyalaya : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if($tccerti->joining_date){echo date("Y-m-d", strtotime($tccerti->joining_date));}else{ echo "N/A";};?>" id="addmission_date" class="renewed text-uppercase disable"/></strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">15. विद्यालय से विद्यार्थी के नाम काटे जाने की तिथि :Date of which pupil name was struck off the rolls of the vidyalaya : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if($tccerti->joining_date){echo date("Y-m-d", strtotime($tccerti->joining_date));}else{ echo "N/A";};?>" id="addmission_date" class="renewed text-uppercase disable"/></strong></div>
 
 	</div>
 	<div class="row">

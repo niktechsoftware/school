@@ -387,7 +387,6 @@
 					$ttal=0;
 					$ttal_2=0;
 					$gtptal=0;
-				    // $m1[]=array();
 					$gtptal11=0;
 					$gtptal_2=0;
 					$i=1; $t=0;?>
@@ -410,15 +409,18 @@
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
-							  
 					if(is_numeric($marks->marks)){
 					  $m1[]=$marks->marks;
 					  $gtptal= $gtptal+$marks->marks;
-					}else{ //$m1=array();
+					}else{ 
 					    $gtptal= $gtptal;}
-					
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -455,12 +457,15 @@
 					if(is_numeric($marks->marks)){
 					     $m1[]=$marks->marks;
 					  $gtptal= $gtptal+$marks->marks;
-					}else{ 
-					     //$m1=array();
+					}else{
 					    $gtptal= $gtptal;}
-					
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -479,23 +484,7 @@
 				<?php $i++; $t++;endforeach; ?>
 				<td colspan="1" ></td>
 				<?php }else{ ?>
-					<?php foreach ($examid->result() as $value):
-					
-							/* $this->db->select('marks');
-							$this->db->where("term", 1);
-							$this->db->where('subject_id',$sub['subject']);
-							$this->db->where('class_id',$classid->class_id);
-							$this->db->where('stu_id',$studentInfo->id);
-							$this->db->where('exam_id',$value->exam_id);
-							$this->db->where('fsd',$fsd);
-					$marks11= $this->db->get('exam_info'); 
-					//$marks11=$this->db->query("select * from exam_info where exam_id='".$value->exam_id."' AND term= '1' AND subject_id = '".$sub['subject']."' AND class_id= '".$classid->class_id."' AND stu_id = '".$studentInfo->id."' AND fsd = '".$fsd."' ");
-					if($marks11->num_rows()>0){
-							$marks11=$marks11->row();
-							if(is_numeric($marks->marks)){
-					  $gtptal11= $gtptal11+$marks->marks;
-					}else{ $gtptal11= $gtptal11;}
-							}else if($marks11->num_rows()==0){  }*/ ?>
+					<?php foreach ($examid->result() as $value):?>
 					<td class="center" >	
 					<?php 
 							$this->db->where("term", 1);
@@ -511,11 +500,15 @@
 					if(is_numeric($marks->marks)){
 					     $m1[]=$marks->marks;
 					  $gtptal= $gtptal+$marks->marks;
-					}else{  //$m1=array();
-					    $gtptal= $gtptal;}
-					
-						//	echo $marks->marks;
-						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					}else{ 
+					    $gtptal= $gtptal;} 
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -528,21 +521,21 @@
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; } ?><?php //echo "/" .$exammm;
-						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
+						}else if($marks->num_rows()==0){ $exammm=" "; } ?><?php if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach;  ?>
 																						<?php } ?>
-				<!--<td class="center bold" ><?php  //$grandtotal=$grandtotal+$gtptal; echo $gtptal; echo $gtptal11; ?>/<?php print_r($ttal);?></td>-->
-				<td class="center bold" ><?php 
-				
+				<td class="center bold" >
+				<?php
+				if(count($m1) == 3){
 			      sort($m1);
 				 array_shift($m1);
 				
 				$m2=$m1[0];
 				$m3=$m1[1];
-				$avgm=$m2+$m3;
-				echo $bb= round((($avgm)/2), 2); 	?>/10</td>
+				 $avgm=$m2+$m3;
+				echo $bb= round((($avgm)/2), 2); ?>/10<?php }else{echo "";}	?>
+				</td>
 			    <!--1st term marks end-->
 				<!--2nd term marks start-->
 				<?php  if($examid_2->num_rows()==0){ ?>
@@ -565,8 +558,13 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-						//	echo $marks->marks;
-						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+						if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -579,7 +577,7 @@
 					 $dhtm= $dhtm;   
 					}
 					
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm;
+						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php 
 						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
@@ -602,8 +600,13 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+							if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -619,15 +622,10 @@
 						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php if($ii%2==1){ ?>
-				<!--<td colspan="1" style="text-transform: uppercase; font-weight:bold;" ><?php   //echo $overall= $gtptal_2+$gtptal;  ?>/<?php //echo $overall_tot=$ttal_2+$ttal; ?></td>-->
 				<td colspan="1" style="text-transform: uppercase; font-weight:bold;" ><?php   echo $overall= $gtptal_2+$bb;  ?>/<?php echo $overall_tot=$ttal_2+10; ?>
 				<?php } ?>
 				<?php $i++; $t++; $ii++; endforeach; ?>                             <?php } ?>
 				<!--2nd term marks end-->
-				
-				<!--<td class="center bold"><?php   //echo $overall= $gtptal_2+$gtptal;  ?>/<?php //echo $overall_tot=$ttal_2+$ttal;
-				//if($overall_tot>0){ $per=round((($overall*100)/$overall_tot), 2);} ?>
-				</td>-->
 				<td class="center bold"><?php   echo $overall= $gtptal_2+$bb;  ?>/<?php echo $overall_tot=$ttal_2+10;
 				 $grandtotal_2=$grandtotal_2+$overall;
 				 $grandtotal=$grandtotal+$overall_tot;	
@@ -829,9 +827,13 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
-					
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -867,9 +869,13 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
-					
-						//	echo $marks->marks;
-						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -903,9 +909,13 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
-					
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -945,8 +955,13 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+							if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -980,8 +995,13 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+							if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1014,8 +1034,13 @@
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+							if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1187,8 +1212,13 @@ if($subjectname->num_rows()>0){
 						  $gtptal=$gtptal+80;}else if($grade == "B2"){  $gtptal=$gtptal+70;}else if($grade == "C1"){  $gtptal=$gtptal+60;
 						}else if($grade == "C2"){  $gtptal=$gtptal+50;}else if($grade == "D"){  $gtptal=$gtptal+40;}else{  $gtptal=$gtptal+32;}
 						}
-						//echo $marks->marks;
-						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+						if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
                             $this->db->where('subject_id',$sub['subject']);
                     $this->db->where('class_id',$classid);
                     $this->db->where('exam_id',$value->exam_id);
@@ -1484,9 +1514,13 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
-					
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1523,9 +1557,13 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
-					
-						//	echo $marks->marks;
-						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1561,9 +1599,13 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
-					
-						//	echo $marks->marks;
-						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1597,11 +1639,13 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
-					
-						//	echo $marks->marks;
-							/////////////////////
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
-							//////////////////////
+					if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1644,8 +1688,13 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-						//	echo $marks->marks;
-						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+						if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1680,8 +1729,13 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+						if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1715,8 +1769,13 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-							//echo $marks->marks;
-							if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+							if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1749,8 +1808,13 @@ if($subjectname->num_rows()>0){
 					if(is_numeric($marks->marks)){
 					  $gtptal_2= $gtptal_2+$marks->marks;
 					}else{ $gtptal_2= $gtptal_2;}
-						//	echo $marks->marks;
-						if(strlen($marks->marks) ==1){echo "0".$marks->marks;}else{echo $marks->marks;}
+						if($marks->Attendance == 1){
+							if(strlen($marks->marks) ==1){
+							    echo "0".$marks->marks;
+							}else{
+							    echo $marks->marks;
+							}
+					        }else{echo "Absent" ;}
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1928,7 +1992,8 @@ if($subjectname->num_rows()>0){
                             $absnt=$row1->num_rows();
                             $present =$atotal-$absnt;
                             ?>
-                            <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $present; ?>/<?php echo $atotal; ?></label></td>
+                            <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php //echo $present; ?><?php //echo $atotal;
+                            echo round((($present*100)/$atotal), 2); ?>%</label></td>
                         </tr>
                     </table>
 
