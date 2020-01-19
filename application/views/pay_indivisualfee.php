@@ -16,8 +16,11 @@
 </div>
 <div class="col-md-4">
 <label>Paid Amount</label></br>
-
+<?php if($this->session->userdata("school_code")==2){ ?>
+<input type="text" name="paidfee" value="<?= $tamt->row()->transport_fee; ?>" >
+<?php }else{ ?>
 <input type="text" name="paidfee" value="<?= $tamt->row()->transport_fee; ?>" readonly >
+<?php }?>
 </div>
 <div class="col-md-4">
 

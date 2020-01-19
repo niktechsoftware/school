@@ -67,7 +67,7 @@ if ($dipom->num_rows () > 0) {
 			$oldm = date ( 'Y-m', strtotime ( "$roldm months", strtotime ( $fdate ) ) );
 			if ($oldm <= $cmonth) {
 				$searchM [$rt] = $fcg->month_number;
-				echo "<b>" . date ( "M-Y", strtotime ( $oldm ) ) . "</b>";
+				echo "<b> " . date ( "M-Y", strtotime ( $oldm ) ) . "</b> ";
 				$rt ++;
 			}
 		endforeach
@@ -87,7 +87,7 @@ if ($dipom->num_rows () > 0) {
 			$fee_head = $this->db->get ( "class_fees" );
 			if ($fee_head->num_rows () > 0) {
 				$fee_head = $fee_head->row ()->fee_head_amount;
-				echo " and total payble amount is Rs.<b>" . $fee_head . "</b>";
+				
 			} else {
 				echo "fee Not found";
 			}
@@ -109,7 +109,7 @@ if ($dipom->num_rows () > 0) {
 		$oldm = date ( 'Y-m', strtotime ( "$roldm months", strtotime ( $fdate ) ) );
 		if ($oldm <= $cmonth) {
 			$searchM [$rt] = $fcg->month_number;
-			echo "<b>" . date ( "M-Y", strtotime ( $oldm ) ) . "</b>";
+			echo "<b> " . date ( "M-Y", strtotime ( $oldm ) ) . "</b> ";
 			$rt ++;
 		}
 	endforeach
@@ -138,7 +138,7 @@ if ($dipom->num_rows () > 0) {
 		 
 		 
 // 		 print_r($searchM[$rt-1]);
-	 echo " and total payble amount is Rs.<b>".$totalfeedue."</b>";
+	
 
 		
 		$this->db->where ( "class_id", $rows->class_id );
@@ -176,7 +176,7 @@ if($school_code ==1){$this->db->where("cat_id",3);}
 		$fee_head =$fee_head->row()->fee_head_amount;
 		$totalfee=$fee_head*$rt;
 		$totalfeedue= $totalfee + $one_all_amount;
-	echo " and total payble amount is Rs.<b>".$totalfeedue."</b>";
+	
 //print_r($searchM);
 }
 	}else{

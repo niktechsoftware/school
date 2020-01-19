@@ -306,11 +306,14 @@ function getFsd(){
 					$fsd1=$this->db->get('fsd')->row();
 					$demont = $rty->num_rows();
                    $i=0;$printMonth=""; foreach($rty->result() as $tyu):
-                       if($tyu->deposite_month<4){
+
+                         if($tyu->deposite_month<4){
                             $ffffu= $tyu->deposite_month-4+12;
-                       }else{
-                        $ffffu= $tyu->deposite_month-4;
-                       }
+                         }else{
+                            $ffffu= $tyu->deposite_month-4;
+                         }
+					
+
 						$printMonth= $printMonth."".date('M-Y', strtotime("$ffffu months", strtotime($fsd1->finance_start_date))).", ";
 						$monthmk[$i]=$tyu->deposite_month;
                     	//echo date("d-M-y", $rdt);
@@ -973,6 +976,10 @@ function getFsd(){
 			
 		   $fee_head = $this->db->get("class_fees");
 		    $totfees=0;
+		    if($stuid_details->discount_id>0){
+		    	$this->db->where("id",$stuid_details->discount_id);
+		    	$studdiscount = $this->db->get("discounttable");
+		    }
 		  ?>
 		  
 		  <table><tr>
@@ -992,8 +999,22 @@ function getFsd(){
 	                                                    </div>
 	                                                </div>
 	                                            </div>									
-	                                          
+	                                           <?php 	
+	                                           if($stuid_details->discount_id>0){
+	                                           if($studdiscount->num_rows()>0){
+	                                        		$discountRow = $studdiscount->row();?>
+	                                        		<div class="row space15">
+	                                           
+	                                                <div class="col-sm-12">
+	                                                    <div class="col-sm-5 text-uppercase"><?php echo $discountRow->discount_head;?></div>
+	                                                    <div class="col-sm-7">
+	                                                      <?php if($discountRow->discount_amount > 0.00){echo $discountRow->discount_amount;}else{ echo $discountRow->discount_persent."%";} ?>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        		<?php  }}?>
 	                                            <div class="row space15">
+	                                           
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Enter Discount</div>
 	                                                    <div class="col-sm-7">
@@ -1036,9 +1057,8 @@ function getFsd(){
 	                                                   
 	                                                </div>
 												</div>
-												<?php $disc=0;$disc1 =0;if($stuid_details->discount_id>0){
-													$this->db->where("id",$stuid_details->discount_id);
-													$studdiscount = $this->db->get("discounttable");
+												<?php $disc=0;$disc1 =0;
+												if($stuid_details->discount_id>0){
 													if($studdiscount->num_rows()>0){
 														$discountRow = $studdiscount->row();
 													//$this->db->where("school_code",$school_code);
@@ -1436,7 +1456,18 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                                </div>
 	                                            </div>
 	                                        </div>
-	                                        	<?php $totfees=$totfees-$disc ;?>
+	                                        	<?php $totfees=$totfees-$disc ;
+	                                        	$totwlate =$totfees+$latefee1;
+	                                        	if($stuid_details->discount_id>0){
+	                                        	if($studdiscount->num_rows()>0){
+	                                        		$discountRow = $studdiscount->row();
+	                                        		if($discountRow->applied_head_id=="all"){
+	                                        			$totfees=0;
+	                                        			$totwlate=0;
+	                                        		}
+	                                        	}
+	                                        	}
+	                                        	?>
 										
 	                                        <div class="row space15">
 	                                            <div class="col-sm-12">
@@ -1445,13 +1476,13 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                                 <?php   if($school_code==14){
 	                                                     ?>
 	                                                    
-	                                                    <input type="hidden" id="total1"  value="<?php echo $totfees+$latefee1;?>" name="total1" />
+	                                                    <input type="hidden" id="total1"  value="<?php echo $totwlate;?>" name="total1" />
 	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
-	                                                    <input type="text" id="total"  value="<?php echo $totfees+$latefee1;?>" class="form-control" readonly/>
+	                                                    <input type="text" id="total"  value="<?php echo $totwlate;?>" class="form-control" readonly/>
 	                                                    <?php } else { ?>
-	                                                     <input type="hidden" id="total1"  value="<?php echo $totfees+$latefee1;?>" name="total1" />
+	                                                     <input type="hidden" id="total1"  value="<?php echo $totwlate;?>" name="total1" />
 	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
-	                                                    <input type="text" id="total"  value="<?php echo $totfees+$latefee1;?>" class="form-control" readonly/>
+	                                                    <input type="text" id="total"  value="<?php echo $totwlate;?>" class="form-control" readonly/>
 	                                                    <?php } ?>
 	                                                </div>
 	                                            </div>

@@ -133,6 +133,10 @@ Export to PowerPoint
 <th>Pay Mode</th>
 								<th>Pay Date</th>
 								<th>Invoice Num</th>
+								<th><?php if($this->session->userdata('login_type') == 'admin'){?>
+								Activity
+								<?php }?>
+								</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -174,7 +178,7 @@ $sno = 1;
 					if ($eid) {
 						echo $eid->username;
 					} else {
-						echo $row->paid_by;
+						echo "Other";
 					}
 				}
 				?></td>
@@ -218,6 +222,10 @@ echo $classdf->class_name . "-" . $secname;
 </a>
 <?php }?>
 </td>
+<td><?php if($this->session->userdata('login_type') == 'admin'){?>
+								Activity
+								<?php }?>
+								</td>
 							</tr>  
 <?php $sno++; $count++;}}} ?>
 
@@ -263,7 +271,7 @@ if ($id1) {
 					if ($eid) {
 						echo $eid->username;
 					} else {
-						echo "Other";
+						echo $row->paid_by;
 					}
 				}
 				?></td>
@@ -350,6 +358,10 @@ echo $classdf->class_name . "-" . $secname;
 
 								
 								</td>
+								<td><?php if($this->session->userdata('login_type') == 'admin'){?>
+								Activity
+								<?php }?>
+								</td>
 							</tr>
 <?php
 				
@@ -362,7 +374,7 @@ $sno ++;
 
 if ($condition == 'Both') {
 	$sno = 1;
-	while ( $row = mysqli_fetch_object ( $a ) ) {
+	foreach ( $a->result () as $row ) {
 		$dr_cr = $row->dabit_cradit;
 		$unm = $row->paid_by;
 		$this->db->where ( "id", $unm );
@@ -376,12 +388,7 @@ if ($condition == 'Both') {
 		?>
 <tr class="<?php echo $rowcss;?>">
 								<td><?php echo $sno; ?></td>
-								<td><?php 
-								
-								$idempl=$this->db->query ( "SELECT * From employee_info where id ='$row->paid_to' AND school_code='$school_code'" )->row ();
-								if ($idempl) {
-									echo $idempl->emp_name;
-								}else{echo $row->paid_to; }?></td>
+								<td><input type ="hidden" id ="invoiceid<?php echo $sno;?>" value="<?php echo $row->invoice_no; ?>"/><?php echo $row->paid_to; ?></td>
 <?php
 		$id = $this->db->query ( "SELECT name From student_info where id ='$row->paid_by'" )->row ();
 		$id_4 = $this->db->query ( "SELECT name,username,class_id From student_info where id ='$row->paid_by'" );
@@ -473,7 +480,8 @@ echo $classdf->class_name . "-" . $secname;
 
 								<td>
 <?php 
-if(($row->invoice_no=="Delete Fee")||($row->invoice_no=="Delete")){}else{
+if(($row->invoice_no=="Delete Fee")||($row->invoice_no=="Delete")){
+echo "Deleted";}else{
 if(($row->dabit_cradit == 1) ){ ?>
 
  <?php if($row->reason=="Fee Deposit") { ?>
@@ -501,6 +509,23 @@ if(($row->dabit_cradit == 1) ){ ?>
 <?php }}?>
 
 								
+								</td>
+								<td><?php if($this->session->userdata('login_type') == 'admin'){
+									if(($row->invoice_no=="Delete Fee")||($row->invoice_no=="Delete")){}else{
+								?>
+								<button	id ="delb<?php echo $sno;?>" class="btn btn-red">
+Delete</button>
+								<?php }}?>
+								<script>
+								 $("#delb<?php echo $sno;?>").click(function(){ 
+										var invoice_id = $("#invoiceid<?php echo $sno?>").val();
+										
+								$.post("<?php echo site_url("index.php/dayBookControllers/deleteBanTrans") ?>",{invoice_id : invoice_id}, function(data){
+									$("#delb<?php echo $sno;?>").html(data);
+											});
+									});
+			
+								</script>
 								</td>
 							</tr>
 <?php $sno++; $count++;} 
