@@ -64,7 +64,6 @@
 				                      		<?php 
 				                      		$this->db->distinct();
 				                      		$this->db->select('expenditure_name');
-				                      		
 				                      		$ex= $this->db->get("expenditure");?>
 				                      		<tr>
 				                      			 <td><label> Expenditure <span style="color:#F00">*</span></label> 
@@ -78,7 +77,7 @@
 							                               
 							                            </select>
 				                      			 </td>
-				                      			  <td><label> Expenditure Depart <span style="color:#F00">*</span></label> 
+				                      			  <td><label> Expenditure Depart <span style="color:#000">*</span></label> 
 							                            <select id="expenditurer" name="expenditurer" style="width:150px;" required>
 							                               
 							                               
@@ -438,6 +437,3 @@
 					
 
 							</script>
-
-							<!---- Script For Testing --->
-						<!-- end: PAGE CONTENT-->

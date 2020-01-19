@@ -56,13 +56,11 @@ class daybookModel extends CI_Model{
 				'exp_depart'=>$expsub,
 				//'school_code'=>$school_code
 			);
-			if(strlen($subexpid)>1){
+			if($subexpid>0){
 			//	$this->db->where("school_code",$school_code);
 				$this->db->where("sno",$subexpid);
 				$this->db->update('expenditure',$data);
 			}
-			$school_code= $this->session->userdata("school_code");
-			//	$this->db->where("school_code",$school_code);
 				$query = $this->db->get("expenditure");
 				return $query;
 		}

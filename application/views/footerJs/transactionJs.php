@@ -154,6 +154,7 @@ $("#newpassword").hide();
 		$('#createexp1').click(function(){
 			var expsub = $('#expsub').val();
 			var subexp = $('#subexp').val();
+			
 			$.post("<?php echo base_url('index.php/dayBookControllers/creatsubexp') ?>", {subexp : subexp,expsub: expsub
          }, function(data){
                 $("#expen").html(data);
@@ -195,7 +196,7 @@ $("#newpassword").hide();
 		
 	});
 	});
-	TableExport.init();
+	
 		Main.init();
 		SVExamples.init();
 		FormElements.init();
