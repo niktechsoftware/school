@@ -402,7 +402,7 @@ function updatemaximum()
 		$data['subPage'] = 'Old Employee Details';
 
 		$data['title'] = 'Old Employee Details';
-		$data['headerCss'] = 'headerCss/configureClassCss';
+		$data['headerCss'] = 'headerCss/figureClassCss';
 		$data['footerJs'] = 'footerJs/configureClassJs';
 		$data['mainContent'] = 'oldEmployeed';
 		$this->load->view("includes/mainContent", $data);

@@ -488,7 +488,7 @@ function deleteBanTrans(){
 	$this->db->delete("bank_transaction");
 	$this->db->where("receipt_no",$invoiceid);
 	$this->db->delete("director_transaction");
-	echo "del";
+	echo "Deleted Success";
 }
 	function bankTransactionDb(){
 		$id_name = $this->input->post('id_name');
