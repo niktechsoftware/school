@@ -42,11 +42,11 @@ class Login extends CI_Controller{
                     		$this->db->where("DATE(opening_date)",date("Y-m-d"));
 		$checkopeningclo  = $this->db->get("opening_closing_balance");
 		if($checkopeningclo->num_rows()>0){
-
+			$cop = $checkopeningclo->row();
 			$cr_date = date('Y-m-d H:i:s');
 
 				$balance = array(
-						
+					
 						"closing_date" => $cr_date,
 				);
 				$this->db->where("school_code",$school_code);
@@ -54,7 +54,7 @@ class Login extends CI_Controller{
 				$this->db->update('opening_closing_balance',$balance);
 			
 		}else{
-			$clo = $this->db->query("select * from opening_closing_balance where school_code = '$school_code'  ORDER BY id DESC LIMIT 1")->row();
+			$clo = $this->db->query("select * from opening_closing_balance where school_code = '".$school_code."'  ORDER BY id DESC LIMIT 1")->row();
 	
 			$cl_date = $clo->closing_date;
 
@@ -405,7 +405,7 @@ function updatemaximum()
 		$data['subPage'] = 'Old Employee Details';
 
 		$data['title'] = 'Old Employee Details';
-		$data['headerCss'] = 'headerCss/configureClassCss';
+		$data['headerCss'] = 'headerCss/figureClassCss';
 		$data['footerJs'] = 'footerJs/configureClassJs';
 		$data['mainContent'] = 'oldEmployeed';
 		$this->load->view("includes/mainContent", $data);

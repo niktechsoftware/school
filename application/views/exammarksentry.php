@@ -56,7 +56,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 												<select name="exam_name" id="exam_name" class="form-control" required="">
 													<option value="">-Select-</option>
 													<?php foreach ($request as $en):?>
-													<option value="<?php echo $en->id?>"><?php echo $en->exam_name?></option>
+													<option value="<?php echo $en->id?>"><?php echo $en->exam_name?>[ <?php echo $en->term?> Term]</option>
 													<?php endforeach;?>
 												</select>
 											</label>
@@ -181,7 +181,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 												<select name="exam_name" id="exam_name" class="form-control" required="">
 													<option value="">-Select-</option>
 													<?php foreach ($request as $en):?>
-													<option value="<?php echo $en->id?>"><?php echo $en->exam_name?></option>
+													<option value="<?php echo $en->id?>"><?php echo $en->exam_name?>[ <?php echo $en->term?> Term]</option>
 													<?php endforeach;?>
 												</select>
 											</label>

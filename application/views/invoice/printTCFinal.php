@@ -135,23 +135,33 @@ table h1, h2, h3, h4 {
 		<!--	</tr>-->
 			
 		<!--</table>-->
-		<div class="row">      
+<!--<div class="row">      
     <div class="col-md-2">
         <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" alt="" width="80" />
     </div>
 	<div class="col-md-8">
-	<h2 align="center" style="text-transform:uppercase;"><b><?php echo $info->school_name; ?></b></h2>
-    <h4 align="center" style="font-variant:small-caps;padding:10px;">
-		<?php echo $info->address1." ".$info->address2." ".$info->city; ?>
-    </h4>
-    <h4 align="center" style="font-variant:small-caps;padding-bottom:10px;">
-		<?php if(strlen($info->mobile_no > 0 )){echo $info->state." - ".$info->pin.", Phone : ".$info->mobile_no.", ";} ?>
-        
-    </h4>
+        <h2 align="center" style="text-transform:uppercase;"><b><?php echo $info->school_name; ?></b></h2>
+        <h4 align="center" style="font-variant:small-caps;padding:10px;">
+        	<?php echo $info->address1." ".$info->address2." ".$info->city; ?>
+        </h4>
+        <h4 align="center" style="font-variant:small-caps;padding-bottom:10px;">
+        	<?php if(strlen($info->mobile_no > 0 )){echo $info->state." - ".$info->pin.", Phone : ".$info->mobile_no.", ";} ?>
+        </h4>
 	</div>
-
 	<div class="col-md-2"></div>
-    </div>	
+</div>-->
+<table>
+    <thead>
+        <th><img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" alt="" width="80" /></th>
+        <th style="align:center;"><h2 align="center" style="text-transform:uppercase;"><b><?php echo $info->school_name; ?></b></h2>
+        <h4 align="center" style="font-variant:small-caps;padding:10px;">
+        	<?php echo $info->address1." ".$info->address2." ".$info->city; ?>
+        </h4>
+        <h4 align="center" style="font-variant:small-caps;padding-bottom:10px;">
+        	<?php if(strlen($info->mobile_no > 0 )){echo $info->state." - ".$info->pin.", Phone : ".$info->mobile_no.", ";} ?>
+        </h4></th>
+    </thead>
+</table>
 		
 <?php
 	$id = $this->uri->segment(3);
@@ -166,78 +176,108 @@ table h1, h2, h3, h4 {
 ?><br>
     <div class="row">      
     <div class="col-md-2"></div>
-	<div class="col-md-7"><center><span style="font-size:20px;letter-spacing: 2px;border-radius: 25px;border: 2px solid #002D65;font-family:arial; padding: 10px; width: 250px; margin-left:100px;color:white; background-color:#002D65;"><b>TRANSFER CERTIFICATE</b></span></center></div>
+	<div class="col-md-7"><center><span style="font-size:20px;letter-spacing: 2px;border-radius: 25px;border: 2px solid #002D65;font-family:arial; padding: 10px; width: 250px; color:white; background-color:#002D65;"><b>TRANSFER CERTIFICATE</b></span></center></div>
 	<div class="col-md-3"></div>
     </div>	
 	<tr><td>&nbsp;</td></tr>
 	<div class="tcbody">
 	 <div class="row">  
-	 <table><tr><td>
-    <div class="col-md-4" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">विद्यालय  स.  /School No : 
-    &emsp;&emsp;&emsp;<strong style="color:black;">
-        <?php if($info->school_recognition){echo $info->school_recognition;}else{} ?>
-        </strong></span></div></td><td>
-	<div class="col-md-4" style="padding-top:8px; padding-bottom:8px;"></div>
-	</td><td>
-	<div class="col-md-4" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">Affiliation No : 
-	&emsp;&emsp;&emsp;<strong style="color:black;">
-	    <?php if($info->registration_no){echo $info->registration_no;}else{} ?>
-	    </strong></span></div></td>
-	    </tr></table>
+	 <table>
+	     <tr>
+	        <td>
+            <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">विद्यालय संख्या   /School No : 
+            <strong style="color:black;">
+                <?php if($info->school_recognition){echo $info->school_recognition;}else{} ?>
+                </strong></span>
+            </div>
+            </td>
+            <td>
+        	<div class="" style="padding-top:8px; padding-bottom:8px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	</td>
+        	<td>
+        	<div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">Affiliation No : 
+            <strong style="color:black;">
+        	    <?php if($info->registration_no){echo $info->registration_no;}else{} ?>
+        	    </strong></span>
+    	    </div>
+    	    </td>
+	    </tr>
+	    </table>
     </div>
     <div class="row">  
-     <table><tr><td>
-    <div class="col-md-6" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">पुस्तक स./  Book No : &emsp;&emsp;&emsp;<strong style="color:black;"><?php echo $rowb->book_no;?> </strong></span></div>
-	</td><td><div class="col-md-3" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">क्र.स./  S.No. :&emsp;&emsp;&emsp; <strong style="color:black;"><?php echo $rowb->sno;?> </strong></span></div>
-		</td><td><div class="col-md-3 " style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">प्रवेश स./ Admission No : <strong style="color:black;"><?php echo $rowb->scholer_no;?> </strong></span></div>
-   </td></tr></table>
+     <table>
+        <tr>
+            <td>
+    <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">पुस्तक संख्या /  Book No : <strong style="color:black;"><?php echo $rowb->book_no;?> </strong></span></div>
+            </td>
+            <td>
+            <div class="" style="padding-top:8px; padding-bottom:8px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            </td>
+            <td>
+                <div class="" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">क्रम संख्या /  S.No. : <strong style="color:black;"><?php echo $rowb->sno;?> </strong></span></div>
+		    </td>
+		    <td>
+            <div class="" style="padding-top:8px; padding-bottom:8px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            </td>
+		    <td>
+		        <div class=" " style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">प्रवेश संख्या / Admission No : <strong style="color:black;"><?php echo $rowb->scholer_no;?> </strong></span></div>
+            </td>
+        </tr>
+   </table>
     </div>
  
     <div class="row tcbody">      
-    <div class="col-md-8" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">Renewed upto : </span></div>
-	<div class="col-md-4" style="padding-top:8px; padding-bottom:8px; font-size:15px;"><strong style="color:black;text-transform:uppercase;"><input type="text" id="renew_upto" value="<?php if(strlen($tccerti->renewed_upto)>1){echo $tccerti->renewed_upto;}else{ echo "N/A";};?>" class="renewed text-uppercase disable"/></strong></div>
+    <div class="col-md-6" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">Renewed upto : </span></div>
+	<div class="col-md-6" style="padding-top:8px; padding-bottom:8px; font-size:15px;"><strong style="color:black;text-transform:uppercase;"><input type="text" id="renew_upto" value="<?php if(strlen($tccerti->renewed_upto)>1){echo $tccerti->renewed_upto;}else{ echo "N/A";};?>" class="renewed text-uppercase disable"/></strong></div>
     </div>
     <div class="row">      
-    <div class="col-md-8" style="padding-top:8px; padding-bottom:8px; color:#002D65; font-size:15px;">Status of school:Secondary/Sr.Secondary : </div>
-	<div class="col-md-4" style="padding-top:8px; padding-bottom:8px; font-size:15px;"><strong style="color:black;text-transform:uppercase;"><input type="text" id="renew_upto" value="<?php if(strlen($tccerti->school_status)>1){echo $tccerti->school_status;}else{ echo "N/A";};?>" class="renewed text-uppercase disable"/></strong></div>
+    <div class="col-md-6" style="padding-top:8px; padding-bottom:8px; color:#002D65; font-size:15px;">Status of school:Secondary/Sr.Secondary : </div>
+	<div class="col-md-6" style="padding-top:8px; padding-bottom:8px; font-size:15px;"><strong style="color:black;text-transform:uppercase;"><input type="text" id="renew_upto" value="<?php if(strlen($tccerti->school_status)>1){echo $tccerti->school_status;}else{ echo "Sr.Secondary";};?>" class="renewed text-uppercase disable"/></strong></div>
     </div>
      <div class="row">      
-    <div class="col-md-8" style="padding-top:8px; padding-bottom:8px; color:#002D65; font-size:15px;">Registration No. of the candidate ( in case Class IX to XII ) : </div>
-	<div class="col-md-4" style="padding-top:8px; padding-bottom:8px; font-size:15px;"><strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->registration_no)>1){echo $tccerti->registration_no;}else{ echo "N/A";};?>" id="registration_no" class="renewed text-uppercase disable"/></strong></div>
+    <div class="col-md-6" style="padding-top:8px; padding-bottom:8px; color:#002D65; font-size:13px;">Registration No. of the candidate ( in case Class IX to XII ) : </div>
+	<div class="col-md-6" style="padding-top:8px; padding-bottom:8px; font-size:15px;"><strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->registration_no)>1){echo $tccerti->registration_no;}else{ echo "N/A";};?>" id="registration_no" class="renewed text-uppercase disable"/></strong></div>
     </div>
     </div>
 		    
 	<div class="tcbody" style="color:#002D65;">
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">1.  विद्यार्थी का नाम/  Name of Pupil : <strong style="color:black;text-transform:uppercase;"><?php echo $stuname; ?></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">1.  विद्यार्थी का नाम/  Name of Pupil : <strong style="color:black;text-transform:uppercase;"><?php echo $stuname; ?></strong></div>
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">2. माता का नाम / Father's Name : <strong style="color:black;text-transform:uppercase;"><?php echo $fname;?></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">2. पिता का नाम / Father's Name : <strong style="color:black;text-transform:uppercase;"><?php echo $fname;?></strong></div>
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;" >3. पिता का नाम / Mother's Name : <strong style="color:black;text-transform:uppercase;"><?php echo $mname;?></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;" >3. माता का नाम / Mother's Name : <strong style="color:black;text-transform:uppercase;"><?php echo $mname;?></strong></div>
 	
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">4. राष्ट्रीयता/ Nationality :<strong style="color:black; text-transform:uppercase">Indian </strong> </div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">4. राष्ट्रीयता/ Nationality :<strong style="color:black; text-transform:uppercase">Indian </strong> </div>
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">5. क्या अनु . जाती / जन. जा. /  पिछड़ा वर्ग से संबंधित है: Whether the pupil belongs to SC/ST/OBC Category :<strong style="color:black; text-transform:uppercase"><?php echo $rowb->category;?> </strong> </div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">5. क्या अनु . जाति  / जन. जा. /  पिछड़ा वर्ग से संबंधित है: Whether the pupil belongs to SC/ST/OBC Category :<strong style="color:black; text-transform:uppercase"><?php echo $rowb->category;?> </strong> </div>
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">6. प्रवेश पुस्तिका के अनुसार जन्म तिथि / Date of Birth according to the Admission Register :(अंको में / in figure )<strong style="color:black; text-transform:uppercase"><?php echo $rowb->dob;?> </strong>(शब्दों में / in words ) </div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">6. प्रवेश पुस्तिका के अनुसार जन्म तिथि / Date of Birth according to the Admission Register :(अंको में / in figure)
+	</br></br>&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color:black; text-transform:uppercase"><?php echo $rowb->dob;?> </strong>(शब्दों में / in words ) </div>
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">7.क्या विद्यार्थी का परीछा परिणाम अनुतीर्ण है /  Whether the student is failed : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->student_status)>1){echo $tccerti->student_status;}else{ echo "N/A";};?>" id="status" class="renewed text-uppercase disable"/></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">7.क्या विद्यार्थी का परीक्षा परिणाम अनुतीर्ण है /  Whether the student is failed : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->student_status)>1){echo $tccerti->student_status;}else{ echo "N/A";};?>" id="status" class="renewed text-uppercase disable"/></strong></div>
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">8.  प्रस्तावित विषय/  Subject Offered : <strong style="color:black;text-transform:uppercase;"><input type="text"style='width:950px;' value="<?php if(strlen($tccerti->subject_offered)>1){echo $tccerti->subject_offered;}else{ echo "N/A";};?>" id="subjectid" class="renewed text-uppercase disable"/></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">8.  प्रस्तावित विषय/  Subject Offered : <strong style="color:black;text-transform:uppercase;"><input type="text"style='width:950px;' value="<?php if(strlen($tccerti->subject_offered)>1){echo $tccerti->subject_offered;}else{ echo "&nbsp;&nbsp;&nbsp; N/A";};?>" id="subjectid" class="renewed text-uppercase disable"/></strong></div>
 
 	<?php 
 // 	$i=1;
@@ -255,16 +295,16 @@ table h1, h2, h3, h4 {
 	$class=$this->db->get("class_info")->row()->class_name;
 	?>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">9. पिछली कक्षा  जिसमे विद्यार्थी अध्यनरत था : (अंको में )Class in which the pupil last studied(in words) :<strong style="color:black; text-transform:uppercase"> <?php echo $class;?></strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">9. पिछली कक्षा  जिसमे विद्यार्थी अध्यनरत था : (अंको में )Class in which the pupil last studied(in words) :<strong style="color:black; text-transform:uppercase"> <?php echo $class;?></strong></div>
 
 	</div>
 	<div class="row">
-	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">10.पिछले विद्यालय / बोर्ड परीछा एवं  परिणाम / School/Board/Annual Examination last taken with result : <strong style="color:black; text-transform:uppercase">Passed </strong></div>
+	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">10.पिछले विद्यालय / बोर्ड परीक्षा एवं  परिणाम / School/Board/Annual Examination last taken with result : <strong style="color:black; text-transform:uppercase">Passed </strong></div>
 
 	</div>
 	<div class="row">
 	 
-	   <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">11.क्या उच्च कक्षा में पदोन्नति का अधिकारी है :  Whether Qualified for promotion to the next higher class :<strong style="color:black; text-transform:uppercase"> Yes</strong> </div>
+	   <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">11.क्या उच्च कक्षा में पदोन्नति का अधिकारी है :  Whether Qualified for promotion to the next higher class :<strong style="color:black; text-transform:uppercase"> Yes</strong> </div>
     
   
     </div>
@@ -277,52 +317,55 @@ table h1, h2, h3, h4 {
     ?>
     <!--<?php //echo date("M-Y", strtotime($endfsd));?>-->
     <div class="row">
-    	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">12.क्या विद्यार्थी ने विद्यालय की सभी देय राशि का भुगतान कर दिया है : Whether the pupil has paid all dues to the vidyalaya : <strong style="color:black; text-transform:uppercase">YES</strong></div>
+    	<div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">12.क्या विद्यार्थी ने विद्यालय की सभी देय राशि का भुगतान कर दिया है : Whether the pupil has paid all dues to 
+    	the vidyalaya</br></br>&nbsp;&nbsp; :
+    	<strong style="color:black; text-transform:uppercase">YES</strong></div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">13.क्या विद्यार्थी को कोई शुल्क रियासत प्रदान की गयी थी , यदि हाँ , तो उसकी प्रकृति : Whether the pupil was in reciept of any fee concession,if so the nature of the such concession : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->any_fee_concession)>1){echo $tccerti->any_fee_concession;}else{ echo "N/A";};?>" id="concession" class="renewed text-uppercase disable"/></strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">13.क्या विद्यार्थी को कोई शुल्क रियायत प्रदान की गयी थी , यदि हाँ , तो उसकी प्रकृति : Whether the pupil was in reciept of any 
+	    </br></br>&nbsp;&nbsp;&nbsp;fee concession,if so the nature of the such concession : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->any_fee_concession)>1){echo $tccerti->any_fee_concession;}else{ echo "N/A";};?>" id="concession" class="renewed text-uppercase disable"/></strong></div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">14.क्या विद्यार्थी  एन . सी . सी कैडेट / स्कॉउट के विवरण दे : Whether the pupil is NCC Cadet,Boy/Girl Scout (give details) : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->ncc_cadet)>1){echo $tccerti->ncc_cadet;}else{ echo "N/A";};?>" id="ncc_cadet" class="renewed text-uppercase disable"/></strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">14.क्या विद्यार्थी  एन . सी . सी कैडेट / स्कॉउट के विवरण दे : Whether the pupil is NCC Cadet,Boy/Girl Scout (give details)</br></br>&nbsp;&nbsp;&nbsp; : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->ncc_cadet)>1){echo $tccerti->ncc_cadet;}else{ echo "N/A";};?>" id="ncc_cadet" class="renewed text-uppercase disable"/></strong></div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">15. विद्यालय से विद्यार्थी के नाम कटे जाने की तिथि :Date of which pupil name was struck off the rolls of the vidyalaya : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if($tccerti->joining_date){echo date("Y-m-d", strtotime($tccerti->joining_date));}else{ echo "N/A";};?>" id="addmission_date" class="renewed text-uppercase disable"/></strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">15. विद्यालय से विद्यार्थी के नाम काटे जाने की तिथि :Date of which pupil name was struck off the rolls of the vidyalaya : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if($tccerti->joining_date){echo date("Y-m-d", strtotime($tccerti->joining_date));}else{ echo "N/A";};?>" id="addmission_date" class="renewed text-uppercase disable"/></strong></div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:6px; padding-bottom:6px; font-size:15px;">16.विद्यालय छोड़ने का कारण / Reason for leaving the School : <strong style="color:black; text-transform:uppercase">Another Admission </strong></div>
+	    <div class="col-md-12" style="padding-top:6px; padding-bottom:6px; font-size:13px;">16.विद्यालय छोड़ने का कारण / Reason for leaving the School : <strong style="color:black; text-transform:uppercase">Another Admission </strong></div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">17.अंतिम तिथि तक उपस्थितियो की कुल संख्या / No. of meeting up to date : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->meeting_date)>1){echo $tccerti->meeting_date;}else{ echo "N/A";};?>" id="meeting_date" class="renewed text-uppercase disable"/></strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">17.अंतिम तिथि तक उपस्थितियो की कुल संख्या / No. of meeting up to date : <strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->meeting_date)>1){echo $tccerti->meeting_date;}else{ echo "N/A";};?>" id="meeting_date" class="renewed text-uppercase disable"/></strong></div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">18. विद्यार्थी की विद्यालय दिवसों की कुल उपस्थितियॉ /No. of school days the pupil attended :<strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->pupil_attended_day)>1){echo $tccerti->pupil_attended_day;}else{ echo "N/A";};?>" id="attended_day" class="renewed text-uppercase disable"/></strong> </div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">18. विद्यार्थी की विद्यालय दिवसों की कुल उपस्थितियॉ /No. of school days the pupil attended :<strong style="color:black;text-transform:uppercase;"><input type="text" value="<?php if(strlen($tccerti->pupil_attended_day)>1){echo $tccerti->pupil_attended_day;}else{ echo "N/A";};?>" id="attended_day" class="renewed text-uppercase disable"/></strong> </div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">19.सामान्य आचरण / General conduct :<strong style="color:black; text-transform:uppercase">Good </strong> </div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">19.सामान्य आचरण / General conduct :<strong style="color:black; text-transform:uppercase">Good </strong> </div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">20.विद्यालय का वर्ग सरकारी / माइनोरिटी / स्ववित्तपोषी श्रके  अंतर्गत  Whether School is under Govt./Minority/Independent category : <strong style="color:black; text-transform:uppercase">Independent </strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">20.विद्यालय का वर्ग सरकारी / माइनोरिटी / स्ववित्तपोषी के  अंतर्गत  Whether School is under Govt./Minority/Independent</br></br>&nbsp;&nbsp;&nbsp; category : <strong style="color:black; text-transform:uppercase">Independent </strong></div>
 
 	</div>
 	<div class="row">
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">21. कोई अन्य टिप्पड़ी /Any other remarks : <strong style="color:black;"><input type="text" value="<?php if(strlen($tccerti->other_remarks)>1){echo $tccerti->other_remarks;}else{ echo "N/A";};?>" id="other_remark" class="renewed text-uppercase disable"/></strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">21. कोई अन्य टिप्पणी /Any other remarks : <strong style="color:black;"><input type="text" value="<?php if(strlen($tccerti->other_remarks)>1){echo $tccerti->other_remarks;}else{ echo "N/A";};?>" id="other_remark" class="renewed text-uppercase disable"/></strong></div>
 	
 	 </div>
 	<div class="row">
 	    
-	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:15px;">22. प्रमाण - पत्र जारी करने की तिथि /Date of issue of certificate : <strong style="color:black; text-transform:uppercase"><?php echo date('Y-m-d');?> </strong></div>
+	    <div class="col-md-12" style="padding-top:8px; padding-bottom:8px; font-size:13px;">22. प्रमाण - पत्र जारी करने की तिथि /Date of issue of certificate : <strong style="color:black; text-transform:uppercase"><?php echo date('Y-m-d');?> </strong></div>
 
 	
 	</div>
-	</br>
+	</br></br></br></br></br>
 	<div>
 			<table border="0" width="100%" cellpadding="0" cellspacing="0">
 				<tbody>

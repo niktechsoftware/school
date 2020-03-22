@@ -84,7 +84,9 @@ function daybook()
 		$dt1        = $this->input->post("st_date");
 		$dt2        = $this->input->post("end_date");
 		$q          = $this->input->post("check_list");
-		if($q=='Cash Payment'){
+	
+	echo $q;
+		if($q==1){
 			$a = $this->db->query("select DISTINCT expenditure_name from cash_payment where date >= '$dt1' AND date <= '$dt2' AND school_code='$school_code'");
 			
 			$b = $a->num_rows();
@@ -120,30 +122,71 @@ function daybook()
 			}
 		}
 	
-// 			if($b > 0){
-// 				$data['dt1']=$dt1;
-// 				$data['dt2']=$dt2;
-// 				$data['pageTitle'] = 'Day Book Report';
-// 				$data['smallTitle'] = 'Day Book Report';
-// 				$data['mainPage'] = 'Configuration';
-// 				$data['subPage'] = 'Class, Section, Subject Stream';
-// 				$data['condition'] = $condition;
-// 				$this->load->model("configureClassModel");
-// 				$result = $this->configureClassModel->getClassList();
-// 				$data['classList'] = $result->result();
-// 				$data['title'] = 'Configure Class/Section';
-// 				$data['headerCss'] = 'headerCss/daybookCss';
-// 				$data['footerJs'] = 'footerJs/daybookJs';
-// 				$data['mainContent'] = 'dayBook3';
-// 				$data['feeDetail'] = $feeData;
-// 				$data['a']=$a;
-// 				$data['b']=$b;
-// 				$data['dabit']=0;
-// 				$data['cradit']=0;
-// 				$this->load->view("includes/mainContent", $data);
-// 			}
+	if(($q==2)||($q==3)||($q==4)||($q==5)||($q==6)||($q==7)||($q==8) ||($q==9)){
+	        if(($q==2)){
+	             $reason = "by salary";
+		 }
+	          if(($q==4)){
+	              $reason = "Diposti to Director";
+	          }
+	        if(($q==3)){
+	            $reason="Diposit To Bank";
+	                 }
+	         if(($q==2)){
+	             $reason="By Salary";
+	                   }
+	         if(($q==9)){
+	              $reason="Recieve From Director";
+	                }
+	         if(($q==5)){
+	               $reason="Fee Deposit";
+	                }
+	         if(($q==6)){
+	              $reason="From sale Stock";
+	                 }
+	        if(($q==7)){
+	             $reason="Receive From Bank";
+	                 }
+	        if(($q==8)){
+	              $reason="Admission Fee + 1 Month Fee";
+	              }
+	       echo $reason;
+	        $a = $this->db->query("select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code' AND reason='$reason'");
+			$b = $a->num_rows();
+			
+
+			$dabit = 0;
+			$cradit = 0;
+			if($b > 0){
+			    //	echo "rahul";
+				$data['dt1']=$dt1;
+				$data['dt2']=$dt2;
+				$data['pageTitle'] = 'Day Book Report';
+				$data['smallTitle'] = 'Day Book Report';
+				$data['mainPage'] = 'Configuration';
+				$data['subPage'] = 'Class, Section, Subject Stream';
+				$data['condition'] = $condition;
+				
+				$this->load->model("configureClassModel");
+				$result = $this->configureClassModel->getClassList();
+				$data['classList'] = $result->result();
+				$data['title'] = 'Configure Class/Section';
+				$data['headerCss'] = 'headerCss/daybookCss';
+				$data['footerJs'] = 'footerJs/daybookJs';
+				$data['mainContent'] = 'dayBook5';
+				$data['a']=$a;
+				$data['b']=$b;
+				$data['dabit']=0;
+				$data['cradit']=0;
+				
+				$this->load->view("includes/mainContent", $data);
+			}
+			else{
+			    redirect("index.php/login/dayBook/9");
+			}
+		}
 		
-		if($q=='all'){
+		if($q==10){
 			$school_code = $this->session->userdata("school_code");
 			$a = mysqli_query($this->db->conn_id,"select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code'");
 			$b = mysqli_num_rows($a);
@@ -393,6 +436,59 @@ redirect("login/cashPaymentreort");
 		}
 
 	}
+}
+
+function deleteBanTrans(){
+	$invoiceid = $this->input->post("invoice_id");
+	$this->db->where("invoice_no",$invoiceid);
+	$getrow = $this->db->get("day_book");
+	if($getrow->num_rows()>0){
+		$rowt = $getrow->row();
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("opening_date",date("y-m-d"));
+		$closing=$this->db->get("opening_closing_balance");
+		
+		$close=$closing->row()->closing_balance;
+		if($rowt->dabit_cradit){
+			$dc = 0;
+			$bal=$close - $rowt->amount;
+		}else{
+			$dc = 1;
+			$bal=$close + $rowt->amount;
+		}
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("opening_date",date("y-m-d"));
+		$closing=$this->db->get("opening_closing_balance");
+		
+		$close=$closing->row()->closing_balance;
+		
+		$clos_arr=array(
+				"closing_balance"=>$bal
+		);
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("opening_date",date("y-m-d"));
+		$this->db->update("opening_closing_balance",$clos_arr);
+		$dataa = array(
+				"paid_to"		=>$rowt->paid_by,
+				"paid_by"		=>$rowt->paid_to,
+				"reason"		=>"Wrong ".$rowt->invoice_no."-".$rowt->reason,
+				"dabit_cradit"	=>$dc,
+				"amount"		=>$rowt->amount,
+				"closing_balance"=>$bal,
+				"pay_date"		=>date("Y-m-d"),
+				"pay_mode"		=>1,
+				"invoice_no"	=>"Deleted",
+				"school_code"	=>$rowt->school_code
+		);
+	}
+	$this->db->insert("day_book",$dataa);
+	$this->db->where("invoice_no",$invoiceid);
+	$getrow = $this->db->delete("day_book");
+	$this->db->where("receipt_no",$invoiceid);
+	$this->db->delete("bank_transaction");
+	$this->db->where("receipt_no",$invoiceid);
+	$this->db->delete("director_transaction");
+	echo "Deleted Success";
 }
 	function bankTransactionDb(){
 		$id_name = $this->input->post('id_name');
@@ -681,10 +777,13 @@ redirect("login/cashPaymentreort");
 	function creatsubexp(){
 		$subexpid= $this->input->post('subexp');
 		$expsub= $this->input->post('expsub');
+		
+		
 	//	print_r($subexpid);
-	//	print_r($expsub);
+	
 		$this->load->model('daybookmodel');
-		if($subexpid){
+		if($subexpid>0){
+			//id sub me hai
 			$explist = $this->daybookmodel->creatSubexpe($expsub,$subexpid);
 	}else{
 		$explist = $this->daybookmodel->creatsubexpee();

@@ -89,7 +89,7 @@
 					$.post("<?= site_url();?>index.php/singlefee/getfeedata",
 					{ monnumber : monnumber, stuid :stuid },
 					function(data){
-						//alert(data);
+
 						$('#getfeedata').html(data);
 
 					});

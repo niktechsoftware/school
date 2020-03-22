@@ -1714,9 +1714,18 @@ if(is_numeric($exammm)){
 			<td colspan="2">ATTENDANCE  </td>
 			<td colspan="6">MARK PERCENTAGE  <?php   
 			$b=$grndt_1+$grndt_2+$grndt_3;
+
+
+			if($b>0){
 			echo round((($a*100)/$b), 2);
+			}else{
+			    echo "0.00";
+			}
 			?>%  </td>
-			<td colspan="6">RANK</td>
+		<td colspan="6">Class Rank:<?php 
+			echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);?></td>
+
+
 		</tr>
 		<!---samrat ashok marks table end--->
 		<?php }else if($school == 1 && $row2== "D" || $school == 2 && $row2== "D" || $school == 3 && $row2== "D" || $school == 4 && $row2== "D"){ ?>
@@ -3159,6 +3168,7 @@ if(is_numeric($exammm)){
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
+
 								if(is_numeric($marks->marks)){
 							$subtatal=$subtatal+$marks->marks;
 							$gtptal= $gtptal+$marks->marks;
@@ -3191,6 +3201,7 @@ if(is_numeric($exammm)){
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
+
 								if(is_numeric($marks->marks)){
 							$subtatal=$subtatal+$marks->marks;
 							$gtptal= $gtptal+$marks->marks;
@@ -3198,7 +3209,7 @@ if(is_numeric($exammm)){
 								$ctotal[$t]+= $marks->marks;
 							echo $marks->marks;
 								}
-						
+
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -3232,6 +3243,7 @@ if(is_numeric($exammm)){
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
+
 							if(is_numeric($marks->marks)){
 							$subtatal=$subtatal+$marks->marks;
 							$gtptal_2= $gtptal_2+$marks->marks;
@@ -3240,6 +3252,7 @@ if(is_numeric($exammm)){
 							}
 							echo $marks->marks;
 							 
+
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -3264,6 +3277,7 @@ if(is_numeric($exammm)){
 						$marks= $this->db->get('exam_info');
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
+
 							if(is_numeric($marks->marks)){
 							$subtatal=$subtatal+$marks->marks;
 							$gtptal_2= $gtptal_2+$marks->marks;
@@ -3272,6 +3286,7 @@ if(is_numeric($exammm)){
 							}
 							echo $marks->marks;
 							 
+
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -3630,7 +3645,7 @@ $cumulativetotal=0;
 	</table>
 
 
-
+<br /><br /><br /><br /><br /><br /><br />
 
 
 

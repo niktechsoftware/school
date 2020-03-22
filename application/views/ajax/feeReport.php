@@ -261,10 +261,12 @@ echo "1";
 								 $fee_head = $this->db->get("class_fees");
 								 if($fee_head->num_rows()>0){
 									 $fee_head_one =$fee_head->row()->fee_head_amount;
+
 									// print_r($fee_head->row()->fee_head_amount);
 									 	// print_r($searchM);
 									 	 $this->db->select_sum('fee_head_amount');
 									 	 $this->db->from('class_fees');
+
 									 	$this->db->where("fsd",$fsd);
 									    $this->db->where("class_id",$stuDetail->class_id);
 									 	 $this->db->where_in("taken_month",$searchM);
@@ -276,7 +278,9 @@ echo "1";
 								    
 								         
 								    $exfee= $examfee->row()->fee_head_amount;
-								    	// print_r($exfee);
+
+								    //	 print_r($exfee);
+
 									$totfee2= $fee_head_one * $rt;
 								//	print_r($totfee2);
 									$totfee=$totfee2+$exfee;

@@ -83,11 +83,15 @@
 		  <?php
 				$i=1;$tot=0;	foreach($examinfo->result() as $sub):
 				$this->db->where('id',$sub->subject_id);
-				$subjectname= $this->db->get('subject')->row();
-				$this->db->where('class_id',$sub->class_id);
+				$subjectname1= $this->db->get('subject');
+				
+				if($subjectname1->num_rows()>0){
+				    $subjectname=$subjectname1->row();
+				    $this->db->where('class_id',$sub->class_id);
 				$this->db->where('exam_id',$sub->exam_id);
 				$this->db->where('subject_id',$subjectname->id);
 				$maxm=$this->db->get('exam_max_subject');
+				
 			?>
 			<th class="text-uppercase">
 			<?php echo $subjectname->subject;?><br>
@@ -100,7 +104,7 @@
 											}else{echo "0";} 
 			$datasubject[$i]=$sub->subject_id; ?>
 			</th>
-			<?php  $i++;endforeach; ?>
+			<?php } $i++;endforeach; ?>
 			<th>Total Marks <br> <?php echo $tot;?></th>
 			<th>Percentage</th>
 		</tr>

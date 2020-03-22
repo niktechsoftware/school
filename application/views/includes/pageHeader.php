@@ -1,4 +1,3 @@
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 * {
@@ -16,7 +15,6 @@
   }
 }
 </style>
-
 <!-- start: MAIN CONTAINER -->
 <div class="main-container inner">
 <?php $school_code = $this->session->userdata("school_code");?>
@@ -73,7 +71,7 @@
        // $this->db->where("school_code",$school_code);
 	//	$sender=$this->db->get("sms_setting")->row(); 
         // $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row(); ?>
-        <a class="button_blink" href="#">Remaining SMS&nbsp;<br><?php //echo checkBalSms($sender->uname,$sender->password);?></a>
+        <a class="button_blink" href="#">Remaining SMS&nbsp;<br>
         </div>
     </div>
     <?php } ?>-->
@@ -89,8 +87,8 @@
 </div>
     <!-- <div class="row">
         <div class="col-lg-12">
-            <div class="col-md-4"><div><a class="button_blink" href="#">Remaining SMS&nbsp;<br><?php// echo $cbs;?></a></div></div>
-            <div class="col-md-3"><div><a class="button_blink" href="#">&nbsp;<?php ?></a></div></div>
+            <div class="col-md-4"><div><a class="button_blink" href="#">Remaining SMS&nbsp;<br>// echo $cbs;?></a></div></div>
+            <div class="col-md-3"><div><a class="button_blink" href="#">&nbsp;</a></div></div>
             <div class="col-md-5"><div><a class="button_blink" href="#">Customer Care:&nbsp;<br>+91-&nbsp;6389027901,&nbsp;6389027902,&nbsp;6389027904,&nbsp;6389027905</a></div></div>
         </div>
     </div> -->
@@ -123,13 +121,9 @@
         <a style="margin:3px;" class="button_responsive btn btn-dark-beige" href="<?php echo base_url(); ?>index.php/feepanel">Fee Report</a>
         <a style="margin:3px;" class=" button_responsive btn btn-dark-azure" href="<?php echo base_url(); ?>index.php/homeworkpanel">Home Work</a>
         <a style="margin:3px;" class="button_responsive btn btn-dark-yellow" href="<?php echo base_url(); ?>index.php/timetablepanel">Time Table</a>
-        <!-- <a  style="margin:3px;" class="button_responsive btn btn-dark-purple" href="<?php// echo base_url(); ?>index.php/login/newAdmission">Student Registration</a> -->
+        <!-- Student Registration</a> -->
 
-        <!--<a  style="margin-bottom:3px;" class="btn btn-dark-green" href="<?php echo base_url(); ?>index.php/vreportpanel"> Varification Report</a>-->
-         <!-- <a href="<?php echo base_url(); ?>index.php/studentController/studentPanel">
-         <button type="button" style="margin-bottom:3px;" class="btn btn-dark-blue">Admit Card</button></a>
-         <a href="<?php echo base_url(); ?>index.php/studentController/studentPanel">
-         <button type="button" style="margin-bottom:3px;" class="btn btn-dark-yellow">Report Card</button></a> -->
+      
        <?php } ?>
     </div>
 </div>

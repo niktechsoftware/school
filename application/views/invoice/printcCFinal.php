@@ -160,16 +160,31 @@ table h1, h2, h3 {
 	$fname = $gdetail->father_full_name;
 	$add= $gdetail->address;
 	$stuname=$rowb->name;
-?>
-          
+	
+                                           //$this->db->where('school_code',$school_code);
+                                           $this->db->where('id',$rowb->class_id);
+                                           $classname=$this->db->get('class_info');
+                                             if($classname->num_rows()>0){
+                                  $classdf=$classname->row();
+                                  $this->db->where("id",$classdf->section);
+                                  $secname = $this->db->get("class_section")->row()->section;
+                                                 
+                                             }
+                                  
+
+						$this->db->where("id",$this->session->userdata("fsd"))	;
+						$fsdarray = $this->db->get("fsd")->row();
+						$styear=date('Y',strtotime($fsdarray->finance_start_date));
+							$etyear=substr(date('Y',strtotime($fsdarray->finance_end_date)),2);
+							?>         
 	</br></br>
 		
-		
+		<?php if($rowb->gender ==1){ ?>
 			<div class="tcbody">
 			<div>
-				This is to certify that <strong><?php echo $stuname; ?></strong>, S/O / D/O <strong><?php echo $fname;?></strong>
-				 of <strong><?php echo $add;?></strong>. He had
-				been studying in this school. So for as I know, he is a child of moral and character . He did not take part in any activity subversive to the state. I wish him every success.
+				This is to certify that Master<strong>  <?php echo $stuname; ?></strong>, S/O <strong><?php echo "Mr. ".$fname;?> & <?php echo "Miss. ".$gdetail->mother_full_name ;?></strong>
+				is/was a bonafide student of <strong><?php echo $classdf->class_name."-".$secname; echo " [ " .$styear."-".$etyear. " ]";?></strong> of this institution & his date of birth according to the school admission record is.
+				<?php echo $rowb->dob; ?>.He bears a good moral character. I wish him every success.
 				
 			</div>
 			<div>
@@ -198,7 +213,39 @@ table h1, h2, h3 {
 		</div>
 	
 		
-	
+	<?php }else{ ?>
+	<div class="tcbody">
+			<div>
+				This is to certify that Miss<strong> <?php echo $stuname; ?></strong>, D/O <strong><?php echo "Mr. ".$fname;?> & <?php echo "Miss. ".$gdetail->mother_full_name ;?></strong>
+				is/was a bonafide student of <strong><?php echo  $classdf->class_name."-".$secname; echo " [ " .$styear."-".$etyear. " ]"; ?></strong> of this institution & her date of birth according to the school admission record is.
+				<?php echo $rowb->dob; ?>.She bears a good moral character. I wish him every success.
+				
+			</div>
+			<div>
+				<br />
+			</div>
+			<div>a. Her moral character :   Good</div>
+			<div>b. Behavior                  :   Good</div>
+			<div>c. Progress                   :   Satisfactory</div>
+			<div>
+				<br />
+			</div>
+
+			<table border="0" width="100%" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr>
+						<td valign="top" width="275"><div align="center">
+								<br />
+							</div></td>
+						<td valign="top" width="369"><div align="center"></div>
+							<div align="center">Principal</div>
+							<div align="center"></div>
+							</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<?php } ?>
 	</div>
 
     </div>

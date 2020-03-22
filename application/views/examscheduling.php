@@ -135,6 +135,7 @@
 												<thead>
 													<tr>	
 														<th>Exam Name</th>
+														<th>Term</th>
 														<th>Exam Month</th>
 														<th>Setting</th>
 														<th>Action</th>
@@ -151,6 +152,7 @@
 											<input type="text" style="width: 140px;" name="examName<?php echo $i;?>" value="<?php echo $row->exam_name;?>" id="ename<?php echo $i;?>" disabled="disabled"/>									
 											 <input type="hidden" name="examName" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/>
 														</td>
+														<td><?php echo $row->term;?> Term</td>
 														<td>
 															<input  type="text" style="width: 95px;" data-date-format="yyyy-mm-dd" id="edate<?php echo $i;?>" data-date-viewmode="years" value="<?php echo date('d-F-Y', strtotime($row->exam_date));  ?>" disabled="disabled"/>
 															<input type="hidden" name="edate" value="<?php echo date('d-F-Y', strtotime($row->exam_date));?>"/>		
