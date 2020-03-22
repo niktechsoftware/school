@@ -297,7 +297,7 @@ function checkIDOTP(){
 	$this->load->model("teacherModel");
 	$this->load->model("smsmodel");
 	$var = $this->teacherModel->checkID($tid);
-	echo $tid;
+	//echo $tid;
 	//print_r($var);
 	if($var->num_rows() > 0){
 		$row=$var->row();

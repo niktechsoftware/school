@@ -11,6 +11,21 @@ class StudentModel extends CI_Model{
 	    $result=$this->db->get();
 		return $result;
 	}
+	function dobStudentList($school_code){
+		  
+		    $da = date("Y-m-d");
+	$datem = date("m",strtotime($da));
+		$dated = date("d",strtotime($da));
+	    $this->db->select('username,mobile,name');
+	    $this->db->from('student_info');
+	    $this->db->join('class_info','class_info.id=student_info.class_id');
+	    $this->db->where("class_info.school_code",$school_code);
+	    $this->db->where("student_info.status",1);
+	    $this->db->where('MONTH(student_info.dob)',$datem);
+	     $this->db->where('DAY(student_info.dob)',$dated);
+	    $result=$this->db->get();
+		return $result;
+	}
 	// function studentguardianList(){
 	// 	$school_code = $this->session->userdata("school_code");
 	//     $this->db->select('*');

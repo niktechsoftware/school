@@ -31,7 +31,11 @@
 		<?php $this->db->where('school_code',$this->session->userdata('school_code'));
 		$sende_Detail=$this->db->get('sms_setting')->row();
 		?>
-		<div>   <p class="alert alert-danger"> Available SMS Balance = <?php $cbs=checkBalSms($sende_Detail->uname,$sende_Detail->password);
+		<div>   <p class="alert alert-danger"> Available SMS Balance = <?php 
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+	$smsbaladd = 	$this->db->get("sms_setting")->row();
+		$cbs=checkBalSms($sende_Detail->uname,$sende_Detail->password)+$smsbaladd->sms_bal;
+	
 		echo $cbs;?></p>
 		 <p class="alert alert-info"> Note : This is the area you can send Fee reminder to send click send sms button . If you send SMS change to Success Message send Successfully . <br>
 		</div>
@@ -185,7 +189,6 @@
 							<?php 
 					            	$depmonth=array();
 					            	$mbk=0;
-					            	
 								 	$this->db->order_by('id','desc'); 
 								 	$this->db->where('student_id',$stu_id);
                                  	$mbalance=$this->db->get('feedue');
@@ -304,6 +307,7 @@
 							}
 
 							}else{
+							    $searchM[0]=0;
 							    $m = 0;
 								$this->db->where("school_code",$this->session->userdata("school_code"));
 								$fcd = 	$this->db->get("fee_card_detail");
@@ -435,18 +439,6 @@
 		
 <?php }}else{?>
 	<br/><br/>
-	<div class="alert alert-block alert-danger fade in">
-		<button data-dismiss="alert" class="close" type="button">
-			&times;
-		</button>
-		<h4 class="alert-heading"><i class="fa fa-times"></i> Error! <?php echo $student->num_rows();?></h4>
-		<p>
-			No record found from this class and section... 
-		</p>
-		<p>
-			Make sure students are avaliable in this class section... :)
-		</p>
-	</div>
 
 <?php }?>
 	
@@ -622,7 +614,7 @@
 						<td>
 							
 							<?php 
-							
+							$searchM[0]=0;
             						$depmonth=array();
             						$mbk=0;
             					//	print_r($total->invoice_no);

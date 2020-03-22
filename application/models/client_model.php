@@ -22,7 +22,7 @@ class Client_model extends CI_Model {
 		return $result;
 	}
 	function get_admin_detail(){
-	    $query = $this->db->query("SELECT * FROM general_settings ORDER BY id DESC LIMIT 1");
+	    $query = $this->db->query("SELECT * FROM general_settings ORDER BY school_code DESC LIMIT 1");
         $result = $query->result_array();
 		return $result;
 	}

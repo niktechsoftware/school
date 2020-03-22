@@ -47,11 +47,48 @@ function getFsd(){
 		//echo $fsd1;
 		$stud_id=$this->input->post("studentid");
 		//print_r($this->session->userdata('fsd'));
-		$this->db->where('fsd',$fsd1);
+	//	$this->db->where('fsd',$fsd1);
 		$this->db->where("username",$stud_id);
 		$check = $this->db->get("student_info");
 		if($check->num_rows() > 0)
-		{
+		{ if($check->row()->fsd != $fsd1){
+		    $this->db->select_sum("deposite_month");
+		    $this->db->where("student_id",$check->row()->id);
+		  $totdm =   $this->db->get("fee_deposit")->row()->deposite_month;
+		  if($totdm >11){
+		      $this->db->where('id',$fsd1); 
+				$start_date=$this->db->get('fsd')->row()->finance_start_date;
+							?>	<div class="form-group">
+				                      <label for="inputStandard" class="col-lg-3 control-label">
+				                      		Select FSD <span style="color:#F00">*</span>
+				                      </label>
+				                      <div class="col-lg-5">
+				                      		<select id="fsd12" name="fsd" class="form-control">
+				                      			<option value="<?php echo $fsd1 ?>"><?php echo $start_date ?></option>
+								            </select>
+									   </div>
+									   <div class="col-sm-4" id="subbox">
+										 <button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
+									</div>
+								</div>
+		<?php   }else{
+		    $this->db->where('id',$check->row()->fsd); 
+				$start_date=$this->db->get('fsd')->row()->finance_start_date;
+							?>	<div class="form-group">
+				                      <label for="inputStandard" class="col-lg-3 control-label">
+				                      		Select FSD <span style="color:#F00">*</span>
+				                      </label>
+				                      <div class="col-lg-5">
+				                      		<select id="fsd12" name="fsd" class="form-control">
+				                      			<option value="<?php echo $check->row()->fsd ?>"><?php echo $start_date ?></option>
+								            </select>
+									   </div>
+									   <div class="col-sm-4" id="subbox">
+										 <button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
+									</div>
+								</div>
+	<?php	}
+		}else{
 				$this->db->where('id',$fsd1); 
 				$start_date=$this->db->get('fsd')->row()->finance_start_date;
 							?>	<div class="form-group">
@@ -67,7 +104,7 @@ function getFsd(){
 										 <button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
 									</div>
 								</div>
-	<?php	}else{?>
+	<?php	}}else{?>
 			<div class="alert alert-block alert-danger fade in">
 				<button data-dismiss="alert" class="close" type="button">
 					&times;
@@ -1095,153 +1132,11 @@ function getFsd(){
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Late Fee</div>
 	                                                    <div class="col-sm-7">
-	                                                    <?php 
-	                                                   /*  $latef=0;
-	                                                    $vt=1;
-	                                                    foreach($val->result() as $row):
-	                                                    if($vt==1){
-	                                                    $date1 = $row->should_deposite;
-	                                                    $date2 = date("Y-m-d");
-	                                                    if($date2 >= $date1){
-	                                                   $diff = abs(strtotime($date2) - strtotime($date1));
-$years = floor($diff / (365*60*60*24));
-$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-$totlatedays = ($years*12*30)+($months*30)+$days;
-	                                                    $vt++;
-	                                                    $this->db->select("late_fee");
-	                                                    $this->db->where("month_number",$row->month_number);
-	                                                    $this->db->where("school_code",$school_code);
-	                                                    $yh = $this->db->get("fee_card_detail")->row();
 	                                                   
-	                                                   $dh= $yh->late_fee;
-	                                                 
-	                                                     if($dh != 0){
-	                                                     	
-	                                                    	
-	                                                       $latef	=	$dh*$totlatedays;
-	                                                      
-	                                                      
-	                                                      // $latef=0;
-	                                                    }else{
-	                                                        $latef=0;
-	                                                   }
-	                                                    
-	                                                    }
-	                                                    }
-	                                                    endforeach; 
-	                                                      */
-	                                                    
-	                                                    //$sno = $this->db->query("SELECT * FROM fee_deposit WHERE student_id ='".$student_id."' ORDER BY ID DESC limit 1")->row();
-	                                                    		
-	                                                    
-	                                                
-	                                                   
-											  			?> 
 	                                                     	  	<?php 
 							
+					$latefee1=	$this->feeModel->getlatefee($stuid,$fsdid);
 						
-							//$this->db->where("school_code",$school_code);
-							$this->db->where("student_id",$stuid);
-							$this->db->where("fsd",$fsdid);
-							$fee_record = $this->db->get("deposite_months");
-							
-							$this->db->where('school_code',$school_code);
-						$feecat=$this->db->get('late_fees')->row()->apply_cat;
-						if($feecat==1){
-						if($fee_record->num_rows()>0){
-					   $i=0;
-						foreach($fee_record->result() as $fd):
-							?>
-							<?php 
-						 if($fd->deposite_month<4){
-							$cdate11=date('Y-m-d');
-							$mno=(int)date('m',strtotime($cdate11));
-							if($mno < $fd->deposite_month){
-							    $realm=0;
-							 //  print_r($mno);
-							
-							 //    print_r($mno);
-							}else{
-							   
-								//echo $mno;
-							$realm= $mno- $fd->deposite_month-1;
-							    
-							}
-				          // print_r($realm);
-						 }else{ 
-							$cdate12=date('Y-m-d');
-							if($cdate12>='2020-01-01'){
-							  $mno=(int)date('m',strtotime($cdate12));
-						
-						 $realm= $mno-$fd->deposite_month+12-1;
-						// print_r($realm);
-						}else{
-						   
-							$mno=(int)date('m',strtotime($cdate12));
-						if($mno<$fd->deposite_month){
-						    $realm=0;
-							    
-							}else{
-								
-								//echo $mno;
-							$realm= $mno- $fd->deposite_month;
-							
-							}
-				// 			print_r($mno);
-				// 		print_r($fd->deposite_month);
-						 }
-						}
-					
-						?>
-								
-						<?php $i++; endforeach; 
-						
-						
-						$this->db->where('school_code',$school_code);
-						$amt=$this->db->get('late_fees')->row()->late_fee;
-						
-							$this->db->where('month_number',$mno);
-						$this->db->where('school_code',$school_code);
-						$depdate1=$this->db->get('fee_card_detail')->row();
-						$depdate=date("y-m-d", strtotime($depdate1->deposite_date));
-						 $date=date("y-m-d");
-						
-					
-						if($realm==1 && $date<$depdate){
-						  
-						        $latefee1=$amt;
-						    
-						}else{ 
-                                $latefee1=$amt*$realm;
-                       
-						}
-                       
-					}else{
-						$cdate11=date('Y-m-d');
-							if($cdate11>='2020-01-01'){
-							$mno=(int)date('m',strtotime($cdate11));
-						
-						 $realm= $mno-4+12;
-						}else{
-							$mno=(int)date('m',strtotime($cdate11));
-						
-						
-                            $realm= $mno-4;
-						 }?>	
-						<?php 
-						$this->db->where('school_code',$school_code);
-						$amt=$this->db->get('late_fees')->row()->late_fee;
-                        $latefee1=$amt*$realm;
-					}}else{
-						$latefee1='0.00';
-					 }
-					 
-				// 	 if($realm>0){
-					     
-				// 	}else{
-				// 		$realm=0;
-				// 	} 
 				if($school_code==7){
 				    if($this->session->userdata("login_type")=="admin"){
 				?>
@@ -1307,10 +1202,10 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 																											 $tamount=$this->db->get("transport_fee_month");
 																											//  print_r($tamount->row());
 																											//  exit;
-																											 if($tamount->num_rows()>0){  ?>
-																												<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo "Paid";?>" class="form-control">
-																												<input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo "Paid";?>" class="form-control" disabled="disabled">
-																									<?php		}else{ ?>
+																											 if($tamount->num_rows()<1){  ?>
+																												<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
+																												<input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
+																									<?php	  $totfees+=$transfee;	}else{ ?>
 	                                                   <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
 	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
 	                                                 <?php $totfees+=$transfee;?>

@@ -254,16 +254,20 @@ redirect("index.php/login/index");
 		$new_img = array(
 				"logo"=> $photo_name
 		);
+
+	
 		$old_img = $this->input->post("old_img");
 		@chmod("assets/".$school_code."/images/empImage/" . $old_img, 0777);
 		@unlink("assets/".$school_code."/images/empImage/" . $old_img);
 		$this->db->where("id",$this->session->userdata("school_code"));
 		$query = $this->db->update("school",$new_img);
+	
 		if($query){
 			$this->load->library('upload');
 			// Set configuration array for uploaded photo.
 			//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/empImage');
 			$asset_name = $this->db->get('upload_asset')->row()->asset_name;
+			
 			$image_path = $asset_name.$school_code.'/images/empImage';
 			$config['upload_path'] = $image_path;
 			$config['allowed_types'] = 'gif|jpg|jpeg|png';
@@ -342,7 +346,7 @@ redirect("index.php/login/index");
 			$image_path = $asset_name.$school_code.'/images/empImage';
 			$config['upload_path'] = $image_path;
 			$config['allowed_types'] = 'gif|jpg|jpeg|png';
-			$config['max_size'] = '1160';
+			$config['max_size'] = '100';
 			$config['file_name'] = $photo_name;
 			// Upload first photo and create a thumbnail of it.
 			if (!empty($_FILES['logo']['name'])) {

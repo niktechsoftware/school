@@ -1,5 +1,7 @@
 <?php class examModel extends CI_Model{
 	
+
+	
 public function getExamInfo($data)
 { $this->db->where("school_code",$this->session->userdata("school_code"));
 	$query1 = $this->db->get("period");

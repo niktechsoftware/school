@@ -82,6 +82,8 @@ class SmsAjax extends CI_Controller{
 		$msg =	$this->input->post("meg");
 	
 		$fmobile1 = $this->input->post("m_number");
+		$fmobile1=str_replace(" ",",",$fmobile1);
+	
 		$str_arr=explode(",",$fmobile1);
 		$totnumb =  sizeof($str_arr);
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
@@ -433,7 +435,11 @@ class SmsAjax extends CI_Controller{
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row();
 		
 		$data['sender_Detail'] =$sender;
-		$data['cbs']=checkBalSms($sender->uname,$sender->password);
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+	$smsbaladd = 	$this->db->get("sms_setting")->row();
+		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
+		
+	
 		$data['pageTitle'] = 'SMS Panel';
 		$data['smallTitle'] = 'Mobile SMS';
 		$data['mainPage'] = 'SMS Panel Area';

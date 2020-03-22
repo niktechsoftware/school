@@ -128,7 +128,7 @@ if ($dipom->num_rows () > 0) {
 		 	$this->db->where("class_id",$rows->class_id);
 		//	print_r($stuDetail->class_id);
 	
-				$this->db->where_in("taken_month",$searchM[$rt-1]);
+				$this->db->where_in("taken_month",$searchM);
 			$one_all_amount1 = $this->db->get("class_fees");
 				if($one_all_amount1->num_rows()>0){
 			$one_all_amount=$one_all_amount1->row()->fee_head_amount;
@@ -163,7 +163,7 @@ if($school_code ==1){$this->db->where("cat_id",3);}
 		$this->db->where("class_id",$rows->class_id);
 		//	print_r($stuDetail->class_id);
 	
-				$this->db->where_in("taken_month",$searchM[$rt-1]);
+				$this->db->where_in("taken_month",$searchM);
 			$one_all_amount1 = $this->db->get("class_fees");
 			if($one_all_amount1->num_rows()>0){
 			$one_all_amount=$one_all_amount1->row()->fee_head_amount;

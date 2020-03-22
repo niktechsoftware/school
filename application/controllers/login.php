@@ -101,7 +101,10 @@ class Login extends CI_Controller{
 		$data['subPage'] = 'dashboard';
 		$sender = $this->smsmodel->getsmssender($sc_code)->row();
 		$data['sender_Detail'] =$sender;
-		$data['cbs']=checkBalSms($sender->uname,$sender->password);
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+	$smsbaladd = 	$this->db->get("sms_setting")->row();
+		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
+		
 		$data['title'] = 'Niktech School Dashboard';
 		$data['headerCss'] = 'headerCss/dashboardCss';
 		$data['footerJs'] = 'footerJs/dashboardJs';
@@ -1122,7 +1125,12 @@ function createSchedule()
 	function mobileNotice(){
 	    $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row();
 		$data['sender_Detail'] =$sender;
-		$data['cbs']=checkBalSms($sender->uname,$sender->password);
+		
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+	$smsbaladd = 	$this->db->get("sms_setting")->row();
+		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
+		
+		
 		$data['pageTitle'] = 'Mobile Message And Notice';
 		$data['smallTitle'] = 'Mobile Notice';
 		$data['mainPage'] = 'Message';

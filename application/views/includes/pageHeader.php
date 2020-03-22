@@ -121,6 +121,10 @@
         <a style="margin:3px;" class="button_responsive btn btn-dark-beige" href="<?php echo base_url(); ?>index.php/feepanel">Fee Report</a>
         <a style="margin:3px;" class=" button_responsive btn btn-dark-azure" href="<?php echo base_url(); ?>index.php/homeworkpanel">Home Work</a>
         <a style="margin:3px;" class="button_responsive btn btn-dark-yellow" href="<?php echo base_url(); ?>index.php/timetablepanel">Time Table</a>
+        <a style="margin:3px;" class="btn btn-danger" href="<?php echo base_url();?>index.php/login/quickRegistraionStudent">Quick Admission</a>
+        <a style="margin:3px;" class="btn btn-danger" href="<?php echo base_url(); ?>index.php/login/collectFee">Collect Fee</a>
+        <a href="<?php echo base_url(); ?>index.php/login/simpleSearchStudent"  class="btn btn-dark-purple" target="_blanck">Search Student </a>
+                     
         <!-- Student Registration</a> -->
 
       

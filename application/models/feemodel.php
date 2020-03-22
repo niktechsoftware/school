@@ -1,5 +1,115 @@
 <?php
 class feeModel extends CI_Model{
+    
+    public function getlatefee($stuid,$fsdid){
+        $school_code=$this->session->userdata("school_code");
+    	$this->db->where("student_id",$stuid);
+		$this->db->where("fsd",$fsdid);
+		$fee_record = $this->db->get("deposite_months");
+		$this->db->where('school_code',$school_code);
+						$feecat=$this->db->get('late_fees')->row()->apply_cat;
+						if($feecat==1){
+						if($fee_record->num_rows()>0){
+					   $i=0;
+						foreach($fee_record->result() as $fd):
+							?>
+							<?php 
+						 if($fd->deposite_month<4){
+							$cdate11=date('Y-m-d');
+							$mno=(int)date('m',strtotime($cdate11));
+							if($mno < $fd->deposite_month){
+							    $realm=0;
+							 //  print_r($mno);
+							
+							 //    print_r($mno);
+							}else{
+							   
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month-1;
+							    
+							}
+				          // print_r($realm);
+						 }else{ 
+							$cdate12=date('Y-m-d');
+							if($cdate12 >= $fsdid){
+							  $mno=(int)date('m',strtotime($cdate12));
+						
+						 $realm= $mno-$fd->deposite_month+12-1;
+						// print_r($realm);
+						}else{
+						   
+							$mno=(int)date('m',strtotime($cdate12));
+						if($mno<$fd->deposite_month){
+						    $realm=0;
+							    
+							}else{
+								
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month;
+							
+							}
+				// 			print_r($mno);
+				// 		print_r($fd->deposite_month);
+						 }
+						}
+					
+						?>
+								
+						<?php $i++; endforeach; 
+						
+						
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+						
+							$this->db->where('month_number',$mno);
+						$this->db->where('school_code',$school_code);
+						$depdate1=$this->db->get('fee_card_detail')->row();
+						$depdate=date("y-m-d", strtotime($depdate1->deposite_date));
+						 $date=date("y-m-d");
+						
+					
+						if($realm==1 && $date<$depdate){
+						  
+						        $latefee1=$amt;
+						        if($latefee1<1){
+						            $latefee1=0;
+						        }
+						    
+						}else{ 
+                                $latefee1=$amt*$realm;
+                                 if($latefee1<1){
+						            $latefee1=0;
+						        }
+                       
+						}
+                       
+					}else{
+						$cdate11=date('Y-m-d');
+							if($cdate11>=$fsdid){
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						 $realm= $mno-4+12;
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						
+                            $realm= $mno-4;
+						 }?>	
+						<?php 
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+                        $latefee1=$amt*$realm;
+                         if($latefee1<1){
+						        $latefee1=0;
+						        }
+					}}else{
+						$latefee1='0.00';
+					 }
+					 return $latefee1;
+					 
+}
+
+
 	function getstugurboth($stuid_id){
 	    //echo $stuid_id;
 		$query = $this->db->select('student_info.id,
