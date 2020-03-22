@@ -23,6 +23,7 @@ class singleStudentControllers extends CI_Controller{
 		}
 		
 		function index(){
+		   
 				$school_code=$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
 		$this->db->where("DATE(opening_date)",date("Y-m-d"));

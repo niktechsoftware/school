@@ -47,11 +47,48 @@ function getFsd(){
 		//echo $fsd1;
 		$stud_id=$this->input->post("studentid");
 		//print_r($this->session->userdata('fsd'));
-		$this->db->where('fsd',$fsd1);
+	//	$this->db->where('fsd',$fsd1);
 		$this->db->where("username",$stud_id);
 		$check = $this->db->get("student_info");
 		if($check->num_rows() > 0)
-		{
+		{ if($check->row()->fsd != $fsd1){
+		    $this->db->select_sum("deposite_month");
+		    $this->db->where("student_id",$check->row()->id);
+		  $totdm =   $this->db->get("fee_deposit")->row()->deposite_month;
+		  if($totdm >11){
+		      $this->db->where('id',$fsd1); 
+				$start_date=$this->db->get('fsd')->row()->finance_start_date;
+							?>	<div class="form-group">
+				                      <label for="inputStandard" class="col-lg-3 control-label">
+				                      		Select FSD <span style="color:#F00">*</span>
+				                      </label>
+				                      <div class="col-lg-5">
+				                      		<select id="fsd12" name="fsd" class="form-control">
+				                      			<option value="<?php echo $fsd1 ?>"><?php echo $start_date ?></option>
+								            </select>
+									   </div>
+									   <div class="col-sm-4" id="subbox">
+										 <button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
+									</div>
+								</div>
+		<?php   }else{
+		    $this->db->where('id',$check->row()->fsd); 
+				$start_date=$this->db->get('fsd')->row()->finance_start_date;
+							?>	<div class="form-group">
+				                      <label for="inputStandard" class="col-lg-3 control-label">
+				                      		Select FSD <span style="color:#F00">*</span>
+				                      </label>
+				                      <div class="col-lg-5">
+				                      		<select id="fsd12" name="fsd" class="form-control">
+				                      			<option value="<?php echo $check->row()->fsd ?>"><?php echo $start_date ?></option>
+								            </select>
+									   </div>
+									   <div class="col-sm-4" id="subbox">
+										 <button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
+									</div>
+								</div>
+	<?php	}
+		}else{
 				$this->db->where('id',$fsd1); 
 				$start_date=$this->db->get('fsd')->row()->finance_start_date;
 							?>	<div class="form-group">
@@ -67,7 +104,7 @@ function getFsd(){
 										 <button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
 									</div>
 								</div>
-	<?php	}else{?>
+	<?php	}}else{?>
 			<div class="alert alert-block alert-danger fade in">
 				<button data-dismiss="alert" class="close" type="button">
 					&times;
@@ -306,7 +343,11 @@ function getFsd(){
 					$fsd1=$this->db->get('fsd')->row();
 					$demont = $rty->num_rows();
                    $i=0;$printMonth=""; foreach($rty->result() as $tyu):
+                          if($tyu->deposite_month<4){
+                            $ffffu= $tyu->deposite_month-4+12;
+                       }else{
                         $ffffu= $tyu->deposite_month-4;
+                       }
 					
 						$printMonth= $printMonth."".date('M-Y', strtotime("$ffffu months", strtotime($fsd1->finance_start_date))).", ";
 						$monthmk[$i]=$tyu->deposite_month;
@@ -1233,23 +1274,30 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                           
 	                                           
 	                                            <?php 
-												$this->db->where('id',$this->session->userdata('fsd'));
+												$this->db->where('id',$fsdid);
 												$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
 	                                           $transfee=0;
 	                                          
 	                                            if(($stuid_details->transport)){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
+	                                              
 	                                              if($tffee->num_rows()>0){
-	                                                  $tffee=$tffee->row();
+	                                                   $tffee=$tffee->row();
+	                                                  
+	                                                  $this->db->where("root_id",$tffee->id);
+	                                                  $this->db->where("fsd",$fsdid);
+	                                                 $rtyh = $this->db->get("fsdwise_root_amount");
+	                                                 if($rtyh->num_rows()>0){
+	                                                    
 	                                                   foreach($month as $mtable):
 		   
 		     if(($junefee == 1)){
 	                                            if($mtable!=6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$rtyh->row()->amount;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee;
-	                                            } endforeach;
+	                                                $transfee  +=$rtyh->row()->amount;
+	                                            } endforeach; }
 	                                            	?>
 	                                             <div class="row space15">
 	                                                <div class="col-sm-12">
@@ -1278,10 +1326,10 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 																											 $tamount=$this->db->get("transport_fee_month");
 																											//  print_r($tamount->row());
 																											//  exit;
-																											 if($tamount->num_rows()>0){  ?>
-																												<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo "Paid";?>" class="form-control">
-																												<input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo "Paid";?>" class="form-control" disabled="disabled">
-																									<?php		}else{ ?>
+																											 if($tamount->num_rows()<1){  ?>
+																												<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
+																												<input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
+																									<?php	  $totfees+=$transfee;	}else{ ?>
 	                                                   <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
 	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
 	                                                 <?php $totfees+=$transfee;?>

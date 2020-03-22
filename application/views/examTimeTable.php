@@ -54,63 +54,7 @@
 											</select>
 										</label>
 											</div>
-												<div class="btn-group pull-right">
-													<button data-toggle="dropdown" class="btn btn-green dropdown-toggle">
-														Export <i class="fa fa-angle-down"></i>
-													</button>
-													<ul class="dropdown-menu dropdown-light pull-right">
-														<li>
-															<a href="#" class="export-pdf" data-table="#sample-table-2" >
-																Save as PDF
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-png" data-table="#sample-table-2" >
-																Save as PNG
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-csv" data-table="#sample-table-2" >
-																Save as CSV
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-txt" data-table="#sample-table-2" >
-																Save as TXT
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-xml" data-table="#sample-table-2" >
-																Save as XML
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-sql" data-table="#sample-table-2" >
-																Save as SQL
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-json" data-table="#sample-table-2" >
-																Save as JSON
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-excel" data-table="#sample-table-2" >
-																Export to Excel
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-doc" data-table="#sample-table-2" >
-																Export to Word
-															</a>
-														</li>
-														<li>
-															<a href="#" class="export-powerpoint" data-table="#sample-table-2" >
-																Export to PowerPoint
-															</a>
-														</li>
-													</ul>
-												</div>
+											
 											</div>
 										</div>
 										

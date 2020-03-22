@@ -1027,7 +1027,7 @@
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
                     <tr>
                         <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
-                        <th colspan="5" rowspan="2">TERM 1 (100 MARKS) </th>
+                        <th colspan="5" rowspan="2">TERM 2 (100 MARKS) </th>
                         <!--<th colspan="5" rowspan="2">Term 2 (100 Marks) </th>-->
                        <!-- <th colspan="3">OVERALL</th>-->
 
@@ -1244,7 +1244,7 @@ if($subjectname->num_rows()>0){
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" style="text-transform: uppercase; font-weight:bold;"><?php echo $examname->exam_name;
+						<td colspan="1" style="text-transform: uppercase; font-weight:bold;"><?php echo "sdsdsdsdsd".$examname->exam_name;
 						?></td>
                         <?php 
 						}

@@ -292,7 +292,7 @@
              //print_r($exam_day->exam_id);print_r($class_id);exit;
              ?>
         <br>
-			<table id="items" align="center"  style="width:100%; margin-top:1px;color:#d80606;font-size: 12px;">
+			<table id="items" align="center"  style="width:100%; margin-top:1px;color:#d806808;font-size: 11px;">
 					<thead>
 						<th style="text-transform: uppercase;"><b>Date</b></th>
                         <?php 
@@ -364,9 +364,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) On Oct 4 (Friday) who unattend any subject paper with genuine reason 
-
-		can give their left paper with same exam time.	
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) 28-03-2020 Result Declaration & P.T.M.	
 		<!--for daffodils end-->
 		<!--for scholar start-->
 		<?php }else if($school_code==13 && $row2=="A"){

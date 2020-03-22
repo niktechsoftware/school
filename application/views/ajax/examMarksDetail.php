@@ -435,6 +435,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                         $subjectname=	$this->db->get('subject')->row()->subject;
 				?>
                      <br><br>
+                     
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover" id="sample-table-2">
                   <tr>
@@ -459,6 +460,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 							<th>S.No</th>
 							<th>Student ID</th>
 							<th>Student Name</th>
+							<th>Father Name</th>
 							<th>Attendance</th>
 							<th>Subject Type</th>
 							<th>Maximum Marks</th>
@@ -492,10 +494,15 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                     
                 if($num_row->num_rows()>0){
                 foreach ($num_row->result() as $stu):
+              $this->db->where("student_id",$stu->id);
+				$fname  = $this->db->get("guardian_info"); 
+				foreach ($fname->result() as $pname):
+				
                  $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND sub_type='$sub_type' AND fsd = '$fsd' and school_code='$school_code' AND stu_id='$stu->id'");
 	  		if($val->num_rows()>0){
 	            $v=$val->row();
                 ?>
+               
                   <tr>
                     <td><?php echo $j; ?></td>
                     <td>
@@ -507,6 +514,9 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						<input type="hidden" id="sub_type<?php echo $i; ?>" value="<?php echo $sub_type; ?>" />
 					<?php echo $stu->username; ?> </td>
                     <td ><span  style="text-transform:uppercase;"><?php echo $stu->name;?></span></td>
+                                    	
+										<td><?php echo $pname->father_full_name; ?></td>
+									
                      <?php if($v->Attendance==1){ ?>
 					<td><?php echo 'P'?></td><?php }?>
 					<?php if($v->Attendance==0){ ?>
@@ -561,6 +571,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                         <?php echo $stu->username; ?>
                       </td>
                       <td><?php echo $stu->name; ?></td>
+                       	<td><?php echo $pname->father_full_name; ?></td>
                       <td class="hidden-xs text-center">
                       <label class="radio-inline">
                           <input class="radio"  type="radio" id="Attendance<?php echo $i; ?>" name="attendence<?php echo $i; ?>" value="1" checked />
@@ -618,7 +629,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 var examid = $("#examid<?php echo $i; ?>").val();
                 var term = $("#term<?php echo $i; ?>").val();
                 var attendence = $("input[name='attendence<?php echo $i; ?>']:checked").val();
-    				   alert(marks +" "+ sub_type +" "+mmarks);
+    				   //alert(marks +" "+ sub_type +" "+mmarks);
     				    if(mmarks!="" && marks!=""){
     					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{sub_type:sub_type,term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);
@@ -667,7 +678,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                    
                                
                 	                 
-                	                  <?php $j++; $i++; }  endforeach;?>
+                	                  <?php $j++; $i++; }  endforeach; endforeach;?>
                 	                  	
              					
              						

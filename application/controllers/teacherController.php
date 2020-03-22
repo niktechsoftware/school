@@ -527,8 +527,10 @@ function checkIDOTPc(){
 			  		$this->db->where("school_code",$this->session->userdata("school_code"));
 			  		$this->db->where("student_id",$stu_id);
 					$var=$this->db->get("guardian_info")->row();
+					$this->db->where("id",$stu_id);
+					$varsudent=$this->db->get("student_info")->row();
 					$fname=$var->father_full_name;
-					$fmobile=$var->f_mobile;
+					$fmobile=$varsudent->mobile;
 					$this->db->where("school_code",$this->session->userdata("school_code"));
 					//$class_id = mysqli_query($this->db->conn_id,"select * from class_info WHERE school_code='$this->session->userdata('school_code')");
 					$class_id = $this->db->get("class_info");
@@ -612,8 +614,10 @@ function checkIDOTPc(){
 			  		$this->db->where("school_code",$this->session->userdata("school_code"));
 			  		$this->db->where("student_id",$stu_id);
 					$var=$this->db->get("guardian_info")->row();
+				$this->db->where("id",$stu_id);
+					$varsudent=$this->db->get("student_info")->row();
 					$fname=$var->father_full_name;
-					$fmobile=$var->f_mobile;
+					$fmobile=$varsudent->mobile;
 					$this->db->where("school_code",$this->session->userdata("school_code"));
 					$class_id = $this->db->get("class_info");
 					$this->db->where("status",1);
