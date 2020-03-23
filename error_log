@@ -1,0 +1,7 @@
+[22-Mar-2020 17:41:39 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function sms(), 2 passed in /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php on line 314 and exactly 5 expected in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php:3
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/application/controllers/singleStudentControllers.php(314): sms('8382829593', 'hahhahahahaha')
+#1 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): singleStudentControllers->insertLeave()
+#2 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/helpers/sms_helper.php on line 3

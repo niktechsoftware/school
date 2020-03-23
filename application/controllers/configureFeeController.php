@@ -57,7 +57,52 @@ class ConfigureFeeController extends CI_Controller{
         $this->load->view("includes/mainContent", $data);
     }
     
-    
+    function updaterootfsd(){
+       $fsd =  $this->input->post("fsd");
+       $salsat=  $this->input->post("salfixn");
+       $upam =$this->input->post("upam");
+      
+       $school_code = $this->session->userdata("school_code");
+       $this->db->where("school_code",$school_code);
+	       $gettv =  $this->db->get("transport");
+	       foreach($gettv->result() as $gv):
+	           $this->db->where("v_id",$gv->id);
+	           $amv = $this->db->get("transport_root_amount");
+	           foreach($amv->result() as $am):
+	               $this->db->where("root_id",$am->id);
+	               $this->db->where("fsd",$fsd);
+	              $getolda =  $this->db->get("fsdwise_root_amount");
+	              //get old amount
+	              $this->db->where("fsd",$this->session->userdata("fsd"));
+	                  $this->db->where("root_id",$am->id);
+	                   $getoldapp =  $this->db->get("fsdwise_root_amount");
+	              //end get old amount
+	              if($getolda->num_rows()>0){
+	                  
+	                  if($upam){
+	                    $data1['amount']  =$upam+$getoldapp->row()->amount;
+	                  }else{
+	                      
+	                       $data1['amount']  =$getoldapp->row()->amount;
+	                  }
+	                 
+	                  $this->db->update("fsdwise_root_amount", $data1);
+	                   echo "Suceessfully Updated!!!!!";
+	              }else{
+	                  
+	                   $data['root_id']=$am->id;
+	               $data['fsd']     =$fsd;
+	               if($upam){
+	                   $data['amount'] =$upam+$getoldapp->row()->amount;
+	                  }else{
+	                       $data['amount']  =$getoldapp->row()->amount;
+	                  }
+	               $this->db->insert("fsdwise_root_amount",$data);
+	               echo "Suceessfully Updated!!!!!";
+	              }
+	               endforeach;
+	       endforeach;
+    }
     
     function update_fee_deposit(){
         //$month_name = $this->input->post("month_name");
@@ -690,10 +735,16 @@ function isAlpha(evt) {
             $data['pickup_points']    =    $this->input->post("vehicle_pickup");
             $data['drop_points']        =    $this->input->post("drop_points");
             $data['root']        =    $this->input->post("vahicle_root");
-            $data['transport_fee']        =    $this->input->post("transport_fee");
+            $data1['amount']        =    $this->input->post("transport_fee");
+             $data1['fsd']        =    $this->input->post("fsd");
 
             if((strlen($this->input->post("vehicle_number"))>0)&&(strlen($this->input->post("vehicle_pickup"))>0)&&(strlen($this->input->post("transport_fee"))>0)){
-            $this->db->insert("transport_root_amount",$data);}
+            if($this->db->insert("transport_root_amount",$data)){
+                $insertId = $this->db->insert_id();
+                $data1['root_id']=$insertId;
+                $this->db->insert("fsdwise_root_amount",$data1);
+            }
+            }
             $this->load->model("configurefeemodel");
             $result1['result'] = $this->configurefeemodel->getroot();
          //   if($result1->num_rows()>0){
@@ -707,13 +758,11 @@ function isAlpha(evt) {
 
         function edittransfee(){
             $data = array(
-                    'transport_fee' =>$this->input->post("transfee")
+                    'amount' =>$this->input->post("transfee")
             );
-            // $updatedfee = $this->input->post("transfee");
-            // $cdate=date("Y-m-d");
-            // $rt=0;
+          
             $this->db->where("id",$this->input->post("rowSno"));
-            $this->db->update("transport_root_amount",$data);
+            $this->db->update("fsdwise_root_amount",$data);
             echo "Updated";
             ?><script>
            alert("Student fee Record updated successfully");

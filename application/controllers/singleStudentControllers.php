@@ -23,6 +23,7 @@ class singleStudentControllers extends CI_Controller{
 		}
 		
 		function index(){
+		   
 				$school_code=$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
 		$this->db->where("DATE(opening_date)",date("Y-m-d"));
@@ -198,6 +199,7 @@ class singleStudentControllers extends CI_Controller{
 	}	
 	
 		function leave(){
+		   
 			$data['pageTitle'] = 'Student Leave';
 			$data['smallTitle'] = 'Student  Leave Detail';
 			$data['mainPage'] = 'Student';
@@ -275,13 +277,20 @@ class singleStudentControllers extends CI_Controller{
 		function insertLeave(){
 			$snm=$this->session->userdata('username');
 			$this->db->where("username",$snm);
-			$dt=$this->db->get("student_info")->row();
+			$dt=$this->db->get("student_info");
+		
+			if($dt->num_rows()>0){
+			    $dt=$dt->row();
+			
 			$sid=$dt->fsd;
 			$this->db->where("id",$sid);
 			$dtf=$this->db->get("fsd")->row();
 			$school_code=$dtf->school_code;
-			
-
+			$this->db->where("id",$dt->class_id);
+		$class_details=	$this->db->get("class_info")->row();
+$totl = $this->input->post("totalLeave");
+$sdate= $this->input->post("sdate");
+$edate = $this->input->post("edate");
 			$data =array(
 		'stu_id'=>$dt->id,
 		'start_date'=>$this->input->post("sdate"),
@@ -294,9 +303,48 @@ class singleStudentControllers extends CI_Controller{
 			$var=$this->singleStudentModel->insertLeave($data);
 			if($var)
 			{
+			    //sms setting code
+    			    $this->load->model("smsmodel");
+            		$sender = $this->smsmodel->getsmssender($school_code);
+            		$sende_Detail =$sender;
+            		$isSMS = $this->smsmodel->getsmsseting($school_code);
+            		$sende_Detail1=$sende_Detail->row();
+		        //sms setting code end
+		     $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
+
+			    $this->db->where("id",$dt->class_id);
+			  $dataci= $this->db->get("class_info")->row()->class_teacher_id;
+			  if($dataci){
+			      $this->db->where("id",$dataci);
+			      $this->db->where("status",1);
+			     $val = $this->db->get("employee_info");
+			      if($val->num_rows()>0){
+			          $val = $val->row();
+			          $mobile = $val->mobile;
+			          $msg="Dear ".$val->name." A student of Class".$class_details->class_name." want to ".$totl." Day Leave from ".$sdate." to ".$edate." .Please Approve It.";
+			         
+			          //echo $msg;
+			           $getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$mobile);
+		                $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+			      }
+			  }else{
+			      $this->db->where("id",$this->session->userdata("school_code"));
+			        $adminmo =   $this->db->get("school")->row();
+			        
+			       $mobile = $adminmo->mobile_no ;
+			       
+			          $msg="Dear ".$adminmo->principle_name." A student of Class".$class_details->class_name." want to ".$totl." Day Leave from ".$sdate." to ".$edate." .Please Approve It.";
+			           // echo $msg;
+			           $getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$mobile);
+		                $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+			  }
 				$msg="success";
 				redirect("index.php/singleStudentControllers/leave/$msg");
 			}
+		}else{
+		   	redirect("index.php/homeController/index");
+		}
 		}
 		
 		function stuReport1(){

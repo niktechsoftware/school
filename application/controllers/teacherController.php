@@ -528,8 +528,7 @@ function checkIDOTPc(){
 			  		$this->db->where("school_code",$this->session->userdata("school_code"));
 			  		$this->db->where("student_id",$stu_id);
 					$var=$this->db->get("guardian_info")->row();
-
-					$this->db->where("id",$stu_id);
+    				$this->db->where("id",$stu_id);
 
 					$varsudent=$this->db->get("student_info")->row();
 					$fname=$var->father_full_name;
@@ -617,7 +616,9 @@ function checkIDOTPc(){
 			  		$this->db->where("school_code",$this->session->userdata("school_code"));
 			  		$this->db->where("student_id",$stu_id);
 					$var=$this->db->get("guardian_info")->row();
+
 					$this->db->where("id",$stu_id);
+
 					$varsudent=$this->db->get("student_info")->row();
 					$fname=$var->father_full_name;
 					$fmobile=$varsudent->mobile;

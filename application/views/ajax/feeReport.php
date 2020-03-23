@@ -35,11 +35,12 @@
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 	$smsbaladd = 	$this->db->get("sms_setting")->row();
 		$cbs=checkBalSms($sende_Detail->uname,$sende_Detail->password)+$smsbaladd->sms_bal;
-	
+
 		echo $cbs;?></p>
 		 <p class="alert alert-info"> Note : This is the area you can send Fee reminder to send click send sms button . If you send SMS change to Success Message send Successfully . <br>
 		</div>
-	<?php if($cla == "all" && $sec == "all"){?>
+	<?php 	$fsd=$this->input->post("fsd"); 
+	if($cla == "all" && $sec == "all"){ ?>
 		<div class="table-responsive">
 		
 			<table class="table table-striped table-hover" id="sample-table-2">
@@ -62,6 +63,7 @@
 				<tbody>
 				<?php
 				$fsdate=$this->input->post("fsd");
+			
 				$school_code = $this->session->userdata("school_code");
 				$this->db->where("school_code",$school_code);
 				$class_id = $this->db->get("class_info")->result();
@@ -106,13 +108,13 @@
 						$fdate =$this->db->get("fsd")->row()->finance_start_date;
 
 						$sum=0;
-
+echo "1";
 				    foreach($student->result() as $stuDetail):
 				    	$stu_id = $stuDetail->id;
 				    	$this->db->where("student_id",$stu_id);
 				    	$this->db->where("school_code",$school_code);
 				    	$rows = $this->db->get("guardian_info")->row();
-				    	if($this->input->post("fsd")==$this->session->userdata("fsd")){
+				    	if($this->input->post("fsd")){
 				    		$total = $this->db->query("SELECT SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
 							
 							$rowcss = $count % 2 == 0 ? "danger" : "warning";
@@ -222,7 +224,7 @@
         										$this->db->where("school_code",$this->session->userdata("school_code"));
         										$fcd = 	$this->db->get("fee_card_detail");
         										if($fcd->num_rows()>0){
-    											$rt=0;$month="";	
+    									       	$searchM[]=0;	$rt=0;$month="";	
     											foreach($fcd->result() as $fcg):
     											if($fcg->month_number<4){
     												$roldm=$fcg->month_number-4+12;
@@ -259,24 +261,35 @@
 								 $fee_head = $this->db->get("class_fees");
 								 if($fee_head->num_rows()>0){
 									 $fee_head_one =$fee_head->row()->fee_head_amount;
-								//	 print_r($fee_head->row()->fee_head_amount);
-									 	 //print_r($fsd);
+
+									// print_r($fee_head->row()->fee_head_amount);
+									 	// print_r($searchM);
+									 	 $this->db->select_sum('fee_head_amount');
+									 	 $this->db->from('class_fees');
+
 									 	$this->db->where("fsd",$fsd);
-									$this->db->where("class_id",$stuDetail->class_id);
+									    $this->db->where("class_id",$stuDetail->class_id);
 									 	 $this->db->where_in("taken_month",$searchM);
 								 
-								 $examfee = $this->db->get("class_fees");
+							         	 $examfee = $this->db->get();
+								 // print_r($examfee->row()->fee_head_amount);
 							
 								 if($examfee->num_rows()>0){
-								   //  print_r($examfee->num_rows());
+								    
+								         
 								    $exfee= $examfee->row()->fee_head_amount;
+
 								    //	 print_r($exfee);
+
 									$totfee2= $fee_head_one * $rt;
+								//	print_r($totfee2);
 									$totfee=$totfee2+$exfee;
-									
+										
+								
 								 } 
 								 else{
 								 	$totfee=$fee_head_one * $rt;
+								 		// print_r($totfee);
 								 } 
 								 if($stuDetail->transport==1){
 								     $vid=$stuDetail->vehicle_pickup;
@@ -295,10 +308,99 @@
 								 else{
 								     $totfee =$totfee;
 								 }
-									  $sum=$sum +$totfee;
-									//  print_r($totfee);
-								 echo "<br>".$totfee;
-										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $totfee;?>"/><?php
+								 
+								 			$this->db->where('school_code',$school_code);
+						$feecat=$this->db->get('late_fees')->row()->apply_cat;
+						if($feecat==1){
+						if($fee_record->num_rows()>0){
+					   $i=0;
+						foreach($fee_record->result() as $fd):
+							?>
+							<?php 
+						 if($fd->deposite_month<4){
+							$cdate11=date('Y-m-d');
+							$mno=(int)date('m',strtotime($cdate11));
+							if($mno < $fd->deposite_month){
+							    $realm=0;
+							 //  print_r($mno);
+							 //    print_r($mno);
+							}else{
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month-1;}
+				          // print_r($realm);
+						 }else{
+							$cdate11=date('Y-m-d');
+							if($cdate11>='2020-01-01'){
+							$mno=(int)date('m',strtotime($cdate11));
+						 $realm= $mno-$fd->deposite_month+12-1;
+						// print_r($realm);
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						if($mno<$fd->deposite_month){
+						    $realm=0;
+							    
+							}else{
+								
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month;
+							
+							}
+				// 			print_r($mno);
+				// 		print_r($fd->deposite_month);
+						 }
+						}
+						?>
+								
+						<?php $i++; endforeach; 
+						
+						
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+						
+							$this->db->where('month_number',$mno);
+						$this->db->where('school_code',$school_code);
+						$depdate1=$this->db->get('fee_card_detail')->row();
+						$depdate=date("y-m-d", strtotime($depdate1->deposite_date));
+						 $date=date("y-m-d");
+						
+					
+						if($realm==1 && $date<$depdate){
+						   
+						        $latefee1=0.00;
+						    
+						}else{
+                        $latefee1=$amt*$realm;
+                       
+						}
+                       
+					}else{
+						$cdate11=date('Y-m-d');
+							if($cdate11>='2020-01-01'){
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						 $realm= $mno-4+12;
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						
+                            $realm= $mno-4;
+						 }?>	
+						<?php 
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+                        $latefee1=$amt*$realm;
+                       
+					}}else{
+					   
+						$latefee1='0.00';
+						 
+					 }
+					 
+									  $sum=$sum +$totfee +$latefee1 ;
+									$totalfee=$totfee + $latefee1;
+								
+								 echo "<br>".$totalfee;
+										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $totfee+$latefee1;?>"/><?php
 								 }else{
 									 echo "fee Not found";								}
 							 }
@@ -340,7 +442,7 @@
 							//	print_r($stuDetail->class_id);
 							if($school_code ==1){$this->db->where("cat_id",3);}
 							
-							    $this->db->where_in("taken_month",$searchM);
+							    $this->db->where_in("taken_month",13);
 								$fee_head = $this->db->get("class_fees");
 								if($fee_head->num_rows()>0){
 								    
@@ -348,7 +450,7 @@
 									$this->db->where("class_id",$stuDetail->class_id);
 									//	print_r($stuDetail->class_id);
 									$this->db->where("fsd",$fsd);
-											$this->db->where_in("taken_month",13);
+											$this->db->where_in("taken_month",$searchM);
 										$one_all_amount = $this->db->get("class_fees");
 										$one_all_amount=$one_all_amount->row()->fee_head_amount;
 									/*echo $one_all_amount."al";
@@ -357,8 +459,8 @@
 												$adable_amount =$one_all_amount+$adable_amount;
 											}
 										}*/
-										$hmfee = $one_all_amount*($m);
-										$monthtotald=$fee_head->row()->fee_head_amount;
+										$hmfee = $fee_head->row()->fee_head_amount*($m);
+										$monthtotald=$one_all_amount;
 									$fee_head =$hmfee +	$monthtotald; 
 									
 									 if($stuDetail->transport==1){
@@ -378,13 +480,98 @@
 								 else{
 								     $fee_head =$fee_head;
 								 }
+								 
+								 		$this->db->where('school_code',$school_code);
+						$feecat=$this->db->get('late_fees')->row()->apply_cat;
+						if($feecat==1){
+						if($fee_record->num_rows()>0){
+					   $i=0;
+						foreach($fee_record->result() as $fd):
+							?>
+							<?php 
+						 if($fd->deposite_month<4){
+							$cdate11=date('Y-m-d');
+							$mno=(int)date('m',strtotime($cdate11));
+							if($mno < $fd->deposite_month){
+							    $realm=0;
+							 //  print_r($mno);
+							 //    print_r($mno);
+							}else{
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month-1;}
+				          // print_r($realm);
+						 }else{
+							$cdate11=date('Y-m-d');
+							if($cdate11>='2020-01-01'){
+							$mno=(int)date('m',strtotime($cdate11));
+						 $realm= $mno-$fd->deposite_month+12-1;
+						// print_r($realm);
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						if($mno<$fd->deposite_month){
+						    $realm=0;
+							    
+							}else{
+								
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month;
+							
+							}
+				// 			print_r($mno);
+				// 		print_r($fd->deposite_month);
+						 }
+						}
+						?>
+								
+						<?php $i++; endforeach; 
+						
+						
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+						
+							$this->db->where('month_number',$mno);
+						$this->db->where('school_code',$school_code);
+						$depdate1=$this->db->get('fee_card_detail')->row();
+						$depdate=date("y-m-d", strtotime($depdate1->deposite_date));
+						 $date=date("y-m-d");
+						
+					
+						if($realm==1 && $date<$depdate){
+						   
+						        $latefee1=0.00;
+						    
+						}else{
+                        $latefee1=$amt*$realm;
+                       
+						}
+                       
+					}else{
+						$cdate11=date('Y-m-d');
+							if($cdate11>='2020-01-01'){
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						 $realm= $mno-4+12;
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						
+                            $realm= $mno-4;
+						 }?>	
+						<?php 
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+                        $latefee1=$amt*$realm;
+					}}else{
+						$latefee1='0.00';
+					 }
 									//print_r($m);
 										//print_r($one_all_amount);
 								
-									$sum=$sum +$fee_head;
-								echo "<br>".$fee_head;
-							//print_r($searchM);
-							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head;?>"/><?php
+									$sum=$sum +$fee_head+$latefee1;
+								$totalfee=	$fee_head +$latefee1;
+								echo "<br>".$totalfee;
+						//	print_r($fee_head);
+							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head +$latefee1;?>"/><?php
 								}else{
 									echo "fee Not found";}
 							}
@@ -438,7 +625,9 @@
 			</div>
 		
 <?php }}else{?>
-	<br/><br/>
+
+
+
 
 <?php }?>
 	
@@ -469,7 +658,7 @@
 
 		$this->db->where("status",1);
 	 	$this->db->where("class_id",$cla);
-	 	$this->db->where("fsd",$this->session->userdata('fsd'));
+	 	$this->db->where("fsd",$fsd);
 	 	$student = $this->db->get("student_info");
         //print_r($student->row());exit;
 
@@ -539,7 +728,7 @@
 				    	$this->db->where("student_id",$stu_id);
 				    	$this->db->where("school_code",$school_code);
 				    	$rows = $this->db->get("guardian_info")->row();
-				    	if($this->input->post("fsd")==$this->session->userdata("fsd")){
+				    	if($this->input->post("fsd")){
 				    		$total = $this->db->query("SELECT SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
 							
 							$rowcss = $count % 2 == 0 ? "danger" : "warning";
@@ -652,7 +841,7 @@
 										$fcd = 	$this->db->get("fee_card_detail");
 										if($fcd->num_rows()>0){
 							
-										$searchM[]=0;	$rt=0;$month="";	
+										$searchM[]=0;$rt=0;$month="";	
 											foreach($fcd->result() as $fcg):
 											if($fcg->month_number<4){
 												$roldm=$fcg->month_number-4+12;
@@ -671,7 +860,7 @@
 										$month =$month." and ".$duedate;
 									
 										$rt++;
-									//	print_r($month);
+								//	print_r($month);
 										// $rt;
 								//	echo $cmonth;
 							}
@@ -706,25 +895,28 @@
 									 $exdate1=Date("y-m-d");
 									 $dte1 = date("m",strtotime($exdate1));
 									 
+									 //print_r($searchM);
+									  $this->db->select_sum('fee_head_amount');
+									 	 $this->db->from('class_fees');
 									 	$this->db->where("fsd",$fsd);
-									$this->db->where("class_id",$stuDetail->class_id);
-									
-									 $this->db->where_in("taken_month",$searchM);
+									    $this->db->where("class_id",$stuDetail->class_id);
+									 	 $this->db->where_in("taken_month",$searchM);
 								 
-								 $examfee1 = $this->db->get("class_fees");
+								      $examfee1 = $this->db->get();
+									 
 								 if($examfee1->num_rows()>0){
 								     
 								    $exfee1= $examfee1->row()->fee_head_amount;
 								    
 									$totfee2= $fee_head * $rt;
 									$totfee=$totfee2+$exfee1;
-								// 	print_r($exfee1);
-								// 	print_r($fee_head);
+								 //	print_r($exfee1);
+							 //	print_r($fee_head);
 								// 	print_r($rt);
 								 } 
 								 else{
 								 	$totfee=$fee_head * $rt;
-								//  		print_r($totfee);
+								// 		print_r($totfee);
 								 }
 									 if($stuDetail->transport==1){
 								     $vid=$stuDetail->vehicle_pickup;
@@ -743,14 +935,100 @@
 								 else{
 								     $totfee =$totfee;
 								 }
+								 
+								 			$this->db->where('school_code',$school_code);
+						$feecat=$this->db->get('late_fees')->row()->apply_cat;
+						if($feecat==1){
+						if($fee_record->num_rows()>0){
+					   $i=0;
+						foreach($fee_record->result() as $fd):
+							?>
+							<?php 
+						 if($fd->deposite_month<4){
+							$cdate11=date('Y-m-d');
+							$mno=(int)date('m',strtotime($cdate11));
+							if($mno < $fd->deposite_month){
+							    $realm=0;
+							 //  print_r($mno);
+							 //    print_r($mno);
+							}else{
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month-1;}
+				          // print_r($realm);
+						 }else{
+							$cdate11=date('Y-m-d');
+							if($cdate11>='2020-01-01'){
+							$mno=(int)date('m',strtotime($cdate11));
+						 $realm= $mno-$fd->deposite_month+12-1;
+						// print_r($realm);
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						if($mno<$fd->deposite_month){
+						    $realm=0;
+							    
+							}else{
+								
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month;
+							
+							}
+				// 			print_r($mno);
+				// 		print_r($fd->deposite_month);
+						 }
+						}
+						?>
+								
+						<?php $i++; endforeach; 
+						
+						
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+						
+							$this->db->where('month_number',$mno);
+						$this->db->where('school_code',$school_code);
+						$depdate1=$this->db->get('fee_card_detail')->row();
+						$depdate=date("y-m-d", strtotime($depdate1->deposite_date));
+						 $date=date("y-m-d");
+						
+					
+						if($realm==1 && $date<$depdate){
+						   
+						        $latefee1=0.00;
+						    
+						}else{
+                        $latefee1=$amt*$realm;
+                       
+						}
+                       
+					}else{
+						$cdate11=date('Y-m-d');
+							if($cdate11>='2020-01-01'){
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						 $realm= $mno-4+12;
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						
+                            $realm= $mno-4;
+						 }?>	
+						<?php 
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+                        $latefee1=$amt*$realm;
+					}}else{
+						$latefee1='0.00';
+					 }
+					 
 									// $feehead=$fee_head+($fee_head_one*$rt);
-								 $sum=$sum + ($totfee) ;
-									 
-								 echo "<br>".($totfee) ;
+								 $sum=$sum + ($totfee)+$latefee1 ;
+									 $totalfee=$totfee +$latefee1;
+									
+								 echo "<br>". $totalfee;
 								// print_r($fee_head);
 								// print_r($rt);
 								 
-										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $totfee;?>"/><?php
+										?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $totfee + $latefee1;?>"/><?php
 								 }else{
 									 echo "fee Not found";								}
 							 }
@@ -789,7 +1067,7 @@
 							//	print_r($stuDetail->class_id);
 							if($school_code ==1){$this->db->where("cat_id",3);}
 							
-							    $this->db->where_in("taken_month",$searchM);
+							    $this->db->where_in("taken_month",13);
 								$fee_head = $this->db->get("class_fees");
 								
 								if($fee_head->num_rows()>0){
@@ -797,7 +1075,7 @@
 								     $this->db->select_sum("fee_head_amount");  
 									$this->db->where("class_id",$stuDetail->class_id);
 									$this->db->where("fsd",$fsd);
-									$this->db->where_in("taken_month",13);
+									$this->db->where_in("taken_month",$searchM);
 									$one_all_amount = $this->db->get("class_fees");
 									if($one_all_amount->num_rows()>0){
 										$one_all_amount=$one_all_amount->row()->fee_head_amount;
@@ -807,9 +1085,9 @@
 								// 				$adable_amount =$one_all_amount+$adable_amount;
 								// 			}
 								// 		}
-								 $fee8=$one_all_amount*($rt);
+								 $fee8=$fee_head->row()->fee_head_amount*($rt);
 								 
-									$fee9 =$fee_head->row()->fee_head_amount;
+									$fee9 =$one_all_amount;
 									$fee_head=$fee8 + $fee9;
 									
 									if($stuDetail->transport==1){
@@ -829,10 +1107,94 @@
 								 else{
 								     $fee_head =$fee_head;
 								 }
+								 		$this->db->where('school_code',$school_code);
+						$feecat=$this->db->get('late_fees')->row()->apply_cat;
+						if($feecat==1){
+						if($fee_record->num_rows()>0){
+					   $i=0;
+						foreach($fee_record->result() as $fd):
+							?>
+							<?php 
+						 if($fd->deposite_month<4){
+							$cdate11=date('Y-m-d');
+							$mno=(int)date('m',strtotime($cdate11));
+							if($mno < $fd->deposite_month){
+							    $realm=0;
+							 //  print_r($mno);
+							 //    print_r($mno);
+							}else{
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month-1;}
+				          // print_r($realm);
+						 }else{
+							$cdate11=date('Y-m-d');
+							if($cdate11>='2020-01-01'){
+							$mno=(int)date('m',strtotime($cdate11));
+						 $realm= $mno-$fd->deposite_month+12-1;
+						// print_r($realm);
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						if($mno<$fd->deposite_month){
+						    $realm=0;
+							    
+							}else{
+								
+								//echo $mno;
+							$realm= $mno- $fd->deposite_month;
+							
+							}
+				// 			print_r($mno);
+				// 		print_r($fd->deposite_month);
+						 }
+						}
+						?>
+								
+						<?php $i++; endforeach; 
+						
+						
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+						
+							$this->db->where('month_number',$mno);
+						$this->db->where('school_code',$school_code);
+						$depdate1=$this->db->get('fee_card_detail')->row();
+						$depdate=date("y-m-d", strtotime($depdate1->deposite_date));
+						 $date=date("y-m-d");
+						
+					
+						if($realm==1 && $date<$depdate){
+						   
+						        $latefee1=0.00;
+						    
+						}else{
+                        $latefee1=$amt*$realm;
+                       
+						}
+                       
+					}else{
+						$cdate11=date('Y-m-d');
+							if($cdate11>='2020-01-01'){
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						 $realm= $mno-4+12;
+						}else{
+							$mno=(int)date('m',strtotime($cdate11));
+						
+						
+                            $realm= $mno-4;
+						 }?>	
+						<?php 
+						$this->db->where('school_code',$school_code);
+						$amt=$this->db->get('late_fees')->row()->late_fee;
+                        $latefee1=$amt*$realm;
+					}}else{
+						$latefee1='0.00';
+					 }
 									
-									$sum=$sum + $fee_head;
-								echo "<br>".$fee_head;
-							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head;?>"/><?php 
+									$sum=$sum + $fee_head +$latefee1;
+								$totalfee=	$fee_head+$latefee1;
+								echo "<br>".$totalfee;
+							   	?><input type = "hidden" id="amt<?php echo $count;?>" value="<?php echo $fee_head+$latefee1;?>"/><?php 
 								}else{echo "<label style='color:red;'>Configure Fee Head and Amount</label>";}
 								}else{
 									echo "fee Not found";}

@@ -686,7 +686,9 @@ function result(){
 			$data['examid']=$examTypeResult2;
 			$data['examid_2']=$examTypeResult2_2;
 			$data['examid_3']=$examTypeResult2_3;
-		$val=$this->session->userdta("school_code");
+
+			$val=$this->session->userdata("school_code");
+
 			$callview = "format_".$val;
 			
 			/**
@@ -694,7 +696,9 @@ function result(){
 			 * print_r($data);
 			 * echo "</pre>";
 			 */
+
 			$this->load->view("invoice/si3/$callview",$data);
+
 		}
 		else{
 			 echo "<div class='alert alert-warning'> .

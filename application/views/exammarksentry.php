@@ -2,7 +2,7 @@
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
 
-if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D"){ ?>
+if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D"  || $school_code == 9 && $row2 == "D" || $school_code == 8 && $row2 == "D"){ ?>
 <!-- start: PAGE CONTENT -->
 						<div class="row">
 							<div class="col-sm-12">

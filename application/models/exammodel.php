@@ -99,7 +99,7 @@ function getPeriodD()
 function getExamName()
 {
 	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("fsd",$this->session->userdata("fsd"));
+	//$this->db->where("fsd",$this->session->userdata("fsd"));
 	$query1 = $this->db->get("exam_name");
 	return $query1;
 }
@@ -108,11 +108,12 @@ function insertexam($data)
 	$query1 = $this->db->insert("exam_name",$data);
 	return $query1;
 }
-function updateexam($examid,$date)
+function updateexam($examid,$date,$examname)
 {
 	
     $date= array(
-    'exam_date' =>$date, 
+        'exam_name'=>$examname,
+    'exam_date' =>$date
     );
    $this->db->where("school_code",$this->session->userdata("school_code"));   
     $this->db->where("id",$examid);

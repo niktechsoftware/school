@@ -1,5 +1,6 @@
 <!-- start: PAGE CONTENT -->
 <?php
+echo "t";
 $school_code = $this->session->userdata ( "school_code" );
 $is_login = $this->session->userdata ( 'is_login' );
 $is_lock = $this->session->userdata ( 'is_lock' );
@@ -23,7 +24,7 @@ $this->db->where ( "username", $this->session->userdata ( "username" ) );
 $rows = $this->db->get ( "student_info" )->row ();
 $stu_id = $rows->id;
 $total = $this->db->query ( "SELECT SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'" )->row ();
-
+$searchM[0]=0;
 ?>
 <?php
 

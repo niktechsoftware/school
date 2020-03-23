@@ -98,11 +98,11 @@
 		?><table class="table table-striped table-hover" style="width:100%;" id="sample-table-2">
 			<thead>
 			 <?php $i=1; if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
-             <tr class="<?php echo $rowcss;?>">
-					<th class="column-left"> Date Of Exam/<br>Class & Shift</th>
+             <tr class="<?php echo $rowcss;?>" >
+					<th class="column-left" style="font-size:160%;"> Date Of Exam/<br>Class & Shift</th>
 				<?php foreach ($dad->result() as $col):
 				//print_r($dad->result());?>
-				<th ><?php echo $col->date1;?></th>
+				<th style="font-size:160%;"><?php echo $col->date1;?></th>
 			<?php endforeach;?>
 		</thead>
 		<tbody><?php $i=1;foreach ($getClass as $rowClass):
@@ -113,7 +113,7 @@
 			?>
 		 <?php if($i%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
             <tr class="<?php echo $rowcss;?>">
-			<td class="column-left"><?php
+			<td class="column-left" style="font-size:160%;"><?php
 				$this->db->where('id',$rowClass->section);
 				 $this->db->order_by('id',"asc");
 							$section=$this->db->get('class_section')->row()->section;
@@ -122,7 +122,7 @@
 			?></td><?php 
 			foreach ($dad->result() as $col):
 			$j=1;
-			?><td class="column-right" ><?php
+			?><td class="column-right" style="font-size:160%;" ><?php
 				$subject=$this->db->query("SELECT subject_id,id FROM exam_time_table where exam_day_id='$col->id'  AND shift_id='$rowShift->id' AND class_id='$rowClass->id' AND school_code='$school_code'");
 				foreach ($subject->result() as $sub):
 					$subjectid=$sub->subject_id;

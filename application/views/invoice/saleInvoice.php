@@ -199,7 +199,7 @@
 						          $this->db->where('id',$valid_id);
 							$sunm=$this->db->get('student_info');
                                                     }
-							else if($row->category=="Employee ID"){
+							else if($category=="Employee ID"){
 								  $this->db->where('id',$valid_id);
 							$sunm=$this->db->get('employee_info');
 						                                    	}else{

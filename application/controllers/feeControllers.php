@@ -343,15 +343,12 @@ function getFsd(){
 					$fsd1=$this->db->get('fsd')->row();
 					$demont = $rty->num_rows();
                    $i=0;$printMonth=""; foreach($rty->result() as $tyu):
-
                          if($tyu->deposite_month<4){
                             $ffffu= $tyu->deposite_month-4+12;
                          }else{
                             $ffffu= $tyu->deposite_month-4;
                          }
-					
-
-						$printMonth= $printMonth."".date('M-Y', strtotime("$ffffu months", strtotime($fsd1->finance_start_date))).", ";
+                         $printMonth= $printMonth."".date('M-Y', strtotime("$ffffu months", strtotime($fsd1->finance_start_date))).", ";
 						$monthmk[$i]=$tyu->deposite_month;
                     	//echo date("d-M-y", $rdt);
 					$i++; endforeach;	
@@ -1157,23 +1154,30 @@ function getFsd(){
 	                                           
 	                                           
 	                                            <?php 
-												$this->db->where('id',$this->session->userdata('fsd'));
+												$this->db->where('id',$fsdid);
 												$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
 	                                           $transfee=0;
 	                                          
 	                                            if(($stuid_details->transport)){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
+	                                              
 	                                              if($tffee->num_rows()>0){
-	                                                  $tffee=$tffee->row();
+	                                                   $tffee=$tffee->row();
+	                                                  
+	                                                  $this->db->where("root_id",$tffee->id);
+	                                                  $this->db->where("fsd",$fsdid);
+	                                                 $rtyh = $this->db->get("fsdwise_root_amount");
+	                                                 if($rtyh->num_rows()>0){
+	                                                    
 	                                                   foreach($month as $mtable):
 		   
 		     if(($junefee == 1)){
 	                                            if($mtable!=6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$rtyh->row()->amount;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee;
-	                                            } endforeach;
+	                                                $transfee  +=$rtyh->row()->amount;
+	                                            } endforeach; }
 	                                            	?>
 	                                             <div class="row space15">
 	                                                <div class="col-sm-12">
