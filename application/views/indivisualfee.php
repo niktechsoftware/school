@@ -34,10 +34,8 @@
 			                        <div class="panel-body">
 															<form  action="<?= base_url();?>index.php/PayTransportFee" method="post">
 										<div class="alert alert-info">
-										    <h3 class="media-heading text-center">Welcome to Maximum Marks Detail Of Subject  Area.</h3>
-										    <p class="media-timestamp">In this page we can enter the maximum marks of a particular  subject Please select following Dropdown 
-										    options and wait for another page. Fill the Maximum marks and click save button to save Maximum  marks.
-                                        (Note : if maximum marks are already filled of a  subject then you can not save or update Maximum marks and you can only view).</p>
+										    <h3 class="media-heading text-center">Welcome to Individual Fees Collection Area.</h3>
+										    <p class="media-timestamp">If you want to collect individual student fee collection then enter student id and select fee type and select deposite month  and click on pay fee button. Then submit your individual fees and print your reciept.</p>
                                         </div>
 									
 								<div class="row">

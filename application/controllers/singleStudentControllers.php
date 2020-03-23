@@ -23,7 +23,7 @@ class singleStudentControllers extends CI_Controller{
 		}
 		
 		function index(){
-		   
+
 				$school_code=$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
 		$this->db->where("DATE(opening_date)",date("Y-m-d"));
@@ -61,6 +61,7 @@ class singleStudentControllers extends CI_Controller{
 				//echo $cl_date;
 			}
 		}
+		  
 			$data['pageTitle'] = 'Dashboard';
 			$data['smallTitle'] = 'Overview of all Section';
 			$data['mainPage'] = 'Dashboard';

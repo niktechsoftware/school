@@ -97,7 +97,12 @@ foreach($time->result() as $data)
  $row3=$data->period_id;
  $row4=$data->teacher;
  $row6=$data->subject_id;
- $row5=$data->day;
+  $this->db->where("time_table_id",$data->id);
+                        $getday= $this->db->get("time_table_days")->row();
+                        $this->db->where("id",$getday->days_id);
+                        $dy = $this->db->get("days_name")->row();;
+                         $row5=$dy->name;
+ 
 
  $this->db->where('id',$row1);
  $sub=$this->db->get('subject');

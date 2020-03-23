@@ -2,33 +2,6 @@
 class Exampanel extends CI_Controller{
 
 
-	// function __construct()
-	// {
-	// 	parent::__construct();
-	// 	$this->is_login();
-	// 	$this->load->model("smsmodel");
-	// 	$this->load->model("employeemodel");
-	// 	}
-
-	// 	function is_login(){
-	// 		$is_login = $this->session->userdata('is_login');
-	// 		$is_lock = $this->session->userdata('is_lock');
-	// 		$logtype = $this->session->userdata('login_type');
-	// 		if($is_login != "admin"){
-	// 			//echo $is_login;
-	// 			redirect("index.php/homeController/index");
-	// 		}
-	// 		elseif(!$is_login){
-	// 			//echo $is_login;
-	// 			redirect("index.php/homeController/index");
-	// 		}
-	// 		elseif(!$is_lock){
-	// 			redirect("index.php/homeController/lockPage");
-	// 		}
-	// 	}
-
-
-
   public function index(){
 		$data['pageTitle'] = 'Exam Panel';
 		$data['smallTitle'] = 'Exam Panel';
@@ -156,6 +129,58 @@ class Exampanel extends CI_Controller{
 	  		$this->load->view('panel/exam/admitcardclasswise',$data);
 
 
+
+	  }
+	  
+	  public function home_subseq(){
+	      	$this->load->model("examModel");
+		$this->load->model("configureclassmodel");
+		$var=$this->examModel->getExamName();
+		$data['request']=$var->result();
+		$stream=$this->configureclassmodel->getStramforexam();
+		$data['stream']=$stream->result();
+		$data['pageTitle'] = 'Exam Panel';
+		$data['smallTitle'] = 'Exam Panel';
+		$data['mainPage'] = 'Exam Panel Area';
+		$data['subPage'] = 'Exam Panel';
+		$data['title'] = 'Exam Panel Area ';
+		$data['headerCss'] = 'headerCss/noticeCss';
+		$data['footerJs'] = 'footerJs/noticeJs';
+		$data['mainContent'] = 'panel/exam/home_subseq';
+		$this->load->view("includes/mainContent", $data);
+
+
+  }
+	   public function subseq()
+	  {
+                $fsd=$this->input->post("fsd");
+                $fsd=25;
+	  		$classid=$this->input->post("clname");
+	  		$examTypeResult1 = $this->db->query("select DISTINCT subject.id from subject join exam_info on subject.id= exam_info.subject_id where exam_info.fsd='$fsd' and exam_info.class_id='$classid' order by subject.id ASC ");
+	  		
+	  	if($examTypeResult1->num_rows()>0)
+	  	{
+	  	    ?>
+	  	     
+        <form action="<?php echo base_url();?>index.php/adminController/updatesequ" method="post" role="form"
+          class="form-horizontal" id="form">
+	  	        <table>
+	  	            <tr><td>Subject </td><td>Current Position</td><td>Reorder Position</td></tr>
+	  	            <?php $i =1; foreach($examTypeResult1->result() as $row):?>
+	  	            <tr><td><?php $this->db->where("id",$row->id);
+	  	           $sname=  $this->db->get("subject")->row();echo $sname->subject;?></td>
+	  	           <td><?php echo $i;?></td><td>
+	  	               <input type="text" name="a<?php echo $i;?>" value=<?php echo $row->id;?> />
+	  	               <input type="number" name="r<?php echo $i;?>" required="required"/> </td></tr>
+	  	            <?php $i++; endforeach;?>
+	  	            <input type ="hidden" name ="rownum" value ="<?php echo $i;?>"/>
+	  	        </table>
+	  	        <button type="submit" >Submit</button>
+	  	        </form>
+	  	    <?php
+	  	}else{
+	  	    echo "First you have to fill exam marks.";
+	  	}
 
 	  }
 	  public function admitCardReports()

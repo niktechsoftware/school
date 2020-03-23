@@ -127,11 +127,11 @@ class Login extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	}
     function	indivisualfee(){
-			$data['pageTitle'] = 'Collect Invisual Fee';
+			$data['pageTitle'] = 'Fee Panel';
 			$data['smallTitle'] = 'Collect Invisual Fee';
-			$data['mainPage'] = 'Collect Invisual Fee';
-			$data['subPage'] = 'Collect Invisual Fee';
-			$data['title'] =   'Collect Invisual Fee';
+			$data['mainPage'] = 'Collect Individual Fee';
+			$data['subPage'] = 'Collect Invdidual Fee';
+			$data['title'] =   'Collect Indvidual Fee';
 			$data['headerCss'] = 'headerCss/staffcategory';
 			$data['footerJs'] = 'footerJs/singlefeejs';
 			$data['mainContent'] = 'indivisualfee';
@@ -516,7 +516,7 @@ function updatemaximum()
 	}
           function studentleave(){
                
-             $data['pageTitle'] = 'Student Leave Report';
+             $data['pageTitle'] = 'Leave Report';
 		   $data['smallTitle'] = 'Student Leave Report';
 		$data['mainPage'] = 'Student';
 		$data['subPage'] = 'Student Leave Report';
@@ -1133,11 +1133,13 @@ function createSchedule()
 		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
 		
 
-		$data['pageTitle'] = 'Mobile Message And Notice';
-		$data['smallTitle'] = 'Mobile Notice';
+		
+		$data['pageTitle'] = 'SMS Panel';
+		$data['smallTitle'] = 'Mobile Message And Notice';
+
 		$data['mainPage'] = 'Message';
 		$data['subPage'] = 'Mobile Notice';
-		$data['title'] = 'Mobile Message';
+		$data['title'] = 'Mobile Message And Notice';
 		$data['headerCss'] = 'headerCss/noticeCss';
 		$data['footerJs'] = 'footerJs/noticeJs';
 		$data['mainContent'] = 'mobileNotice';

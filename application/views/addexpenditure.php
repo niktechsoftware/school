@@ -63,8 +63,9 @@
                         <div class="panel-heading panel-green border-light">
                           <h4 class="panel-title text-center">Old/Current Expenditure Section </h4>
                         </div>
+                        <div class="panel-body panel-scroll height-450 table-responsive" >
                         <div class="panel-body" id="expenditure2">
-                    
+                    </div>
                     </div>
                   </div>
                 </div>

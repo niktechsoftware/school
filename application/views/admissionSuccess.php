@@ -156,8 +156,13 @@
 											<td>
 												<?php 
 												
-												if($personalInfo->house_id) { $this->db->where("id",$personalInfo->house_id);
-												$get_house=$this->db->get("house")->row()->house_name;echo $get_house; }else echo '<span style="color:#ff9999">N/A</span>'; ?>
+												if(strlen($personalInfo->house_id)>0) { 
+												    $this->db->where("id",$personalInfo->house_id);
+												$get_house=$this->db->get("house");
+												if($get_house->num_rows()>0){
+												$get_house=$get_house->row()->house_name;
+												echo $get_house; }}
+												else echo '<span style="color:#ff9999">N/A</span>'; ?>
 											</td>
 											<td><a href="#" class="show-tab"></a></td>
 										</tr>

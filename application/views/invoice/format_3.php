@@ -208,8 +208,12 @@
 							
 							</td>
 							<td >
-								<span style="text-transform: uppercase;">Date of Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:red;"> <?= date("d-M-Y", strtotime($studentInfo->dob)); ?></span><br>
-								 <span style="text-transform: uppercase;">Mother's Name&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:red;">  <?= strtoupper($parentInfo->mother_full_name); ?></span><br>
+							<?php if($school == 13 ){?>
+								<?PHP }else{
+								?>
+									<span style="text-transform: uppercase;">Date of Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:red;"> <?= date("d-M-Y", strtotime($studentInfo->dob)); ?></span><br>
+							
+								<?php }?>	 <span style="text-transform: uppercase;">Mother's Name&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:red;">  <?= strtoupper($parentInfo->mother_full_name); ?></span><br>
 								<span style="text-transform: uppercase;">Father's Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:red;"> <?= strtoupper($parentInfo->father_full_name); ?></span><br>
 							</td>
 							<td class="">
@@ -258,6 +262,7 @@
 						<th colspan="5" rowspan="2" style="background-color: #efef70;">TERM 1 (100 MARKS) </th>
 						<th colspan="5" rowspan="2" style="background-color: #efef70;">Term 2 (100 Marks) </th>
 						<th colspan="2" style="background-color: #efef70;">OVERALL</th>
+					
 					</tr>
                     <tr>
                        <!-- <th colspan="3">Term 1 (50)+ Term 2(50)</th>-->
@@ -266,6 +271,7 @@
                         <th colspan="1" rowspan="1" style="text-transform: uppercase;background-color:#9dfa5b;">Subjects</th>
                         <!--1st term exam name start-->
 						<?php  if($examid->num_rows()==0){?>
+							
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>
@@ -273,8 +279,11 @@
 													<?php }else if($examid->num_rows()==1){ ?>
 						<?php 
 							$i=1;
+							
+							//print_r($examid);
 							 foreach ($examid->result() as $value):
-							   $examid1=$value->exam_id;	
+							     
+							  echo  $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
 							   $examname=$this->db->get('exam_name');   
@@ -319,7 +328,7 @@
 						<?php 
 							$i=1;
 							 foreach ($examid->result() as $value):
-							   $examid1=$value->exam_id;	
+							  $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
 							   $examname=$this->db->get('exam_name');   
@@ -1256,7 +1265,7 @@
                         <td>Overall Marks : <?php echo $overal=$grandtotal+$grandtotal_2;  ?>/<?php echo $dhtm;?></td>
                         <td>Percentage  : <?php if($dhtm>0){echo $per=round((($overal*100)/$dhtm), 2);}?>% </td>
                         <td >Grade  : <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade_gyan($per,$classid->class_id);}?></label></td>
-                        <td>Rank :</td>
+                        <td>Rank :<?php echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);?></td>
                     </tr>
                 </table>
             </div>
@@ -1668,7 +1677,7 @@
                         <td>Percentage  : <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}?>% </td>
                         <td >Grade  : <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade_sarvodya($per,$classid->class_id);}?></label></td>
                         <td>Rank :<?php 
-			//echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);
+			echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);
 			?></td>
                     </tr>
                 </table>
@@ -1995,7 +2004,7 @@
                         <td>Overall Marks : <?php echo $grandtotal; ?>/<?php echo $dhtm;?></td>
                         <td>Percentage  : <?php if($dhtm>0){echo $per=round((($grandtotal*100)/$dhtm), 2);}?>% </td>
                         <td >Grade  : <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade($per,$classid->class_id);}?></label></td>
-                        <td>Rank :</td>
+                        <td>Rank :	<?php echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd);?></td>
                     </tr>
                 </table>
             </div>
@@ -2120,6 +2129,7 @@
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Art Education</td>
+                             <td>Art Education</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>   
                         </tr>
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>

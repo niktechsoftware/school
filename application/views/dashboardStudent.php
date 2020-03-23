@@ -12,14 +12,15 @@ $logtype = $this->session->userdata ( 'login_type' );
 		onmouseout="this.start();">
 
 <?php
+
 echo "Dear Student your remaning fee of month is ";
 $tot = 0.00;
 $this->db->where ( "school_code", $this->session->userdata ( "school_code" ) );
 $fsdate = $this->db->get ( "general_settings" );
-$fsd = $fsdate->row ()->fsd_id;
+$fsd = $fsdate->row()->fsd_id;
 
 $this->db->where ( "id", $fsd );
-$fdate = $this->db->get ( "fsd" )->row ()->finance_start_date;
+$fdate = $this->db->get ("fsd")->row ()->finance_start_date;
 $this->db->where ( "username", $this->session->userdata ( "username" ) );
 $rows = $this->db->get ( "student_info" )->row ();
 $stu_id = $rows->id;

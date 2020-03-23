@@ -14,6 +14,7 @@ class InvoiceController extends CI_Controller{
         $logtype = $this->session->userdata('login_type');
        if(!$is_login){
             //echo $is_login;
+            
             redirect("index.php/homeController/index");
         }
         elseif(!$is_lock){
@@ -414,6 +415,7 @@ class InvoiceController extends CI_Controller{
 		$data['sectionid'] = $this->uri->segment(5);
         $data['title'] = 'Student Profile';
 /////////////////////////////////////
+$fsd1=$this->uri->segment(3);
 				$this->db->where("id",$this->uri->segment(3));
 		$fsd = 	$this->db->get("fsd")->row();
             $futureDate=date('Y-m-d', strtotime('+1 year', strtotime($fsd->finance_start_date )) );
@@ -454,23 +456,22 @@ class InvoiceController extends CI_Controller{
                       $this->db->where("fsd",$this->uri->segment(3) );
     $examTypeResult = $this->db->get("exam_info")->result();
 		
-                		$this->db->Distinct();
-                		$this->db->select("class_id");
-                		$this->db->where("fsd",$this->uri->segment(3) );
-    		 $classid = $this->db->get("exam_info")->row();
-	            		$this->db->Distinct();
+    		 $classid = $this->uri->segment(4);
+    		 //echo $this->uri->segment(4);
+	            	/*	$this->db->Distinct();
                 		$this->db->select("subject_id");
                 		$this->db->where("fsd",$this->uri->segment(3) );
                 		$this->db->order_by("subject_id","Asc");
-	 $examTypeResult1 = $this->db->get("exam_info")->result();
-		
+	 $examTypeResult1 = $this->db->get("exam_info")->result();*/
+		$examTypeResult1 = $this->db->query("select DISTINCT subject.id from subject join exam_info on exam_info.subject_id=subject.id where exam_info.fsd='$fsd1' and exam_info.class_id ='$classid' order by subject.id ASC ")->result();
+
 		$subject = Array();
 		$subject5 = Array();
 		foreach($examTypeResult as $val):
 			$subject[] = $val->subject_id;
 		endforeach;
 		foreach($examTypeResult1 as $val):
-			$subject5[] = $val->subject_id;
+			$subject5[] = $val->id;
 		endforeach;
 		$subject = array_unique($subject);
 		$subject5 = array_unique($subject5);
@@ -507,7 +508,7 @@ class InvoiceController extends CI_Controller{
                 $val=	$val->row()->classwisereport_format;
 		if($examTypeResult){
 		    $data['fsd']=$this->uri->segment(3);
-		//	$data['classid']=$classid;
+			//$data['classid']=$classid;
 			$data['title'] = "Mark Sheet";
 			$data['futureDate'] = $futureDate;
 			$data['resultData'] = $formatedResult;
@@ -546,9 +547,10 @@ function result(){
 		$id = $this->uri->segment(3);
 		$fsd1 = $this->uri->segment(4);
 		$examId = $this->uri->segment(5);
+		//echo $examid;
+		//exit();
 		// echo $id;
-		// echo $fsd1;
-		//exit;
+
 		$resultData = array();
 		/**
 		 * this code block get persional information about a student by given studentID.
@@ -582,9 +584,11 @@ function result(){
 	      $this->db->select("exam_id,term");
 		  $this->db->where("school_code",$this->session->userdata("school_code"));
 		  $this->db->where("stu_id", $id);
-		  $this->db->where("fsd",$fsd1 );
-		  $this->db->where("term",1 );
+		
+		  $this->db->where("term",1);
 		 $examTypeResult2 = $this->db->get("exam_info");
+		// print_r($examTypeResult2);
+		
 		 //for 2nd term
 		 $this->db->Distinct();
 	      $this->db->select("exam_id,term");
@@ -613,16 +617,17 @@ function result(){
 		$this->db->where("fsd",$fsd1 );
 		$classid = $this->db->get("exam_info")->row();
 		
+		$examTypeResult1 = $this->db->query("select DISTINCT subject.id from subject join exam_info on exam_info.subject_id=subject.id where exam_info.fsd='$fsd1' and exam_info.stu_id='$id' order by subject.id ASC ")->result();
 	
 	
-		$this->db->Distinct();
+		/*$this->db->Distinct();
 		$this->db->select("subject_id");
 		//$this->db->where("school_code",$this->session->userdata("school_code"));
 	//	$this->db->where("class_id", $studg->class_id);
 		$this->db->where("stu_id", $id);
 		$this->db->where("fsd",$fsd1 );
 		$this->db->order_by("subject_id","Asc");
-		$examTypeResult1 = $this->db->get("exam_info")->result();
+		$examTypeResult1 =  $this->db->get("exam_info")->result();*/
 		
 		$subject = Array();
 		$subject5 = Array();
@@ -632,7 +637,7 @@ function result(){
 		endforeach;
 		foreach($examTypeResult1 as $val):
 		
-			$subject5[] = $val->subject_id;
+			$subject5[] = $val->id;
 			
 		endforeach;
 		$subject = array_unique($subject);
@@ -697,7 +702,9 @@ function result(){
 			 * echo "</pre>";
 			 */
 
+
 			$this->load->view("invoice/si1/$callview",$data);
+
 
 		}
 		else{

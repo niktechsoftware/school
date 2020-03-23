@@ -26,16 +26,7 @@ class StudentModel extends CI_Model{
 	    $result=$this->db->get();
 		return $result;
 	}
-	// function studentguardianList(){
-	// 	$school_code = $this->session->userdata("school_code");
-	//     $this->db->select('*');
-	//     $this->db->from('student_info');
-	//     $this->db->join('guardian_info','guardian_info.student_id=student_info.id');
-	//     $this->db->where("guardian_info.school_code",$school_code);
-	//     $this->db->where("student_info.status",1);
-	//     $query=$this->db->get()->row();
-	// 	return $query;
-	// }
+
 	function getStudentDetail($studentId1){
 		//$this->db->where("school_code",$this->session->userdata("school_code"));
 		//$this->db->where("status",1);

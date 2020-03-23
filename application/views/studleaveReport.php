@@ -113,6 +113,8 @@ or if you want to Cancel student leave then click on Cancel Button.<br>NOTE =>St
 						</div>
 					</div>
 					<div class="table-responsive">
+					   <?php  if($request->num_rows()>0)
+                                             {?>
 							<table class="table table-striped table-hover" id="sample-table-2">
 								<thead>
 									<tr style="background-color:#1ba593; color:white;">
@@ -133,8 +135,7 @@ or if you want to Cancel student leave then click on Cancel Button.<br>NOTE =>St
 								</thead>
 								<tbody>
 									<?php
-                                             if($request->num_rows()>0)
-                                             {
+                                            
 									$sno = 1; foreach ($request->result() as $row): 
 									
 										$this->db->where("id",$row->stu_id);
@@ -182,23 +183,27 @@ or if you want to Cancel student leave then click on Cancel Button.<br>NOTE =>St
 									</tr>
 									
 									<?php $sno++; endforeach; ?>
-								<?php } else{?>
+								
 								<tr>
 									<td colspan="12">
-                                 <div class="alert alert-danger">
-		                       <?php  echo "<h4>No leave are requested by Student</h4>";?>
-			                     </div>  
+                                   
 									</td>
 									<tr>
-								<?php }?>
+								
 								</tbody>
 							</table>
+							<?php }else{
+							?>
+							 <div class="alert alert-danger">
+		                       <?php  echo "<h4>No leave are requested by Student</h4>";?>
+			                     </div>
+			                     <?php }?>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- end: EXPORT DATA TABLE PANEL -->
-
+           
 
 		</div>
 	</div>

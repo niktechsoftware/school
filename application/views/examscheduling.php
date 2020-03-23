@@ -49,7 +49,7 @@
 													<div class="row col-sm-12">
 													    <div class="space10" >
 														<label class="panel-title">Select Term&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-					                           <select name="term"><option>--SELECT TERM--</option><option value="1" >TERM 1</option><option value="2">TERM 2</option><option value="3">TERM 3</option></select>
+					                           <select name="term"><option>--SELECT TERM--</option><option value="1" >TERM 1</option><option value="2">TERM 2</option><option value="3">TERM 3</option><option value="4">TERM 4</option></select>
 													</div>
 													<div class="space10" >
 														<label class="panel-title">Test Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>

@@ -207,7 +207,12 @@ echo "1";
 								 	    
 								 	}
 									$cdate = date("Y-m-d");
-									$cmonth = date("Y-m",strtotime($cdate));
+									if($this->session->userdata("school_code")==9){
+									    	$cmonth = date("Y-m",strtotime("1 months", strtotime($cdate)));
+									}else{
+									    	$cmonth = date("Y-m",strtotime($cdate));
+									}
+								//	$cmonth = date("Y-m",strtotime($cdate));
 									$curmon = date("m",strtotime($cdate));
 									//print_r($stu_id);
 									$this->db->where("student_id",$stu_id);
@@ -256,7 +261,7 @@ echo "1";
 									$this->db->where("fsd",$fsd);
 									$this->db->where("class_id",$stuDetail->class_id);
 									
-								 $this->db->where_in("taken_month",13);
+								 $this->db->where("taken_month",13);
 								 
 								 $fee_head = $this->db->get("class_fees");
 								 if($fee_head->num_rows()>0){
@@ -450,7 +455,9 @@ echo "1";
 									$this->db->where("class_id",$stuDetail->class_id);
 									//	print_r($stuDetail->class_id);
 									$this->db->where("fsd",$fsd);
-											$this->db->where_in("taken_month",$searchM);
+
+											$this->db->where("taken_month",13);
+
 										$one_all_amount = $this->db->get("class_fees");
 										$one_all_amount=$one_all_amount->row()->fee_head_amount;
 									/*echo $one_all_amount."al";

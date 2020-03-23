@@ -802,12 +802,10 @@
 				foreach($resultData as $sub){
 				      $tcounter=0;
 				      $tcounterr=0;
-				      
 				$this->db->where('class_id',$classid->class_id);
-				//echo $classid->class_id;
-			
 				$this->db->where('id',$sub['subject']);
 				$subjectname=$this->db->get('subject'); 
+				echo $sub['subject'];
 				if($subjectname->num_rows()>0){
 					$subjectname=$subjectname->row();
 					$totalp+=200;?>
@@ -1154,7 +1152,6 @@
                    <?php if($d12->class_id == 131 ){ ?>
                     <tr>
                         <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
-
                         <th colspan="2" rowspan="2">TERM 1 (100 MARKS) </th>
                         <th colspan="2" rowspan="2">Term 2 (100 Marks) </th>
                        <th colspan="2">OVERALL</th>
@@ -1166,7 +1163,6 @@
                         <th colspan="3" rowspan="2">TERM 1 (100 MARKS) </th>
                         <th colspan="3" rowspan="2">Term 2 (100 Marks) </th>
                        <th colspan="3">OVERALL</th>
-
 
                     </tr>
                     <?php } ?>
@@ -1490,7 +1486,7 @@ if($subjectname->num_rows()>0){
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" style="text-transform: uppercase; font-weight:bold;"><?php echo "sdsdsdsdsd".$examname->exam_name;
+						<td colspan="1" style="text-transform: uppercase; font-weight:bold;"><?php echo $examname->exam_name;
 						?></td>
                         <?php 
 						}
@@ -1667,7 +1663,6 @@ if($subjectname->num_rows()>0){
 					  // $pi=1;
 					   $grandtotal=0;
 					   $grandtotal_2=0;
-					 
 				foreach($resultData as $sub){
 				$this->db->where('class_id',$classid->class_id);
 				$this->db->where('id',$sub['subject']);

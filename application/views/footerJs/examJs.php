@@ -1,4 +1,4 @@
-<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+            <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
 			<!--<![endif]-->
 			<script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
 			<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -151,7 +151,9 @@
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
 
+
 if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D" || $school_code == 9 && $row2 == "D" || $school_code == 8 && $row2 == "D"){ ?>			
+
 
 			
 			$("#subjectIdmarks").change(function(){
@@ -272,7 +274,10 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
 
-if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D" || $school_code == 9 && $row2 == "D" || $school_code == 8 && $row2 == "D"){ ?>
+
+if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D"  || $school_code == 8 && $row2 == "D" ){ ?>
+
+
 				$("#subjectId").change(function(){
 					var classid = $("#classId").val();
 					var teacherid = $("#teacherid").val();
