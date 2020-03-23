@@ -67,7 +67,9 @@
 					<th>Subject</th>
 					<th>Message</th>
 					<td>date</td>
-					<th>time</th>
+					
+					
+					
 					
 				</tr>
 			</thead>
@@ -85,9 +87,7 @@
 						  			<td><?php echo $lv->subject;?></td>
 						  			<td><?php echo $lv->message;?></td>
 						  			<td><?php echo $lv->date;?></td>
-						  			<td>
-										<?php echo $lv->time; ?>
-									</td>
+						  		
 						  			
 						  		</tr>
 						  		<?php $count++; endforeach; }
@@ -103,9 +103,7 @@
 		  			<td><?php echo $lv->subject;?></td>
 		  			<td><?php echo $lv->message;?></td>
 		  			<td><?php echo $lv->date;?></td>
-		  			<td>
-						<?php echo $lv->time; ?>
-					</td>
+		  		
 		  			
 		  		</tr>
 		  		<?php $count++; endforeach; }?>

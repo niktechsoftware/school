@@ -178,9 +178,9 @@
 					<tr style="background-color: #b38cb1;"><?php }else{ ?><tr >
 					<?php } ?>
                            <td  style="border: none;width: 150px;">
-                                <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
-                                    alt="" style="height: 100px;width: 100px;" />
-                                </br><label style="font-size: 13px;">Aff.No. - <?php echo $info->registration_no;?></label>
+                                <img src="<?php echo base_url(); ?>assets/images/cbse_logo.png" alt="" style="height: 100px;width: 100px;">
+                              
+                                </br><label style="font-size: 13px;">CBSE Aff.No. - <?php echo $info->registration_no;?></label>
                             </td>
                              <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
                             <td  style="border: none; width:900px;text-align: center; " >
@@ -188,7 +188,8 @@
                                     <?php echo $info->school_name;?></h1>
                             </td>
                             <td style="border: none;">
-                                <img src="<?php echo base_url(); ?>assets/images/cbse_logo.png" alt="" style="height: 100px;width: 100px;">
+                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
+                                    alt="" style="height: 100px;width: 100px;" />
                                 <br /><label style="font-size: 13px;">School Code - 70462</label>
                             </td>
                             <?php }else{ ?>
@@ -228,7 +229,12 @@
 							
 							</td>
 							<td style="width:150px;">
-								<span style="text-transform: uppercase;">Date of Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:red;"> <?= date("d-M-Y", strtotime($studentInfo->dob)); ?></span><br>
+							    <?php if($school ==13 ){?>
+								<?PHP }else{
+								?>
+									<span style="text-transform: uppercase;">Date of Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:red;"> <?= date("d-M-Y", strtotime($studentInfo->dob)); ?></span><br>
+							
+								<?php }?>
 								 <span style="text-transform: uppercase;">Mother's Name&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:red;">  <?= strtoupper($parentInfo->mother_full_name); ?></span><br>
 								<span style="text-transform: uppercase;">Father's Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:red;"> <?= strtoupper($parentInfo->father_full_name); ?></span><br>
 							</td>
@@ -271,13 +277,20 @@
              <!-- scholar & mkd accademy start -->
             <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
                         <div>
-                <table
+                 <table
                     style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;font-weight:bold;font-size: 14px;">
                     <tr>
+                         <?php if($school == 13 && $row2=="A"){ ?>
                         <th colspan="1" rowspan="2" style="background-color:#9dfa5b;">SCHOLASTIC AREA </th>
+						<th colspan="3" rowspan="2" style="background-color: #efef70;">TERM 1 (100 MARKS) </th>
+						<th colspan="3" rowspan="2" style="background-color: #efef70;">Term 2 (100 Marks) </th>
+						<th colspan="2" style="background-color: #efef70;">OVERALL</th>
+					<?php } else { ?>
+					 <th colspan="1" rowspan="2" style="background-color:#9dfa5b;">SCHOLASTIC AREA </th>
 						<th colspan="5" rowspan="2" style="background-color: #efef70;">TERM 1 (100 MARKS) </th>
 						<th colspan="5" rowspan="2" style="background-color: #efef70;">Term 2 (100 Marks) </th>
 						<th colspan="2" style="background-color: #efef70;">OVERALL</th>
+					<?php } ?>
 					</tr>
                     <tr>
                        <!-- <th colspan="3">Term 1 (50)+ Term 2(50)</th>-->
@@ -286,6 +299,7 @@
                         <th colspan="1" rowspan="1" style="text-transform: uppercase;background-color:#9dfa5b;">Subjects</th>
                         <!--1st term exam name start-->
 						<?php  if($examid->num_rows()==0){?>
+							
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>
@@ -293,8 +307,11 @@
 													<?php }else if($examid->num_rows()==1){ ?>
 						<?php 
 							$i=1;
+							
+							//print_r($examid);
 							 foreach ($examid->result() as $value):
-							   $examid1=$value->exam_id;	
+							     
+							  echo  $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
 							   $examname=$this->db->get('exam_name');   
@@ -324,7 +341,7 @@
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"><?php echo $examname->exam_name;
+						<td  style="text-transform: uppercase; font-weight:bold;background-color:#efef70; width:18%;text-align: center;"><?php echo $examname->exam_name;
 						$this->db->where('exam_id',$value->exam_id);
 						$exammm=	$this->db->get('exam_max_subject')->row()->max_m;	
 						echo "[".$exammm."]";
@@ -333,13 +350,13 @@
 						}
 						$i++;
 						endforeach ; ?>
-						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;" ></td>
-						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>	
+					<!--	<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;" ></td>
+						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>	-->
 						<?php }else if($examid->num_rows()==3){ ?>
 						<?php 
 							$i=1;
 							 foreach ($examid->result() as $value):
-							   $examid1=$value->exam_id;	
+							  $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
 							    $this->db->where('term',1);
 							   $examname=$this->db->get('exam_name');   
@@ -379,7 +396,7 @@
 																							<?php } ?>
 						<?php
 						if(!$i%2==0){ ?>
-						<td class="center bold" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;">Total</td> 
+						<td class="center bold" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;width:12%">Total</td> 
 							<!--<td class="center bold" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;">Grade</td> -->
 						<?php } ?>
 						<!--1st term exam name end-->
@@ -395,7 +412,7 @@
 							 foreach ($examid_2->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
-							    $this->db->where('term',1);
+							    $this->db->where('term',2);
 							   $examname=$this->db->get('exam_name');   
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
@@ -418,12 +435,12 @@
 							 foreach ($examid_2->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
-							    $this->db->where('term',1);
+							    $this->db->where('term',2);
 							   $examname=$this->db->get('exam_name');   
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
 						?> 
-						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"><?php echo $examname->exam_name;
+						<td style="text-transform: uppercase; font-weight:bold;background-color:#efef70;width:18%"><?php echo $examname->exam_name;
 						$this->db->where('exam_id',$value->exam_id);
 						$exammm=	$this->db->get('exam_max_subject')->row()->max_m;	
 						echo "[".$exammm."]";
@@ -432,15 +449,15 @@
 						}
 						$i++;
 						endforeach ; ?>
-						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>
-						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>	
+					<!--	<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>
+						<td colspan="1" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;"></td>	-->
 						<?php }else if($examid_2->num_rows()==3){ ?>
 						<?php 
 							$i=1;
 							 foreach ($examid_2->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
-							    $this->db->where('term',1);
+							    $this->db->where('term',2);
 							   $examname=$this->db->get('exam_name');   
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
@@ -461,7 +478,7 @@
 							 foreach ($examid_2->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
-							    $this->db->where('term',1);
+							    $this->db->where('term',2);
 							   $examname=$this->db->get('exam_name');   
 							   if ($examname->num_rows()>0){
 							   $examname=$examname->row();
@@ -478,11 +495,11 @@
 																							<?php } ?>
 						<?php
 						if(!$i%2==0){ ?>
-						<td class="center bold" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;">Total</td> 
+						<td class="center bold" style="text-transform: uppercase; font-weight:bold;background-color:#efef70;width:10%">Total</td> 
 						<?php } ?>
 						<!--2nd term exam name start-->
-						<th style="text-transform: uppercase;background-color: #efef70;">Grand Total<br>[200] </th>
-                        <th  style="text-transform: uppercase;background-color: #efef70;">Grade</th>
+						<th style="text-transform: uppercase;background-color: #efef70;width:20%">Grand Total<br>[200] </th>
+                        <th  style="text-transform: uppercase;background-color: #efef70;width:20%">Grade</th>
                        <!-- <th rowspan="1" style="text-transform: uppercase;">Rank</th>-->
                     </tr>
 
@@ -598,8 +615,8 @@
 						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
-				<td colspan="1" style="background-color: #efef70;"></td>
-				<td colspan="1" style="background-color: #efef70;"></td>
+			<!--	<td colspan="1" style="background-color: #efef70;"></td>
+				<td colspan="1" style="background-color: #efef70;"></td>-->
 				<?php }else if($examid->num_rows()==3){ ?>
 												<?php
 					foreach ($examid->result() as $value):?>
@@ -747,8 +764,8 @@
 						if(is_numeric($exammm)){ echo "/" .$exammm; } ?>
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
-				<td colspan="1" style="background-color: #efef70;"></td>
-				<td colspan="1"style="background-color: #efef70;" ></td>
+			<!--	<td colspan="1" style="background-color: #efef70;"></td>
+				<td colspan="1"style="background-color: #efef70;" ></td>-->
 				<?php }else if($examid_2->num_rows()==3){ ?>
 				<?php foreach ($examid_2->result() as $value):?>
 					<td class="center" style="background-color: #efef70;">	
@@ -2112,7 +2129,7 @@
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
 						<tr style="background-color:#9dfa5b;"><?php }else{ ?><tr><?php } ?>
                             <th style="text-transform: uppercase;"> Activity </th>
-                            <th>TERM 1</th>
+                            <th>GRADE</th>
                         </tr>
                         <!-- Dynamic -->
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
@@ -2122,7 +2139,8 @@
                         </tr>
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
-                            <td>Art Education</td>
+                            <!--<td>Art Education</td>-->
+                            <td>Oral Skill</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid);} ?></td>   
                         </tr>
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
@@ -2178,7 +2196,8 @@
 							$present =$atotal-$absnt;
 							?>
 							 <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
-                            <td style="background-color:orange;"><label> .</label></td>
+                            <!--<td style="background-color:orange;"><label> Attendance:&nbsp;&nbsp;&nbsp;&nbsp; <?php echo $present; ?>/<?php echo $atotal; ?></label></td>-->
+                            <td style="background-color:orange;"><label> Attendance:&nbsp;&nbsp;&nbsp;&nbsp; </label></td>
                           <?php  }
                             else {?>
                               <td>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $present; ?>/<?php echo $atotal; ?></label></td>
@@ -2293,7 +2312,7 @@
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
                         <tr style="background-color:#9dfa5b;"><?php }else{ ?><tr><?php } ?>
                             <th style="text-transform: uppercase;"> Element </th>
-                            <th>TERM 1</th>
+                            <th>GRADE</th>
                         </tr>
                         <!-- Dynamic -->
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
@@ -2386,7 +2405,7 @@
 					<tbody>
                     <!-- Dynamic -->
 					<!--for scholar & mkd grade chart start-->
-                    <?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D"){ ?>
+                    <?php if($school == 7 && $row2=="D"){ ?>
                     <tr style="background-color: #d8c4af;">
                         <td>91-100</td>
                         <td>A1</td>
@@ -2413,6 +2432,41 @@
                     </tr>
                      <tr style="background-color: #d8c4af;">
                         <td>33-40</td>
+                        <td>D</td>
+                    </tr>
+                     <tr style="background-color: #d8c4af;">
+                        <td>Needs Improvement</td>
+                        <td>E</td>
+                    </tr>
+					<!--for scholar & mkd grade chart end-->
+					<?php }else if($school == 13 && $row2=="A"){ ?>
+					 
+                    <tr style="background-color: #d8c4af;">
+                        <td>181-200</td>
+                        <td>A1</td>
+                    </tr>
+                    <tr style="background-color: #d8c4af;">
+                        <td>161-180</td>
+                        <td>A2</td>
+                    </tr>
+                    <tr style="background-color: #d8c4af;">
+                        <td>141-160</td>
+                        <td>B1</td>
+                    </tr>
+                    <tr style="background-color: #d8c4af;">
+                        <td>121-140</td>
+                        <td>B2</td>
+                    </tr>
+                    <tr style="background-color: #d8c4af;">
+                        <td>101-120</td>
+                        <td>C1</td>
+                    </tr>
+                     <tr style="background-color: #d8c4af;">
+                        <td>81-100</td>
+                        <td>C2</td>
+                    </tr>
+                     <tr style="background-color: #d8c4af;">
+                        <td>61-80</td>
                         <td>D</td>
                     </tr>
                      <tr style="background-color: #d8c4af;">

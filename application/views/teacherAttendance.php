@@ -78,8 +78,8 @@ To know the attendance of all your teachers, following the rules given below, yo
 										}
 										?>
 												<div class="col-sm-7">
-												<input type="date"  class="form-control"  name = "date1" id= "radate" min='<?php echo $date;?>' required="required" >
-												<div style="display:none;color:red" id="radateid">Required</div>
+												<input type="date"  class="form-control"  name = "date1" id= "radate"  required="required" >
+												
 												</div>
 											</div>
 										</div>

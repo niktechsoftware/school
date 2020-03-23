@@ -2112,7 +2112,6 @@
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                         <tr style="background-color: #c3c3f5;"><?php }else{ ?><tr><?php } ?>
                             <td>Art Education</td>
-                             <td>Art Education</td>
                             <td><?php if($dhtm>0){echo $gradecal =co_scolastic($per,$classid->class_id);} ?></td>   
                         </tr>
 						<?php if($school == 13 && $row2=="A" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>

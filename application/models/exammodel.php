@@ -97,7 +97,7 @@ function getPeriodD()
 function getExamName()
 {
 	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("fsd",$this->session->userdata("fsd"));
+	//$this->db->where("fsd",$this->session->userdata("fsd"));
 	$query1 = $this->db->get("exam_name");
 	return $query1;
 }

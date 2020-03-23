@@ -49,14 +49,14 @@
 													<div class="row col-sm-12">
 													    <div class="space10" >
 														<label class="panel-title">Select Term&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-					                           <select name="term"><option>--SELECT TERM--</option><option value="1" >TERM 1</option><option value="2">TERM 2</option><option value="3">TERM 3</option></select>
+					                           <select name="term"><option>--SELECT TERM--</option><option value="1" >TERM 1</option><option value="2">TERM 2</option><option value="3">TERM 3</option><option value="4">TERM 4</option></select>
 													</div>
 													<div class="space10" >
 														<label class="panel-title">Test Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
 					                            <input type="text" name="examName" style="width: 180px;" id="examName" required="" onkeyup="myfunction1()" onkeyup="myfunction()" />
 													</div>
 													<label class="panel-title">Starting Date&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
-															<input  type="text" data-date-format="yyyy-mm-dd"  id= "printDate" name ="datet" data-date-viewmode="years"  style="width: 180px;" class="date-picker" required=""> 
+															<input  type="date" data-date-format="yyyy-mm-dd"  id= "printDate" name ="datet" data-date-viewmode="years"  style="width: 180px;" class="date-picker" required=""> 
 												
 												 <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Submit <i class="fa fa-arrow-circle-right"></i>
@@ -111,7 +111,7 @@
 													</div>
 												</div>
 											<div class="input-group" >
-								                  <input  type="text" data-date-format="yyyy-mm-dd" id = "printDate1" name ="datet"  style="width: 160px;" class="form-control date-picker" placeholder="Enter Date">
+								                  <input  type="date" data-date-format="yyyy-mm-dd" id = "printDate1" name ="datet"  style="width: 160px;" class="form-control date-picker" placeholder="Enter Date">
 												<div class="col-sm-4 ">
 															
 															<button class="btn btn-red ">

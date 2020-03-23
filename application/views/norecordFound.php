@@ -33,8 +33,11 @@
 										</div>
 									</div>
 									<div class="panel-body">
-										<h5>No Record Found!!!!!!!!!!</h5>
+										<h5>Please Contact to Principal For activate This SMS function from SMS Setting Panel.       !!!!!!!!!!
 										
+                                    
+                                    <img  src="<?php echo base_url();?>assets/images/lock.png" alt="" style="height:50px; width:50px;" /></h5>
+         
 										
 										
 									</div>

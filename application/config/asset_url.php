@@ -1,3 +1,3 @@
-<?php $config['asset_url'] = 'https://schoolerp-niktech.in/a_sschool2/'; ?>
+<?php $config['asset_url'] = 'https://schoolerp-niktech.in/a_school/'; ?>
 
 

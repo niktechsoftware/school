@@ -7,6 +7,7 @@ function sms($number,$msg,$user,$pass,$senderid)
 
 $url="http://bulksms.niktechsoftware.com/vendorsms/pushsms.aspx?user=".$user."&password=".$pass."&msisdn=".$number."&sid=".$senderid."&msg=".urlencode($msg)."&fl=0&gwid=2";
 	$object1 =array();
+	
 
 //$url="http://bulksms.gfinch.in/api/sendmsg.php?user=ramdoot&pass=ghazipur@123&sender=RAMDOT&phone=".$number."&text=".urlencode($msg)."&priority=ndnd&stype=normal";
 	//$url = "http://mysms.sms7.biz/rest/services/sendSMS/sendGroupSms?AUTH_KEY=".$authkey."&message=".urlencode($message)."&senderId=".$senderID."&routeId=1&mobileNos=".$number."&smsContentType=english";

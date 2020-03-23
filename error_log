@@ -1,0 +1,7 @@
+[23-Mar-2020 04:24:18 Asia/Calcutta] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function Bday_data::index_get(), 0 passed in /home/schoodhe/public_html/school/application/libraries/REST_Controller.php on line 738 and exactly 1 expected in /home/schoodhe/public_html/school/application/controllers/api/bday_data.php:24
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/libraries/REST_Controller.php(738): Bday_data->index_get()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(326): REST_Controller->_remap('index', Array)
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/api/bday_data.php on line 24

@@ -82,6 +82,7 @@ class SmsAjax extends CI_Controller{
 		$msg =	$this->input->post("meg");
 	
 		$fmobile1 = $this->input->post("m_number");
+		$fmobile1=str_replace(" ",",",$fmobile1);
 		$str_arr=explode(",",$fmobile1);
 		$totnumb =  sizeof($str_arr);
 		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
@@ -142,6 +143,9 @@ class SmsAjax extends CI_Controller{
 		}
 		
 		else{
+		    	$data['pageTitle'] = 'SMS Panel';
+					$data['smallTitle'] = 'Mobile SMS';
+					$data['mainPage'] = 'SMS Panel Area';
 			$data['subPage'] = 'Mobile Message And Notice';
 			$data['title'] = 'Mobile Message And Notice';
 			$data['headerCss'] = 'headerCss/noticeCss';
@@ -205,12 +209,15 @@ class SmsAjax extends CI_Controller{
 			$data['title'] = 'Mobile Message And Notice';
 			$data['headerCss'] = 'headerCss/noticeCss';
 			$data['footerJs'] = 'footerJs/noticeJs';
-			$data['mainContent'] = 'error';
+			$data['mainContent'] = 'norecordFound';
 			$this->load->view("includes/mainContent", $data);
 		}
 	
 		}
 	else{
+	    	$data['pageTitle'] = 'SMS Panel';
+		$data['smallTitle'] = 'Mobile SMS error in table';
+		$data['mainPage'] = 'SMS Panel Area';
 	    	$data['subPage'] = 'Mobile Message And Notice';
 			$data['title'] = 'Sender ID Not Approved Error Please Contact Administrator';
 			$data['headerCss'] = 'headerCss/noticeCss';
@@ -230,10 +237,12 @@ class SmsAjax extends CI_Controller{
 		$smsc =0;
 		$totsmssent = $this->input->post("totsmsv");
 		$totbal = $this->input->post("totbal");
-	
+
 		if($totbal > $totsmssent){
+		    
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-		if($sender){
+		if($sender->num_rows()>0){
+		 
 		$sende_Detail =$sender->row();
 		
 		$msg =$this->input->post("meg");
@@ -245,10 +254,9 @@ class SmsAjax extends CI_Controller{
 		$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
 		$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
     	$fmobile1=$this->session->userdata("mobile_number");
+    	  
 		if($isSMS->greeting)
-		{  
-			
-		    $totnumb=$employee->num_rows();
+		{ $totnumb=$employee->num_rows();
 		    $i=1;	$fmobile = $this->smsmodel->getMobile($employee->result(),$msg,$master_id,2);
 	
 				if($this->input->post("language")==1){
@@ -272,23 +280,23 @@ class SmsAjax extends CI_Controller{
 				     }	
 		        $this->smsmodel->sentmasterRecord($msg,$totnumb,$master_id,$getv);
 
-		redirect("index.php/login/mobileNotice/Greeting/$count");
-			}	else{
-			    	$data['pageTitle'] = 'SMS Panel';
+		            redirect("index.php/login/mobileNotice/Greeting/$count");
+			}else{
+			   $data['pageTitle'] = 'SMS Panel';
 					$data['smallTitle'] = 'Mobile SMS';
 					$data['mainPage'] = 'SMS Panel Area';
-				$data['subPage'] = 'Mobile Message And Notice';
-				$data['title'] = 'Mobile Message And Notice';
-				$data['headerCss'] = 'headerCss/noticeCss';
-				$data['footerJs'] = 'footerJs/noticeJs';
-				$data['mainContent'] = 'norecordFound';
-				$this->load->view("includes/mainContent", $data);
+			$data['subPage'] = 'Mobile Message And Notice';
+			$data['title'] = 'Mobile Message And Notice';
+			$data['headerCss'] = 'headerCss/noticeCss';
+			$data['footerJs'] = 'footerJs/noticeJs';
+			$data['mainContent'] = 'norecordFound';
+			$this->load->view("includes/mainContent", $data);
 			}
-			//echo $fmobile;
 		
-	
+		}else{
+		 redirect("index.php/login/mobileNotice/Greeting/$count");   
 		}
-		redirect("index.php/login/mobileNotice/Greeting/$count");
+		
 		}else{ 
 	     redirect("index.php/login/mobileNotice/Greeting/$count/9");
 	}	  
@@ -433,7 +441,11 @@ class SmsAjax extends CI_Controller{
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row();
 		
 		$data['sender_Detail'] =$sender;
-		$data['cbs']=checkBalSms($sender->uname,$sender->password);
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+	$smsbaladd = 	$this->db->get("sms_setting")->row();
+		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
+		
+	
 		$data['pageTitle'] = 'SMS Panel';
 		$data['smallTitle'] = 'Mobile SMS';
 		$data['mainPage'] = 'SMS Panel Area';

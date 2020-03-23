@@ -312,5 +312,23 @@ class HomeController extends CI_Controller{
 	   $this->load->model("exammodel");
 	   $this->exammodel->getClassRank('6263','216','3');
 	}
-	
+		function updateTransportfee(){
+	    $schools = $this->db->get("general_settings");
+	    foreach($schools->result() as $sch ):
+	        $this->db->where("school_code",$sch->school_code);
+	       $gettv =  $this->db->get("transport");
+	       foreach($gettv->result() as $gv):
+	           $this->db->where("v_id",$gv->id);
+	           $amv = $this->db->get("transport_root_amount");
+	           foreach($amv->result() as $am):
+	               $data['root_id']=$am->id;
+	               $data['fsd']     =$sch->fsd_id;
+	               $data['amount']  =$am->transport_fee;
+	               $this->db->insert("fsdwise_root_amount",$data);
+	               endforeach;
+	       endforeach;
+	        
+	        endforeach;
+	   echo     "success"; 
+	}
 }

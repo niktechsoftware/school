@@ -101,7 +101,10 @@ class Login extends CI_Controller{
 		$data['subPage'] = 'dashboard';
 		$sender = $this->smsmodel->getsmssender($sc_code)->row();
 		$data['sender_Detail'] =$sender;
-		$data['cbs']=checkBalSms($sender->uname,$sender->password);
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+	$smsbaladd = 	$this->db->get("sms_setting")->row();
+		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
+		
 		$data['title'] = 'Niktech School Dashboard';
 		$data['headerCss'] = 'headerCss/dashboardCss';
 		$data['footerJs'] = 'footerJs/dashboardJs';
@@ -122,11 +125,11 @@ class Login extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	}
     function	indivisualfee(){
-			$data['pageTitle'] = 'Collect Invisual Fee';
+			$data['pageTitle'] = 'Fee Panel';
 			$data['smallTitle'] = 'Collect Invisual Fee';
-			$data['mainPage'] = 'Collect Invisual Fee';
-			$data['subPage'] = 'Collect Invisual Fee';
-			$data['title'] =   'Collect Invisual Fee';
+			$data['mainPage'] = 'Collect Individual Fee';
+			$data['subPage'] = 'Collect Invdidual Fee';
+			$data['title'] =   'Collect Indvidual Fee';
 			$data['headerCss'] = 'headerCss/staffcategory';
 			$data['footerJs'] = 'footerJs/singlefeejs';
 			$data['mainContent'] = 'indivisualfee';
@@ -511,7 +514,7 @@ function updatemaximum()
 	}
           function studentleave(){
                
-             $data['pageTitle'] = 'Student Leave Report';
+             $data['pageTitle'] = 'Leave Report';
 		   $data['smallTitle'] = 'Student Leave Report';
 		$data['mainPage'] = 'Student';
 		$data['subPage'] = 'Student Leave Report';
@@ -1122,12 +1125,17 @@ function createSchedule()
 	function mobileNotice(){
 	    $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row();
 		$data['sender_Detail'] =$sender;
-		$data['cbs']=checkBalSms($sender->uname,$sender->password);
-		$data['pageTitle'] = 'Mobile Message And Notice';
-		$data['smallTitle'] = 'Mobile Notice';
+		
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+	$smsbaladd = 	$this->db->get("sms_setting")->row();
+		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
+		
+		
+		$data['pageTitle'] = 'SMS Panel';
+		$data['smallTitle'] = 'Mobile Message And Notice';
 		$data['mainPage'] = 'Message';
 		$data['subPage'] = 'Mobile Notice';
-		$data['title'] = 'Mobile Message';
+		$data['title'] = 'Mobile Message And Notice';
 		$data['headerCss'] = 'headerCss/noticeCss';
 		$data['footerJs'] = 'footerJs/noticeJs';
 		$data['mainContent'] = 'mobileNotice';

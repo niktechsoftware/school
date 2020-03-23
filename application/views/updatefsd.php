@@ -16,7 +16,7 @@
                 </li>
                 <li>
                   <a href="#myTab_example2" data-toggle="tab">
-                    <i class="green fa fa-home"></i> Class Fees Update
+                    <i class="green fa fa-home"></i> Apply FSD 
                   </a>
                 </li>
               </ul>

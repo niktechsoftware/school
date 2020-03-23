@@ -377,31 +377,40 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		3) Unfair means or papers are strictly prohibited.</br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		4) Issuing of duplicate Admit card will charge 10 rs.
+		<?php if($school_code == 13){?>
+			4) PTM and Result Declaration will be held on 22nd of March.
+		    
+	<?php	}else{?>
+		
+			4) Issuing of duplicate Admit card will charge 10 rs.
+		
+	<?php 	}?>
+	
 		<?php }else if(($school_code==5) && ($row2=="C")) {	?>
 			&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
 		$endt =strtotime("-00 minutes",strtotime($s->to1));
 		echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
+		
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
 		
 		<?php }	else if($school_code==8){ ?>
 		<!--for scholar end-->
 		<!--for dds start-->
 		<?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?>&nbsp;Note: 1)Exam timing is - 09:00 A.M. to 12:00 P.M.<br><?php }else{ ?>
-		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
+		&nbsp;Note: 
 		<?php  } ?>
 		
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is latest by 7:50 A.M. and departure time is 12:30 P.M.
+		1)Students reporting time is latest by 8:30 A.M. and departure time is 01:30 P.M.
 		<?php /*foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
 		$endt =strtotime("-00 minutes",strtotime($s->to1));
 		echo $s->shift."-".date('H:i A', $startt)." "; endforeach;*/ ?> </br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Unfair means or papers are strictly prohibited.</br>
 		<?php }else{ ?><!--for dds end-->
 		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-15 minutes",strtotime($s->from1));
 		$endt =strtotime("-00 minutes",strtotime($s->to1));
 		echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>

@@ -25,6 +25,54 @@ class AdminController extends CI_Controller{
 			redirect("index.php/homeController/lockPage");
 		}
 	}
+	function updatesequ(){
+	  $j=  $this->input->post("rownum");
+	    echo $j;
+	    $arr=array();
+	    for($i=1;$i<$j;$i++){
+	        $fn="a".$i;
+	        $fr ="r".$i;
+	        $ro =$this->input->post($fr);
+	        echo $ro."-";
+	        
+	        $arr[$ro] =$this->input->post($fn);
+	    }
+	    ksort($arr);
+	    print_r($arr);
+	  
+	    for($i=1;$i<$j;$i++){
+	       $this->db->where("id",$arr[$i]);
+	      $sbv =  $this->db->get("subject")->row();
+	      $data["subject"] =$sbv->subject; 
+	      $data["class_id"] =$sbv->class_id;
+	       $this->db->insert("subject",$data);
+	     $nid =$this->db->insert_id();
+	    
+	   
+	    $rid['subject_id']=$nid;
+	     echo "1";
+	   
+	      $this->db->where("class_id",$sbv->class_id);
+	       $this->db->where("fsd",25);
+	      $this->db->where("subject_id",$sbv->id);
+	    if($this->db->update("exam_info",$rid))
+	    {
+	         $this->db->where("class_id",$sbv->class_id);
+	         $this->db->where("subject_id",$sbv->id);
+	        $this->db->update("exam_max_subject",$rid);
+	         $this->db->where("class_id",$sbv->class_id);
+	         $this->db->where("subject_id",$sbv->id);
+	        $this->db->update("time_table",$rid);
+	        echo " update success";
+	    }
+	      $this->db->where("id",$sbv->id);
+	    if($this->db->delete("subject")){
+	        echo "delete Success";
+	    }
+	    
+	    }
+	    	redirect("exampanel/home_subseq/success");
+	}
 	
 	function adminProfile(){
 		$data['pageTitle'] = 'Admin Section';

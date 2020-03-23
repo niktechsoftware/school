@@ -85,7 +85,7 @@
 										}
 										?>
 	                  <div class="col-sm-9">
-	                    <input type="date" class="form-control" min='<?php echo $date;?>' id="date1" name="date1" required="required"
+	                    <input type="date" class="form-control"  id="date1" name="date1" required="required"
 	                      placeholder="Text Field">
 	                  </div>
 	                </div>

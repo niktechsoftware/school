@@ -585,7 +585,7 @@ $school_code = $this->session->userdata("school_code");
     												<?php   $this->db->where("school_code",$school_code);
     		$sender=$this->db->get("sms_setting")->row(); ?>
     													<div class="text-white text-bold">
-    														Available SMS [<?php echo checkBalSms($sender->uname,$sender->password);?>]
+    														Available SMS [<?php echo $cbs;?>]
     													</div>
     													<div class="text-white text-large pull-left">
     														<?php $datj=date("Y-m-d");echo date("d-m-Y");?>
