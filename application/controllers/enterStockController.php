@@ -428,6 +428,8 @@ function editSaleStock(){
 				"date"=> date("Y-m-d"),
 				"balance" =>  $this->input->post("balance")  
   	    );
+  	    echo $this->input->post("total_price$i");
+  	   exit();
         //  $saleentry= $this->enterstockmodel->updatesaleEntry($data,$billno);
          $this->db->where("bill_no",$billno);
 	      $query2 = $this->db->update("sale_info", $data);

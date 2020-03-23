@@ -38,13 +38,13 @@
 			</div>
 		
 			
-			<div class="alert alert-info">
+			<div  class="alert alert-info">
 			<h3 class="media-heading text-center"><b>Welcome to Class Update  Section</b></h3>
 		    This Panel where we can Edit and Delete Class one by one <strong>  make sure that Admission 
 			entry has not done in any case </strong> because it may affect Student info. 
 			You have to Edit and Delete Class info before Admission of Student.
 			<strong>  Press Update Button for Update a single Class and Delete for Delete a single Class.</strong> </div><br><br>
-				<div>
+				<div >
 					<table class="table table-striped table-hover center table-responsive" style="border:3px solid green;" >
 						<thead class="text-blue text-large" style="border:3px solid green;">
 							<tr style="background-color:#ffa366; color:white;">
@@ -75,7 +75,7 @@
 								$this->db->where('school_code',$a);
 								$data1=$this->db->get('class_section')->row();
 
-									$this->db->where('id',$ab);
+								$this->db->where('id',$ab);
 								$a= $this->session->userdata('school_code');
 								$this->db->where('school_code',$a);
 								$data2=$this->db->get('stream')->row();
@@ -85,7 +85,7 @@
 								
 								$this->db->where('school_code',$scl);
 							    //	$this->db->where('fsd',$fsd);
-							    	$this->db->where('status',1);
+							    $this->db->where('status',1);
 								$this->db->where('job_category',3);
 								$emp=$this->db->get('employee_info')
 
@@ -121,7 +121,7 @@
 								 	<?php endforeach;}?>
 								 </select>
 								 	<!-- <input type="text"  value="<?php echo $row->class_teacher_id;?>" size="5">< --></td> 
-								<td style="border:1px solid green;">
+								<td style="border:1px solid green;" id ="success<?php echo $i; ?>">
 									<button class="btn btn-purple btn-sm" id="editClass<?php echo $i; ?>">
 			                    		<i class="fa fa-edit"></i> &nbsp;Update
 			                    	</button>
@@ -132,27 +132,31 @@
 
 							</tr>
 							<script>
+						
+							//
 							$("#editClass<?php echo $i; ?>").click(function(){
-								var id = $("#id<?php echo $i; ?>").val();
+            				var id = $("#id<?php echo $i; ?>").val();
 								var clName = $("#clName<?php echo $i; ?>").val();
 								var stream = $("#stream<?php echo $i; ?>").val();
 								var section = $("#section<?php echo $i; ?>").val();
 								var teacherId = $("#teacherId<?php echo $i; ?>").val();
-								//alert(id +" , "+ clName +" , "+ stream +" , "+ section +" , "+ teacherId);
-								$.post("<?php echo site_url('index.php/configureClassControllers/updateClass')?>",
-										{
-											id : id,
-											clName : clName,
-											stream : stream,
-											section : section,
-											teacherId : teacherId
-										},
-										function(data){
-											$("#success").html(data);
-											
-										}
-								);
-							});
+            					 $.ajax({
+            						"url": "<?php echo site_url('index.php/configureClassControllers/updateClass')?>",
+            						"method": 'POST',
+            						"data": {id : id,clName : clName,stream : stream,section : section,teacherId : teacherId},
+            						beforeSend: function(data) {
+            							$("#editClass<?php echo $i; ?>").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+            						},
+            						success: function(data) {
+            							$("#editClass<?php echo $i; ?>").html(data);
+            						
+            						},
+            						error: function(data) {
+            							$("#success<?php echo $i; ?>").html(data)
+            						}
+            					})
+            				});
+							//
 
 							$("#deleteClass<?php echo $i; ?>").click(function(){
 								var id = $("#id<?php echo $i; ?>").val();
