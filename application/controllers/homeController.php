@@ -312,7 +312,10 @@ class HomeController extends CI_Controller{
 	   $this->load->model("exammodel");
 	   $this->exammodel->getClassRank('6263','216','3');
 	}
-		function updateTransportfee(){
+
+	
+	function updateTransportfee(){
+
 	    $schools = $this->db->get("general_settings");
 	    foreach($schools->result() as $sch ):
 	        $this->db->where("school_code",$sch->school_code);
@@ -329,6 +332,8 @@ class HomeController extends CI_Controller{
 	       endforeach;
 	        
 	        endforeach;
+
 	   echo     "success"; 
 	}
+
 }

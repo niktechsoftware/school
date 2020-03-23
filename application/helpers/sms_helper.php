@@ -59,7 +59,6 @@ function mysms($authkey,$msg,$sid,$number){
 return $dat;
 }
 
-
 function mysmsHindi($authkey,$msg,$sid,$number){
 
 

@@ -101,7 +101,9 @@ class Login extends CI_Controller{
 		$data['subPage'] = 'dashboard';
 		$sender = $this->smsmodel->getsmssender($sc_code)->row();
 		$data['sender_Detail'] =$sender;
+
 			$this->db->where("school_code",$this->session->userdata("school_code"));
+
 	$smsbaladd = 	$this->db->get("sms_setting")->row();
 		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
 		
@@ -1125,14 +1127,16 @@ function createSchedule()
 	function mobileNotice(){
 	    $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row();
 		$data['sender_Detail'] =$sender;
-		
+
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 	$smsbaladd = 	$this->db->get("sms_setting")->row();
 		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
 		
+
 		
 		$data['pageTitle'] = 'SMS Panel';
 		$data['smallTitle'] = 'Mobile Message And Notice';
+
 		$data['mainPage'] = 'Message';
 		$data['subPage'] = 'Mobile Notice';
 		$data['title'] = 'Mobile Message And Notice';

@@ -844,7 +844,17 @@
                                        
                                         <div class="col-md-4">
                                           <div class="row-form">
-                                              <div class="col-md-5">&nbsp</div>
+                                              <div class="col-md-5">
+                                                    <select class="form-control" id="selfsd" name="selfsd" required="required">
+                                                        <option value=""> Select FSD</option>
+                                                        <?php 	$this->db->where("school_code",$school_code);
+                                                        $fsdd = $this->db->get("fsd");
+                                                        if($fsdd->num_rows()>0){
+                                                        foreach($fsdd->result() as $row):
+        												    echo '<option value="'.$row->id.'">'.$row->finance_start_date." TO ".$row->finance_end_date.'</option>';
+        												endforeach; }?>
+                                                      </select>
+                                                  </div>
                                               <div class="col-md-7">
                                             <a href="#" class="btn btn-primary" id="addrootbutton"><i
                                                 class="fa fa-check"></i>
@@ -867,9 +877,7 @@
                             <div class="row">
                             <div class="col-sm-12">
                               <div class="panel panel-white">
-                                <div class="panel-heading panel-pink">
-                                  <h3 class="panel-title">Vehicle List</h3>
-                                </div>
+                                
                                 <div class="panel-body table-responsive" id="roolist">
                                 </div>
                               </div>

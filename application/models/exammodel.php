@@ -1,5 +1,7 @@
 <?php class examModel extends CI_Model{
 	
+
+	
 public function getExamInfo($data)
 { $this->db->where("school_code",$this->session->userdata("school_code"));
 	$query1 = $this->db->get("period");
@@ -106,11 +108,12 @@ function insertexam($data)
 	$query1 = $this->db->insert("exam_name",$data);
 	return $query1;
 }
-function updateexam($examid,$date)
+function updateexam($examid,$date,$examname)
 {
 	
     $date= array(
-    'exam_date' =>$date, 
+        'exam_name'=>$examname,
+    'exam_date' =>$date
     );
    $this->db->where("school_code",$this->session->userdata("school_code"));   
     $this->db->where("id",$examid);

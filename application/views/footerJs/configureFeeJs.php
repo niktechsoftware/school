@@ -191,14 +191,18 @@
 				        	            var drop_points = $("#drop_points").val();
 				        	            var vahicle_root = $("#vahicle_root").val();
 				        	            var transport_fee = $("#transport_fee").val();
-				        	           if(vehicle_number!="" && vehicle_pickup!="" && drop_points!="" && vahicle_root!="" && transport_fee!=""){
+				        	             var fsd = $("#selfsd").val();
+				        	             if(fsd!=""){
+				        	           if(vehicle_number!="" && vehicle_pickup!="" && drop_points!="" && vahicle_root!="" && transport_fee!="" ){
 				        	           //alert(vehicle_number);
-				        	            $.post("<?php echo site_url('configureFeeController/insert_root') ?>", {vehicle_number : vehicle_number, vehicle_pickup : vehicle_pickup, drop_points : drop_points, vahicle_root : vahicle_root, transport_fee : transport_fee }, function(data){
+				        	            $.post("<?php echo site_url('configureFeeController/insert_root') ?>", {vehicle_number : vehicle_number, vehicle_pickup : vehicle_pickup, drop_points : drop_points, vahicle_root : vahicle_root, transport_fee : transport_fee, fsd : fsd }, function(data){
 				        	                $("#roolist").html(data);
 				        	                alert('Added Successfully');
 				        	    		});
 				        	           }else{
 				        	               alert('Transport addition fail');
+				        	           }}else{
+				        	               alert("Please select FSD First");
 				        	           }
 				        	        });
 

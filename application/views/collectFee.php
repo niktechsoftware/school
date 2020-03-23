@@ -265,7 +265,7 @@
 												                                       $this->db->distinct();
                                                                                 		   $this->db->select("*");
                                                                                 		   $this->db->where("student_id",$pk->id);
-                                                                                		    //$this->db->where_in("taken_month",$mpinffd);
+                                                                                		    $this->db->where("fsd",$fsd_id);
                                                                                 		   $monthDeposit = $this->db->get("deposite_months");
 												                                    
 												                                        $color = array(
@@ -301,6 +301,7 @@
 												                                            <?php
 
 												                                          if($mdf->deposite_month<3){
+
 
 												                                                $deposite_month =$mdf->deposite_month-4+12;
 												                                            }else{
@@ -341,6 +342,8 @@
                                                                                 		   $this->db->select("taken_month");
                                                                                 		   $this->db->where("class_id",$pk->class_id);
                                                                                 		    $this->db->where_not_in("taken_month",$mpinffd);
+                                                                                		    
+                                                                                		    
                                                                                 		   $monthDeposit1 = $this->db->get("class_fees");
                                                                                 		   $monthDe=$monthDeposit1->num_rows();
                                                                                 		   //foreach($monthDeposit1->result() as $mdf1):

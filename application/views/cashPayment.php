@@ -64,7 +64,6 @@
 										    	<?php 
 				                      		$this->db->distinct();
 				                      		$this->db->select('expenditure_name');
-				                      		
 				                      		$ex= $this->db->get("expenditure");?>
 				                      		<div class="col-sm-12">
 										    <div class="col-sm-6">
@@ -78,9 +77,11 @@
 							                               <?php  endforeach;}?>
 							                               
 							                            </select>
+
 										    </div>
 										    <div class="col-sm-6">
 										        <label> Expenditure Depart <span style="color:#F00">*</span></label> 
+
 							                            <select id="expenditurer" name="expenditurer" style="width:150px;" required>
 							                               
 							                               
@@ -463,6 +464,3 @@
 					
 
 							</script>
-
-							<!---- Script For Testing --->
-						<!-- end: PAGE CONTENT-->

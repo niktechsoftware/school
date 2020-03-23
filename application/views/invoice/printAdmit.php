@@ -282,7 +282,7 @@
              ?>
         </div>
       
-			<table id="items" align="center"  style="width:100%; margin-top:8px;color:#d80606;font-size: 12px;">
+			<table id="items" align="center"  style="width:100%; margin-top:8px;color:#d80707;font-size: 11px;">
 					<thead>
 						<th style="text-transform: uppercase;"><b>Date</b></th>
                         <?php 
@@ -353,8 +353,7 @@ if($exam_day->num_rows()){
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) On Sep 20 (Friday) who unattend any subject paper with genuine reason 
-		can give their left paper with same exam time.	
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) 28-03-2020 Result Declaration & P.T.M.
 		<!--for daffodils end-->
 		<!--for scholar start-->
 		<?php }else if($school_code==13 && $row2=="A"){
@@ -386,9 +385,11 @@ if($exam_day->num_rows()){
 		<?php }	else if($school_code==8 || $school_code==9){ ?>
 		<!--for scholar end-->
 		<!--for dds start--><?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?>&nbsp;Note: 1)Exam timing is - 08:00 A.M. to 12:00 P.M.<br><?php }else{ ?>
+
 		&nbsp;Note: 
 		<?php  } ?>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)Students reporting time is latest by 8:30 A.M. and departure time is 01:30 P.M.
+
 		<?php /*foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
 		$endt =strtotime("-00 minutes",strtotime($s->to1));
 		echo $s->shift."-".date('H:i A', $startt)." "; endforeach;*/ ?> </br>

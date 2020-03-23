@@ -514,7 +514,7 @@ public function updateClass(){
 							"class_name" => $this->input->post("clName"),
 					);
 					$this->load->model('configureClassModel');
-				if($this->configureClassModel->updateClassDetail($data,$rowId)){
+				    if($this->configureClassModel->updateClassDetail($data,$rowId)){
 						?>
 								<div class="alert alert-danger">
 								<button data-dismiss="alert" class="close">
@@ -536,14 +536,11 @@ public function updateClass(){
 					$this->load->model('configureClassModel');
 					if($this->configureClassModel->updateClassDetail($data,$rowId)){
 						?>
-							<div class="alert alert-success">
-								<button data-dismiss="alert" class="close">
-								&times;
-								</button>
-								<strong>Well done!</strong> You successfully Update <a class="alert-link" href="#">
-									<?php echo $this->input->post("clName")."-".$this->input->post("section"); ?></a>
+							Well done!
+									<?php // echo $this->input->post("clName")."-".$this->input->post("section"); 
+									?>
 								.			
-							</div>
+						
 						<?php 
 					} 
 					else{
@@ -560,8 +557,14 @@ public function updateClass(){
 						<?php 
 				             	}	
 			         	}
+			         
 				}
-							public function deleteClass(){
+				
+				
+				
+				
+				
+	public function deleteClass(){
 					$this->load->model('configureClassModel');
 					
 					

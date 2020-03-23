@@ -343,15 +343,12 @@ function getFsd(){
 					$fsd1=$this->db->get('fsd')->row();
 					$demont = $rty->num_rows();
                    $i=0;$printMonth=""; foreach($rty->result() as $tyu):
-
                          if($tyu->deposite_month<4){
                             $ffffu= $tyu->deposite_month-4+12;
                          }else{
                             $ffffu= $tyu->deposite_month-4;
                          }
-					
-
-						$printMonth= $printMonth."".date('M-Y', strtotime("$ffffu months", strtotime($fsd1->finance_start_date))).", ";
+                         $printMonth= $printMonth."".date('M-Y', strtotime("$ffffu months", strtotime($fsd1->finance_start_date))).", ";
 						$monthmk[$i]=$tyu->deposite_month;
                     	//echo date("d-M-y", $rdt);
 					$i++; endforeach;	
@@ -1132,52 +1129,12 @@ function getFsd(){
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Late Fee</div>
 	                                                    <div class="col-sm-7">
-	                                                    <?php 
-	                                                   /*  $latef=0;
-	                                                    $vt=1;
-	                                                    foreach($val->result() as $row):
-	                                                    if($vt==1){
-	                                                    $date1 = $row->should_deposite;
-	                                                    $date2 = date("Y-m-d");
-	                                                    if($date2 >= $date1){
-	                                                   $diff = abs(strtotime($date2) - strtotime($date1));
-$years = floor($diff / (365*60*60*24));
-$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-$days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-$totlatedays = ($years*12*30)+($months*30)+$days;
-	                                                    $vt++;
-	                                                    $this->db->select("late_fee");
-	                                                    $this->db->where("month_number",$row->month_number);
-	                                                    $this->db->where("school_code",$school_code);
-	                                                    $yh = $this->db->get("fee_card_detail")->row();
 	                                                   
-	                                                   $dh= $yh->late_fee;
-	                                                 
-	                                                     if($dh != 0){
-	                                                     	
-	                                                    	
-	                                                       $latef	=	$dh*$totlatedays;
-	                                                      
-	                                                      
-	                                                      // $latef=0;
-	                                                    }else{
-	                                                        $latef=0;
-	                                                   }
-	                                                    
-	                                                    }
-	                                                    }
-	                                                    endforeach; 
-	                                                      */
-	                                                    
-	                                                    //$sno = $this->db->query("SELECT * FROM fee_deposit WHERE student_id ='".$student_id."' ORDER BY ID DESC limit 1")->row();
-	                                                    		
-	                                                    
-	                                                
-	                                                   
-											  			?> 
 	                                                     	  	<?php 
 							
+					$latefee1=	$this->feeModel->getlatefee($stuid,$fsdid);
 						
+
 							//$this->db->where("school_code",$school_code);
 							$this->db->where("student_id",$stuid);
 							$this->db->where("fsd",$fsdid);
@@ -1288,6 +1245,7 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 				// 	}else{
 				// 		$realm=0;
 				// 	} 
+
 				if($school_code==7){
 				    if($this->session->userdata("login_type")=="admin"){
 				?>
@@ -1308,23 +1266,30 @@ $totlatedays = ($years*12*30)+($months*30)+$days;
 	                                           
 	                                           
 	                                            <?php 
-												$this->db->where('id',$this->session->userdata('fsd'));
+												$this->db->where('id',$fsdid);
 												$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
 	                                           $transfee=0;
 	                                          
 	                                            if(($stuid_details->transport)){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
+	                                              
 	                                              if($tffee->num_rows()>0){
-	                                                  $tffee=$tffee->row();
+	                                                   $tffee=$tffee->row();
+	                                                  
+	                                                  $this->db->where("root_id",$tffee->id);
+	                                                  $this->db->where("fsd",$fsdid);
+	                                                 $rtyh = $this->db->get("fsdwise_root_amount");
+	                                                 if($rtyh->num_rows()>0){
+	                                                    
 	                                                   foreach($month as $mtable):
 		   
 		     if(($junefee == 1)){
 	                                            if($mtable!=6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$rtyh->row()->amount;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee;
-	                                            } endforeach;
+	                                                $transfee  +=$rtyh->row()->amount;
+	                                            } endforeach; }
 	                                            	?>
 	                                             <div class="row space15">
 	                                                <div class="col-sm-12">

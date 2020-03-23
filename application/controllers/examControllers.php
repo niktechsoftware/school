@@ -179,12 +179,12 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
     }
 	public function updateData1()
 	{
-	
+	    $upexam=$this->input->post("upexam");
 	  $examName=$this->input->post("examName");
 	  $date=$this->input->post("datet");
 
 	   $this->load->model("examModel");
-		$var=$this->examModel->updateexam($examName,$date);
+		$var=$this->examModel->updateexam($examName,$date,$upexam);
 	if($var)
 		{
 			redirect("index.php/login/examsheduling");
@@ -197,12 +197,10 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 		
 		$en = $this->input->post("examName");
 		$var=$this->examModel->gateDate1($en);
-		if($var->num_rows()>0)
-		{
-			foreach($var->result() as $row):
-			echo $row->exam_date;
-			endforeach;
-		}
+	
+			echo $var->row()->exam_date;
+		
+		
 	} 
 
 	

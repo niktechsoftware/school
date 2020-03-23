@@ -478,7 +478,7 @@ if(($row->dabit_cradit == 1) ){ ?>
 
  <?php if($row->reason=="Fee Deposit") { ?>
 <a
-									href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $sinfo->id; ?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
+									href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $unm; ?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
 									class="btn btn-blue">
 <?php echo $row->invoice_no; ?>
 <?php } else{ ?>

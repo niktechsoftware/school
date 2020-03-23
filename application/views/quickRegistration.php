@@ -255,6 +255,94 @@
 									</div>
 									
 							</div>
+							<div class="row">
+								<div class="col-md-3">
+										<div class="form-group">
+											<label class="control-label text-uppercase">
+												Discount Type <span class="symbol required"></span>
+											</label>
+											<select class="form-control" id="discount" name="discount" required ="required">
+												<option> SELECT DISCOUNT TYPE</option>
+											<?php
+												$sub = $this->db->query("SELECT DISTINCT * FROM discounttable WHERE school_code='$school_code'")->result();
+												foreach($sub as $row):
+													if(strlen($row->discount_head)<3){
+																	$this->db->where('id',$row->discount_head);
+																	$head=$this->db->get('discount_head')->row();
+																	?><option value="<?php echo $head->id;?>"><?php echo $head->disc_head; ?></option>
+																	<?php 
+													}else{
+														//$head=$row->discount_head;
+														?><option value="<?php echo $row->id;?>"><?php echo $row->discount_head; ?></option>
+												<?php 
+													}
+												
+												endforeach;
+												?>
+											</select>
+										</div>
+									</div>
+									
+									<div class="col-md-3">
+										<div class="form-group">
+											<label class="control-label text-uppercase">
+												Select Transport Services  <span id="error" Style="color:red;" class="symbol"></span>
+											</label>
+
+										<select class="form-control"  name="ts" id="ts" required ="required">
+											<option value="N/A">SELECT</option>
+											<option value="1">YES</option>
+											<option value="0">NO</option>
+										</select>
+										</div>
+									</div>
+									<div class="col-md-9" id ="jsdiv">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label text-uppercase">
+												Vehicle Type <span class="symbol"></span>
+											</label>
+											<select class="form-control"  name="vt" id="vt" >
+											<option value="">SELECT VEHICLE</option>
+											<?php
+											$this->db->distinct();
+											$this->db->select("vehicle_name,id,vehicle_numnber");
+											$this->db->select("vehicle_numnber");
+											$this->db->where("school_code",$this->session->userdata("school_code"));
+											$rts = $this->db->get("transport");
+											if($rts->num_rows()>0){
+											foreach($rts->result() as $row):?>
+
+											<option value="<?php echo $row->id;?>"><?php echo $row->vehicle_name."[".$row->vehicle_numnber."]";?></option>
+
+										<?php endforeach; }?></select></div>
+									</div>
+								 	<div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label text-uppercase">
+												Pickup Points  <span id="error" Style="color:red;" class="symbol"></span>
+											</label>
+
+										<select class="form-control"  name="pickup" id="pickup" >
+										</select>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label class="control-label text-uppercase">
+												Amount <span id="error" Style="color:red;" class="symbol required"></span>
+											</label>
+											<!--<select class="form-control"  name="pickupAmount" id="pickupAmount" >-->
+											<input type="text" value="<?php //echo $personalInfo->amount; ?>" class="form-control" id="pickupAmount" name="pickupAmount" />
+
+											</select>
+										</div>
+									</div>
+
+								</div>
+									
+									
+							</div>		
 						
 						</div>	
 						</div>

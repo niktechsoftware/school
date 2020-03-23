@@ -777,10 +777,13 @@ function deleteBanTrans(){
 	function creatsubexp(){
 		$subexpid= $this->input->post('subexp');
 		$expsub= $this->input->post('expsub');
+		
+		
 	//	print_r($subexpid);
-	//	print_r($expsub);
+	
 		$this->load->model('daybookmodel');
-		if($subexpid){
+		if($subexpid>0){
+			//id sub me hai
 			$explist = $this->daybookmodel->creatSubexpe($expsub,$subexpid);
 	}else{
 		$explist = $this->daybookmodel->creatsubexpee();

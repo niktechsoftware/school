@@ -264,15 +264,17 @@ public function addinfo(){
 		$this->form_validation->set_rules('password_again','Re-Password', 'trim|required|matches[password]');
 		$this->form_validation->set_rules('fatherName','Father Name', 'trim|required');
 		$this->form_validation->set_rules('motherName','Mother Name', 'trim|required');
-		if($this->form_validation->run() == FALSE){?>
-		<script>
-		    alert('Your registration failled,Please register again');
-		</script>
-		<?php
-		    redirect('newAdmissionControllers/quickregiter','refresh');
-			//$this->quickregiter();
+		if($this->form_validation->run() == FALSE){
+			$this->quickregiter();
+		}else{
+		 if($this->input->post("discount")==1 || $this->input->post("discount")==2 || $this->input->post("discount")==3 || $this->input->post("discount")==4 || $this->input->post("discount")==5){
+	    $studiscount = $this->input->post("discount");
+	    $this->db->where('discount_head',$studiscount);
+	     $this->db->where('school_code',$this->session->userdata('school_code'));
+	     $sd=$this->db->get('discounttable')->row()->id;
+		}else{
+		    $sd=$this->input->post("discount");
 		}
-		
             $datastudent = array(				
 				"name" => $this->input->post("firstName"),
 				"mobile" => $this->input->post("mobileNumber"),
@@ -287,8 +289,14 @@ public function addinfo(){
 				"gender" => $this->input->post("gender"),
 				"fsd"=>$this->input->post("fsd"),
 				"created"=>date("Y-m-d H:i:s"),
-            	"house_id"=>$this->input->post("house")
+            	"house_id"=>$this->input->post("house"),
+            	"transport" => $this->input->post("ts"),
+				"v_id" => $this->input->post("vt"),
+				"vehicle_pickup"=>$this->input->post("pickup"),
+					"discount_id"=>$sd
 			);
+			
+			
 			$this->load->model('newAdmissionModel');
 			$addInfoConfirm = $this->newAdmissionModel->addInfo($datastudent);
 
@@ -344,32 +352,9 @@ public function addinfo(){
 				    //	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}
 
-
-					
-			//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
-			
+			}
 		}
-// 			$this->load->model("smsmodel");
-// 			$sender = $this->smsmodel->getsmssender($school_code);
-// 			$sende_Detail =$sender;
-// 			$isSMS = $this->smsmodel->getsmsseting($school_code);
-			
-// 			if($isSMS->admission)
-// 				{
-// 					$school = $this->session->userdata("your_school_name");
-// 		 		$f_name=$this->input->post("fatherName");
-// 					$username = $id;
-// 				$password = $this->input->post("password");
-// 					$f_mobile = $this->input->post("mobileNumber");
-// 					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail->web_url." Thanks.";	
-// 					sms($f_mobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-// 						redirect(base_url()."index.php/studentController/admissionSuccess/$id");
-// 				}else{
-// 				    	redirect(base_url()."index.php/studentController/admissionSuccess/$id");
-// 				}
-			
-// 			}
-		}
+	}
 	
 	function newAdmission(){
 		$data['pageTitle'] = 'Student Section';
