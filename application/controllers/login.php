@@ -1569,7 +1569,6 @@ function createSchedule()
 			$data['title'] = 'Student Promotion';
 			$this->load->model("configureclassmodel");
 			$data['request'] = $this->allFormModel->getclass()->result();
-
 			$data['headerCss'] = 'headerCss/newAdmissionCss';
 			$data['footerJs'] = 'footerJs/studentAttendanceJs';
 			$data['mainContent'] = 'classPromotion';
@@ -1585,7 +1584,6 @@ function createSchedule()
 			$data['title'] = 'Class Promotion';
 			$this->load->model("configureclassmodel");
 			$data['request'] = $this->allFormModel->getclass()->result();
-
 			$data['headerCss'] = 'headerCss/newAdmissionCss';
 			$data['footerJs'] = 'footerJs/studentAttendanceJs';
 			$data['mainContent'] = 'allStudentClassPromotion';

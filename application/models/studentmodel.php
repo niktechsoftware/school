@@ -7,6 +7,7 @@ class StudentModel extends CI_Model{
 	    $this->db->from('student_info');
 	    $this->db->join('class_info','class_info.id=student_info.class_id');
 	    $this->db->where("class_info.school_code",$school_code);
+	    $this->db->where("student_info.fsd",$this->session->userdata("fsd"));
 	    $this->db->where("student_info.status",1);
 	    $result=$this->db->get();
 		return $result;
