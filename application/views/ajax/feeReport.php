@@ -108,7 +108,7 @@
 						$fdate =$this->db->get("fsd")->row()->finance_start_date;
 
 						$sum=0;
-echo "1";
+
 				    foreach($student->result() as $stuDetail):
 				    	$stu_id = $stuDetail->id;
 				    	$this->db->where("student_id",$stu_id);

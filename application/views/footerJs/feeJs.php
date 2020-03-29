@@ -110,7 +110,7 @@
 					}
 				})
 				
-				fcea920f7412b5da7be0cf42b8c93759
+			
 					$("#subjectIdmarks").change(function(){
 					var classid = $("#classId").val();
 					//var select = $("#select").val();
