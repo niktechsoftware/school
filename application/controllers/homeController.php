@@ -335,5 +335,22 @@ class HomeController extends CI_Controller{
 
 	   echo     "success"; 
 	}
+	
+	function updateclassidinfeedeposite(){
+		
+		
+		 $school_code = 2;
+		
+	    $query=$this->db->get("student_info");
+
+		foreach($query->result() as $stuid):
+			$updateclass['class_id']=$stuid->class_id;
+		$this->db->where("student_id",$stuid->id);
+		$this->db->update("fee_deposit",$updateclass);
+		
+		endforeach; 
+		echo "done- ".$school_code;
+		
+	}
 
 }

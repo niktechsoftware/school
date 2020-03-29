@@ -129,27 +129,12 @@ $school= $this->session->userdata("school_code");
 
 if($this->session->userdata("school_code") ==  9){
 
-$school_code=$this->session->userdata("school_code");
-$tdiscount=0;
-	$this->db->where("id",$school_code);
-	$info =$this->db->get("school")->row();
-
-	$sid=$this->uri->segment(4);
-	$this->db->where("id",$sid);
-	$rowc =$this->db->get("student_info")->row();
-	
-	$this->db->where("id",$rowc->class_id);
-    $this->db->where("school_code",$school_code);
-	$classname =$this->db->get("class_info")->row();
 ?>
 	<div id="printcontent" style="width:100%;">
-
-
-    	<h3 class="text-danger text-center text-uppercase">Student Receipt</h3>
-
+	<h3 class="text-danger text-center text-uppercase">Student Receipt</h3>
 	<div id="page-wrap" style="border:1px solid #333; width: 95%; margin: 0 auto;">
 <?php 
-$tdiscount=0;$school_code=$this->session->userdata("school_code");
+$tdiscount=0;
 	$this->db->where("id",$school_code);
 	$info =$this->db->get("school")->row();
 
@@ -316,7 +301,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 				  $this->db->where_in("cat_id",$feecata);
 				  $this->db->where_in('taken_month',$monthmk);
 				   $this->db->where('fsd',$rowb->finance_start_date);
-		  		$this->db->where("class_id",$stuid_details->class_id);
+		  		$this->db->where("class_id",$rowb->class_id);
 				  $fee_head = $this->db->get("class_fees");
 				  $total=0;
 				  if($fee_head->num_rows()>0)
@@ -343,14 +328,14 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		  				  				  				  				  				  				  				  				  				  				  				  		<tr>
 		  		 		 <tr class='text-uppercase'>
 					   <?php $transfee=0; 
-					    $this->db->where('id',$this->session->userdata('fsd'));
+					    $this->db->where('id',$rowb->finance_start_date);
 						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
-		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
-				// 		$this->db->where('school_code',$school_code);
-				// 		$this->db->where('student_id',$stuid_details->id); 
-				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
+		 		     $this->db->where('invoice_no',$rowb->invoice_no);
+						$this->db->where('school_code',$school_code);
+						$this->db->where('student_id',$stuid_details->id); 
+				 		$depositedate=$this->db->get('fee_deposit')->row();
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-							if(($rowb->transport)>0){
+							if(($depositedate->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
@@ -359,14 +344,14 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		   
 		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$depositedate->transport;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
+	                                                $transfee  +=$depositedate->transport; 
 	                                            } endforeach;
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
-					<td class="text-center"><?php echo $rowb->transport; $i++; ?></td>
+					<td class="text-center"><?php echo $transfee; $i++; ?></td>
 					<?php    }} else{
 							if($stuid_details->vehicle_pickup){
 							$paid=	$rowb->paid;
@@ -688,7 +673,7 @@ This is computer generated invoice and verified by Accountant.
 				  $this->db->where_in("cat_id",$feecata);
 				  $this->db->where_in('taken_month',$monthmk);
 				   $this->db->where('fsd',$rowb->finance_start_date);
-		  		$this->db->where("class_id",$stuid_details->class_id);
+		  		$this->db->where("class_id",$rowb->class_id);
 				  $fee_head = $this->db->get("class_fees");
 				  $total=0;
 				  if($fee_head->num_rows()>0)
@@ -716,12 +701,12 @@ This is computer generated invoice and verified by Accountant.
 					   <?php $transfee=0; 
 					    $this->db->where('id',$this->session->userdata('fsd'));
 						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
-		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
-				// 		$this->db->where('school_code',$school_code);
-				// 		$this->db->where('student_id',$stuid_details->id); 
-				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
+		  		     $this->db->where('invoice_no',$rowb->invoice_no);
+				 		$this->db->where('school_code',$school_code);
+				 		$this->db->where('student_id',$stuid_details->id); 
+				 		$depositedate=$this->db->get('fee_deposit')->row();
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-						if(($rowb->transport)>0){
+						if(($depositedate->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
@@ -730,9 +715,9 @@ This is computer generated invoice and verified by Accountant.
 		   
 		                                     if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$depositedate->transport;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
+	                                                $transfee  +=$depositedate->transport; 
 	                                         } endforeach;
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
@@ -1057,7 +1042,7 @@ $monthmk[$i]=13;?>
 				  $this->db->where_in("cat_id",$feecata);
 				  $this->db->where_in('taken_month',$monthmk);
 				   $this->db->where('fsd',$rowb->finance_start_date);
-		  		$this->db->where("class_id",$stuid_details->class_id);
+		  		$this->db->where("class_id",$rowb->class_id);
 				  $fee_head = $this->db->get("class_fees");
 				  $total=0;
 				  if($fee_head->num_rows()>0)
@@ -1086,12 +1071,12 @@ $monthmk[$i]=13;?>
 					   <?php $transfee=0; 
 					    $this->db->where('id',$this->session->userdata('fsd'));
 						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
-		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
-				// 		$this->db->where('school_code',$school_code);
-				// 		$this->db->where('student_id',$stuid_details->id); 
-				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
+		  		     $this->db->where('invoice_no',$rowb->invoice_no);
+				 		$this->db->where('school_code',$school_code);
+				 		$this->db->where('student_id',$stuid_details->id); 
+				 		$depositedate=$this->db->get('fee_deposit')->row();
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-							if(($rowb->transport)>0){
+							if(($depositedate->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
@@ -1100,9 +1085,9 @@ $monthmk[$i]=13;?>
 		   
 		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$depositedate->transport;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
+	                                                $transfee  +=$depositedate->transport; 
 	                                            } endforeach;
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
@@ -1420,7 +1405,7 @@ This is computer generated invoice and verified by accountant.
 				  $this->db->where_in("cat_id",$feecata);
 				  $this->db->where_in('taken_month',$monthmk);
 				   $this->db->where('fsd',$rowb->finance_start_date);
-		  		$this->db->where("class_id",$stuid_details->class_id);
+		  		$this->db->where("class_id",$rowb->class_id);
 				  $fee_head = $this->db->get("class_fees");
 				  $total=0;
 				  if($fee_head->num_rows()>0)
@@ -1448,12 +1433,12 @@ This is computer generated invoice and verified by accountant.
 					   <?php $transfee=0; 
 					    $this->db->where('id',$this->session->userdata('fsd'));
 						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
-		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
-				// 		$this->db->where('school_code',$school_code);
-				// 		$this->db->where('student_id',$stuid_details->id); 
-				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
+		  		     $this->db->where('invoice_no',$rowb->invoice_no);
+				 		$this->db->where('school_code',$school_code);
+				 		$this->db->where('student_id',$stuid_details->id); 
+				 		$depositedate=$this->db->get('fee_deposit')->row();
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-						if(($rowb->transport)>0){
+						if(($depositedate->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
@@ -1462,14 +1447,14 @@ This is computer generated invoice and verified by accountant.
 		   
 		                                     if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$depositedate->transport;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
+	                                                $transfee  +=$depositedate->transport; 
 	                                         } endforeach;
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
-					<td class="text-center"><?php echo $rowb->transport; $i++; ?></td>
+					<td class="text-center"><?php echo $transfee; $i++; ?></td>
 					<?php    }} else{
 							if($stuid_details->vehicle_pickup){
 							$paid=	$rowb->paid;
@@ -1806,7 +1791,7 @@ $tdiscount=0;
 				  $this->db->where_in("cat_id",$feecata);
 				  $this->db->where_in('taken_month',$monthmk);
 				   $this->db->where('fsd',$rowb->finance_start_date);
-		  		$this->db->where("class_id",$stuid_details->class_id);
+		  		$this->db->where("class_id",$rowb->class_id);
 				  $fee_head = $this->db->get("class_fees");
 				  $total=0;
 				  if($fee_head->num_rows()>0)
@@ -1835,12 +1820,14 @@ $tdiscount=0;
 					   <?php $transfee=0; 
 					    $this->db->where('id',$this->session->userdata('fsd'));
 						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
-		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
-				// 		$this->db->where('school_code',$school_code);
-				// 		$this->db->where('student_id',$stuid_details->id); 
-				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
+		  		     $this->db->where('invoice_no',$rowb->invoice_no);
+				 		$this->db->where('school_code',$school_code);
+				 		$this->db->where('student_id',$stuid_details->id); 
+						$depositedate=$this->db->get('fee_deposit')->row();
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-							if(($rowb->transport)>0){
+
+						if(($depositedate->transport)>0){
+
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
@@ -1849,10 +1836,12 @@ $tdiscount=0;
 		   
 		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$depositedate->transport;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
-	                                            } endforeach;
+
+	                                                $transfee  +=$depositedate->transport; 
+	                                         } endforeach;
+
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
@@ -2169,7 +2158,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 				  $this->db->where_in("cat_id",$feecata);
 				  $this->db->where_in('taken_month',$monthmk);
 				   $this->db->where('fsd',$rowb->finance_start_date);
-		  		$this->db->where("class_id",$stuid_details->class_id);
+		  		$this->db->where("class_id",$rowb->class_id);
 				  $fee_head = $this->db->get("class_fees");
 				  $total=0;
 				  if($fee_head->num_rows()>0)
@@ -2198,12 +2187,12 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 					   <?php $transfee=0; 
 					    $this->db->where('id',$this->session->userdata('fsd'));
 						$junefee=$this->db->get('fsd')->row()->june_transport_fee_status;
-		  //		     $this->db->where('invoice_no',$rowb->invoice_no);
-				// 		$this->db->where('school_code',$school_code);
-				// 		$this->db->where('student_id',$stuid_details->id); 
-				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
+		  		     $this->db->where('invoice_no',$rowb->invoice_no);
+				$this->db->where('school_code',$school_code);
+					$this->db->where('student_id',$stuid_details->id); 
+			 		$depositedate=$this->db->get('fee_deposit')->row();
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-							if(($rowb->transport)>0){
+							if(($depositedate->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
@@ -2212,9 +2201,9 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 		   
 		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                $transfee  +=$depositedate->transport;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
+	                                                $transfee  +=$depositedate->transport; 
 	                                            } endforeach;
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
@@ -2279,10 +2268,10 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 					else{ $this->db->where("id",$eunm->discounter_id);
 						$getdname = $this->db->get("discounttable");
 						if($getdname->num_rows()>0){
-							echo $getdname->row()->discount_head." "." (DISCOUNT)";
+							echo $getdname->row()->discount_head." "." (DISCOUNT)(".$rowb->description .")";
 						 }
 						 else{
-						 echo "DISCOUNT";}} ?></b></td>
+					 echo "DISCOUNT ( ".$rowb->description .")";}} ?></b></td>
 					<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
 				</tr>
 				 <?php  } $totdisc=$totdisc+$tdiscount;
@@ -2373,4 +2362,5 @@ This is computer generated invoice and verified by accountant.
       <i class="fa fa-print padding-right-sm"></i> Print Receipt
     </button>
   </div>
+
 </html>
