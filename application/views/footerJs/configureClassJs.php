@@ -1,12 +1,5 @@
 <!-- start: MAIN JAVASCRIPTS -->
-<!--[if lt IE 9]>
-<script src="<?php echo base_url(); ?>assets/plugins/respond.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/excanvas.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-1.11.1.min.js"></script>
-<![endif]-->
-<!--[if gte IE 9]><!-->
-
-<!--<![endif]-->
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800' rel='stylesheet' type='text/css'>
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -81,8 +74,6 @@
                alert("Report Formate successfully Configured");
     		});
         });
-		
-		
 		
 				$("#report_1").hide();
 				$("#report_2").hide();
@@ -382,6 +373,7 @@
          Main.init();
         SVExamples.init();
         TableExport.init();
+        FormElements.init();
   
         
                   

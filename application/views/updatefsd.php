@@ -58,8 +58,8 @@
                         </div>
                         <div class="panel-body">
                         <?php 
-                        $this->db->where('school_code',$this->session->userdata('school_code'));
-                         $fsd=$this->db->get('fsd')->result();
+                        	$this->db->where('school_code',$this->session->userdata('school_code'));
+                         	$fsd=$this->db->get('fsd');
                          ?>
                          <div class="panel-body panel-scroll height-450" >
                         <table class="table table-bordered table-hover ">
@@ -68,19 +68,41 @@
                          <th>FSD ID </th>
                         <th>Financial Start Date</th>
                         <th>Financial End Date</th>
+                        <th>Status</th>
                         </tr>
                       </thead>
                        <tbody>
-                        <?php foreach($fsd as $row){?>
-                         <tr>
-                        <td class="text-center"><?php echo $row->id;?> </td>
+                       
+                        <?php 
+                       if($fsd->num_rows()>0){ 
+                       $i=1; foreach($fsd->result() as $row){
+                        if($this->session->userdata('fsd')== $row->id){
+                        	$rowcss="success";
+                        }else{
+                        	$this->db->where("fsd",$row->id);
+                        	$checkworking = $this->db->get("student_info");
+                        	if($checkworking->num_rows()>0){
+                        		$rowcss="warning";
+                        	}else{
+                        	$rowcss="danger";
+                        	}
+                        }
+                        	?>
+                         <tr class="alert alert-<?php echo $rowcss;?>">
+                        <td class="text-center"><?php echo $i."/".$row->id;?> </td>
                           <td class="text-center"><?php echo date("d-M-Y", strtotime($row->finance_start_date));?></td>
                           <td class="text-center"><?php echo date("d-M-Y", strtotime($row->finance_end_date));?></td>
+                          <td class="text-center"><button class= "btn btn-<?php echo $rowcss;?>" >Delete</button></td>
                         </tr>
-                       <?php   }?>
+                       <?php   $i++; }}?>
                         </tbody>
                       </table>
                       </div>
+                      <div class="alert alert-warning">1). In Green Colour Shows Current Applied FSD.(You can't Delete).<br> 
+                      2). In Yellow Colour Shows Used FSD (Delete with Admin OTP Confirmation Only).<br>
+                      3). In Red Coloue Shows New and not used fsd. (Delete By Click Delete Button). <br>
+                            
+                            </div>
                     </div>
                   </div>
                 </div>
@@ -110,17 +132,18 @@
                           $this->db->where('fsd',$this->session->userdata('fsd'));
                            $data=$this->db->get('class_fees')->result();
                           ?>     
-                        <table class="table table-bordered table-hover ">
+                        <table class="table table-striped table-hover" id="sample-table-2">
                         <thead>
                         <tr class="text-center">
-                         <th>FSD ID </th>
-                        <th>Fee Head Name</th>
-                        <th>Fee Amount</th>
+                         <th class="text-center">FSD ID </th>
+                        <th class="text-center">Fee Head Name</th>
+                        <th class="text-center">Fee Amount</th>
+                        
                         </tr>
                       </thead>
                        <tbody>
                         <?php foreach($data as $row1){?>
-                         <tr>
+                         <tr >
                            <td class="text-center"><?php echo $row1->fsd;?> </td>
                           <td class="text-center"><?php echo $row1->fee_head_name;?></td>
                           <td class="text-center"><?php echo $row1->fee_head_amount;?></td>
@@ -143,19 +166,27 @@
                           <h4 class="panel-title">New FSD Update</h4>
                         </div>
                         <div class="panel-body">
+                        <div class="col-sm-6">
                           <select  id="fsdselect" class="form-control">
                           <option value="">-Select FSD -</option>
                           <?php
-                              foreach($fsd as $v):?>
+                              foreach($fsd->result() as $v):?>
                               <option value="<?php echo $v->id;?>">
                               <?php echo $v->id."[".$v->finance_start_date."]";?></option>
                                   <?php endforeach;?>
                                 </select>  <br></br>  
-                             <center><a href="#" class="btn btn-sm btn-blue" id="Applyfsd"><i class="fa fa-check">
-                            
+                             <center>
+                             <a href="#" class="btn  btn-purple" id="Applyfsd"><i class="fa fa-check">
                             </i>
                               Apply FSD </a> </center>
                               <br></br>
+                        </div>
+                         <div class="col-sm-6">
+                        <h3>
+                         Want To Copy Fee Structure last Session 
+                         <input type="checkbox" class="grey" value="" style ="width: 40px; height :40px;" checked="checked">
+							</h3>			
+                         </div>
                         </div>
                         <div id="showfsd1">
                           

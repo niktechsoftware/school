@@ -15,7 +15,7 @@ class feeControllers extends CI_Controller{
         $is_login = $this->session->userdata('is_login');
         $is_lock = $this->session->userdata('is_lock');
         $logtype = $this->session->userdata('login_type');
-        if($is_login != "admin"){
+        if($logtype != "admin"){
             //echo $is_login;
             redirect("index.php/homeController/index");
         }
