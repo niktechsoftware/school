@@ -2,20 +2,15 @@
     <?php $i=1;
         if($check->num_rows() > 0){
         $school_code = $this->session->userdata('school_code');?>
+        
                 <table class="table table-bordered table-hover" id="sample-table-1">
                          <thead>
                              <tr>
-                                <!-- <td> S.No. </td>
-                                <td> Student ID </td>
-                                
-                                <td> Student Name</td>
-                                <td> Father Name</td>
-                                <td> Mobile</td> -->
                                 <td>Stream</td>
                                 <td>Section</td>
                                 <td>Select Class </td>
-                                
-                                
+                                 <td>Current FSD </td>
+                                  <td>Promoted FSD </td>
                                 <td>Pramote </td>
                                 <td>Status </td>
                             </tr>
@@ -24,7 +19,7 @@
                 <tr>
                <?php $this->db->where("id",$cla);
                     $oldv=	$this->db->get("class_info")->row();?>
-                  <!-- <input type="hidden" id="stuID" name="stuID" value="<?php echo $check->row()->id;?>" /> -->
+                 
                     <td><select id="clname" class="form-control">
                         <option value="">Select Stream</option>
                         <?php 
@@ -60,17 +55,23 @@
                     </td>
                                             
                     <td> <?php $classname = $this->db->query("SELECT * FROM class_info where section= '$oldv->section' and stream='$oldv->stream'")->result();
-                                                ?>
-                            <select class="form-control" id="changeClass" name="class" style="width: 90px;">
-                    
-                        <?php 
-                        
+                          ?><select class="form-control" id="changeClass" name="class" style="width: 90px;">
+                      <?php 
                         foreach($classname as $row7):?>
-                            <option value="<?php echo $row7->id;?>"><?php echo $row7->class_name;?></option>
+                            <option value="<?php echo $row7->id;?>" <?php if($row7->id == $cla){echo 'selected="selected"';}?>><?php echo $row7->class_name;?></option>
                             <?php endforeach;  ?> 
                         </select>		
                     </td>
-                                                            
+                      <td> <?php $cfsdd = $this->db->query("SELECT * FROM fsd where id= '$cfsd'")->row();
+                                                ?>
+                           <input type ="text" name ="cfsddate" id="cfsddate" value="<?php echo $cfsdd->finance_start_date." To ".$cfsdd->finance_end_date;?>"  readonly>	
+                     <input type ="hidden" name ="cfsd" id="cfsd" value="<?php echo $cfsd;?>"  readonly>	
+                    </td>
+                     <td> <?php $psd =$this->session->userdata("fsd");
+                     			$pfsd = $this->db->query("SELECT * FROM fsd where id= '$psd'")->row();?>
+                           <input type ="text" name ="pfsddate" id="pfsddate" value="<?php echo $pfsd->finance_start_date." To ".$pfsd->finance_end_date;?>"  readonly>	
+                           <input type ="hidden" name ="pfsd" id="pfsd" value="<?php echo $psd;?>"  readonly>	
+                    </td>                                     
                     <td>
                         <button id = "pro" class="btn btn-dark-purple">
                             Pramote <i class="fa fa-arrow-circle-right"></i>
@@ -91,13 +92,19 @@
        
             $("#pro").click(function(){
                 var changeClass = $("#changeClass").val();
+                 var classv = $("#classv").val();
+                var cfsd = $("#cfsd").val();
+                var pfsd = $("#pfsd").val();
+                $("#pro").hide()
                 if(changeClass==null){
                     alert("Please select a Valid stream section and class to pramot");
                 }else{
                     $.post("<?php echo site_url("index.php/promotionControler/pramoteAllStudent") ?>",{
-                        changeClass : changeClass
+                        changeClass : changeClass, cfsd: cfsd, pfsd : pfsd, classv: classv
                         }, function(data){
                     $("#msg1").html(data);
+                    $("#pro").show()
+                     $("#pro").val(data);
                     });
                 }
             });

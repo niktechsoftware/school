@@ -213,16 +213,12 @@
         });
 
          $("#classlist").change(function(){
-            //var streamid = $("#clname").val();
-           // var sectionid= $("#sectionList").val();
             var classv = $("#classlist").val();
-           // alert(classv);
-           // alert(clname);
-
+			var cfsd = $("#cfsd").val();
            $.ajax({
 						"url": "<?= base_url() ?>index.php/promotionControler/presenti",
 						"method": 'POST',
-						"data": {classv : classv},
+						"data": {classv : classv, cfsd : cfsd},
 						beforeSend: function(data) {
 							$("#sample_rahul").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
 						},
@@ -263,29 +259,27 @@
 				//var streamid = $("#clname").val();
 				// var sectionid= $("#sectionList").val();
 				var classv = $("#classlist11").val();
-				// alert(classv);
-				// alert(clname);
-
-                 $.ajax({
-						"url": "<?= base_url() ?>index.php/promotionControler/allStudentClassPromotion",
-						"method": 'POST',
-						"data": {classv : classv},
-						beforeSend: function(data) {
-							$("#allStudentclassPromotion").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
-						},
-						success: function(data) {
-							$("#allStudentclassPromotion").html(data);
-						},
-						error: function(data) {
-							$("#allStudentclassPromotion").html(data)
-						}
-					})
-           //      $.post("<?php echo site_url("index.php/promotionControler/presenti") ?>",{classv : classv}, function(data){
-					// $("#sample_rahul").html(data);
-					// });
-				  $("#sonu").show();
+				var cfsd = $("#cfsd").val();
+				
+					 $.ajax({
+							"url": "<?= base_url() ?>index.php/promotionControler/allStudentClassPromotion",
+							"method": 'POST',
+							"data": {classv : classv , cfsd : cfsd},
+							beforeSend: function(data) {
+								$("#allStudentclassPromotion").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+							},
+							success: function(data) {
+								$("#allStudentclassPromotion").html(data);
+							},
+							error: function(data) {
+								$("#allStudentclassPromotion").html(data)
+							}
+						})
+	          
+					  $("#sonu").show();
+				
 					});
-
+         
           $("#jobCategoryval").change(function(){
             var jobCategoryval = $("#jobCategoryval").val();
            var radate = $('#radate').val();
@@ -305,7 +299,4 @@
         
     });
 		</script>
-		<script>  date1.max = new Date().toISOString().split("T")[0];
-
-				radate.max = new Date().toISOString().split("T")[0];
-       </script>
+		

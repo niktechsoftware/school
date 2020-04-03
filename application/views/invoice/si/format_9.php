@@ -184,7 +184,7 @@
                                     Progress Report (2019-20) <br>
                                     <?php 
                                     $this->db->where("school_code",$school_code);
-                                   $this->db->where("fsd",$this->session->userdata('fsd'));
+                                   $this->db->where("fsd",$fsd);
                                     $this->db->where("stu_id",$studentInfo->id);
                                     $result= $this->db->get("exam_info")->result();
                                     $c="";$d="";

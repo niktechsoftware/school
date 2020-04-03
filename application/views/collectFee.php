@@ -46,32 +46,75 @@
 						<form action="<?php echo base_url();?>index.php/feeControllers/checkID"  method ="post" role="form" class="smart-wizard form-horizontal" id="form">
 
 							<div class="row">
-									<div class="col-sm-5">
+									<div class="col-sm-6">
 										<div class="form-group">
-						                      <label for="inputStandard" class="col-lg-4 control-label">
+						                      <label for="inputStandard" class="col-lg-6 control-label">
 						                      		Student ID <span style="color:red">*</span>
 						                      </label>
-						                      <div class="col-lg-5">
+						                      <div class="col-lg-6">
 						                        <input type="text" id="studid" name="studid" class="form-control text-uppercase" onkeyup="stuBirthPlace()" />
 						                       
 						                      </div>
 						                </div>	
 									</div>
-									<div class="col-sm-7" id="getFsd">
+									<div class="col-sm-6" id="getFsd">
 											
 									</div>
 									
 								</div>
+								OR
+								<div class="row">
+								<div class="col-sm-6">
+										<div class="form-group">
+						                      <label for="inputStandard" class="col-lg-6 control-label">
+						                      	Student	Name <span style="color:red">*</span>
+						                      </label>
+						                      <div class="col-lg-6">
+						                        <input type="text" id="stuname" name="stuname" onkeyup="autocomplet()" class="form-control text-uppercase"  />
+						                        <ul style="list-style: none; padding:0px;" id="student_list_id"></ul>
+						                      </div>
+						                </div>	
+									</div>
+								</div>	
 							</form>
-							
+							<script>
+							function autocomplet() {
+								var min_length = 1; // min caracters to display the autocomplete
+								var keyword = $('#stuname').val();
+								if (keyword.length >= min_length) {
+									$.ajax({
+										url: '<?php echo site_url("feeControllers/searchstudent");?>',
+										type: 'POST',
+										data: {keyword:keyword},
+										success:function(data){
+											$('#student_list_id').show();
+											$('#student_list_id').html(data);
+										}
+									});
+								} else {
+									$('#student_list_id').hide();
+									
+									
+								}
+							}
+							function set_item(item) {
+								$('#stuname').val(item);
+								// change input value
+								var studentid = $("#stuname").val();
+								//alert(studentid);
+								$.post("<?php echo site_url("index.php/feeControllers/getFsd") ?>",{studentid : studentid}, function(data){
+									$("#getFsd").html(data);
+									});
+								
+							}
+														
+							</script>
 				                <div class="panel-body">
 									<?php
 								//	echo $stud_id;
 									if($stud_id!='0'){
 									$pk=$totdata;
 									//$pk->student_info.id;
-								
-									
 									if($fsddate->num_rows()>0){
 									    $fsddate = $fsddate->row()->finance_start_date;
 									    	$fee_record=$this->feemodel->getperfeerecord($pk->id);

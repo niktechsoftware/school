@@ -1,6 +1,48 @@
 <?php
 class AllFormModel extends CI_Model{
-
+            // function for fsdwise record 
+        function getfsdwiseStudent($fsd){
+            $student=	$this->db->query("select student_info.id from student_info join old_student_info on student_info.id = old_student_info.student_id where student_info.status =1 and ( student_info.fsd ='$fsd' or old_student_info.fsd='$fsd')" );
+        	return 	$student;		
+        }
+            // end function for fsdwise record 
+            
+             // function for fsdwise record 
+        function getfsdwiseStudentClassData($fsd,$class_id){
+           // select student_info.id from student_info join old_student_info where ( ((student_info.fsd =20) and (student_info.class_id =134) and (student_info.status =1)) or ((old_student_info.fsd=20) and (old_student_info.class_id =134) and (student_info.status =1)))
+            $student=	$this->db->query("select DISTINCT(student_info.id) from student_info join old_student_info where student_info.status =1 and ( (student_info.fsd ='$fsd' and student_info.class_id ='$class_id') or (old_student_info.fsd='$fsd' and  old_student_info.class_id ='$class_id'))" );
+        	return 	$student;		
+        }
+            // end function for fsdwise record 
+            
+            
+            //start function for single student record 
+         function getStu_record_fsdSingleid($stu_id){
+             $stur = $this->db->query("select * from student_info join guardian_info on student_info.id = guardian_info.student_id where student_info.id='$stu_id'"); 
+             return $stur;
+         }
+         //end single student record
+         
+         //get class name, section name and stream  and whole row from class_id
+         function classDetailsbyId($class_id){
+                    $this->db->where("id",$class_id);
+                  $classname =   $this->db->get("class_info");
+                  if($classname->num_rows()>0){
+                  $classinfo['class']=$classname->row()->class_name;
+                  $this->db->where("id",$classname->row()->section);
+                  $section = $this->db->get("class_section")->row();
+                  $classinfo['section']=$section->section;
+                   $this->db->where("id",$classname->row()->stream);
+                  $stream = $this->db->get("stream")->row();
+                  $classinfo['stream']=$stream->stream;
+             return  $classinfo;  
+                  }else{
+                     $classinfo['class']=0;
+                     $classinfo['section']=0;
+                     $classinfo['stream']=0;
+                  }
+         }
+         // end 
 function getState(){
 //$school_code = $this->session->userdata("school_code");
 $result = $this->db->query("select DISTINCT state FROM city_state ORDER BY state");
@@ -117,4 +159,5 @@ $school_code = $this->session->userdata("school_code");
 $result = $this->db->query("select distinct section FROM class_info WHERE school_code='$school_code'");
 return $result;
 }
+
 }

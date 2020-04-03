@@ -38,7 +38,7 @@ class TeacherModel extends CI_Model{
 	function pramotiongetsection($streamid)
 	{
 		$school_code = $this->session->userdata("school_code");
-		$query = $this->db->query("SELECT DISTINCT section FROM class_info WHERE school_code='$school_code' AND id = '$streamid' order by id");
+		$query = $this->db->query("SELECT DISTINCT section FROM class_info WHERE school_code='$school_code' AND stream = '$streamid' order by id");
 		return $query;
 	}
 

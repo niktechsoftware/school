@@ -49,8 +49,7 @@
 				<div class="form-group">
 					<?php 
 						$detail = $this->db->query("SELECT * FROM fsd where school_code='$school_code' Order BY id");
-						//$detail1 = $this->db->query("SELECT finance_start_date FROM `old_fee_deposit` where school_code='$school_code' GROUP BY finance_start_date ");
-						// if(($detail->num_rows() > 0)||($detail1->num_rows() > 0))
+					
 						if(($detail->num_rows() > 0)){
 							
 					?>
