@@ -1,6 +1,6 @@
 <!-- start: MAIN JAVASCRIPTS -->
 <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,200,100,800' rel='stylesheet' type='text/css'>
-<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/blockUI/jquery.blockUI.js"></script>
