@@ -340,6 +340,7 @@ class HomeController extends CI_Controller{
 		
 		
 		 $school_code = 2;
+
 		
 	    $query=$this->db->get("student_info");
 
@@ -347,7 +348,7 @@ class HomeController extends CI_Controller{
 			$updateclass['class_id']=$stuid->class_id;
 		$this->db->where("student_id",$stuid->id);
 		$this->db->update("fee_deposit",$updateclass);
-		
+
 		endforeach; 
 		echo "done- ".$school_code;
 		

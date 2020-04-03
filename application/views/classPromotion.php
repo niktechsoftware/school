@@ -1,5 +1,4 @@
-
-		<div class="row">
+	<div class="row">
 							<div class="col-md-12">
 								<!-- start: DYNAMIC TABLE PANEL -->
 								<div class="panel panel-white">
@@ -49,7 +48,36 @@
 										<div class="col-sm-12" id="validId"></div>
 									</div>
 											<div class="row">
-											<div class="col-sm-4">
+											
+											<div class="col-sm-3">
+												<div class="panel-heading panel-red border-light">
+													<h4 class="panel-title">FSD</h4>
+												</div>
+												<div class="panel-body">
+													<div class="form-group">
+														<select id="cfsd" name ="cfsd" class="form-control">
+															<option value="">--Select FSD--</option>
+                                                            <?php 
+                                                            $school_code = $this->session->userdata("school_code");
+                                                            $cfsdh = $this->session->userdata("fsd");
+														$fsdList = $this->db->query("SELECT * from fsd where school_code='$school_code' and id !='$cfsdh' ");
+														
+                                                            ?>
+
+
+															<?php if(isset($fsdList)){?>
+															<?php foreach ($fsdList->result() as $rowf){
+                                                                ?>
+															<option value="<?php echo $rowf->id;?>"><?php echo $rowf->finance_start_date;?></option>
+															<?php } }?>
+														</select>
+													</div>
+													
+													<div class="text-red text-small">For promote  Please select a FSD of Students.</div>
+												</div>
+											</div>
+											
+											<div class="col-sm-3">
 												<div class="panel-heading panel-red border-light">
 													<h4 class="panel-title">Stream Name</h4>
 												</div>
@@ -77,7 +105,7 @@
 													<!--<div class="text-red text-small">Please select a Stream, Section and Class will automatically come select and promote your student.</div>-->
 												</div>
 											</div>
-											<div class="col-sm-4">
+											<div class="col-sm-3">
 												<div class="panel-heading panel-green border-light">
 													<h4 class="panel-title">Section</h4>
 												</div>
@@ -89,7 +117,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-4">
+											<div class="col-sm-3">
 												<div class="panel-heading panel-blue border-light">
 													<h4 class="panel-title"> Class</h4>
 												</div>

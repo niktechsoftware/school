@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -2373,4 +2374,3 @@ This is computer generated invoice and verified by accountant.
       <i class="fa fa-print padding-right-sm"></i> Print Receipt
     </button>
   </div>
-</html>

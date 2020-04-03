@@ -18,43 +18,38 @@ class promotionControler extends CI_Controller{
 	function presenti(){
 
 	$data['sec'] = $this->input->post("sectionid");
-
 		//$sec = $this->input->post("sectionid");
 		$data['cla']  = $this->input->post("classv");
-
 		$cla = $this->input->post("classv");
-		//$this->db->where("school_code",$this->session->userdata("school_code"));
-		//$this->db->where("section",$sec);
+		$cfsd = $this->input->post("cfsd");
+		$this->db->where("fsd",$cfsd);
 		$this->db->where("class_id",$cla);
+		$this->db->where("status",1);
 		$data['check'] = $this->db->get("student_info");
-
+		$data['cfsd']=$cfsd;
 		$this->load->view("ajax/classPromotion",$data);
 	}
 	
 	function allStudentClassPromotion(){
-		//$data['sec'] = $this->input->post("sectionid");
-
-		//$sec = $this->input->post("sectionid");
+			$cla = $this->input->post("classv");
+			$fsd = $this->input->post("cfsd");
 		
-
-		$cla = $this->input->post("classv");
-		//$this->db->where("school_code",$this->session->userdata("school_code"));
-		//$this->db->where("section",$sec);
-		$this->db->where("class_id",$cla);
-		$this->db->where("status",1);
-		$this->db->where("fsd <",$this->session->userdata('fsd'));
-	$studata= $this->db->get("student_info");
-	if($studata->num_rows()>0){
-	    $data['cla']  = $this->input->post("classv");
-	    $data['check'] =$studata;
-	    	$this->load->view("ajax/allStudentClassPromotion",$data);
-	}else{
-	     ?>
-		   <script>alert("You can not promote this student because this student is already present in current fsd")</script>
-		  <?php
-	   // 	$this->load->view("allStudentClassPromotion");
-	   redirect('login/allStudentClassPromotion','refresh');
-	   //$this->load->view("allStudentClassPromotion");
+			$this->db->where("class_id",$cla);
+			$this->db->where("status",1);
+			$this->db->where("fsd",$fsd);
+			$studata= $this->db->get("student_info");
+			if($studata->num_rows()>0){
+				$data['cfsd']	= $fsd;
+			    $data['cla']  = $this->input->post("classv");
+			    $data['check'] =$studata;
+			    	$this->load->view("ajax/allStudentClassPromotion",$data);
+			}else{
+			     ?>
+				   <script>alert("You can not promote this student because this student is already present in current fsd")</script>
+				  <?php
+			   // 	$this->load->view("allStudentClassPromotion");
+			   redirect('login/allStudentClassPromotion','refresh');
+			   //$this->load->view("allStudentClassPromotion");
 	}
 
 	
@@ -148,53 +143,57 @@ class promotionControler extends CI_Controller{
 function pramoteClass(){
 		$student_id = $this->input->post("student_id");
 		$changeClass = $this->input->post("changeClass");
-	    $this->load->model("studentModel");
-	    $val = $this->studentModel->getStudentDetail($student_id)->row();
-	    $time = $this->session->userdata("fsd");
-		$valold = $this->studentModel->getOldStudentDetail($student_id,$time);
-			$this->db->where('student_id',$val->id);
-			$this->db->where('fsd',$val->fsd);
-    			$data=$this->db->get('old_student_info')->row();
-				$fsd=$data->fsd;
-				$cufsd=$this->session->userdata("fsd");
-				if($fsd==$cufsd)
-				{
-					 ?>
-		 <script>alert("You can not promote this student because this student is already present in current fsd ")</script>
-					 <?php
-			    }
-			    else
-			    {
-	              $datastudent["fsd"] 	= $val->fsd;
-			      $datastudent["student_id"] 	=  $val->id;
-			      $datastudent["class_id"] 	=  $val->class_id;
-		          $datastudent['date']=date("y-m-d");
-		          $data=	$this->db->insert("old_student_info",$datastudent);
-				if($data)
-				{
-					?>
-					<script>alert("successfully Promoted")</script>
-					
-					<?php
-				}
-					$dataup['class_id'] = $changeClass;
-					$dataup['fsd'] = $this->session->userdata("fsd");
-					//$this->db->where("school_code",$this->session->userdata("school_code"));
-					$this->db->where("status",1);
-					$this->db->where("id",$student_id);
-				    $this->db->update("student_info",$dataup);
-					 }
-				}
+		$cfsd = $this->input->post("cfsd");
+		$pfsd = $this->input->post("pfsd");
+		$this->db->where("fsd",$cfsd);
+		$this->db->where("status",1);
+		$this->db->where("id",$student_id);
+		$checkcurrent = $this->db->get("student_info");
+		if($checkcurrent->num_rows()>0){
+			$this->db->where("fsd",$pfsd);
+			$this->db->where("status",1);
+			$this->db->where("id",$student_id);
+			$checkold = $this->db->get("student_info");
+			if($checkold->num_rows()<1){
+				$dataup["fsd"] 		= $pfsd;
+				$dataup["class_id"] 	= $changeClass;
+				$this->db->where("status",1);
+				$this->db->where("id",$student_id);
+				$this->db->update("student_info",$dataup);
+				
+				$datastudent["fsd"] 	= $cfsd;
+				$datastudent["student_id"] 	=  $student_id ;
+				$datastudent["class_id"] 	=  $checkcurrent->row()->class_id;
+				$datastudent['date']=date("y-m-d");
+				$data=	$this->db->insert("old_student_info",$datastudent);
+				?><script>alert("successfully Promoted")</script><?php
+			}else{
+				?> <script>alert("You can not promote this student because this student is already present in current fsd ")</script>
+			<?php }	
+		}else{?>
+			<script>alert("Wrong Details are give Please check. ")</script>
+		<?php }
+}		
+		
 				
 				function pramoteAllStudent(){
 					$changeClass = $this->input->post("changeClass");
-					$this->db->where('class_id',$changeClass);
+					$classv = $this->input->post("classv");
+					$cfsd = $this->input->post("cfsd");
+					$pfsd = $this->input->post("pfsd");
+					$this->db->where('class_id',$classv);
 					$this->db->where("status",1);
-					$this->db->where("fsd <",$this->session->userdata('fsd'));
+					$this->db->where("fsd",$cfsd);
 					$studata=$this->db->get("student_info");
 					if(($studata->num_rows())>0)
 					{
 					foreach($studata->result() as $sdata){
+						
+						$this->db->where("fsd",$pfsd);
+						$this->db->where("status",1);
+						$this->db->where("id",$sdata->id);
+						$checkold = $this->db->get("student_info");
+						if($checkold->num_rows()<1){
 							  $datastudent["fsd"] 	= $sdata->fsd;
 							  $datastudent["student_id"] 	=  $sdata->id;
 							  $datastudent["class_id"] 	=  $sdata->class_id;
@@ -202,22 +201,28 @@ function pramoteClass(){
 							  $data=$this->db->insert("old_student_info",$datastudent);
 							  
 								$dataup['class_id'] = $changeClass;
-								$dataup['fsd'] = $this->session->userdata("fsd");
+								$dataup['fsd'] = $pfsd;
 								$this->db->where("status",1);
 								$this->db->where("id",$sdata->id);
 								$this->db->update("student_info",$dataup);
-							}
-							if($data)
-							  {
-								  ?>
-								  <script>alert("successfully Promoted")</script>
-								  <?php
-							  }
+								echo "SuccessFully Promoted";
+							}else{
+								 ?>
+							 <script>alert("You can not promote this student because this student is already present in current fsd")</script>
+							<?php
+								}	
 						}
-						else{
+						if($data)
+						{
+					 ?>
+						<script>alert("successfully Promoted")</script>
+						<?php
+						}
+					}
+					else{
 						    ?>
-								  <script>alert("You can not promote this student because this student is already present in current fsd")</script>
-								  <?php
+							 <script>alert("You can not promote this student because this student is already present in current fsd")</script>
+							<?php
 						}
 					}
 
