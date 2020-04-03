@@ -193,7 +193,7 @@
 							<?php echo $stu->username; ?>
 					</td>
 					<td><?php echo $stu->name; ?></td>
-					<td class="hidden-xs text-center">
+					<td class="text-center">
 						<label class="radio-inline">
                           <input class="radio"  type="radio" id="Attendance<?php echo $i; ?>" name="attendence<?php echo $i; ?>" value="1" checked />
                         P 
