@@ -93,7 +93,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					<?php $i++;	}?></tbody>
 				</table>
 				<input type ="hidden" name ="pfsd" id="pfsd" value="<?php echo $psd;?>"  readonly>	
-	            <input type ="hidden" name ="cfsd" id="cfsd" value="<?php echo cfsd;?>"  readonly>
+	            <input type ="hidden" name ="cfsd" id="cfsd" value="<?php echo $cfsd;?>"  readonly>
 				<?php 				
 	}?>
 	<script> 
@@ -117,7 +117,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 
 		  $("#clname<?php echo $j;?>").change(function(){
             var streamid = $("#clname<?php echo $j;?>").val();
-            //alert(clname);
+            //alert(streamid);
             $.post("<?php echo site_url('index.php/promotionControler/getpromoteSection') ?>", {streamid : streamid}, function(data){
                 $("#sectionList<?php echo $j;?>").html(data);
                 //alert(data);

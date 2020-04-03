@@ -24,6 +24,7 @@ class promotionControler extends CI_Controller{
 		$cfsd = $this->input->post("cfsd");
 		$this->db->where("fsd",$cfsd);
 		$this->db->where("class_id",$cla);
+		$this->db->where("status",1);
 		$data['check'] = $this->db->get("student_info");
 		$data['cfsd']=$cfsd;
 		$this->load->view("ajax/classPromotion",$data);
@@ -177,17 +178,17 @@ function pramoteClass(){
 				
 				function pramoteAllStudent(){
 					$changeClass = $this->input->post("changeClass");
+					$classv = $this->input->post("classv");
 					$cfsd = $this->input->post("cfsd");
 					$pfsd = $this->input->post("pfsd");
-					$this->db->where('class_id',$changeClass);
+					$this->db->where('class_id',$classv);
 					$this->db->where("status",1);
 					$this->db->where("fsd",$cfsd);
 					$studata=$this->db->get("student_info");
 					if(($studata->num_rows())>0)
 					{
 					foreach($studata->result() as $sdata){
-						$dataup['class_id'] = $changeClass;
-						$dataup['fsd'] = $pfsd;
+						
 						$this->db->where("fsd",$pfsd);
 						$this->db->where("status",1);
 						$this->db->where("id",$sdata->id);
@@ -206,7 +207,9 @@ function pramoteClass(){
 								$this->db->update("student_info",$dataup);
 								echo "SuccessFully Promoted";
 							}else{
-								
+								 ?>
+							 <script>alert("You can not promote this student because this student is already present in current fsd")</script>
+							<?php
 								}	
 						}
 						if($data)

@@ -28,14 +28,13 @@
 				</div>
 			</div>
 		</div>
-		<?php $this->db->where('school_code',$this->session->userdata('school_code'));
+		<?php 
+	$school_code=	$this->session->userdata('school_code');
+		$this->db->where('school_code',$this->session->userdata('school_code'));
 		$sende_Detail=$this->db->get('sms_setting')->row();
 		?>
 		<div>   <p class="alert alert-danger"> Available SMS Balance = <?php 
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-	$smsbaladd = 	$this->db->get("sms_setting")->row();
-		$cbs=checkBalSms($sende_Detail->uname,$sende_Detail->password)+$smsbaladd->sms_bal;
-
+		$cbs=checkBalSms($sende_Detail->uname,$sende_Detail->password)+$sende_Detail->sms_bal;
 		echo $cbs;?></p>
 		 <p class="alert alert-info"> Note : This is the area you can send Fee reminder to send click send sms button . If you send SMS change to Success Message send Successfully . <br>
 		</div>
@@ -62,23 +61,10 @@
 				</thead>
 				<tbody>
 				<?php
-				$fsdate=$this->input->post("fsd");
+					if($stidRecord->num_rows() > 0){
+				foreach($stidRecord->result() as $sid):
 			
-				$school_code = $this->session->userdata("school_code");
-				$this->db->where("school_code",$school_code);
-				$class_id = $this->db->get("class_info")->result();
-				foreach($class_id as $cid){
-					$this->db->where('id',$cid->id);
-					$clname=$this->db->get('class_info')->row();
-					$this->db->where('id',$clname->section);
-					$clsection=$this->db->get('class_section')->row();
-					$this->db->where("status",1);
-					$this->db->where("class_id",$cid->id);
-					$student = $this->db->get("student_info");
-					if($student->num_rows() > 0){
-					$isData = $this->db->count_all("fee_deposit"); 
-					if($isData > 0){
-				    $color = array(
+				 $color = array(
 					    "progress-bar-danger",
 					    "progress-bar-success",
 					    "progress-bar-warning",
@@ -108,30 +94,26 @@
 						$fdate =$this->db->get("fsd")->row()->finance_start_date;
 
 						$sum=0;
-
-				    foreach($student->result() as $stuDetail):
-				    	$stu_id = $stuDetail->id;
-				    	$this->db->where("student_id",$stu_id);
-				    	$this->db->where("school_code",$school_code);
-				    	$rows = $this->db->get("guardian_info")->row();
-				    	if($this->input->post("fsd")){
-				    		$total = $this->db->query("SELECT SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
-							
+				    	$stu_id = $sid->id;
+				        $stuDetail= $this->allFormModel->getStu_record_fsdSingleid($stu_id)->row();
+				    		$total = $this->db->query("SELECT DISTINCT(class_id) as classid, SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
 							$rowcss = $count % 2 == 0 ? "danger" : "warning";
 						?>
 					<tr class="<?php echo $rowcss;?>">
 			  		<td><?php echo $count;?></td>
 			  				<td><strong><?php echo $stuDetail->username;?></strong></td>
 			  			<td><?php echo $stuDetail->name;?>
-			  			<input type = "hidden" id="sname<?php echo $count;?>" value="<?php echo $stuDetail->name;?>"/></td>
-						  <td><strong><?php echo $clname->class_name." & ".$clsection->section;?></strong>  
+			  			    <input type = "hidden" id="sname<?php echo $count;?>" value="<?php echo $stuDetail->name;?>"/></td>
+						  <td><strong><?php 
+						 $classinfo =  $this->allFormModel->classDetailsbyId($total->classid);
+						  echo $classinfo['class']." & ".$classinfo['section'];?></strong> </td> 
 						  <td><strong><?php if(strlen($stuDetail->mobile) > 1) {echo $stuDetail->mobile; }else echo "N/A"; ?>
                     </strong><input type = "hidden" id="mnum<?php echo $count;?>" value="<?php echo $stuDetail->mobile;?>"/></td>
                       
                           
-                          <td><strong><?php if(strlen($rows->father_full_name) > 1) {echo $rows->father_full_name; }else echo "N/A"; ?><?php //echo $rows->father_full_name;
+                          <td><strong><?php if(strlen($stuDetail->father_full_name) > 1) {echo $stuDetail->father_full_name; }else echo "N/A"; ?><?php //echo $rows->father_full_name;
                           
-                        ?></strong><input type = "hidden" id="fname<?php echo $count;?>" value="<?php echo $rows->father_full_name;?>"/></td></td>
+                        ?></strong><input type = "hidden" id="fname<?php echo $count;?>" value="<?php echo $stuDetail->father_full_name;?>"/></td></td>
                           
                           <td>
 			  			
@@ -613,11 +595,27 @@
 			  			
 			  		</tr>
 			  		<?php  ?>
-			  		<?php $count++; ?>
-			  		<?php }else{
-					
-				} endforeach;?>
-			
+			  		<?php $count++; endforeach;?>
+			  		</tbody>
+				<tfoot>
+				    <tr>
+				        <td></td>
+				        <td>Total Due</td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td><?php echo $sum;?></td>
+				    </tr>
+				</tfoot>
+				
+			</table>
+		</div>
+	
+		
+
 				<?php }else{?>
 
 <br/><br/>
@@ -631,60 +629,20 @@
 				</p>
 			</div>
 		
-<?php }}else{?>
-
-
-
-
-<?php }?>
-	
-	<?php 
-
-}?>
-	</tbody>
-	<tfoot>
-				    <tr>
-				        <td></td>
-				        <td>Total Due</td>
-				        <td></td>
-				        <td></td>
-				        <td></td>
-				        <td></td>
-				        <td></td>
-				        <td></td>
-				        <td><?php echo $sum;?></td>
-				    </tr>
-				</tfoot>
-			</table>
-		</div>
-	
-		
-
-	<?php }
+<?php }  }
 	else{
-
-		$this->db->where("status",1);
-	 	$this->db->where("class_id",$cla);
-	 	$this->db->where("fsd",$fsd);
-	 	$student = $this->db->get("student_info");
-        //print_r($student->row());exit;
-
-        $school_code = $this->session->userdata("school_code");
-        // if($this->input->post("fsd")){
-        //  if($student->num_rows() > 0){	
-?>
-<?php if($student->num_rows() > 0){
-	$isData = $this->db->count_all("fee_deposit"); 
-	if($isData > 0){
-?>
+$sum=0;
+	if($stidRecordfsdclass->num_rows() > 0){
+	    
+        ?>
 		<div class="table-responsive">
-		
 			<table class="table table-striped table-hover" id="sample-table-2">
 				<thead>
 					<tr class = "success">
 						<th>SNo</th>
 						<th>Student Id</th>
 						<th>Student Name</th>
+						<th>Class & Section</th>
 						<th>Father Mobile </th>
 						<th>Father Name</th>
 						<th>Paid Fee  Month</th>
@@ -722,22 +680,18 @@
 				
 				    $rowcss = "danger";
 				    $count = 1;
+				  
 						$tot=0.00;
 						$this->db->where("id",$fsd);
-						$fdate =	$this->db->get("fsd")->row()->finance_start_date;
-
+						$fdate = $this->db->get("fsd")->row()->finance_start_date;
+	                foreach($stidRecordfsdclass->result() as $sid):
+	                      $stu_id=$sid->id;
 						$sum=0;
 								 //$x=0;
                 //  print_r($student->num_rows());
-				    foreach($student->result() as $stuDetail):
-				    	$stu_id = $stuDetail->id;
-				    	//print_r($school_code);
-				    	$this->db->where("student_id",$stu_id);
-				    	$this->db->where("school_code",$school_code);
-				    	$rows = $this->db->get("guardian_info")->row();
-				    	if($this->input->post("fsd")){
-				    		$total = $this->db->query("SELECT SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
-							
+				    $stuDetail= $this->allFormModel->getStu_record_fsdSingleid($stu_id)->row();
+				    		$total = $this->db->query("SELECT DISTINCT(class_id) as classid, SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
+								
 							$rowcss = $count % 2 == 0 ? "danger" : "warning";
 						?>
 					<tr class="<?php echo $rowcss;?>">
@@ -745,14 +699,16 @@
 			  				<td><strong><?php echo $stuDetail->username;?></strong>
 			  			<td><?php echo $stuDetail->name;?>
 			  			<input type = "hidden" id="sname<?php echo $count;?>" value="<?php echo $stuDetail->name;?>"/></td>
-						    
+						      <td><strong><?php 
+						 $classinfo =  $this->allFormModel->classDetailsbyId($total->classid);
+						  echo $classinfo['class']." & ".$classinfo['section'];?></strong> </td> 
 						  <td><strong><?php if(strlen($stuDetail->mobile) > 1) {echo $stuDetail->mobile; }else echo "N/A"; ?>
-                    </strong><input type = "hidden" id="mnum<?php echo $count;?>" value="<?php echo $stuDetail->mobile;?>"/></td>
+                            </strong><input type = "hidden" id="mnum<?php echo $count;?>" value="<?php echo $stuDetail->mobile;?>"/></td>
                       
                           
-                          <td><strong><?php if(strlen($rows->father_full_name) > 1) {echo $rows->father_full_name; }else echo "N/A"; ?><?php //echo $rows->father_full_name;
+                          <td><strong><?php if(strlen($stuDetail->father_full_name) > 1) {echo $stuDetail->father_full_name; }else echo "N/A"; ?><?php //echo $rows->father_full_name;
                           
-                        ?></strong><input type = "hidden" id="fname<?php echo $count;?>" value="<?php echo $rows->father_full_name;?>"/></td></td>
+                        ?></strong><input type = "hidden" id="fname<?php echo $count;?>" value="<?php echo $stuDetail->father_full_name;?>"/></td></td>
                           
                           <td>
 			  			
@@ -1237,10 +1193,7 @@
 			  			
 			  		</tr>
 			  		<?php  ?>
-			  		<?php $count++; ?>
-			  		<?php  }else{
-	
-} endforeach;?>
+			  		<?php $count++;  endforeach;?>
 				</tbody>
 				<tfoot>
 				    <tr>
@@ -1258,27 +1211,13 @@
 			</table>
 		</div>
 	
-		
-<?php }else{?>
-
-<br/><br/>
-			<div class="alert alert-block alert-danger fade in">
-				<button data-dismiss="alert" class="close" type="button">
-					&times;
-				</button>
-				<h4 class="alert-heading"><i class="fa fa-times"></i> Error! <?php echo $student->num_rows();?></h4>
-				<p>
-					No record found from Fee database please submit fee first of this class &amp; section... 
-				</p>
-			</div>
-		
-<?php }}else{?>
+        <?php }else{?>
 	<br/><br/>
 	<div class="alert alert-block alert-danger fade in">
 		<button data-dismiss="alert" class="close" type="button">
 			&times;
 		</button>
-		<h4 class="alert-heading"><i class="fa fa-times"></i> Error! <?php echo $student->num_rows();?></h4>
+		<h4 class="alert-heading"><i class="fa fa-times"></i> Error! <?php echo $stidRecordfsdclass->num_rows();?></h4>
 		<p>
 			No record found from this class and section... 
 		</p>

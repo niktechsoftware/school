@@ -15,7 +15,7 @@ class feeControllers extends CI_Controller{
         $is_login = $this->session->userdata('is_login');
         $is_lock = $this->session->userdata('is_lock');
         $logtype = $this->session->userdata('login_type');
-        if($is_login != "admin"){
+        if($logtype != "admin"){
             //echo $is_login;
             redirect("index.php/homeController/index");
         }
@@ -449,49 +449,15 @@ function getFsd(){
 	
 	function feeReport(){
         $data['fsd'] = $this->input->post("fsd");
+        //echo $this->input->post("fsd");
 	    $data['sec'] = $this->input->post("section");
 		$data['cla'] = $this->input->post("classv");
+		$stuRecordfsd = $this->allFormModel->getfsdwiseStudent($this->input->post("fsd"));
+		$data['stidRecord']=$stuRecordfsd;
+		$stuRecordfsdclass = $this->allFormModel->getfsdwiseStudentClassData($this->input->post("fsd"),$this->input->post("classv"));
+		$data['stidRecordfsdclass']=$stuRecordfsdclass;
 		$this->load->view("ajax/feeReport",$data);
-		// if($cla == "all"):
-		// //$this->db->where("school_code",$school_code);
-		// $this->db->where("status",1);
-		// $student = $this->db->get("student_info");
-		// elseif($cla != "all"):
-		// //$this->db->where("school_code",$school_code);
-		// $this->db->where("status",1);
-		// $this->db->where("class_id",$cla);
-		// $student = $this->db->get("student_info");
-		// else:
-		// //$this->db->where("school_code",$this->session->userdata("school_code"));
-		// $this->db->where("status",1);
-		// $this->db->where("class_id",$cla);
-		// //$this->db->where("section",$sec);
-		// $student = $this->db->get("student_info");
-		
-		// endif;
-		// $checkstudent="NEW";
-		// }
-		 // else{
-	 	// if($cla == "all"):
-		// 	$this->db->where("school_code",$this->session->userdata("school_code"));
-		//  	$this->db->where("status",1);
-		//  	$student = $this->db->get("student_info");
-		//  	elseif($cla != "all"):
-		// // 	$this->db->where("school_code",$this->session->userdata("school_code"));
-	 //     $this->db->where("status",1);
-	 // 	  $this->db->where("class_id",$cla);
-		// 	$student = $this->db->get("student_info");
-		// 	else:
-		 	
-		// 	$this->db->where("section",$sec);
-			//$this->db->where("school_code",$this->session->userdata("school_code"));
-			
-			
-		// 	endif;
-		//  	$checkstudent="OLD";
-		//  }
-		// $data['checkStudent']=$checkstudent;
-		
+	
 	}
 				  
 	function fullstudentfeeDetail(){

@@ -188,6 +188,7 @@
 				
 			$("#classv").change(function(){
 					var sectionid = $("#classv").val();
+						var fsd = $("#fsd").val();
 					//alert(sectionid);
 					if(sectionid == 'all'){
 						$('#sectionId').prop('disabled', 'disabled');
@@ -195,8 +196,8 @@
 						var section = "all";
 						var classv = "all";
 						// alert(fsd);
-						// alert(section);
-						// alert(classv);
+						 //alert(section);
+						 //alert(classv);
 						$.ajax({
 							"url": "<?= site_url("index.php/feeControllers/feeReport") ?>",
 							"method": 'POST',
@@ -248,7 +249,7 @@
 					var fsd = $("#fsd").val();
 					var classv = $("#sectionId").val();
 					var section = $("#classv").val();
-					//alert(classid);
+					//alert(classv);
 					$.ajax({
 						"url": "<?= base_url() ?>index.php/feeControllers/feeReport",
 						"method": 'POST',

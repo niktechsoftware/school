@@ -2,6 +2,7 @@
     <?php $i=1;
         if($check->num_rows() > 0){
         $school_code = $this->session->userdata('school_code');?>
+        
                 <table class="table table-bordered table-hover" id="sample-table-1">
                          <thead>
                              <tr>
@@ -91,6 +92,7 @@
        
             $("#pro").click(function(){
                 var changeClass = $("#changeClass").val();
+                 var classv = $("#classv").val();
                 var cfsd = $("#cfsd").val();
                 var pfsd = $("#pfsd").val();
                 $("#pro").hide()
@@ -98,7 +100,7 @@
                     alert("Please select a Valid stream section and class to pramot");
                 }else{
                     $.post("<?php echo site_url("index.php/promotionControler/pramoteAllStudent") ?>",{
-                        changeClass : changeClass, cfsd: cfsd, pfsd : pfsd
+                        changeClass : changeClass, cfsd: cfsd, pfsd : pfsd, classv: classv
                         }, function(data){
                     $("#msg1").html(data);
                     $("#pro").show()
