@@ -8,8 +8,14 @@ class Configureclassmodel extends CI_Model{
 				"school_code"=>$this->session->userdata("school_code"),
 		);
 		if(strlen($stream) > 1){
-			
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("stream",$stream);
+			$checkold = $this->db->get("stream");
+			if($checkold->num_rows()<1){
 			$this->db->insert("stream",$db);
+			}else{?>
+				<script>alert("You Can't create Same Name Stream again");</script>
+			<?php }
 		}
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$query = $this->db->get("stream");
@@ -22,9 +28,16 @@ class Configureclassmodel extends CI_Model{
 				"school_code"=>$this->session->userdata("school_code"),
 		);
 		if(strlen($stream) > 1){
-			
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("cat_name",$stream);
+			$checkold = $this->db->get("fee_cat");
+			if($checkold->num_rows()<1){
 			$insert=$this->db->insert("fee_cat",$db);
-			
+			}else{
+				?>
+				<script>alert("You Can't create Same Name Category again !!!");</script>
+			<?php 
+			}
 		}
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$query = $this->db->get("fee_cat");
@@ -57,15 +70,25 @@ class Configureclassmodel extends CI_Model{
 				"school_code"=>$this->session->userdata("school_code"),
 		);
 		if(strlen($startdate)&&strlen($enddate)> 1){
-			
+			$this->db->where("school_code",$this->session->userdata('school_code'));
+			$this->db->where("finance_start_date",$startdate);
+			$oldfsd = $this->db->get("fsd");
+			if($oldfsd->num_rows()<1){
 			$insert=$this->db->insert("fsd",$db);
-			return true;
+			echo "FSD Created Successfully !!!";
+			
+			}else{
+				echo "You Can't create two fsd Of Same Start Date";
+			}
+			
 		  }
 		  else
 		  {
-
 		  	echo "please fill all the field correct!then try again";
 		  }
+		  $this->db->where("school_code",$this->session->userdata("school_code"));
+		  $ret = $this->db->get("fsd");
+		  return $ret;
 		 
 	}
 	
@@ -113,8 +136,16 @@ class Configureclassmodel extends CI_Model{
 				"school_code"=>$this->session->userdata("school_code")
 		);
 		if(strlen($section) == 1){
-			
+			$this->db->where("school_code",$this->session->userdata('school_code'));
+			$this->db->where("section",$section);
+			$oldcheck = $this->db->get("class_section");
+			if($oldcheck->num_rows<1){
 			$this->db->insert("class_section",$db);
+			}else{
+				?>
+				<script>alert("You Can't create Same Name Section again");</script>
+				<?php 
+			}
 		}
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$query = $this->db->get("class_section");
@@ -162,9 +193,16 @@ class Configureclassmodel extends CI_Model{
 	
 	public function addClass($classdata){
 		if((strlen($this->input->post("className")) > 0) && ($this->input->post("classStream") >0) && ($this->input->post("classSection")> 0)){
+			$this->db->where("school_code",$this->session->userdata("school_code"));
+			$this->db->where("class_info",$this->input->post("className"));
+			$checkold = $this->db->get("class_info");
+			if($checkold->num_rows()<1){
 			$a=$this->db->insert("class_info",$classdata);
-	
-			
+			}else{
+				?>
+					<script>alert("You Can't create Same  Class Name.!!");</script>
+				<?php 
+			}
 		}
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$query = $this->db->get("class_info")->result();

@@ -191,11 +191,16 @@ function configuredoc(){
 		$this->load->view("includes/mainContent", $data);
 	}
 	function updatefsd(){
-		$data['pageTitle'] = 'Update fsd';
-		$data['smallTitle'] = 'fsd, And  Class fees ';
-		$data['mainPage'] = 'Update fsd';
-		$data['subPage'] = 'fsd, And  Class fees';
-		$data['title'] = 'Fsd/Class fees';
+		$data['fsd']=$this->allFormModel->getCurrentFsd($this->session->userdata ( 'school_code' ));
+		$data['data']=$this->allFormModel->getClassInfotoFsd($this->session->userdata ('fsd'));
+		$this->load->model("feemodel");
+		$checkfsdfee = $this->feemodel->checkFeeoverAll($this->session->userdata ( 'school_code' ),$this->session->userdata ('fsd'));
+		$data['checkfsdfee']=$checkfsdfee;
+		$data['pageTitle'] = 'Update FSD';
+		$data['smallTitle'] = 'FSD, And  Class fees ';
+		$data['mainPage'] = 'Update FSD';
+		$data['subPage'] = 'FSD, And  Class fees';
+		$data['title'] = 'Admin FSD Section';
 		$data['headerCss'] = 'headerCss/configureClassCss';
 		$data['footerJs'] = 'footerJs/configureClassJs';
 		$data['mainContent'] = 'updatefsd';
@@ -342,7 +347,7 @@ function updatemaximum()
 		$this->load->model("employeeModel");
 		$data['empList'] = $this->employeeModel->employeeList($this->session->userdata("school_code"))->result();
 
-		$data['title'] = 'Configure Class/Section';
+		$data['title'] = 'Employee/Section';
 		$data['headerCss'] = 'headerCss/employeeSalaryCss';
 		$data['footerJs'] = 'footerJs/employeeSalaryJs';
 		$data['mainContent'] = 'employeeSalary';
@@ -355,7 +360,7 @@ function updatemaximum()
 		$data['mainPage'] = 'Employee';
 		$data['subPage'] = 'Salary Report';
 
-		$data['title'] = 'Configure Class/Section';
+		$data['title'] = 'Employee /Section';
 		$data['headerCss'] = 'headerCss/employeeSalaryCss';
 		$data['footerJs'] = 'footerJs/employeeSalaryJs';
 		$data['mainContent'] = 'employeeSalaryReport';

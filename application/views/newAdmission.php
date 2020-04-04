@@ -1,6 +1,5 @@
 
 <?php $school_code = $this->session->userdata("school_code");?>
-
 <div class="container">
 <form action="<?php echo base_url(); ?>index.php/newAdmissionControllers/addinfo" method="post" id="form">
 	<div class="row">
@@ -445,7 +444,7 @@
 											<label class="control-label text-uppercase">
 												Father's Education <span id="faedu" Style="color:red;" class="symbol"></span>
 											</label>
-											<input type="text" value="<?php echo set_value('fatherEducation'); ?>" class="form-control" onkeyup="stuFatherEdu()" id="fatherEducation" name="fatherEducation" required ="required" style='text-transform:uppercase'/>
+											<input type="text" value="<?php echo set_value('fatherEducation'); ?>" class="form-control" onkeyup="stuFatherEdu()" id="fatherEducation" name="fatherEducation"  style='text-transform:uppercase'/>
 										</div>
 									</div>
 									<div class="col-md-3">

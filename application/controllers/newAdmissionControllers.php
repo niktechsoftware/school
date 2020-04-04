@@ -17,7 +17,7 @@ class newAdmissionControllers extends CI_Controller{
 	
 	}
 	
-public function addinfo(){
+	public function addinfo(){
 		$school_code = $this->session->userdata("school_code");
 		$id1 = $this->db->query("SELECT MAX(maxcount) as maxnumber From guardian_info where school_code =$school_code");
 		 if($id1->num_rows()>0){
@@ -102,7 +102,6 @@ public function addinfo(){
 				"gender" => $this->input->post("gender"),
 				"bloodgp" => $this->input->post("bloodgp"),
 				"birth_place" => $this->input->post("birthPlace"),
-				
 				"mother_tongue" => $this->input->post("mothertongue"),
 				"category" => $this->input->post("category"),
 				"religion" => $this->input->post("religion"),
@@ -135,7 +134,6 @@ public function addinfo(){
 		);
 		$this->load->model('newAdmissionModel'); 
 		$addInfoConfirm = $this->newAdmissionModel->addInfo($datastudent);
-
 		$this->db->where('username',$id);
 		$student_id=$this->db->get('student_info')->row()->id;
 		$dataparent = array(
@@ -156,7 +154,6 @@ public function addinfo(){
 				"state" => $this->input->post("parentState"),
 				"pin" => $this->input->post("parentPin"),
 				"country" => $this->input->post("parentCountry"),
-				//"phone" => $this->input->post("parentPhoneNumber"),
 				"f_mobile" => $this->input->post("fatherMobileNumber"),
 				"m_mobile" => $this->input->post("motherMobileNumber"),
 				"f_email" => $this->input->post("fatherEmailAddress"),
@@ -181,10 +178,6 @@ public function addinfo(){
 		);
 		$this->load->model('newAdmissionModel');
 		$addInfoConfirm2 = $this->newAdmissionModel->addInfo2($datapreschool);
-		
-		
-		
-		
 		if($addInfoConfirm && $addInfoConfirm1 && $addInfoConfirm2){
 
 			//---------------------------------------------- CHECK SMS SETTINGS -----------------------------------------
@@ -192,9 +185,7 @@ public function addinfo(){
 			$sender = $this->smsmodel->getsmssender($school_code);
 			$sende_Detail =$sender;
 			 $sende_Detail1=$sende_Detail->row();
-			  			
 			$isSMS = $this->smsmodel->getsmsseting($school_code);
-			
 			if($isSMS->admission)
 				{
 				$school = $this->session->userdata("your_school_name");
@@ -329,9 +320,9 @@ public function addinfo(){
 			if($isSMS->admission)
 				{
 					$school = $this->session->userdata("your_school_name");
-		 		$f_name=$this->input->post("fatherName");
+		 			$f_name=$this->input->post("fatherName");
 					$username = $id;
-				$password = $this->input->post("password");
+					$password = $this->input->post("password");
 
 				//	$f_mobile = $this->input->post("mobileNumber");
 					$f_mobile = $this->input->post("mobileNumber");
