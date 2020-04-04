@@ -454,6 +454,9 @@ function getFsd(){
 		$data['cla'] = $this->input->post("classv");
 		$stuRecordfsd = $this->allFormModel->getfsdwiseStudent($this->input->post("fsd"));
 		$data['stidRecord']=$stuRecordfsd;
+		//print_r($stuRecordfsd->arr);
+	
+	
 		$stuRecordfsdclass = $this->allFormModel->getfsdwiseStudentClassData($this->input->post("fsd"),$this->input->post("classv"));
 		$data['stidRecordfsdclass']=$stuRecordfsdclass;
 		$this->load->view("ajax/feeReport",$data);

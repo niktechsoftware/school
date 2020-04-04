@@ -1,6 +1,19 @@
 <?php
 class feeModel extends CI_Model{
     
+	function checkFeeoverAll($school_code,$fsd){
+		$this->db->where("fsd",$fsd);
+		$res = $this->db->get("class_fees");
+		if($res->num_rows()>0)
+		{
+			return True;
+		}
+		else{
+			return False;
+		}
+	}
+	
+	////
     public function getlatefee($stuid,$fsdid){
         $school_code=$this->session->userdata("school_code");
     	$this->db->where("student_id",$stuid);
@@ -258,20 +271,7 @@ class feeModel extends CI_Model{
 		return $val;
 	}
 	
-	function checkFee($school_code,$class,$section,$fsd){
-		$this->db->where("school_code",$school_code);
-		$this->db->where("fsd",$fsd);
-		$this->db->where("class_id",$class);
-		$this->db->where("section",$section);
-		$res = $this->db->get("class_fees");
-		if($res->num_rows()>0)
-		{
-		return True;
-	}
-		else{
-			return False;
-		}
-	}
+
 
 	function checkstuid1($stuid){
 		$this->db->where("fsd",$this->session->userdata("fsd"));

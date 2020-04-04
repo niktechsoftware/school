@@ -15,7 +15,12 @@
 								</a></li>
 								<li><a href="#myTab_example2" data-toggle="tab"> <i
 										class="green fa fa-home"></i> Apply FSD
-								</a></li>
+									</a>
+								</li>
+								<li><a href="#myTab_example3" data-toggle="tab"> <i
+										class="green fa fa-home"></i> Update School Fee
+									</a>
+								</li>
 							</ul>
 							<div class="tab-content">
 								<div class="tab-pane fade in active" id="myTab_example1">
@@ -60,11 +65,8 @@
 													</h4>
 												</div>
 												<div class="panel-body">
-                        <?php
-																								$this->db->where ( 'school_code', $this->session->userdata ( 'school_code' ) );
-																								$fsd = $this->db->get ( 'fsd' );
-																								?>
-                         <div class="panel-body panel-scroll height-450">
+                    
+                         							<div class="panel-body panel-scroll height-450">
 														<table class="table table-bordered table-hover ">
 															<thead>
 																<tr class="text-center">
@@ -76,24 +78,24 @@
 															</thead>
 															<tbody>
                        
-                        												<?php
+                        							<?php
 																																				
-if ($fsd->num_rows () > 0) {
-					$i = 1;
-						foreach ( $fsd->result () as $row ) {
-								if ($this->session->userdata ( 'fsd' ) == $row->id) {
-								$rowcss = "success";
-								} else {
-								$this->db->where ( "fsd", $row->id );
-								$checkworking = $this->db->get ( "student_info" );
-								if ($checkworking->num_rows () > 0) {
-								$rowcss = "warning";
-								} else {
-								$rowcss = "danger";
-								}
-									}
+														if ($fsd->num_rows () > 0) {
+															$i = 1;
+																foreach ( $fsd->result () as $row ) {
+																		if ($this->session->userdata ( 'fsd' ) == $row->id) {
+																		$rowcss = "success";
+																		} else {
+																		$this->db->where ( "fsd", $row->id );
+																		$checkworking = $this->db->get ( "student_info" );
+																		if ($checkworking->num_rows () > 0) {
+																		$rowcss = "warning";
+																		} else {
+																		$rowcss = "danger";
+																		}
+																			}
 								?>
-                         <tr class="alert alert-<?php echo $rowcss;?>">
+                         									<tr class="alert alert-<?php echo $rowcss;?>">
 																	<td class="text-center"><?php echo $i."/".$row->id;?> <input
 																		type="hidden" id="fsdid<?php echo $i;?>"
 																		value="<?php echo $row->id;?>"></td>
@@ -104,23 +106,22 @@ if ($fsd->num_rows () > 0) {
 																			id="delete<?php echo $i;?>">Delete</button></td>
 																</tr>
 																<script>	
-						$("#otpbox").hide();
-						      $("#delete<?php echo $i;?>").click(function(){
-					            var id =$('#fsdid<?php echo $i;?>').val();
-					            //alert(id);
-                                //window.confirm('Are you sure to delete the exam');
-				           $.post("<?php echo site_url('index.php/allFormController/deleteFsd') ?>",{id : id},function(data){
-				    	  	alert(data);
-				    	  	$("#delete<?php echo $i;?>").html(data);
-                              window.location.reload();
-				             });
-				           }); 
-						
-
-					    </script>	
-                       <?php   $i++; }}?>
-                        </tbody>
-
+																	$("#otpbox").hide();
+																	      $("#delete<?php echo $i;?>").click(function(){
+																            var id =$('#fsdid<?php echo $i;?>').val();
+																            //alert(id);
+											                                //window.confirm('Are you sure to delete the exam');
+															           $.post("<?php echo site_url('index.php/allFormController/deleteFsd') ?>",{id : id},function(data){
+															    	  	alert(data);
+															    	  	$("#delete<?php echo $i;?>").html(data);
+											                              window.location.reload();
+															             });
+															           }); 
+																	
+											
+																    </script>	
+											                       <?php   $i++; }}?>
+											                        </tbody>
 														</table>
 
 													</div>
@@ -156,12 +157,8 @@ if ($fsd->num_rows () > 0) {
 												</div>
 												<div class="panel-body">
 													<div class="text-black text-large">
-														<div class="panel-body panel-scroll height-250">
-                           <?php
-																											$this->db->where ( 'fsd', $this->session->userdata ( 'fsd' ) );
-																											$data = $this->db->get ( 'class_fees' )->result ();
-																											?>     
-                        <table class="table table-striped table-hover"
+														<div class="panel-body panel-scroll" style="overflow: auto; width: 600px; height: 420px;">
+                        									<table class="table table-striped table-hover"
 																id="sample-table-2">
 																<thead>
 																	<tr class="text-center">
@@ -172,14 +169,16 @@ if ($fsd->num_rows () > 0) {
 																	</tr>
 																</thead>
 																<tbody>
-                        <?php foreach($data as $row1){?>
-                         <tr>
-																		<td class="text-center"><?php echo $row1->fsd;?> </td>
-																		<td class="text-center"><?php echo $row1->fee_head_name;?></td>
-																		<td class="text-center"><?php echo $row1->fee_head_amount;?></td>
+										                        <?php 
+										                        if($data->num_rows()>0){
+										                        foreach($data->result() as $row1):?>
+										                         <tr>
+																			<td class="text-center"><?php echo $row1->fsd;?> </td>
+																			<td class="text-center"><?php echo $row1->fee_head_name;?></td>
+																			<td class="text-center"><?php echo $row1->fee_head_amount;?></td>
 																	</tr>
-                       <?php   }?>
-                        </tbody>
+										                       <?php   endforeach;}?>
+										                        </tbody>
 															</table>
 														</div>
 													</div>
@@ -198,26 +197,25 @@ if ($fsd->num_rows () > 0) {
 												<div class="panel-body">
 													<div class="col-sm-6">
 														<select id="fsdselect" class="form-control">
-															<option value="">-Select FSD -</option>
+															
                           								<?php
-																										
-						foreach ( $fsd->result () as $v ) :											?>
-                              <option value="<?php echo $v->id;?>">
-                              <?php echo $v->id."[".$v->finance_start_date."]";?></option>
-                                  <?php endforeach;?>
-                                </select> <br></br>
-                                	<center>
+                          									foreach ( $fsd->result () as $v ) :	?>
+										                              <option value="<?php echo $v->id;?>" <?php if($this->session->userdata("fsd")==$v->id){ echo 'selected="selected"';}?>>
+										                              <?php echo $v->id."[".$v->finance_start_date."]";?></option>
+										                                  <?php endforeach;?>
+										                                </select> <br></br>
+										                                	<center>
 															<a href="#" class="btn  btn-purple" id="Applyfsd"><i
 																class="fa fa-check"> </i> Apply FSD </a>
 														</center>
 														<br></br>
 													</div>
 													<div class="col-sm-6">
-														<h3>
+															<!-- <h3>
 															Want To Copy Fee Structure last Session <input
 																type="checkbox" class="grey" value=""
 																style="width: 40px; height: 40px;" checked="checked">
-														</h3>
+														</h3> -->
 													</div>
 												</div>
 												<div id="showfsd1"></div>
@@ -230,6 +228,51 @@ if ($fsd->num_rows () > 0) {
 										</div>
 
 									</div>
+								</div>
+								<div class="tab-pane fade in active" id="myTab_example3">
+									<div class="col-sm-12">
+											<div class="panel panel-calendar">
+												<div class="panel-heading panel-blue border-light">
+													<h4 class="panel-title">Select FSD</h4>
+												</div>
+												<div class="panel-body">
+													<div class="col-sm-12">
+														<select id="fsdselect1" class="form-control">
+															
+                          								<?php
+                          									foreach ( $fsd->result () as $v ) :	?>
+										                              <option value="<?php echo $v->id;?>" <?php if($this->session->userdata("fsd")==$v->id){ echo 'selected="selected"';}?>>
+										                              <?php echo $v->id."[".$v->finance_start_date."]";?></option>
+										                                  <?php endforeach;?>
+										                                </select> <br></br>
+										                                	
+														
+													</div>
+													<div class="col-sm-12">
+														<!-- <h3>
+															Want To Copy Fee Structure last Session <input
+																type="checkbox" class="grey" value=""
+																style="width: 40px; height: 40px;" checked="checked">
+														</h3> -->
+													</div>
+												</div>
+												<div  id="showfsdFeelist"></div>
+												<script>
+												$("#fsdselect1").change(function(){
+														var fsd = $("#fsdselect1").val();
+														$.post("<?php echo site_url("index.php/promotionControler/getfeelist") ?>",{fsd : fsd }, function(data){
+															$("#showfsdFeelist").html(data);
+														});
+													});
+
+												</script>
+												<div class="alert alert-success">
+													<p>Select FSD from the dropdown and Press update 
+														Button for update class fee.</p>
+												</div>
+											</div>
+										</div>
+								
 								</div>
 							</div>
 						</div>

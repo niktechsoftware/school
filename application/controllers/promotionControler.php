@@ -5,6 +5,7 @@ class promotionControler extends CI_Controller{
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model("teacherModel");
+		$this->load->model("allFormModel");
 	}
 
 	function promotionReport(){
@@ -13,7 +14,48 @@ class promotionControler extends CI_Controller{
 		echo $fsd=$this->input->post('classv');
 
 	}
-	
+	function getfeelist(){
+		$fsd = $this->input->post("fsd");
+		$data = $this->allFormModel->getClassInfotoFsd($fsd);
+		?> 
+		<div class="panel-body panel-scroll" style="overflow: auto; height: 820px;">
+		<table class="table table-striped table-hover" id="sample-table-2">
+					<thead>
+						<tr class="text-center">
+						<th class="text-center">#</th>
+							<th class="text-center">FSD ID</th>
+							<th class="text-center">Stream</th>
+							<th class="text-center">Class-Section</th>
+							<th class="text-center">Fee Head Name</th>
+							<th class="text-center">Fee Amount</th>
+							<th class="text-center">update Fsd</th>
+							<th class="text-center">Action</th>
+
+						</tr>
+					</thead>
+					<tbody>
+					<?php 
+					if($data->num_rows()>0){
+						$ofsd = $this->allFormModel->getfsddetails($fsd)->row(); 
+					$i =1;foreach($data->result() as $row1):?>
+					<tr>
+					<td class="text-center"><?php  echo $i;?> </td>
+						<td class="text-center"><?php  echo $ofsd->finance_start_date." to ".$ofsd ->finance_end_date;?> </td>
+						<?php $classinfo = $this->allFormModel->classDetailsbyId($row1->class_id);?>
+							<td class="text-center"><?php echo $classinfo['stream'];?></td>
+							<td class="text-center"><?php echo $classinfo['class']."-".$classinfo['section'];?></td>
+							<td class="text-center"><?php echo $row1->fee_head_name;?></td>
+							<td class="text-center"><input type="text" id ="famount<?php echo $i;?>" value="<?php echo $row1->fee_head_amount;?>" /></td>
+							<td><?php $cfsd = $this->allFormModel->getfsddetails($this->session->userdata("school_code"))->row(); echo $cfsd->finance_start_date." to ".$cfsd->finance_end_date; ?></td>
+							<td><button class ="btn btn-purple" id="update<?php echo $i;?>"> Update</button></td>
+						</tr>
+						<?php  $i++; endforeach;}?>
+					 </tbody>
+			</table>
+			</div>	
+			
+		<?php 
+	}
 	
 	function presenti(){
 

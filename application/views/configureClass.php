@@ -235,7 +235,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6" style="overflow: auto; width: 500px; height: 420px;">
+                    <div class="col-sm-6" style="overflow: auto; width: 650px; height: 420px;">
                       <div class="panel panel-white">
                         <div class="panel-heading panel-pink border-light">
                           <h4 class="panel-title">Class <span class="text-bold">List</span></h4>

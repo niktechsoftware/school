@@ -160,19 +160,22 @@ class EmployeeController extends CI_Controller{
 					//---------------------------------------------- CHECK SMS SETTINGS -----------------------------------------
 					 $this->load->model("smsmodel");
 					 $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-					 $sende_Detail =$sender;
+					 $sende_Detail =$sender->row();
 					 $isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 						
 					if($isSMS->admission)
 					{
+						
+						$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+						$master_id=$max_id->maxid+1;
 					 	$school = $this->session->userdata("your_school_name");
 					 	$f_name=$this->input->post("empName");
 					 	$username = $eid;
 					 	$password = $this->input->post("password");
 					 	$f_mobile = $this->input->post("empmobileNumber");
-					 	$msg="Dear Teacher ".$f_name." welcome to ".$school.". Your teacher ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail->web_url." Thanks for Reliance.Principal ".$school;
-						sms($f_mobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-							
+					 	$msg="Dear Employee ".$f_name." welcome to ".$school.". Your Employee ID= ".$username." and Password=".$password.". Now You can login and get manage all school updates click .".$sende_Detail->web_url." Thanks for Reliance.Principal ".$school;
+						$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$f_mobile);
+					 	$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 					 }
 					//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 				    $rtype="employee";
@@ -248,22 +251,26 @@ class EmployeeController extends CI_Controller{
 
 			if($addInfoConfirm){
 				//---------------------------------------------- CHECK SMS SETTINGS -----------------------------------------
-				// $this->load->model("smsmodel");
-				// $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-				// $sende_Detail =$sender;
-				// $isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
+				 $this->load->model("smsmodel");
+				 $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+				 $sende_Detail =$sender->row();
+				 $isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 					
-				// if($isSMS->admission=="yes")
-				// {
-				// 	$school = $this->session->userdata("your_school_name");
-				// 	$f_name=$this->input->post("empName");
-				// 	$username = $eid;
-				// 	$password = $this->input->post("password");
-				// 	$f_mobile = $this->input->post("empmobileNumber");
-				// 	$msg="Dear Teacher ".$f_name." welcome to ".$school.". Your teacher ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail->web_url." Thanks for Reliance.Principal ".$school;
+				 if($isSMS->admission)
+				 {
+				 	$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+				 	$master_id=$max_id->maxid+1;
+					$school = $this->session->userdata("your_school_name");
+				 	$f_name=$this->input->post("empName");
+					$username = $eid;
+				 	$password = $this->input->post("password");
+				 	$f_mobile = $this->input->post("empmobileNumber");
+				 	$msg="Dear Employee ".$f_name." welcome to ".$school.". Your Employee ID= ".$username." and Password=".$password.". Now You can login and Manage all school updates click .".$sende_Detail->web_url." Thanks for Reliance.Principal ".$school;
 				// 	sms($f_mobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-						
-				// }
+				 	$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$f_mobile);
+				 	echo $getv;
+				 	$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+				 }
 				//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 				$rtype="employee";
 					redirect("index.php/api/common_user/$rtype");
@@ -272,23 +279,7 @@ class EmployeeController extends CI_Controller{
 		}
 
 		}
-	function addemployee(){
-		$data['pageTitle'] = 'Employee Section';
-		$data['smallTitle'] = 'Add employee';
-		$data['mainPage'] = 'Configuration';
-		$data['subPage'] = 'Class, Section, Subject Stream';
 	
-		$this->load->model("allFormModel");
-		$state = $this->allFormModel->getState()->result();
-	
-		$data['state'] = $state;
-	
-		$data['title'] = 'Configure Class/Section';
-		$data['headerCss'] = 'headerCss/addEmployeeCss';
-		$data['footerJs'] = 'footerJs/addEmployeeJs';
-		$data['mainContent'] = 'addemployee';
-		$this->load->view("includes/mainContent", $data);
-	}
 function updateSalary(){
 		$emp_id =$this->input->post("empid");
 		$data = array(
@@ -381,7 +372,7 @@ function updateSalary(){
 		$this->load->model("employeeModel");
 		$profile = $this->employeeModel->getEmployeProfile($empNo);
 		$data['profile'] = $profile;
-		$data['title'] = 'Configure Class/Section';
+		$data['title'] = 'Employee/Section';
 		$data['headerCss'] = 'headerCss/employeeProfileCss';
 		$data['footerJs'] = 'footerJs/employeeProfileJs';
 		$data['mainContent'] = 'employeeProfile';
@@ -467,7 +458,7 @@ function updateSalary(){
 
 	//----------------------------------------------- Upload Image of Employee ----------------------------------
 	
-	public function uploadEmployeeImage(){
+	 function uploadEmployeeImage(){
 		$school_code = $this->session->userdata("school_code");
 		$id = $this->input->post('c_id');
         $photo_name = time().$_FILES['empImage']['name'];
@@ -538,7 +529,7 @@ function updateSalary(){
 	    
 	}
 	
-	public function uploadEmployeeCertificates(){
+	 function uploadEmployeeCertificates(){
 		$id = $this->input->post('c_id');
 		$school_code=$this->session->userdata('school_code');
 		$Certificate = time().trim($_FILES['employeeCertificates']['name']);
@@ -577,7 +568,7 @@ function updateSalary(){
 		}
 	}
 	
-	public function uploadEmployeeNoc(){
+	 function uploadEmployeeNoc(){
 		$id = $this->input->post('c_id');
 	$school_code=$this->session->userdata('school_code');
 		$photo_name = time().trim($_FILES['empImage1']['name']);
@@ -618,7 +609,7 @@ function updateSalary(){
 	
 	//------------------------------------------------------------------
 	
-	public function uploadEmployeeExperience(){
+	 function uploadEmployeeExperience(){
 		$id = $this->input->post('c_id');
 	$school_code =$this->session->userdata("school_code");
 		$photo_name = time().trim($_FILES['empImage2']['name']);
@@ -658,7 +649,7 @@ function updateSalary(){
 		}
 	}
 	//------------------------------------------------------------------------------------
-	public function uploadEmployeeAddress(){
+	 function uploadEmployeeAddress(){
 		$id = $this->input->post('c_id');
 	$school_code=$this->session->userdata('school_code');
 		$photo_name = time().trim($_FILES['empImage3']['name']);
