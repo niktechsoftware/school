@@ -703,7 +703,7 @@ function result(){
 			 */
 
 
-			$this->load->view("invoice/si1/$callview",$data);
+			$this->load->view("invoice/si/$callview",$data);
 
 
 		}

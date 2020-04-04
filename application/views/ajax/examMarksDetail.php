@@ -478,7 +478,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                                     $this->db->where("id",$school_code);
                                     $info =$this->db->get("school")->row();
                                     $row2=$this->db->get('db_name')->row()->name;
-        if( $school_code == 1 && $row2== "A"){
+        if( $school_code == 1 && $row2== "A1"){
             //FOR MLA ORDER BY USERNAME
 		                        $this->db->order_by("username","asc");
 								$this->db->where("status",1);

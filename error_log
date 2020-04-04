@@ -78,3 +78,25 @@ Stack trace:
 #2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #3 {main}
   thrown in /home/schoodhe/public_html/school/application/controllers/api/bday_data.php on line 24
+[04-Apr-2020 13:42:07 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 1758
+[04-Apr-2020 13:42:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 1758
+[04-Apr-2020 13:44:27 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 1749
+[04-Apr-2020 13:44:30 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}', expecting end of file in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 1749
+[04-Apr-2020 13:44:56 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_result::num_row() in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:1200
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(462): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 1200
+[04-Apr-2020 13:46:43 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_result::num_row() in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php:1200
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(462): CI_Loader->view('ajax/feeReport', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->feeReport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 1200

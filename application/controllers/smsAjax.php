@@ -313,7 +313,7 @@ class SmsAjax extends CI_Controller{
 		if($totbal > $totsmssent){
 		$class_id = $this->input->post("class");
 	//	$section_id = $this->input->post("section");
-	
+
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 		if($sender->num_rows()>0){
 		$sende_Detail =$sender->row();
@@ -327,22 +327,26 @@ class SmsAjax extends CI_Controller{
 		$fmobile=$this->session->userdata("mobile_number");
 		if($isSMS->parent_message)
 		{
+		    
 			$query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id);
 		if($query->num_rows() > 0)
 		{   
+		 
 		 $totnumb=$query->num_rows();
 		    $i=1;	$fmobile = $this->smsmodel->getMobile($query->result(),$msg,$master_id,2);
-	
+	               
 				if($this->input->post("language")==1){
-
+ 
+		  
 				  $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
-				  
+				
 				}else{
 				  $getv= mysmsHindi($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				     }	
 		        $this->smsmodel->sentmasterRecord($msg,$totnumb,$master_id,$getv);
 		}
-			redirect("index.php/login/mobileNotice/classwise/$totsmssent");
+	
+			//redirect("index.php/login/mobileNotice/classwise/$totsmssent");
 		
 		}
 		else{	$data['pageTitle'] = 'SMS Panel';
