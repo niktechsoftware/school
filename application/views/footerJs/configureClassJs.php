@@ -337,9 +337,11 @@
           
         var startdate = $('#startdate').val();
          var enddate = $('#enddate').val(); 
-        alert("FSD Successfully created");
+       
         $.post("<?php echo site_url('index.php/configureClassControllers/addfsd') ?>", {startdate : startdate,enddate:enddate}, function(data){
             $("#showfsd").html(data);
+            alert(data);
+            window.location.reload();
                 //alert(data);
         });
         $('#startdate').val("");

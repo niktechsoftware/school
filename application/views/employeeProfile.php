@@ -890,7 +890,7 @@
 								</div> <!-- </div> -->
 										<div id="print_report" class="tab-pane fade <?php if(!$this->uri->segment(4) == 'Print Profile'){ echo "in active";}?>">
 					<div class="panel-body">
-						<IFRAME src="<?php echo base_url(); ?>index.php/invoiceController/printEmpProfile/<?php echo $id; ?>" width="100%" height="550px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></IFRAME>
+						<IFRAME src="<?php echo base_url(); ?>index.php/invoiceController/printEmpProfile/<?php echo $id; ?>" width="100%" height="550px" id="iframe1" style="border: 0px;" ></IFRAME>
 					</div>
 				</div>
 						</div>			

@@ -47,7 +47,7 @@ class Common_user extends REST_Controller1 {
     */
    public function index_post($rtype)
     {
-         $conn=mysqli_connect("208.91.198.93", "schoodhe_school", "Rahul!123singh!@");
+         $conn=mysqli_connect("208.91.198.93", "schoodhe_school", "Rahul!123singh");
         $db= mysqli_select_db($conn,"schoodhe_website");
          if (mysqli_connect_errno()){
         $data['conn'] = "failed to connect to mysql:".mysqli_connect_error();
