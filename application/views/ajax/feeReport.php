@@ -97,7 +97,7 @@
 						$sum=0;
 				    	$stu_id = $sid->id;
 				        $stuDetail= $this->allFormModel->getStu_record_fsdSingleid($stu_id)->row();
-				    		$total = $this->db->query("SELECT DISTINCT(class_id) as classid, SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
+				    		$total = $this->db->query("SELECT DISTINCT(class_id) as classid, SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' and status =1 AND school_code='$school_code'")->row(); 
 							$rowcss = $count % 2 == 0 ? "danger" : "warning";
 						?>
 					<tr class="<?php echo $rowcss;?>">
@@ -120,11 +120,12 @@
 			  			
 							<?php 
 							
-						
-								//$this->db->where("school_code",$this->session->userdata("school_code"));
+						     $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' ");
+                                                                                	
+								/*//$this->db->where("school_code",$this->session->userdata("school_code"));
 								$this->db->where("student_id",$stu_id);
 								$this->db->where("fsd",$fsd);
-								$fee_record = $this->db->get("deposite_months");
+								$fee_record = $this->db->get("deposite_months");*/
 							
 			               $i=0;
 							foreach($fee_record->result() as $fd):
@@ -152,7 +153,7 @@
 			  				$this->db->where("school_code",$this->session->userdata("school_code"));
 								$this->db->where("student_id",$stu_id);
 								$this->db->where("finance_start_date",$fsd);
-							//	$this->db->where("status",1);
+								$this->db->where("status",1);
 								$feedue = $this->db->get("fee_deposit");
 								
 								foreach($feedue->result() as $fd):?>
@@ -198,8 +199,8 @@
 								//	$cmonth = date("Y-m",strtotime($cdate));
 									$curmon = date("m",strtotime($cdate));
 									//print_r($stu_id);
-									$this->db->where("student_id",$stu_id);
-									$dipom = $this->db->get("deposite_months");
+									/*$this->db->where("student_id",$stu_id);*/
+									$dipom = $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' ");
 									if($dipom->num_rows()>0){
 										$g=0;	
 											foreach($dipom->result() as $dip):
@@ -692,7 +693,7 @@ $sum=0;
 								 //$x=0;
                 //  print_r($student->num_rows());
 				    $stuDetail= $this->allFormModel->getStu_record_fsdSingleid($stu_id)->row();
-				    		$total = $this->db->query("SELECT DISTINCT(class_id) as classid, SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
+				    		$total = $this->db->query("SELECT DISTINCT(class_id) as classid, SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' and status=1 AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
 								
 							$rowcss = $count % 2 == 0 ? "danger" : "warning";
 						?>
@@ -718,9 +719,7 @@ $sum=0;
 							
 						
 								//$this->db->where("school_code",$this->session->userdata("school_code"));
-								$this->db->where("student_id",$stu_id);
-								$this->db->where("fsd",$fsd);
-								$fee_record = $this->db->get("deposite_months");
+							 $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' ");
 							
 			               $i=0;
 							foreach($fee_record->result() as $fd):
@@ -748,7 +747,7 @@ $sum=0;
 			  				$this->db->where("school_code",$this->session->userdata("school_code"));
 								$this->db->where("student_id",$stu_id);
 								$this->db->where("finance_start_date",$fsd);
-							//	$this->db->where("status",1);
+								$this->db->where("status",1);
 								$feedue = $this->db->get("fee_deposit");
 								
 								foreach($feedue->result() as $fd):?>
@@ -1212,7 +1211,7 @@ $sum=0;
 								 //$x=0;
                 //  print_r($student->num_rows());
 				    $stuDetail= $this->allFormModel->getStu_record_fsdSingleid($stu_id)->row();
-				    		$total = $this->db->query("SELECT DISTINCT(class_id) as classid, SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
+				    		$total = $this->db->query("SELECT DISTINCT(class_id) as classid, SUM(paid) as totalpaid, SUM(total) as totaldeposite,invoice_no from fee_deposit WHERE student_id = '$stu_id' AND status =1 and finance_start_date='$fsd' AND school_code='$school_code'")->row(); 
 								
 							$rowcss = $count % 2 == 0 ? "danger" : "warning";
 						?>
@@ -1237,10 +1236,8 @@ $sum=0;
 							<?php 
 							
 						
-								//$this->db->where("school_code",$this->session->userdata("school_code"));
-								$this->db->where("student_id",$stu_id);
-								$this->db->where("fsd",$fsd);
-								$fee_record = $this->db->get("deposite_months");
+							 $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' ");
+                             
 							
 			               $i=0;
 							foreach($fee_record->result() as $fd):

@@ -1,15 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+
 class Paytm extends CI_Controller{
     
 	function __construct(){
 		parent::__construct();
-		include APPPATH . 'third_party/PaytmKit/lib/config_paytm.php';
-		include APPPATH . 'third_party/PaytmKit/lib/encdec_paytm.php';
+		$this->load->model("feeModel");
+		
 	}
 
 	function pgRedirect(){
+	    $school_code=$this->session->userdata("school_code");
+		$file="config_paytm".$school_code.".php";
+        require_once(APPPATH."libraries/PaytmKit/lib/".$file);
+        require_once(APPPATH."libraries/PaytmKit/lib/encdec_paytm.php");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache");
 		header("Expires: 0");
@@ -38,7 +44,12 @@ class Paytm extends CI_Controller{
 	
 	
 	function pgResponse(){
-	    
+	    $invoice_no=  $_POST["ORDERID"];
+        $this->db->where("invoice_no",$invoice_no);
+        $school_code = $this->db->get("fee_deposit")->row()->school_code;
+        $file="config_paytm".$school_code.".php";
+	    require_once(APPPATH."libraries/PaytmKit/lib/".$file);
+        require_once(APPPATH."libraries/PaytmKit/lib/encdec_paytm.php");
         header("Pragma: no-cache");
         header("Cache-Control: no-cache");
         header("Expires: 0");
@@ -49,10 +60,12 @@ class Paytm extends CI_Controller{
 
         $paramList = $_POST;
         $paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : ""; //Sent by Paytm pg
-
-        //Verify all parameters received from Paytm pg to your application. Like MID received from paytm pg is same as your application�s MID, TXN_AMOUNT and ORDER_ID are same as what was sent by you to Paytm PG for initiating transaction etc.
+    
+        //Verify all parameters received from Paytm pg to your application. Like MID received from paytm pg is same as your applicatiID, TXN_AMOUNT and ORDER_ID are same as what was sent by you to Paytm PG for initiating transaction etc.
         $isValidChecksum = verifychecksum_e($paramList, PAYTM_MERCHANT_KEY, $paytmChecksum); //will return TRUE or FALSE string.
+    
         
+      
         $insert["order_id"] = $_POST["ORDERID"];
         $insert["txn_id"]   = $_POST["TXNID"];
         $insert["txn_amount"] = $_POST["TXNAMOUNT"];
@@ -68,10 +81,24 @@ class Paytm extends CI_Controller{
         $data['successURI'] = base_url()."invoiceController/onlinefeesubmit/$segment3/$segment4/$segment5";
         $data['failURI'] = base_url()."invoiceController/onlinefee/$segment3/$segment4/$segment5";
        // $data['studentDetail'] = $studentDetail;
-        
+       
         if($isValidChecksum == "TRUE"):
-            $this->load->view("paytm/paytmResponse", $data);
+            
+           
+            $amount=$_POST["TXNAMOUNT"];
+                
+                $updatea['status']=1;
+                $this->db->where("invoice_no",$invoice_no);
+                $this->db->update("fee_deposit",$updatea);
+                $this->feeModel->updateDaybook($school_code,$amount,$segment4,2,$invoice_no);
+                $this->load->view("paytm/paytmResponse", $data);
         else:
+           $this->db->where("invoice_no",$invoice_no);
+           $this->db->delete("fee_deposit");
+           $this->db->where("invoice_no",$invoice_no);
+           $this->db->delete("deposite_months");
+           $this->db->where("invoice_number",$invoice_no);
+           $this->db->delete("transport_fee_month");
             echo "<strong>Checksum mismatched.</strong>";
         endif;
     }

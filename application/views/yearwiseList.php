@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				<form method="post" action="<?php echo base_url();?>index.php/studentController/yearwisestudentList">
+				
 				    		<div class="alert alert-info">
 		    <button data-dismiss="alert" class="close">×</button>
 

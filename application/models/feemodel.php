@@ -12,7 +12,50 @@ class feeModel extends CI_Model{
 			return False;
 		}
 	}
-	
+	function updateTransport($trnsfeemon,$invoice_number,$school_code,$g){
+	    	if($trnsfeemon>0){
+		
+							$tranportdat=array(
+								"stu_id"=>$this->input->post('stuId'),
+								"month"=>$g,
+								"total_amount"=>$trnsfeemon,
+								"paid_amount"=>$trnsfeemon,
+								"invoice_number"=>$invoice_number,
+								"school_code"=>$school_code,
+								"date"=>date("y-m-d")
+					
+							);
+							$this->db->insert("transport_fee_month",$tranportdat);
+						}
+	}
+	public function updateDaybook($school_code,$amount,$paidID,$paymode,$invoice_no){
+	    $this->db->where("invoice_no",$invoice_no);
+	    $checknum = $this->db->get("day_book");
+	    if($checknum->num_rows()<1){
+	     $op1 = $this->db->query("select closing_balance from opening_closing_balance where  school_code='$school_code' order by id DESC Limit 1")->row();
+		$balance = $op1->closing_balance;
+		$close1 = $balance +$amount;
+		$dayBook = array(
+				"paid_to" =>$this->session->userdata("username"),
+				"paid_by" =>$paidID,
+				"reason" => "Fee Deposit",
+				"dabit_cradit" => "1",
+				"amount" => $amount,
+				"closing_balance" => $close1,
+				"pay_date" => date("Y-m-d H:s:i"),
+				"pay_mode" => $paymode,
+				"invoice_no" => $invoice_no,
+				"school_code"=>$school_code
+		);
+		$this->db->insert("day_book",$dayBook);
+		$bal = array(
+				"closing_balance" => $close1
+		);
+		$this->db->where("school_code",$school_code);
+		$this->db->where("opening_date",date('Y-m-d'));
+		$this->db->update("opening_closing_balance",$bal); 
+	    }
+	}
 	////
     public function getlatefee($stuid,$fsdid){
         $school_code=$this->session->userdata("school_code");
@@ -142,6 +185,7 @@ class feeModel extends CI_Model{
 	function getperfeerecord($stuid_id){
 		$this->db->where("school_code", $this->session->userdata("school_code"));
 		$this->db->where("student_id", $stuid_id);
+		$this->db->where("status", 1);
 		$val = $this->db->get("fee_deposit");
 		return $val;
 	}
@@ -212,7 +256,7 @@ class feeModel extends CI_Model{
 	}
 	function getFeeDetail($data)
 	{$school_code = $this->session->userdata("school_code");
-		$query1 = $this->db->query("SELECT * FROM fee_deposit WHERE student_id='$data' AND school_code='$school_code' ORDER BY id DESC LIMIT 1");
+		$query1 = $this->db->query("SELECT * FROM fee_deposit WHERE student_id='$data' AND school_code='$school_code' and status=1 ORDER BY id DESC LIMIT 1");
 		return $query1;
 	}
 	function getHoliDay($data)

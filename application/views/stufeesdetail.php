@@ -138,7 +138,7 @@
 												$dt1=$this->db->get("class_info")->row();
 												  $scd=$dt1->school_code; 
 												  //echo $scd;
-												  
+												$this->db->where("status",1); 
 												$this->db->where("student_id",$stuid);
 												$dt=$this->db->get("fee_deposit")->result();
 												

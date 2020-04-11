@@ -1,6 +1,18 @@
 <?php
 class AllFormModel extends CI_Model{
 	
+	function getfsdWisestudent_id($fsd){
+	    if($fsd!=$this->session->userdata("fsd"))
+            {
+            $this->db->where('fsd',$fsd);
+            $data=$this->db->get('old_student_info');
+            }else{
+            $this->db->select("id as student_id");
+            $this->db->where('fsd',$fsd);
+            $data=$this->db->get('student_info');
+            }
+            return $data;
+	}
 	//get fsd Details
 	function getfsddetails($fsdid){
 		$this->db->where("id",$fsdid);

@@ -415,8 +415,8 @@ class InvoiceController extends CI_Controller{
 		$data['sectionid'] = $this->uri->segment(5);
         $data['title'] = 'Student Profile';
 /////////////////////////////////////
-$fsd1=$this->uri->segment(3);
-				$this->db->where("id",$this->uri->segment(3));
+            $fsd1=$this->uri->segment(3);
+				$this->db->where("id",$fsd1);
 		$fsd = 	$this->db->get("fsd")->row();
             $futureDate=date('Y-m-d', strtotime('+1 year', strtotime($fsd->finance_start_date )) );
     		$data['fsd']=$this->uri->segment(3);
@@ -516,6 +516,7 @@ $fsd1=$this->uri->segment(3);
 			$data['examid_2']=$examTypeResult2_2;
 			$data['examid_3']=$examTypeResult2_3;
 			$callview = "class_wise_report_".$val;
+		//	echo $this->uri->segment(3);
 			$this->load->view("invoice/$callview",$data);
 		}
 		else{
@@ -546,6 +547,7 @@ $fsd1=$this->uri->segment(3);
 function result(){
 		$id = $this->uri->segment(3);
 		$fsd1 = $this->uri->segment(4);
+		//echo $fsd1;
 		$examId = $this->uri->segment(5);
 		//echo $examid;
 		//exit();
@@ -676,6 +678,7 @@ function result(){
 		   $this->db->select("format");
 			$this->db->where("school_code",$this->session->userdata("school_code"));			
 		    $val=$this->db->get("result_format");
+		    //print_r($val);
            if($val->num_rows()>0)
             {//echo $examTypeResult;
 		      if($examTypeResult){
@@ -702,7 +705,7 @@ function result(){
 			 * echo "</pre>";
 			 */
 
-
+//echo $fsd1;
 			$this->load->view("invoice/si/$callview",$data);
 
 

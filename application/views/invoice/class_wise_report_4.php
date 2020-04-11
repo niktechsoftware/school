@@ -143,11 +143,20 @@
 <body>
    
        <div id="printcontent" align="center">
-                    <?php
+                    <?php 
+                    if($fsd ==$this->session->userdata("fsd")){
                             $this->db->where('status',1);
+                            $this->db->select("id");
                             $this->db->where('class_id',$classid);
                             $sid=$this->db->get('student_info');
+                    }else{
+                        $this->db->select("student_id as id");
+                         $this->db->where('class_id',$classid);
+                            $sid=$this->db->get('old_student_info');
+                    }
                 	      $u=0;  foreach($sid->result() as $studentProfile){
+                	          $this->db->where("id",$studentProfile->id);
+                	         $studentInfo= $studentProfile=$this->db->get("student_info")->row();
                             $studentInfo = $studentProfile;
                             $this->db->where('student_id',$studentInfo->id);
                             $guardian_info=$this->db->get('guardian_info');
@@ -1458,7 +1467,7 @@ if($subjectname->num_rows()>0){
                     <?php // }
     
 }
-                    }?>
+          exit();          }?>
                     
                     
                 </table>
@@ -2194,7 +2203,7 @@ if($subjectname->num_rows()>0){
                             $this->db->where("school_code",$this->session->userdata('school_code'));
                             $dt=$this->db->get("school_attendance");
                             $atotal=$dt->num_rows();
-                            $this->db->where('id',$this->session->userdata('fsd'));
+                            $this->db->where('id',$fsd);
                             $fsdval=$this->db->get('fsd')->row();
                             
                             $this->db->where('a_date >=',$fsdval->finance_start_date);

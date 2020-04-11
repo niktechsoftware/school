@@ -29,7 +29,7 @@ $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
 $paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
 
 
-$paramList["CALLBACK_URL"] = "http://localhost/Paytm/PaytmKit/pgResponse.php";
+$paramList["CALLBACK_URL"] = "https://schoolerp-niktech.in/school/index.php/paytm/pgResponse/$ORDER_ID/$CUST_ID/$segment7/$TXN_AMOUNT";
 /*$paramList["MSISDN"] = $MSISDN; //Mobile number of customer
 $paramList["EMAIL"] = $EMAIL; //Email ID of customer
 $paramList["VERIFIED_BY"] = "EMAIL"; //

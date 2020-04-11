@@ -306,10 +306,11 @@
 												                                      $apm1  =  $this->db->get("late_fees");
 												                                      
 												                                       $this->db->distinct();
-                                                                                		   $this->db->select("*");
+												                                     $monthDeposit =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd_id' and deposite_months.student_id='$pk->id' ");
+                                                                                		 /*  $this->db->select("*");
                                                                                 		   $this->db->where("student_id",$pk->id);
                                                                                 		    $this->db->where("fsd",$fsd_id);
-                                                                                		   $monthDeposit = $this->db->get("deposite_months");
+                                                                                		   $monthDeposit = $this->db->get("deposite_months");*/
 												                                    
 												                                        $color = array(
 												                                                "progress-bar-danger",

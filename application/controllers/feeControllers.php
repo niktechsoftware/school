@@ -174,13 +174,10 @@ function getFsd(){
 				"school_code"=>$school_code
 		);
 		$this->db->insert("invoice_serial",$invoiceDetail);
-		
 		$months = $this->input->post("diposit_month");
-		
 		//echo "<pre>";
 		//print_r($this->session->all_userdata());
 		//echo "</pre>";
-		
 		$this->load->model("studentModel");
 		$student = $this->studentModel->getStudentDetail($this->input->post('stuId'))->row();
 		
@@ -223,23 +220,6 @@ function getFsd(){
 		  $this->db->where("school_code",$school_code);
 			$duedt2=  $this->db->get("feedue");
 		
-	
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		$close1 = $balance + $this->input->post("paid");
-		$dayBook = array(
-				"paid_to" =>$this->session->userdata("username"),
-				"paid_by" =>$this->input->post("stuId"),
-				"reason" => "Fee Deposit",
-				"dabit_cradit" => "1",
-				"amount" => $this->input->post("paid"),
-				"closing_balance" => $close1,
-				"pay_date" => date("Y-m-d H:s:i"),
-				"pay_mode" => $this->input->post("payment_mode"),
-				"invoice_no" => $invoice_number,
-				"school_code"=>$school_code
-		);
-		
 		$otptable=array(
 			"invoice_number"=>$invoice_number
 			);
@@ -265,7 +245,7 @@ function getFsd(){
 			);
 
 		$this->db->insert("dis_den_tab",$discountv);
-		if( $this->db->insert('day_book',$dayBook) && $this->db->insert("fee_deposit",$updata) ){
+		if( $this->db->insert("fee_deposit",$updata) ){
 		    
 		   if($duedt2->num_rows()>0){
 		     
@@ -287,7 +267,6 @@ function getFsd(){
     		$mdata['depositedate']=$this->input->post("subdate");
     		$mdata['invoice_no']=$invoice_number;
      		$mdata['school_code']=$school_code;
-     		
  	     
 		    $this->db->insert("feedue",$mdata);
 		 }
@@ -314,34 +293,16 @@ function getFsd(){
 			 }
 			 
 			 if($school_code==14){
-		   $trnsfeemon=	$this->input->post("dtransport_fee");
+		        $trnsfeemon=	$this->input->post("dtransport_fee");
 			}else{
 				$trnsfeemon	=$this->input->post("transport_fee");
 			}
-						if($trnsfeemon>0){
-		
-							$tranportdat=array(
-								"stu_id"=>$this->input->post('stuId'),
-								"month"=>$g,
-								"total_amount"=>$this->input->post("transport_fee"),
-								"paid_amount"=>$this->input->post("transport_fee"),
-								"invoice_number"=>$invoice_number,
-								"school_code"=>$school_code,
-								"date"=>date("y-m-d")
 					
-							);
-							$this->db->insert("transport_fee_month",$tranportdat);
-						}
 			
 
 		endforeach;
 		//---------------------------------------------- Opening Colsing Balance Start -----------------------------------------
-		$bal = array(
-				"closing_balance" => $close1
-		);
-		$this->db->where("school_code",$school_code);
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->update("opening_closing_balance",$bal);
+		
 		//---------------------------------------------- Opening Colsing Balance End -------------------------------------------
 			
 		
@@ -362,6 +323,8 @@ function getFsd(){
 		    $mode = $this->db->get('fee_deposit')->row()->payment_mode;
 		if($isSMS->fee_submit){
 		    if($mode==1 || $mode==5){
+		        $this->feeModel->updateDaybook($school_code,$this->input->post("paid"),$this->input->post("stuId"),$this->input->post("payment_mode"),$invoice_number);
+		        $this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g);
 		
 			//echo $student->student_id.'sss';
 			$this->db->where("school_code",$school_code);
