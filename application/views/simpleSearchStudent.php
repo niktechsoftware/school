@@ -115,7 +115,7 @@ And also we get Student I card by click on username of that Student.
 							</div>
 						</div>
 					</div>
-					<div class="table-responsive">
+					
 						<div class="table-responsive">
 							<table class="table table-striped table-hover" id="sample-table-2">
 								<thead>
@@ -179,7 +179,7 @@ And also we get Student I card by click on username of that Student.
 									<?php $sno++; endforeach; ?>
 								</tbody>
 							</table>
-						</div>
+					
 					</div>
 				</div>
 			</div>

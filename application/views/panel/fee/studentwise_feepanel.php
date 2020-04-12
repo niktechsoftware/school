@@ -102,39 +102,56 @@
 							</div>
 						</div>
 					</div>
-									
+									<div class ="alert alert-info"> Student Due Report Over All School. Click Arrow to view top Fee Defaulter of school. </div>
 										<div class="table-responsive">
-											<table class="table table-striped table-hover" id="cldetail">
+											<table class="table table-striped table-hover" id="sample-table-2">
                                             <thead>
 										<tr>
 											<th>S.No.</th>
 											<th>Student Id</th>
 											<th>Student Name</th>
+											<th>Class -Section</th>
 											<th>Total due</th>
 											<th>Mobile No.</th>
 										</tr>
 									</thead>
 									<tbody>
 											
-										<?php $i=1;foreach($request as $row):?>
+										<?php $totschool =0; $i=1;
+										foreach($request as $row):?>
 										<?php
-											$this->db->distinct('username');
-											$this->db->where("fsd",$this->session->userdata('fsd'));
+											
 											$this->db->where("id", $row->student_id );
 											$this->db->where("status",1);
 											$var1 = $this->db->get("student_info");
 									   	    if($var1->num_rows()>0){
-											?>
+									   	    $totdue =	$this->feemodel->totFee_due_by_id($row->student_id,0);
+									   	  
+											if($totdue>0){
+											  $totschool=$totschool+$totdue;
+											  ?>
 											<tr>
 											<td><?php echo $i?></td>
 											<td><?php echo $var1->row()->username;?></td>
 											<td><?php echo $var1->row()->name;?></td>
-											<td><?php //echo $row->mbalance;?></td>
+											<td><?php $dataclass = $this->allformmodel->classDetailsbyId($var1->row()->class_id);
+											echo $dataclass['class']."-".$dataclass['section']
+											?></td>
+											<td><?php echo $totdue;?></td>
 										    <td><?php echo $var1->row()->mobile;?></td>
 										    </tr>
-										    <?php } $i++; endforeach; ?>
-											</tbody>
-													
+										    <?php }} $i++; endforeach; ?>
+											
+										
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td>Total</td>
+												<td></td>
+												<td><?php echo $totschool;?></td>
+											</tr>
+												</tbody>	
 											</table>
 										</div>
 										
