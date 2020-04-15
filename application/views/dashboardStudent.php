@@ -339,7 +339,27 @@ if($school_code ==1){$this->db->where("cat_id",3);}
 			</div>
 		</div>
 	</div>
-
+    	<div class="col-md-6 col-lg-3 col-sm-6">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-purple padding-20 text-center core-icon">
+                    <i class="fa fa-tasks fa-2x icon-big"></i>
+                </div>
+                <a href="#">
+                <div class="padding-20 core-content">
+                    <h4 class="title block no-margin">Join On Line Class</h4>
+                    <br/>
+                    <span class="subtitle"> 	
+                    
+                            <a href="<?php echo base_url();?>singleTeacherControllers/chat">
+                        		<span class="glyphicon glyphicon-facetime-video"></span>
+                        		<p> &nbsp;&nbsp;Vedio Class</p><span class="arrow"></span>
+                        	</a></span>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
 
 </div>
 

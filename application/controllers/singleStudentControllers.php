@@ -22,6 +22,13 @@ class singleStudentControllers extends CI_Controller{
 			}
 		}
 		
+		function getChatId(){
+		   $username= $this->input->post("id");
+		   $this->db->where("chat_username",$username);
+		   $chatrow = $this->db->get("chat");
+		   echo $chatrow->row()->chat_id;
+		}
+		
 		function index(){
 
 				$school_code=$this->session->userdata("school_code");

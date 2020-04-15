@@ -162,3 +162,27 @@ Stack trace:
 [11-Apr-2020 14:10:28 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<' in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 3337
 [11-Apr-2020 14:11:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 4570
 [11-Apr-2020 14:14:54 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 4570
+[13-Apr-2020 21:19:53 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::post() in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php:26
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleStudentControllers->getChatId()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php on line 26
+[13-Apr-2020 21:21:04 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::post() in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php:26
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleStudentControllers->getChatId()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php on line 26
+[13-Apr-2020 21:23:48 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::post() in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php:26
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleStudentControllers->getChatId()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php on line 26
+[13-Apr-2020 21:25:14 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::post() in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php:26
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleStudentControllers->getChatId()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php on line 26
