@@ -738,7 +738,7 @@ $cumulativetotal=0;
 			echo $this->exammodel->getSchoolRank($studentInfo->id,  $fsd);?></td>
 		</tr>
 		<!---dds manner marks table end--->
-		<?php }else if($school == 1 && $row2== "A"){ ?>
+		<?php }else if($school == 1 && $row2== "A1"){ ?>
 		<!---mla marks table start--->
 		<tr class="tableHeader">
 			<td class="center" colspan="2" >A SCHOLASTIC AREAS</td>
@@ -1825,9 +1825,9 @@ if(is_numeric($exammm)){
              	?>  
 			<td colspan="1" >
 			<?php echo $examname->exam_name; ?><?php
-							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17 || $examid1== 62 || $examid1== 61 || $examid1== 59 || $examid1== 60){
          	    echo "[20]";
-                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18 || $examid1== 69 || $examid1== 70 || $examid1== 68 || $examid1== 76){
          	                        echo "[50]";  }else{
          	                                        echo "[100]";
          	                                             }
@@ -1847,10 +1847,10 @@ if(is_numeric($exammm)){
              $examname=$examname->row();
              	?>  
 			<td colspan="1" >
-			<?php echo $examname->exam_name; ?><?php
-							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+				<?php echo $examname->exam_name; ?><?php
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17 || $examid1== 62 || $examid1== 61 || $examid1== 59 || $examid1== 60){
          	    echo "[20]";
-                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18 || $examid1== 69 || $examid1== 70 || $examid1== 68 || $examid1== 76){
          	                        echo "[50]";  }else{
          	                                        echo "[100]";
          	                                             }
@@ -1870,9 +1870,9 @@ if(is_numeric($exammm)){
              	?>  
 			<td colspan="1" >
 			<?php echo $examname->exam_name; ?><?php
-							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17 || $examid1== 59){
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17 || $examid1== 62 || $examid1== 61 || $examid1== 59 || $examid1== 60){
          	    echo "[20]";
-                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18  ||$examid1== 68){
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18 || $examid1== 69 || $examid1== 70 || $examid1== 68 || $examid1== 76){
          	                        echo "[50]";  }else{
          	                                        echo "[100]";
          	                                             }
@@ -2355,13 +2355,16 @@ if(is_numeric($exammm)){
 			<td colspan="3">MARK PERCENTAGE  <?php  
 		//	echo round((($cumulativetotal*100)/$dhtm), 2);
 		if($ctotal[2] > 0){
-		    echo round((($colmtot*100)/(2*$dhtm)), 2);
+		      if($school == 1 && $row2== "D"){
+		    echo round((($colmtot*100)/((2*$dhtm)+100)), 2);
 		    //echo $dhtm;
-		    
+		      }else{
+		          echo round((($colmtot*100)/((2*$dhtm))), 2);  
+		      }
 		}else{}
 		?>%  </td>
 			<td colspan="6">CLASS RANK: <?php 
-			echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd); ?></td>
+			//echo $this->exammodel->getClassRank($studentInfo->id, $classid->class_id, $fsd); ?></td>
 		</tr>
 			<!---kerala marks table end--->
 			<?php }else if($school == 5 && $row2== "C"){ ?>

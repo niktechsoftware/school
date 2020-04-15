@@ -504,6 +504,7 @@ function defineExam1(){
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
 		$data['examid'] = $this->input->post("examid");
+	
    $this->load->view("print_obtain",$data);		
 	}
 	function print_obtain()

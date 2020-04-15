@@ -207,9 +207,7 @@ endforeach;
 		$enddate=$this->input->post('enddate');
 		$this->load->model('configureClassModel');
 		$fsdList = $this->configureClassModel->addfsd($startdate,$enddate);
-		//print_r($streamList);
-		$data['showfsd'] = $fsdList->result();
-		$this->load->view("updatefsd",$data);
+		
 	}
 
 	public function updateStream(){

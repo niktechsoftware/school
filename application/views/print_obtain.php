@@ -117,7 +117,11 @@
 					$i = 1;$j=1;
                       $this->db->where("status",1);
                       $this->db->where("class_id",$classid);
+                     if($this->session->userdata("school_code")==1){
                       $this->db->order_by("name","asc");
+                      }else{
+                       $this->db->order_by("id","asc");
+                      }
                     $num_row=$this->db->get("student_info");
                 if($num_row->num_rows()>0){
                 foreach ($num_row->result() as $stu):

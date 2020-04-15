@@ -2375,13 +2375,16 @@ if(is_numeric($exammm)){
 			<td colspan="3">MARK PERCENTAGE  <?php  
 		//	echo round((($cumulativetotal*100)/$dhtm), 2);
 		if($ctotal[2] > 0){
-		    echo round((($colmtot*100)/(2*$dhtm)), 2);
+		    if($school == 1 && $row2== "D"){
+		    echo round((($colmtot*100)/((2*$dhtm)+100)), 2);
 		    //echo $ctotal[2];
-		    
+		    }else{
+		        echo round((($colmtot*100)/((2*$dhtm))), 2); 
+		    }
 		}else{}
 		?>%  </td>
 			<td colspan="6">CLASS RANK: <?php 
-			echo $this->exammodel->getClassRank($studentInfo->id, $classid, $fsd); ?></td>
+			//echo $this->exammodel->getClassRank($studentInfo->id, $classid, $fsd); ?></td>
 		</tr>
 			<!---kerala marks table end--->
 			<?php }else if($school == 5 && $row2== "C"){ ?>
