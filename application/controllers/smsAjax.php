@@ -302,11 +302,51 @@ class SmsAjax extends CI_Controller{
 	     redirect("index.php/login/mobileNotice/Greeting/$count/9");
 	}	  
 	}
+	
+	function templateSmsSend(){
+		$smscat12 = $this->input->post("smscat12");
+		$totsmssent = $this->input->post("totsmsv");
+		$totbal = $this->input->post("totbal");
+		if($totbal > $totsmssent){
+			$class_id = $this->input->post("section");
+			$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+			if($sender->num_rows()>0){
+				$sende_Detail =$sender->row();
+				//$msg =$this->input->post("meg");
+		
+				$totsmssent = $this->input->post("totsmsv");
+				$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+				$master_id=$max_id->maxid+1;
+		
+				$isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
+				$fmobile=$this->session->userdata("mobile_number");
+				if($isSMS->parent_message)
+				{
+					$query = $this->smsmodel->getClassFatherNumberWithDetails($this->session->userdata("school_code"),$class_id);
+					if($query->num_rows() > 0)
+					{
+							
+						$totnumb=$query->num_rows();
+						$i=1;	$fmobilecount = $this->smsmodel->getMobileSendSms($query->result(),$master_id,2,$sende_Detail);
+		
+						
+					}
+					echo $fmobilecount." SMS Send  Successfully";
+				}
+				else{
+					echo "Parant SMS Not On Please Contact To Admin";
+				}
+			}
+		}else{
+			echo "Not Enough SMS Balance Please Recharge Your SMS Panel";
+		}
+	}
 	function classwise(){	
 		$smscount=0;
 		$count=0;
 		$smsc =0;
 		$fmobile=0;
+		$smscat12 = $this->input->post("smscat12");
 		$totsmssent = $this->input->post("totsmsv");
 		$totbal = $this->input->post("totbal");
 	
@@ -336,10 +376,7 @@ class SmsAjax extends CI_Controller{
 		    $i=1;	$fmobile = $this->smsmodel->getMobile($query->result(),$msg,$master_id,2);
 	               
 				if($this->input->post("language")==1){
- 
-		  
 				  $getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
-				
 				}else{
 				  $getv= mysmsHindi($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$fmobile);
 				     }	
@@ -444,10 +481,9 @@ class SmsAjax extends CI_Controller{
 	
 	function smsPanel(){
 		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"))->row();
-		
 		$data['sender_Detail'] =$sender;
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-	$smsbaladd = 	$this->db->get("sms_setting")->row();
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$smsbaladd = 	$this->db->get("sms_setting")->row();
 		$data['cbs']=$smsbaladd->sms_bal + checkBalSms($sender->uname,$sender->password) ;
 
 	

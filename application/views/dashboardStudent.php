@@ -11,6 +11,10 @@ blink{
 <!-- start: PAGE CONTENT -->
 <?php
 
+$this->db->where("school_code",$school_code);
+$this->db->where("category","All Student");
+$this->db->order_by("id limit 1");
+$noticeForStudent=$this->db->get("notice");
 
 $is_login = $this->session->userdata ( 'is_login' );
 $is_lock = $this->session->userdata ( 'is_lock' );
@@ -21,7 +25,10 @@ $logtype = $this->session->userdata ( 'login_type' );
 	<marquee behavior="alternate" onmouseover="this.stop();"
 		onmouseout="this.start();">
 
-message Area.....
+<?php 
+if($noticeForStudent->num_rows()>0){
+echo $noticeForStudent->row()->message;
+}?>
 </marquee>
 </div>
 <br>
@@ -106,7 +113,7 @@ message Area.....
 							
 	                    </span>
 	                </div>
-	                <a href="<?php echo base_url();?>employeeController/order_details">
+	                <a href="">
 		                <div class="padding-20 core-content">
 		                <!--	<h3 class="title block no-margin">Fee Reports</h3>-->
 		                <h3 class="title block no-margin"><blink>Due Fee Status</blink></h3>

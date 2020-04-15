@@ -125,7 +125,24 @@ function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 	    }
 	}
 	
-	function checknum($cnumber,$msg,$master_id){
+	function getMobileSendSms($str_arr,$master_id,$mv,$sende_Detail){
+		
+			$sessionv = 0;
+			$fmobile =$this->session->userdata("mobile_number");
+		$i=0;	foreach($str_arr as $xuv):
+			$checknum = $this->checknumSendSms($xuv->mobile,$master_id);
+			if($checknum){
+				$msg="Dear Student ".$xuv->name." your Username For login is ".$xuv->username." and Password is ".$xuv->password." Please Use for Login And check your account for homework, on line classess and other details.<br> For more info login to our website.".$sende_Detail->web_url;
+			$getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$checknum);
+			$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+			$i++;
+			}
+			endforeach;
+			return $i;
+		
+	}
+	
+	function checknumSendSms($cnumber,$master_id){
 	  
 		$cnumber = str_replace(' ', '', $cnumber);
 		if((is_numeric($cnumber)) && (strlen($cnumber)==10)){
@@ -139,6 +156,8 @@ function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 			);
 			$insertwrongnumber= $this->db->insert("wrong_number_sms",$data);
 			return false;
+			
+			
 		}
 			
 	}
@@ -197,6 +216,23 @@ function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 			$query=$this->db->get();
 			
 
+		return $query;
+	}
+	function getClassFatherNumberWithDetails($school_code,$classid){
+	
+		
+		$this->db->select('student_info.mobile');
+		$this->db->select('student_info.name');
+		$this->db->select('student_info.username');
+		$this->db->select('student_info.password');
+		$this->db->from('student_info');
+		$this->db->join('class_info','class_info.id=student_info.class_id');
+		$this->db->where("student_info.class_id",$classid);
+		$this->db->where("class_info.school_code",$school_code);
+		$this->db->where("student_info.status",1);
+		$query=$this->db->get();
+			
+	
 		return $query;
 	}
 	

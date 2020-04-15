@@ -3,7 +3,6 @@ class feeModel extends CI_Model{
 	
 	function totFee_due_by_id($stu_id,$indicator){
 		$student_id = $stu_id;
-		
 		$getpreviousDue 	= $this->getPreviousDue($student_id);
 		$student_fsd = $this->getFsdByStudentId($student_id);
 		if($student_fsd){
@@ -20,9 +19,14 @@ class feeModel extends CI_Model{
 				
 					$demandtotdate =date('Y-m-d', strtotime("+$i months", strtotime($student_fsd->row()->finance_start_date)));
 					
-				
-					if($indicator > 0){echo date("M-Y",strtotime($demandtotdate))."<br>";}
-					$totv=$totv+$this->getMonthFeeByMonth($demandtotdate ,$student_id);
+					$totmonthwise = $this->getMonthFeeByMonth($demandtotdate ,$student_id);
+					if($totmonthwise){
+						$fgh = $totmonthwise;
+					}else{
+						$fgh="N/A";
+					}
+					if($indicator > 0){echo date("M-Y",strtotime($demandtotdate))." [ ".$fgh." ]<br>";}
+					$totv=$totv+$totmonthwise;
 				}
 				return $totv;
 				}else{
@@ -40,7 +44,9 @@ class feeModel extends CI_Model{
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("finance_start_date <= ",$demandtotdate);
 		$this->db->where("finance_end_date >= ",$demandtotdate);
-		$getfsdid = $this->db->get("fsd")->row()->id;
+		$getfsdid = $this->db->get("fsd");
+		if($getfsdid->num_rows()>0){
+			$getfsdid=$getfsdid->row()->id;
 		$getmonth = date("m",strtotime($demandtotdate));
 		//echo $getfsdid."-".$getmonth."<br>";
 		if($getfsdid == $this->session->userdata("fsd")){
@@ -51,13 +57,13 @@ class feeModel extends CI_Model{
 			$this->db->where("student_id",$student_id);
 			$ostu_record = $this->db->get("old_student_info")->row();
 			$classid = $ostu_record->class_id;
-			
 			$this->db->where("id",$student_id);
 			$stu_record = $this->db->get("student_info")->row();
 		}
 		$totMonthly = $this->getOnemonthFee($student_id,$classid,$getmonth,$getfsdid,$stu_record->discount_id,$stu_record->vehicle_pickup);
 			//echo $totMonthly."<br>";
 		return $totMonthly;
+		}
 	}
 	
 	function getOnemonthFee($student_id,$classid,$getmonth,$getfsdid,$discount,$transportid){
