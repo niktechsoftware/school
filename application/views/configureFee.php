@@ -404,17 +404,15 @@
                                 <td> <input type="date" class="form-control" style="font-size: 10pt; height: 34px;"
                                     id="applied_date<?php echo $y;?>"
                                     value="<?php echo date('Y-m-d',strtotime($rt->applied_date));?>"></td>
-
                                 <td> <select class="form-control" id="mannual<?php echo $y;?>">
                                    <option value="all">ALL</option>
 
                                     <?php 
                                      $school_code = $this->session->userdata("school_code");
-                                  
-                                    $query = $this->db->query("SELECT DISTINCT(class_fees.fee_head_name) FROM class_info INNER JOIN class_fees ON class_info.id = class_fees.class_id where class_info.school_code=$school_code");
+                                    $query = $this->db->query("SELECT DISTINCT(class_fees.fee_head_name),class_fees.id FROM class_info INNER JOIN class_fees ON class_info.id = class_fees.class_id where class_info.school_code=$school_code");
                                                                         foreach($query->result() as $row){?>
                                   <!--<option value="<?php echo $rt->applied_head_id; ?>"></option>-->
-                                  <option value="<?php echo $row->fee_head_name;?>"
+                                  <option value="<?php echo $row->id;?>"
                                                                     <?php if($row->fee_head_name== $rt->applied_head_id): echo ' selected="selected"'; endif; ?>>
                                                                     <?php echo $row->fee_head_name;?></option>
                                     <?php   }?>

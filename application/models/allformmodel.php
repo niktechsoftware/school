@@ -74,7 +74,7 @@ class AllFormModel extends CI_Model{
                    $this->db->where("id",$classname->row()->stream);
                   $stream = $this->db->get("stream")->row();
                   $classinfo['stream']=$stream->stream;
-             return  $classinfo;  
+             	return  $classinfo;  
                   }else{
                      $classinfo['class']=0;
                      $classinfo['section']=0;

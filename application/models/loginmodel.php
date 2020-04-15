@@ -118,6 +118,7 @@ class LoginModel extends CI_Model{
         			"login_type" => "student",
         			"username" => $res->username,
         			"name" => $res->name,
+        			"id" => $res->id,
         			"class_id" => $res->class_id,
         			//"section" => $res->section,
         			"address_1" => $res->address1,
