@@ -71,7 +71,7 @@
 											<br></br>
 										<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/login/mobileNotice/Greeting">
  												<button class="btn panel-red btn-block btn-icon space10 ">
-                            <font size="5">Send SMS<br> Parent and Employee</font><span class="badge badge-red partition-orenge"> 4 </span>
+                            				<font size="5">Send SMS<br> Parent and Employee</font><span class="badge badge-red partition-orenge"> 4 </span>
 												</button>
 											</div>
 										<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/login/mobileNotice/Parent%20Message">
@@ -124,12 +124,12 @@
 												</button>
 												</a>
 											</div>
-											<!-- <div class="col-sm-4">
+											
+											<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/login/mobileNotice/templateSms">
 												<button class="btn panel-azure btn-block  btn-icon space10">
-
-											<font size="5">			Schedule SMS  <span class="badge badge-info partition-orenge"> 9 </span>
+											<font size="5">	Send Template SMS  <span class="badge badge-info partition-orenge"> 12 </span>
 												</button>
-											</div> -->
+											</div> 
 
 								
 

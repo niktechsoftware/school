@@ -353,6 +353,7 @@ elseif($this->uri->segment(3) == 'classwise'){ ?>
                             	
                             	<textarea name="meg" class="form-control" id="textArea" rows="5"></textarea>
                             </td>
+                           
                      	</tr>
                      	<input type="hidden" name="totbal" value="<?php echo $cbs; ?>" class="btn btn-dark-purple" />
                      		<input type ="hidden" name = "totsmsv" value="<?php echo $query->num_rows();?>" >
@@ -516,6 +517,117 @@ elseif($this->uri->segment(3) == 'requestsms'){ ?>
 		          </table>
               </form>
 
+<?php }elseif($this->uri->segment(3) == 'templateSms'){ ?>
+<div class="alert alert-warning" id="wait">
+</div>
+		<div id="box">
+			<p class="alert alert-info" > This is the area you are able to send Message Vehicle Wise to Student . select the Vehicle and Type the message in textbox and press send.</p>
+             <p class="alert alert-danger"> Available SMS Balance = <?php echo $cbs;?></p>
+            <?php 
+      	$query = $this->smsmodel->getAllFatherNumber($this->session->userdata("school_code"));
+        ?>
+           
+                   <?php 
+         $totmsg=$this->uri->segment(4);
+          if($totmsg)
+          		{
+					?>
+					<div class="alert alert-success">You have sent successfuly <?php echo $totmsg;?> SMS</div>
+          		<?php } else{
+          		     if($this->uri->segment(5) == 9){?>
+          		      
+	                <script>alert("You have not sufficient Balance Please Contact Admin or purchase. SMS not sent");</script>
+	  
+					<div class="alert alert-danger" >You have not sufficient Balance Please Contact Admin or purchase sms. SMS not sent.</div>
+          		  <?php   }}?> 
+                    <table class="table">
+                     	<tr>
+                     	
+                     	<tr>
+                     		<td><strong>Select Section</strong> </td>
+                     		<td> <?php $classname = $this->db->query("SELECT DISTINCT section FROM class_info WHERE school_code='$school_code'")->result();
+																	 ?>
+													<select class="form-control" id="class" name="section" style="width: 160px;">
+												<option value="no">-Select Section-</option>
+												<?php foreach($classname as $row):
+												$this->db->where("id",$row->section);
+												$try = $this->db->get("class_section")->row();
+												?>
+													<option value="<?php echo $try->id;?>"><?php echo $try->section;?></option>
+													
+													<?php endforeach; ?>
+													<option value="0">All</option>
+												</select>		
+														</td>
+														
+							<td><strong>Select Class</strong> </td>
+                     		<td> 				
+													<select class="form-control" id="section" name="class" style="width: 160px;">
+														</select>
+														</td>							
+                     	</tr>
+                       <tr><td>Select Language</td><td><select class="form-control"  name="language" id="language" style="width: 200px;" required="required">
+                               
+                               
+                                <option value="1">GENRAL[English]</option>
+                                
+                                
+                              </select></td><td></td></tr>
+                      
+                     	<tr>
+                     		<td>Message : </td>
+                     		
+                            <td> 				
+										<select class="form-control" id="smscat12" name="smscat12" style="width: 160px;">
+											<option value="">Select sms</option>
+											<option value="1">User ID SMS</option>
+										</select>
+							</td>	
+							<td style="width: 250px;">Dear Student XYZ your Username For login username= A1S1XYZA and Password = 123456.<br> Please Use for Login And check your account for homework, on line classess and other details.<br> For more info login to our website www.xyz.com.</td>
+                     		<td>
+                     		</td>
+                     	</tr>
+                     	<input type="hidden" name="totbal" id ="totbal" value="<?php echo $cbs; ?>" class="btn btn-dark-purple" />
+                     		<input type ="hidden" name = "totsmsv" id = "totsmsv" value="<?php echo $query->num_rows();?>" >
+                   
+                     	<tr>
+                     		<td colspan="2">
+                     			<a href="#" name="Send_Message" id="Send_Message" class="btn btn-dark-purple" >Send SMS</a>
+                     		</td>
+                     	</tr>
+		     </table>
+		     <script>
+		     $("#wait").hide();
+		     $("#Send_Message").click(function(){
+		    	 $("#box").hide();
+					var totsmsv= Number($("#totsmsv").val());
+					var totbal = Number($("#totbal").val());
+					var smscat12 = $("#smscat12").val();
+					var section = $("#section").val();
+					var language = $("#language").val();
+					
+					 $.ajax({
+						"url": "<?= base_url() ?>index.php/smsAjax/templateSmsSend",
+						"method": 'POST',
+						"data": {totsmsv : totsmsv,totbal : totbal,smscat12 : smscat12,language : language,section : section},
+						beforeSend: function(data) {
+							$("#wait").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+						},
+						success: function(data) {
+							$("#wait").html(data);
+							 $("#box").show();
+							 $("#wait").show()
+							alert(data);
+						},
+						error: function(data) {
+							$("#wait").html(data)
+						}
+					})
+					
+					});
+		     </script>
+           
+	</div>
 												<?php }
 
 ?>

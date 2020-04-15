@@ -4,8 +4,21 @@ $school_code = $this->session->userdata("school_code");
 $is_login = $this->session->userdata('is_login');
 $is_lock = $this->session->userdata('is_lock');
 $logtype = $this->session->userdata('login_type');
+$this->db->where("school_code",$school_code);
+$this->db->where("category","All Employee");
+$this->db->order_by("id limit 1");
+$noticeForTeacher=$this->db->get("notice");?>
 
+<div style="background-color: green; color: white;" class="form-control">
+<marquee behavior="alternate" onmouseover="this.stop();"
+		onmouseout="this.start();">
 
+		<?php
+		if($noticeForTeacher->num_rows()>0){
+	echo $noticeForTeacher->row()->message;
+}?>
+</marquee>
+</div>
 if($logtype==3)
 {
 ?>
