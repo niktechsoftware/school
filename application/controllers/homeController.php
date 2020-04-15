@@ -353,5 +353,26 @@ class HomeController extends CI_Controller{
 		echo "done- ".$school_code;
 		
 	}
-
+	
+	function updateTranportFSD(){
+		$tfm = $this->db->get("transport_fee_month");
+		foreach($tfm->result() as  $row):
+				$this->db->where("invoice_no",$row->invoice_number);
+			$getfsd = $this->db->get("fee_deposit");
+			if($getfsd->num_rows()>0){
+				$data['fsd']=$getfsd->row()->finance_start_date;
+				$this->db->where("invoice_number",$row->invoice_number);
+				$this->db->update("transport_fee_month",$data);
+				
+			}else{
+				$this->db->where("school_code",$row->school_code);
+				$this->db->where("finance_start_date","2019-04-01");
+				$fsdid = $this->db->get("fsd")->row()->id;
+				$data['fsd']=$fsdid;
+				$this->db->where("invoice_number",$row->invoice_number);
+				$this->db->update("transport_fee_month",$data);
+			}
+		
+		endforeach;
+	}
 }

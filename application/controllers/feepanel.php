@@ -2,30 +2,28 @@
 class Feepanel extends CI_Controller{
 
 
-	// function __construct()
-	// {
-	// 	parent::__construct();
-	// 	$this->is_login();
-	// 	$this->load->model("smsmodel");
-	// 	$this->load->model("employeemodel");
-	// 	}
+	function __construct()
+	 {
+	 	parent::__construct();
+	 	$this->is_login();
+	 	$this->load->model("smsmodel");
+	 	$this->load->model("employeemodel");
+	 	$this->load->model("feemodel");
+	 	}
 
-	// 	function is_login(){
-	// 		$is_login = $this->session->userdata('is_login');
-	// 		$is_lock = $this->session->userdata('is_lock');
-	// 		$logtype = $this->session->userdata('login_type');
-	// 		if($is_login != "admin"){
-	// 			//echo $is_login;
-	// 			redirect("index.php/homeController/index");
-	// 		}
-	// 		elseif(!$is_login){
-	// 			//echo $is_login;
-	// 			redirect("index.php/homeController/index");
-	// 		}
-	// 		elseif(!$is_lock){
-	// 			redirect("index.php/homeController/lockPage");
-	// 		}
-	// 	}
+	 	function is_login(){
+	 		$is_login = $this->session->userdata('is_login');
+	 		$is_lock = $this->session->userdata('is_lock');
+	 		$logtype = $this->session->userdata('login_type');
+	 		if(!$is_login){
+	 			//echo $is_login;
+	 			redirect("index.php/homeController/index");
+	 		}
+	 		
+	 		elseif(!$is_lock){
+	 			redirect("index.php/homeController/lockPage");
+	 		}
+	 	}
 
 
 
@@ -49,11 +47,11 @@ class Feepanel extends CI_Controller{
 		$data['mainPage'] = 'Fee Panel Area';
 		$data['subPage'] = 'Fee Panel';
 		$data['title'] = 'Fee Panel Area ';
-		$this->load->model("feeduemodel");
-		$var= $this->feeduemodel->getDueDetail();
+		$this->load->model("allformmodel");
+		$var= $this->allformmodel->getfsdWisestudent_id($this->session->userdata("fsd"));
 		$data['request']=$var->result();
-		$data['headerCss'] = 'headerCss/noticeCss';
-		$data['footerJs'] = 'footerJs/noticeJs';
+		$data['headerCss'] = 'headerCss/employeeListCss';
+		$data['footerJs'] = 'footerJs/simpleEmployeeList';
 		$data['mainContent'] = 'panel/fee/studentwise_feepanel';
 		$this->load->view("includes/mainContent", $data);
 
@@ -277,11 +275,10 @@ function discountStud()
 	$data['pageTitle'] = 'Discount List';
 	$data['smallTitle'] = 'Student Discount List';
 	$data['mainPage'] = 'Discount';
-	
 	$data['subPage'] = 'Student Discount';
 	$data['title'] = 'Student Discount';
-	$data['headerCss'] = 'headerCss/studentListCss';
-	$data['footerJs'] = 'footerJs/simpleStudentListJs';
+	$data['headerCss'] = 'headerCss/employeeListCss';
+	$data['footerJs'] = 'footerJs/simpleEmployeeList';
 	$data['mainContent'] = 'studentDiscount';
 	$this->load->view("includes/mainContent", $data);
 }

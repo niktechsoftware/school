@@ -58,6 +58,30 @@
 		$this->load->view("includes/mainContent", $data);
 	
 	}
+		function chat() {
+		 
+		$data['subPage'] = 'Video Chat';
+		$data['smallTitle'] = 'Chat';
+		$data['pageTitle'] = 'Video Chat';
+		$data['mainPage'] = 'Dashboard';
+		$data['title'] = 'Teacher | Dashboard';
+	    $data['footerJs'] = 'footerJs/dashboardJs';
+		$data['headerCss'] = 'headerCss/dashboardCss';
+		$data['mainContent'] = 'googleChat';
+		$this->load->view("includes/mainContent", $data);
+	}
+	function chatBranch() {
+	       
+		$data['subPage'] = 'Video Chat';
+		$data['smallTitle'] = 'Chat';
+		$data['mainPage'] = 'Dashboard';
+		$data['pageTitle'] = 'Video Chat';
+		$data['title'] = 'Teacher | Dashboard';
+		$data['headerCss'] = 'headerCss/dashboardCss';
+	    $data['footerJs'] = 'footerJs/dashboardJs';
+		$data['mainContent'] = 'googleChatBranch';
+		$this->load->view("includes/mainContent", $data);
+	}
 	
 	
 		function updateProfile()

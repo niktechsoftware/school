@@ -7,6 +7,7 @@ class singleStudentControllers extends CI_Controller{
 			$this->is_login();
 			$this->load->model("subjectModel");
 			$this->load->model("singleStudentModel");
+			$this->load->model("feeModel");
 		}
 		
 		function is_login(){
@@ -22,18 +23,21 @@ class singleStudentControllers extends CI_Controller{
 			}
 		}
 		
+		function getChatId(){
+		   $username= $this->input->post("id");
+		   $this->db->where("chat_username",$username);
+		   $chatrow = $this->db->get("chat");
+		   echo $chatrow->row()->chat_id;
+		}
+		
 		function index(){
-
-				$school_code=$this->session->userdata("school_code");
+		$school_code=$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
 		$this->db->where("DATE(opening_date)",date("Y-m-d"));
 		$checkopeningclo  = $this->db->get("opening_closing_balance");
 		if($checkopeningclo->num_rows()>0){
-
 			$cr_date = date('Y-m-d H:i:s');
-
 				$balance = array(
-						
 						"closing_date" => $cr_date,
 				);
 				$this->db->where("school_code",$school_code);
@@ -44,10 +48,8 @@ class singleStudentControllers extends CI_Controller{
 			$clo = $this->db->query("select * from opening_closing_balance where school_code = '$school_code'  ORDER BY id DESC LIMIT 1")->row();
 	
 			$cl_date = $clo->closing_date;
-
 			$cl_balance = $clo->closing_balance;
 			$cr_date = date('Y-m-d');
-
 			if($cl_date != $cr_date)
 			{
 				$balance = array(
@@ -60,19 +62,31 @@ class singleStudentControllers extends CI_Controller{
 				$this->db->insert('opening_closing_balance',$balance);
 				//echo $cl_date;
 			}
-		}
-		  
+		}	
+		$data['stuid_id']=$this->session->userdata("id");
+		$data['school_code']=$school_code;
 			$data['pageTitle'] = 'Dashboard';
 			$data['smallTitle'] = 'Overview of all Section';
 			$data['mainPage'] = 'Dashboard';
 			$data['subPage'] = 'dashboard';
-		
 			$data['title'] = 'Student Dashboard';
 			$data['headerCss'] = 'headerCss/dashboardCss';
 			$data['footerJs'] = 'footerJs/dashboardJs';
 			$data['mainContent'] = 'dashboardStudent';
 			$this->load->view("includes/mainContent", $data);
 		
+		}
+		function feesDetail(){
+		
+		$data['pageTitle'] = 'Fee Report';
+		$data['smallTitle'] = 'Student Fee Report';
+		$data['mainPage'] = ' Fee Report';
+		$data['subPage'] = 'Fee Report';
+		$data['title'] = 'Student Fee Report';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'stufeesdetail';
+		$this->load->view("includes/mainContent", $data);
 		}
 		
 		function studentProfile(){
@@ -147,10 +161,10 @@ class singleStudentControllers extends CI_Controller{
 		function attendanceReport(){
 			$user = $this->session->userdata('username');
 			$data['stu_id']=$user;
-			$data['pageTitle'] = 'Attendance Report';
-			$data['smallTitle'] = 'Student Personal Attendance Report';
+			$data['pageTitle'] = 'Attendance Panel';
+			$data['smallTitle'] = 'Student Attendance Report';
 			$data['mainPage'] = 'Student';
-			$data['subPage'] = 'Student Personal Attendance Report';
+			$data['subPage'] = 'Student  Attendance Report';
 			
 			$data['title'] = 'Student Personal Attendance Report';
 			$data['headerCss'] = 'headerCss/studentCss';
@@ -251,7 +265,7 @@ class singleStudentControllers extends CI_Controller{
 		}
 		
 		function examResult(){
-			$data['pageTitle'] = 'Student Exam Result';
+			$data['pageTitle'] = 'Exam Panel';
 			$data['smallTitle'] = 'Personal Exam Result';
 			$data['mainPage'] = 'Student';
 			$data['subPage'] = 'Personal Exam Result';
@@ -263,7 +277,7 @@ class singleStudentControllers extends CI_Controller{
 		}
 		
 		function stock(){
-			$data['pageTitle'] = 'Student Stock Detail';
+			$data['pageTitle'] = 'Stock Detail';
 			$data['smallTitle'] = 'Stock purchasing detail';
 			$data['mainPage'] = 'Student';
 			$data['subPage'] = 'Stock purchasing detail';

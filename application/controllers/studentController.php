@@ -91,8 +91,10 @@ class StudentController extends CI_Controller{
 	{
 	    
 	    $fsd=$this->input->post('fsd');
-	    $data['fsd']=$fsd;
-	      $data['pageTitle'] = 'Student Panel';
+	    $this->load->model("allFormModel");
+	    $data['data']= $this->allFormModel->getfsdWisestudent_id($fsd);
+	    $data['fsd']=$this->allFormModel->getfsddetails($fsd);
+	    $data['pageTitle'] = 'Student Panel';
 		$data['smallTitle'] = 'Student List';
 		$data['mainPage'] = 'Session Wise Student List';
 		$data['subPage'] = 'Session Wise Student List';

@@ -58,8 +58,11 @@ function getChecksumFromString($str, $key) {
 }
 
 function verifychecksum_e($arrayList, $key, $checksumvalue) {
+    	//print_r($checksumvalue);
 	$arrayList = removeCheckSumParam($arrayList);
 	ksort($arrayList);
+	//print_r($checksumvalue);
+	//exit();
 	$str = getArray2StrForVerify($arrayList);
 	$paytm_hash = decrypt_e($checksumvalue, $key);
 	$salt = substr($paytm_hash, -4);

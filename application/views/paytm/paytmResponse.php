@@ -49,6 +49,7 @@
         <center>
             <?php if($_POST["STATUS"] == "TXN_SUCCESS"): ?>
                 <a href="<?= $successURI ?>" style="background-color:#4CAF50 ;border:none;color:white;padding:13px 30px;text-align:center;text-decoration:none;font-size:30px; ">GENERATE RECIEPT</a> 
+            
             <?php else: ?>
                 <a href="<?= $failURI ?>" style="background-color:#4CAF50 ;border:none;color:white;padding:13px 30px;text-align:center;text-decoration:none;font-size:30px; ">BACK</a> 
             <?php endif; ?>

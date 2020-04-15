@@ -58,8 +58,10 @@
 								</ul>
 							</div>
 						</div>
-					</div>
-									
+					</div><?php 
+					$year=date("Y",strtotime(date("Y-m-d")));
+					$data =$year."-".$month."-1";?>
+									<div class="alert alert-info"> Fee for Month <?php echo date("M-Y",strtotime($data));?></div>
 										<div class="table-responsive">
 											<table class="table table-striped table-hover" id="cldetail">
                                             <thead>
@@ -67,7 +69,8 @@
 											<th>S.No.</th>
 											<th>Student Id</th>
 											<th>Student Name</th>
-											<th>Fee Of Month</th>
+											<th>Status</th>
+											<th>Fee</th>
 											<th>Mobile No.</th>
 										</tr>
 									</thead>
@@ -89,6 +92,7 @@
 											<td><?php echo $row->username;?></td>
 											<td><?php echo $row->name.$row->class_id;?></td>
 											<td><?php echo "Not Deposite";?></td>
+											<td><?php echo $this->feeModel->getMonthFeeByMonth($data,$row->id);?></td>
 										    <td><?php echo $row->mobile;?></td>
 										    </tr>
 										    <?php $i++; }   endforeach; ?>

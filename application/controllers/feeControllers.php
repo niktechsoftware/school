@@ -27,6 +27,8 @@ class feeControllers extends CI_Controller{
             redirect("index.php/homeController/lockPage");
         }
     }
+    
+    
     function searchstudent(){
     	$school_code = $this->session->userdata("school_code");
     	$fsd_id = $this->session->userdata("fsd");
@@ -62,84 +64,23 @@ class feeControllers extends CI_Controller{
 function getFsd(){
 		$school_code=$this->session->userdata('school_code');
 		$stud_id=$this->input->post("studentid");
-		//echo $stud_id."<br>";
-		$this->db->where("username",$stud_id);
-		$student_record = $this->db->get("student_info");
-		if($student_record->num_rows()> 0){
-			$student_id=$student_record->row()->id;
-			//echo $student_id;
-			
-			$fsddetails1 = $this->db->query("select distinct(finance_start_date) from fee_deposit where student_id='$student_id'");
-			if($fsddetails1->num_rows()>0){
-				$usedfsd = $fsddetails1->row()->finance_start_date;
-				$fsddetails = $this->db->query("select distinct(finance_start_date) from fee_deposit where finance_start_date >= '$usedfsd' and school_code='$school_code' order by finance_start_date ASC");
-				$i =0;foreach($fsddetails->result() as $row):
-					$this->db->select_sum("deposite_month");
-					$this->db->where("student_id",$student_id);
-					$this->db->where("finance_start_date",$row->finance_start_date);
-					$totdm = $this->db->get("fee_deposit")->row()->deposite_month;
-					
-					if($totdm < 12){ 
-					$this->db->where('id',$row->finance_start_date);
-					$start_date=$this->db->get('fsd')->row()->finance_start_date; ?>
-						<div class="form-group">
-							<label for="inputStandard" class="col-lg-3 control-label">
-								 Select FSD <span style="color:#F00">*</span>
-								   </label>
-								    <div class="col-lg-5">
-								      <select id="fsd12" name="fsd" class="form-control">
-								          <option value="<?php echo $row->finance_start_date; ?>"><?php echo $start_date ?></option>
-										</select>
-									</div>
-									<div class="col-sm-4" id="subbox">
-										<button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
-									</div>
-							</div>
-					<?php $i++; break; }
-				 endforeach;
-				 if($i<1){
-				 	//echo $totdm ;
-				 	//echo $student_record->row()->fsd;
-				 	//beech ke session ka logic likhna hai abhi
-				 	$this->db->where('id',$student_record->row()->fsd);
-				 	$start_date=$this->db->get('fsd')->row()->finance_start_date;
-				 	?>	<div class="form-group">
-				 			<label for="inputStandard" class="col-lg-3 control-label">
-				 				Select FSD <span style="color:#F00">*</span>
-				 			</label>
-				 			<div class="col-lg-5">
-				 				<select id="fsd12" name="fsd" class="form-control">
-				 					<option value="<?php echo $student_record->row()->fsd; ?>"><?php echo $start_date ?></option>
-				 				</select>
-				 			</div>
-				 			<div class="col-sm-4" id="subbox">
-				 					<button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
-				 			</div>
-				 		</div>
-				 					<?php
-				 		}	
-				 
-			}else{
-				//echo $totdm ;
-				//echo $student_record->row()->fsd;
-				$this->db->where('id',$student_record->row()->fsd);
-				$start_date=$this->db->get('fsd')->row()->finance_start_date;
-				?>	<div class="form-group">
-								                      <label for="inputStandard" class="col-lg-3 control-label">
-								                      		Select FSD <span style="color:#F00">*</span>
-								                      </label>
-								                      <div class="col-lg-5">
-								                      		<select id="fsd12" name="fsd" class="form-control">
-								                      			<option value="<?php echo $student_record->row()->fsd; ?>"><?php echo $start_date ?></option>
-												            </select>
-													   </div>
-													   <div class="col-sm-4" id="subbox">
-														 <button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
-													</div>
-												</div>
-		<?php	}
-		
-		}else{?>
+		$student_fsd = $this->feeModel->getFsdByStudentId($stud_id);
+		if($student_fsd){
+		if($student_fsd->num_rows()>0){
+		?>	<div class="form-group">
+				 <label for="inputStandard" class="col-lg-3 control-label">
+					Select FSD <span style="color:#F00">*</span>
+				</label>
+					<div class="col-lg-5">
+						<select id="fsd12" name="fsd" class="form-control">
+								<option value="<?php echo $student_fsd->row()->id; ?>"><?php echo $student_fsd->row()->finance_start_date ;?></option>
+						</select>
+					</div>
+					<div class="col-sm-4" id="subbox">
+						<button  class="btn btn-dark-green">Get Record <i class="fa fa-arrow-circle-right"></i></button>
+					</div>
+				</div>
+		<?php }}else{?>
 			<div class="alert alert-block alert-danger fade in">
 				<button data-dismiss="alert" class="close" type="button">
 					&times;
@@ -174,13 +115,10 @@ function getFsd(){
 				"school_code"=>$school_code
 		);
 		$this->db->insert("invoice_serial",$invoiceDetail);
-		
 		$months = $this->input->post("diposit_month");
-		
 		//echo "<pre>";
 		//print_r($this->session->all_userdata());
 		//echo "</pre>";
-		
 		$this->load->model("studentModel");
 		$student = $this->studentModel->getStudentDetail($this->input->post('stuId'))->row();
 		
@@ -223,23 +161,6 @@ function getFsd(){
 		  $this->db->where("school_code",$school_code);
 			$duedt2=  $this->db->get("feedue");
 		
-	
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		$close1 = $balance + $this->input->post("paid");
-		$dayBook = array(
-				"paid_to" =>$this->session->userdata("username"),
-				"paid_by" =>$this->input->post("stuId"),
-				"reason" => "Fee Deposit",
-				"dabit_cradit" => "1",
-				"amount" => $this->input->post("paid"),
-				"closing_balance" => $close1,
-				"pay_date" => date("Y-m-d H:s:i"),
-				"pay_mode" => $this->input->post("payment_mode"),
-				"invoice_no" => $invoice_number,
-				"school_code"=>$school_code
-		);
-		
 		$otptable=array(
 			"invoice_number"=>$invoice_number
 			);
@@ -265,7 +186,7 @@ function getFsd(){
 			);
 
 		$this->db->insert("dis_den_tab",$discountv);
-		if( $this->db->insert('day_book',$dayBook) && $this->db->insert("fee_deposit",$updata) ){
+		if( $this->db->insert("fee_deposit",$updata) ){
 		    
 		   if($duedt2->num_rows()>0){
 		     
@@ -287,7 +208,6 @@ function getFsd(){
     		$mdata['depositedate']=$this->input->post("subdate");
     		$mdata['invoice_no']=$invoice_number;
      		$mdata['school_code']=$school_code;
-     		
  	     
 		    $this->db->insert("feedue",$mdata);
 		 }
@@ -314,34 +234,16 @@ function getFsd(){
 			 }
 			 
 			 if($school_code==14){
-		   $trnsfeemon=	$this->input->post("dtransport_fee");
+		        $trnsfeemon=	$this->input->post("dtransport_fee");
 			}else{
 				$trnsfeemon	=$this->input->post("transport_fee");
 			}
-						if($trnsfeemon>0){
-		
-							$tranportdat=array(
-								"stu_id"=>$this->input->post('stuId'),
-								"month"=>$g,
-								"total_amount"=>$this->input->post("transport_fee"),
-								"paid_amount"=>$this->input->post("transport_fee"),
-								"invoice_number"=>$invoice_number,
-								"school_code"=>$school_code,
-								"date"=>date("y-m-d")
 					
-							);
-							$this->db->insert("transport_fee_month",$tranportdat);
-						}
 			
 
 		endforeach;
 		//---------------------------------------------- Opening Colsing Balance Start -----------------------------------------
-		$bal = array(
-				"closing_balance" => $close1
-		);
-		$this->db->where("school_code",$school_code);
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->update("opening_closing_balance",$bal);
+		
 		//---------------------------------------------- Opening Colsing Balance End -------------------------------------------
 			
 		
@@ -360,8 +262,11 @@ function getFsd(){
 			$this->db->where("student_id",$this->input->post('stuId'));
 			$this->db->where("invoice_no",$invoice_number);
 		    $mode = $this->db->get('fee_deposit')->row()->payment_mode;
+		    $this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
 		if($isSMS->fee_submit){
 		    if($mode==1 || $mode==5){
+		        $this->feeModel->updateDaybook($school_code,$this->input->post("paid"),$this->input->post("stuId"),$this->input->post("payment_mode"),$invoice_number);
+		        $this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
 		
 			//echo $student->student_id.'sss';
 			$this->db->where("school_code",$school_code);
@@ -455,8 +360,6 @@ function getFsd(){
 		$stuRecordfsd = $this->allFormModel->getfsdwiseStudent($this->input->post("fsd"));
 		$data['stidRecord']=$stuRecordfsd;
 		//print_r($stuRecordfsd->arr);
-	
-	
 		$stuRecordfsdclass = $this->allFormModel->getfsdwiseStudentClassData($this->input->post("fsd"),$this->input->post("classv"));
 		$data['stidRecordfsdclass']=$stuRecordfsdclass;
 		$this->load->view("ajax/feeReport",$data);
@@ -465,7 +368,6 @@ function getFsd(){
 				  
 	function fullstudentfeeDetail(){
 		$studentid = $this->uri->segment(3);
-		
 		$this->load->model("feeModel");
 		$studentdata=$this->feeModel->fullstudentfeeDetail($studentid);
 		$data['student']=$studentdata;
@@ -482,7 +384,6 @@ function getFsd(){
 
 		function fullfeeDetailIframe(){
 			$studentid = $this->uri->segment(3);
-			
 			$this->load->model("feeModel");
 			$studentdata=$this->feeModel->fullstudentfeeDetail($studentid);
 			$data['student']=$studentdata;
@@ -545,12 +446,10 @@ function getFsd(){
 		   $fsd= $this->input->post("fsd");
 		   $section= $this->input->post("section");
 		   $classv= $this->input->post("classv");
-		  
 		   $month= $this->input->post("month");
-		 
 		   $data['month']=$month;
+		   $data['fsd']=$fsd;
 		   $data['studt']=$this->feeModel->getstudent($classv);
-		  
     		$this->load->view("currentmonthfee", $data);
 		    
 		}
@@ -842,26 +741,7 @@ function getFsd(){
 			);
 			$this->load->model('feemodel');
 			$this->feemodel->insertocanddaybook($bal,$data);
-			
-			// 	$this->db->where("school_code",$this->session->userdata("school_code"));
-			// $this->db->where('invoice_no', $invoiceNo);
-			// $this->db->where('student_id', $student_id);
-			// $uprow = $this->db->get('fee_deposit');
-			// if($uprow->num_rows()>0){
-			   
-			    // $tot=0;
-			   
-			    // $tot=$uprow->paid;
-			    // $datau  = array(
-			    //    // 'status'=>"pending",
-			    //     'invoice_no'=>null,
-			    //     'diposit_date'=>'0000-00-00',
-			    //     'total'=>0.00,
-			    //     'paid' =>0
-			    // );
-			   // $this->db->where("student_id",$student_id);
-
-			   if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))){
+			if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))){
 				redirect(base_url()."index.php/feeControllers/feesDetail/".$student_id."/".$df); 
 			   }else{
 				   echo "Please Contact to Admin";

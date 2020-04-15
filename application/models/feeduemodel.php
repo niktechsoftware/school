@@ -4,11 +4,6 @@
 		parent::__construct();
 		$school_code = $this->session->userdata("school_code");
 	}
-	public function getDueDetail(){
-		$school_code=$this->session->userdata("school_code");
-		$query1 = $this->db->query("select * from feedue where school_code = '$school_code'");
-		return $query1;
-	}
 	
 	public function enterDetail($data,$studid){
 		$this->db->where("school_code",$this->session->userdata("school_code"));

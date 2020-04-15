@@ -100,3 +100,89 @@ Stack trace:
 #4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/ajax/feeReport.php on line 1200
+[06-Apr-2020 13:59:43 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on bool in /home/schoodhe/public_html/school/application/views/currentmonthfee.php:76
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(554): CI_Loader->view('currentmonthfee', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->current_monthreport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/currentmonthfee.php on line 76
+[06-Apr-2020 13:59:47 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on bool in /home/schoodhe/public_html/school/application/views/currentmonthfee.php:76
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(554): CI_Loader->view('currentmonthfee', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->current_monthreport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/currentmonthfee.php on line 76
+[06-Apr-2020 13:59:49 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on bool in /home/schoodhe/public_html/school/application/views/currentmonthfee.php:76
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(554): CI_Loader->view('currentmonthfee', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->current_monthreport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/currentmonthfee.php on line 76
+[06-Apr-2020 13:59:52 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function result() on bool in /home/schoodhe/public_html/school/application/views/currentmonthfee.php:76
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/feeControllers.php(554): CI_Loader->view('currentmonthfee', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): feeControllers->current_monthreport()
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/currentmonthfee.php on line 76
+[06-Apr-2020 14:34:35 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'table' (T_STRING), expecting ')' in /home/schoodhe/public_html/school/application/views/panel/exam/classwise.php on line 76
+[06-Apr-2020 14:34:52 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'table' (T_STRING), expecting ')' in /home/schoodhe/public_html/school/application/views/panel/exam/classwise.php on line 76
+[06-Apr-2020 15:43:05 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/SessionwiseList.php:55
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/views/includes/mainContent.php(6): CI_Loader->view('SessionwiseList')
+#3 /home/schoodhe/public_html/school/system/core/Loader.php(834): include('/home/schoodhe/...')
+#4 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#5 /home/schoodhe/public_html/school/application/controllers/studentController.php(103): CI_Loader->view('includes/mainCo...', Array)
+#6 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): StudentController->yearwisestudentList()
+#7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#8 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/SessionwiseList.php on line 55
+[09-Apr-2020 18:06:56 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/invoice/si/format_15.php on line 823
+[10-Apr-2020 11:26:36 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Using $this when not in object context in /home/schoodhe/public_html/school/application/libraries/PaytmKit/lib/config_paytm.php:9
+Stack trace:
+#0 /home/schoodhe/public_html/school/application/controllers/paytm.php(3): require_once()
+#1 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(251): include('/home/schoodhe/...')
+#2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#3 {main}
+  thrown in /home/schoodhe/public_html/school/application/libraries/PaytmKit/lib/config_paytm.php on line 9
+[10-Apr-2020 11:37:38 Asia/Calcutta] PHP Fatal error:  require_once(): Failed opening required 'application/libraries/PaytmKit/lib/config_paytm.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/schoodhe/public_html/school/application/controllers/paytm.php on line 13
+[11-Apr-2020 14:10:28 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<' in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 3337
+[11-Apr-2020 14:11:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 4570
+[11-Apr-2020 14:14:54 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 4570
+[13-Apr-2020 21:19:53 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::post() in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php:26
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleStudentControllers->getChatId()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php on line 26
+[13-Apr-2020 21:21:04 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::post() in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php:26
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleStudentControllers->getChatId()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php on line 26
+[13-Apr-2020 21:23:48 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::post() in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php:26
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleStudentControllers->getChatId()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php on line 26
+[13-Apr-2020 21:25:14 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method CI_DB_mysqli_driver::post() in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php:26
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): singleStudentControllers->getChatId()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/singleStudentControllers.php on line 26

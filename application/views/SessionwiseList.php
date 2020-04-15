@@ -37,9 +37,9 @@
 				</div>
 			</div>
       <div class="panel-body">
-
-<table class="table table-striped table-bordered" style="width:100%; overflow-y: scroll;" id="sample-table-2">
-<thead>	<tr style="background-color:#1ba593; color:white;">	<th>SNo.</th>
+        <div class ="alert alert-success"><h2>Student List Of session <?php echo date("d-m-Y",strtotime($fsd->row()->finance_start_date));?> to <?php echo date("d-m-Y",strtotime($fsd->row()->finance_end_date));?></h2></div>
+        <table class="table table-striped table-bordered" style="width:100%; overflow-y: scroll;" id="sample-table-2">
+        <thead>	<tr style="background-color:#1ba593; color:white;">	<th>SNo.</th>
 										<th>User Name</th>
 										<th>Student Name</th>
 										<th>Father Name</th>
@@ -49,60 +49,57 @@
 										<th>Mobile</th></tr></thead>
 
 
-<?php
-$sno = 1; 
- $this->db->where('fsd',$fsd);
-$data=$this->db->get('old_student_info');
-if($data->num_rows()>0){
-foreach($data->result() as $detail)
-{
-
-$this->db->where('id',$detail->student_id);
-$std=$this->db->get('student_info');
-if($std->num_rows()>0)
-{
-?><?php if($sno%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
-<tr class="<?php echo $rowcss;?> text-uppercase">
-	<td><?php echo $sno;?></td>
-	<td><?php echo $std->row()->username;?></td>
-	<td><?php echo $std->row()->name;?></td>
-	<?php	$this->db->where("student_id",$std->row()->id);
-		$fname  = $this->db->get("guardian_info");
-		if($fname->num_rows()>0){?>
-		<td><?php echo strtoupper($fname->row()->father_full_name); ?></td>
-		<?php } else{
-		  ?>	<td><?php echo "Please Update";?></td>
-				<?php }
-
-
-				  $this->db->select('class_name,section');
-				  $this->db->where('id',$std->row()->class_id);
-				   $classInfo=$this->db->get('class_info');
-
-				   if($classInfo->num_rows()>0)
-				   {
-										
-
-				?>
-	<td><?php echo $classInfo->row()->class_name;?></td>
-	<?php $this->db->select('section');
-											  $this->db->where('id',$classInfo->row()->section);
-											  $this->db->where("school_code",$this->session->userdata("school_code"));
-										      $sectionInfo=$this->db->get('class_section');
-										      if($sectionInfo->num_rows()>0){
-										      ?>
-										
-	<td><?php echo $sectionInfo->row()->section;?></td>
-	<td><?php echo $std->row()->address1;?></td>
-	<td><?php echo $std->row()->mobile;?></td>
-</tr>
-
-<?php
-}
-}
-}$sno++;
-} }?>
-</table>
-</div>
-</div></div>
-</div>
+                    <?php
+                    $sno = 1; 
+    
+                    if($data->num_rows()>0){
+                        foreach($data->result() as $detail):
+                        $this->db->where('id',$detail->student_id);
+                        $std=$this->db->get('student_info');
+                        if($std->num_rows()>0)
+                        {
+                            ?><?php if($sno%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
+                            <tr class="<?php echo $rowcss;?> text-uppercase">
+                        	<td><?php echo $sno;?></td>
+                        	<td><?php echo $std->row()->username;?></td>
+                        	<td><?php echo $std->row()->name;?></td>
+                        	<?php	$this->db->where("student_id",$std->row()->id);
+                    		$fname  = $this->db->get("guardian_info");
+                    		if($fname->num_rows()>0){?>
+                    		    <td><?php echo strtoupper($fname->row()->father_full_name); ?></td>
+                    		<?php } else{
+                		    ?>	<td><?php echo "Please Update";?></td>
+                				<?php }
+                
+                
+                				  $this->db->select('class_name,section');
+                				  $this->db->where('id',$std->row()->class_id);
+                				   $classInfo=$this->db->get('class_info');
+                
+                				   if($classInfo->num_rows()>0)
+                				   {
+                										
+                
+                				?>
+                                    	<td><?php echo $classInfo->row()->class_name;?></td>
+                                    	<?php $this->db->select('section');
+                											  $this->db->where('id',$classInfo->row()->section);
+                											  $this->db->where("school_code",$this->session->userdata("school_code"));
+                										      $sectionInfo=$this->db->get('class_section');
+                										      if($sectionInfo->num_rows()>0){
+                										      ?>
+                										
+                	<td><?php echo $sectionInfo->row()->section;?></td>
+                	<td><?php echo $std->row()->address1;?></td>
+                	<td><?php echo $std->row()->mobile;?></td>
+                </tr>
+                
+                <?php
+                }
+                }
+                }$sno++;
+                endforeach; }?>
+                </table>
+                </div>
+                </div></div>
+                </div>

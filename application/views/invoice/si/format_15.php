@@ -386,6 +386,15 @@
 							$termtot=$termtot+$marks->marks;
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
+					  if($classid->class_id==330 ||$classid->class_id==329){
+				     if($ty == 5){
+					     $anutot1=$anutot1+ $exammm;
+					  }
+				    }else{
+				         if($ty == 4){
+					     $anutot1=$anutot1+ $exammm;
+					  }
+				    }
 					}else{ $gtptal= $gtptal;}
 					
 							echo $marks->marks;
@@ -399,24 +408,49 @@
 					  $ttal=$ttal+$exammm;
 				    $dhtm=$exammm+$dhtm;
 				    $termMax=$termMax+$exammm;
+				    if($classid->class_id==330 ||$classid->class_id==329){
+				     if($ty == 5){
+					     $anutot1=$anutot1+ $exammm;
+					  }
+				    }else{
+				         if($ty == 4){
+					     $anutot1=$anutot1+ $exammm;
+					  }
+				    
+					}
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
 						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php echo "/" .$exammm; ?>
 					</td> 
-					<?php if($ty == 3){ ?>
-					<td><?php echo $termtot;?>/<?php echo $termMax;?></td>
-					<td><?php echo (($termtot*20)/100);?>/<?php echo (($termMax*20)/100);?></td>
-					<?php }?>
-				<?php $i++; $t++; $ty++; endforeach; ?>
-																						<?php } ?>
+					<?php 
+					 if($classid->class_id==330 || $classid->class_id==329){
+        					if($ty == 4){ $anutot =0;$anutot1 =0;
+        					?>
+        					<td><?php echo $termtot;?>/<?php echo $termMax;?></td>
+        					<td><?php echo number_format(((($termtot)/7)),0,'.','');?>/<?php echo number_format((($termMax)/7),0,'.','');?></td>
+        					<?php $anutot =number_format(((($termtot)/7)),0,'.','');    $anutot1 =number_format(((($termMax)/7)),0,'.',''); 
+        					}
+					     
+					 }else{ 	
+					    if($ty == 3){ $anutot =0;$anutot1 =0;
+        					?>
+        					<td><?php echo $termtot;?>/<?php echo $termMax;?></td>
+        					<?php  if($classid->class_id==330 || $classid->class_id==329){?>
+        					<td><?php echo number_format(((($termtot)/8)),0,'.','');?>/<?php echo number_format((($termMax)/8),0,'.','');?></td>
+        					<?php $anutot =number_format(((($termtot)/8)),0,'.','');    $anutot1 =number_format(((($termMax)/8)),0,'.',''); 
+        					}else{?>
+        					    	<td><?php echo number_format(((($termtot)/7)),0,'.','');?>/<?php echo number_format((($termMax)/7),0,'.','');?></td>
+        					<?php $anutot =number_format(((($termtot)/7)),0,'.','');    $anutot1 =number_format(((($termMax)/7)),0,'.','');
+        					}
+        					}}  $i++; $t++; $ty++; endforeach; ?>
 				<!--2nd term marks end-->				
-					<td class="center bold"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?></td>
+					<td class="center bold"><?php  $grandtotal=$grandtotal+$gtptal; echo $anutot;  ?>/<?php print_r($anutot1);?></td>
 					<td class="center bold"><?php if($ttal>0){ $per=round((($gtptal*100)/$ttal), 2);}?>
 					<?php if($ttal>0){echo $gradecal =calculateGrade($per,$classid->class_id);}?>
 					</td>
 				</tr>
-                    <?php } } ?>
+                    <?php } }} ?>
                 </table>
             </div>
             <br>
