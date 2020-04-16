@@ -30,8 +30,8 @@ class studentHWControllers extends CI_Controller{
 		$va=$this->homeWorkModel->getHomeWorkDetail();
 		$data['var1']=$va;
 		$data['title'] = 'Show HomeWork';
-		$data['headerCss'] = 'headerCss/homeWorkCss';
-		$data['footerJs'] = 'footerJs/showHomeWorkJs';
+		$data['headerCss'] = 'headerCss/daybookCss';
+		$data['footerJs'] = 'footerJs/empAttendanceJs';
 		$data['mainContent'] = 'studentHW';
 		$this->load->view("includes/mainContent", $data);
 
@@ -188,6 +188,7 @@ class studentHWControllers extends CI_Controller{
 		$workfor=$this->input->post("homeworkfor");
 		if($workfor=="students")
 		{$photo_name = time().$_FILES['filehomeWork']['name'];
+			$photo_name = str_replace(' ', '_', $photo_name);
 			$data=array(
 			        "workfor"=>$this->input->post("homeworkfor"),
 			        "work_name"=>$this->input->post("wsubjectname"),
@@ -213,12 +214,12 @@ class studentHWControllers extends CI_Controller{
 			$image_path = $asset_name.$school_code.'/images/filehomeWork';
 		$config['upload_path'] = $image_path;
 		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc|txt';
-		$config['max_size'] = '2096';
+		$config['max_size'] = '3096';
 		$config['file_name'] = $photo_name;
 		if (!empty($_FILES['filehomeWork']['name'])) {
       $a=  $this->upload->initialize($config);
 		$this->upload->do_upload('filehomeWork');
-		//print_r($config);exit();
+	
 		}
 		else{
             echo "Somthing going wrong. Please Contact Site administrator";
@@ -298,6 +299,7 @@ class studentHWControllers extends CI_Controller{
 		    
 		}else{
 	    $photo_name = time().$_FILES['filehomeWork']['name'];
+	    	$photo_name = str_replace(' ', '_', $photo_name);
 			$data=array( 
 			    "workfor"=>$this->input->post("homeworkfor"),
 					"work_name"=>$this->input->post("wsubjectname"),
@@ -320,7 +322,7 @@ class studentHWControllers extends CI_Controller{
 			$image_path = $asset_name.$school_code.'/images/filehomeWork';
 		$config['upload_path'] = $image_path;
 		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc';
-		$config['max_size'] = '2096';
+		$config['max_size'] = '3096';
 		$config['file_name'] = $photo_name;
 		if (!empty($_FILES['filehomeWork']['name'])) {
             $this->upload->initialize($config);
@@ -519,9 +521,7 @@ function showHomeWork()
 					</tbody>
 				</table>
 				</div>
-				<script>
-	TableExport.init();
-</script>
+			
 	<?php 
 		}
 	
@@ -649,11 +649,14 @@ function showHomeWork()
 			  		?></td>
 			  	    	<td><?php 
 			  	    		$this->db->where("id",$lv->class_id);
-                        	$var =  $this->db->get("class_info")->row();
+                        	$var =  $this->db->get("class_info");
+                        	if($var->num_rows()>0){
+                        	    $var=$var->row();
                             if($lv->class_id==0){echo "No Record Found";}else{ echo $var->class_name;}
                             $this->db->where("id",$var->section);
                         	$var1 = $this->db->get("class_section")->row();
                         	echo "[".$var1->section."]";
+                        	}
 			  	    	?></td>
 			  			<td><?php echo $lv->work_name;?></td>
 			  		
@@ -671,7 +674,7 @@ function showHomeWork()
 			  			<td style="max-width: 151px;"><?php echo $lv->workDiscription;?></td>
 			  			<td><?php echo $lv->givenWorkDate; ?></td>
 						<td><?php echo $lv->DueWorkDate; ?></td>
-						<td style=" width: 30%;"><a href="<?php echo $this->config->item("asset_url"); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
+						<td style=" width: 30%;"><a href="<?php echo $this->config->item("asset_url"); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" >
 						    <button class="btn btn-info"  width="104" height="142">Download</button></a>
 						<?php	 
 						if($this->session->userdata("login_type")=='admin' ||$this->session->userdata("login_type")==3)
@@ -679,10 +682,6 @@ function showHomeWork()
 						?><a href="<?php echo base_url(); ?>index.php/studentHWControllers/deleteHomeWork/<?php echo $lv->s_no;?>" style="color:white;"  class="btn btn-danger">Delete</a>
 						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/viewHomeWork/<?php echo $lv->s_no;?>" style="color:white;" id="view<?php echo $count;?>" class="btn btn-warning">View Detail</a>
 						<?php }
-					/*	elseif($this->session->userdata("login_type")==3)
-						{
-						echo '<a href="#" style="color:white;"><button class="btn btn-danger"  width="104" height="142">Delete</button></a>';
-						}*/
 						else{
 						?>
 						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
@@ -694,16 +693,17 @@ function showHomeWork()
 				</tbody>
 			</table>
 			</div>
-			<script>
-	TableExport.init();
-</script>
-			<?php 
+<?php		
+		 
 	}
 	
 	else{
 		echo "<div style='color:red;'>home Work not Assign.</div>";
 	}
-	}
+		?>	<script>
+	TableExport.init();
+</script>
+<?php	}
 
 	function showHomeWork1(){
 	$classt=$this->input->post("classv");
@@ -718,18 +718,18 @@ function showHomeWork()
 		
 		<table class="table table-striped table-hover" id="sample-table-2">
 		<thead>
-		<tr>
-		<th>S.No.</th>
-		<th>Given By</th>
-		<th>Assignment Title</th>
-		<th>Class</th>
-		<th>Section</th>
-		<th>Marks & Grade</th>
-		<th>Work Description</th>
-		<th>Given Date</th>
-		<th>Submission Date</th>
-		<th>Action</th>
-		</tr>
+    		<tr>
+        		<th>S.No.</th>
+        		<th>Given By</th>
+        		<th>Assignment Title</th>
+        		<th>Class</th>
+        		<th>Section</th>
+        		<th>Marks & Grade</th>
+        		<th>Work Description</th>
+        		<th>Given Date</th>
+        		<th>Submission Date</th>
+        		<th>Action</th>
+    		</tr>
 		</thead>
 		<tbody>
 		<?php
@@ -769,11 +769,7 @@ function showHomeWork()
 							    { 
         						?><a href="<?php echo base_url(); ?>index.php/studentHWControllers/deleteHomeWork/<?php echo $lv->s_no;?>" style="color:white;"  class="btn btn-danger">Delete</a>
         					    <a href="<?php echo base_url(); ?>index.php/studentHWControllers/viewHomeWork/<?php echo $lv->s_no;?>" style="color:white;" id="view<?php echo $count;?>" class="btn btn-warning">View Detail</a>
-        					    <?php }/*
-        						elseif($this->session->userdata("login_type")==3)
-        						{
-        						?><button class="btn btn-danger" id="delete<?php echo $count ; ?>"  width="104" height="142" style="color:white;">Delete</button>
-        					    <?php 	}*/else{
+        					    <?php }else{
 						?><a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
 							    <button class="btn btn-success"  width="104" height="142">Submit</button></a>
 							    <?php } ?>
@@ -787,10 +783,7 @@ function showHomeWork()
 		
 				</div>
 				
-						
-			<script>
-	
-</script><?php 
+		<?php 
 	}
 	
 	public function deleteHomeWork(){

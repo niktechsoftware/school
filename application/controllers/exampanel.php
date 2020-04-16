@@ -12,11 +12,8 @@ class Exampanel extends CI_Controller{
 		$is_login = $this->session->userdata('is_login');
 		$is_lock = $this->session->userdata('is_lock');
 		$logtype = $this->session->userdata('login_type');
-		if($logtype != "admin"){
-			//echo $is_login;
-			redirect("index.php/homeController/index");
-		}
-		elseif(!$is_login){
+	
+		if(!$is_login){
 			//echo $is_login;
 			redirect("index.php/homeController/index");
 		}
@@ -42,28 +39,27 @@ class Exampanel extends CI_Controller{
   public function findstdexam()
   {
 
-  	    $fsd=$this->session->userdata("fsd");             
+  	    $fsd=$this->input->post("fsd");             
   		$examid=$this->input->post("examid");
   		$this->db->where('id',$examid);
   		$data['examname']=$this->db->get('exam_info')->row();
   		$studentexamid=$this->input->post("stdexam");
   		$this->db->where('username',$studentexamid);
-		$id=$this->db->get('student_info')->row();
-		$data['studentid']=$id;
-
-  		$this->db->where('id',$id->class_id);
+		$sid=$this->db->get('student_info')->row();
+		$data['studentid']=$sid->id;
+  		$this->db->where('id',$sid->class_id);
   		$cls=$this->db->get('class_info')->row();
-
   		?>
 		<!-- <h1 style="color:green">Your Student Class is <?php //echo $cls->class_name;?></h1> -->
 		<?php
   		
 
   		$this->db->where('exam_id',$examid);
-  		$this->db->where('stu_id',$id->id);
+  		$this->db->where('stu_id',$sid->id);
   		$this->db->where('fsd',$fsd);
-  		$data['exam']=$this->db->get('exam_info')->result();
-
+  		$examd=$this->db->get('exam_info')->result();
+  	
+        $data['exam']=$examd;
   		$this->load->view('panel/exam/studentwise',$data);
 
 

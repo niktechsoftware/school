@@ -48,6 +48,7 @@
 		<script src="<?php echo base_url(); ?>assets/js/table-export.js"></script>
 		<!-- end: CORE JAVASCRIPTS  -->
 		<script>
+	
 		//start datatable of Submitted hw
 		$(document).ready(function() { 
            $('#submithwemp').DataTable();
@@ -65,7 +66,7 @@
 				 $("#subjecthomework").hide();
 				$("#showhomeworkfor").change(function(){
 					var homeworkfor = $("#showhomeworkfor").val();
-					alert(homeworkfor);
+					//alert(homeworkfor);
 					 if(homeworkfor=="students"){
 						 $("#subjecthomework").hide();
 						 $("#teacherWork").hide();
@@ -75,16 +76,7 @@
 								$("#studentWork").html(data);
 								});
 					}
-					 /*else if((homeworkfor=="teachers")||(homeworkfor=="employee")||(homeworkfor=="admin"))
-					 {
-						 $("#subjecthomework").hide();
-						 $("#showStudent").hide();
-						 $("#studentWork").hide();
-						 $("#teacherWork").show();
-						 $.post("<?php //echo site_url("index.php/studentHWControllers/getTeacherWork") ?>",{homeworkfor : homeworkfor}, function(data){
-								$("#teacherWork").html(data);
-								
-								});*/
+					 
 					else if(homeworkfor=="teachers")
 					 {
 						 $("#subjecthomework").hide();
@@ -142,6 +134,7 @@
 				
 				Main.init();
 				SVExamples.init();
+				
 				DateElement.init();
 			});
 		</script>

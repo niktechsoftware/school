@@ -15,8 +15,9 @@ class singleTeacherModel extends CI_Model{
 	function time_Table($teacher_id){
 		//$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where('username',$teacher_id);
-		$emp=$this->db->get('employee_info')->row();
-		$emp_id= $emp->id;
+		$emp=$this->db->get('employee_info');
+		if($emp->num_rows()>0){
+		    $emp_id= $emp->row()->id;
 		$this->db->where("teacher",$emp_id);
 		$tdata = $this->db->get("time_table");
 
@@ -26,6 +27,9 @@ class singleTeacherModel extends CI_Model{
 		
 return $arr= array('pr' => $query,
 							'tt' => $tdata);
+		}else{
+		    return false;
+		}
 	}
 	function getTeacherDetail($teacherID){
 		$this->db->where("school_code",$this->session->userdata("school_code"));

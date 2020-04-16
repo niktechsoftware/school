@@ -41,28 +41,43 @@
   <div class="panel-body">
        <div class="text-white text-large">
        <div class="row">
-        <div class="col-md-3">
-<select id="examid" class="form-control">
-      <option value="">Select Exam Name</option><?php
-      $school=$this->session->userdata("school_code");
-     $this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("fsd",$this->session->userdata("fsd"));
-    $emp= $this->db->get('exam_name')->result();
-    foreach($emp as $data)
-    {
-        ?>
-    
-      <option value="<?php echo $data->id;?>"><?php echo $data->exam_name;?></option>
-      <?php
-      }  ?>
-    </select>
+           
+           <div class="col-md-4">
+            <select id="fsda" class="form-control">
+                <option value="">Select FSD</option><?php
+                    $school=$this->session->userdata("school_code");
+                    $this->db->where("school_code",$this->session->userdata("school_code"));
+            	   $fsd = $this->db->get("fsd");
+                    if($fsd->num_rows()>0){
+                    foreach($fsd->result() as $fd):
+                        ?>
+                        <option value="<?php echo $fd->id;?>"><?php echo $fd->finance_start_date." to ".$fd->finance_end_date;?></option>
+                        <?php
+                    endforeach; } ?>
+                </select>
+        </div> 
+        <div class="col-md-4">
+            <select id="examid" class="form-control">
+                <option value="">Select Exam Name</option><?php
+                    $school=$this->session->userdata("school_code");
+                    $this->db->where("school_code",$this->session->userdata("school_code"));
+            	    $this->db->where("fsd",$this->session->userdata("fsd"));
+                    $emp= $this->db->get('exam_name')->result();
+                    foreach($emp as $data)
+                    {
+                        ?>
+                
+                        <option value="<?php echo $data->id;?>"><?php echo $data->exam_name;?></option>
+                        <?php
+                    }  ?>
+                </select>
 </div>
 <?php  $unm=$this->session->userdata("username");
       
       ?>
 <div class="col-md-2">
     <input type="hidden" class="form-control" name="stdid" placeholder="Enter Student Id" value="<?php echo $unm;?>" id="stdexam">
-    <input type="submit" class="form-control btn btn-info" value="submit" id="stdexambutton" >
+    <input type="submit" class="btn btn-success" value="submit" id="stdexambutton" >
 
 </div>
 <div class="col-md-3">                    
@@ -74,11 +89,11 @@
 </div>
 </div>
 </div>
-
- <div class="col-sm-12">
-                      <div class="panel panel-calendar">
-                        <div class="panel-heading panel-blue border-light">
-                        <h4 class="panel-title">Student Wise <span class="text-bold">Exam Panel</span></h4>
+<br>
+<br>
+ <div class="col-sm-12 row">
+                  
+                       
                         </div>
                         <div class="panel-body" id="examtimetablelist">
 
@@ -87,25 +102,36 @@
                 </div>
             
         </div>
-      </div>
-      </div>
+    
 <script>
 
 
 
      jQuery(document).ready(function() {
-        //  $("#stdexambutton").hide();
-    
-                 $("#stdexambutton").click(function(){
+        $("#stdexambutton").click(function(){
         var examid = $('#examid').val(); 
          var stdexam = $('#stdexam').val(); 
-          var fsd = $('#fsd').val(); 
-               $.post("<?php echo site_url('index.php/exampanel/findstdexam') ?>", {examid : examid,stdexam : stdexam, fsd:fsd}, function(data){
-                $("#examtimetablelist").html(data);
-                
+          var fsd = $('#fsda').val();
+         
+            
+        	$.ajax({
+						"url": "<?= base_url() ?>index.php/exampanel/findstdexam",
+						"method": 'POST',
+						"data": {fsd : fsd,examid : examid,stdexam : stdexam},
+						beforeSend: function(data) {
+							$("#examtimetablelist").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+						},
+						success: function(data) {
+							$("#examtimetablelist").html(data);
+						},
+						error: function(data) {
+							$("#examtimetablelist").html(data)
+						}
+					})
+     
         });
-       // $('#stdexam').val("");
-        });
+        
+      
 
         $("#stdexam").keyup(function(){
              $("#stdexambutton").show();

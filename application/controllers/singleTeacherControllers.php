@@ -2,11 +2,22 @@
 	function __construct()
 	{
 		parent::__construct();
-		
+			$this->is_login();
 		$this->load->model("singleTeacherModel");
 		$this->load->model("subjectModel");
 		$this->load->model("singleStudentModel");
 		$school_code = $this->session->userdata("school_code");
+	}
+	
+
+		function is_login(){
+		$is_login = $this->session->userdata('is_login');
+	
+		if((!$is_login)){
+			
+			redirect("index.php/homeController/index");
+		}
+	
 	}
 	
 	function index(){
@@ -222,8 +233,8 @@
 	}
 	
 	function classTaken(){
-		$stu_id = $this->session->userdata('id');
-		$data1  = $this->singleTeacherModel->time_Table($stu_id);
+		$teacher_username = $this->session->userdata('username');
+		$data1  = $this->singleTeacherModel->time_Table($teacher_username);
 		$data['timetable']= $data1['tt'];
 		$data['period']= $data1['pr'];
 		// print_r($data['timetable']);
