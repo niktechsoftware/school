@@ -136,9 +136,9 @@
 					});
 					
 					
-						$("#classv").change(function(){
+				$("#classv").change(function(){
 					var streamid = $("#classv").val();
-					
+					//alert(streamid);
 					$.post("<?php echo site_url("index.php/teacherController/getSectionforexam") ?>",{streamid : streamid}, function(data){
 						$("#sectionId").html(data);
 						});
@@ -146,7 +146,6 @@
 					});
 				$("#sectionId").change(function(){
 					var streamid = $("#classv").val();
-					
 					var sectionid = $("#sectionId").val();
 					//alert(sectionid +"-"+streamid);
 					$.post("<?php echo site_url("index.php/teacherController/getclassforexam") ?>",{streamid : streamid,sectionid : sectionid}, function(data){

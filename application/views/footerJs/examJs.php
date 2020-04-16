@@ -117,7 +117,7 @@
 			$("#classv").change(function(){
 					var streamid = $("#classv").val();
 					
-					$.post("<?php echo site_url("index.php/teacherController/getSectionforexam") ?>",{streamid : streamid}, function(data){
+					$.post("<?php echo site_url("index.php/teacherController/getSectionfrexam") ?>",{streamid : streamid}, function(data){
 						$("#sectionId").html(data);
 						});
 					

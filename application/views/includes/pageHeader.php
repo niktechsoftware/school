@@ -57,12 +57,12 @@
             <h1><?php echo $pageTitle; ?> <small><?php echo $smallTitle; ?> </small></h1>
         </div>
     </div>
-    
+    <?php if($this->session->userdata("login_type") !=  "student"){?>
     <div class="col-sm-6" style="margin-top:15px;">
         <center><a class="" style="color: #f5f5f5;" href="#">Customer Care&nbsp;:<br>&nbsp;<i class="fa fa-phone"></i>+91-&nbsp;6389027901,&nbsp;6389027902,&nbsp;6389027903,&nbsp;6389027904,&nbsp;6389027905
                 <br>WhatsApp Number&nbsp;: <i class="fab fa-whatsapp"></i>+91-&nbsp;9580121878</a></center>
     </div>
-
+    <?php }?>
     <!--<?php if($this->session->userdata("login_type")=="admin"){?>
 
      <div class="col-sm-3" style="margin-top:15px;">

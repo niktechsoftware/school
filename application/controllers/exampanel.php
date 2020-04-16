@@ -1,6 +1,29 @@
 <?php
 class Exampanel extends CI_Controller{
+	function __construct()
+	{
+		parent::__construct();
+		$this->is_login();
+		$this->load->model("teacherModel");
+		$this->load->model("adminModel");
+	}
 
+	function is_login(){
+		$is_login = $this->session->userdata('is_login');
+		$is_lock = $this->session->userdata('is_lock');
+		$logtype = $this->session->userdata('login_type');
+		if($logtype != "admin"){
+			//echo $is_login;
+			redirect("index.php/homeController/index");
+		}
+		elseif(!$is_login){
+			//echo $is_login;
+			redirect("index.php/homeController/index");
+		}
+		elseif(!$is_lock){
+			redirect("index.php/homeController/lockPage");
+		}
+	}
 
   public function index(){
 		$data['pageTitle'] = 'Exam Panel';
@@ -54,9 +77,20 @@ class Exampanel extends CI_Controller{
 		$data['classid']=$classid;
   		$data['examid']=$this->input->post("examid");
   		$data['fsd']=$this->input->post("fsd");
+  		if($this->input->post("fsd")==$this->session->userdata("fsd")){
+  		    
+  		   	            $this->db->select("id");
 						 $this->db->where('status',1);
 						 $this->db->where('class_id',$classid);
-	    $data['student']=$this->db->get('student_info')->result();
+	    $data['student_id']=$this->db->get('student_info')->result();
+  		}else{
+  		   	 
+  		   	            $this->db->select("student_id as id");
+						 $this->db->where('fsd',$this->input->post("fsd"));
+						 $this->db->where('class_id',$classid);
+	    $data['student_id']=$this->db->get('old_student_info')->result();       
+  		}
+  	
 
   		$this->load->view('panel/exam/classwise',$data);
 

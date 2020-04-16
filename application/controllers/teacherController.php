@@ -64,20 +64,44 @@ function getclassforexam(){
 		$this->load->model("teacherModel");
 		$var = $this->teacherModel->getSectionforexam($streamid);
 			if($var->num_rows() > 0){
-				echo '<option value="">-Select Section-</option>';
+				echo '<option value="">-Select Class-</option>';
 				foreach ($var->result() as $row){
-                        $sectionid=$row->section;
-                        
-                      $this->db->where('id',$sectionid);
-                      $section=$this->db->get('class_section')->result();
-                     foreach ($section as $row1){
+                      
 
-					echo '<option value="'.$row1->id.'">'.$row1->section.'</option>';
+					echo '<option value="'.$row->id.'">'.$row->class_name.'</option>';
 				} 
 				// echo '<option value="all">All</option>';
 			}
 	    }
+	    	public function getSectionfrexam(){
+		$streamid = $this->input->post("streamid");
+		$this->load->model('configureClassModel');
+		$query = $this->configureClassModel->getSection($streamid);
+	    	echo '<option value="">--Select Section--</option>';
+			foreach ($query->result() as $row){
+                           $this->db->where('id',$row->section);
+				 	       $row2=$this->db->get('class_section')->row();
+                          ?>
+					<option value="<?php echo $row2->id; ?>" ><?php echo $row2->section; ?></option>
+				<?php 
+			}
 	}
+	    function getSectionforexam1(){
+		$streamid = $this->input->post("streamid");
+		$this->load->model("teacherModel");
+		$var = $this->teacherModel->getSectionforexam1($streamid);
+			if($var->num_rows() > 0){
+				echo '<option value="">-Select Section-</option>';
+				foreach ($var->result() as $row){
+                      $this->db->where("id",$row->id);
+                      $sectiondata = $this->db->get("class_section");
+
+					echo '<option value="'.$row->id.'">'.$sectiondata->section.'</option>';
+				} 
+				// echo '<option value="all">All</option>';
+			}
+	    }
+	
 	    
 	    
 	function presentiH(){

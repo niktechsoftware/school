@@ -55,41 +55,6 @@
 											</a>
 										</div>
 										<div class="col-sm-4">
-											<a href="<?php echo base_url(); ?>index.php/feepanel/topremainfeepanel">
-												<button class="btn panel-purple btn-icon btn-block space10">
-
-												<font size="5">	Top 10 Remaining</font><span class="badge badge-info partition-purple"> 3 </span>
-												</button>
-											</a>
-										</div>
-
-										<div class="col-sm-4">
-											<a href="<?php echo base_url(); ?>index.php/feepanel/topdepositorfeepanel">
-												<button class="btn panel-red btn-icon btn-block space10">
-
-												<font size="5">	Top 10 depositor <br> </font><span class="badge badge-info partition-black"> 4 </span>
-												</button>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="<?php echo base_url(); ?>index.php/feepanel/collectfeefeepanel">
-												<button class="btn panel-azure btn-icon btn-block space10">
-
-													<font size="5">Total Collect Fsd<br>By Fee</font><span class="badge badge-info partition-blue"> 5 </span>
-												</button>
-											</a>
-										</div>
-										<div class="col-sm-4">
-											<a href="<?php echo base_url(); ?>index.php/feepanel/duefsdfeepanel">
-												<button class="btn panel-orange btn-icon btn-block space10">
-
-													<font size="5">Total Due FSD <br>Student Wise</font><span class="badge badge-info partition-red"> 6 </span>
-												</button>
-											</a>
-										</div>
-
-
-                                        <div class="col-sm-4">
 											<a href="<?php echo base_url(); ?>index.php/feepanel/currentmonthdue">
 												<button class="btn panel-pink btn-icon btn-block space10">
 
@@ -97,7 +62,7 @@
 												</button>
 											</a>
 										</div>
-									<div class="col-sm-4">
+										<div class="col-sm-4">
 											<a href="<?php echo base_url(); ?>index.php/feepanel/discountStud">
 												<button class="btn panel-blue btn-icon btn-block space10">
 

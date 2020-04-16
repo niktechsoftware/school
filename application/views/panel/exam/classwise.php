@@ -60,14 +60,14 @@
 										</div>
 									</div>
 									<?php 
-					$this->db->where('class_id',$classid);
-					$this->db->where('status',1);
-	   $studentinfo=$this->db->get('student_info')->row();
-
+				
+                $this->db->distinct();
+                $this->db->select("subject_id");
+                $this->db->select("exam_id");
 				  $this->db->where('fsd',$fsd);
 				  //$this->db->where('fsd',$this->session->userdata('fsd'));
 				  $this->db->where('school_code',$this->session->userdata('school_code'));
-				  $this->db->where('stu_id',$studentinfo->id);
+				 // $this->db->where('stu_id',$studentinfo->id);
 				  $this->db->where('class_id',$classid);
 				  $this->db->where('exam_id',$examid);
 	    $examinfo=$this->db->get('exam_info');
@@ -87,7 +87,7 @@
 				
 				if($subjectname1->num_rows()>0){
 				    $subjectname=$subjectname1->row();
-				    $this->db->where('class_id',$sub->class_id);
+				    $this->db->where('class_id',$classid);
 				$this->db->where('exam_id',$sub->exam_id);
 				$this->db->where('subject_id',$subjectname->id);
 				$maxm=$this->db->get('exam_max_subject');
@@ -111,7 +111,10 @@
 	</thead>
 	<tbody>
 	<?php $sno = 1;
-	foreach($student as $data){ ?>
+	foreach($student_id as $dat){ 
+	$this->db->where("id",$dat->id);
+	$data = $this->db->get("student_info")->row();?>
+	
 		<tr class="text-uppercase">	
 			<td><?php echo $sno; ?></td>
 			<td><?php echo $data->username; ?></td>
