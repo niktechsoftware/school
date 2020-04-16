@@ -61,9 +61,9 @@
 					 }
 				});	
 				$("#showhomeworkfor").change(function(){
-					alert("rahul");
+				//	alert("rahul");
 					var homeworkfor = $("#showhomeworkfor").val();
-					alert(homeworkfor);
+				//	alert(homeworkfor);
 					 if(homeworkfor=="students"){
 						$("#showStudent").show();
 					}

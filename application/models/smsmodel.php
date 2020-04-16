@@ -162,6 +162,23 @@ function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 			
 	}
 	
+	function checknum($cnumber,$msg,$master_id){
+	  
+		$cnumber = str_replace(' ', '', $cnumber);
+		if((is_numeric($cnumber)) && (strlen($cnumber)==10)){
+			return $cnumber;
+		}else{
+			$data=array(
+					
+					"mobile"=>$cnumber,
+					"sms_master_id"=>$master_id
+						
+			);
+			$insertwrongnumber= $this->db->insert("wrong_number_sms",$data);
+			return false;
+		}
+			
+	}
 	
 	
 	function sendReport($getv,$master_id){

@@ -23,6 +23,24 @@ class singleStudentControllers extends CI_Controller{
 			}
 		}
 		
+		function stuattendence(){
+		$studid = $this->uri->segment(3);
+		$fsd = $this->uri->segment(4);
+		$data['fsdorg']=$fsd;
+		$this->load->model("feeModel");
+		$da=$this->feeModel->fulldetail($studid,$fsd);
+		$data['request']=$da->result();
+		$data['pageTitle'] = 'Attendence Report';
+		$data['smallTitle'] = 'Attendence Report';
+		$data['mainPage'] = 'Attendence';
+		$data['subPage'] = 'Attendence Report';
+		$data['title'] = 'Attendence Report';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'attendence';
+		$this->load->view("includes/mainContent", $data);
+		}	
+		
 		function getChatId(){
 		   $username= $this->input->post("id");
 		   $this->db->where("chat_username",$username);

@@ -48,13 +48,7 @@
         <!-- <div class="table-responsive" style="width:100%; overflow-y: scroll;">
       </div> -->
           
-          
-         <?php $do=$this->uri->segment(3);
-								if($do)
-								{?>
-                <h3 class="text-success"> <?php echo "Home work is given successfully";?></h3>
-
-                <?php }?>
+       
     
         <form action="<?php echo base_url();?>index.php/studentHWControllers/addHomeWork" method="post" enctype="multipart/form-data">
           <div class="row" style="margin-bottom:18px;">
@@ -64,7 +58,7 @@
               <?php $do=$this->uri->segment(3);
 								if($do)
 								{?>
-                <!--<span class="text-success"> <?php echo "successfully home work is Given";?></span>-->
+                <div class="alert alert-success"> <?php echo " Home work is Given successfully";?></div>
 
                 <?php }?>
               <div class="col-sm-6">

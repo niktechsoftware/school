@@ -84,9 +84,9 @@
 						  		
 						  			<td><?php echo $lv->subject;?></td>
 						  			<td><?php echo $lv->message;?></td>
-						  			<td><?php echo $lv->date;?></td>
+						  			<td><?php echo date("d-m-Y",strtotime($lv->date));?></td>
 						  			<td>
-										<?php echo $lv->time; ?>
+										<?php echo date("h:s:i",strtotime($lv->date)); ?>
 									</td>
 						  			
 						  		</tr>
@@ -105,9 +105,9 @@
 		  			
 		  			<td><?php echo $lv->subject;?></td>
 		  			<td><?php echo $lv->message;?></td>
-		  			<td><?php echo $lv->date;?></td>
+		  			<td><?php echo date("d-m-Y",strtotime($lv->date));?></td>
 		  			<td>
-						<?php echo $lv->time; ?>
+						<?php date("H:i:s",strtotime($lv->date)); ?>
 					</td>
 		  			
 		  		</tr>

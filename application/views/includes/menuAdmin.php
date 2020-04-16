@@ -571,10 +571,10 @@
 	    <a href="<?php echo base_url(); ?>index.php/singleStudentControllers/studentProfile"><i class="fa fa-bars"></i> <span class="title"> Your Profile</a>
 	</li>
 	<li>
-	    <a href="<?php echo base_url(); ?>index.php/feeControllers/feesDetail/<?php echo $stud_id?>"><i class="fa fa-money"></i>Your Fee Report</a>
+	    <a href="<?php echo base_url(); ?>index.php/singleStudentControllers/feesDetail/<?php echo $stud_id?>"><i class="fa fa-money"></i>Your Fee Report</a>
 	</li>
 	<li>
-	    <a href="<?php echo base_url(); ?>index.php/feeControllers/stuattendence/"><i class="fa fa-calendar-o"></i> Attendance Report</a>
+	    <a href="<?php echo base_url(); ?>index.php/singleStudentControllers/stuattendence/"><i class="fa fa-calendar-o"></i> Attendance Report</a>
 	</li>
 	<li>
 	    <a href="<?php echo base_url(); ?>index.php/singleStudentControllers/leave"><i class="fa fa-edit"></i>Leave Detail</a>

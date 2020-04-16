@@ -243,7 +243,7 @@
 				                    My Profile
 				                </a>
 		                    <?php elseif($this->session->userdata('login_type') == 'student'):?>
-                            <a href="<?php echo base_url()?>index.php/studentController/studentProfile">
+                            <a href="<?php echo base_url()?>index.php/singleStudentControllers/studentProfile">
 				                    My Profile
 				                </a>
 

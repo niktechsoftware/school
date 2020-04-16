@@ -105,23 +105,7 @@
               </div>
               </div>
               </div>
-             
-             
-
-          <!--<div id="selectStudent">
-              <div class="row" style="margin-bottom:18px;">
-            <div class="col-sm-12">
-              <div class="col-sm-6">
-               
-                  <div class="col-sm-5"><label>Maximam Marks</label></div>
-                  <div class="col-sm-7"><input type="text" name="mm" id="mm" class="form-control"></div>
-                </div>
-
-              <div class="col-sm-6">
-                  <div class="col-sm-5">Section</div>
-                  <div class="col-sm-7">
-                    <select class="form-control" id="sectionId" name="section">
-                      <option value="01">-Select Section-</option>
+          
                       <?php foreach ($noc as $en):?>
                       <option value="<?php echo $en->section?>"><?php echo $en->section?></option>
                       <?php endforeach;?>
@@ -185,6 +169,7 @@
             </div>
 
         </form>
+        
       </div>
     </div>
   </div>
