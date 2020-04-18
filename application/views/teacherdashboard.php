@@ -16,11 +16,11 @@ $noticeForTeacher=$this->db->get("notice");?>
 		<?php
 		if($noticeForTeacher->num_rows()>0){
 	echo $noticeForTeacher->row()->message;
-}
-?>
+}?>
 </marquee>
 </div>
-<?php if($logtype==3)
+<?php
+if($logtype==3)
 {
 ?>
 
@@ -86,39 +86,6 @@ $noticeForTeacher=$this->db->get("notice");?>
 <!-- ------------------------------------------ All alert codeing end -------------------------------------------- -->
 
 <div class="row">
-
-    <!--<div class="col-md-6 col-lg-3 col-sm-6">-->
-    <!--    <div class="panel panel-default panel-white core-box">-->
-    <!--        <div class="panel-body no-padding">-->
-    <!--            <div class="partition-green padding-20 text-center core-icon">-->
-    <!--                <i class="fa fa-inr fa-2x icon-big"></i>-->
-    <!--            </div>-->
-    <!--            <a href="<?php echo base_url(); ?>index.php/login/feeReport">-->
-	   <!--             <div class="padding-20 core-content">-->
-	   <!--             	<h3 class="title block no-margin">Fee Report</h3>-->
-	   <!--             	<br/>-->
-	   <!--             	<span class="subtitle"> Find out detailed fee Reports  </span>-->
-	   <!--             </div>-->
-    <!--            </a>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--<div class="col-md-6 col-lg-3 col-sm-6">-->
-    <!--    <div class="panel panel-default panel-white core-box">-->
-    <!--        <div class="panel-body no-padding">-->
-    <!--            <div class="partition-blue padding-20 text-center core-icon">-->
-    <!--                <i class="fa fa-users fa-2x icon-big"></i>-->
-    <!--            </div>-->
-    <!--            <a href="<?php echo base_url(); ?>index.php/login/newAdmission">-->
-    <!--            <div class="padding-20 core-content">-->
-    <!--                <h4 class="title block no-margin">Student Admission</h4>-->
-    <!--                <span class="subtitle"> Enrolle a new student. </span>-->
-    <!--            </div>-->
-    <!--            </a>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
-    
     <div class="col-md-6 col-lg-3 col-sm-6">
         <div class="panel panel-default panel-white core-box">
             <div class="panel-body no-padding">
@@ -156,7 +123,7 @@ $noticeForTeacher=$this->db->get("notice");?>
     </div>
 
 
-		<div class="col-md-6 col-lg-3 col-sm-6">
+	<div class="col-md-6 col-lg-3 col-sm-6">
         <div class="panel panel-default panel-white core-box">
             <div class="panel-body no-padding">
                 <div class="partition-red padding-20 text-center core-icon">
@@ -191,7 +158,7 @@ $noticeForTeacher=$this->db->get("notice");?>
 							?>
                             <a href="<?php echo base_url();?>singleTeacherControllers/chatBranch/<?php echo $chat_id;?>">
                         		<span class="glyphicon glyphicon-facetime-video"></span>
-                        		<p> &nbsp;&nbsp;Vedio Call</p><span class="arrow"></span>
+                        		<p> &nbsp;&nbsp;Video Call</p><span class="arrow"></span>
                         	</a></span>
                 </div>
                 </a>
@@ -220,21 +187,7 @@ $noticeForTeacher=$this->db->get("notice");?>
 
     ?>
 
-     <div class="col-md-6 col-lg-3 col-sm-6">
-        <div class="panel panel-default panel-white core-box">
-            <div class="panel-body no-padding">
-                <div class="partition-orange padding-20 text-center core-icon">
-                    <i class="fa fa-tasks fa-2x icon-big"></i>
-                </div>
-                 <div class="padding-20 core-content">
-                    <h4 class="title block no-margin">Today Attendance</h4>
-                    <br/>
-                   <blink> <h4><?php if($atn->num_rows()>0){ echo "Done";} else{ echo "Not Done";}?></h4></blink>
-                </div>
-             
-            </div>
-        </div>
-    </div>
+   
 <?php } ?>
 </div>    
     <div class="row">
@@ -255,7 +208,21 @@ $total=0.00;
 		 $studata=$this->db->get('student_info');
 		
     ?>
-    
+      <div class="col-md-6 col-lg-3 col-sm-6">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-orange padding-20 text-center core-icon">
+                    <i class="fa fa-tasks fa-2x icon-big"></i>
+                </div>
+                 <div class="padding-20 core-content">
+                    <h4 class="title block no-margin">Today Attendance</h4>
+                    <br/>
+                   <blink> <h4><?php if($atn->num_rows()>0){ echo "Done";} else{ echo "Not Done";}?></h4></blink>
+                </div>
+             
+            </div>
+        </div>
+    </div>
      <div class="col-md-6 col-lg-3 col-sm-6">
         <div class="panel panel-default panel-white core-box">
             <div class="panel-body no-padding">
@@ -285,6 +252,65 @@ $total=0.00;
             </div>
         </div>
     </div>
+     <div class="col-md-6 col-lg-3 col-sm-6">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-purple padding-20 text-center core-icon">
+                   <i class="fa fa-inr fa-2x icon-big"></i>
+                </div>
+                 <div class="padding-20 core-content">
+                    <h4 class="title block no-margin">Leave Status</h4>
+					<br/>
+				
+					 <h4><a href="<?php echo base_url();?>singleTeacherControllers/TeacherLeave" >Click for view</a></h4>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3 col-sm-6">
+    <div id="notes">
+        <div class="panel panel-note">
+            <div class="e-slider owl-carousel owl-theme">
+            <?php $this->db->limit(5);?>    
+            <?php 
+            $this->db->where("school_code",$this->session->userdata("school_code"));
+            $this->db->where("user_id",$this->session->userdata("userid")); ?>
+            <?php $res = $this->db->get("privatenote"); ?>
+            
+            <?php if($res->num_rows() > 0):?>            
+            <?php foreach($res->result() as $row):?>
+                
+                <div class="item">
+                    <div class="panel-heading">
+                        <h4 class="no-margin"><?php echo $row->title; ?></h4>
+                    </div>
+                    <div class="panel-body space10">
+                        <div class="note-short-content">
+                            <?php echo implode(' ', array_slice(explode(' ', $row->note), 0, 15)); ?>...
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <time class="timestamp" title="<?php echo $row->date; ?>">
+                            <?php echo $row->date; ?>
+                        </time>
+                        <div class="note-options pull-right">
+                            <a href="#readNote" class="read-note" data-subviews-options='{"startFrom": "right", "onShow": "readNote(subViewElement)", "onHide": "hideNote()"}'>
+                            	<i class="fa fa-chevron-circle-right"></i> Read</a>
+                            	<a href="<?php echo base_url()?>index.php/msgNoticeControllers/delNotice1/<?php echo $row->id;?>" class="delete-note"><i class="fa fa-times"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach;?>    
+            <?php else:?>
+            	<div class="item">
+                   <center> <h3 style="color:red">There is no any note available this time.</h3></center>
+                </div>
+            <?php endif;?>    
+            </div>
+        </div>
+    </div>
+</div>
 <?php }?>
 </div>
     
@@ -392,49 +418,7 @@ $total=0.00;
  </div>
 <div class="row">
 
-<div class="col-md-11 col-lg-3 col-sm-11">
-    <div id="notes">
-        <div class="panel panel-note">
-            <div class="e-slider owl-carousel owl-theme">
-            <?php $this->db->limit(5);?>    
-            <?php 
-            $this->db->where("school_code",$this->session->userdata("school_code"));
-            $this->db->where("user_id",$this->session->userdata("userid")); ?>
-            <?php $res = $this->db->get("privatenote"); ?>
-            
-            <?php if($res->num_rows() > 0):?>            
-            <?php foreach($res->result() as $row):?>
-                
-                <div class="item">
-                    <div class="panel-heading">
-                        <h4 class="no-margin"><?php echo $row->title; ?></h4>
-                    </div>
-                    <div class="panel-body space10">
-                        <div class="note-short-content">
-                            <?php echo implode(' ', array_slice(explode(' ', $row->note), 0, 15)); ?>...
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <time class="timestamp" title="<?php echo $row->date; ?>">
-                            <?php echo $row->date; ?>
-                        </time>
-                        <div class="note-options pull-right">
-                            <a href="#readNote" class="read-note" data-subviews-options='{"startFrom": "right", "onShow": "readNote(subViewElement)", "onHide": "hideNote()"}'>
-                            	<i class="fa fa-chevron-circle-right"></i> Read</a>
-                            	<a href="<?php echo base_url()?>index.php/msgNoticeControllers/delNotice1/<?php echo $row->id;?>" class="delete-note"><i class="fa fa-times"></i> Delete</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach;?>    
-            <?php else:?>
-            	<div class="item">
-                   <center> <h3 style="color:red">There is no any note available this time.</h3></center>
-                </div>
-            <?php endif;?>    
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!--<div class="col-md-10 col-lg-5 col-sm-5">
         <div class="panel panel-default panel-white ">

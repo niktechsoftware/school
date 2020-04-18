@@ -106,6 +106,11 @@ class TeacherModel extends CI_Model{
 		$query = $this->db->query("SELECT * from class_info where school_code='$school_code' And section='$streamid' ORDER BY id");
 		return $query;
 	}
+		function getSectionforexam1($streamid){
+	    $school_code = $this->session->userdata("school_code");
+		$query = $this->db->query("SELECT * from class_info where school_code='$school_code' And stream='$streamid' ORDER BY id");
+		return $query;
+	}
 
 	function getSectionName($sectionid)
 	{

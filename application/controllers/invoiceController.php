@@ -705,8 +705,8 @@ function result(){
 			 * echo "</pre>";
 			 */
 
-//echo $fsd1;
-			$this->load->view("invoice/si/$callview",$data);
+			$this->load->view("invoice/si1/$callview",$data);
+
 
 
 		}

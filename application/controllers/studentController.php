@@ -60,13 +60,19 @@ class StudentController extends CI_Controller{
 	public function findtransport()
 	{
 	   
-	   
+		
 	    $this->load->model("searchStudentModel");
 		$req=$this->searchStudentModel->getValuefordriver();
 		$data['request']=$req->result();
 		$data['headerCss'] = 'headerCss/stpanelCss';
 		$data['footerJs'] = 'footerJs/stpanelJs';
-	
+		$this->db->where("id",$this->input->post('transportid'));
+		$dname = $this->db->get("transport");
+		if($dname->num_rows()>0){
+			$data['dname']=$dname->row()->driver_name;
+		}else{
+			$data['dname']=false;
+		}
 	//	$data['mainContent'] = 'transportList';
 		$this->load->view("transportList", $data);
 	   
@@ -264,6 +270,7 @@ class StudentController extends CI_Controller{
 		$data['smallTitle'] = 'Student List';
 		$data['mainPage'] = 'Transport List';
 		$data['subPage'] = 'Transport List';
+		$data['dname']=false;
 	    $this->load->model("searchStudentModel");
 		$req=$this->searchStudentModel->getValuefortransport();
 		$data['request']=$req->result();

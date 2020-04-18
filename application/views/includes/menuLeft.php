@@ -14,8 +14,20 @@
                 You have <?php echo $totalNoti;?> notifications
             </div>
             <div>Notices <?php echo $total1; ?></div>
-            <?php  $r = $this->db->query("select * from notice where school_code='$school_code' ")->result();
-            foreach($r as $rcom):
+            <?php  
+            if($this->session->userdata('login_type') == 'student'){
+                
+            $this->db->where("school_code",$school_code);
+            $this->db->where("category","All Student");
+            $r =$this->db->get("notice");
+            
+            }else{
+                $this->db->where("school_code",$school_code);
+                $this->db->where("category","All Employee");
+               $r =$this->db->get("notice");
+            }
+            if($r->num_rows()>0){
+            foreach($r->result() as $rcom):
             ?>
             <ul class="pageslide-list">
                 <li>
@@ -25,7 +37,7 @@
                         <span class="time"> <?php echo date("D/M",strtotime($rcom->date));?></span>
                     </a>
                 </li>
-               <?php endforeach;?>
+               <?php endforeach; }?>
             </ul>
             <div class="view-all">
                 <a href="<?php echo base_url();?>msgNoticeControllers/showAllNotice">

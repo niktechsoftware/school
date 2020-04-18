@@ -1772,9 +1772,9 @@ if(is_numeric($exammm)){
              	?>  
 			<td colspan="1" ><td colspan="1" ></td>
 			<?php echo $examname->exam_name; ?><?php
-							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17 || $examid1== 62 || $examid1== 61 || $examid1== 59 || $examid1== 60){
          	    echo "[20]";
-                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18 || $examid1== 69 || $examid1== 70 || $examid1== 68 || $examid1== 76){
          	                        echo "[50]";  }else{
          	                                        echo "[100]";
          	                                             }
@@ -1844,9 +1844,9 @@ if(is_numeric($exammm)){
              	?>  
 			<td colspan="1" >
 			<?php echo $examname->exam_name; ?><?php
-							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17 || $examid1== 62 || $examid1== 61 || $examid1== 59 || $examid1== 60){
          	    echo "[20]";
-                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18 || $examid1== 69 || $examid1== 70 || $examid1== 68 || $examid1== 76){
          	                        echo "[50]";  }else{
          	                                        echo "[100]";
          	                                             }
@@ -1867,9 +1867,9 @@ if(is_numeric($exammm)){
              	?>  
 			<td colspan="1" >
 			<?php echo $examname->exam_name; ?><?php
-							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17 || $examid1== 62 || $examid1== 61 || $examid1== 59 || $examid1== 60){
          	    echo "[20]";
-                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18 || $examid1== 69 || $examid1== 70 || $examid1== 68 || $examid1== 76){
          	                        echo "[50]";  }else{
          	                                        echo "[100]";
          	                                             }
@@ -1889,13 +1889,14 @@ if(is_numeric($exammm)){
              	?>  
 			<td colspan="1" >
 			<?php echo $examname->exam_name; ?><?php
-							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17){
+							if($examid1== 20 || $examid1== 14|| $examid1== 11|| $examid1== 17 || $examid1== 62 || $examid1== 61 || $examid1== 59 || $examid1== 60){
          	    echo "[20]";
-                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18){
+                        	}else if($examid1== 21 ||$examid1== 15 || $examid1== 12 ||$examid1== 18 || $examid1== 69 || $examid1== 70 || $examid1== 68 || $examid1== 76){
          	                        echo "[50]";  }else{
          	                                        echo "[100]";
          	                                             }
 			?>
+			
 			</td>
 									<?php }else{ ?>  
 			<td colspan="1" ></td>			<?php } ?>
@@ -1907,6 +1908,7 @@ if(is_numeric($exammm)){
 			<td colspan="1">Grade</td>
 		</tr>
 		<?php 
+		$colmtot=0;
 			$htotal = 0;  
 			$ctotal =array();
 			$ctotal[0]=0;
@@ -2046,7 +2048,7 @@ if(is_numeric($exammm)){
 					</td>
 				<?php $i++; $t++;endforeach; ?><td colspan="1" ></td>
 				<?php }else{ ?>
-				 <?php foreach ($examid->result() as $value):?>
+				 <?php $hs =1; foreach ($examid->result() as $value):?>
 					<td class="center" colspan="1" >
 					<?php       $this->db->where("term", 1);
 								$this->db->where('subject_id',$sub['subject']);
@@ -2059,7 +2061,9 @@ if(is_numeric($exammm)){
 							$marks=$marks->row();
 							if(is_numeric($marks->marks) ){
 							    $dfg =$marks->marks;
+                        if($hs==3){
                       $gtptal= $gtptal+$marks->marks;
+							    }
                       $ctotal[$t]+= $marks->marks;
                     }else{ $gtptal= $gtptal;}
 							echo $marks->marks;
@@ -2080,7 +2084,7 @@ if(is_numeric($exammm)){
 											}
 					?>
 					</td>
-				<?php $i++; $t++;endforeach; ?>
+				<?php $i++; $hs++; $t++;endforeach; ?>
 				<?php } ?>
 					<!--	<td class="center bold"><?php
 						$dfg1= round((($dfg*100)/$exammm), 2);
@@ -2168,7 +2172,7 @@ if(is_numeric($exammm)){
 					</td>
 				<?php $i++; $t++;endforeach; ?><td colspan="1" ></td>
 				<?php }else{ ?>
-				 <?php foreach ($examid_2->result() as $value):?>
+				 <?php $hs=1; foreach ($examid_2->result() as $value):?>
 					<td class="center" colspan="1" >
 					<?php       $this->db->where("term", 2);
 								$this->db->where('subject_id',$sub['subject']);
@@ -2181,7 +2185,9 @@ if(is_numeric($exammm)){
 							$marks=$marks->row();
 							if(is_numeric($marks->marks) ){
 							    $dfg_2 =$marks->marks;
-                      $gtptal_2= $gtptal_2+$marks->marks;
+                       if($hs==3){
+                      $gtptal= $gtptal+$marks->marks;
+							    }
                       $ctotal1[$t]+= $marks->marks;
                     }else{ $gtptal_2= $gtptal_2;}
 							echo $marks->marks;
@@ -2202,7 +2208,7 @@ if(is_numeric($exammm)){
 											}
 					?>
 					</td>
-				<?php $i++; $t++;endforeach; ?>
+				<?php $i++; $hs++; $t++;endforeach; ?>
 				<?php } ?>
 						<!--<td class="center bold"><?php 
 						$dfg1_2= round((($dfg_2*100)/$exammm), 2);
@@ -2211,8 +2217,8 @@ if(is_numeric($exammm)){
 						 
 						<td class="center bold"><?php  if($examid_2->num_rows() >0){echo $gradecal_2;}else{echo " ";} ?></td>
 					<!--2nd term exam end-->
-				<td class="center bold"><?php  //$rty = $gtptal/2; echo $gtptal;  ?></td>
-			   <td class="center bold"><?php //echo calculateGrade($rty,$classid)?></td>	
+					<td class="center bold"><?php   if(($subjectname->id == 282) || ($subjectname->id == 288)){$rty = ($gtptal+$gtptal_2)/8;}else{ $rty = ($gtptal+$gtptal_2)/2;} echo $gtptal+$gtptal_2;  ?></td>
+			   <td class="center bold"><?php $colmtot = $colmtot+ $gtptal+$gtptal_2;echo calculateGrade($rty,$classid)?></td>		
 		</tr>
 					<?php } }endforeach;?>
 		<tr class="wight">
@@ -2232,11 +2238,11 @@ if(is_numeric($exammm)){
 				  $h1=1;$i1=0;
 				  foreach($ctotal1 as $cd): 
 					if($h1<5){ ?>
-				<td class="center" colspan="1">	<?php  $cumulativetotal1+=$ctotal1[$i1];echo $ctotal1[$i1];  ?>
+					<td class="center" colspan="1">	<?php  $cumulativetotal1+=$ctotal1[$i1];echo $ctotal1[$i1];  ?>
 				<?php  if($ctotalmo2[$i1] >0 ){echo "/".$ctotalmo2[$i1];} ?> </td>
 					<?php $h1++; $i1++; }  endforeach;	?>
 					
-			<td class="center bold"><?php //echo $cumulativetotal;?></td>
+			<td class="center bold"> <?php echo $colmtot;?></td>
 			<td class="center bold"></td>
 		</tr>
 		
@@ -2365,10 +2371,17 @@ if(is_numeric($exammm)){
 				
 		</tr>
 		<tr class="blue">
-			<td colspan="2">ATTENDANCE  </td>
+			<td colspan="2">ATTENDANCE  :93 % </td>
 			<td colspan="3">MARK PERCENTAGE  <?php  
 		//	echo round((($cumulativetotal*100)/$dhtm), 2);
-		if($ctotal[2] > 0){echo round((($ctotal[2]*100)/$dhtm), 2);}else{}
+		if($ctotal[2] > 0){
+		    if($school == 1 && $row2== "D"){
+		    echo round((($colmtot*100)/((2*$dhtm)+100)), 2);
+		    //echo $ctotal[2];
+		    }else{
+		        echo round((($colmtot*100)/((2*$dhtm))), 2); 
+		    }
+		}else{}
 		?>%  </td>
 			<td colspan="6">CLASS RANK: <?php 
 			//echo $this->exammodel->getClassRank($studentInfo->id, $classid, $fsd); ?></td>
@@ -3645,7 +3658,7 @@ $cumulativetotal=0;
 	</table>
 
 
-<br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br />
 
 
 

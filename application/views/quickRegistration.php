@@ -264,20 +264,23 @@
 											<select class="form-control" id="discount" name="discount" required ="required">
 												<option> SELECT DISCOUNT TYPE</option>
 											<?php
-												$sub = $this->db->query("SELECT DISTINCT * FROM discounttable WHERE school_code='$school_code'")->result();
-												foreach($sub as $row):
+												$sub = $this->db->query("SELECT DISTINCT * FROM discounttable WHERE school_code='$school_code'");
+												if($sub->num_rows()>0){
+												foreach($sub->result() as $row):
 													if(strlen($row->discount_head)<3){
 																	$this->db->where('id',$row->discount_head);
-																	$head=$this->db->get('discount_head')->row();
-																	?><option value="<?php echo $head->id;?>"><?php echo $head->disc_head; ?></option>
+																	$head=$this->db->get('discount_head');
+																	if($head->num_rows()>0){
+																	?><option value="<?php echo $head->row()->id;?>"><?php echo $head->row()->disc_head; ?></option>
 																	<?php 
-													}else{
+																	}}else{
 														//$head=$row->discount_head;
 														?><option value="<?php echo $row->id;?>"><?php echo $row->discount_head; ?></option>
 												<?php 
 													}
 												
 												endforeach;
+												}
 												?>
 											</select>
 										</div>

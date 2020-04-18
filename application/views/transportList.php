@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class ="alert alert-info">
-		<h4 align="center" >Driver Wise <span class="text-bold">Transport List</span> </h4></div>
+		<h4 align="center" >Student Wise <span class="text-bold">Transport List</span> <?php if($dname){ echo "of ".$dname;}?>  </h4></div>
 		<div class="table-responsive">
 			<table class="table table-striped table-hover" id="sample-table-2">
 				<thead>
@@ -58,7 +58,6 @@
 				<tbody>
 				<?php 
 				$count=1;foreach($request as $row):
-				                       
 				                       $this->db->where("username",$row->username);
 										$snameid  = $this->db->get("student_info")->row();
 

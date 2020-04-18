@@ -111,9 +111,9 @@
 						</div>
 					</div>
 					<div class="col-sm-8">
-						<div id="id_1"><img alt="" src="<?php echo base_url(); ?>assets/images/id_1.png" height="300px" width="500px"></div>
-						<div id="id_2"><img alt="" src="<?php echo base_url(); ?>assets/images/id_2.png" height="300px" width="500px"></div>
-						<div id="id_3"><img alt="" src="<?php echo base_url(); ?>assets/images/id_3.png" height="300px" width="500px"></div>
+						<div style="width: auto; height: auto;" id="id_1"><img alt="" src="<?php echo base_url(); ?>assets/images/id_1.png" height="300px" width="500px"></div>
+						<div style="width: auto; height: auto;" id="id_2"><img alt="" src="<?php echo base_url(); ?>assets/images/id_2.png" height="300px" width="500px"></div>
+						<div style="width: auto; height: auto;" id="id_3"><img alt="" src="<?php echo base_url(); ?>assets/images/id_3.png" height="300px" width="500px"></div>
 					</div>
                   </div>
                 </div>

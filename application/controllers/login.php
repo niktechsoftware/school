@@ -8,6 +8,7 @@ class Login extends CI_Controller{
 		$this->is_login();
 		$this->load->model("teacherModel");
         $this->load->model("allFormModel");
+        $this->load->model("daybookmodel");
         $this->load->model("configureclassmodel");
         $this->load->model("smsmodel");
         //$this->load->model('client_model');
@@ -91,7 +92,7 @@ class Login extends CI_Controller{
 		$this->load->model('dashboard_p');
 		$data['emp_lev']=$this->dashboard_p->emp_leave($sc_code);
 		///////////////////
-		
+		$data['school_code']= $this->session->userdata("school_code");
         $data['client_due_list'] = $this->client_model->list_product($cid);
 	//	print_r($data1);
 		//////////////

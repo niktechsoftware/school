@@ -39,7 +39,7 @@
 				<div class="form-group">
 					<?php if($request->num_rows()>0){
 					$school_code =$this->session->userdata("school_code");
-						$detail = $this->db->query("SELECT finance_start_date FROM fsd where school_code='$school_code' GROUP BY finance_start_date");
+						$detail = $this->db->query("SELECT finance_start_date,id FROM fsd where school_code='$school_code' GROUP BY finance_start_date");
 						if($detail->num_rows() > 0){
 					?>
 					<label class="col-sm-2 control-label">
@@ -49,7 +49,7 @@
 						<select class="form-control" id="fsd" name = "fsd" style="width: 150px;" required="required">
 							<option value="">-select FSD-</option>
 		                      			<?php foreach($detail->result() as $row):?>
-		                      				<option value="<?php echo $row->finance_start_date;?>">
+		                      				<option value="<?php echo $row->id;?>">
 		                      					<?php echo date("d-M-y", strtotime($row->finance_start_date));?>
 		                      				</option>
 		                      			<?php endforeach;?>

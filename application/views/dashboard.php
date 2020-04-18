@@ -72,9 +72,10 @@ $school_code = $this->session->userdata("school_code");
     <div class="panel panel-default panel-white core-box">
       <div class="panel-body no-padding">
         <div class="partition-green text-center core-icon">
-          <i class="fa fa-inr fa-2x icon-big"></i><br>
-
-
+        <?php $date = date('Y-m-d');
+		$total = $this->daybookmodel->datewiseCollecttion($date,$school_code);
+		?>
+          <i class="fa fa-inr fa-2x icon-big"></i><br><?php echo $total['feeTotal']+$total['stockTotal'];?>
         </div>
         <a href="<?php echo base_url(); ?>index.php/login/feeReport">
           <div class="padding-20 core-content">
@@ -86,19 +87,7 @@ $school_code = $this->session->userdata("school_code");
                 <h6 class="block no-margin">Fees </h6>
                 </br>
                 <mark><?php 
-					
-					  $school_code=   $this->session->userdata("school_code");
-					 $this->db->select_sum("paid");
-					 $this->db->where('school_code',$school_code);
-					 $this->db->where('date(diposit_date)',date('Y-m-d'));
-				//	 $this->db->where('dabit_cradit',1);
-					$stocktotal=$this->db->get('fee_deposit')->row();
-					if($stocktotal->paid){
-           echo $stocktotal->paid;
-          } 
-          else{
-            echo "0";
-          }
+					echo $total['feeTotal'];
 					?>
                 </mark>
               </div>
@@ -106,19 +95,7 @@ $school_code = $this->session->userdata("school_code");
                 <h6 class="block no-margin">Stock</h6>
                 </br>
                 <mark><?php 
-					$camount=0;
-					 $school_code=   $this->session->userdata("school_code");
-					 $this->db->select_sum("sub_total");
-					 $this->db->where('school_code',$school_code);
-					 $this->db->where('date(date)',date('Y-m-d'));
-				//	 $this->db->where('dabit_cradit',1);
-					$stocktotal=$this->db->get('sale_info')->row();
-					if($stocktotal->sub_total){
-           echo $stocktotal->sub_total;
-          } 
-          else{
-            echo "0";
-          }
+					echo $total['stockTotal'];
                     ?>
                 </mark>
               </div>
@@ -134,7 +111,7 @@ $school_code = $this->session->userdata("school_code");
       <div class="panel-body no-padding">
         <div class="partition-azure text-center core-icon">
           <i class="fa fa-book fa-2x icon-big"></i>
-
+		
         </div>
         <a href="<?php echo base_url(); ?>index.php/login/daybook">
           <div class="padding-20 core-content">
@@ -145,35 +122,14 @@ $school_code = $this->session->userdata("school_code");
               <div class="col-sm-6">
                 <h6 class="block no-margin">Debit Amount</h6>
                 <mark><?php 
-					$damount=0;
-					 $school_code=   $this->session->userdata("school_code");
-					 $this->db->where('school_code',$school_code);
-					 $this->db->where('date(pay_date)',date('Y-m-d'));
-					 $this->db->where('dabit_cradit',0);
-					 $debit_amount=$this->db->get('day_book');
-					 foreach($debit_amount->result() as $dm){
-						 $damount=$damount + $dm->amount;
-					 }
-					 echo $damount;
+					echo $total['dabitTotal'];
 					?>
                 </mark>
               </div>
               <div class="col-sm-6">
                 <h6 class="block no-margin">Credit Amount</h6>
                 <mark><?php 
-					$camount=0;
-				// 	$vall = array();
-					 $school_code=   $this->session->userdata("school_code");
-					 $this->db->select_sum('amount');
-					 $this->db->where('school_code',$school_code);
-					 $this->db->where('date(pay_date)',date('Y-m-d'));
-					 $this->db->where_not_in('dabit_cradit',0);
-					// $this->db->or_where('dabit_cradit',2);
-					 $credit_amount=$this->db->get('day_book');
-					 foreach($credit_amount->result() as $cm){
-						 $camount=$camount + $cm->amount;
-					 }
-					 echo $camount;
+                echo $total['creditTotal'];
                     ?>
                 </mark>
               </div>
@@ -304,7 +260,7 @@ $school_code = $this->session->userdata("school_code");
             <div class="panel panel-default panel-white core-box">
                 <div class="panel-body no-padding">
                     <div class="partition-blue text-center core-icon">
-                        <i class="fa fa-users fa-2x icon-big"></i>
+                        <i class="fa fa-users fa-2x icon-big"></i><br>Students
                        </div>
                     <a href="<?php echo base_url(); ?>index.php/login/newAdmission">
     				<div class="padding-20 core-content">
@@ -313,7 +269,7 @@ $school_code = $this->session->userdata("school_code");
     				   <div class="row">
     				      
     					   <div class="col-sm-6">
-    					   <h6 class="block no-margin">Total Students</h6>
+    					   <h6 class="block no-margin">Total </h6>
     						<?php //$fsd = $this->session->userdata("fsd");
     						$this->db->select('*');
     							$this->db->from('student_info');
@@ -323,7 +279,7 @@ $school_code = $this->session->userdata("school_code");
     							echo $query->num_rows() ;?>
     					   </div>
     					   <div class="col-sm-6">
-    					   <h6 class="block no-margin">Current Year Students</h6>
+    					   <h6 class="block no-margin">Current Year </h6>
     					   <?php $fsd = $this->session->userdata("fsd");
     						$this->db->select('*');
     							$this->db->from('student_info');
@@ -383,16 +339,16 @@ $school_code = $this->session->userdata("school_code");
 											<div class="panel-body">
 												<div class="core-box">
 													<div class="text-white text-bold">
-												<h4>	Student Attendence</h4>
+												<h4>	Student Attendance</h4>
 													</div>
 													<div class="text-white text-large pull-left">
 													    	<a href="<?php echo base_url();?>/index.php/attendancepanel/todayatten/3" class="btn btn-xs btn-light-blue">
-													   Morning Attendence <br>
+													   Morning Attendance <br>
 													   </a>
 													</div>
 													<div class="text-white text-large pull-right">
 											     		<a href="<?php echo base_url();?>/index.php/attendancepanel/todayatten/5" class="btn btn-xs btn-light-blue">
-											     		      Evening Attendence <br>
+											     		      Evening Attendance <br>
 												</a>
 														</div>
 												</div>
@@ -403,17 +359,17 @@ $school_code = $this->session->userdata("school_code");
 													<div class="core-box">
 											
 													<div class="text-white text-bold">
-												<h4>	Student Attendence</h4>
+												<h4>	Student Attendance</h4>
 													</div>
 													<div class="text-white text-large pull-left">
 													    	<a href="<?php echo base_url();?>index.php/attendancepanel/todayatten/3" class="btn btn-xs btn-light-blue">
-													   Morning Attendence <br>
+													   Morning Attendance <br>
 													   </a>
 														
 													</div>
 													<div class="text-white text-large pull-right">
 											     		<a href="<?php echo base_url();?>index.php/attendancepanel/todayatten/5" class="btn btn-xs btn-light-blue">
-											     		      Evening Attendence <br>
+											     		      Evening Attendance <br>
 												</a>
 														  
                                 			
@@ -434,16 +390,16 @@ $school_code = $this->session->userdata("school_code");
 												<div class="core-box">
 											
 													<div class="text-white text-bold">
-												<h4>	Student Due</h4>
+												<h4>Fee Due (Current Fsd)</h4>
 													</div>
 													<div class="text-white text-large pull-left">
-													    	<a href="<?php echo base_url();?>index.php/homeController/duereport/3" class="btn btn-xs btn-light-blue">
-													   Section wise Due <br>
+													    	<a href="<?php echo base_url();?>index.php/feepanel/studentwisefeepanel" class="btn btn-xs btn-light-blue">
+													   Student wise Due <br>
 													   </a>
 													</div>
 													<div class="text-white text-large pull-right">
-											     		<a href="<?php echo base_url();?>index.php/homeController/duereport/5" class="btn btn-xs btn-light-blue">
-											     		     Fsd Wise Due <br>
+											     		<a href="<?php echo base_url();?>index.php/login/feeReport" class="btn btn-xs btn-light-blue">
+											     		     Class Wise Due <br>
 												</a>
 														  
                                 			
@@ -457,17 +413,17 @@ $school_code = $this->session->userdata("school_code");
 													<div class="core-box">
 											
 													<div class="text-white text-bold">
-												<h4>	Student Due</h4>
+												<h4>Fee Due (Current Fsd)</h4>
 													</div>
 													<div class="text-white text-large pull-left">
-													    	<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue">
+													    	<a href="<?php echo base_url();?>/index.php/feepanel/studentwisefeepanel" class="btn btn-xs btn-light-blue">
 													   Section wise Due <br>
 													   </a>
 														
 													</div>
 													<div class="text-white text-large pull-right">
-											     		<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue">
-											     		     Fsd Wise Due <br>
+											     		<a href="<?php echo base_url();?>/index.php/feepanel/currentmonthdue" class="btn btn-xs btn-light-blue">
+											     		     Current Month Due <br>
 												</a>
 														  
                                 			

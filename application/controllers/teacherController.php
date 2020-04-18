@@ -73,6 +73,34 @@ function getclassforexam(){
 				// echo '<option value="all">All</option>';
 			}
 	    }
+	    	public function getSectionfrexam(){
+		$streamid = $this->input->post("streamid");
+		$this->load->model('configureClassModel');
+		$query = $this->configureClassModel->getSection($streamid);
+	    	echo '<option value="">--Select Section--</option>';
+			foreach ($query->result() as $row){
+                           $this->db->where('id',$row->section);
+				 	       $row2=$this->db->get('class_section')->row();
+                          ?>
+					<option value="<?php echo $row2->id; ?>" ><?php echo $row2->section; ?></option>
+				<?php 
+			}
+	}
+	    function getSectionforexam1(){
+		$streamid = $this->input->post("streamid");
+		$this->load->model("teacherModel");
+		$var = $this->teacherModel->getSectionforexam1($streamid);
+			if($var->num_rows() > 0){
+				echo '<option value="">-Select Section-</option>';
+				foreach ($var->result() as $row){
+                      $this->db->where("id",$row->id);
+                      $sectiondata = $this->db->get("class_section");
+
+					echo '<option value="'.$row->id.'">'.$sectiondata->section.'</option>';
+				} 
+				// echo '<option value="all">All</option>';
+			}
+	    }
 	
 	    
 	    
