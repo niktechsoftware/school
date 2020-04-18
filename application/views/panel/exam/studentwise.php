@@ -1,18 +1,19 @@
-
-<table id="student_wise" class="table table-striped table-bordered" style="width:100%">
+ <h3 class="panel-title">Exam Wise Marks <span class="text-bold"></span></h3>
+<div class="table-responsive">
+<table class="table table-striped table-hover" id="sample-table-2">
 	<thead><th>Subject Name</th>
 		<th>Obtain Marks</th>
 		<th>Total Marks</th>
 	</thead>
 <?php
 
-foreach($exam as $data)
-{
-
-$row1=$data->subject_id;
-$this->db->where('id',$row1);
-$sub=$this->db->get('subject')->row();
-?>
+        foreach($exam as $data)
+        {
+        
+        $row1=$data->subject_id;
+        $this->db->where('id',$row1);
+        $sub=$this->db->get('subject')->row();
+        ?>
 <tr>
 	<td><?php echo $sub->subject;?></td>
 	<td><?php echo $data->marks;?></td>
@@ -22,3 +23,4 @@ $sub=$this->db->get('subject')->row();
 }
  ?>
  </table>
+ </div>

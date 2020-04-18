@@ -1,7 +1,4 @@
-
-
-
-		<div class="row">
+	<div class="row">
 			<div class="col-sm-12">
 					<div class="tabbable">
 									<ul class="nav nav-tabs tab-padding tab-space-3 tab-blue" id="myTab4">

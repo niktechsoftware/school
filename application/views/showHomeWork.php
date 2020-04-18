@@ -147,9 +147,11 @@
 					  <?php } ?>
 			<br>
 			<br>
+				<div class="table-responsive" id ="normal">
 			<div id="teacherWork"></div>
 		<div id="studentWork"></div>
 		<div id="subjecthomework"></div> 
+		</div>
 
 
 	</div>

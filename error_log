@@ -1,1 +1,6 @@
-
+[18-Apr-2020 08:12:34 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method feeduemodel::getDueDetail() in /home/schoodhe/public_html/sschool1/application/controllers/login.php:655
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): Login->feedue()
+#1 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/controllers/login.php on line 655

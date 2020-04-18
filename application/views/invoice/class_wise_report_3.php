@@ -3891,6 +3891,7 @@
                         <td>
                             Rank
                         </td>-->
+                        <td>Rank : </td>
                     </tr>
                 </table>
             </div>
@@ -4158,31 +4159,31 @@
 					<!--for scholar & mkd grade chart start-->
                     <?php if($school == 13 && $row2=="A1" || $school == 7 && $row2=="D" || $school == 9 && $row2=="D"){ ?>
                     <tr style="background-color: #d8c4af;">
-                        <td>91-100</td>
+                        <td>181-200</td>
                         <td>A1</td>
                     </tr>
                     <tr style="background-color: #d8c4af;">
-                        <td>81-90</td>
+                        <td>161-180</td>
                         <td>A2</td>
                     </tr>
                     <tr style="background-color: #d8c4af;">
-                        <td>71-80</td>
+                        <td>141-160</td>
                         <td>B1</td>
                     </tr>
                     <tr style="background-color: #d8c4af;">
-                        <td>61-70</td>
+                        <td>121-140</td>
                         <td>B2</td>
                     </tr>
                     <tr style="background-color: #d8c4af;">
-                        <td>51-60</td>
+                        <td>101-120</td>
                         <td>C1</td>
                     </tr>
                      <tr style="background-color: #d8c4af;">
-                        <td>41-50</td>
+                        <td>81-100</td>
                         <td>C2</td>
                     </tr>
                      <tr style="background-color: #d8c4af;">
-                        <td>33-40</td>
+                        <td>66-80</td>
                         <td>D</td>
                     </tr>
                      <tr style="background-color: #d8c4af;">
@@ -4361,7 +4362,7 @@
     </br>
     </br><?php
       }
-      
+      exit();
     }
    }
 

@@ -46,11 +46,9 @@
 				</div>
 				<div class="form-group">
 				<div class="col-sm-12">
-         <?php 
-    		if($var1->num_rows()>0){
-        	?>
-    	<div class="table-responsive" id ="normal">
-    	<table class="table table-striped table-hover table-bordered" id="studHW">
+       
+    	<div class="table-responsive" >
+    	<table class="table table-striped table-hover" id="sample-table-2">
     	<thead>
     	<tr>
         	<th>S.no.</th>
@@ -65,7 +63,9 @@
     	</tr>
     	</thead>
     	<tbody>
-    	<?php
+      <?php 
+    		if($var1->num_rows()>0){
+        
 	      $count = 1;
                 foreach($var1->result() as $lv):
                     $this->db->where('username',$lv->givenby);
@@ -86,24 +86,24 @@
                         }
                         ?></td>
 			  			<td><?php echo $lv->maximam_marks;?> ( <?php echo $lv->grade;?> )</td>
-			  			<td style="max-width: 151px;"><?php echo $lv->workDiscription;?></td>
-			  			<td><?php echo $lv->givenWorkDate; ?></td>
-						<td><?php echo $lv->DueWorkDate; ?></td>
-						<td style=" width: 30%;"><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
-						    <button class="btn btn-info"  width="104" height="142">Download</button></a>
+			  			<td style="max-width: 200px;"><?php echo $lv->workDiscription;?></td>
+			  			<td><?php echo date("d-m-Y",strtotime($lv->givenWorkDate)); ?></td>
+						<td><?php echo date("d-m-Y",strtotime($lv->DueWorkDate)); ?></td>
+						<td style=" width: 20%;"><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
+						    <button class="btn btn-info" >Download</button></a>
 						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
-						<button class="btn btn-success"  width="104" height="142">Submit</button></a>
+						<button class="btn btn-success"  >Submit</button></a>
 					
 						</td>
 			  		</tr>
-			  		<?php $count++; endforeach; ?>
+			  		<?php $count++; endforeach; 
+			  		
+			  			}?>
 				</tbody>
 			</table>
-			</div><?php 
-	}
-	else{
-		echo "<div style='color:red;'>home Work not Assign.</div>";
-    }?>
+			</div>
+
+    
     </div>
     </div>
     </div>
