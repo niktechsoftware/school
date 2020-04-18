@@ -151,14 +151,13 @@ if($logtype==3)
                     <br/>
                     <span class="subtitle"> 	
                     	<?php  
-                    	        
 								$this->db->where("chat_username",$this->session->userdata("username"));
 								$chat_id = $this->db->get("chat")->row()->chat_username;
 								echo $chat_id;
 							?>
                             <a href="<?php echo base_url();?>singleTeacherControllers/chatBranch/<?php echo $chat_id;?>">
                         		<span class="glyphicon glyphicon-facetime-video"></span>
-                        		<p> &nbsp;&nbsp;Vedio Call</p><span class="arrow"></span>
+                        		<p> &nbsp;&nbsp;Video Call</p><span class="arrow"></span>
                         	</a></span>
                 </div>
                 </a>

@@ -152,7 +152,7 @@
               <div class="col-sm-6">
                
                   <div class="col-sm-3">
-                      <label>Maximam Marks</label>
+                      <label>Maximum Marks</label>
                   </div><div class="col-sm-3">
                       <input type="text" name="mm" id="mm" class="form-control">
                   </div>

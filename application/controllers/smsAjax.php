@@ -328,10 +328,10 @@ class SmsAjax extends CI_Controller{
 							
 						$totnumb=$query->num_rows();
 						$i=1;	$fmobilecount = $this->smsmodel->getMobileSendSms($query->result(),$master_id,2,$sende_Detail);
-		
+			echo $fmobilecount." SMS Send  Successfully";
 						
 					}
-					echo $fmobilecount." SMS Send  Successfully";
+				
 				}
 				else{
 					echo "Parant SMS Not On Please Contact To Admin";
