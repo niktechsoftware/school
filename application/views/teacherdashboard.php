@@ -158,7 +158,7 @@ if($logtype==3)
 							?>
                             <a href="<?php echo base_url();?>singleTeacherControllers/chatBranch/<?php echo $chat_id;?>">
                         		<span class="glyphicon glyphicon-facetime-video"></span>
-                        		<p> &nbsp;&nbsp;Vedio Call</p><span class="arrow"></span>
+                        		<p> &nbsp;&nbsp;Video Call</p><span class="arrow"></span>
                         	</a></span>
                 </div>
                 </a>

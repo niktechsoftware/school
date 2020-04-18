@@ -230,3 +230,4 @@ Stack trace:
 #7 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #8 {main}
   thrown in /home/schoodhe/public_html/school/application/views/studentExamResult.php on line 52
+[17-Apr-2020 05:08:17 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<' in /home/schoodhe/public_html/school/application/views/invoice/si/format_13.php on line 534

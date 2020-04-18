@@ -217,7 +217,7 @@ echo $noticeForStudent->row()->message;
                     
                             <a href="<?php echo base_url();?>singleTeacherControllers/chat">
                         		<span class="glyphicon glyphicon-facetime-video"></span>
-                        		<p> &nbsp;&nbsp;Vedio Class</p><span class="arrow"></span>
+                        		<p> &nbsp;&nbsp;Video Class</p><span class="arrow"></span>
                         	</a></span>
                 </div>
                 </a>
