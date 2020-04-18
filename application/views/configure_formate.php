@@ -113,10 +113,12 @@
 							</button>
 						</div>
 					</div>
+
 					<div class="col-sm-6">
 						<div id="id_1"><img alt="" src="<?php echo base_url(); ?>assets/images/id_1.png" height="300px" width="250px"></div>
 						<div id="id_2"><img alt="" src="<?php echo base_url(); ?>assets/images/id_2.png" height="300px" width="250px"></div>
 						<div id="id_3"><img alt="" src="<?php echo base_url(); ?>assets/images/id_3.png" height="300px" width="250px"></div>
+
 					</div>
                   </div>
                 </div>

@@ -14,6 +14,7 @@ $this->db->where("status",1);
 else:
 //$this->db->where("school_code",$this->session->userdata("school_code"));
 $this->db->where("status",1);
+$this->db->where("fsd",$this->session->userdata("fsd"));
 	$this->db->where("house_id",$clah);
 	$student = $this->db->get("student_info");
 endif;
@@ -106,13 +107,13 @@ endif;
 			  		</tr>
 			  		<?php $count++; ?>
 			  		<?php endforeach;}else{?>
-			  	
+			  	<div class ="alert alert-danger">Student Record Not Found in House.</div>
 			  		
 			  		
 				</tbody>
 			</table>
 			<?php }?>
-			<div class ="alert alert-danger">Student Record Not Found in House.</div>
+			
 		</div>
 		
 		<br/><br/>

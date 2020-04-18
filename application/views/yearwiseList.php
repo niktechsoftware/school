@@ -46,7 +46,8 @@
                 <h3 class="media-heading text-center">Year wise student Report</h3>
                 <p class="media-timestamp">Welcome to the Year wise Student area
                 when you want to see your Year wise Student list than select Fsd name and click on Get student Detail button and access your selected Fsd Student.</div>
-
+				<form action="<?php echo base_url();?>index.php/studentController/yearwisestudentList" method="post">
+										
 					<div class="row">
 						<div class="col-sm-3">
 							&nbsp;

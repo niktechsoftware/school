@@ -248,9 +248,11 @@
                                <input type="text" placeholder="Enter class name" id="findclass">
                              </div>
                            </div>
+
                            <div class="table-responsive"> 
                             <table class="table table-striped table-bordered"
 							style="width: 100%; overflow-y: scroll; overflow-x: scroll;" id="sample-table-2" >
+
                               <thead>
                                 <tr>
                                   <th>SNo.</th>
@@ -267,7 +269,9 @@
 
                               </tbody>
                             </table>
+
                            </div>
+
                           </div>
                         </div>
                       </div>

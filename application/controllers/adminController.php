@@ -302,8 +302,7 @@ redirect("index.php/login/index");
 		$new_img = array(
 				"logo"=> $photo_name
 		);
-
-	
+	    
 		$old_img = $this->input->post("old_img");
 		@chmod("assets/".$school_code."/images/empImage/" . $old_img, 0777);
 		@unlink("assets/".$school_code."/images/empImage/" . $old_img);
