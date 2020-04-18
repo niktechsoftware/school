@@ -33,6 +33,7 @@
               <div class="tab-content">
 			  <!----1st tab end--->
                 <div class="tab-pane fade in active" id="myTab_example1">
+                   <div class="row col-sm-12">
                   <div class="alert panel-pink">
                     <button data-dismiss="alert" class="close">×</button>
                     <h3 class="media-heading text-center">Welcome to Report Card Formate Section</h3>
@@ -42,8 +43,9 @@
 				   display in bottom side of that formate. If you want to see another formate you can select another 
 				   formate and then click save button to configure that formate.
                   </div>
-                  <div class="row">
-					<div class="col-sm-4">
+                  </div>
+                  <div class="row col-sm-12">
+					<div class="col-sm-6">
 						<div class="panel-heading panel-red border-light">
 							<h4 class="panel-title">Select Formate</h4>
 						</div>
@@ -65,13 +67,14 @@
 							</button>
 						</div>
 					</div>
-					<div class="col-sm-8">
-						<div id="report_1"><img alt="" src="<?php echo base_url(); ?>assets/images/report_1.png" height="500px" width="650px" ></div>
-						<div id="report_2"><img alt="" src="<?php echo base_url(); ?>assets/images/report_2.png" height="500px" width="400px" ></div>
-						<div id="report_3"><img alt="" src="<?php echo base_url(); ?>assets/images/report_3.png" height="500px" width="400px" ></div>
-						<div id="report_4"><img alt="" src="<?php echo base_url(); ?>assets/images/report_4.png" height="500px" width="400px" ></div>
+					<div class="col-sm-6">
+						<div  id="report_1"><img alt="" src="<?php echo base_url(); ?>assets/images/report_1.png" height="300px" width="250px" ></div>
+						<div  id="report_2"><img alt="" src="<?php echo base_url(); ?>assets/images/report_2.png" height="300px" width="250px" ></div>
+						<div  id="report_3"><img alt="" src="<?php echo base_url(); ?>assets/images/report_3.png" height="300px" width="250px" ></div>
+						<div  id="report_4"><img alt="" src="<?php echo base_url(); ?>assets/images/report_4.png" height="300px" width="250px" ></div>
 					</div>
                   </div>
+                    
                 </div>
 				<!----1st tab end--->
 				<!----2nd tab start--->
@@ -89,7 +92,7 @@
                   </div>
 
                   <div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						<div class="panel-heading panel-red border-light">
 							<h4 class="panel-title">Select Formate</h4>
 						</div>
@@ -110,10 +113,10 @@
 							</button>
 						</div>
 					</div>
-					<div class="col-sm-8">
-						<div id="id_1"><img alt="" src="<?php echo base_url(); ?>assets/images/id_1.png" height="300px" width="500px"></div>
-						<div id="id_2"><img alt="" src="<?php echo base_url(); ?>assets/images/id_2.png" height="300px" width="500px"></div>
-						<div id="id_3"><img alt="" src="<?php echo base_url(); ?>assets/images/id_3.png" height="300px" width="500px"></div>
+					<div class="col-sm-6">
+						<div id="id_1"><img alt="" src="<?php echo base_url(); ?>assets/images/id_1.png" height="300px" width="250px"></div>
+						<div id="id_2"><img alt="" src="<?php echo base_url(); ?>assets/images/id_2.png" height="300px" width="250px"></div>
+						<div id="id_3"><img alt="" src="<?php echo base_url(); ?>assets/images/id_3.png" height="300px" width="250px"></div>
 					</div>
                   </div>
                 </div>

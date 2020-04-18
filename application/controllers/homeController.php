@@ -335,7 +335,7 @@ class HomeController extends CI_Controller{
 
 	   echo     "success"; 
 	}
-	
+
 	function updateclassidinfeedeposite(){
 		
 		
@@ -345,10 +345,12 @@ class HomeController extends CI_Controller{
 			$updateclass['class_id']=$stuid->class_id;
 		$this->db->where("student_id",$stuid->id);
 		$this->db->update("fee_deposit",$updateclass);
+		
 		endforeach; 
 		echo "done- ".$school_code;
 		
 	}
+
 	
 	function updateTranportFSD(){
 		$tfm = $this->db->get("transport_fee_month");
@@ -371,4 +373,5 @@ class HomeController extends CI_Controller{
 		
 		endforeach;
 	}
+
 }

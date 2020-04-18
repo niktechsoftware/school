@@ -1401,7 +1401,7 @@
 						$i++;
 						endforeach ;?>
 						<td colspan="1" ></td><td colspan="1" ></td>
-                                                     <?php }else if($examid_2->num_rows()==2){ ?>
+                            <?php }else if($examid_2->num_rows()==2){ ?>
 						<?php 
 							$i=1;
 							 foreach ($examid_2->result() as $value):
@@ -1532,7 +1532,7 @@
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+						
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -1567,7 +1567,7 @@
 					  $gtptal= $gtptal+$marks->marks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo $marks->marks;
+							echo $marks->marks;	
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid);
 					$this->db->where('exam_id',$value->exam_id);
@@ -3221,6 +3221,7 @@
     	        </div></div>
     	    </div>
     	    </div>
+
 	<?php }
       else{
           // scholar
@@ -4380,6 +4381,7 @@
      
     }
    }
+
 				function calculateGrade($val,$classid){
 								if($val >= 91 && $val < 101):
 									return 'A1';
