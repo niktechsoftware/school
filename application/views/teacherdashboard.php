@@ -16,10 +16,11 @@ $noticeForTeacher=$this->db->get("notice");?>
 		<?php
 		if($noticeForTeacher->num_rows()>0){
 	echo $noticeForTeacher->row()->message;
-}?>
+}
+?>
 </marquee>
 </div>
-if($logtype==3)
+<?php if($logtype==3)
 {
 ?>
 
