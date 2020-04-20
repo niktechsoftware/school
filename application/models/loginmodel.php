@@ -35,6 +35,18 @@ class LoginModel extends CI_Model{
         			"login_date" => date("d-M-Y"),
         			"login_time" => date("H:i:s")
         	);
+        		$this->db->where("chat_username",$res1->admin_username);
+        	$chatvalue = $this->db->get("chat");
+        	if($chatvalue->num_rows()>0){
+        	     $data['school_code']=$res->id;
+        	     $this->db->where("chat_username",$res1->admin_username);
+        	     $this->db->update("chat",$data);
+        	}else{
+        	     $data['school_code']=$res->id;
+        	    $data['status']=1;
+        	    $data['chat_username']=$res1->admin_username;
+        	    $this->db->insert("chat",$data);
+        	}
             return $loginData;
         }
         
@@ -137,7 +149,18 @@ class LoginModel extends CI_Model{
         			"login_date" => date("d-M-Y"),
         			"login_time" => date("H:i:s")
         	);
-        	
+        		$this->db->where("chat_username",$res->username);
+        	$chatvalue = $this->db->get("chat");
+        	if($chatvalue->num_rows()>0){
+        	     $data['school_code']=$school->id;
+        	     $this->db->where("chat_username",$res->username);
+        	     $this->db->update("chat",$data);
+        	}else{
+        	     $data['school_code']=$school->id;
+        	    $data['status']=1;
+        	    $data['chat_username']=$res->username;
+        	    $this->db->insert("chat",$data);
+        	}
 		//	print_r($loginData);exit;
             return $loginData;
         }

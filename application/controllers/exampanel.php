@@ -47,8 +47,11 @@ class Exampanel extends CI_Controller{
   		$this->db->where('username',$studentexamid);
 		$sid=$this->db->get('student_info')->row();
 		$data['studentid']=$sid->id;
-  		$this->db->where('id',$sid->class_id);
-  		$cls=$this->db->get('class_info')->row();
+	
+	/*	$this->db->select("class_id");
+		$this->db->where("stu_id",$sid->id);
+  		$this->db->where('fsd',$fsd);
+  		$cls=$this->db->get('exam_info')->row()->class_id;*/
   		?>
 		<!-- <h1 style="color:green">Your Student Class is <?php //echo $cls->class_name;?></h1> -->
 		<?php
@@ -58,7 +61,7 @@ class Exampanel extends CI_Controller{
   		$this->db->where('stu_id',$sid->id);
   		$this->db->where('fsd',$fsd);
   		$examd=$this->db->get('exam_info')->result();
-  	
+  //	print_r($examd);
         $data['exam']=$examd;
   		$this->load->view('panel/exam/studentwise',$data);
 

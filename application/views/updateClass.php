@@ -44,7 +44,8 @@
 			entry has not done in any case </strong> because it may affect Student info. 
 			You have to Edit and Delete Class info before Admission of Student.
 			<strong>  Press Update Button for Update a single Class and Delete for Delete a single Class.</strong> </div><br><br>
-				<div >
+				<div class="table-responsive">
+				    
 					<table class="table table-striped table-hover center table-responsive" style="border:3px solid green;" >
 						<thead class="text-blue text-large" style="border:3px solid green;">
 							<tr style="background-color:#ffa366; color:white;">
@@ -122,10 +123,10 @@
 								 </select>
 								 	<!-- <input type="text"  value="<?php echo $row->class_teacher_id;?>" size="5">< --></td> 
 								<td style="border:1px solid green;" id ="success<?php echo $i; ?>">
-									<button class="btn btn-purple btn-sm" id="editClass<?php echo $i; ?>">
+									<button class="button_responsive btn btn-purple btn-sm" id="editClass<?php echo $i; ?>">
 			                    		<i class="fa fa-edit"></i> &nbsp;Update
 			                    	</button>
-			                        <button class="btn btn-red btn-sm" id="deleteClass<?php echo $i; ?>">
+			                        <button class="button_responsive btn btn-red btn-sm" id="deleteClass<?php echo $i; ?>">
 			                    		<i class="fa fa-trash-o"></i> &nbsp;Delete
 			                    	</button>
 								</td>

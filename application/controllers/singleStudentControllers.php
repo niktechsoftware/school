@@ -45,9 +45,16 @@ class singleStudentControllers extends CI_Controller{
 		   $username= $this->input->post("id");
 		   $this->db->where("chat_username",$username);
 		   $chatrow = $this->db->get("chat");
-		   echo $chatrow->row()->chat_id;
+		    if($chatrow->num_rows()>0){
+		   if($chatrow->row()->chat_id){
+		    echo $chatrow->row()->chat_id;
+		   }else{
+		      echo "0";
+		   }
+		}else{
+		     echo "0";
 		}
-		
+		}
 		function index(){
 		$school_code=$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
