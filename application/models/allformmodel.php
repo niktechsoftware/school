@@ -35,7 +35,7 @@ class AllFormModel extends CI_Model{
            }else{
                 $student=	$this->db->query("select DISTINCT(old_student_info.student_id) as id from old_student_info  where fsd ='$fsd' and class_id ='$class_id'");
                 return 	$student;
-                print_r($student);
+                //print_r($student);
            }
            // select student_info.id from student_info join old_student_info where ( ((student_info.fsd =20) and (student_info.class_id =134) and (student_info.status =1)) or ((old_student_info.fsd=20) and (old_student_info.class_id =134) and (student_info.status =1)))
            		

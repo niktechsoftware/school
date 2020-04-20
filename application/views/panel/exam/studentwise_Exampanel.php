@@ -41,22 +41,44 @@
   <div class="panel-body">
        <div class="text-white text-large">
        <div class="row">
+             <div class="col-md-3">
+            											<label class="col-md-6">
+                											Select	FSD
+                											</label>
+                											 <div class="col-md-6">
+                												<select name="fsd" id="fsd" class="form-control">
+                													<option value="">-Select-</option>
+                													<?php 
+                													$this->db->where("school_code",$this->session->userdata("school_code"));
+                													$fsdd = $this->db->get("fsd");
+                													foreach ($fsdd->result() as $f):?>
+                													<option value="<?php echo $f->id;?>"><?php echo $f->finance_start_date." To ".$f->finance_end_date;?></option>
+                													<?php endforeach;?>
+                												</select>
+                											</label>
+											        </div>
+											        </div>
+											       
         <div class="col-md-3">
-<select id="examid" class="form-control">
-      <option value="">Select Exam Name</option><?php
-      $school=$this->session->userdata("school_code");
-      
-      $this->db->where('school_code',$school);
-
-    $emp= $this->db->get('exam_name')->result();
-    foreach($emp as $data)
-    {
-        ?>
-    
-      <option value="<?php echo $data->id;?>"><?php echo $data->exam_name;?></option>
-      <?php
-      } ?>
-    </select>
+            	<label class="col-md-6">Exam Name
+            	  </label>
+              <div class="col-md-6">
+            <select id="examid" class="form-control">
+          
+              <option value="">Select Exam Name</option><?php
+              $school=$this->session->userdata("school_code");
+              
+              $this->db->where('school_code',$school);
+            $emp= $this->db->get('exam_name')->result();
+            foreach($emp as $data)
+            {
+                ?>
+            
+              <option value="<?php echo $data->id;?>"><?php echo $data->exam_name;?></option>
+              <?php
+              } ?>
+        </select>
+</div>
 </div>
 <div class="col-md-2">
 <input type="text" class="form-control" name="stdid" placeholder="Enter Student Id" id="stdexam">
@@ -96,6 +118,7 @@
         var examid = $('#examid').val(); 
          var stdexam = $('#stdexam').val(); 
           var fsd = $('#fsd').val(); 
+          alert(fsd);
                $.post("<?php echo site_url('index.php/exampanel/findstdexam') ?>", {examid : examid,stdexam : stdexam, fsd:fsd}, function(data){
                 $("#examtimetablelist").html(data);
                 

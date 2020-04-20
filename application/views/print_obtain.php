@@ -48,9 +48,10 @@
 				</div>
 			</div>
 			<div class="panel-body">
+			    <input type="hidden" id="fsd" value="<?php echo $fsd; ?>" />
 			       <?php
-						$fsd =$this->session->userdata("fsd");
-						$school_code=$this->session->userdata("school_code");
+						$fsd =$fsd;
+						$school_code=$school_code;
 						$row2=$this->db->get('db_name')->row()->name;
                	 if($school_code == 1 && $row2=="D" || $school_code == 2 && $row2=="D" || $school_code == 3 && $row2=="D" || $school_code == 4 && $row2=="D" || $school_code == 10 && $row2=="D" ){
 					?>
@@ -117,17 +118,22 @@
 					$i = 1;$j=1;
                       $this->db->where("status",1);
                       $this->db->where("class_id",$classid);
-                     if($this->session->userdata("school_code")==1){
+                     if($school_code==1){
                       $this->db->order_by("name","asc");
                       }else{
                        $this->db->order_by("id","asc");
                       }
-                    $num_row=$this->db->get("student_info");
-                if($num_row->num_rows()>0){
-                foreach ($num_row->result() as $stu):
+                    $num_row=$this->db->get("student_info"); 
+                    
+                    
+                if($studentId->num_rows()>0){
+                foreach ($studentId->result() as $stu):
+                     $this->db->where("id",$stu->id);
+	           $stu1 = $this->db->get("student_info")->row();
                  $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND fsd = '$fsd' and school_code='$school_code' AND stu_id='$stu->id'");
 	  			if($val->num_rows()>0){
 	            $v=$val->row();
+	            
                 ?>
                   <tr>
                     <td><?php echo $j; ?></td>
@@ -137,8 +143,8 @@
 						 <input type="hidden" id="fsd<?php echo $i; ?>" value="<?php echo $fsd; ?>" />
                         <input type="hidden" id="classid<?php echo $i; ?>" value="<?php echo $classid; ?>" />
 						<input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
-					<?php echo $stu->username; ?> </td>
-                    <td ><span  style="text-transform:uppercase;"><?php echo $stu->name;?></span></td>
+					<?php echo $stu1->username; ?> </td>
+                    <td ><span  style="text-transform:uppercase;"><?php echo $stu1->name;?></span></td>
                      <?php if($v->Attendance==1)
                     { ?>
                    <td><?php echo 'P'?></td>
@@ -163,6 +169,8 @@
 				</tr>
 				  <script>
 				  $("#deletemmarks1<?php echo $i;?>").click(function(){
+				      
+				         var fsd = $("#fsd").val();
                            var mmarks = $("#mammarks<?php echo $i; ?>").val();
 							var classid = $("#classid<?php echo $i; ?>").val();
 							var stuid= $("#stu_id<?php echo $i; ?>").val();
@@ -171,7 +179,7 @@
 							var examid = $("#examid<?php echo $i; ?>").val();
 							var attendence = $("input[name='attendence']:checked").val();
 							//alert(classid +" "+ subjectid +" "+examid);
-                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{fsd : fsd, examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
                       $("#deletemmarks1<?php echo $i;?>").html(data);
                       alert('Marks Deleted Successfully');
                       $("#deletemmarks1<?php echo $i;?>").html();
@@ -189,14 +197,15 @@
 								$this->db->where("id",$examid);
 						$term=  $this->db->get("exam_name")->row()->term;
 							?>
+							
 							<input type="hidden" id="term<?php echo $i; ?>" value="<?php echo $term; ?>" />
 							<input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
 							<input type="hidden" id="classid<?php echo $i; ?>" value="<?php echo $classid; ?>" />
 							<input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
 							<input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
-							<?php echo $stu->username; ?>
+							<?php echo $stu1->username; ?>
 					</td>
-					<td><?php echo $stu->name; ?></td>
+					<td><?php echo $stu1->name; ?></td>
 					<td class="text-center">
 						<label class="radio-inline">
                           <input class="radio"  type="radio" id="Attendance<?php echo $i; ?>" name="attendence<?php echo $i; ?>" value="1" checked />
@@ -238,6 +247,7 @@
 
 
               $("#submit<?php echo $i;?>").click(function(){
+                   var fsd = $("#fsd").val();
                 var mmarks = $("#mammarks<?php echo $i; ?>").val();
                 var classid = $("#classid<?php echo $i; ?>").val();
                 var stuid= $("#stu_id<?php echo $i; ?>").val();
@@ -248,7 +258,7 @@
                 var attendence = $("input[name='attendence<?php echo $i; ?>']:checked").val();
     				  // alert(marks +" "+ subjectid +" "+examid);
     				    if(mmarks!="" && marks!=""){
-    					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+    					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{fsd : fsd, term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);
     						 $("#submit<?php echo $i;?>").show();
 

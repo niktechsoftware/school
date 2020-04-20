@@ -836,7 +836,7 @@
 								</div>
 							</div>
 							<div class="col-md-12">
-								<div class="row">
+								<div class="row table-responsive">
 									<table class="table">
 											<thead>
 												<tr class='text-uppercase'>

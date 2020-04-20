@@ -185,7 +185,7 @@ or if you want to Cancel student leave then click on Cancel Button.<br>NOTE =>St
 									<?php $sno++; endforeach; ?>
 								
 								<tr>
-									<td colspan="12">
+									<td colspan="13">
                                    
 									</td>
 									<tr>

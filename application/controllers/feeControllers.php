@@ -908,8 +908,8 @@ function getFsd(){
 		    	$studdiscount = $this->db->get("discounttable");
 		    }
 		  ?>
-		  
-		  <table><tr>
+		 	<div class="table-responsive"> 
+		  <table  class="table table-striped table-hover" id="sample-table-2"><tr>
 		  <td valign="top" width="50%">
 	                            <div class="col-sm-12">
 	                                <div class="panel panel-white">
@@ -1431,7 +1431,7 @@ function getFsd(){
 	                            </td>
 	                           </tr> 
 							  </table>                      
-	                                                <?php //$count=0;
+	                        </div>                        <?php //$count=0;
 	                                   //$count=$count+ $totfees;
 	                 	
 ?>

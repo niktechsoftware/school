@@ -152,7 +152,7 @@
     $row2=$this->db->get('db_name')->row()->name;
 
 
-if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D" || $school_code == 9 && $row2 == "D" || $school_code == 8 && $row2 == "D"){ ?>			
+if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D" || $school_code == 9 && $row2 == "D" || $school_code == 8 && $row2 == "D"){ ?>			
 
 
 			
@@ -209,11 +209,12 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 				<?php } ?>
 								
 				$("#subjectIdresult").change(function(){
+				     var fsd = $("#fsd").val();
 				   var classid = $("#classId").val();
 					var examid = $("#exam_name").val();
 				   var sectionid = $("#sectionId").val();
 					var subjectid = $("#subjectIdresult").val();
-					$.post("<?php echo site_url("index.php/examControllers/resultMarks") ?>",{examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
+					$.post("<?php echo site_url("index.php/examControllers/resultMarks") ?>",{fsd : fsd, examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
 						$("#result123").html(data);
 					});
 				});
@@ -239,12 +240,13 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 					});
 
 				$("#subjectId1").change(function(){
+				        var fsd = $("#fsd").val();
 					var classv = $("#classv1").val();
 					var teacherid = $("#teacherid1").val();
 					var exam_name = $("#exam_name1").val();
 					var section = $("#sectionId1").val();
 					var subject = $("#subjectId").val();
-					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{teacherid : teacherid,exam_name : exam_name,classv : classv,section : section,subject : subject}, function(data){
+					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{fsd : fsd, teacherid : teacherid,exam_name : exam_name,classv : classv,section : section,subject : subject}, function(data){
 						$("#enterMarks").html(data);
 						});
 					
@@ -275,17 +277,18 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
     $row2=$this->db->get('db_name')->row()->name;
 
 
-if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D"  || $school_code == 8 && $row2 == "D"|| $school_code == 9 && $row2 == "D" ){ ?>
+if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D"  || $school_code == 8 && $row2 == "D"|| $school_code == 9 && $row2 == "D" ){ ?>
 
 
 				$("#subjectId").change(function(){
+				        var fsd = $("#fsd").val();
 					var classid = $("#classId").val();
 					var teacherid = $("#teacherid").val();
 					var examid = $("#exam_name").val();
 					var sectionid = $("#sectionId").val();
 					var subjectid = $("#subjectId").val();
 				
-					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
+					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{fsd : fsd, teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
 			
 						$("#enterMarks").html(data);
 						});
@@ -295,19 +298,24 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 <?php }else{ ?>
 
 $("#sub_type").change(function(){
+    	            var fsd = $("#fsd").val();
 					var classid = $("#classId").val();
 					var teacherid = $("#teacherid").val();
 					var examid = $("#exam_name").val();
 					var sectionid = $("#sectionId").val();
 					var sub_type = $("#sub_type").val();
 					var subjectid = $("#subjectId").val();
-				//	alert(sub_type);
-					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{sub_type : sub_type,teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
+					if(fsd.length >0 && classid.length >0 ){
+					//alert(fsd);
+					$.post("<?php echo site_url("index.php/examControllers/enterMarks") ?>",{fsd : fsd, sub_type : sub_type,teacherid : teacherid,examid : examid,classid : classid,sectionid : sectionid,subjectid : subjectid}, function(data){
 			
 						$("#enterMarks").html(data);
 						});
-					
+					}else{
+    alert("Please Select FSD and Class First ");
+}
 					});
+
 
 <?php } ?>
 	Main.init();

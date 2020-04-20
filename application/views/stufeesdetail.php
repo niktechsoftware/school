@@ -75,7 +75,7 @@
 							</div>
 					</div>
 				</div>
-
+            <div class ="table-responsive">
 				<table
 					class="table table-striped table-hover center table-responsive"
 					id="f_tb">
@@ -84,7 +84,6 @@
 							style="background-color: #1ba593; color: white;">
 							<th class="text-center">S No.</th>
 							<th class="text-center">Student Id</th>
-
 							<th class="text-center">Total Fees</th>
 							<th class="text-center">Deposite Month</th>
 							<th class="text-center">Payment Mode</th>
@@ -177,7 +176,7 @@ $v = 1;
 												
 													</tbody>
 				</table>
-
+            </div>
 			</div>
 		</div>
 	</div>

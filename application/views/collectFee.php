@@ -306,7 +306,9 @@
 												                                      $apm1  =  $this->db->get("late_fees");
 												                                      
 												                                       $this->db->distinct();
+
 												                                     $monthDeposit =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd_id' and deposite_months.student_id='$pk->id' order by deposite_months.id ASC");
+
                                                                                 		 /*  $this->db->select("*");
                                                                                 		   $this->db->where("student_id",$pk->id);
                                                                                 		    $this->db->where("fsd",$fsd_id);
@@ -438,10 +440,12 @@
 												                    <div class="row">
 												                        <div class="col-sm-12">
 												<!-- ------------------------------------------------- Payment mode Column Start ------------------------------------------------------ -->
-												                            <table style="width:100%;">
-																			<tr>
-												                            <td id="basicfee"></td>
-												                            </tr></table>
+												                           <div class="table-responsive">
+    												                            <table class="table table-striped table-hover" >
+    																			<tr>
+    												                            <td id="basicfee"></td>
+    												                            </tr></table>
+												                            </div>
 												<!-- ------------------------------------------------- Fee Detail Column ------------------------------------------------------ -->
 												                        </div>
 												                    </div>

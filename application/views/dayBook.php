@@ -128,25 +128,35 @@
             		<div class="form-group">
             			<H3 style="margin-left: 100px;">Debit</H3>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Opening Balance</label>
-            			<input type="text" style="margin-left: 100px;" value="<?php echo $opening?>" disabled="disabled"/>
+            		<div class="col-md-12">
+            				<label class="control-label col-md-6">Opening Balance</label>
+            			<div class="col-md-6">	
+            			<input type="text"  value="<?php echo $opening?>" class="form-control" disabled="disabled"/>
+            			</div>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Fee &amp; Admission</label>
-            			<input type="text" style="margin-left: 100px;" value ="<?php echo $admin;?>" disabled="disabled"/>
+            		<div class="col-md-12">
+            				<label class="control-label col-md-6">Fee &amp; Admission</label>
+            			<div class="col-md-6">
+            			<input type="text"  value ="<?php echo $admin;?>" class="form-control" disabled="disabled"/>
+            			</div>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Stock Sale</label>
-            			<input type="text" style="margin-left: 135px;" value ="<?php echo $sale;?>" disabled="disabled"/>
+            	<div class="col-md-12">
+            				<label class="control-label col-md-6">Stock Sale</label>
+            			<div class="col-md-6">
+            			<input type="text"  value ="<?php echo $sale;?>" class="form-control" disabled="disabled"/>
+            			</div>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Bank Withdrawal</label>
-            			<input type="text" style="margin-left: 100px;" value="<?php echo $bt;?>" disabled="disabled"/>
+            		<div class="col-md-12">
+            				<label class="control-label col-md-6">Bank Withdrawal</label>
+	                <div class="col-md-6">            				
+            			<input type="text"  value="<?php echo $bt;?>"  class="form-control" disabled="disabled"/>
+            			</div>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Receive From Director</label>
-            			<input type="text" style="margin-left: 68px;" value="<?php echo $dt;?>" disabled="disabled"/>
+            		<div class="col-md-12">
+            				<label class="control-label col-md-6">Receive From Director</label>
+            			<div class="col-md-6">		
+            			<input type="text"  value="<?php echo $dt;?>" class="form-control" disabled="disabled"/>
+            			</div>
             		</div>
             		
             	</div>
@@ -154,27 +164,38 @@
             	 	<div class="form-group">
             	 		<H3 style="margin-left: 100px;">Credit</H3>
             		</div>
-            	 		<div class="form-group">
-            			<label class="control-label">
+            	 	<div class="col-md-12">
+            	 		    
+            			<label class="control-label col-md-6">
             				<span>Closing Balance</span>
             			</label>
-            			<input type="text" style="margin-left: 100px;" value="<?php echo $closing?>" disabled="disabled"/>
+            			<div class="col-md-6">	
+            			<input type="text"  value="<?php echo $closing?>" class="form-control" disabled="disabled"/>
+            			</div>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Cash Payment</label>
-            			<input type="text" style="margin-left: 110px;" value="<?php echo $cash;?>" disabled="disabled" />
+            	<div class="col-md-12">
+            				<label class="control-label col-md-6">Cash Payment</label>
+            				<div class="col-md-6">	
+            			<input type="text" value="<?php echo $cash;?>" class="form-control" disabled="disabled" />
+            			</div>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Salary</label>
-            			<input type="text" style="margin-left: 157px;" value="<?php echo $salary;?>"  disabled="disabled"/>
+            		<div class="col-md-12">
+            			<label class="control-label col-md-6">Salary</label>
+            			<div class="col-md-6">	
+            			<input type="text"  value="<?php echo $salary;?>" class="form-control"  disabled="disabled"/>
+            			</div>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Bank Deposits</label>
-            			<input type="text" style="margin-left: 110px;" value="<?php echo $banktransaction;?>" disabled="disabled" />
+            	<div class="col-md-12">
+            				<label class="control-label col-md-6">Bank Deposits</label>
+            				<div class="col-md-6">	
+            			<input type="text" value="<?php echo $banktransaction;?>" class="form-control" disabled="disabled" />
+            			</div>
             		</div>
-            		<div class="form-group">
-            			<label class="control-label">Handover To Director</label>
-            			<input type="text" style="margin-left: 73px;" value="<?php echo $htd;?>"disabled="disabled" />
+            	<div class="col-md-12">
+            				<label class="control-label col-md-6">Handover To Director</label>
+            				<div class="col-md-6">	
+            			<input type="text"  value="<?php echo $htd;?>" class="form-control" disabled="disabled" />
+            			</div>
             		</div>
             	</div>
             	</div>
