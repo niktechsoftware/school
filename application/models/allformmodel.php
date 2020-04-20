@@ -111,7 +111,7 @@ function updatefsd($fsdid){
         	{
             	foreach($result21->result() as $value):
             	$this->db->where('fsd',$fsdid);
-            	$this->db->where('class_id',$value->class_i);
+            	$this->db->where('class_id',$value->class_id);
             	$result=$this->db->get('class_fees');
             	if($result->num_rows()<1){
         		$data=array(

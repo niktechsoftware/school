@@ -227,7 +227,7 @@
 				<button data-dismiss="alert" class="close" type="button">
 					&times;
 				</button>
-				<h4 class="alert-heading"><i class="fa fa-times"></i> Error! <?php echo $student->num_rows();?></h4>
+				<h4 class="alert-heading"><i class="fa fa-times"></i> Error! <?php echo "0";?></h4>
 				<p>
 					No record found from Fee database please submit fee first of this class &amp; section... 
 				</p>
