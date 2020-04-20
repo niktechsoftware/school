@@ -9,7 +9,7 @@
 <!-- start: HEAD -->
 
 <head>
-    	<script data-ad-client="ca-pub-5093838037340612" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    	
     <title><?php echo $title; ?></title>
     <!-- start: META -->
     <meta charset="utf-8" />

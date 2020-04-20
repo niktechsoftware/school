@@ -1,0 +1,125 @@
+[19-Apr-2020 13:28:05 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php:161
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(347): CI_Loader->view('invoice/saleInv...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->saleInvoice('2733')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 161
+[19-Apr-2020 13:30:31 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php:161
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(347): CI_Loader->view('invoice/saleInv...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->saleInvoice('2825')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 161
+[20-Apr-2020 10:57:44 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE), expecting end of file in /home/schoodhe/public_html/school/application/views/invoice/class_wise_report_3.php on line 2685
+[20-Apr-2020 11:02:01 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method feeduemodel::getDueDetail() in /home/schoodhe/public_html/school/application/controllers/login.php:656
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->feedue()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/login.php on line 656
+[20-Apr-2020 11:02:16 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method feeduemodel::getDueDetail() in /home/schoodhe/public_html/school/application/controllers/login.php:656
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->feedue()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/login.php on line 656
+[20-Apr-2020 11:28:34 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method feeduemodel::getDueDetail() in /home/schoodhe/public_html/school/application/controllers/login.php:656
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->feedue()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/login.php on line 656
+[20-Apr-2020 11:28:37 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method feeduemodel::getDueDetail() in /home/schoodhe/public_html/school/application/controllers/login.php:656
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): Login->feedue()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/login.php on line 656
+[20-Apr-2020 11:32:07 Asia/Calcutta] PHP Fatal error:  Cannot redeclare feeduemodel::getDueDetail() in /home/schoodhe/public_html/school/application/models/feeduemodel.php on line 12
+[20-Apr-2020 11:32:24 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php:161
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(347): CI_Loader->view('invoice/saleInv...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->saleInvoice('2733')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 161
+[20-Apr-2020 11:34:03 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php:161
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/invoiceController.php(347): CI_Loader->view('invoice/saleInv...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): InvoiceController->saleInvoice('2733')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 161
+[20-Apr-2020 20:58:07 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php:500
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/examControllers.php(513): CI_Loader->view('ajax/examMarksD...', Object(CI_DB_mysqli_result))
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): examControllers->print_obtain('25', '114', '252', '2389', '0')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php on line 500
+[20-Apr-2020 20:58:11 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php:500
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/examControllers.php(513): CI_Loader->view('ajax/examMarksD...', Object(CI_DB_mysqli_result))
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): examControllers->print_obtain('25', '114', '252', '2389', '1')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php on line 500
+[20-Apr-2020 21:00:36 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php:500
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/examControllers.php(513): CI_Loader->view('ajax/examMarksD...', Object(CI_DB_mysqli_result))
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): examControllers->print_obtain('25', '160', '252', '2389', '1')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php on line 500
+[20-Apr-2020 21:03:54 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php:500
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/examControllers.php(513): CI_Loader->view('ajax/examMarksD...', Object(CI_DB_mysqli_result))
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): examControllers->print_obtain('25', '160', '252', '2389', '0')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php on line 500
+[20-Apr-2020 21:04:00 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php:500
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/examControllers.php(513): CI_Loader->view('ajax/examMarksD...', Object(CI_DB_mysqli_result))
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): examControllers->print_obtain('25', '160', '252', '2389', '1')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php on line 500
+[20-Apr-2020 21:13:22 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on null in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php:507
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/examControllers.php(516): CI_Loader->view('ajax/examMarksD...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): examControllers->print_obtain('25', '160', '252', '2389', '0')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php on line 507
+[20-Apr-2020 21:13:31 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function row() on null in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php:507
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/school/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/school/application/controllers/examControllers.php(516): CI_Loader->view('ajax/examMarksD...', Array)
+#3 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): examControllers->print_obtain('25', '160', '252', '2389', '1')
+#4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php on line 507

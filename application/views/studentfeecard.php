@@ -51,9 +51,10 @@
                 <div class="row">
                     <div class="col-sm-12">
                     <?php $studentid = $this->uri->segment(3);?>
-
-                        <IFRAME SRC="<?php echo base_url(); ?>feeControllers/fullfeeDetailIframe/<?php echo $studentid; ?>" width="100%" height="auto;" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
+                <div class="table-responsive">
+                        <IFRAME SRC="<?php echo base_url(); ?>feeControllers/fullfeeDetailIframe/<?php echo $studentid; ?>" width="30%" height="auto;" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
                     </div>
+                   </div>
                 </div>
             </div>
             <!-- end: INLINE TABS PANEL -->

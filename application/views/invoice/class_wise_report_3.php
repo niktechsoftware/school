@@ -140,14 +140,24 @@
     <div id="printcontent" align="center">
        
                     <?php
+                          
+                    if($fsd ==$this->session->userdata("fsd")){
                             $this->db->where('status',1);
+                            $this->db->select("id");
                             $this->db->where('class_id',$classid);
                             $sid=$this->db->get('student_info');
-                	       foreach($sid->result() as $studentProfile){
+                    }else{
+                        $this->db->select("student_id as id");
+                         $this->db->where('class_id',$classid);
+                            $sid=$this->db->get('old_student_info');
+                    }
+                	      $u=0;  foreach($sid->result() as $studentProfile){
+                	          $this->db->where("id",$studentProfile->id);
+                	         $studentInfo= $studentProfile=$this->db->get("student_info")->row();
                             $studentInfo = $studentProfile;
                             $this->db->where('student_id',$studentInfo->id);
                             $guardian_info=$this->db->get('guardian_info');
-                            $parentInfo = $guardian_info->row(); 
+                            $parentInfo = $guardian_info->row();
 
          if(($this->session->userdata("school_code") != 15) && ($this->session->userdata("school_code") != 13)){          
 	
@@ -3264,7 +3274,7 @@
 								<span style="text-transform: uppercase;font-weight: bold;">Scholar ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:#ff0000;font-weight: bold;"> <?= $studentInfo->username."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?></span><br>
 							
 							   <?php
-										   $this->db->where('school_code',$school_code);
+							    $this->db->where('school_code',$school_code);
 										   $this->db->where('id',$classid);
 										   $classname=$this->db->get('class_info');
 										  
@@ -3298,7 +3308,7 @@
 									echo (date('Y', strtotime('-1 year', strtotime($fsd2)) )."-". date('Y', strtotime($fsd2))) ;?>]<br>
 									<?php 
 									$this->db->where("school_code",$school_code);
-								   $this->db->where("fsd",$this->session->userdata('fsd'));
+								   $this->db->where("fsd",$fsd);
 									$this->db->where("stu_id",$studentInfo->id);
 									$result= $this->db->get("exam_info")->result();
 									$c="";$d="";
