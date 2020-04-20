@@ -235,7 +235,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6" style="overflow: auto; width: 650px; height: 420px;">
+                    <div class="col-sm-6" style="overflow: auto; width: 300px; height: 420px;">
                       <div class="panel panel-white">
                         <div class="panel-heading panel-pink border-light">
                           <h4 class="panel-title">Class <span class="text-bold">List</span></h4>
@@ -248,8 +248,11 @@
                                <input type="text" placeholder="Enter class name" id="findclass">
                              </div>
                            </div>
-                              
-                            <table class="table table-hover"  id="sample-table-1">
+
+                           <div class="table-responsive"> 
+                            <table class="table table-striped table-bordered"
+							style="width: 100%; overflow-y: scroll; overflow-x: scroll;" id="sample-table-2" >
+
                               <thead>
                                 <tr>
                                   <th>SNo.</th>
@@ -266,6 +269,9 @@
 
                               </tbody>
                             </table>
+
+                           </div>
+
                           </div>
                         </div>
                       </div>

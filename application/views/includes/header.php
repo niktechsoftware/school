@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--  
   <meta name="description" content="Welcome to niktech software School ERP . we proving school management erp software. we including online attendance with biometric attendance machine and tracking student with GPS technology & many other facilities in our school management erp system">
@@ -184,14 +185,14 @@
     <!-- start: TOPBAR CONTAINER -->
     <div class="container">
     <div class="row">
-        <div class="col-md-2" style="margin-top:10px"> 
+      <div class="col-md-12">
+        <div class="col-md-3" style="margin-top:7px"> 
             <a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars"></i> &nbsp;   &nbsp;
             </a>
-            
             <?php if($this->session->userdata('login_type') == 'admin'){ ?>
-            <a style="margin-left:120px;"  href="https://niktechsoftware.com/index.php/welcome/pay" target="_blank"> 
-            <span class="button_blink" style="margin-top:-5px;">Due Ammount : <?php
+            &nbsp;   &nbsp; <a style="margin-left:0px;"  href="https://niktechsoftware.com/index.php/welcome/pay" target="_blank"> 
+            <span class="button_blink" style="margin-top:-5px;">Due Amount : <?php
             	$school_code=   $this->session->userdata("school_code");
             			    $this->db->where("id",$school_code);
             		$cid  = $this->db->get("school")->row()->customer_id;
@@ -199,25 +200,24 @@
             if($client_due_list){echo $client_due_list->amount;}else{ echo "0";} ?> </span>
             </a>
             <?php }?>
-            
-        </div>
-        <div class="col-md-2" style="margin-top:10px">
-            <a style="margin-left:120px;"  href="<?php echo base_url();?>assets/apk/niktech_software.apk" target="_blank"> 
+            &nbsp;   &nbsp;
+            <a style="margin-left:0px;"  href="<?php echo base_url();?>assets/apk/niktech_software.apk" target="_blank"> 
             <span class="button_blink" style="margin-top:-5px;">  Download App </span>
             </a>
+        
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="navbar-header">
             
             <!-- start: LOGO -->
-            <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/login/">
-                <?php echo $this->session->userdata('your_school_name') ?>
+            <a class="navbar-brand" style="margin-left:-60px;" href="#">
+               <strong style="font-size:15px;"> <?php echo $this->session->userdata('your_school_name'); ?></strong>
             </a>
             
             <!-- end: LOGO -->
             </div>
         </div>
-        <div class="col-md-3" style="margin-top:10px">
+        <div class="col-md-3" style="margin-top:7px">
         <div class="topbar-tools">
             <!-- start: TOP NAVIGATION MENU -->
             <ul class="nav navbar-right">
@@ -292,10 +292,12 @@
             <!-- end: TOP NAVIGATION MENU -->
         </div>
         </div>
+        </div>
     </div>
        
        
     </div>
     <!-- end: TOPBAR CONTAINER -->
 </header>
+
 <!-- end: TOPBAR -->

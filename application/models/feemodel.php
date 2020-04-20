@@ -55,15 +55,20 @@ class feeModel extends CI_Model{
 			$classid = $stu_record->class_id;
 		}else{
 			$this->db->where("student_id",$student_id);
-			$ostu_record = $this->db->get("old_student_info")->row();
-			$classid = $ostu_record->class_id;
+			$ostu_record = $this->db->get("old_student_info");
+			if($ostu_record->num_rows()>0){
+			$classid = $ostu_record->row()->class_id;
 			$this->db->where("id",$student_id);
 			$stu_record = $this->db->get("student_info")->row();
+			}else{
+				$stu_record=0;
+			}
 		}
+		if($stu_record){
 		$totMonthly = $this->getOnemonthFee($student_id,$classid,$getmonth,$getfsdid,$stu_record->discount_id,$stu_record->vehicle_pickup);
 			//echo $totMonthly."<br>";
 		return $totMonthly;
-		}
+		}}
 	}
 	
 	function getOnemonthFee($student_id,$classid,$getmonth,$getfsdid,$discount,$transportid){

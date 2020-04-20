@@ -5,6 +5,57 @@ class daybookModel extends CI_Model{
 		$query = $this->db->insert("day_book", $stream);
 		return $query;
 	}
+	
+	function datewiseCollecttion($date,$school_code){
+		$this->db->select_sum("paid");
+		$this->db->where('school_code',$school_code);
+		$this->db->where('DATE(diposit_date)',$date);
+		$stocktotal=$this->db->get('fee_deposit')->row();
+		if($stocktotal->paid){
+			$resulttotal['feeTotal'] =$stocktotal->paid;
+		}
+		else{
+			$resulttotal['feeTotal']=0;
+		}
+		
+		$this->db->select_sum("sub_total");
+		$this->db->where('school_code',$school_code);
+		$this->db->where('DATE(date)',$date);
+		//	 $this->db->where('dabit_cradit',1);
+		$stocktotal=$this->db->get('sale_info')->row();
+		if($stocktotal->sub_total){
+			$resulttotal['stockTotal']= $stocktotal->sub_total;
+		}
+		else{
+			$resulttotal['stockTotal']=0;
+		}
+		
+		$this->db->select_sum('amount');
+		$this->db->where('school_code',$school_code);
+		$this->db->where('date(pay_date)',$date);
+		$this->db->where('dabit_cradit',0);
+		$debit_amount=$this->db->get('day_book')->row();
+		if($debit_amount->amount){
+			$resulttotal['dabitTotal']=$debit_amount->amount;
+		}else{
+			$resulttotal['dabitTotal']=0;
+		}
+		
+		
+		$this->db->select_sum('amount');
+		$this->db->where('school_code',$school_code);
+		$this->db->where('date(pay_date)',$date);
+		$this->db->where_not_in('dabit_cradit',0);
+		// $this->db->or_where('dabit_cradit',2);
+		$credit_amount=$this->db->get('day_book')->row();
+		if($credit_amount->amount){
+			$resulttotal['creditTotal']=$credit_amount->amount;
+		}else{
+			$resulttotal['creditTotal']=0;
+		}
+		
+		return $resulttotal;
+	}
 	public function fromStock1($daybook1,$billno){
 	    $this->db->where('invoice_no',$billno);
 	    $this->db->where('reason',"From sale Stock");

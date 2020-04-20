@@ -705,8 +705,8 @@ function result(){
 			 * echo "</pre>";
 			 */
 
-
 			$this->load->view("invoice/si3/$callview",$data);
+
 
 
 

@@ -58,8 +58,8 @@
         </div>
     </div>
     <?php if($this->session->userdata("login_type") !=  "student"){?>
-    <div class="col-sm-6" style="margin-top:15px;">
-        <center><a class="" style="color: #f5f5f5;" href="#">Customer Care&nbsp;:<br>&nbsp;<i class="fa fa-phone"></i>+91-&nbsp;6389027901,&nbsp;6389027902,&nbsp;6389027903,&nbsp;6389027904,&nbsp;6389027905
+    <div class="col-sm-6" style="margin-top:13px; font-size:9px;">
+        <center><a class="" style="color: #f5f5f5;" href="#">Customer Care:<br><i class="fa fa-phone"></i>+91-&nbsp;6389027901,&nbsp;6389027902,&nbsp;6389027903,&nbsp;6389027904
                 <br>WhatsApp Number&nbsp;: <i class="fab fa-whatsapp"></i>+91-&nbsp;9580121878</a></center>
     </div>
     <?php }?>
@@ -121,9 +121,9 @@
         <a style="margin:3px;" class="button_responsive btn btn-dark-beige" href="<?php echo base_url(); ?>index.php/feepanel">Fee Report</a>
         <a style="margin:3px;" class=" button_responsive btn btn-dark-azure" href="<?php echo base_url(); ?>index.php/homeworkpanel">Home Work</a>
         <a style="margin:3px;" class="button_responsive btn btn-dark-yellow" href="<?php echo base_url(); ?>index.php/timetablepanel">Time Table</a>
-        <a style="margin:3px;" class="btn btn-danger" href="<?php echo base_url();?>index.php/login/quickRegistraionStudent">Quick Admission</a>
-        <a style="margin:3px;" class="btn btn-danger" href="<?php echo base_url(); ?>index.php/login/collectFee">Collect Fee</a>
-        <a href="<?php echo base_url(); ?>index.php/login/simpleSearchStudent"  class="btn btn-dark-purple" target="_blanck">Search Student </a>
+        <a style="margin:3px;" class="button_responsive btn btn-danger" href="<?php echo base_url();?>index.php/login/quickRegistraionStudent">Quick Admission</a>
+        <a style="margin:3px;" class="button_responsive btn btn-danger" href="<?php echo base_url(); ?>index.php/login/collectFee">Collect Fee</a>
+        <a href="<?php echo base_url(); ?>index.php/login/simpleSearchStudent"  class="button_responsive btn btn-dark-purple" target="_blanck">Search Student </a>
                      
         <!-- Student Registration</a> -->
 
@@ -131,4 +131,5 @@
        <?php } ?>
     </div>
 </div>
+
  <br>
