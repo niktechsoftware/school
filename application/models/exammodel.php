@@ -212,6 +212,7 @@ return $query1;
 		$this->db->where("class_id",$data['class_id']);
 		$this->db->where("subject_id",$data['subject_id']);
 		$query1 = $this->db->get("exam_info");
+		//print_r($query1);
 		return $query1;
 	}
 	

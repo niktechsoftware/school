@@ -122,7 +122,7 @@ class LoginModel extends CI_Model{
         	$general = $this->db->get("class_info");
 			$scode=$general->row()->school_code;
 			
-        	$this->db->where("id",$res->school_code);
+        	$this->db->where("id",$scode);
         	$general = $this->db->get("school");
         	$school = $general->row();
         	$loginData = array(
@@ -152,11 +152,11 @@ class LoginModel extends CI_Model{
         		$this->db->where("chat_username",$res->username);
         	$chatvalue = $this->db->get("chat");
         	if($chatvalue->num_rows()>0){
-        	     $data['school_code']=$school->id;
+        	     $data['school_code']=$scode;
         	     $this->db->where("chat_username",$res->username);
         	     $this->db->update("chat",$data);
         	}else{
-        	     $data['school_code']=$school->id;
+        	     $data['school_code']=$scode;
         	    $data['status']=1;
         	    $data['chat_username']=$res->username;
         	    $this->db->insert("chat",$data);

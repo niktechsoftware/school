@@ -296,6 +296,7 @@ redirect("index.php/login/index");
 	}
 	
 	public function uploadAdminlogo(){
+	    	$rawName ='logo';
 		$school_code = $this->session->userdata("school_code");
 		$photo_name = time().trim($_FILES['logo']['name']);
 		$photo_name = str_replace(' ', '_', $photo_name);
@@ -304,36 +305,23 @@ redirect("index.php/login/index");
 		);
 	    
 		$old_img = $this->input->post("old_img");
+		if (!empty($_FILES['logo']['name'])) {
+		$this->load->model("imageupload");
+		$status=$this->imageupload->imageUploadProfile($rawName,$photo_name,$school_code);
+		if($status=="success"){
 		@chmod("assets/".$school_code."/images/empImage/" . $old_img, 0777);
 		@unlink("assets/".$school_code."/images/empImage/" . $old_img);
 		$this->db->where("id",$this->session->userdata("school_code"));
 		$query = $this->db->update("school",$new_img);
-	
-		if($query){
-			$this->load->library('upload');
-			// Set configuration array for uploaded photo.
-			//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/empImage');
-			$asset_name = $this->db->get('upload_asset')->row()->asset_name;
-			
-			$image_path = $asset_name.$school_code.'/images/empImage';
-			$config['upload_path'] = $image_path;
-			$config['allowed_types'] = 'gif|jpg|jpeg|png';
-			$config['max_size'] = '1160';
-			$config['file_name'] = $photo_name;
-			// Upload first photo and create a thumbnail of it.
-			if (!empty($_FILES['logo']['name'])) {
-				$this->upload->initialize($config);
-				if ($this->upload->do_upload('logo')) {
-					// ---------------------------------- Redirect Success Page ----------------------
-					$this->session->set_userdata("logo",$photo_name);
-					redirect("index.php/adminController/adminProfile/true/updateInfo");
-				}else{
-					redirect("index.php/errorController");	
-				}
-			}
+		redirect("index.php/adminController/adminProfile/true/updateInfo");
+		}else{
+		    //echo $status;
+		    redirect("index.php/errorController");
+		}
 		}
 	}
 	public function uploadprinciple_sign(){
+	    	$rawName ='logo';
 		$school_code = $this->session->userdata("school_code");
 		$photo_name = time().trim($_FILES['logo']['name']);
 		$photo_name = str_replace(' ', '_', $photo_name);
@@ -341,73 +329,48 @@ redirect("index.php/login/index");
 				"principle_sign"=> $photo_name
 		);
 		$old_img = $this->input->post("old_img");
+		if (!empty($_FILES['logo']['name'])) {
+		$this->load->model("imageupload");
+		$status=$this->imageupload->imageUploadProfile($rawName,$photo_name,$school_code);
+		if($status=="success"){
 		@chmod("assets/".$school_code."/images/empImage/" . $old_img, 0777);
 		@unlink("assets/".$school_code."/images/empImage/" . $old_img);
 		$this->db->where("id",$this->session->userdata("school_code"));
 		$query = $this->db->update("school",$new_img);
-		if($query){
-			$this->load->library('upload');
-			// Set configuration array for uploaded photo.
-			//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/empImage');
-			$asset_name = $this->db->get('upload_asset')->row()->asset_name;
-			$image_path = $asset_name.$school_code.'/images/empImage';
-			$config['upload_path'] = $image_path;
-			$config['allowed_types'] = 'gif|jpg|jpeg|png';
-			$config['max_size'] = '1160';
-			$config['file_name'] = $photo_name;
-			// Upload first photo and create a thumbnail of it.
-			if (!empty($_FILES['logo']['name'])) {
-				$this->upload->initialize($config);
-				if ($this->upload->do_upload('logo')) {
-					// ---------------------------------- Redirect Success Page ----------------------
-					$this->session->set_userdata("principle_sign",$photo_name);
-					redirect("index.php/adminController/adminProfile/true/updateInfo");
-				}else{
-					redirect("index.php/errorController");	
-				}
-			}
+		redirect("index.php/adminController/adminProfile/true/updateInfo");
+		}else{
+		    //echo $status;
+		    redirect("index.php/errorController");
+		}
 		}
 	}
 	
 	public function uploadAdminPicture(){
-		
+		$rawName ='logo';
 		$photo_name = time().trim($_FILES['logo']['name']);
 		$school_code = $this->session->userdata("school_code");
 		$photo_name = str_replace(' ', '_', $photo_name);
 		$new_img = array(
 				"ico_logo"=> $photo_name
 		);
-		
+		//echo $photo_name;
+	
 		$old_img = $this->input->post("old_img");
+		if (!empty($_FILES['logo']['name'])) {
+		$this->load->model("imageupload");
+		$status=$this->imageupload->imageUploadProfile($rawName,$photo_name,$school_code);
+		if($status=="success"){
 		@chmod("assets/".$school_code."/images/empImage/" . $old_img, 0777);
 		@unlink("assets/".$school_code."/images/empImage/" . $old_img);
-		
 		$this->db->where("id",$this->session->userdata("school_code"));
 		$query = $this->db->update("school",$new_img);
-		if($query){
-			
-			$this->load->library('upload');
-			// Set configuration array for uploaded photo.
-			//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/empImage');
-			$asset_name = $this->db->get('upload_asset')->row()->asset_name;
-			$image_path = $asset_name.$school_code.'/images/empImage';
-			$config['upload_path'] = $image_path;
-			$config['allowed_types'] = 'gif|jpg|jpeg|png';
-			$config['max_size'] = '100';
-			$config['file_name'] = $photo_name;
-			// Upload first photo and create a thumbnail of it.
-			if (!empty($_FILES['logo']['name'])) {
-				
-				$this->upload->initialize($config);
-				if ($this->upload->do_upload('logo')) {
-					// ---------------------------------- Redirect Success Page ----------------------
-					$this->session->set_userdata("photo",$photo_name);
-					redirect("index.php/adminController/adminProfile/true/updateInfo");
-				}else{
-					redirect("index.php/errorController");	
-				}
-			}
+		redirect("index.php/adminController/adminProfile/true/updateInfo");
+		}else{
+		    //echo $status;
+		    redirect("index.php/errorController");
 		}
+		}
+		
 	}
 	
 	public function defineHomeWork(){
