@@ -123,3 +123,15 @@ Stack trace:
 #4 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #5 {main}
   thrown in /home/schoodhe/public_html/school/application/views/ajax/examMarksDetail.php on line 507
+[27-Apr-2020 10:32:55 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool3/application/controllers/employeeController.php:108
+Stack trace:
+#0 /home/schoodhe/public_html/sschool3/system/core/CodeIgniter.php(360): EmployeeController->addEmpInfo()
+#1 /home/schoodhe/public_html/sschool3/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool3/application/controllers/employeeController.php on line 108
+[29-Apr-2020 00:17:42 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool3/application/controllers/employeeController.php:108
+Stack trace:
+#0 /home/schoodhe/public_html/sschool3/system/core/CodeIgniter.php(360): EmployeeController->addEmpInfo()
+#1 /home/schoodhe/public_html/sschool3/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/sschool3/application/controllers/employeeController.php on line 108
