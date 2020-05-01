@@ -3,7 +3,7 @@
 								<!-- start: FORM WIZARD PANEL -->
 								<div class="panel panel-white">
 									<div class="panel-heading panel-blue">
-										<h4 class="panel-title">Employee  <span class="text-bold">Information</span></h4>
+										<h4 class="panel-title">Student Purchase  <span class="text-bold">Details</span></h4>
 										<div class="panel-tools">
 											<div class="dropdown">
 												<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -40,6 +40,7 @@
 										$this->db->where("school_code",$this->session->userdata("school_code"));
 										 $this->db->where("valid_id",$v1);
 								   				 $row = $this->db->get("sale_info"); ?>
+								   		    <div class="table-responsive">
 								    		<table class="table table-striped table-hover" id="sample-table-2"> 
 								    				<thead><tr>
 								    				<th>S.No</th>
@@ -70,6 +71,7 @@
 								    			</tbody>	
 								    		</table>
 										</div>
+									</div>
 								</div>
 							</div>
 						</div>

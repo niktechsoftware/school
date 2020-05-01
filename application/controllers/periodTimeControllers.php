@@ -472,15 +472,12 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 	
 	function timeTable(){
 		$no_of_period=$this->input->post('no_of_period');
-	
 		$this->load->model("periodModel");
-		//$period=$this->uri->segment('3');
 		$var = $this->periodModel->uniqueClass($no_of_period);
-
 		$uniqueClass=$var->result();
-		//print_r($uniqueClass);exit;
 		$var = $this->periodModel->uniquePeriod($no_of_period);
 		$uniquePeriod=$var->result();
+	
 		?>
 		<div class="col-sm-12">
 					<div class="tabbable">
@@ -518,7 +515,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 									</ul>
 									<div class="tab-content">
 										<div id="monday" class="tab-pane fade in active">
-											
+										<div class="table-responsive">	
 											<table class="table table-hover">
 												<thead>
 													<tr>
@@ -592,7 +589,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 															$getdaysa = $this->db->get("time_table_days");
 															if($getdaysa->num_rows()>0){?>
 														<td>
-															<?php if($res->teacher == '0'):?>
+															<?php if($res->teacher == 0):?>
 																<?php echo "<span style='color:green;'>Lunch</span>";?>
 															<?php else:?>
 																<?php $this->db->where("id",$res->teacher);
@@ -611,15 +608,18 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 				  													?>
 															<?php endif;?>
 														</td>
-														<?php } endwhile; ?>
+														<?php }
+													
+														endwhile; ?>
 													</tr>
 													<?php } $i++; endforeach;?>
 												</tbody>
 											</table>
-
+                                            </div>
 										</div>
 
 										<div id="tuesday" class="tab-pane fade">
+										   <div class="table-responsive">	
 											<table class="table table-hover">
 												<thead>
 													<tr>
@@ -707,8 +707,10 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 													<?php endforeach;?>
 												</tbody>
 											</table>
+											</div>
 										</div>
 										<div id="wednesday" class="tab-pane fade">
+									<div class="table-responsive">	
 										<table class="table table-hover">
 												<thead>
 													<tr>
@@ -796,8 +798,10 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 													<?php endforeach;?>
 												</tbody>
 											</table>
+										</div>	
 										</div>
 										<div id="thursday" class="tab-pane fade">
+									<div class="table-responsive">	
 										<table class="table table-hover">
 												<thead>
 													<tr>
@@ -884,10 +888,11 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 													</tr>
 													<?php endforeach;?>
 												</tbody>
-											</table>
+											</table></div>
 										</div>
 								
 										<div id="friday" class="tab-pane fade">
+										<div class="table-responsive">	
 										<table class="table table-hover">
 												<thead>
 													<tr>
@@ -974,8 +979,10 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 													<?php endforeach;?>
 												</tbody>
 											</table>
+											</div>
 										</div>
 										<div id="saturday" class="tab-pane fade">
+										<div class="table-responsive">	
 										<table class="table table-hover">
 												<thead>
 													<tr>
@@ -1061,6 +1068,7 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 													<?php endforeach;?>
 												</tbody>
 											</table>
+											</div>
 										</div>
 
 									</div>

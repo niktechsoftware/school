@@ -124,6 +124,7 @@ if($var->num_rows()>0){
 								<div class="col-sm-12">
 									<!-- start: INLINE TABS PANEL -->
 									<div class="panel panel-white">
+									    <div class="table-responsive">
 										<table class="table  table-striped" width ="100%">
 			 								<tr>
 			 									<td class ="center">
@@ -397,6 +398,7 @@ if($var->num_rows()>0){
 												}//end foreach
 												?>
 					</table>
+					</div>
 					<input type="hidden" name="tbr" value="<?php echo $tbr;?>"/>
 					<input type="hidden" name="tbc" value="<?php echo $tbc;?>"/>
 					

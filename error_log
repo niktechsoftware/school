@@ -159,3 +159,54 @@ Stack trace:
 #2 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
 #3 {main}
   thrown in /home/schoodhe/public_html/school/system/core/Loader.php on line 304
+[30-Apr-2020 11:44:40 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function sentmasterRecord() on null in /home/schoodhe/public_html/school/application/controllers/adminController.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): AdminController->appleave()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/adminController.php on line 119
+[30-Apr-2020 11:44:56 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function sentmasterRecord() on null in /home/schoodhe/public_html/school/application/controllers/adminController.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): AdminController->appleave()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/adminController.php on line 119
+[30-Apr-2020 11:46:00 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function sentmasterRecord() on null in /home/schoodhe/public_html/school/application/controllers/adminController.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): AdminController->appleave()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/adminController.php on line 119
+[30-Apr-2020 11:47:30 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function sentmasterRecord() on null in /home/schoodhe/public_html/school/application/controllers/adminController.php:119
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): AdminController->appleave()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/adminController.php on line 119
+[30-Apr-2020 12:17:30 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function sentmasterRecord() on null in /home/schoodhe/public_html/school/application/controllers/adminController.php:117
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): AdminController->appleave()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/adminController.php on line 117
+[30-Apr-2020 12:20:27 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function sentmasterRecord() on null in /home/schoodhe/public_html/school/application/controllers/adminController.php:117
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): AdminController->appleave()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/adminController.php on line 117
+[30-Apr-2020 12:27:40 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function sentmasterRecord() on null in /home/schoodhe/public_html/school/application/controllers/adminController.php:117
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): AdminController->appleave()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/adminController.php on line 117
+[30-Apr-2020 12:34:51 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function sentmasterRecord() on null in /home/schoodhe/public_html/school/application/controllers/adminController.php:118
+Stack trace:
+#0 /home/schoodhe/public_html/school/system/core/CodeIgniter.php(360): AdminController->appleave()
+#1 /home/schoodhe/public_html/school/index.php(208): require_once('/home/schoodhe/...')
+#2 {main}
+  thrown in /home/schoodhe/public_html/school/application/controllers/adminController.php on line 118
+[30-Apr-2020 21:47:56 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endwhile' (T_ENDWHILE) in /home/schoodhe/public_html/school/application/controllers/periodTimeControllers.php on line 613
+[30-Apr-2020 21:48:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endwhile' (T_ENDWHILE) in /home/schoodhe/public_html/school/application/controllers/periodTimeControllers.php on line 613
+[30-Apr-2020 21:48:55 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endwhile' (T_ENDWHILE) in /home/schoodhe/public_html/school/application/controllers/periodTimeControllers.php on line 613

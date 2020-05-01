@@ -187,6 +187,7 @@
 				
 				$("#no_of_period").change(function(){
 					var no_of_period = $("#no_of_period").val();
+					//alert(no_of_period);
 					$.post("<?php echo site_url("index.php/periodTimeControllers/timeTable") ?>",{no_of_period : no_of_period}, function(data){
 					$("#report").html(data);
 						});

@@ -90,105 +90,143 @@ class AdminController extends CI_Controller{
 	
 	function appleave()
 	{
-		 // $id=$this->input->post('id');
-			$id=$this->uri->segment(3);
-		  //print_r($id);exit();
-          $leave= array(
-          	'approve' =>'YES', 
-          );
-          $this->db->where('id',$id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-		  $up=$this->db->update('stu_leave',$leave);
-		  //print_r($up);exit();
-          $this->db->where('id',$id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-		  $leave=$this->db->get('stu_leave')->row();
-		  
-           $this->db->where('id',$leave->stu_id);
-         //$this->db->where('school_code',$this->session->userdata('school_code'));
-          $stu=$this->db->get('student_info')->row();
-          	$this->db->where("school_code",$this->session->userdata('school_code'));
-		$sende_Detail1=$this->db->get("sms_setting")->row();
-          	$msg = "Dear Student ".$stu->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Approved.";
-		//echo $msg;exit;
-			sms($stu->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			redirect("index.php/login/index");
+	    	$this->load->model("smsmodel");
+		if(strlen($this->uri->segment(3))>0){
+			 $id=$this->uri->segment(3);
+			}else{
+			   	$id=$this->input->post("id");
+			   	
+			}
+              $leave= array(
+              	'approve' =>'YES'
+              );
+            
+                $this->db->where('id',$id);
+             $this->db->where('school_code',$this->session->userdata('school_code'));
+    		 $up=$this->db->update('stu_leave',$leave);
+             $this->db->where('id',$id);
+    		 $leaved=$this->db->get('stu_leave')->row();
+             $this->db->where('id',$leaved->stu_id);
+             $stu=$this->db->get('student_info')->row();
+             $this->db->where("school_code",$this->session->userdata('school_code'));
+		      $sende_Detail1=$this->db->get("sms_setting")->row();
+		    $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
+          	$msg = "Dear Student ".$stu->name.",your leave request from ".$leaved->start_date." to ".$leaved->end_date." for reason ".$leaved->reason." is Approved. for more Details login to your account.";
+	         
+	         $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$stu->mobile);
+	          $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+	         
+	          if($up){
+	              echo "1";
+	          }else{
+	             echo "0"; 
+	          }
+			//sms($stu->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+			//redirect("index.php/login/index");
 	}
 	function deleleave()
 	{
-
-		$id=$this->uri->segment(3);
-       $this->db->where('id',$id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-          $leave=$this->db->get('stu_leave')->row();
-           $this->db->where('id',$leave->stu_id);
-        // $this->db->where('school_code',$this->session->userdata('school_code'));
-          $stu=$this->db->get('student_info')->row();
-		  $this->db->where('id',$id);
-		  $this->db->where('school_code',$this->session->userdata('school_code'));
+        $this->load->model("smsmodel");
+		if(strlen($this->uri->segment(3))>0){
+			 $id=$this->uri->segment(3);
+			}else{
+			   	$id=$this->input->post("id");
+			   	
+			}
+            $this->db->where('id',$id);
+            $leave=$this->db->get('stu_leave')->row();
+            
+            $this->db->where('id',$leave->stu_id);
+            $stu=$this->db->get('student_info')->row();
+		    $this->db->where('id',$id);
+		    $this->db->where('school_code',$this->session->userdata('school_code'));
 		   $up=$this->db->delete('stu_leave');
+		   
           	$this->db->where("school_code",$this->session->userdata('school_code'));
-		$sende_Detail1=$this->db->get("sms_setting")->row();
+		    $sende_Detail1=$this->db->get("sms_setting")->row();
+		      $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
+		    
           	$msg = "Dear Student ".$stu->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Cancelled.";
-		//echo $msg;exit;
-			sms($stu->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			redirect("index.php/login/index");
+		
+		    $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$stu->mobile);
+	          $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+		 if($up){
+	              echo "1";
+	          }else{
+	             echo "0"; 
+	          }
 	}
 	function appleaveemp()
 	{
 
-          $id=$this->uri->segment(3);
-          $leave= array(
-          	'status' =>1, 
-          );
-// print_r($id);exit();
-          $this->db->where('id',$id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-          $up=$this->db->update('emp_leave',$leave);
+         	$this->load->model("smsmodel");
+		if(strlen($this->uri->segment(3))>0){
+			 $id=$this->uri->segment(3);
+			}else{
+			   	$id=$this->input->post("id");
+			   	
+			}
+              $leave= array(
+              	'status' =>1
+              );
+
+            $this->db->where('id',$id);
+            $this->db->where('school_code',$this->session->userdata('school_code'));
+            $up=$this->db->update('emp_leave',$leave);
          
-          $this->db->where('id',$id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-          $leave=$this->db->get('emp_leave')->row();
+            $this->db->where('id',$id);
+            $this->db->where('school_code',$this->session->userdata('school_code'));
+            $leave=$this->db->get('emp_leave')->row();
           
-           $this->db->where('id',$leave->emp_id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-          $emp=$this->db->get('employee_info')->row();
+            $this->db->where('id',$leave->emp_id);
+            $this->db->where('school_code',$this->session->userdata('school_code'));
+            $emp=$this->db->get('employee_info')->row();
           
           	$this->db->where("school_code",$this->session->userdata('school_code'));
-		$sende_Detail1=$this->db->get("sms_setting")->row();
-		
-          	$msg = "Dear ".$emp->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Approved.";
-		echo $msg;
-			sms($emp->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-redirect("index.php/login/index");
+		    $sende_Detail1=$this->db->get("sms_setting")->row();
+		    $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
+          	$msg = "Dear ".$emp->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Approved. For more details login to your account.";
+	        $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$stu->mobile);
+	         $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+		 if($up){
+	              echo "1";
+	          }else{
+	             echo "0"; 
+	          }
 	}
 	function deleleaveemp()
 	{
 
-           $id=$this->uri->segment(3);
-    //print_r($id);exit;
-    
+        	$this->load->model("smsmodel");
+		if(strlen($this->uri->segment(3))>0){
+			 $id=$this->uri->segment(3);
+			}else{
+			   	$id=$this->input->post("id");
+			}
          $this->db->where('id',$id);
          $this->db->where('school_code',$this->session->userdata('school_code'));
           $leave=$this->db->get('emp_leave')->row();
-          
           $this->db->where('id',$id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-          $up=$this->db->delete('emp_leave');
-          
-           $this->db->where('id',$leave->emp_id);
-         $this->db->where('school_code',$this->session->userdata('school_code'));
-          $emp=$this->db->get('employee_info')->row();
-          
+            $this->db->where('school_code',$this->session->userdata('school_code'));
+            $up=$this->db->delete('emp_leave');
+            $this->db->where('id',$leave->emp_id);
+            $this->db->where('school_code',$this->session->userdata('school_code'));
+            $emp=$this->db->get('employee_info')->row();
           	$this->db->where("school_code",$this->session->userdata('school_code'));
-		$sende_Detail1=$this->db->get("sms_setting")->row();
-// 		print_r($leave->start_date);
-// 			print_r($leave->end_date);
-// 			exit;
+		    $sende_Detail1=$this->db->get("sms_setting")->row();
+            $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
           	$msg = "Dear ".$emp->name.",your leave request from ".$leave->start_date." to ".$leave->end_date." for reason ".$leave->reason." is Cancelled.";
-		//echo $msg;exit;
-			sms($emp->mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-redirect("index.php/login/index");
+	        $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$stu->mobile);
+	        $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+	 if($up){
+	              echo "1";
+	          }else{
+	             echo "0"; 
+	          }
 	}
 	
 	function updateAdminProfile(){

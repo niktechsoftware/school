@@ -68,11 +68,10 @@ return $query1;
 	function uniquePeriod($period)
 	{    
 	   if($this->session->userdata("login_type") =="admin" ){
-	       	  $var = $this->db->query("SELECT DISTINCT period_id FROM time_table WHERE  time_thead_id='$period' ");
-	 
+	       	  $var = $this->db->query("SELECT DISTINCT period.id as period_id FROM period join time_table on time_table.time_thead_id = period.nop_id where period.nop_id = '$period'");
 	       }else{
 	            $tid= $this->session->userdata("id");
-	        	$var = $this->db->query("SELECT DISTINCT period_id FROM time_table WHERE  time_thead_id='$period' and teacher=$tid");
+	        	$var = $this->db->query("SELECT DISTINCT period.id as period_id FROM period join time_table on time_table.time_thead_id = period.nop_id where period.nop_id = '$period' and teacher=$tid");
 	       }
 		return $var;
 	    
