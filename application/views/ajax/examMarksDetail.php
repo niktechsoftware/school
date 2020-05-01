@@ -497,7 +497,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                     $num_row=	$this->db->get("student_info");  
         }else{
             //FOR KERALA AND SARVODYA ORDER BY NAME
-	                        	$this->db->order_by("name","asc");
+	                            $this->db->order_by("name", "asc");
 								$this->db->where("status",1);
 								$this->db->where("class_id",$classid);
                     $num_row=	$this->db->get("student_info");  
@@ -505,6 +505,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 $fsd = $this->uri->segment(3);     
                 if($studentList->num_rows()>0){
                  foreach ($studentList->result() as $stu):
+              
               $this->db->where("student_id",$stu->id);
 				$fname  = $this->db->get("guardian_info"); 
 				foreach ($fname->result() as $pname):
@@ -647,7 +648,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 var term = $("#term<?php echo $i; ?>").val();
                 var attendence = $("input[name='attendence<?php echo $i; ?>']:checked").val();
     				   //alert(marks +" "+ sub_type +" "+mmarks);
-    				   alert(fsd);
+    				   //alert(fsd);
     				    if(mmarks!="" && marks!=""){
     					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{fsd : fsd, sub_type:sub_type,term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);

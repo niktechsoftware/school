@@ -1,0 +1,26 @@
+[22-Apr-2020 11:21:11 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/sschool1/application/views/ajax/examMarksDetail.php:506
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/controllers/examControllers.php(517): CI_Loader->view('ajax/examMarksD...', Array)
+#3 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): examControllers->print_obtain('23', '48', '281', '652')
+#4 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/ajax/examMarksDetail.php on line 506
+[22-Apr-2020 11:22:10 Asia/Calcutta] PHP Fatal error:  Uncaught Error: Call to a member function num_rows() on null in /home/schoodhe/public_html/sschool1/application/views/ajax/examMarksDetail.php:506
+Stack trace:
+#0 /home/schoodhe/public_html/sschool1/system/core/Loader.php(834): include()
+#1 /home/schoodhe/public_html/sschool1/system/core/Loader.php(420): CI_Loader->_ci_load(Array)
+#2 /home/schoodhe/public_html/sschool1/application/controllers/examControllers.php(517): CI_Loader->view('ajax/examMarksD...', Array)
+#3 /home/schoodhe/public_html/sschool1/system/core/CodeIgniter.php(360): examControllers->print_obtain('9', '48', '281', '653')
+#4 /home/schoodhe/public_html/sschool1/index.php(208): require_once('/home/schoodhe/...')
+#5 {main}
+  thrown in /home/schoodhe/public_html/sschool1/application/views/ajax/examMarksDetail.php on line 506
+[22-Apr-2020 18:05:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/controllers/feeControllers.php on line 274
+[22-Apr-2020 18:06:50 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/controllers/feeControllers.php on line 274
+[22-Apr-2020 18:06:51 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/controllers/feeControllers.php on line 274
+[22-Apr-2020 18:06:51 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/controllers/feeControllers.php on line 274
+[22-Apr-2020 18:06:52 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/controllers/feeControllers.php on line 274
+[22-Apr-2020 18:06:52 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/controllers/feeControllers.php on line 274
+[22-Apr-2020 18:06:52 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/controllers/feeControllers.php on line 274
+[22-Apr-2020 18:06:53 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/schoodhe/public_html/sschool1/application/controllers/feeControllers.php on line 274

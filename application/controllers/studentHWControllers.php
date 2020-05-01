@@ -24,9 +24,7 @@ class studentHWControllers extends CI_Controller{
 		$data['mainPage'] = 'Show HomeWork';
 		$data['subPage'] = 'Student HomeWork';
 		
-	//	$res=$this->db->query("SELECT DISTINCT class_name FROM class_info");
-		// $res=$this->db->query("SELECT DISTINCT section FROM class_section");
-		// $data['noc'] = $res->result();
+
 		$va=$this->homeWorkModel->getHomeWorkDetail();
 		$data['var1']=$va;
 		$data['title'] = 'Show HomeWork';

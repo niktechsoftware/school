@@ -243,14 +243,7 @@
 																									$this->db->where('school_code',$this->session->userdata('school_code'));
 																									$student_cat=$this->db->get('fee_deposit');
 																								//	print_r($student_cat->row()->feecat);exit;
-																									if($student_cat->num_rows()>0){
-																										$this->db->where('id',$student_cat->row()->feecat);
-																										$this->db->where('school_code',$this->session->userdata('school_code'));
-																										$new_old_cat=$this->db->get('fee_cat');
-																										if($new_old_cat->num_rows()>0){
-																									?>
-																										<option  value="<?php echo $new_old_cat->row()->id;?>"><?php echo $new_old_cat->row()->cat_name;?></option>
-																									<?php }else{
+																									
 																								
 																								$school_code=$this->session->userdata('school_code');
 																								$this->db->where('school_code',$school_code);
@@ -261,18 +254,7 @@
 												                                                <option  value="<?php echo $sc->id;?>"><?php echo $sc->cat_name;?></option>
 																							   <?php endforeach; }else{
                                                                                                          echo 'First define student type in setting menu inside fee category';
-																							   }}}else{
-																								
-																								$school_code=$this->session->userdata('school_code');
-																								$this->db->where('school_code',$school_code);
-																								$cat=$this->db->get('fee_cat');
-																								// print_r($cat) ;
-																								if($cat->num_rows()>0){
-																								 foreach($cat->result() as $sc):?>
-												                                                <option  value="<?php echo $sc->id;?>"><?php echo $sc->cat_name;?></option>
-																							   <?php endforeach; }else{
-                                                                                                         echo 'First define student type in setting menu inside fee category';
-																							   }}?>
+																							   }?>
 																							   
 																							</select>
 																							
@@ -478,7 +460,7 @@
 
 															});
 
-															//alert(month[i]+stuId+catId +fsdid);
+														//	alert(month[i]+stuId+catId +fsdid);
 
 
 														$.post("<?php echo site_url('feeControllers/getFeeDetails') ?>", {month : month,stuId : stuId,catId : catId, fsdid : fsdid}, function(data){
