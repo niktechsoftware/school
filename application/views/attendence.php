@@ -3,7 +3,7 @@
 <!-- start: RESPONSIVE TABLE PANEL -->
 <div class="panel panel-white">
 <div class="panel-heading panel-blue">
-<h4 class="panel-title">Student <span class="text-bold">Attendence Detail</span></h4>
+<h4 class="panel-title">Student <span class="text-bold">Attendance Detail</span></h4>
 <div class="panel-tools">
 <div class="dropdown">
 <a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
@@ -41,8 +41,8 @@
 <tr class="text-center">
 <th class="text-center">S No.</th>
 <th class="text-center">Student Userid</th>
-<th class="text-center">Attendence (Green for present,Red for absent)</th>
-<th class="text-center">Attendence Date/Day</th>
+<th class="text-center">Attendance (Green for present,Red for absent)</th>
+<th class="text-center">Attendance Date/Day</th>
 <th class="text-center">Shift 1</th>
 <th class="text-center">Shift 2</th>
 
@@ -105,7 +105,7 @@ if($a->num_rows()>0){ ?>
 </tr>	<?php $v++; endforeach; ?>
 </tbody>
 
-            <span style="font-size:20px;">Attendence (in %) = <?php $totatt=$p+$a1;if($totatt!=0){echo round(($a1/$totatt)*100,2) ."%";}else{echo "0%";}?></span>
+            <span style="font-size:20px;">Attendance (in %) = <?php $totatt=$p+$a1;if($totatt!=0){echo round(($a1/$totatt)*100,2) ."%";}else{echo "0%";}?></span>
         <?php $totatt=$p+$a1;if($totatt!=0){ ?>
 <div><label>Total Attendence=</label><label><?php echo $totatt; ?></label></div>
 <div><label>Total Present =</label><label><?php echo $a1; ?></label></div>

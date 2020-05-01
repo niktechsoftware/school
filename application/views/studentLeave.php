@@ -102,7 +102,7 @@ foreach ( $var->result () as $lv ) :
 <?php if($lv->approve=="NO"){?>
 		  <input type="hidden" id="rowid" value="<?php echo $lv->id;?>">
 											<td><button type="submit" id="leavedelete"
-													class="btn btn-red">Cancle leave</button></td>
+													class="btn btn-red">Cancel leave</button></td>
 			<?php }else{?>
            <td><button type="submit" class="btn btn-yellow">Approve</button></td>
             

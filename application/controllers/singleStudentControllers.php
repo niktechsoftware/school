@@ -1,4 +1,3 @@
-
 <?php
 class singleStudentControllers extends CI_Controller{
 	function __construct()
@@ -30,11 +29,11 @@ class singleStudentControllers extends CI_Controller{
 		$this->load->model("feeModel");
 		$da=$this->feeModel->fulldetail($studid,$fsd);
 		$data['request']=$da->result();
-		$data['pageTitle'] = 'Attendence Report';
-		$data['smallTitle'] = 'Attendence Report';
-		$data['mainPage'] = 'Attendence';
-		$data['subPage'] = 'Attendence Report';
-		$data['title'] = 'Attendence Report';
+		$data['pageTitle'] = 'Attendance Report';
+		$data['smallTitle'] = 'Attendance Report';
+		$data['mainPage'] = 'Attendance';
+		$data['subPage'] = 'Attendance Report';
+		$data['title'] = 'Attendance Report';
 		$data['headerCss'] = 'headerCss/feeCss';
 		$data['footerJs'] = 'footerJs/feeJs';
 		$data['mainContent'] = 'attendence';
@@ -262,9 +261,20 @@ class singleStudentControllers extends CI_Controller{
           echo "Deleted";
 	  }
 		
+			function timeScheduling(){
+			$data['pageTitle'] = 'Exam Panel';
+			$data['smallTitle'] = 'Personal Exam Result';
+			$data['mainPage'] = 'Student';
+			$data['subPage'] = 'Personal Exam Result';
+			$data['title'] = 'Personal Exam Result';
+			$data['headerCss'] = 'headerCss/noticeCss';
+			$data['footerJs'] = 'footerJs/noticeJs';
+			$data['mainContent'] = 'studentTimeResult';
+			$this->load->view("includes/mainContent", $data);
+		}
 		
-		function timeScheduling(){
-			$stu_id = $this->session->userdata('username');
+		function timeScheduling1(){
+			$stu_id = $this->input->post("stdexam");
 			$var = $this->singleStudentModel->getclassAndStu($stu_id);
 			$class = $var->class_id;
             $this->db->where("id",$class);
@@ -276,17 +286,10 @@ class singleStudentControllers extends CI_Controller{
         	$sec1=$dts->section;
 			$data['sec1']=$sec1;
 			$data['class']=$class;
+			$data['period']=$this->input->post("ttmid");
 			$var1 = $this->singleStudentModel->getTimeTable($class);
 			$data['timetable']=$var1->result();
-			$data['pageTitle'] = 'Student Time Schedule';
-			$data['smallTitle'] = 'Student Personal Time Table';
-			$data['mainPage'] = 'Student';
-			$data['subPage'] = 'Student Personal Time Table';
-			$data['title'] = 'Student Personal Time Table';
-			$data['headerCss'] = 'headerCss/studentCss';
-			$data['footerJs'] = 'footerJs/studentJs';
-			$data['mainContent'] = 'studentScheduling';
-			$this->load->view("includes/mainContent", $data);
+			$this->load->view("studentScheduling", $data);
 		}
 		
 		function examResult(){

@@ -129,8 +129,8 @@ or if you want to Cancel student leave then click on Cancel Button.<br>NOTE =>St
 										<th>Leave End Date</th>
 										<th>Reason</th>
 										<th>Status</th>
-										<th colspan="2" class="text-center">Action</th>
-										
+										<th >Action</th>
+											<th >Cancel</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -170,26 +170,22 @@ or if you want to Cancel student leave then click on Cancel Button.<br>NOTE =>St
                                            <?php } ?>
                                          <?php if($row->approve=="NO"){?>  
 										<td><button type='submit' class="btn btn-light-blue" id="Approve<?php echo $sno ;?>">Approve</button>
-										<input type="hidden" name="id" id="id<?php echo $sno ;?>" value="<?php echo $row->stu_id?>"> 
+										<input type="hidden" name="id" id="id<?php echo $sno ;?>" value="<?php echo $row->id;?>"> 
 												</td>
 									  <td><button type='submit' class="btn btn-light-red" id="notApprove<?php echo $sno ;?>">Cancel</button> 
-									  <input type="hidden" name="id" id="id<?php echo $sno ;?>" value="<?php echo $row->stu_id?>">			
+									  <input type="hidden" name="id" id="id<?php echo $sno ;?>" value="<?php echo $row->id;?>">			
 									</td>
 										 <?php } else { ?>
                                          <td><button type='submit' class="btn btn-light-green" id="Approved">Approved</button> 
 										</td>
+										<td></td>
 										
                                            <?php } }?>
 									</tr>
 									
 									<?php $sno++; endforeach; ?>
 								
-								<tr>
-									<td colspan="13">
-                                   
-									</td>
-									<tr>
-								
+						
 								</tbody>
 							</table>
 							<?php }else{
