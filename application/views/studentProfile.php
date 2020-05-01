@@ -494,7 +494,7 @@ if($row->attendance==1){ ?>
 
 </tbody>
 
-           <span style="font-size:20px;">Attendence (in %) = <?php $totatt=$p+$a1;if($totatt!=0){echo round(($p/$totatt)*100,2) ."%";}else{echo "0%";}?></span>
+           <span style="font-size:20px;">Attendance (in %) = <?php $totatt=$p+$a1;if($totatt!=0){echo round(($p/$totatt)*100,2) ."%";}else{echo "0%";}?></span>
         
 </table>
 </div>
@@ -615,7 +615,8 @@ $stud_unm= $this->db->get('student_info')->row();
 					$this->db->where("school_code",$school_code);
 					$this->db->where("valid_id",$id);
 			   				 $row = $this->db->get("sale_info"); ?> 
-			    		<table class="table table-striped table-hover" id="sample-table-2"> 
+			   				 <div class="table-responsive">
+			    		       <table class="table table-striped table-hover" id="sample-table-2"> 
 			    				<thead><tr>
 			    				<th>S.no.</th>
 			    				<th>Item No.</th>
@@ -645,6 +646,7 @@ $stud_unm= $this->db->get('student_info')->row();
 			    				endforeach; ?> 
 			    			</tbody>	
 			    		</table>
+			    		</div>
 					</div>
 				</div>
 			</div>

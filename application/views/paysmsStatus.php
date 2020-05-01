@@ -9,7 +9,6 @@
                     $paytmChecksum = "";
         $paramList = array();
         $isValidChecksum = "FALSE";
-
         $paramList = $_POST;
         $paytmChecksum = isset($_POST["CHECKSUMHASH"]) ? $_POST["CHECKSUMHASH"] : ""; //Sent by Paytm pg
 
@@ -35,7 +34,7 @@
             if (isset($_POST) && count($_POST)>0 )
              { 
                 foreach($_POST as $paramName => $paramValue) {
-                        echo "<br/>" . $paramName . " = " . $paramValue;
+                       // echo "<br/>" . $paramName . " = " . $paramValue;
                 }
                           
    ?>  

@@ -59,7 +59,7 @@
     </div>
     <?php if($this->session->userdata("login_type") !=  "student"){?>
     <div class="col-sm-6" style="margin-top:13px; font-size:9px;">
-        <center><a class="" style="color: #f5f5f5;" href="#">Customer Care:<br><i class="fa fa-phone"></i>+91-&nbsp;6389027901,&nbsp;6389027902,&nbsp;6389027903,&nbsp;6389027904
+        <center><a class="" style="color: #f5f5f5;" href="#">Customer Care:<br><i class="fa fa-phone"></i>+91-&nbsp;9454012026,&nbsp;8765398096,&nbsp;9580121878
                 <br>WhatsApp Number&nbsp;: <i class="fab fa-whatsapp"></i>+91-&nbsp;9580121878</a></center>
     </div>
     <?php }?>

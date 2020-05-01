@@ -84,6 +84,7 @@ class feeModel extends CI_Model{
 			$this->db->where("fsd",$getfsdid);
 			$this->db->where("class_id",$classid);
 			$this->db->where("cat_id",0);
+
 			$this->db->where_in("taken_month",$mon);
 			$fee_head = $this->db->get("class_fees")->row();
 			$totf = $fee_head->fee_head_amount;

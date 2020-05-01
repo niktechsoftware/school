@@ -565,9 +565,9 @@ function defineExam1(){
 		$data['sectionid'] = $this->input->post("sectionid");
 		$data['subjectid'] = $this->input->post("subjectid");
 		$data['examid'] = $this->input->post("examid");
+		$data['fsd'] = $this->input->post("fsd");
 		$data['school_code'] = $school_code;
-		$this->db->where("school_code",$school_code);
-		$fsd = $fsd;
+	
 	
 		$this->load->model("examModel");
 		$result=$this->examModel->getExamMarks($data3);

@@ -810,9 +810,9 @@ function studentAttendance(){
 	}
 
 function periodTimeSlot(){
-		$data['pageTitle'] = 'Period Time Table';
+		$data['pageTitle'] = 'Time Table';
 		$data['smallTitle'] = 'Period Time Table';
-		$data['mainPage'] = 'Period Time Scheduling';
+		$data['mainPage'] = 'Time Scheduling';
 		$data['subPage'] = 'Period Time Table';
 		$this->load->model("periodModel");
 		$req=$this->periodModel->getperiodno();

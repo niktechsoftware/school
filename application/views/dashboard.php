@@ -504,7 +504,7 @@ $school_code = $this->session->userdata("school_code");
                                 						  endforeach;
                                 						  echo $count;
                                 							} else{ echo "0";}?> </a>
-    														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+    														<a href="<?php echo base_url();?>index.php/login/studentleave" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
     													</div>
     												</div>
     											</div>
@@ -549,7 +549,7 @@ $school_code = $this->session->userdata("school_code");
                             						  endforeach;
                             						  echo $count;
                             							} else{ echo "0";}?> </a>
-    														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+    														<a href="<?php echo base_url();?>index.php/login/empolyeeleave" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
     													</div>
     												</div>
     												</div>

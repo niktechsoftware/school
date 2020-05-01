@@ -57,13 +57,13 @@
 									</ul>
 									<div class="tab-content">
 										<div id="monday" class="tab-pane fade in active">
-											
+										<div class="table-responsive">
 											<table class="table table-hover">
 												<thead>
 													<tr>
 														<th>Period</th>
 														<?php 
-														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code'");
+														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code' and nop_id='$period'");
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
 															<?php 
@@ -126,15 +126,17 @@
 													</tr>
 												</tbody>
 											</table>
+											</div>	
 										</div>
 										<!-- for Tuesday -->
 										<div id="tuesday" class="tab-pane">
+										   <div class="table-responsive">
 											<table class="table table-hover">
 												<thead>
 													<tr>
 														<th>Period</th>
 														<?php 
-														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code'");
+													$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code' and nop_id='$period'");
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
 															<?php 
@@ -193,16 +195,18 @@
 													
 												</tbody>
 											</table>
+										</div>	
 										</div>
 										<!-- end for Tuesday -->
 										<!-- for Wednesday -->
 										<div id="wednesday" class="tab-pane">
+										 	<div class="table-responsive">   
 											<table class="table table-hover">
 												<thead>
 													<tr>
 														<th>Period</th>
 														<?php 
-														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code'");
+														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code' and nop_id='$period'");
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
 															<?php 
@@ -261,17 +265,19 @@
 													
 												</tbody>
 											</table>
+											</div>
 										</div>
 										
 										<!-- end for Wednesday -->
 										<!-- for thursday -->
 										<div id="thursday" class="tab-pane">
+										   <div class="table-responsive">
 											<table class="table table-hover">
 												<thead>
 													<tr>
 														<th>Period</th>
 														<?php 
-														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code'");
+														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code' and nop_id='$period'");
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
 															<?php 
@@ -331,16 +337,18 @@
 												</tbody>
 											</table>
 										</div>
+										</div>
 										
 										<!-- end for Thursday -->
 										<!-- for Friday -->
 										<div id="friday" class="tab-pane">
+										   	<div class="table-responsive"> 
 											<table class="table table-hover">
 												<thead>
 													<tr>
 														<th>Period</th>
 														<?php 
-														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code'");
+														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code' and nop_id='$period'");
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
 															<?php 
@@ -399,15 +407,17 @@
 													
 												</tbody>
 											</table>										</div>
-										
+										</div>
+									
 										<!-- end for Friday -->
 										<div id="saturday" class="tab-pane">
+										   <div class="table-responsive">
 											<table class="table table-hover">
 												<thead>
 													<tr>
 														<th>Period</th>
 														<?php 
-														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code'");
+														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code' and nop_id='$period'");
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
 															<?php 
@@ -467,7 +477,7 @@
 												</tbody>
 											</table>
 										</div>
-										
+										</div>
 										<!-- for Saturday -->
 									</div>
 								</div>
