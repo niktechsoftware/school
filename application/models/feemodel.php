@@ -34,10 +34,11 @@ class feeModel extends CI_Model{
 					if($indicator == 1){echo date("M-Y",strtotime($demandtotdate))." [ ".$fgh." ]<br>";}
 					$totv=$totv+$totmonthwise;
 				}
+				$totv=$totv+$getpreviousDue;
 				 if($indicator == 9){
 				 	$this->depositeFee($monthArray,$student_id,$student_fsd->row()->id,$totv,$getpreviousDue);
 				 }
-				return $totv+$getpreviousDue;
+				return $totv;
 				}else{
 					return $totv;
 				}
