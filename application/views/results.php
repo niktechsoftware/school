@@ -41,11 +41,25 @@
 									    refresh this page and check it.</div>
 										<div class="row">
 										    <div id="validId"></div>
+										 <div class="col-lg-2 col-md-4 col-sm-6">
+            											<label>
+                											Select	FSD
+                												<select name="fsd" id="fsd" class="form-control" style="width: 200px;">
+                													<option value="">-Select-</option>
+                													<?php 
+                													$this->db->where("school_code",$this->session->userdata("school_code"));
+                													$fsdd = $this->db->get("fsd");
+                													foreach ($fsdd->result() as $f):?>
+                													<option value="<?php echo $f->id;?>"><?php echo $f->finance_start_date." To ".$f->finance_end_date;?></option>
+                													<?php endforeach;?>
+                												</select>
+                											</label>
+											        </div>   
 										<!-- <div class="alert alert-warning"> <div class="text-blue text-large"> <strong><strong>Welcome to Marks Updation Page. Now You can update pre entered Marks details  </strong>First of all select dropdown menus and wait Click Update Marks Button for update.</strong>After Clicking update button marks will be updated now you can refresh this page and check it. </div></div> -->
 										<div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Select Exam Name
-												<select name="exam_name" id="exam_name" class="form-control">
+												<select name="exam_name" id="exam_name" class="form-control" style="width: 200px;">
 													<option value="01">-Select-</option>
 													<?php foreach ($request as $en):?>
 													<option value="<?php echo $en->id?>"><?php echo $en->exam_name?>[ <?php echo $en->term?> Term]</option>
@@ -58,7 +72,7 @@
 													<label>
 												Stream
 												
-												<select name="classv" id="classv" class="form-control">
+												<select name="classv" id="classv" class="form-control" style="width: 200px;">
 													<option value="01">-Select Stream-</option>
 													<?php foreach ($stream as $en):
 													// print_r($en);
@@ -81,23 +95,23 @@
 
 											<label>
 												Section
-												<select class="form-control" id="sectionId" name="section" style="width: 130px;"></select>
+												<select class="form-control" id="sectionId" name="section" style="width: 200px;"></select>
 											</label>
 											</div>
 											<div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Class
-												<select class="form-control" id="classId" name="class" style="width: 130px;"></select>
+												<select class="form-control" id="classId" name="class" style="width: 200px;"></select>
 											</label>
 											</div>
 											<div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Subject
-												<select class="form-control" id="subjectIdresult" name="subject" style="width: 220px;"></select>
+												<select class="form-control" id="subjectIdresult" name="subject" style="width: 200px;"></select>
 											</label>
 											</div>
 										</div>
-										<div id="result123"></div>
+										<div id="result123" class="table-responsive"></div>
 									</div>
 								</div>
 							</div>

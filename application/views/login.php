@@ -32,7 +32,7 @@
 	<body class="login">
 		<div class="row">
 		    <div class="col-md-3" style="padding: 0px; margin-top: 155px; margin-left: 100px;">
-	          <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -41,7 +41,7 @@
      data-ad-slot="7535568800"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-</script>-->
+</script>
 	        </div>
 			<div class="col-md-4" style="padding: 0px; margin-top: 70px; ">
 			    	<div style="text-align:center; color:white; font-size:20px;">
@@ -160,7 +160,7 @@
 			</div>
 		
 			<div class="col-md-4" style="padding: 0px; margin-top: 175px; ">
-	           <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- schooldemo -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -170,7 +170,7 @@
                      data-full-width-responsive="true"></ins>
                 <script>
                      (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>-->
+                </script>
 	        </div>
 			
 				<!-- end: FORGOT BOX -->

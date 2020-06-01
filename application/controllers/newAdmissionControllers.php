@@ -1,6 +1,4 @@
-
-<?php
-class newAdmissionControllers extends CI_Controller{
+<?php class newAdmissionControllers extends CI_Controller{
     
     	function __construct(){
 		parent::__construct();
@@ -199,12 +197,12 @@ class newAdmissionControllers extends CI_Controller{
 				$getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$f_mobile);
 				    $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 				    $rtype="student";
-				     redirect(base_url()."index.php/api/common_user/$rtype");
-					//redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
+				     //redirect(base_url()."index.php/api/common_user/$rtype");
+					redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}else{
 				    $rtype="student";
-				     redirect(base_url()."index.php/api/common_user/$rtype");
-				    	//redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
+				     //redirect(base_url()."index.php/api/common_user/$rtype");
+				    	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}
 
 
@@ -335,12 +333,12 @@ class newAdmissionControllers extends CI_Controller{
 					$getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$f_mobile);
 				    $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 				    $rtype="student";
-				    redirect(base_url()."index.php/api/common_user/$rtype");
-					//	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
+				    //redirect(base_url()."index.php/api/common_user/$rtype");
+						redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}else{
 				    $rtype="student";
-				    redirect(base_url()."index.php/api/common_user/$rtype");
-				    //	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
+				    //redirect(base_url()."index.php/api/common_user/$rtype");
+				    	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}
 
 			}

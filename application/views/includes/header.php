@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--  
   <meta name="description" content="Welcome to niktech software School ERP . we proving school management erp software. we including online attendance with biometric attendance machine and tracking student with GPS technology & many other facilities in our school management erp system">
@@ -8,7 +9,7 @@
 <!-- start: HEAD -->
 
 <head>
-    	<script data-ad-client="ca-pub-5093838037340612" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    	
     <title><?php echo $title; ?></title>
     <!-- start: META -->
     <meta charset="utf-8" />
@@ -298,4 +299,5 @@
     </div>
     <!-- end: TOPBAR CONTAINER -->
 </header>
+
 <!-- end: TOPBAR -->

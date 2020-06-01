@@ -205,15 +205,14 @@ return $query1;
 	
 	
 	function getExamMarks($data){
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$val=$this->db->get("general_settings")->row();
-		$fsd = $val->fsd_id;
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("fsd",$fsd);
+	
+		$this->db->where("school_code",$data['school_code']);
+		$this->db->where("fsd",$data['fsd']);
 		$this->db->where("exam_id",$data['exam_id']);
 		$this->db->where("class_id",$data['class_id']);
 		$this->db->where("subject_id",$data['subject_id']);
 		$query1 = $this->db->get("exam_info");
+		//print_r($query1);
 		return $query1;
 	}
 	

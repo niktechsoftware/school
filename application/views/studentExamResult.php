@@ -45,8 +45,8 @@
            <div class="col-md-4">
             <select id="fsda" class="form-control">
                 <option value="">Select FSD</option><?php
-                    $school=$this->session->userdata("school_code");
-                    $this->db->where("school_code",$this->session->userdata("school_code"));
+                    $school_code=$this->session->userdata("school_code");
+                    $this->db->where("school_code",$school_code);
             	   $fsd = $this->db->get("fsd");
                     if($fsd->num_rows()>0){
                     foreach($fsd->result() as $fd):
@@ -59,9 +59,9 @@
         <div class="col-md-4">
             <select id="examid" class="form-control">
                 <option value="">Select Exam Name</option><?php
-                    $school=$this->session->userdata("school_code");
-                    $this->db->where("school_code",$this->session->userdata("school_code"));
-            	    $this->db->where("fsd",$this->session->userdata("fsd"));
+                   
+                    $this->db->where("school_code",$school_code);
+            	  
                     $emp= $this->db->get('exam_name')->result();
                     foreach($emp as $data)
                     {

@@ -24,9 +24,7 @@ class studentHWControllers extends CI_Controller{
 		$data['mainPage'] = 'Show HomeWork';
 		$data['subPage'] = 'Student HomeWork';
 		
-	//	$res=$this->db->query("SELECT DISTINCT class_name FROM class_info");
-		// $res=$this->db->query("SELECT DISTINCT section FROM class_section");
-		// $data['noc'] = $res->result();
+
 		$va=$this->homeWorkModel->getHomeWorkDetail();
 		$data['var1']=$va;
 		$data['title'] = 'Show HomeWork';
@@ -183,16 +181,21 @@ class studentHWControllers extends CI_Controller{
   }
 	
 	function addHomeWork(){
+	  
+	    	$rawName ='filehomeWork';
 	    $school_code = $this->session->userdata("school_code");
 		$givenby=$this->session->userdata('username');
 		$workfor=$this->input->post("homeworkfor");
+		$photo_name = time().$_FILES['filehomeWork']['name'];
+		$photo_name = str_replace(' ', '_', $photo_name);
+		 
 		if($workfor=="students")
-		{$photo_name = time().$_FILES['filehomeWork']['name'];
-			$photo_name = str_replace(' ', '_', $photo_name);
+		{
+
 			$data=array(
 			        "workfor"=>$this->input->post("homeworkfor"),
 			        "work_name"=>$this->input->post("wsubjectname"),
-					"work_name"=>$this->input->post("wsubjectname"),
+				
 					"maximam_marks"=>$this->input->post("mm"),
 					"class_id"=>$this->input->post("classv"),
 					"subject_id"=>$this->input->post("subject"),
@@ -208,31 +211,46 @@ class studentHWControllers extends CI_Controller{
 					"status"=>1
 					
 			);
+		}else{
+		    	$data=array( 
+			    "workfor"=>$this->input->post("homeworkfor"),
+					"work_name"=>$this->input->post("wsubjectname"),
+					"maximam_marks"=>0,
+					"class_id"=>"NotForSubject",
+					"subject_id"=>"NotForSubject",
+					"givenby"=>$givenby,
+					"givenWorkDate"=>$this->input->post("gdate"),
+					"DueWorkDate"=>$this->input->post("sdate"),
+					"workDiscription"=>$this->input->post("hwdefine"),
+					"upload_filename"=>$photo_name,
+					"remark"=>$this->input->post("hwremark"),
+					"grade"=>0,
+					"school_code"=>$school_code,
+					"status"=>1
+					);
+		}
+		$var=0;
 			$this->load->library('upload');
-	//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/filehomeWork');
-		$asset_name = $this->db->get('upload_asset')->row()->asset_name;
-			$image_path = $asset_name.$school_code.'/images/filehomeWork';
-		$config['upload_path'] = $image_path;
-		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc|txt';
-		$config['max_size'] = '3096';
-		$config['file_name'] = $photo_name;
-		if (!empty($_FILES['filehomeWork']['name'])) {
-      $a=  $this->upload->initialize($config);
-		$this->upload->do_upload('filehomeWork');
-	
-		}
-		else{
-            echo "Somthing going wrong. Please Contact Site administrator";
-		}
-			
-			
-			$this->load->model("homeWorkModel");
+        	$this->load->model("homeWorkModel");
+       $this->load->library('image_lib');
+        if (!empty($_FILES['filehomeWork']['name'])) {
+    		$this->load->model("imageupload");
+    		$status=$this->imageupload->imageUploadHomeWork($rawName,$photo_name,$school_code,1);
+    			
+    		if($status=="success"){
+        	   	$var=$this->homeWorkModel->saveHomeWork($data);
+        	   	
+        	//	redirect("index.php/studentHWControllers/showHomeWork");
+    		}else{
+    		    //echo $status;
+    		   // redirect("index.php/errorController");
+    		}
+			}else{
 			$var=$this->homeWorkModel->saveHomeWork($data);
-			
-			if($var)
-			{
-			    ////////////////////////////sms start////////////////////////////////////////
-		$smscount=0;
+	
+			}
+        if($var){
+      	$smscount=0;
 		$count=0;
 		$class_id = $this->input->post("classv");
 		$section = $this->input->post("section");
@@ -246,6 +264,7 @@ class studentHWControllers extends CI_Controller{
 	   
 	   
 		if($sender->num_rows()>0){
+		if($workfor=="students"){   
 		$sende_Detail =$sender->row();
 	$def=	$this->input->post("hwdefine");
 		$sub =$this->input->post("subject");
@@ -285,168 +304,67 @@ class studentHWControllers extends CI_Controller{
 			
 		}}
 	}
-	////////////////////////////sms end////////////////////////////////////////
-	redirect("index.php/studentHWControllers/defineHomeWork/success");
-	
-	
-	   }
-	else{redirect("index.php/studentHWControllers/defineHomeWork/success");}
-	
-	
-	
-	
-	}
-		    
-		}else{
-	    $photo_name = time().$_FILES['filehomeWork']['name'];
-	    	$photo_name = str_replace(' ', '_', $photo_name);
-			$data=array( 
-			    "workfor"=>$this->input->post("homeworkfor"),
-					"work_name"=>$this->input->post("wsubjectname"),
-					"maximam_marks"=>0,
-					"class_id"=>"NotForSubject",
-					"subject_id"=>"NotForSubject",
-					"givenby"=>$givenby,
-					"givenWorkDate"=>$this->input->post("gdate"),
-					"DueWorkDate"=>$this->input->post("sdate"),
-					"workDiscription"=>$this->input->post("hwdefine"),
-					"upload_filename"=>$photo_name,
-					"remark"=>$this->input->post("hwremark"),
-					"grade"=>0,
-					"school_code"=>$school_code,
-					"status"=>1
-					);
-		$this->load->library('upload');
-	//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/filehomeWork');
-	$asset_name = $this->db->get('upload_asset')->row()->asset_name;
-			$image_path = $asset_name.$school_code.'/images/filehomeWork';
-		$config['upload_path'] = $image_path;
-		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc';
-		$config['max_size'] = '3096';
-		$config['file_name'] = $photo_name;
-		if (!empty($_FILES['filehomeWork']['name'])) {
-            $this->upload->initialize($config);
-			$this->upload->do_upload('filehomeWork');
-		}
-		else{echo "Somthing going wrong. Please Contact Site administrator";}
-					$this->load->model("homeWorkModel");
-			        $var=$this->homeWorkModel->saveHomeWork($data);
-					 if($var)
-					
-			    ////////////////////////////sms start////////////////////////////////////////
-	{	$smscount=0;
-		$count=0;
-		$this->load->model("smsmodel");
-		$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-
-	if($sender->num_rows()>0){
-		$sende_Detail =$sender->row();
+	else{
+	    	$sende_Detail =$sender->row();
 	$def=	$this->input->post("hwdefine");
 		$sdate = $this->input->post("sdate");
 	$msg =	"Dear Teacher please done your homework ".$def." before ".$sdate." given in homework section of your account .For more info visit login to you account";
 	   
 	    $isSMS = $this->smsmodel->getsmsseting($this->session->userdata("school_code"));
 		$fmobile=$this->session->userdata("mobile_number");
-//	print_r($isSMS);exit();
-	/*	if($isSMS->parent_message==1)
-		{$section==0;
-			$query = $this->smsmodel->getClassFatherNumber($this->session->userdata("school_code"),$class_id,$section);
-		if($query->num_rows() > 0)
-		{  
-		if($fmobile){
-			foreach($query->result() as $parentmobile):
-			//print_r($fmobile);
-			if($parentmobile->mobile){
-			if($smscount<90){
-				$fmobile =$fmobile.",".$parentmobile->mobile;
-				$count=$count+1;
-				$smscount++;
-				//echo $fmobile;
-			}else{
-				sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-				$fmobile="8382829593";
-				$smscount=0;
-			}
-			}
-			endforeach;
-			}
-			sms($fmobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			
-		}
-		    */
-		}
-	}
+
+	}}}
 	////////////////////////////sms end////////////////////////////////////////
-					 
-					 
-				redirect("index.php/studentHWControllers/defineHomeWork/success");
-		}
-	}
+	redirect("index.php/studentHWControllers/defineHomeWork/success");
+	   }
+     }
+			
+			
+		
+		
+			
+		
 	function submithw(){
 	    $school_code = $this->session->userdata("school_code");
 		$givenby=$this->session->userdata('username'); 
 		$workfor=$this->input->post("homeworkfor");
-		if($workfor=="students")
-		{ 
-		    $photo_name = time().$_FILES['filehomeWork']['name'];
-			$data=array(
-					"work_id"=>$this->input->post("work_id"),
-					"submitted_date"=>$this->input->post("sdate"),
-					"submitted_by"=>$givenby,
-				//	"upload_file"=>$this->input->post("filehomeWork"),
-					"upload_file"=>$photo_name,
-					"status"=>1,
-					"obtain_marks"=>10	
-			);
-		$this->load->library('upload');
-	//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/submithomeWork');
-	$asset_name = $this->db->get('upload_asset')->row()->asset_name;
-			$image_path = $asset_name.$school_code.'/images/submithomeWork';
-		$config['upload_path'] = $image_path;
-		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc';
-		$config['max_size'] = '2096';
-		$config['file_name'] = $photo_name;
-		if (!empty($_FILES['filehomeWork']['name'])) {
-            $this->upload->initialize($config);
-			$this->upload->do_upload('filehomeWork');
-		}
-		else{echo "Somthing going wrong. Please Contact Site administrator";}
-			$this->load->model("homeWorkModel");
-			$var=$this->homeWorkModel->submitHomeWork($data);
-			if($var)
-			{
-			redirect("index.php/studentHWControllers/showHomeWork");
-	}}else{
-	    $photo_name = time().$_FILES['filehomeWork']['name'];
-			$data=array(
-			"work_id"=>$this->input->post("work_id"),
+		$this->load->model("homeWorkModel");
+		 $photo_name = time().$_FILES['filehomeWork']['name'];
+		 $photo_name = str_replace(' ', '_', $photo_name);
+		
+	
+		    	$data=array(
+			        "work_id"=>$this->input->post("work_id"),
 					"submitted_date"=>$this->input->post("sdate"),
 					"submitted_by"=>$givenby,
 					"upload_file"=>$photo_name,
 					"status"=>1,
 					"obtain_marks"=>10	);
-					$this->load->library('upload');
-		//$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/submithomeWork');
-		$asset_name = $this->db->get('upload_asset')->row()->asset_name;
-			$image_path = $asset_name.$school_code.'/images/submithomeWork';
-		$config['upload_path'] = $image_path;
-		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc';
-		$config['max_size'] = '2096';
-		$config['file_name'] = $photo_name;
+	    	$rawName ='filehomeWork';
+		   
+		    $this->load->library('upload');
 		
 		if (!empty($_FILES['filehomeWork']['name'])) {
-            $this->upload->initialize($config);
-			$this->upload->do_upload('filehomeWork');
-		}
-		else{echo "Somthing going wrong. Please Contact Site administrator";}
-					
-					$this->load->model("homeWorkModel");
-			        $var=$this->homeWorkModel->submitHomeWork($data);
-					
-				redirect("index.php/studentHWControllers/showHomeWork");
+    		$this->load->model("imageupload");
+    		$status=$this->imageupload->imageUploadHomeWork($rawName,$photo_name,$school_code,2);
+    		if($status=="success"){
+        	    $var=$this->homeWorkModel->submitHomeWork($data);
+        		redirect("index.php/studentHWControllers/studentShowHomeWork");
+    		}else{
+    		    //echo $status;
+    		    redirect("index.php/errorController");
+    		}
+			}else{
+			 $var=$this->homeWorkModel->submitHomeWork($data);
+			if($var)
+			{
+			redirect("index.php/studentHWControllers/studentShowHomeWork");
+	        }
+			}
+
 		}
 		
-	}
+	
 	
 function showHomeWork()
 	{

@@ -85,7 +85,7 @@ function daybook()
 		$dt2        = $this->input->post("end_date");
 		$q          = $this->input->post("check_list");
 	
-	echo $q;
+	//echo $q;
 		if($q==1){
 			$a = $this->db->query("select DISTINCT expenditure_name from cash_payment where date >= '$dt1' AND date <= '$dt2' AND school_code='$school_code'");
 			

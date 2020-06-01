@@ -35,6 +35,18 @@ class LoginModel extends CI_Model{
         			"login_date" => date("d-M-Y"),
         			"login_time" => date("H:i:s")
         	);
+        		$this->db->where("chat_username",$res1->admin_username);
+        	$chatvalue = $this->db->get("chat");
+        	if($chatvalue->num_rows()>0){
+        	     $data['school_code']=$res->id;
+        	     $this->db->where("chat_username",$res1->admin_username);
+        	     $this->db->update("chat",$data);
+        	}else{
+        	     $data['school_code']=$res->id;
+        	    $data['status']=1;
+        	    $data['chat_username']=$res1->admin_username;
+        	    $this->db->insert("chat",$data);
+        	}
             return $loginData;
         }
         
@@ -110,7 +122,7 @@ class LoginModel extends CI_Model{
         	$general = $this->db->get("class_info");
 			$scode=$general->row()->school_code;
 			
-        	$this->db->where("id",$res->school_code);
+        	$this->db->where("id",$scode);
         	$general = $this->db->get("school");
         	$school = $general->row();
         	$loginData = array(
@@ -126,7 +138,7 @@ class LoginModel extends CI_Model{
         			"city" => $res->city,
         			"school_code"=>$scode,
         			"state" => $res->state,
-        			"pin" => $res->pin,
+        			"pin" => $res->pin_code,
         			"mobile_number" => $res->mobile,
         			"email" => $res->email,
         			"photo" => $res->photo,
@@ -137,11 +149,23 @@ class LoginModel extends CI_Model{
         			"login_date" => date("d-M-Y"),
         			"login_time" => date("H:i:s")
         	);
-        	
+        		$this->db->where("chat_username",$res->username);
+        	$chatvalue = $this->db->get("chat");
+        	if($chatvalue->num_rows()>0){
+        	     $data['school_code']=$scode;
+        	     $this->db->where("chat_username",$res->username);
+        	     $this->db->update("chat",$data);
+        	}else{
+        	     $data['school_code']=$scode;
+        	    $data['status']=1;
+        	    $data['chat_username']=$res->username;
+        	    $this->db->insert("chat",$data);
+        	}
 		//	print_r($loginData);exit;
             return $loginData;
         }
     }
+    
     
     function validateLock(){
     	$login_type = $this->input->post('logintype');

@@ -60,6 +60,7 @@
         	<th>Given Date</th>
         	<th>Submission Date</th>
         	<th>Action</th>
+        		<th>Status</th>
     	</tr>
     	</thead>
     	<tbody>
@@ -68,6 +69,9 @@
         
 	      $count = 1;
                 foreach($var1->result() as $lv):
+                    $this->db->where("work_id",$lv->s_no);
+                    $this->db->where("submitted_by",$this->session->userdata("username"));
+                   $checkStatus= $this->db->get("homework");
                     $this->db->where('username',$lv->givenby);
                     $ename=$this->db->get('employee_info');
 				?>
@@ -86,7 +90,7 @@
                         }
                         ?></td>
 			  			<td><?php echo $lv->maximam_marks;?> ( <?php echo $lv->grade;?> )</td>
-			  			<td style="max-width: 200px;"><?php echo $lv->workDiscription;?></td>
+			  			<td ><?php echo $lv->workDiscription;?></td>
 			  			<td><?php echo date("d-m-Y",strtotime($lv->givenWorkDate)); ?></td>
 						<td><?php echo date("d-m-Y",strtotime($lv->DueWorkDate)); ?></td>
 						<td style=" width: 20%;"><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
@@ -95,6 +99,17 @@
 						<button class="btn btn-success"  >Submit</button></a>
 					
 						</td>
+					
+						    <?php if($checkStatus->num_rows()>0){?>
+						    	<td>
+						    <a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/submithomeWork/<?php echo $checkStatus->row()->upload_file; ?>" download>
+						     <button class="btn btn-info" >View</button></a>
+						<a href="#" style="color:white;">
+						<button class="btn btn-success"  >Submited</button></a>
+						</td>
+						   <?php }else{?> 
+						   <td></td>
+						<?php }?>
 			  		</tr>
 			  		<?php $count++; endforeach; 
 			  		

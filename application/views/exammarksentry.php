@@ -3,7 +3,7 @@
     $row2=$this->db->get('db_name')->row()->name;
 
 
-if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D"  || $school_code == 9 && $row2 == "D" || $school_code == 8 && $row2 == "D"){ ?>
+if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D"  || $school_code == 9 && $row2 == "D" || $school_code == 8 && $row2 == "D"){ ?>
 
 <!-- start: PAGE CONTENT -->
 						<div class="row">
@@ -55,7 +55,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 										    <div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Select Exam Name
-												<select name="exam_name" id="exam_name" class="form-control" required="">
+												<select name="exam_name" id="exam_name" class="form-control" required="" style="width: 200px;">
 													<option value="">-Select-</option>
 													<?php foreach ($request as $en):?>
 													<option value="<?php echo $en->id?>"><?php echo $en->exam_name?>[ <?php echo $en->term?> Term]</option>
@@ -84,7 +84,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 											<label>
 												Stream
 												
-												<select name="classv" id="classv" class="form-control" required="">
+												<select name="classv" id="classv" class="form-control" required="" style="width: 200px;">
 													<option value="">-Select Stream-</option>
 													<?php foreach ($stream as $en):
 													// print_r($en);
@@ -107,23 +107,23 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 
 											<label>
 												Section
-												<select class="form-control" id="sectionId" name="section" style="width: 150px;" required=""></select>
+												<select class="form-control" id="sectionId" class="form-control" name="section" style="width: 200px;" required=""></select>
 											</label>
 											</div>
 											 <div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Class
-												<select class="form-control" id="classId" name="class" style="width: 150px;" required=""></select>
+												<select class="form-control" id="classId" name="class" class="form-control" style="width: 200px;" required=""></select>
 											</label>
 											</div>
 											 <div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Subject
-												<select class="form-control" id="subjectIdmarks" name="subject" style="width: 220px;" required=""></select>
+												<select class="form-control" id="subjectIdmarks" name="subject" class="form-control" style="width: 200px;" required=""></select>
 											</label>
 											</div>
 										</div>
-										<div id="showMarks"></div>
+										<div id="showMarks" class ="table-responsive"></div>
 									</div>
 								</div>
 							</div>
@@ -180,7 +180,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 										    <div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Select Exam Name
-												<select name="exam_name" id="exam_name" class="form-control" required="">
+												<select name="exam_name" id="exam_name" class="form-control" required="" style="width: 200px;">
 													<option value="">-Select-</option>
 													<?php foreach ($request as $en):?>
 													<option value="<?php echo $en->id?>"><?php echo $en->exam_name?>[ <?php echo $en->term?> Term]</option>
@@ -209,7 +209,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 											<label>
 												Stream
 												
-												<select name="classv" id="classv" class="form-control" required="">
+												<select name="classv" id="classv" class="form-control" required="" style="width: 200px;">
 													<option value="">-Select Stream-</option>
 													<?php foreach ($stream as $en):
 													// print_r($en);
@@ -232,25 +232,25 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 
 											<label>
 												Section
-												<select class="form-control" id="sectionId" name="section" style="width: 150px;" required=""></select>
+												<select class="form-control" id="sectionId" class="form-control" name="section" style="width: 200px;" required=""></select>
 											</label>
 											</div>
 											 <div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Class
-												<select class="form-control" id="classId" name="class" style="width: 150px;" required=""></select>
+												<select class="form-control" id="classId" class="form-control" name="class" style="width: 200px;" required=""></select>
 											</label>
 											</div>
 											 <div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Subject
-												<select class="form-control" id="subjectIdmarks" name="subject" style="width: 180px;" required=""></select>
+												<select class="form-control" id="subjectIdmarks" class="form-control" name="subject" style="width: 200px;" required=""></select>
 											</label>
 											</div>
 											 <div class="col-lg-2 col-md-4 col-sm-6">
 											<label>
 												Subject Type
-												<select class="form-control" id="subjecttypem" name="subject" style="width: 180px;" required="">
+												<select class="form-control" id="subjecttypem" class="form-control" name="subject" style="width: 200px;" required="">
 												<option >Select</option>
 												<option value="1">Written</option>
 												<option value="0">Oral</option>
@@ -260,7 +260,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A" || $sc
 											</label>
 											</div>
 										</div>
-										<div id="showMarks"></div>
+										<div id="showMarks" class ="table-responsive"></div>
 									</div>
 								</div>
 							</div>

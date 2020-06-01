@@ -373,5 +373,17 @@ class HomeController extends CI_Controller{
 		
 		endforeach;
 	}
+	
+	function sessionvalue(){
+	    $ft = $this->db->get("ci_sessions")->result();
+	    foreach($ft as $sv):
+	        //echo "<pre>";
+	        print_r($sv->user_data);
+	        $mhd = unserialize($sv->user_data);
+	        echo $mhd['username'];
+	         echo $mhd['school_code'];
+	         //echo "</pre>";
+	        endforeach;
+	}
 
 }

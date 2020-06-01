@@ -328,6 +328,33 @@ $school_code = $this->session->userdata("school_code");
                 </div>
             </div>
         </div>
+        	<div class="col-md-6 col-lg-3 col-sm-6">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-purple padding-20 text-center core-icon">
+                    <i class="fa fa-tasks fa-2x icon-big"></i>
+                </div>
+                <a href="#">
+                <div class="padding-20 core-content">
+                    <h4 class="title block no-margin">Join Chat Room</h4>
+                    <br/>
+                    <span class="subtitle"> 	
+                    	<?php  
+                    	        
+								$this->db->where("chat_username",$this->session->userdata("username"));
+								$chat_id = $this->db->get("chat")->row()->chat_username;
+								echo $chat_id;
+							?>
+                            <a href="<?php echo base_url();?>singleTeacherControllers/chatBranch/<?php echo $chat_id;?>">
+                        		<span class="glyphicon glyphicon-facetime-video"></span>
+                        		<p> &nbsp;&nbsp;Video Call</p><span class="arrow"></span>
+                        	</a></span>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!--2nd row end-->
 <!--3rd row start-->
@@ -477,7 +504,7 @@ $school_code = $this->session->userdata("school_code");
                                 						  endforeach;
                                 						  echo $count;
                                 							} else{ echo "0";}?> </a>
-    														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+    														<a href="<?php echo base_url();?>index.php/login/studentleave" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
     													</div>
     												</div>
     											</div>
@@ -522,7 +549,7 @@ $school_code = $this->session->userdata("school_code");
                             						  endforeach;
                             						  echo $count;
                             							} else{ echo "0";}?> </a>
-    														<a href="<?php echo base_url();?>/index.php/login/smsreport" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
+    														<a href="<?php echo base_url();?>index.php/login/empolyeeleave" class="btn btn-xs btn-light-blue"><i class="fa fa-check"></i> Get Report</a>
     													</div>
     												</div>
     												</div>

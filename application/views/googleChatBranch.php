@@ -13,12 +13,10 @@
 						</div>
 						 -->
 						<div class="col-md-12">
-						    
-     
-    
                                 <div class="panel panel-yellow">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title" id="chatName1">No one Selected For Vedio Chat...</h3>
+                                        <h3 class="panel-title" id="chatName1">No one Selected For Vedio Chat...<button class ="btn btn-purple" id ="newchat">i want to be Online</button>
+                                        	<a href="<?php echo base_url();?>index.php/singleTeacherControllers/chat" class ="btn btn-red">	Want for join Condidate  </a></h3>
                                         <div class="panel-control">
                                             <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Remove"><i class="icon-close" id="closeChatBody"></i></a>
                                         </div>
@@ -31,10 +29,11 @@
                                   $fgdata['chat_id']=$chatid;
                                   $this->db->where("chat_username",$id);
                                   $this->db->update("chat",$fgdata);
+                                
                                   ?>
                                   
                                     <div class="panel-body panel-white" id="chatBody1">
-                                        <IFRAME SRC="https://appr.tc/r/<?php echo $chatid;?>" allow="camera;microphone" style="border: 0px;" width="100%" height="600"></IFRAME>
+                                        <IFRAME SRC="https://appr.tc/r/<?php echo $chatid;?>" allow="geolocation; microphone; camera" style="border: 0px;" width="100%" height="600"></IFRAME>
                                     </div>
                                 </div>
 						</div>
@@ -46,5 +45,10 @@
 							var v = '<img src="<?php echo base_url();?>assets/vChat.png"/>';
 							$("#chatBody1").html(v);
 						});
+						
+						$("#newchat").click(function(){
+						    window.location.href=window.location.href
+						});
+					
 					</script>
 </div><!-- Main Wrapper -->

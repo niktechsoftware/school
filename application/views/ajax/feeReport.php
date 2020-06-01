@@ -120,7 +120,7 @@
 			  			
 							<?php 
 							
-						     $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' ");
+						     $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' order by deposite_months.id ASC ");
                                                                                 	
 								/*//$this->db->where("school_code",$this->session->userdata("school_code"));
 								$this->db->where("student_id",$stu_id);
@@ -227,7 +227,7 @@
 				<button data-dismiss="alert" class="close" type="button">
 					&times;
 				</button>
-				<h4 class="alert-heading"><i class="fa fa-times"></i> Error! <?php echo $student->num_rows();?></h4>
+				<h4 class="alert-heading"><i class="fa fa-times"></i> Error! <?php echo "0";?></h4>
 				<p>
 					No record found from Fee database please submit fee first of this class &amp; section... 
 				</p>
@@ -321,7 +321,7 @@ $sum=0;
 							
 						
 								//$this->db->where("school_code",$this->session->userdata("school_code"));
-							 $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' ");
+							 $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' order by deposite_months.id ASC ");
 							
 			               $i=0;
 							foreach($fee_record->result() as $fd):
@@ -437,7 +437,7 @@ $sum=0;
 							<?php 
 							
 						
-							 $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' ");
+							 $fee_record =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd' and deposite_months.student_id='$stu_id' order by deposite_months.id ASC ");
                              
 							
 			               $i=0;

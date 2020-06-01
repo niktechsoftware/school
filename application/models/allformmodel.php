@@ -30,18 +30,18 @@ class AllFormModel extends CI_Model{
              // function for fsdwise record 
         function getfsdwiseStudentClassData($fsd,$class_id){
            if($fsd== $this->session->userdata("fsd")){
-                $student= $this->db->query("select DISTINCT(student_info.id) from student_info  where status =1 and fsd ='$fsd' and student_info.class_id ='$class_id'" );
+                $student= $this->db->query("select DISTINCT(student_info.id) from student_info  where status =1 and fsd ='$fsd' and student_info.class_id ='$class_id' order by name ASC" );
                 return 	$student;
            }else{
                 $student=	$this->db->query("select DISTINCT(old_student_info.student_id) as id from old_student_info  where fsd ='$fsd' and class_id ='$class_id'");
                 return 	$student;
-                print_r($student);
+                //print_r($student);
            }
            // select student_info.id from student_info join old_student_info where ( ((student_info.fsd =20) and (student_info.class_id =134) and (student_info.status =1)) or ((old_student_info.fsd=20) and (old_student_info.class_id =134) and (student_info.status =1)))
            		
         }
             // end function for fsdwise record 
-            
+           
             
             //start function for single student record 
          function getStu_record_fsdSingleid($stu_id){
@@ -111,7 +111,7 @@ function updatefsd($fsdid){
         	{
             	foreach($result21->result() as $value):
             	$this->db->where('fsd',$fsdid);
-            	$this->db->where('class_id',$value->class_i);
+            	$this->db->where('class_id',$value->class_id);
             	$result=$this->db->get('class_fees');
             	if($result->num_rows()<1){
         		$data=array(

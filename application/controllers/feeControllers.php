@@ -107,7 +107,7 @@ function getFsd(){
 		$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
 		$invoice1=6000+$invoice->num_rows();
-		$invoice_number = $school_code."I19".$invoice1;
+		$invoice_number = $school_code."I20".$invoice1;
 		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
 				"reason" => "Fee Deposit",
@@ -263,12 +263,14 @@ function getFsd(){
 			$this->db->where("invoice_no",$invoice_number);
 		    $mode = $this->db->get('fee_deposit')->row()->payment_mode;
 		    $this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
-		if($isSMS->fee_submit){
-		    if($mode==1 || $mode==5){
+		    if($mode==1 || $mode==5 || $mode==4 ){
 		        $this->feeModel->updateDaybook($school_code,$this->input->post("paid"),$this->input->post("stuId"),$this->input->post("payment_mode"),$invoice_number);
-		        $this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
-		
+		        //$this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
+		        $feeStatus['status']=1;
+		        $this->db->where("invoice_no",$invoice_number);
+		        $this->db->update("fee_deposit",$feeStatus);
 			//echo $student->student_id.'sss';
+			if($isSMS->fee_submit){
 			$this->db->where("school_code",$school_code);
 			$this->db->where("student_id",$student->id);
 			$var=$this->db->get("guardian_info")->row();
@@ -315,19 +317,13 @@ function getFsd(){
 		        $getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$fmobile);
 		     $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 		    
-		   redirect("index.php/invoiceController/fee/$invoice_number/$stuid/$fsddate/yes");
+		  
 			
 		
 		}
-			elseif($mode==2){
-				$amt_paid=$this->input->post('paid');
-				//print_r($amt_paid);
-				// print_r($mode);
-				//  exit;
-				redirect("index.php/paytm/pgRedirect/$invoice_number/$stuid/$fsddate/$amt_paid/2/");
-				}
-		}
 		
+		redirect("index.php/invoiceController/fee/$invoice_number/$stuid/$fsddate/yes");
+		}
 				
 		else{
 			$this->db->where("school_code",$school_code);
@@ -908,8 +904,8 @@ function getFsd(){
 		    	$studdiscount = $this->db->get("discounttable");
 		    }
 		  ?>
-		  
-		  <table><tr>
+		 	<div class="table-responsive"> 
+		  <table  class="table table-striped table-hover" id="sample-table-2"><tr>
 		  <td valign="top" width="50%">
 	                            <div class="col-sm-12">
 	                                <div class="panel panel-white">
@@ -1431,7 +1427,7 @@ function getFsd(){
 	                            </td>
 	                           </tr> 
 							  </table>                      
-	                                                <?php //$count=0;
+	                        </div>                        <?php //$count=0;
 	                                   //$count=$count+ $totfees;
 	                 	
 ?>
