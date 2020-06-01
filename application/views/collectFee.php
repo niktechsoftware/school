@@ -262,7 +262,7 @@
 												                                    </div>
 												                                </div>
 												                                <div class="alert panel-pink" id="onlinePayDetails" style="display: none">
-																					<button data-dismiss="alert" class="close">Ã—</button>
+																					<button data-dismiss="alert" class="close">×</button>
 																					<h4 class="media-heading text-center">Online Fee Payment Charges</h4>
 																					<p>* Credit Card 2.00 %</p>
 																					<p>* Net Banking  Rs.28</p>

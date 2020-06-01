@@ -99,10 +99,8 @@ function getFsd(){
 		$school_code = $this->session->userdata("school_code");
 		$fsddate=$this->input->post('fsdid');
 		$class_id= $this->input->post("classidorg");
-// 		print_r($fsddate);
-// 		exit;
-		// Calculate naxt month start	
 		$feecat = $this->input->post("feecat");
+		
 		//invoice number logic start
 		$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
@@ -116,9 +114,10 @@ function getFsd(){
 		);
 		$this->db->insert("invoice_serial",$invoiceDetail);
 		$months = $this->input->post("diposit_month");
-		//echo "<pre>";
-		//print_r($this->session->all_userdata());
-		//echo "</pre>";
+		/* echo "<pre>";
+		print_r($months);
+		echo "</pre>";
+		exit(); */
 		$this->load->model("studentModel");
 		$student = $this->studentModel->getStudentDetail($this->input->post('stuId'))->row();
 		
@@ -237,10 +236,8 @@ function getFsd(){
 		        $trnsfeemon=	$this->input->post("dtransport_fee");
 			}else{
 				$trnsfeemon	=$this->input->post("transport_fee");
-			}
-					
-			
-
+			}	
+			$this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
 		endforeach;
 		//---------------------------------------------- Opening Colsing Balance Start -----------------------------------------
 		
@@ -262,7 +259,7 @@ function getFsd(){
 			$this->db->where("student_id",$this->input->post('stuId'));
 			$this->db->where("invoice_no",$invoice_number);
 		    $mode = $this->db->get('fee_deposit')->row()->payment_mode;
-		    $this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
+		    
 		    if($mode==1 || $mode==5 || $mode==4 ){
 		        $this->feeModel->updateDaybook($school_code,$this->input->post("paid"),$this->input->post("stuId"),$this->input->post("payment_mode"),$invoice_number);
 		        //$this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
