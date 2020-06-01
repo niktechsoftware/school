@@ -1,6 +1,4 @@
-
-<?php
-class SmsAjax extends CI_Controller{
+<?php class SmsAjax extends CI_Controller{
 	function __construct()
 	{
 		parent::__construct();

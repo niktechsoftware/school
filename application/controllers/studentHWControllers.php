@@ -181,12 +181,14 @@ class studentHWControllers extends CI_Controller{
   }
 	
 	function addHomeWork(){
+	  
 	    	$rawName ='filehomeWork';
 	    $school_code = $this->session->userdata("school_code");
 		$givenby=$this->session->userdata('username');
 		$workfor=$this->input->post("homeworkfor");
 		$photo_name = time().$_FILES['filehomeWork']['name'];
 		$photo_name = str_replace(' ', '_', $photo_name);
+		 
 		if($workfor=="students")
 		{
 
@@ -230,11 +232,14 @@ class studentHWControllers extends CI_Controller{
 		$var=0;
 			$this->load->library('upload');
         	$this->load->model("homeWorkModel");
+       $this->load->library('image_lib');
         if (!empty($_FILES['filehomeWork']['name'])) {
     		$this->load->model("imageupload");
     		$status=$this->imageupload->imageUploadHomeWork($rawName,$photo_name,$school_code,1);
+    			
     		if($status=="success"){
         	   	$var=$this->homeWorkModel->saveHomeWork($data);
+        	   	
         	//	redirect("index.php/studentHWControllers/showHomeWork");
     		}else{
     		    //echo $status;
@@ -242,7 +247,7 @@ class studentHWControllers extends CI_Controller{
     		}
 			}else{
 			$var=$this->homeWorkModel->saveHomeWork($data);
-		
+	
 			}
         if($var){
       	$smscount=0;

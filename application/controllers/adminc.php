@@ -1,5 +1,4 @@
-<?php
-class adminc extends CI_Controller{
+<?php class adminc extends CI_Controller{
 	
 	function __construct()
 	{

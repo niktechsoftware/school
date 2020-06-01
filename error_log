@@ -1,0 +1,2 @@
+[28-May-2020 18:06:56 Asia/Calcutta] PHP Fatal error:  require_once(): Failed opening required 'application/libraries/PaytmKit/lib/config_paytm1.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/schoodhe/public_html/sschool1/application/controllers/paytm.php on line 17
+[30-May-2020 08:26:40 Asia/Calcutta] PHP Fatal error:  require_once(): Failed opening required 'application/libraries/PaytmKit/lib/config_paytmd4.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/schoodhe/public_html/sschool1/application/controllers/paytm.php on line 18

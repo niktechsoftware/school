@@ -296,6 +296,4 @@ class Timetablepanel extends CI_Controller{
 
 
 
-}
-
-?>
+}?>
