@@ -1,6 +1,4 @@
-
-<?php
-class homeWorkModel extends CI_Model{
+<?php class homeWorkModel extends CI_Model{
 	function submitHomeWork($data){
 		$this->db->insert("homework",$data);
 		return true;

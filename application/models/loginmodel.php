@@ -166,6 +166,7 @@ class LoginModel extends CI_Model{
         }
     }
     
+    
     function validateLock(){
     	$login_type = $this->input->post('logintype');
     	//echo $login_type;

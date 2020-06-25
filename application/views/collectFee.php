@@ -243,14 +243,7 @@
 																									$this->db->where('school_code',$this->session->userdata('school_code'));
 																									$student_cat=$this->db->get('fee_deposit');
 																								//	print_r($student_cat->row()->feecat);exit;
-																									if($student_cat->num_rows()>0){
-																										$this->db->where('id',$student_cat->row()->feecat);
-																										$this->db->where('school_code',$this->session->userdata('school_code'));
-																										$new_old_cat=$this->db->get('fee_cat');
-																										if($new_old_cat->num_rows()>0){
-																									?>
-																										<option  value="<?php echo $new_old_cat->row()->id;?>"><?php echo $new_old_cat->row()->cat_name;?></option>
-																									<?php }else{
+																									
 																								
 																								$school_code=$this->session->userdata('school_code');
 																								$this->db->where('school_code',$school_code);
@@ -261,18 +254,7 @@
 												                                                <option  value="<?php echo $sc->id;?>"><?php echo $sc->cat_name;?></option>
 																							   <?php endforeach; }else{
                                                                                                          echo 'First define student type in setting menu inside fee category';
-																							   }}}else{
-																								
-																								$school_code=$this->session->userdata('school_code');
-																								$this->db->where('school_code',$school_code);
-																								$cat=$this->db->get('fee_cat');
-																								// print_r($cat) ;
-																								if($cat->num_rows()>0){
-																								 foreach($cat->result() as $sc):?>
-												                                                <option  value="<?php echo $sc->id;?>"><?php echo $sc->cat_name;?></option>
-																							   <?php endforeach; }else{
-                                                                                                         echo 'First define student type in setting menu inside fee category';
-																							   }}?>
+																							   }?>
 																							   
 																							</select>
 																							
@@ -280,7 +262,7 @@
 												                                    </div>
 												                                </div>
 												                                <div class="alert panel-pink" id="onlinePayDetails" style="display: none">
-																					<button data-dismiss="alert" class="close">Ã—</button>
+																					<button data-dismiss="alert" class="close">×</button>
 																					<h4 class="media-heading text-center">Online Fee Payment Charges</h4>
 																					<p>* Credit Card 2.00 %</p>
 																					<p>* Net Banking  Rs.28</p>
@@ -306,7 +288,9 @@
 												                                      $apm1  =  $this->db->get("late_fees");
 												                                      
 												                                       $this->db->distinct();
-												                                     $monthDeposit =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd_id' and deposite_months.student_id='$pk->id' order by deposite_months.id ASC ");
+
+												                                     $monthDeposit =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd_id' and deposite_months.student_id='$pk->id' order by deposite_months.id ASC");
+
                                                                                 		 /*  $this->db->select("*");
                                                                                 		   $this->db->where("student_id",$pk->id);
                                                                                 		    $this->db->where("fsd",$fsd_id);
@@ -476,7 +460,7 @@
 
 															});
 
-															//alert(month[i]+stuId+catId +fsdid);
+														//	alert(month[i]+stuId+catId +fsdid);
 
 
 														$.post("<?php echo site_url('feeControllers/getFeeDetails') ?>", {month : month,stuId : stuId,catId : catId, fsdid : fsdid}, function(data){

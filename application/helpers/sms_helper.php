@@ -40,12 +40,8 @@ function mysms($authkey,$msg,$sid,$number){
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 	$output=curl_exec($ch);
 	$rt=json_decode($output,true);
-
 //echo $rt['response'];
-
 	$dat =  $rt['response'];
-
-
 	curl_close($ch);
 return $dat;
 }

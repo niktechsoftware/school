@@ -30,7 +30,7 @@ class AllFormModel extends CI_Model{
              // function for fsdwise record 
         function getfsdwiseStudentClassData($fsd,$class_id){
            if($fsd== $this->session->userdata("fsd")){
-                $student= $this->db->query("select DISTINCT(student_info.id) from student_info  where status =1 and fsd ='$fsd' and student_info.class_id ='$class_id'" );
+                $student= $this->db->query("select DISTINCT(student_info.id) from student_info  where status =1 and fsd ='$fsd' and student_info.class_id ='$class_id' order by name ASC" );
                 return 	$student;
            }else{
                 $student=	$this->db->query("select DISTINCT(old_student_info.student_id) as id from old_student_info  where fsd ='$fsd' and class_id ='$class_id'");
@@ -41,7 +41,7 @@ class AllFormModel extends CI_Model{
            		
         }
             // end function for fsdwise record 
-            
+           
             
             //start function for single student record 
          function getStu_record_fsdSingleid($stu_id){

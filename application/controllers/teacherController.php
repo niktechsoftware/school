@@ -1,6 +1,4 @@
-
-<?php 
-class TeacherController extends CI_Controller{
+<?php  class TeacherController extends CI_Controller{
 	public static $sno = 0;
 	public function __construct(){
 		parent::__construct();

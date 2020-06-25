@@ -90,7 +90,7 @@
                         }
                         ?></td>
 			  			<td><?php echo $lv->maximam_marks;?> ( <?php echo $lv->grade;?> )</td>
-			  			<td style="max-width: 200px;"><?php echo $lv->workDiscription;?></td>
+			  			<td ><?php echo $lv->workDiscription;?></td>
 			  			<td><?php echo date("d-m-Y",strtotime($lv->givenWorkDate)); ?></td>
 						<td><?php echo date("d-m-Y",strtotime($lv->DueWorkDate)); ?></td>
 						<td style=" width: 20%;"><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>

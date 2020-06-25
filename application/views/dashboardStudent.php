@@ -108,7 +108,10 @@ echo $noticeForStudent->row()->message;
 		<div class="panel-body no-padding">
 	                <div class="partition-green text-center core-icon">
 	                    <i class="fa fa-inr fa-2x icon-big"></i><br>
-	                   <a href="#" class="btn btn-warning" >Click To Pay</a>
+	                    <?php 
+	                    $totAmount =$this->feeModel->totFee_due_by_id($stuid_id,0);
+	                    $student_id =$this->session->userdata("id");?>
+	                   <a href="<?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php echo $student_id;?>/<?php echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>
 						<span class="subtitle">
 							
 	                    </span>
