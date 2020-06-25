@@ -47,6 +47,7 @@ class Common_user extends REST_Controller1 {
     */
    public function index_post($rtype)
     {
+        
          $conn=mysqli_connect("208.91.198.93", "schoodhe_school", "Rahul!123singh!@");
         $db= mysqli_select_db($conn,"schoodhe_website");
          if (mysqli_connect_errno()){
@@ -63,6 +64,7 @@ class Common_user extends REST_Controller1 {
             $type="student";
     	    $query1 = "INSERT INTO common_user (username, db_name, type) VALUES ('".$username."', '".$db_name."', '".$type."')";
             $data1= mysqli_query($conn,$query1);
+            
             $data['resultu1']=mysqli_fetch_array($data1,MYSQLI_ASSOC);
        }else if($rtype == "admin"){
                 //for admin 

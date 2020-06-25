@@ -1,6 +1,4 @@
-
-<?php
-class StudentController extends CI_Controller{
+<?php class StudentController extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 			$this->is_login();
@@ -173,7 +171,7 @@ class StudentController extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 	
 	}
-
+	
 	function student_wise_icard(){
 		$stuid=$this->input->post('stdid');
 		$this->db->where('username',$stuid);
@@ -919,9 +917,6 @@ function admissionSuccess(){
 				redirect(base_url()."index.php/login/simpleSearchStudent");
 				}
 			}
-			
-		
-			
 			
 		function stuAttenReport(){
 			   

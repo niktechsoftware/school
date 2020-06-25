@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -150,18 +150,6 @@ class CI_Exceptions {
 		return $buffer;
 	}
 
-	// --------------------------------------------------------------------
-
-	/**
-	 * Native PHP error handler
-	 *
-	 * @access	private
-	 * @param	string	the error severity
-	 * @param	string	the error string
-	 * @param	string	the error filepath
-	 * @param	string	the error line number
-	 * @return	string
-	 */
 	function show_php_error($severity, $message, $filepath, $line)
 	{
 		$severity = ( ! isset($this->levels[$severity])) ? $severity : $this->levels[$severity];
@@ -185,8 +173,6 @@ class CI_Exceptions {
 		ob_end_clean();
 		echo $buffer;
 	}
-
-
 }
 // END Exceptions Class
 

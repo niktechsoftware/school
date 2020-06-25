@@ -51,7 +51,7 @@ class InvoiceController extends CI_Controller{
 // 		 exit();
 		 $invoice_number = $this->uri->segment(3);
          $student_id = $this->uri->segment(4);
-         $fsd = $this->uri->segment(5);
+         $fsd2 = $this->uri->segment(5);
 		 
 		 $this->db->where("school_code",$school_code);
         $this->db->where("invoice_no",$invoice_number);
@@ -110,8 +110,7 @@ class InvoiceController extends CI_Controller{
 			$this->db->where("student_id",$this->input->post('stuId'));
 			$this->db->where("invoice_no",$invoice_number);
 		    $mode = $this->db->get('fee_deposit')->row()->payment_mode;
-		    
-		   redirect("index.php/invoiceController/fee/$invoice_number/$student_id/$fsd/yes");
+		   redirect("index.php/invoiceController/fee/$invoice_number/$student_id/$fsd2/yes");
 		    //print_r($mode);exit;
 			
 	}
@@ -995,4 +994,5 @@ function result(){
 		$data['title'] = "printccFinal";
 		$this->load->view("invoice/printcCFinal",$data);
 	}
+	
 }

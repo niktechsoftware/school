@@ -138,7 +138,7 @@ class LoginModel extends CI_Model{
         			"city" => $res->city,
         			"school_code"=>$scode,
         			"state" => $res->state,
-        			"pin" => $res->pin,
+        			"pin" => $res->pin_code,
         			"mobile_number" => $res->mobile,
         			"email" => $res->email,
         			"photo" => $res->photo,

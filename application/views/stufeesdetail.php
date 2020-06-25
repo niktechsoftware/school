@@ -113,7 +113,7 @@
 											// echo $scd;
 											$this->db->where ( "status", 1 );
 											$this->db->where ( "student_id", $stuid );
-											$dt = $this->db->get ( "fee_deposit" )->result ();
+											$dt = $this->db->get ( "fee_deposit" )->result();
 											
 											?>
 												  	<?php
@@ -159,11 +159,11 @@ $v = 1;
 																					if ($row->payment_mode == 'Due Print') {
 																						?>
 																						<a
-															href="<?php echo base_url()?>index.php/invoiceController/printDueFee/<?php echo $row->invoice_no;?>/<?php echo $row->student_id;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
+															href="<?php echo base_url()?>index.php/invoiceController/printDueFee/<?php echo $row->invoice_no;?>/<?php echo $row->student_id;?>/<?php echo $row->finance_start_date;?>/<?php if($v == 1){echo "true"; } ?>"
 															class="btn btn-blue"> Print Slip </a>
 																				<?php	}else{?>
 																					<a
-															href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $row->student_id;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
+															href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $row->student_id;?>/<?php echo $row->finance_start_date;?>/<?php if($v == 1){echo "true"; } ?>"
 															class="btn btn-blue"> Print Slip </a>
 																					<?php }?>
 																						<?php if($this->session->userdata('login_type') == 'admin'){ ?>

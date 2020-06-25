@@ -985,6 +985,7 @@ function getFsd(){
 												if($stuid_details->discount_id>0){
 													if($studdiscount->num_rows()>0){
 														$discountRow = $studdiscount->row();
+														if($discountRow->applied_head_id!="all"){
 													//$this->db->where("school_code",$school_code);
 													//print_r($discountRow->applied_head_id);
 													//print_r($stuid_details->class_id);
@@ -999,7 +1000,10 @@ function getFsd(){
 													$disc1 = ($dmo * $discountRow->discount_persent)/100;
 													}else{
 														$disc1=$discountRow->discount_amount;
-													}}
+													}}}
+													else{
+													    
+													}
 													?>
 												<div class="row space15">
 	                                                <div class="col-sm-12">
@@ -1374,17 +1378,11 @@ function getFsd(){
 	                                            <div class="col-sm-12">
 	                                                <div class="col-sm-6 text-uppercase">Total</div>
 	                                                <div class="col-sm-6">
-	                                                 <?php   if($school_code==14){
-	                                                     ?>
-	                                                    
-	                                                    <input type="hidden" id="total1"  value="<?php echo $totwlate;?>" name="total1" />
-	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
-	                                                    <input type="text" id="total"  value="<?php echo $totwlate;?>" class="form-control" readonly/>
-	                                                    <?php } else { ?>
+	                                               
 	                                                     <input type="hidden" id="total1"  value="<?php echo $totwlate;?>" name="total1" />
 	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
 	                                                    <input type="text" id="total"  value="<?php echo $totwlate;?>" class="form-control" readonly/>
-	                                                    <?php } ?>
+	                                                    
 	                                                </div>
 	                                            </div>
 	                                        </div>
