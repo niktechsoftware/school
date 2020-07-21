@@ -1,11 +1,4 @@
 
-<!-- start: PAGE CONTENT -->
-<?php
-$school_code = $this->session->userdata("school_code");
-
-?>
-
-
 <?php if($this->uri->segment("3") == "noteTrue"){?>
 <div class="row">
   <div class="col-md-6 col-lg-12 col-sm-6">
@@ -184,26 +177,13 @@ $school_code = $this->session->userdata("school_code");
                 <h6 class="block no-margin">Opening</h6>
                 </br>
                 <mark><?php 
-                $date=Date("Y-m-d");
-						$this->db->select('opening_balance');
-						$this->db->where("school_code",$school_code);
-						$this->db->where("Date(closing_date)",$date);
-							$data=$this->db->get('opening_closing_balance')->row();
-						//	$this->db->join('class_info','class_info.id=student_info.class_id');
-						
-							
-						
-							echo $data->opening_balance ;?></mark>
+							echo $openingBalance ;?></mark>
               </div>
               <div class="col-sm-6">
                 <h6 class="block no-margin">Closing</h6>
                 </br>
-                <mark> <?php  $date=Date("Y-m-d");
-						$this->db->select('closing_balance');
-						$this->db->where("school_code",$school_code);
-						$this->db->where("Date(closing_date)",$date);
-							$data1=$this->db->get('opening_closing_balance')->row();
-							echo $data1->closing_balance ; ;?></mark>
+                <mark> <?php  
+							echo $closingBalance ;?></mark>
               </div>
             </div>
 

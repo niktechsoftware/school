@@ -385,5 +385,11 @@ class HomeController extends CI_Controller{
 	         //echo "</pre>";
 	        endforeach;
 	}
+	
+	function updateOpeningClosing(){
+		$cdate = date("Y-m-d");
+		$this->load->model("daybookmodel");
+		echo $this->daybookmodel->getClosingBalance($cdate);
+	}
 
 }

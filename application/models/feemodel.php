@@ -354,28 +354,20 @@ class feeModel extends CI_Model{
 	    $this->db->where("invoice_no",$invoice_no);
 	    $checknum = $this->db->get("day_book");
 	    if($checknum->num_rows()<1){
-	     $op1 = $this->db->query("select closing_balance from opening_closing_balance where  school_code='$school_code' order by id DESC Limit 1")->row();
-		$balance = $op1->closing_balance;
-		$close1 = $balance +$amount;
+	     
 		$dayBook = array(
 				"paid_to" =>$this->session->userdata("username"),
 				"paid_by" =>$paidID,
 				"reason" => "Fee Deposit",
 				"dabit_cradit" => "1",
 				"amount" => $amount,
-				"closing_balance" => $close1,
 				"pay_date" => date("Y-m-d H:s:i"),
 				"pay_mode" => $paymode,
 				"invoice_no" => $invoice_no,
 				"school_code"=>$school_code
 		);
 		$this->db->insert("day_book",$dayBook);
-		$bal = array(
-				"closing_balance" => $close1
-		);
-		$this->db->where("school_code",$school_code);
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->update("opening_closing_balance",$bal); 
+		 
 		return true;
 	    }
 	    else{
@@ -538,20 +530,15 @@ class feeModel extends CI_Model{
 	function fee_deposite($invoiceNo,$student_id){
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where('invoice_no', $invoiceNo);
-		$this->db->where('status', 1);
 		$this->db->where('student_id', $student_id);
 		$this->db->delete("fee_deposit");
-
-		return true;
-	}
-
-	function deposite_month($invoiceNo,$student_id){
 		$this->db->where('invoice_no', $invoiceNo);
 		$this->db->where('student_id', $student_id);
 		$this->db->delete("deposite_months");
 		return true;
 	}
 
+	
 	function del_feedue($invoiceNo, $student_id){
 		$this->db->where('invoice_no', $invoiceNo);
 		$this->db->delete("feedue");

@@ -131,5 +131,22 @@ class daybookModel extends CI_Model{
 		$query = $this->db->update("expenditure",$val);
 		return true;
 		}
+		
+		function getClosingBalance($cdate){
+			$school_code = $this->session->userdata("school_code");
+			$datec = $cdate;
+			$totCredit =	$this->db->query("select sum(amount) as totc from day_book where school_code='$school_code' and (dabit_cradit = 1 or dabit_cradit = 2) and DATE(pay_date) <= '$datec'")->row();
+			$totDebit =	$this->db->query("select sum(amount) as totd from day_book where school_code='$school_code' and dabit_cradit = 0 and DATE(pay_date) <= '$datec'")->row();
+			$actBalance = $totCredit->totc - $totDebit->totd;
+			return $actBalance;
+		}
+		function getClosingBalanceForDaybook($cdate,$id){
+			$school_code = $this->session->userdata("school_code");
+			$datec = $cdate;
+			$totCredit =	$this->db->query("select sum(amount) as totc from day_book where school_code='$school_code' and (dabit_cradit = 1 or dabit_cradit = 2) and DATE(pay_date) <= '$datec' and id <='$id'")->row();
+			$totDebit =	$this->db->query("select sum(amount) as totd from day_book where school_code='$school_code' and dabit_cradit = 0 and DATE(pay_date) <= '$datec' and id <='$id'")->row();
+			$actBalance = $totCredit->totc - $totDebit->totd;
+			return $actBalance;
+		}
 
 }

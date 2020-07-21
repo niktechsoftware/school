@@ -491,16 +491,11 @@ function getFsd(){
 		
 		$this->load->model("feeduemodel");
 		$var = $this->feeduemodel->enterDetail($feeDueData,$studid);
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$Clbalance = $op1->closing_balance;
 		$amount=$this->input->post("paid");
 		$cbal=$Clbalance+$amount;
 		$bal = array(
 				"closing_balance" => $cbal
 		);
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->update("opening_closing_balance",$bal);
 		
 		$daybookdata=array(
 				'paid_to'=>"Admin",
@@ -508,7 +503,6 @@ function getFsd(){
 				'reason'=>$this->input->post("desc"),
 				'dabit_cradit'=>2,
 				'amount'=>$this->input->post("paid"),
-				'closing_balance'=>$cbal,
 				'pay_date'=>date('Y-m-d'),
 				'pay_mode'=>"Cash",
 				'invoice_no'=>$invoice_number,
@@ -712,29 +706,11 @@ function getFsd(){
 			$this->db->where("school_code",$school_code);
 			$this->db->where('invoice_no', $invoiceNo);
 			$val = $this->db->get("day_book")->row();
-			$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'");
-			if($op1->num_rows()>0){
-			$balance = $op1->row()->closing_balance;}else{$balance="0.00";}
-			$close1 = $balance - $val->amount;
-			$data = array(
-					'paid_to' =>$student_id ,
-					'paid_by' => $this->session->userdata('username'),
-					'reason' => " Wrong Fee Entered",
-					'dabit_cradit' => 0,
-					'amount' =>$uprow->row()->paid,
-					'closing_balance' => $close1,
-					'pay_date' => date("Y-m-d"),
-					'pay_mode' => "Software",
-					'invoice_no' => "Delete Fee",
-					'school_code'=>$school_code
-					
-			);
-			$bal = array(
-					"closing_balance" => $close1
-			);
-			$this->load->model('feemodel');
-			$this->feemodel->insertocanddaybook($bal,$data);
-			if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))){
+			
+			if($this->feemodel->fee_deposite($invoiceNo,$student_id)){
+				$this->db->where("invoice_no",$invoiceNo);
+				$this->db->where("school_code",$school_code);
+				$this->db->delete("day_book");
 				redirect(base_url()."index.php/feeControllers/feesDetail/".$student_id."/".$df); 
 			   }else{
 				   echo "Please Contact to Admin";
@@ -752,50 +728,12 @@ function getFsd(){
 			$invoiceNo = $this->uri->segment(3);
 			$student_id = $this->uri->segment(4);
 			$fristfee = $this->uri->segment(5);
-			$this->db->where('invoice_no', $invoiceNo);
-			if($val = $this->db->get("day_book")->row()){
-			$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$this->session->userdata(school_code)'")->row();
-			$balance = $op1->closing_balance;
-			$close1 = $balance - $val->amount;
-			$data = array(
-					'paid_to' => "student",
-					'paid_by' => "admin",
-					'reason' => " Wrong Fee Entered",
-					'dabit_cradit' => "Debit",
-					'amount' => $val->amount,
-					'closing_balance' => $close1,
-					'pay_date' => date("Y-m-d"),
-					'pay_mode' => "Software",
-					'invoice_no' => "Delete Fee",
-					'school_code'=>$this->session->userdata("school_code")
-			
-			);
-			$bal = array(
-					"closing_balance" => $close1
-			);
-			
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("opening_date",date('Y-m-d'));
-			$this->db->update("opening_closing_balance",$bal);
-			
-			$this->db->insert("day_book",$data);
-			}
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 			$this->db->where('invoice_no', $invoiceNo);
 			$this->db->where('student_id', $student_id);
 			$this->db->delete('feedue2');
-			//$data1 = array(
-					//"current_balance" => $val->amount
-			///); 
-			
-			//$sno = $this->db->query("SELECT * FROM fee_deposit WHERE student_id ='".$student_id."' ORDER BY ID DESC limit 1")->row();
-			//$this->db->where("id",$sno->id);
-			//if($this->db->update("fee_deposit",$data1)){
 			redirect(base_url()."index.php/feeControllers/fullDetail/".$student_id);
-			//}
-			//else{l
-			//	echo "Wrong Value";
-			//}
+			
 		}
 		function transReport(){
 			$data['fsd'] = $this->input->post("fsd");
