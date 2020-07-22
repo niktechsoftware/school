@@ -325,7 +325,7 @@ if ($condition == 'Both') {
 								
 								$idempl=$this->db->query ( "SELECT * From employee_info where id ='$row->paid_to' AND school_code='$school_code'" )->row ();
 								if ($idempl) {
-									echo $idempl->emp_name;
+									echo $idempl->name;
 								}else{echo $row->paid_to; }?></td>
 <?php
 		$id = $this->db->query ( "SELECT name From student_info where id ='$row->paid_by'" )->row ();

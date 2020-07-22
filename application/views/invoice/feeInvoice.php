@@ -1930,7 +1930,7 @@ $tdiscount=0;
 				//  print_r($totdisc);
 				 
 				 }else{ 
-				 if(tdiscount>0){?>
+				 if($tdiscount>0){?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
@@ -2293,7 +2293,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 				//  print_r($totdisc);
 				 
 				 }else{ 
-				 if(tdiscount>0){?>
+				 if($tdiscount>0){?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>

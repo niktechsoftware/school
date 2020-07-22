@@ -5,7 +5,220 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
   <meta name="author" content="School management System software">
 -->
 <!-- start: FORM VALIDATION 1 PANEL -->
+<script>
+$("#sub1").hide();
+$("#bankTrans").hide();
+$("#bankForm").hide();
+$("#bankCheque").hide();
+$("#payMode").change(function(){
+	var mode = $("#payMode").val();
+	if(mode == "online" || mode == "cheque"){
+		if(mode == "cheque"){
+			$("#bankCheque").show(500);
+		}
+		else{
+			$("#bankCheque").hide(500);
+			$("#bankTrans").show(500);
+		}
+		
+	}
+	else{
+		$("#bankTrans").hide(500);
+	}
+});
 
+
+     
+$("#form-field-select-2").change(function(){
+
+	var isAdvance = $("#form-field-select-2").val();
+	if( isAdvance != "advance"){
+		var month = $("#form-field-select-2 :selected").length;
+		var basic = Number($("#basicSalary1").val());
+		var da = Number($("#dearnessAllowance1").val())*month;
+		var ma = Number($("#medicalAllowance1").val())*month;
+		var ta = Number($("#transportAllowance1").val())*month;
+		var ha = Number($("#houseRentAllowance1").val())*month;
+		
+		var spa = Number($("#spcialAllowance1").val())*month;
+		var encentieve = Number($("#encentieve1").val())*month;
+		var bonus = Number($("#bonus1").val())*month;
+	
+	
+		var pf = Number($("#ProvidentFund1").val())*month;
+		var esi = Number($("#employeeStateInsurance1").val())*month;
+	
+		$("#basicSalary").val(basic);
+		$("#medicalAllowance").val(ma);
+		$("#transportAllowance").val(ta);
+		$("#dearnessAllowance").val(da);
+		$("#houseRentAllowance").val(ha);
+		
+		$("#spcialAllowance").val(spa);
+		$("#encentieve").val(encentieve);
+		$("#bonus").val(bonus);
+	
+		$("#ProvidentFund").val(pf);
+		$("#employeeStateInsurance").val(esi);
+	
+	
+		var basic = Number($("#basicSalary").val());
+		var da = Number($("#dearnessAllowance").val());
+		var ma = Number($("#medicalAllowance").val());
+		var ta = Number($("#transportAllowance").val());
+		var ha = Number($("#houseRentAllowance").val());
+		var totalamt=basic*month;
+		var spa = Number($("#spcialAllowance").val());
+		var encentieve = Number($("#encentieve").val());
+		var bonus = Number($("#bonus").val());
+		var adA = Number($("#advance_amount").val());
+		
+	
+		var pDA = Number($("#previous_due_advance").val());
+		var pf = Number($("#ProvidentFund").val());
+		var esi = Number($("#employeeStateInsurance").val());
+		var gross = (totalamt + da + ma + ta + ha - spa + encentieve + bonus + adA) - (pf + esi + pDA);
+		//$("#ProvidentFund").val(pf);
+		
+		$("#grossSalary").val(gross);
+	
+		var gross = Number($("#grossSalary").val());
+		var cb = Number($("#cb").val());
+		
+		if(gross > cb){
+			$("#sub").hide();
+			$("#sub1").show();
+		}
+		else{
+			$("#sub1").hide();
+			$("#sub").show();
+		}
+	}else{
+		var month = 0;
+		
+		var basic = Number($("#basicSalary1").val())*month;
+		var da = Number($("#dearnessAllowance1").val())*month;
+		var ma = Number($("#medicalAllowance1").val())*month;
+		var ta = Number($("#transportAllowance1").val())*month;
+		var ha = Number($("#houseRentAllowance1").val())*month;
+	
+		var spa = Number($("#spcialAllowance1").val())*month;
+		var encentieve = Number($("#encentieve1").val())*month;
+		var bonus = Number($("#bonus1").val())*month;
+	
+	
+		var pf = Number($("#ProvidentFund1").val())*month;
+		var esi = Number($("#employeeStateInsurance1").val())*month;
+	
+		$("#basicSalary").val(basic);
+		$("#medicalAllowance").val(ma);
+		$("#transportAllowance").val(ta);
+		$("#dearnessAllowance").val(da);
+		$("#houseRentAllowance").val(ha);
+		
+		$("#spcialAllowance").val(spa);
+		$("#encentieve").val(encentieve);
+		$("#bonus").val(bonus);
+	
+		$("#ProvidentFund").val(pf);
+		$("#employeeStateInsurance").val(esi);
+	
+	
+		var basic = Number($("#basicSalary").val());
+		var da = Number($("#dearnessAllowance").val());
+		var ma = Number($("#medicalAllowance").val());
+		var ta = Number($("#transportAllowance").val());
+		var ha = Number($("#houseRentAllowance").val());
+		
+		var spa = Number($("#spcialAllowance").val());
+		var encentieve = Number($("#encentieve").val());
+		var bonus = Number($("#bonus").val());
+		var adA = Number($("#advance_amount").val());
+		
+	
+		var pDA = Number($("#previous_due_advance").val());
+		var pf = Number($("#ProvidentFund").val());
+		var esi = Number($("#employeeStateInsurance").val());
+		var gross = (basic + da + ma + ta + ha -spa + encentieve + bonus + adA) - (pf + esi + pDA);
+		//$("#ProvidentFund").val(pf);
+		
+		$("#grossSalary").val(gross);
+	
+		var gross = Number($("#grossSalary").val());
+		var cb = Number($("#cb").val());
+		
+		if(gross > cb){
+			$("#sub").hide();
+			$("#sub1").show();
+		}
+		else{
+			$("#sub1").hide();
+			$("#sub").show();
+		}
+	}
+	
+});
+
+<?php 
+		$fieldID = array(
+				"#basicSalary",
+				"#dearnessAllowance",
+				"#medicalAllowance",
+				"#transportAllowance",
+				"#houseRentAllowance",
+				"#skillAllowance",
+				"#spcialAllowance",
+				"#encentieve",
+				"#bonus",
+				"#ProvidentFund",
+				"#employeeStateInsurance",
+				"#advance_amount",
+				"#previous_due_advance"
+		);
+		foreach($fieldID as $field):
+	?>
+	$("<?php echo $field;?>").keyup(function(){
+		var basic = Number($("#basicSalary").val());
+		var da = Number($("#dearnessAllowance").val());
+		var ma = Number($("#medicalAllowance").val());
+		var ta = Number($("#transportAllowance").val());
+		var ha = Number($("#houseRentAllowance").val());
+		
+		var spa = Number($("#spcialAllowance").val());
+		var encentieve = Number($("#encentieve").val());
+		var bonus = Number($("#bonus").val());
+		var adA = Number($("#advance_amount").val());
+		
+
+		var pDA = Number($("#previous_due_advance").val());
+		var pf = Number($("#ProvidentFund").val());
+		var esi = Number($("#employeeStateInsurance").val());
+		var gross = (basic + da + ma + ta + ha -spa + encentieve + bonus + adA) - (pf + esi + pDA);
+		//$("#ProvidentFund").val(pf);
+		$("#grossSalary").val(gross);
+
+		var gross = Number($("#grossSalary").val());
+		var cb = Number($("#cb").val());
+
+		if(gross > cb){
+			$("#sub").hide();
+			$("#sub1").show();
+		}
+		else{
+			$("#sub1").hide();
+			$("#sub").show();
+		}
+		
+	});
+
+	<?php endforeach;?>
+
+//$("gross_s")
+//skil allounce means deduction of months without allowed leave 
+//spacial allowance meance amount will be deducted
+
+FormElements.init();
+</script>
 <?php 
 $school_code=$this->session->userdata("school_code");
 $fsd=$this->session->userdata("fsd");
@@ -47,15 +260,10 @@ $b = $this->db->get("emp_salary_info")->row();
 													}
 													
 												}
-
-
-
-$this->db->select("closing_balance");
-$this->db->where("school_code",$school_code);
-$this->db->where("opening_date",date("Y-m-d"));
-$cb1 = $this->db->get("opening_closing_balance");
-
-$temp = $this->db->query("SELECT * FROM emp_salary_info WHERE emp_id = '$eid' AND school_code='$school_code' ORDER BY id DESC LIMIT 1");
+					$cdate =date("Y-m-d");
+					$closingBalance = $this->daybookmodel->getClosingBalance($cdate);
+					$cb1 = $this->daybookmodel->getClosingBalance($cdate);
+					$temp = $this->db->query("SELECT * FROM emp_salary_info WHERE emp_id = '$eid' AND school_code='$school_code' ORDER BY id DESC LIMIT 1");
 
 if($temp->num_rows() > 0){
 	$pAdvance = $temp->row()->currentAdvance;
@@ -374,6 +582,7 @@ if($temp->num_rows() > 0){
 					</div>
 				</div>
 			</div>
+		
 			<div class="row" id="bankForm">
 				<div class="col-md-4">
 					<div class="form-group">
@@ -433,7 +642,7 @@ if($temp->num_rows() > 0){
 			<div class="row">
 				<div class="col-md-5">
 					<p style="color:#188f7f; font-weight: bolder;">
-						<input type="hidden" id="cb" value="<?php if($cb1->num_rows()>0){$cb=$cb1->row(); echo $cb->closing_balance; }else {echo "0";} ?>">
+						<input type="hidden" id="cb" value="<?php  echo $cb1;?>">
 						After checking all detail click save & print salary Slip for salary Invoice.
 					</p>
 				</div>
@@ -454,226 +663,3 @@ if($temp->num_rows() > 0){
 	
 	</div>
 </div>
-<script>
-$("#sub1").hide();
-$("#bankTrans").hide();
-$("#bankForm").hide();
-$("#bankCheque").hide();
-$("#payMode").change(function(){
-	var mode = $("#payMode").val();
-	if(mode == "online" || mode == "cheque"){
-		$("#bankTrans").show(500);
-	}
-	else{
-		$("#bankTrans").hide(500);
-	}
-});
-$("#payMode").change(function(){
-	var mode = $("#payMode").val();
-	if(mode == "online"){
-		$("#bankForm").show(500);
-	}
-	else{
-		$("#bankForm").hide(500);
-	}
-});
-$("#payMode").change(function(){
-	var mode = $("#payMode").val();
-	if(mode == "cheque"){
-		$("#bankCheque").show(500);
-	}
-	else{
-		$("#bankCheque").hide(500);
-	}
-});
-     
-$("#form-field-select-2").change(function(){
-
-	var isAdvance = $("#form-field-select-2").val();
-	if( isAdvance != "advance"){
-		var month = $("#form-field-select-2 :selected").length;
-		var basic = Number($("#basicSalary1").val());
-		var da = Number($("#dearnessAllowance1").val())*month;
-		var ma = Number($("#medicalAllowance1").val())*month;
-		var ta = Number($("#transportAllowance1").val())*month;
-		var ha = Number($("#houseRentAllowance1").val())*month;
-		
-		var spa = Number($("#spcialAllowance1").val())*month;
-		var encentieve = Number($("#encentieve1").val())*month;
-		var bonus = Number($("#bonus1").val())*month;
-	
-	
-		var pf = Number($("#ProvidentFund1").val())*month;
-		var esi = Number($("#employeeStateInsurance1").val())*month;
-	
-		$("#basicSalary").val(basic);
-		$("#medicalAllowance").val(ma);
-		$("#transportAllowance").val(ta);
-		$("#dearnessAllowance").val(da);
-		$("#houseRentAllowance").val(ha);
-		
-		$("#spcialAllowance").val(spa);
-		$("#encentieve").val(encentieve);
-		$("#bonus").val(bonus);
-	
-		$("#ProvidentFund").val(pf);
-		$("#employeeStateInsurance").val(esi);
-	
-	
-		var basic = Number($("#basicSalary").val());
-		var da = Number($("#dearnessAllowance").val());
-		var ma = Number($("#medicalAllowance").val());
-		var ta = Number($("#transportAllowance").val());
-		var ha = Number($("#houseRentAllowance").val());
-		var totalamt=basic*month;
-		var spa = Number($("#spcialAllowance").val());
-		var encentieve = Number($("#encentieve").val());
-		var bonus = Number($("#bonus").val());
-		var adA = Number($("#advance_amount").val());
-		
-	
-		var pDA = Number($("#previous_due_advance").val());
-		var pf = Number($("#ProvidentFund").val());
-		var esi = Number($("#employeeStateInsurance").val());
-		var gross = (totalamt + da + ma + ta + ha - spa + encentieve + bonus + adA) - (pf + esi + pDA);
-		//$("#ProvidentFund").val(pf);
-		
-		$("#grossSalary").val(gross);
-	
-		var gross = Number($("#grossSalary").val());
-		var cb = Number($("#cb").val());
-		
-		if(gross > cb){
-			$("#sub").hide();
-			$("#sub1").show();
-		}
-		else{
-			$("#sub1").hide();
-			$("#sub").show();
-		}
-	}else{
-		var month = 0;
-		
-		var basic = Number($("#basicSalary1").val())*month;
-		var da = Number($("#dearnessAllowance1").val())*month;
-		var ma = Number($("#medicalAllowance1").val())*month;
-		var ta = Number($("#transportAllowance1").val())*month;
-		var ha = Number($("#houseRentAllowance1").val())*month;
-	
-		var spa = Number($("#spcialAllowance1").val())*month;
-		var encentieve = Number($("#encentieve1").val())*month;
-		var bonus = Number($("#bonus1").val())*month;
-	
-	
-		var pf = Number($("#ProvidentFund1").val())*month;
-		var esi = Number($("#employeeStateInsurance1").val())*month;
-	
-		$("#basicSalary").val(basic);
-		$("#medicalAllowance").val(ma);
-		$("#transportAllowance").val(ta);
-		$("#dearnessAllowance").val(da);
-		$("#houseRentAllowance").val(ha);
-		
-		$("#spcialAllowance").val(spa);
-		$("#encentieve").val(encentieve);
-		$("#bonus").val(bonus);
-	
-		$("#ProvidentFund").val(pf);
-		$("#employeeStateInsurance").val(esi);
-	
-	
-		var basic = Number($("#basicSalary").val());
-		var da = Number($("#dearnessAllowance").val());
-		var ma = Number($("#medicalAllowance").val());
-		var ta = Number($("#transportAllowance").val());
-		var ha = Number($("#houseRentAllowance").val());
-		
-		var spa = Number($("#spcialAllowance").val());
-		var encentieve = Number($("#encentieve").val());
-		var bonus = Number($("#bonus").val());
-		var adA = Number($("#advance_amount").val());
-		
-	
-		var pDA = Number($("#previous_due_advance").val());
-		var pf = Number($("#ProvidentFund").val());
-		var esi = Number($("#employeeStateInsurance").val());
-		var gross = (basic + da + ma + ta + ha -spa + encentieve + bonus + adA) - (pf + esi + pDA);
-		//$("#ProvidentFund").val(pf);
-		
-		$("#grossSalary").val(gross);
-	
-		var gross = Number($("#grossSalary").val());
-		var cb = Number($("#cb").val());
-		
-		if(gross > cb){
-			$("#sub").hide();
-			$("#sub1").show();
-		}
-		else{
-			$("#sub1").hide();
-			$("#sub").show();
-		}
-	}
-	
-});
-
-<?php 
-		$fieldID = array(
-				"#basicSalary",
-				"#dearnessAllowance",
-				"#medicalAllowance",
-				"#transportAllowance",
-				"#houseRentAllowance",
-				"#skillAllowance",
-				"#spcialAllowance",
-				"#encentieve",
-				"#bonus",
-				"#ProvidentFund",
-				"#employeeStateInsurance",
-				"#advance_amount",
-				"#previous_due_advance"
-		);
-		foreach($fieldID as $field):
-	?>
-	$("<?php echo $field;?>").keyup(function(){
-		var basic = Number($("#basicSalary").val());
-		var da = Number($("#dearnessAllowance").val());
-		var ma = Number($("#medicalAllowance").val());
-		var ta = Number($("#transportAllowance").val());
-		var ha = Number($("#houseRentAllowance").val());
-		
-		var spa = Number($("#spcialAllowance").val());
-		var encentieve = Number($("#encentieve").val());
-		var bonus = Number($("#bonus").val());
-		var adA = Number($("#advance_amount").val());
-		
-
-		var pDA = Number($("#previous_due_advance").val());
-		var pf = Number($("#ProvidentFund").val());
-		var esi = Number($("#employeeStateInsurance").val());
-		var gross = (basic + da + ma + ta + ha -spa + encentieve + bonus + adA) - (pf + esi + pDA);
-		//$("#ProvidentFund").val(pf);
-		$("#grossSalary").val(gross);
-
-		var gross = Number($("#grossSalary").val());
-		var cb = Number($("#cb").val());
-
-		if(gross > cb){
-			$("#sub").hide();
-			$("#sub1").show();
-		}
-		else{
-			$("#sub1").hide();
-			$("#sub").show();
-		}
-		
-	});
-
-	<?php endforeach;?>
-
-//$("gross_s")
-//skil allounce means deduction of months without allowed leave 
-//spacial allowance meance amount will be deducted
-
-FormElements.init();
-</script>
