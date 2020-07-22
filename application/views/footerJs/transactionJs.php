@@ -130,7 +130,7 @@ $("#newpassword").hide();
 		
 		$('#expenditure').change(function(){
 			var expenditure_name = $('#expenditure').val();
-			$.post("<?php echo site_url('index.php/dayBookControllers/expenditure_depart')?>", {expenditure_name : expenditure_name}, function(data){						
+			$.post("<?php echo base_url('index.php/dayBookControllers/expenditure_depart')?>", {expenditure_name : expenditure_name}, function(data){						
 				 $('#expenditurer').html(data);
 			})
 		});

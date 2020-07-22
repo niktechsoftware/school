@@ -175,8 +175,13 @@
               <div class="col-sm-6">
                 <h6 class="block no-margin">Opening</h6>
                 </br>
-                <mark><?php ?>
-     <div class="col-sm-6">
+
+                <mark><?php 
+
+							echo $openingBalance ;?></mark>
+
+              </div>
+              <div class="col-sm-6">
                 <h6 class="block no-margin">Closing</h6>
                 </br>
                 <mark> <?php  

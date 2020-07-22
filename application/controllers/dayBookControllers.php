@@ -1,5 +1,5 @@
 <?php
-class dayBookControllers extends CI_Controller
+ class dayBookControllers extends CI_Controller
 {
     	public function __construct(){
 		parent::__construct();
@@ -19,7 +19,7 @@ class dayBookControllers extends CI_Controller
 	
 	}
 	
-	function fullDetail(){
+	public function fullDetail(){
 		$expenditure_name = $this->uri->segment(3);
 		 	$date1 = $this->uri->segment(4);
 		 	$date2 = $this->uri->segment(5);
@@ -417,6 +417,7 @@ function deleteBanTrans(){
 	$this->db->delete("director_transaction");
 	
 	echo "Deleted Success";
+	}
 }
 	function bankTransactionDb(){
 		$id_name = $this->input->post('id_name');
@@ -439,7 +440,6 @@ function deleteBanTrans(){
 				"school_code"=>$this->session->userdata("school_code")
 		);
 		$this->db->insert("invoice_serial",$invoice);
-		
 		
 		$cdate =date("Y-m-d");
 		$backDate = date('Y-m-d',(strtotime ( '-1 day' , strtotime ( $cdate) ) ));
@@ -489,16 +489,7 @@ function deleteBanTrans(){
 			}
 		}
 		elseif($id_name == 'receive'){
-			$close1 = $balance + $amount;
-				$bal = array(
-					"closing_balance" => $close1
-						
-				);
-				$this->db->where("school_code",$this->session->userdata("school_code"));
-				$this->db->where("opening_date",date('Y-m-d'));
-				$this->db->update("opening_closing_balance",$bal);
-				
-				$cashPayment = array(
+			$cashPayment = array(
 					"id_name" =>$id_name,
 					"bank_name" =>$bank_name,
 					"account_no" => $account_no,
@@ -516,7 +507,6 @@ function deleteBanTrans(){
 						"reason" => "Receive From Bank",
 						"dabit_cradit" => "Credit",
 						"amount" => $amount,
-						"closing_balance" => $close1,
 						"pay_date" => date('Y-m-d'),
 						"invoice_no" => $num1,
 						"pay_mode" => "Cash",
@@ -532,7 +522,6 @@ function deleteBanTrans(){
 	}
 	function expenditure_depart(){
 		$expenditure_name = $this->input->post("expenditure_name");
-		
 		$this->db->where("expenditure_name",$expenditure_name);
 		$rt = $this->db->get("expenditure");
 		?> 
@@ -552,7 +541,7 @@ function deleteBanTrans(){
 		$name = $this->input->post('name');
 		$disc = $this->input->post('disc');
 		$date = date('Y-m-d');
-			$school_code=	$this->session->userdata("school_code");
+		$school_code=	$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
 		$invoice1=6000+$invoice->num_rows();
@@ -566,14 +555,10 @@ function deleteBanTrans(){
 		);
 		$this->db->insert("invoice_serial",$invoice);
        $school_code=$this->session->userdata("school_code");
-		
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where  opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		
-				
-		
-		
-			if($action_transaction == 'Diposited'):
+       $cdate =date("Y-m-d");
+       $closingBalance = $this->daybookmodel->getClosingBalance($cdate);
+       $balance= $closingBalance ;
+		if($action_transaction == 'Diposited'):
 			if($balance < $amount){
 				redirect("login/cashPayment/director/balanceFalse");
 			}
@@ -592,7 +577,7 @@ function deleteBanTrans(){
 						"paid_to" =>$name,
 						"paid_by" =>$this->session->userdata("username"),
 						"reason" => "Diposti to Director",
-						"dabit_cradit" => "Debit",
+						"dabit_cradit" => 0,
 						"amount" => $amount,
 						
 						"pay_date" => date('Y-m-d'),
@@ -616,7 +601,7 @@ function deleteBanTrans(){
 						"paid_to" =>$name,
 						"paid_by" =>$this->session->userdata("username"),
 						"reason" => "Recieve From Director",
-						"dabit_cradit" => "Credit",
+						"dabit_cradit" => 1,
 						"amount" => $amount,
 						
 						"pay_date" => date('Y-m-d'),
@@ -778,7 +763,7 @@ function deleteBanTrans(){
             }
 	}
 }
-	public  function Suceesotpdeleteexpby()
+ function Suceesotpdeleteexpby()
 
           {
                $expid=$this->input->post('exp_id');
@@ -861,6 +846,9 @@ function deleteBanTrans(){
 						</script>
 				<?php	}
 		
-			}
+    }
     
+<<<<<<< HEAD
 }
+=======
+>>>>>>> 7f7533382d9a3026ff7da42441ad1661aba7e439
