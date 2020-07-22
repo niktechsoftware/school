@@ -67,7 +67,7 @@
 
 
     jQuery(document).ready(function() {
-		<!--report formate-->
+		
 		$("#rep_formate_save").click(function(){
         	var formate_rep = $('#formate_rep').val();
 			$.post("<?php echo site_url('index.php/configureClassControllers/rep_formate_save') ?>", {formate_rep : formate_rep}, function(data){

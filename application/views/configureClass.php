@@ -110,8 +110,7 @@
                     Press <strong>Edit</strong> Button next to the row ,
                     And to <strong>Delete</strong> a Section simply Press <strong>Delete</strong> Button.
                   </div>
-
-                  <div class="row">
+  				<div class="row">
                     <div class="col-sm-6">
                       <div class="panel panel-calendar">
                         <div class="panel-heading panel-red border-light">
@@ -123,8 +122,7 @@
 
                             <input type="text" minLength="1" maxLength="2" class="text-uppercase" id="addSection1" 
                              >
-
-                            <a href="#" class="btn btn-sm btn-light-red" id="addSectionButton"><i
+					 <a href="#" class="btn btn-sm btn-light-red" id="addSectionButton"><i
                                 class="fa fa-check"></i> Add Section</a>
                             <br>
                             <br>
@@ -156,7 +154,6 @@
                 <div class="tab-pane fade" id="myTab_example3">
                   <div class="alert btn-green">
                     <button data-dismiss="alert" class="close">
-                      
                     </button>
                     <h3 class="media-heading text-center">Welcome to Add Class Section</h3>
                     <p class="media-timestamp">Please insure that you have created Stream and Section for Class. This is
@@ -181,6 +178,7 @@
                             <div class="form-group">
                               <label for="inputStandard" class="col-lg-4 control-label">Class Name <span
                                   style="color:#F00">*</span></label>
+                                  
                               <div class="col-lg-7">
                                 <input type="text" id="className" maxlength="10" class="form-control"
                                   placeholder="like : 1st, 10th, etc..." />
@@ -194,10 +192,10 @@
                                 <select class="form-control" id="classStream">
                                   <option value="">-Select Class Stream-</option>
                                   <?php
-																                        $this->db->where("school_code",$this->session->userdata("school_code"));
-																                        $var=$this->db->get("stream");
-																                        foreach($var->result() as $v):
-																                        ?><option value="<?php echo $v->id;?>"><?php echo $v->stream;?></option>
+										 $this->db->where("school_code",$this->session->userdata("school_code"));
+										 $var=$this->db->get("stream");
+										 foreach($var->result() as $v):
+										 ?><option value="<?php echo $v->id;?>"><?php echo $v->stream;?></option>
                                   <?php endforeach;?>
                                 </select>
                               </div>
@@ -209,10 +207,10 @@
                                 <select class="form-control" id="classSection">
                                   <option value="">-Select Class Section-</option>
                                   <?php
-																                        $this->db->where("school_code",$this->session->userdata("school_code"));
-																                        $var=$this->db->get("class_section");
-																                        foreach($var->result() as $v):
-																                        ?><option value="<?php echo $v->id;?>"><?php echo $v->section;?></option>
+									$this->db->where("school_code",$this->session->userdata("school_code"));
+									$var=$this->db->get("class_section");
+									foreach($var->result() as $v):
+									?><option value="<?php echo $v->id;?>"><?php echo $v->section;?></option>
                                   <?php endforeach;?>
                                 </select>
                               </div>
@@ -248,8 +246,7 @@
                                <input type="text" placeholder="Enter class name" id="findclass">
                              </div>
                            </div>
-
-                           <div class="table-responsive"> 
+						 <div class="table-responsive"> 
                             <table class="table table-striped table-bordered"
 							style="width: 100%; overflow-y: scroll; overflow-x: scroll;" id="sample-table-2" >
 
@@ -266,20 +263,16 @@
                               </tbody>
                               
                               <tbody id="classDetail">
-
-                              </tbody>
-                            </table>
-
-                           </div>
-
-                          </div>
+									</tbody>
+                            	</table>
+							 </div>
+						 </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                         <script>
+           </div>
+   <script>
                          function isAlaphabte(evt) {
                     evt = (evt) ? evt : window.event;
                     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -289,13 +282,8 @@
                     $('#message').html('only Alphabates').css('color', 'red');
                     return false;
                     }      
-                         
-                         
                          </script>
-
-
-
-              </div>
+  </div>
             </div>
           </div>
         </div>

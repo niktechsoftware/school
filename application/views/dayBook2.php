@@ -43,54 +43,14 @@
 							</button>
 <?php if($this->session->userdata('login_type') == 'admin'){?>
 <ul class="dropdown-menu dropdown-light pull-right">
-								<!--<li>
-<a href="#" class="export-pdf" data-table="#sample-table-2" >
-Save as PDF
-</a>
-</li>
-<li>
-<a href="#" class="export-png" data-table="#sample-table-2">
-Save as PNG
-</a>
-</li>
-<li>
-<a href="#" class="export-csv" data-table="#sample-table-2" >
-Save as CSV
-</a>
-</li>
-<li>
-<a href="#" class="export-txt" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Save as TXT
-</a>
-</li>
-<li>
-<a href="#" class="export-xml" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Save as XML
-</a>
-</li>
-<li>
-<a href="#" class="export-sql" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Save as SQL
-</a>
-</li>
-<li>
-<a href="#" class="export-json" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Save as JSON
-</a>
-</li>-->
-								<li><a href="#" class="export-excel"
-									data-table="#sample-table-2"> Export to Excel </a></li>
-								<!--<li>
-<a href="#" class="export-doc" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Export to Word
-</a>
-</li>
-<li>
-<a href="#" class="export-powerpoint" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Export to PowerPoint
-</a>
-</li>-->
-							</ul>
+								
+		<a href="#" class="export-pdf" data-table="#sample-table-2" >
+		Save as PDF
+		</a>
+		</li>
+		<li><a href="#" class="export-excel"
+			data-table="#sample-table-2"> Export to Excel </a></li>
+			</ul>
 <?php }?>
 </div>
 					</div>
@@ -199,7 +159,7 @@ echo $classdf->class_name . "-" . $secname;
 								<td style="color: red"><?php if($dr_cr == 0 || $dr_cr == 0){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
 								<!--<td>888</td>-->
 <?php if($this->session->userdata('login_type') == 'admin'){  ?>
-<td><?php echo $row->closing_balance; ?></td>
+<td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
 <?php }?>
 <td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
 								<td><?php echo $row->pay_date;  ?></td>
@@ -282,22 +242,7 @@ if (($row->reason) == "Fee Deposit") {
 							$dpm = $dprow->deposite_month;
 							$dateObj = DateTime::createFromFormat ( '!m', $dpm );
 							$monthName = $dateObj->format ( 'F' );
-							// $this->dtotime($date));
-							
 							echo $monthName;
-							
-							// $this->db->where("id",$dprow->fsd);
-							// $fsddt=$this->db->get("fsd");
-							// if($fsddt->num_rows()>0){
-							// $frow= $fsddt->row();
-							// $date=$frow->finance_start_date;
-							// $year=date("y",strttotime($date));
-							// echo $year;
-							// }
-							// else{
-							// echo "fsd not found";
-							// }
-							// print_r($monthName);
 						endforeach
 						;
 						// $dpmonth->row
@@ -329,7 +274,7 @@ echo $classdf->class_name . "-" . $secname;
 								<td style="color: green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
 
 <?php if($this->session->userdata('login_type') == 'admin'){  ?>
-<td><?php echo $row->closing_balance; ?></td>
+<td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
 <?php }?>
 <td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
 								<td><?php echo $row->pay_date; $v=1;?></td>
@@ -414,18 +359,7 @@ if (($row->reason) == "Fee Deposit") {
 					$dateObj = DateTime::createFromFormat ( '!m', $dpm );
 					$monthName = $dateObj->format ( 'F' );
 					echo ($monthName) . " ";
-					// $this->db->where("id",$dprow->fsd);
-					// $fsddt=$this->db->get("fsd");
-					// if($fsddt->num_rows()>0){
-					// $frow= $fsddt->row();
-					// $date=$frow->finance_start_date;
-					// $year=date("y",strttotime($date));
-					// echo $year;
-					// }
-					// else{
-					// echo "fsd not found";
-					// }
-					// print_r($monthName);
+					
 				endforeach
 				;
 				// $dpmonth->row
@@ -466,7 +400,7 @@ echo $classdf->class_name . "-" . $secname;
 								<td style="color: green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
 
 <?php	if($this->session->userdata('login_type') == 'admin'){  ?>
-<td><?php echo $row->closing_balance; ?></td>
+<td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
 <?php }?>
 <td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
 								<td><?php echo $row->pay_date; ?></td>

@@ -83,7 +83,19 @@
 										        <label> Expenditure Depart <span style="color:#F00">*</span></label> 
 
 							                            <select id="expenditurer" name="expenditurer" style="width:150px;" required>
+							                          
+							                                <option value="">-Expenditure-</option>
+							                                	<?php 
+				                      		$this->db->distinct();
+				                      		$this->db->select('exp_depart');
+				                      		$ex= $this->db->get("expenditure");?>
+				                      		 <?php if($ex->num_rows()>0){
+							                                foreach($ex->result() as $row):?>
+							                                 <option value="<?php echo $row->exp_depart;?>"><?php echo $row->exp_depart;?> </option>
+							                                	
+							                               <?php  endforeach;}?>
 							                               
+							                            </select>    
 							                               
 							                            </select>
 										    </div>

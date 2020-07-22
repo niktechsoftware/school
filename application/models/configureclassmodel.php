@@ -192,19 +192,23 @@ class Configureclassmodel extends CI_Model{
 	//---------------------------------------- Add Class code Start Here ------------------------------------
 	
 	public function addClass($classdata){
-		if((strlen($this->input->post("className")) > 0) && ($this->input->post("classStream") >0) && ($this->input->post("classSection")> 0)){
 		
+
+		if((strlen($this->input->post("className")) > 0) && ($this->input->post("classStream") >0) && ($this->input->post("classSection")> 0)){
 			
 			$a=$this->db->insert("class_info",$classdata);
-		
+			if($a)
+			{
+				 ?>
+				 <?php
+				
+			}
 		}
+
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$query = $this->db->get("class_info")->result();
-		
 		return $query;
 	}
-	
-
 
 public function getsectionforclass($sectionid)
 	{
