@@ -14,7 +14,7 @@ class Paytm extends CI_Controller{
 	function pgRedirect(){
 	    //server d code
 	    $school_code=$this->session->userdata("school_code");
-		$file="config_paytmd".$school_code.".php";
+		$file="config_paytm".$school_code.".php";
         require_once(APPPATH."libraries/PaytmKit/lib/".$file);
         require_once(APPPATH."libraries/PaytmKit/lib/encdec_paytm.php");
         //end server d code
@@ -85,10 +85,7 @@ class Paytm extends CI_Controller{
        // $data['studentDetail'] = $studentDetail;
        
         if($isValidChecksum == "TRUE"):
-            
-           
             $amount=$_POST["TXNAMOUNT"];
-                
                 $updatea['status']=1;
                 $this->db->where("invoice_no",$invoice_no);
                 $this->db->update("fee_deposit",$updatea);

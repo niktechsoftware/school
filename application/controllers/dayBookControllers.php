@@ -149,8 +149,9 @@ function daybook()
 	                 }
 	        if(($q==8)){
 	              $reason="Admission Fee + 1 Month Fee";
+	               $reason="Fee Deposit";
 	              }
-	       echo $reason;
+	       //echo $reason;
 	        $a = $this->db->query("select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code' AND reason='$reason'");
 			$b = $a->num_rows();
 			
@@ -944,4 +945,3 @@ function deleteBanTrans(){
 			}
     
 }
-

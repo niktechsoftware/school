@@ -81,10 +81,9 @@ class AllFormController extends CI_Controller{
 		{ 
         $this->session->unset_userdata();
 		$this->session->sess_destroy();
-		?><script> window.location.reload();</script>
-		<?php 
-		redirect(base_url()."index.php/homeController/login_check",'refresh');	
-		// redirect('index.php/homeController');
+	
+	     //redirect(base_url()."index.php/homeController/login_check",'refresh');	
+		 redirect('index.php/homeController');
 		}
   //       $data['title'] = $this->session->userdata("name");
 		// $this->session->set_userdata('is_lock', false);

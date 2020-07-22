@@ -116,11 +116,12 @@ class HomeController extends CI_Controller{
 			elseif($query['login_type'] == "student"):
 				//echo $query['login_type'];
 				$this->session->set_userdata($query);
-				redirect("index.php/singleStudentControllers");
+			redirect("index.php/singleStudentControllers");
 			elseif(($query['login_type'] == 3)||($query['login_type'] == 2)):
 				//echo $query['login_type'];
+				//echo "t";
 				$this->session->set_userdata($query);
-				
+				redirect("index.php/singleTeacherControllers");
 			elseif($query['login_type'] == 1):
 			//print_r($query['login_type']);exit;
 			$this->session->set_userdata($query);

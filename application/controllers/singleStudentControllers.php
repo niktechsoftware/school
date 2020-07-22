@@ -21,7 +21,7 @@ class singleStudentControllers extends CI_Controller{
 				redirect("index.php/homeController/lockPage");
 			}
 		}
-		function payFee(){
+	/*	function payFee(){
 			$student_id=$this->uri->segment("3");
 			$school_code = $this->session->userdata("school_code");
 			$this->db->where("id",$student_id);
@@ -59,9 +59,10 @@ class singleStudentControllers extends CI_Controller{
 												echo $ft;
 										}
 							}
-				 } */
+				 }
 					
-		}
+		}*/
+		
 		function stuattendence(){
 		$studid = $this->uri->segment(3);
 		$fsd = $this->uri->segment(4);

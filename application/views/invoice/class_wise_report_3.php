@@ -6,7 +6,7 @@
 
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 
-    <title>Class Wise Report</title>
+    <title>Classwise Report</title>
 
     <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
     <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/print.css'
@@ -15,6 +15,8 @@
     <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/example.js'></script>
     <style type="text/css">
     @media print {
+         
+         #pagebreak { page-break-after: always; }
         body * {
             visibility: hidden;
         }
@@ -25,10 +27,12 @@
 
         #printcontent {
             position: absolute;
-            top: 40px;
+           /* top: 40px;*/
             left: 30px;
         }
+        /*#page-wrap {page-break-after: always;}*/
     }
+   
 
     .button {
         background-color: #4CAF50;
@@ -129,7 +133,7 @@
     tr,
     th {
 
-        border: 1px solid black;
+        border: 0px solid black;
         border-collapse: collapse;
     }
     </style>
@@ -137,7 +141,8 @@
 </head>
 
 <body>
-    <div id="printcontent" align="center">
+   
+       <div id="printcontent" align="center">
        
                     <?php
                           
@@ -1346,7 +1351,7 @@
 							   $examname=$examname->row();
 						?> 
 						<td colspan="1" style="text-transform: uppercase;"><?php echo $examname->exam_name;?>
-						<?php   if($i <=2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[60]";} ?></td>
+						<?php   if($i <2 ){echo "&nbsp;&nbsp;[20]";}else{echo "&nbsp;&nbsp;[60]";} ?></td>
                         <?php 
 						}
 						$i++;
@@ -2689,7 +2694,7 @@
     	$school=$this->session->userdata('school_code');
     	$row2=$this->db->get('db_name')->row()->name;
     	?>
-    				<div id="page-wrap" style="margin-top: 70px;height: 1330px;width:960px; border:1px solid #333;">
+    				<div id="page-wrap" style="margin-top: 10px;height: 1330px;width:1040px; border:1px solid #333;">
     					<div style="width:100%; height:1330px;margin-left:auto; margin-right:auto; border:1px  solid blue;">
     						<div style="width:95%; margin-left:auto; margin-right:auto; border:1px  solid yellow; height:auto;">
     	                    <?php
@@ -2939,9 +2944,9 @@
 					$this->db->where('stu_id',$studentInfo->id);
 					$this->db->where('exam_id',$value->exam_id);
 					$this->db->where('fsd',$fsd);
-						$marks= $this->db->get('exam_info');
-						if($marks->num_rows()>0){
-							$marks=$marks->row();	
+						$marks1= $this->db->get('exam_info');
+						if($marks1->num_rows()>0){
+							$marks=$marks1->row();	
 							$termtot=$termtot+$marks->marks;
 					if(is_numeric($marks->marks)){
 					  $gtptal= $gtptal+$marks->marks;
@@ -2981,7 +2986,7 @@
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
-						}else if($marks->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm; 
+						}else if($marks1->num_rows()==0){ $exammm=" "; }?><?php //echo "/" .$exammm; 
 						?>
 					</td> 
 					<?php 
@@ -3005,8 +3010,13 @@
         					<?php $anutot =number_format(((($termtot)/7)),0,'.','');    $anutot1 =number_format(((($termMax)/7)),0,'.','');
         					}
         					}}  $i++; $t++; $ty++; endforeach; ?>
-				<!--2nd term marks end-->				
-					<td class="center bold"><?php $pert=$pert+$anutot+$marks->marks; $gppertotAndGrade =$anutot+$marks->marks;$grandtotal=$grandtotal+$gtptal; echo $anutot+$marks->marks;  ?><?php //echo print_r($anutot1);?></td>
+				<!--2nd term marks end-->	
+				<?php if($marks1->num_rows()>0){
+				    $rah = $marks->marks;
+				}else{
+				    $rah=0;
+				}
+				?>	<td class="center bold"><?php $pert=$pert+$anutot+$rah; $gppertotAndGrade =$anutot+$rah;$grandtotal=$grandtotal+$gtptal; echo $anutot+$rah;  ?><?php //echo print_r($anutot1);?></td>
 					<td class="center bold"><?php if($ttal>0){ $per=round((($gppertotAndGrade*100)/$anutot1), 2);}?>
 					<?php if($ttal>0){echo $gradecal =calculateGrade($gppertotAndGrade,$classid);}?>
 					</td>
@@ -3273,7 +3283,8 @@
     	            </div>
     	        </div></div>
     	    </div>
-    	    </div>
+    	   <br>
+    	   <br>
 
 	<?php }
       else{
@@ -4431,9 +4442,9 @@
     </br>
     </br><?php
       }
-  // exit();
+
     }
-   }
+    }
 
 				function calculateGrade($val,$classid){
 								if($val >= 91 && $val < 101):
@@ -4559,6 +4570,7 @@
     <button class="button button2" type="button" onclick="window.print();">
         <i class="fa fa-print padding-right-sm"></i> Print
     </button>
+</div>
 </div>
 </body>
 </html>
