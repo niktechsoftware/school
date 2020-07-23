@@ -203,7 +203,7 @@ echo $classdf->class_name . "-" . $secname;
 								<td style="color: red"><?php if($dr_cr == 0 || $dr_cr == 0){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
 								<!--<td>888</td>-->
 <?php if($this->session->userdata('login_type') == 'admin'){  ?>
-<td><?php echo $row->closing_balance; ?></td>
+<td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
 <?php }?>
 <td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
 								<td><?php echo $row->pay_date;  ?></td>
@@ -337,7 +337,7 @@ echo $classdf->class_name . "-" . $secname;
 								<td style="color: green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
 
 <?php if($this->session->userdata('login_type') == 'admin'){  ?>
-<td><?php echo $row->closing_balance; ?></td>
+<td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
 <?php }?>
 <td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
 								<td><?php echo $row->pay_date; $v=1;?></td>
@@ -473,7 +473,7 @@ echo $classdf->class_name . "-" . $secname;
 								<td style="color: green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
 
 <?php	if($this->session->userdata('login_type') == 'admin'){  ?>
-<td><?php echo $row->closing_balance; ?></td>
+<td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
 <?php }?>
 <td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
 								<td><?php echo $row->pay_date; ?></td>
