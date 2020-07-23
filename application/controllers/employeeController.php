@@ -179,8 +179,8 @@ class EmployeeController extends CI_Controller{
 					 }
 					//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 				    $rtype="employee";
-					redirect("index.php/api/common_user/$rtype");
-					//redirect("index.php/employeeController/employeeProfile/$eid");
+					//redirect("index.php/api/common_user/$rtype");
+					redirect("index.php/employeeController/employeeProfile/$eid");
 				}
 			}
 		}
@@ -268,13 +268,13 @@ class EmployeeController extends CI_Controller{
 				 	$msg="Dear Employee ".$f_name." welcome to ".$school.". Your Employee ID= ".$username." and Password=".$password.". Now You can login and Manage all school updates click .".$sende_Detail->web_url." Thanks for Reliance.Principal ".$school;
 				// 	sms($f_mobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				 	$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$f_mobile);
-				 	echo $getv;
+				 //	echo $getv;
 				 	$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 				 }
 				//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 				$rtype="employee";
-					redirect("index.php/api/common_user/$rtype");
-				//redirect("index.php/employeeController/employeeProfile/$eid");
+					//redirect("index.php/api/common_user/$rtype");
+				redirect("index.php/employeeController/employeeProfile/$eid");
 			}
 		}
 

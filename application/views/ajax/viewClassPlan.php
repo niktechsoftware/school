@@ -148,7 +148,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						$period1=$row->period;?><input type="hidden" name="period" value="<?php echo $period1?>"/><?php
 						$result1=$this->db->query("SELECT * FROM time_table WHERE teacher = '".$id."' AND period_id = '$period1' ");
 						foreach($result1->result() as $row1):
-							echo $row1->subject." ";?><input type="hidden" name="subject" value="<?php echo $row1->subject;?>"/><?php 
+						    echo $row1->stream." ";?><input type="hidden" name="subject" value="<?php echo $row1->stream;?>"/><?php 
 							$r=	$row1->class1;
 							echo $row1->class1;?><input type="hidden" name="class1" value="<?php if(strlen($r)<1){echo "Lunch"; }else{ echo $row1->class1;}?>"/><?php 
 						endforeach;

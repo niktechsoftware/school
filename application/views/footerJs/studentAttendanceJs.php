@@ -127,7 +127,7 @@
 					//var classid = $("#classv").val();
 					var date1 = $("#date1").val();
 					var teacherid = $("#teacherid").val();
-					//alert(classid)
+					alert(classid)
 				$.post("<?php echo site_url("index.php/teacherController/presentiHa2") ?>",{classid : classid,date1 : date1,teacherid : teacherid}, function(data){
 				//	alert(data);
 						$("#sample_rahul1").html(data);

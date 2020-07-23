@@ -208,6 +208,7 @@ function pramoteClass(){
 				$datastudent["class_id"] 	=  $checkcurrent->row()->class_id;
 				$datastudent['date']=date("y-m-d");
 				$data=	$this->db->insert("old_student_info",$datastudent);
+				echo "Promoted";
 				?><script>alert("successfully Promoted")</script><?php
 			}else{
 				?> <script>alert("You can not promote this student because this student is already present in current fsd ")</script>

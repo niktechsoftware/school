@@ -96,62 +96,48 @@ class Exampanel extends CI_Controller{
 	  }
 
 	  public function findclassstudentexam()
-
-	  {
-
-	  	$data['pageTitle'] = 'Exam Panel';
+        {
+        $data['pageTitle'] = 'Exam Panel';
 		$data['smallTitle'] = 'Exam Panel';
 		$data['mainPage'] = 'Exam Panel Area';
 		$data['subPage'] = 'Exam Panel';
-		$data['title'] = 'Exam Panel Area ';
+		$data['title'] = 'Exam Panel Area';
 		$data['headerCss'] = 'headerCss/noticeCss';
 		$data['footerJs'] = 'footerJs/noticeJs';
 		$data['mainContent'] = 'panel/exam_panel';
-
-	  	  $fsd=$this->session->userdata("fsd");
+		
+          $fsd=$this->session->userdata("fsd");
 	 	  $seg1= $this->uri->segment(3);
-
-	    	$seg2= $this->uri->segment(4);
+          $seg2= $this->uri->segment(4);
 	  
-	     $this->db->where('exam_id',$seg1);
-  		 $this->db->where('stu_id',$seg2);
-  		
-  		 $this->db->where('fsd',$fsd);
-  		 $data['exam']=$this->db->get('exam_info')->result();
-  		
-  			$this->load->view('panel/exam/classstudentexamdetail',$data);
-
-
-
-	  }
+	    $this->db->where('exam_id',$seg1);
+  		$this->db->where('stu_id',$seg2);
+  		$this->db->where('fsd',$fsd);
+  		$data['exam']=$this->db->get('exam_info')->result();
+  		$this->load->view('panel/exam/classstudentexamdetail',$data);
+        }
 	  
 	  public function sendsms_exam()
 	  {
-	        	$msg=$this->input->post("msg");  
-	        	
-	  	  	  $school_code=$this->session->userdata("school_code");
-	  	  	  $fsd=$this->session->userdata("fsd");
-	  	  	  //$this->db->where('school_code',$school_code);
-	  	  	    $this->db->where('fsd',$fsd);
-	  	  	    $this->db->where('status',1);
-	  	  	  $student=  $this->db->get('student_info')->result();
-	  	  	  foreach($student as $data)
+	        $msg=$this->input->post("msg");  
+	        $school_code=$this->session->userdata("school_code");
+	  	  	$fsd=$this->session->userdata("fsd");
+	  	  //$this->db->where('school_code',$school_code);
+	  	  	$this->db->where('fsd',$fsd);
+	  	  	$this->db->where('status',1);
+	  	  	$student=  $this->db->get('student_info')->result();
+	  	  	foreach($student as $data)
 	  	  	  {
-	  	  	      
-	  	  	         $mobile=$data->mobile;
-
-	  	  	         	$this->db->where("school_code",$school_code);
+	  	  	    $mobile=$data->mobile;
+                $this->db->where("school_code",$school_code);
 				$sender=$this->db->get("sms_setting");
-                  //	$sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-			  		$sende_Detail =$sender;
-			  		$sende_Detail1=$sende_Detail->row();
-			  		sms($mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-			  	
-	  	  	  }
+            //  $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+			  	$sende_Detail =$sender;
+			  	$sende_Detail1=$sende_Detail->row();
+			  	sms($mobile,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
+			  }
 	  	  	  	redirect('index.php/exampanel/smsexampanel');
-			  	
-	  	  	   
-	  }
+	}
 	  public function admitcardclass()
 	  {
 
@@ -186,8 +172,8 @@ class Exampanel extends CI_Controller{
   }
 	   public function subseq()
 	  {
-                $fsd=$this->input->post("fsd");
-                $fsd=25;
+            $fsd=$this->input->post("fsd");
+            $fsd=25;
 	  		$classid=$this->input->post("clname");
 	  		$examTypeResult1 = $this->db->query("select DISTINCT subject.id from subject join exam_info on subject.id= exam_info.subject_id where exam_info.fsd='$fsd' and exam_info.class_id='$classid' order by subject.id ASC ");
 	  		

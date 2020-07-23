@@ -317,7 +317,8 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 				  $this->db->where_in("cat_id",$feecata);
 				  $this->db->where_in('taken_month',$monthmk);
 				   $this->db->where('fsd',$rowb->finance_start_date);
-		  		$this->db->where("class_id",$stuid_details->class_id);
+		  		$this->db->where("class_id",$rowb->class_id);
+		  		//echo $rowb->finance_start_date;
 				  $fee_head = $this->db->get("class_fees");
 				  $total=0;
 				  if($fee_head->num_rows()>0)
@@ -412,7 +413,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 					$this->db->where('invoice_number',$rowb->invoice_no);
 				 $eunm1 = $this->db->get('dis_den_tab');
 				 //print_r($eunm->row()->discounter_id);
-				
+				 $totdisc=0;
 			     if($eunm1->num_rows()>0){
 			         $l=1;
 			          $totdisc=0;

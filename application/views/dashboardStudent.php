@@ -111,7 +111,7 @@ echo $noticeForStudent->row()->message;
 	                    <?php 
 	                    $totAmount =$this->feeModel->totFee_due_by_id($stuid_id,0);
 	                    $student_id =$this->session->userdata("id");?>
-	                   <a href="<?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php echo $student_id;?>/<?php echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>
+	                 <!--  <a href="<?php //echo base_url();?>index.php/singleStudentControllers/payFee/<?php //echo $student_id;?>/<?php //echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>-->
 						<span class="subtitle">
 							
 	                    </span>
