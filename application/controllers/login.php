@@ -46,12 +46,11 @@ class Login extends CI_Controller{
 		$data['totalIncome']=$closingBalance-$openingBalance;
 		$this->load->model('dashboard_p');
 		$data['emp_lev']=$this->dashboard_p->emp_leave($school_code);
-		///////////////////
 		$data['school_code']= $this->session->userdata("school_code");
         $data['client_due_list'] = $this->client_model->list_product($cid);
-	//	print_r($data1);
-		//////////////
         $data['openingBalance']=$openingBalance;
+        $expendiAmmount =$this->daybookmodel->expenditureAmount($cdate,$school_code);
+        $data['totalExpenditure']=$expendiAmmount;
         $data['closingBalance']=$closingBalance;
 		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
@@ -1162,39 +1161,15 @@ function createSchedule()
 			$data['smallTitle'] = 'Day Book';
 			$data['mainPage'] = 'Day Book';
 			$data['subPage'] = 'Accounting ';
-
-            $cdate=date('Y-m-d');
-	    	$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-		    $this->db->where("reason","From sale Stock");
-			$dt=$this->db->get('day_book')->row();
-			$data['sale'] = $dt->amount;
+			$cdate=date('Y-m-d');
+			$data['sale'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,3,1);
+			$data['salary'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,10,0);
+			$data['bankTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,1);
+			$data['bankTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,0);
+			$data['directorTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,1);
+			$data['directorTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,0);
+			$data['cash'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,8,0);
 			
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
-			$this->db->where("pay_mode","Cash");
-			$dt1=$this->db->get('day_book')->row();
-			$data['cash'] = $dt1->amount;
-
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
-			$this->db->where("pay_mode","Online");
-			$dt1=$this->db->get('day_book')->row();
-			$data['banktransaction'] = $dt1->amount;
-
-
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
-			$dt1=$this->db->get('day_book')->row();
-			$data['salary'] = $dt1->amount;
-
 			$this->db->select_sum('paid');
 			$this->db->where("school_code",$school_code);
 			$this->db->where("diposit_date",$cdate);
@@ -1208,16 +1183,7 @@ function createSchedule()
 			$dt1=$this->db->get('fee_deposit')->row();
 			$data['bt'] = $dt1->paid;
 
-			$total = mysqli_query($this->db->conn_id,"select SUM(amount) from director_transaction where date='".date('Y-m-d')."' AND action='taken' AND school_code='".$school_code."'  ORDER by sno");
-			$no = mysqli_fetch_array($total);
-			$data['dt']=$no['SUM(amount)'];
-			// $total = mysqli_query($this->db->conn_id,"select SUM(amount) from bank_transaction where date='".date('Y-m-d')."' AND  id_name='receive' AND school_code='".$school_code."'  ORDER by id");
-			// $no = mysqli_fetch_array($total);
-			// $data['bt']=$no['SUM(amount)'];	
-			$total = mysqli_query($this->db->conn_id,"select SUM(amount) from director_transaction where date='".date('Y-m-d')."' AND school_code='".$school_code."'AND  action='given'  ORDER by sno");
-			$no = mysqli_fetch_array($total);
-			$data['htd']=$no['SUM(amount)'];
-
+		
 			$data['title'] = 'Accounting';
 			$data['headerCss'] = 'headerCss/daybookCss';
 			$data['footerJs'] = 'footerJs/daybookJs';
@@ -1232,34 +1198,13 @@ function createSchedule()
     		$data['subPage'] = 'Accounting';
 
 			$cdate=date('Y-m-d');
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-		    $this->db->where("reason","From sale Stock");
-			$dt=$this->db->get('day_book')->row();
-			$data['sale'] = $dt->amount;
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("Date(date)",$cdate);
-		//	$this->db->where("reason","Pay Salary");
-		//	$this->db->where("pay_mode","Cash");
-			$dt1=$this->db->get('cash_payment')->row();
-			$data['cash'] = $dt1->amount;
-
-			$this->db->select_sum('amount');
-		    $this->db->where("school_code",$school_code);
-		    $this->db->where("Date(date)",$cdate);	
-		    $this->db->where("id_name","receive");
-		    $dt1=$this->db->get('bank_transaction')->row();
-		    $data['banktransaction'] = $dt1->amount;
-
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
-			$dt1=$this->db->get('day_book')->row();
-			$data['salary'] = $dt1->amount;
-
+			$data['sale'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,3,1);
+			$data['salary'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,10,0);
+			$data['bankTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,1);
+			$data['bankTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,0);
+			$data['directorTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,1);
+			$data['directorTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,0);
+			$data['cash'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,8,0);
 
 			$this->db->select_sum('paid');
 			$this->db->where("school_code",$school_code);
@@ -1267,25 +1212,7 @@ function createSchedule()
 			$dt1=$this->db->get('fee_deposit')->row();
 			$data['admin'] = $dt1->paid;
 
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("Date(date)",$cdate);
-	      	$this->db->where("id_name","deposite");
-			$dt1=$this->db->get('bank_transaction')->row();
-			$data['bt'] = $dt1->amount;
 			
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("Date(date)",$cdate);
-				$this->db->where("action","Receive");
-			$dt1=$this->db->get('director_transaction')->row();
-			$data['dt'] = $dt1->amount;
-			
-	        $this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("Date(date)",$cdate);
-			$this->db->where("action","Diposited");
-			$dt1=$this->db->get('director_transaction')->row();
 			$data['htd'] = $dt1->amount;
 			$data['msg']="";
 			$data['title'] = 'Account Management';
@@ -1297,6 +1224,9 @@ function createSchedule()
 	}
 	
 	function cashPayment(){
+		$school_code = $this->session->userdata("school_code");
+		$expinditureList = $this->daybookmodel->getExpenditureList($school_code);
+		$data['expenditureList']=$expinditureList;
 		$data['pageTitle'] = 'Accounting';
 		$data['smallTitle'] = 'Transaction';
 		$data['mainPage'] = 'Transaction';

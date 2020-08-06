@@ -6,6 +6,50 @@ class daybookModel extends CI_Model{
 		return $query;
 	}
 	
+	function getDayTranByDate($school_code,$cdate,$head,$contition){
+		if($contition==0){
+			$res = $this->db->query("SELECT sum(day_book.amount) as totamount FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 0 and DATE(day_book.pay_date)='".$cdate."'");
+	 		return $res->row()->totamount;
+		}
+		if($contition==1){
+			$res = $this->db->query("SELECT sum(day_book.amount) as totamount FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 1 and DATE(day_book.pay_date)='".$cdate."'");
+			return $res->row()->totamount;
+		}
+		if($contition==2){
+			$resd = $this->db->query("SELECT sum(day_book.amount) as totamount FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 0 and DATE(day_book.pay_date)='".$cdate."'");
+			$resdc = $this->db->query("SELECT sum(day_book.amount) as totamount FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 1 and DATE(day_book.pay_date)='".$cdate."'");
+			$res =$resdc->row()->totamount-$resd->row()->totamount;
+			return $res;
+		}
+	}
+	
+	function getInvoiceByDate($school_code,$sdate,$edate,$head,$contition){
+		if($contition==0){
+			$res = $this->db->query("SELECT invoice_serial.invoice_no  FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 0 and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
+			return $res;
+		}
+		if($contition==1){
+			$res = $this->db->query("SELECT invoice_serial.invoice_no FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 1 and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
+			return $res;
+		}
+		if($contition==2){
+			$resd = $this->db->query("SELECT invoice_serial.invoice_no FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND (dabit_cradit = 0 or dabit_cradit = 1 )and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
+			$res =$resdc;
+			return $res;
+		}
+	}
+	
+	function expenditureAmount($date,$school_code){
+	$gettot=	$this->db->query("select sum(amount) as exptot from day_book where school_code='$school_code' and DATE(pay_date)='$date' ");
+	return $gettot->row()->exptot;
+	}
+	
+	function getExpenditureList($school_code){
+		$this->db->where("school_code",$school_code);
+		$explist = $this->db->get("expenditure");
+		return $explist;
+	}
+	
 	function datewiseCollecttion($date,$school_code){
 		$this->db->select_sum("paid");
 		$this->db->where('school_code',$school_code);

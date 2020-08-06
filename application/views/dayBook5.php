@@ -43,53 +43,9 @@
 							</button>
 <?php if($this->session->userdata('login_type') == 'admin'){?>
 <ul class="dropdown-menu dropdown-light pull-right">
-								<!--<li>
-<a href="#" class="export-pdf" data-table="#sample-table-2" >
-Save as PDF
-</a>
-</li>
-<li>
-<a href="#" class="export-png" data-table="#sample-table-2">
-Save as PNG
-</a>
-</li>
-<li>
-<a href="#" class="export-csv" data-table="#sample-table-2" >
-Save as CSV
-</a>
-</li>
-<li>
-<a href="#" class="export-txt" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Save as TXT
-</a>
-</li>
-<li>
-<a href="#" class="export-xml" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Save as XML
-</a>
-</li>
-<li>
-<a href="#" class="export-sql" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Save as SQL
-</a>
-</li>
-<li>
-<a href="#" class="export-json" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Save as JSON
-</a>
-</li>-->
-								<li><a href="#" class="export-excel"
+									<li><a href="#" class="export-excel"
 									data-table="#sample-table-2"> Export to Excel </a></li>
-								<!--<li>
-<a href="#" class="export-doc" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Export to Word
-</a>
-</li>
-<li>
-<a href="#" class="export-powerpoint" data-table="#sample-table-2" data-ignoreColumn ="3,4">
-Export to PowerPoint
-</a>
-</li>-->
+								
 							</ul>
 <?php }?>
 </div>
@@ -115,22 +71,13 @@ Export to PowerPoint
 								<th>Paid By</th>
 								<th style="width: 250px;">Reason</th>
 								<th>Discount Amount</th>
-<?php if($condition=='Both'){?>
 
-<th>Class</th>
 								<th>Debit</th>
 								<th>Credit</th>
-<?php } elseif($condition=='Debit'){?>
-<th>Debit</th>
-<?php } else{?>
 
-<th>Class</th>
-								<th>Credit</th>
-<?php }?>
-<?php	if($this->session->userdata('login_type') == 'admin'){  ?>
-<th>Closing Balance</th>
-<?php }?>
-<th>Pay Mode</th>
+							<th>Closing Balance</th>
+
+								<th>Pay Mode</th>
 								<th>Pay Date</th>
 								<th>Invoice Num</th>
 								<th><?php if($this->session->userdata('login_type') == 'admin'){?>
@@ -142,242 +89,14 @@ Export to PowerPoint
 						<tbody>
 <?php
 $count = 1;
-
-if (($condition == 1) || ($condition == 0)) {
-	
-	if ($condition == 'Debit') {
-		
-		?>
-
-<?php
-		
-$sno = 1;
-		while ( $row = mysqli_fetch_object ( $a ) ) {
-			if ($count % 2 == 0) {
-				$rowcss = "danger";
-			} else {
-				$rowcss = "warning";
-			}
-			$dr_cr = $row->dabit_cradit;
-			if ($dr_cr == 0) {
-				?>
-<tr class="<?php echo $rowcss;?>">
-								<td><?php echo $sno; ?></td>
-								<td><?php echo $row->paid_to; ?></td>
-<?php
-				$id = $this->db->query ( "SELECT name From student_info where id ='$row->paid_by'" )->row ();
-				$id_4 = $this->db->query ( "SELECT name,username,class_id From student_info where id ='$row->paid_by'" );
-				$id3 = $id_4->row ();
-				$id_5 = $id_4->num_rows ();
-				?>
-<td><?php
-				if ($id3) {
-					echo strtoupper ( $id3->name ) . " " . "[" . ($id3->username) . "]";
-				} else {
-					$eid = $this->db->query ( "SELECT username From employee_info where id ='$row->paid_by' AND school_code='$school_code'" )->row ();
-					if ($eid) {
-						echo $eid->username;
-					} else {
-						echo "Other";
-					}
-				}
-				?></td>
-								<!--<td><?php
-				
-if ($id_5 == 0) {
-				} else {
-					$this->db->where ( 'school_code', $school_code );
-					$this->db->where ( 'id', $id3->class_id );
-					$classname = $this->db->get ( 'class_info' );
-					$classdf = $classname->row ();
-					$this->db->where ( "id", $classdf->section );
-					$secname = $this->db->get ( "class_section" )->row ()->section;
-					?><?php
-
-					
-echo $classdf->class_name . "-" . $secname;
-				}
-				?></td>-->
-								<td><?php echo $row->reason;  ?></td>
-								<td></td>
-								<td style="color: red"><?php if($dr_cr == 0 || $dr_cr == 0){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
-								<!--<td>888</td>-->
-<?php if($this->session->userdata('login_type') == 'admin'){  ?>
-<td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
-<?php }?>
-<td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
-								<td><?php echo $row->pay_date;  ?></td>
-								<td>
-    <?php if($row->reason=="From sale Stock") { ?>
-<a
-									href="<?php echo base_url()?>index.php/dayBookControllers/invoiceCashPayment/<?php echo $row->invoice_no;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true";} ?>"
-									class="btn btn-blue">
-<?php echo $row->invoice_no;  ?>
-</a>
-<?php } else{ ?>
-<a
-									href="<?php echo base_url()?>index.php/dayBookControllers/invoiceCashPayment/<?php echo $row->invoice_no;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true";} ?>"
-									class="btn btn-blue">
-<?php echo $row->invoice_no;  ?>
-</a>
-<?php }?>
-</td>
-<td><?php if($this->session->userdata('login_type') == 'admin'){?>
-								Activity
-								<?php }?>
-								</td>
-							</tr>  
-<?php $sno++; $count++;}}} ?>
-
-<?php
-	
-	if ($condition == 'Credit') {
-		?>
-<?php
-
-		
-$sno = 1;
-		while ( $row = mysqli_fetch_object ( $a ) ) {
-			if ($count % 2 == 0) {
-				$rowcss = "danger";
-			} else {
-				$rowcss = "warning";
-			}
-			$dr_cr = $row->dabit_cradit;
-			$unm = $row->paid_by;
-			$this->db->where ( "id", $unm );
-			$sinfo = $this->db->get ( "student_info" )->row ();
-			// $sid=$sinfo->id;
-			
-			if ($dr_cr == 1) {
-				?>
-<tr class="<?php echo $rowcss;?>">
-								<td><?php echo $sno; ?></td>
-								<td><?php echo $row->paid_to; ?></td>
-<?php $id = $this->db->query("SELECT name From student_info where id ='$row->paid_by' ")->row();?>
-
-<?php
-				
-$id_4 = $this->db->query ( "SELECT name,username,class_id From student_info where id ='$row->paid_by'" );
-				$id1 = $id_4->row ();
-				$id_5 = $id_4->num_rows ();
-				?>
-<td><?php
-				
-if ($id1) {
-					echo strtoupper ( $id1->name ) . " " . "[" . ($id1->username) . "]";
-				} else {
-					$eid = $this->db->query ( "SELECT username From employee_info where id ='$row->paid_by' AND school_code='$school_code'" )->row ();
-					if ($eid) {
-						echo $eid->username;
-					} else {
-						echo $row->paid_by;
-					}
-				}
-				?></td>
-
-								<td><?php
-				
-if (($row->reason) == "Fee Deposit") {
-					$invoice = $row->invoice_no;
-					$this->db->where ( "invoice_no", $invoice );
-					$dpmonth = $this->db->get ( "deposite_months" );
-					if ($dpmonth->num_rows () > 0) {
-						
-						$dpdata = $dpmonth->result ();
-						
-						foreach ( $dpdata as $dprow ) :
-							$dpm = $dprow->deposite_month;
-							$dateObj = DateTime::createFromFormat ( '!m', $dpm );
-							$monthName = $dateObj->format ( 'F' );
-							// $this->dtotime($date));
-							
-							echo $monthName;
-							
-							// $this->db->where("id",$dprow->fsd);
-							// $fsddt=$this->db->get("fsd");
-							// if($fsddt->num_rows()>0){
-							// $frow= $fsddt->row();
-							// $date=$frow->finance_start_date;
-							// $year=date("y",strttotime($date));
-							// echo $year;
-							// }
-							// else{
-							// echo "fsd not found";
-							// }
-							// print_r($monthName);
-						endforeach
-						;
-						// $dpmonth->row
-					} else {
-						echo "Deposit Month not define";
-					}
-					echo $row->reason;
-				} else {
-					echo $row->reason;
-				}
-				?></td>
-								<td></td>
-								<td><?php
-				
-if ($id_5 == 0) {
-				} else {
-					$this->db->where ( 'school_code', $school_code );
-					$this->db->where ( 'id', $id1->class_id );
-					$classname = $this->db->get ( 'class_info' );
-					$classdf = $classname->row ();
-					$this->db->where ( "id", $classdf->section );
-					$secname = $this->db->get ( "class_section" )->row ()->section;
-				}
-				?><?php
-
-				
-echo $classdf->class_name . "-" . $secname;
-				?></td>
-								<td style="color: green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
-
-<?php if($this->session->userdata('login_type') == 'admin'){  ?>
-<td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
-<?php }?>
-<td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
-								<td><?php echo $row->pay_date; $v=1;?></td>
-								<td>
-     <?php if($row->reason=="Fee Deposit") { ?>
-
-<a
-									href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $sinfo->id; ?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
-									class="btn btn-blue">
-<?php echo $row->invoice_no; ?>
-<?php } else{ ?>
-<a
-										href="<?php echo base_url()?>index.php/invoiceController/printSaleReciept/<?php echo $row->invoice_no;?>"
-										class="btn btn-blue">
-<?php echo $row->invoice_no;  ?>
-</a>
-<?php }?>
-
-								
-								</td>
-								<td><?php if($this->session->userdata('login_type') == 'admin'){?>
-								Activity
-								<?php }?>
-								</td>
-							</tr>
-<?php
-				
-$sno ++;
-				$count ++;
-			}
-		}
-	}
-}
-
-if ($condition == 'Both') {
 	$sno = 1;
-	foreach ( $a->result () as $row ) {
+	foreach ( $a->result () as $row1 ) {
+		$this->db->where("invoice_no",$row1->invoice_no);
+		$dbinvoice = $this->db->get("day_book");
+		$row =$dbinvoice->row();
 		$dr_cr = $row->dabit_cradit;
 		$unm = $row->paid_by;
-		$this->db->where ( "id", $unm );
+		$this->db->where ( "id", $row->paid_by );
 		$sinfo = $this->db->get ( "student_info" )->row ();
 		// $sinfo->id;
 		if ($count % 2 == 0) {
@@ -395,7 +114,7 @@ if ($condition == 'Both') {
 		$id2 = $id_4->row ();
 		$id_5 = $id_4->num_rows ();
 		?>
-<td><?php
+	<td><?php
 		if ($id2) {
 			echo strtoupper ( $id2->name ) . " " . "[" . ($id2->username) . "]";
 		} else {
@@ -407,42 +126,13 @@ if ($condition == 'Both') {
 			}
 		}
 		?>
-</td>
-								<td><?php
+	</td>
+	<td><?php
+		$this->db->where("receipt_no",$row->invoice_no);
+		$cpm = $this->db->get("cash_payment")->row();
+
+			echo $cpm->reason;
 		
-if (($row->reason) == "Fee Deposit") {
-			$invoice = $row->invoice_no;
-			$this->db->where ( "invoice_no", $invoice );
-			$dpmonth = $this->db->get ( "deposite_months" );
-			if ($dpmonth->num_rows () > 0) {
-				$dpdata = $dpmonth->result ();
-				foreach ( $dpdata as $dprow ) :
-					$dpm = $dprow->deposite_month;
-					$dateObj = DateTime::createFromFormat ( '!m', $dpm );
-					$monthName = $dateObj->format ( 'F' );
-					echo ($monthName) . " ";
-					// $this->db->where("id",$dprow->fsd);
-					// $fsddt=$this->db->get("fsd");
-					// if($fsddt->num_rows()>0){
-					// $frow= $fsddt->row();
-					// $date=$frow->finance_start_date;
-					// $year=date("y",strttotime($date));
-					// echo $year;
-					// }
-					// else{
-					// echo "fsd not found";
-					// }
-					// print_r($monthName);
-				endforeach
-				;
-				// $dpmonth->row
-			} else {
-				echo "Deposit Month not define";
-			}
-			echo $row->reason;
-		} else {
-			echo $row->reason;
-		}
 		?></td>
 <?php
 		$this->db->where ( 'school_code', $this->session->userdata ( 'school_code' ) );
@@ -529,7 +219,7 @@ Delete</button>
 								</td>
 							</tr>
 <?php $sno++; $count++;} 
-} 
+
 
 
 ?>
