@@ -175,8 +175,9 @@
 		      	<?php echo $rowb->phone_no; ?>
 		      	<?php if(strlen($valid_id) > 0):
 				if($empInfo->num_rows()>0){
-				    	echo $empInfo->mobile;
-				}else{echo "N/A"; }
+				    	echo $empInfo->row()->mobile;
+				}else{ 
+					echo "N/A"; }
 				endif;?>
 		      </td>
 		      <td><?php echo $rowb->reason; ?></td>
