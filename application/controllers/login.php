@@ -1213,7 +1213,7 @@ function createSchedule()
 			$data['admin'] = $dt1->paid;
 
 			
-			$data['htd'] = $dt1->amount;
+			$data['htd'] = $dt1->paid;
 			$data['msg']="";
 			$data['title'] = 'Account Management';
 			$data['headerCss'] = 'headerCss/daybookCss';

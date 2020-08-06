@@ -23,18 +23,18 @@ class daybookModel extends CI_Model{
 		}
 	}
 	
-	function getInvoiceByDate($school_code,$sdate,$edate,$head,$contition){
+	function getInvoiceByDate($school_code,$sdate,$edate,$head,$contition,$status){
 		if($contition==0){
-			$res = $this->db->query("SELECT invoice_serial.invoice_no  FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 0 and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
+			$res = $this->db->query("SELECT invoice_serial.invoice_no, invoice_serial.heads  FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE day_book.status=1 and invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 0 and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
 			return $res;
 		}
 		if($contition==1){
-			$res = $this->db->query("SELECT invoice_serial.invoice_no FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 1 and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
+			$res = $this->db->query("SELECT invoice_serial.invoice_no, invoice_serial.heads FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE day_book.status=1 and invoice_serial.school_code='$school_code' and heads = '$head' AND dabit_cradit = 1 and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
 			return $res;
 		}
 		if($contition==2){
-			$resd = $this->db->query("SELECT invoice_serial.invoice_no FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = '$head' AND (dabit_cradit = 0 or dabit_cradit = 1 )and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
-			$res =$resdc;
+			$resd = $this->db->query("SELECT invoice_serial.invoice_no, invoice_serial.heads FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE day_book.status=1 and invoice_serial.school_code='$school_code'  AND (dabit_cradit = 0 or dabit_cradit = 1 )and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
+			$res =$resd;
 			return $res;
 		}
 	}
