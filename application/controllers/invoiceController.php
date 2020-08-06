@@ -437,7 +437,11 @@ class InvoiceController extends CI_Controller{
                       $this->db->where("fsd",$this->uri->segment(3) );
     $examTypeResult = $this->db->get("exam_info")->result();
 		
-    		 $classid = $this->uri->segment(4);
+    		 $this->db->Distinct();
+		$this->db->select("class_id");
+		$this->db->where("stu_id", $id);
+		$this->db->where("fsd",$fsd1 );
+		$classid = $this->db->get("exam_info")->row();
     		 //echo $this->uri->segment(4);
 	            	/*	$this->db->Distinct();
                 		$this->db->select("subject_id");

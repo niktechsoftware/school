@@ -45,10 +45,7 @@
                         		Bank Withdrawal
                         		<!--Recieve From Bank-->
                      	</div>
-                     	<div class="col-md-3">
-                        		<input type="radio" name="check_list" value="8" required="required">
-                       		 	Admission + 1 Month Fee
-                     	</div>
+                    
                     </div>
                  </div>   	
                 <div class="row">
@@ -59,7 +56,7 @@
                      	</div>
                      	<div class="col-md-2">
                        			<input type="radio" name="check_list" value="1" required="required">
-                       			 Cash Payment
+                       			 Cash Payment[Expen.]
                      	</div>
                      	<div class="col-md-2">
                      			<input type="radio" name="check_list" value="2" required="required">
@@ -149,13 +146,13 @@
             		<div class="col-md-12">
             				<label class="control-label col-md-6">Bank Withdrawal</label>
 	                <div class="col-md-6">            				
-            			<input type="text"  value="<?php echo $bt;?>"  class="form-control" disabled="disabled"/>
+            			<input type="text"  value="<?php echo $bankTransactionw;?>"  class="form-control" disabled="disabled"/>
             			</div>
             		</div>
             		<div class="col-md-12">
             				<label class="control-label col-md-6">Receive From Director</label>
             			<div class="col-md-6">		
-            			<input type="text"  value="<?php echo $dt;?>" class="form-control" disabled="disabled"/>
+            			<input type="text"  value="<?php echo $directorTransactionw;?>" class="form-control" disabled="disabled"/>
             			</div>
             		</div>
             		
@@ -188,13 +185,13 @@
             	<div class="col-md-12">
             				<label class="control-label col-md-6">Bank Deposits</label>
             				<div class="col-md-6">	
-            			<input type="text" value="<?php echo $banktransaction;?>" class="form-control" disabled="disabled" />
+            			<input type="text" value="<?php echo $bankTransactiond;?>" class="form-control" disabled="disabled" />
             			</div>
             		</div>
             	<div class="col-md-12">
             				<label class="control-label col-md-6">Handover To Director</label>
             				<div class="col-md-6">	
-            			<input type="text"  value="<?php echo $htd;?>" class="form-control" disabled="disabled" />
+            			<input type="text"  value="<?php echo $directorTransactiond;?>" class="form-control" disabled="disabled" />
             			</div>
             		</div>
             	</div>

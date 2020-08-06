@@ -107,7 +107,7 @@ function getFsd(){
 		$invoice_number = $school_code."I20".$invoice1;
 		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
-				"reason" => "Fee Deposit",
+				"heads" => 5,
 				"invoice_date" => $this->input->post("subdate"),
 				"school_code"=>$school_code
 		);
@@ -453,7 +453,7 @@ function getFsd(){
     		
 			$invoiceDetail = array(
 					"invoice_no" => $invoice_number,
-					"reason" => "Fee Due",
+					"reason" => 4,
 					"invoice_date" => date("Y-m-d"),
 					"school_code"=>$this->session->userdata("school_code")
 			);
@@ -497,7 +497,7 @@ function getFsd(){
 		$daybookdata=array(
 				'paid_to'=>"Admin",
 				'paid_by'=>$this->input->post("studentId"),
-				'reason'=>$this->input->post("desc"),
+				
 				'dabit_cradit'=>2,
 				'amount'=>$this->input->post("paid"),
 				'pay_date'=>date('Y-m-d'),
