@@ -1,5 +1,47 @@
 <?php
 class feeModel extends CI_Model{
+	function getFeeRecord($invoice_no){
+		$res = $this->db->query("select * from  fee_deposit  where status=1 and invoice_no='$invoice_no'");
+		return $res;
+	}
+	function getDiscount($invoice_no){
+		$this->db->where('invoice_number',$invoice_no);
+		$eunm1 = $this->db->get('dis_den_tab');
+		if($eunm1->num_rows()>0){
+			$l=1;
+			$totdisc=0;
+			foreach($eunm1->result() as $eunm):
+			$this->db->where('username',$eunm->discounter_id);
+			$eid = $this->db->get('employee_info');
+			?>
+							<?php if($eunm->discounter_id){?>
+								<tr class='text-uppercase'>
+						  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
+									<td class="col-sm-8"><b><?php 
+									if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
+									else{ $this->db->where("id",$eunm->discounter_id);
+										$getdname = $this->db->get("discounttable");
+										if($getdname->num_rows()>0){
+											echo $getdname->row()->discount_head." "." (DISCOUNT)";
+										 }
+										 else{
+										 echo "DISCOUNT";}} ?></b></td>
+									<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
+								</tr>
+								 <?php  } 
+								 $l++;
+								 endforeach;
+								 }else{
+								 				 if($tdiscount>0){?>
+								 				<tr class='text-uppercase'>
+								 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
+								 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
+								 					<td class="col-sm-3 text-center"> <?php echo $tdiscount="0.00"; $i++; ?></td>
+								 				</tr>
+								 				 <?php }}
+								//  print_r($totdisc);
+								return $totdisc;
+			}
 	
 	function totFee_due_by_id($stu_id,$indicator){
 		
