@@ -49,21 +49,20 @@
 			</div>
 			<div class="panel-body">
 				<div class="row">
+				<a href="<?php echo base_url(); ?>index.php/login/collectFee">
+                          <h2 class="title block "><button class="btn btn-dark-purple">Pay Another fee <i class="fa fa-arrow-circle-right"></i></button></h2>
+                        </a>
 					<div class="col-sm-12 embed-responsive embed-responsive-16by9" style="margin-left:100px;">
 						<?php 
 							$invoiceNo = $this->uri->segment(3);
-							$studentId = $this->uri->segment(4);
-							$isAdmission = $this->uri->segment(5);
-							$isSMS = $this->uri->segment(6);
+							
 							// echo $studentId;
 						?>
-						<iframe class="embed-responsive-item" src="<?php echo base_url(); ?>index.php/invoiceController/feeInvoice/<?php echo $invoiceNo; ?>/<?php echo $studentId; ?>/<?php echo $isAdmission; ?>/<?php echo $isSMS; ?>" id="iframe1" style="border: 1px solid red; width:85%; margin:auto;" onLoad="autoResize('iframe1');"></iframe>
+						<iframe class="embed-responsive-item" src="<?php echo base_url(); ?>index.php/invoiceController/feeInvoice/<?php echo $invoiceNo; ?>"; style ="width:85%; margin:auto;" onLoad="autoResize('iframe1');"></iframe>
 					</div>
                   
                   <div class="core-content" style="float:right; margin-right:30px;">
-         				<a href="<?php echo base_url(); ?>index.php/login/collectFee">
-                          <h2 class="title block "><button class="btn btn-dark-purple">Pay Another fee <i class="fa fa-arrow-circle-right"></i></button></h2>
-                        </a>
+         				
                      </div>
 					
 				</div>
