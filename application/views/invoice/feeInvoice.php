@@ -124,7 +124,7 @@
 
 <?php 
 
- $row2=$this->db->get('db_name')->row()->name;
+// $row2=$this->db->get('db_name')->row()->name;
 $school= $this->session->userdata("school_code");
 
 

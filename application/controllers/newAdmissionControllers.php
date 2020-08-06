@@ -202,9 +202,7 @@
 				     //redirect(base_url()."index.php/api/common_user/$rtype");
 				    	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}
-
-
-					
+		
 			//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 			
 		}
@@ -229,14 +227,12 @@
 		 if($id1->num_rows()>0){
 		$id = $id1->row()->maxnumber;
 		}else{
-		
 		$id=0;
 	    }
- $db=$this->db->get('db_name')->row()->name;
+    	$db=$this->db->get('db_name')->row()->name;
 		$maxusername=$id+1;
 		$id1 = 4000+$maxusername;
 		$id=$db.$school_code.'S'.$id1;
-		
 		$this->form_validation->set_error_delimiters('<div class="col-sm-12"><label class="text-danger">', '</label></div>');
 		$this->form_validation->set_rules('dateOfAdmission','Date Of Admission', 'trim|required');
 		$this->form_validation->set_rules('firstName','Name', 'trim|required');
