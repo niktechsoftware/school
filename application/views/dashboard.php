@@ -140,21 +140,13 @@
         <div class="partition-pink text-center core-icon">
           <i class="fa fa-users fa-2x icon-big"></i>
           <br>
-          <span class="subtitle"> <?php 
-						$date=Date("Y-m-d");
-						$this->db->select_sum("amount");
-					  //$x= $this->db->from("cash_payment");
-                    	$this->db->where("school_code",$this->session->userdata("school_code"));
-			            $this->db->where("date",$date); 
-		                $info = $this->db->get('cash_payment')->row();
-									
-                    	?> </span>
+          <span class="subtitle"> </span>
         </div>
         <a href="<?php echo base_url(); ?>index.php/login/daybook">
           <div class="padding-20 core-content">
             <h4 class="title block no-margin">Today Expenditure</h4>
             <br />
-            <span class="subtitle"> <mark><?php if($info->amount){ echo $info->amount; } else{ echo "0"; }?> </mark></span>
+            <span class="subtitle"> <mark><?php if($totalExpenditure > 0){ echo $totalExpenditure;}else{ echo "0";} ?> </mark></span>
           </div>
         </a>
       </div>
@@ -767,7 +759,7 @@
                   <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse"
                     class="accordion-toggle padding-15">
                     <i class="icon-arrow"></i>
-                    <?php $new = $this->db->query("SELECT * FROM cash_payment WHERE date='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
+                    <?php $new = $this->db->query("SELECT * FROM day_book WHERE DATE(pay_date)='".date("Y-m-d")."' AND school_code='$school_code'")->num_rows();?>
                     Cash Payment <?php if($new > 0):?> <span
                       class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
                   </a></h4>
@@ -778,22 +770,26 @@
                     <table class="table">
                       <tbody>
                         <?php $i=1;?>
-                        <?php $cash = $this->db->query("SELECT * FROM cash_payment where school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
+                        <?php $cash = $this->db->query("SELECT * FROM day_book where school_code='$school_code' ORDER BY id DESC LIMIT 4");?>
                         <?php if($cash->num_rows() >= 1):?>
                         <?php foreach($cash->result() as $row):?>
                         <tr>
                           <td class="center"><?php echo $i;?></td>
                           <td>
                             <?php
-                                    		if(strlen($row->valid_id)>1):
-                                    			echo $row->valid_id;
+                            	$this->db->where("receipt_no",$row->invoice_no);
+                            	$grow=$this->db->get("cash_payment");
+                            	if($grow->num_rows()>0){
+                                    		if(strlen($grow->row()->valid_id)>1):
+                                    			echo $grow->row()->valid_id;
                                     		else:
-                                    			echo $row->name;
+                                    			echo $grow->row()->name;
                                     		endif;
+                            	}
                                     	?>
                           </td>
                           <td class="center"><?php echo $row->amount;?></td>
-                          <td><?php echo date("d-M-Y", strtotime("$row->date"));?></td>
+                          <td><?php echo date("d-M-Y", strtotime("$row->pay_date"));?></td>
                         </tr>
                         <?php $i++; endforeach;?>
                         <?php else: ?>
@@ -815,7 +811,7 @@
                   <a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse"
                     class="accordion-toggle padding-15 collapsed">
                     <i class="icon-arrow"></i>
-                    <?php $new = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
+                    <?php $new = $this->db->query("SELECT day_book.invoice_no FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = 6 AND DATE(day_book.pay_date)='".date("Y-m-d")."' ")->num_rows();?>
                     Bank Transaction <?php if($new > 0):?> <span
                       class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
                   </a></h4>
@@ -826,7 +822,7 @@
                     <table class="table">
                       <tbody>
                         <?php $i=1;?>
-                        <?php $cash = $this->db->query("SELECT * FROM bank_transaction WHERE school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
+                        <?php $cash = $this->db->query("SELECT day_book.invoice_no FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = 6 AND DATE(day_book.pay_date)='".date("Y-m-d")."' ORDER BY day_book.id DESC LIMIT 4");?>
                         <?php if($cash->num_rows() >= 1):?>
                         <?php foreach($cash->result() as $row):?>
                         <tr>
@@ -855,7 +851,7 @@
                   <a href="#collapseThree" data-parent="#accordion" data-toggle="collapse"
                     class="accordion-toggle padding-15 collapsed">
                     <i class="icon-arrow"></i>
-                    <?php $new = $this->db->query("SELECT * FROM director_transaction WHERE school_code='$school_code' AND date='".date("Y-m-d")."'")->num_rows();?>
+                    <?php $new = $this->db->query("SELECT day_book.invoice_no FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = 7 AND DATE(day_book.pay_date)='".date("Y-m-d")."'")->num_rows();?>
                     Director Transaction <?php if($new > 0):?> <span
                       class="label label-danger pull-right"><?php echo $new;?></span><?php endif;?>
                   </a></h4>
@@ -866,7 +862,7 @@
                     <table class="table">
                       <tbody>
                         <?php $i=1;?>
-                        <?php $cash = $this->db->query("SELECT * FROM director_transaction WHERE school_code='$school_code' ORDER BY receipt_no DESC LIMIT 4");?>
+                        <?php $cash = $this->db->query("SELECT day_book.invoice_no FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE invoice_serial.school_code='$school_code' and heads = 7 AND DATE(day_book.pay_date)='".date("Y-m-d")."' ORDER BY day_book.id DESC LIMIT 4");?>
                         <?php if($cash->num_rows() >= 1):?>
                         <?php foreach($cash->result() as $row):?>
                         <tr>
