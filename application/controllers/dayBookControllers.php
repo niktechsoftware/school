@@ -7,8 +7,6 @@
 			$this->load->model("daybookmodel");
 	
 	}
-	
-	
 		function is_login(){
 		$is_login = $this->session->userdata('is_login');
 	
@@ -103,7 +101,7 @@ function daybook()
 			    redirect("index.php/login/dayBook/9");
 			}
 		} */
-	echo "t";
+	//echo "t";
 	if(($q==1)|| ($q==2)||($q==3)||($q==4)||($q==5)||($q==6)||($q==7) ||($q==9) ||($q==10)){
 		
 		if(($q==1)){

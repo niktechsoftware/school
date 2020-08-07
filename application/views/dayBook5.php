@@ -89,6 +89,7 @@
 						<tbody>
 <?php
 $count = 1;
+$dicountTotal = 0;
 	$sno = 1;
 	foreach ( $a->result () as $row1 ) {
 		$this->db->where("invoice_no",$row1->invoice_no);
@@ -128,18 +129,26 @@ $count = 1;
 		?>
 	</td>
 	<td><?php
+	if($row1->heads==5 || $row1->heads==3){
+		if($row1->heads==5){
+			echo "Fee Deposit";
+		}
+		if($row1->heads==3){
+			echo "Sale Stock";
+		}
+	}else{
 		$this->db->where("receipt_no",$row->invoice_no);
 		$cpm = $this->db->get("cash_payment")->row();
 
 			echo $cpm->reason;
-		
+	}
 		?></td>
 <?php
 		$this->db->where ( 'school_code', $this->session->userdata ( 'school_code' ) );
 		$this->db->where ( 'invoice_number', $row->invoice_no );
 		$discountid = $this->db->get ( 'dis_den_tab' );
 		if ($discountid->num_rows () > 0) {
-			?><td><?php echo $discountid->row()->discount_rupee ; ?></td>
+			?><td><?php $dicountTotal = $dicountTotal + $discountid->row()->discount_rupee ; echo $discountid->row()->discount_rupee ; ?></td>
 <?php }else{?>
 <td>0.00</td>
 <?php } ?>
@@ -204,8 +213,8 @@ Delete</button>
 								<td>----------</td>
 								<td align="right"><strong>Total</strong></td>
 								<td>----------</td>
-								<td>----------</td>
-								<td>----------</td>
+							
+								<td><?php echo $dicountTotal;?></td>
 								<td><?php echo $dabit; ?></td>
 								<td><?php echo $cradit; ?></td>
 								<td>----------</td>

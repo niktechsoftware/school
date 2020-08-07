@@ -7,9 +7,11 @@ class feeModel extends CI_Model{
 	function getDiscount($invoice_no){
 		$this->db->where('invoice_number',$invoice_no);
 		$eunm1 = $this->db->get('dis_den_tab');
+		$tdiscount=0;
+		$totdisc=0;
 		if($eunm1->num_rows()>0){
 			$l=1;
-			$totdisc=0;
+			
 			foreach($eunm1->result() as $eunm):
 			$this->db->where('username',$eunm->discounter_id);
 			$eid = $this->db->get('employee_info');
@@ -38,6 +40,7 @@ class feeModel extends CI_Model{
 								 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
 								 					<td class="col-sm-3 text-center"> <?php echo $tdiscount="0.00"; $i++; ?></td>
 								 				</tr>
+								 				tdiscount
 								 				 <?php }}
 								//  print_r($totdisc);
 								return $totdisc;
@@ -99,7 +102,7 @@ class feeModel extends CI_Model{
 		$invoice_number = $school_code."I20".$invoice1;
 		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
-				"reason" => "Fee Deposit",
+				"heads" => 5,
 				"invoice_date" => $this->input->post("subdate"),
 				"school_code"=>$school_code
 		);
@@ -400,7 +403,7 @@ class feeModel extends CI_Model{
 		$dayBook = array(
 				"paid_to" =>$this->session->userdata("username"),
 				"paid_by" =>$paidID,
-				"reason" => "Fee Deposit",
+				"status"=>1,
 				"dabit_cradit" => "1",
 				"amount" => $amount,
 				"pay_date" => date("Y-m-d H:s:i"),
