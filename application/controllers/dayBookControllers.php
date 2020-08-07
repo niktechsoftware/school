@@ -461,53 +461,19 @@ function deleteBanTrans(){
 				"school_code"=>$this->session->userdata("school_code")
 		);
 		$this->db->insert("invoice_serial",$invoice);
-<<<<<<< HEAD
-       $school_code=$this->session->userdata("school_code");
-		
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where  opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		
-				
-		
-		
-			if($action_transaction == 'Diposited'):
-=======
+
        $cdate =date("Y-m-d");
        $closingBalance = $this->daybookmodel->getClosingBalance($cdate);
        $balance= $closingBalance ;
 		if($action_transaction == 0):
->>>>>>> 34999bc7201e86f7ca6dc4e94aa048ea6d3445f5
+
 			if($balance < $amount){
 				redirect("login/cashPayment/director/balanceFalse");
 			}else{
 			$dabitCredit = 0;	
 			}
-<<<<<<< HEAD
-				$close1 = $balance - $amount;
-				$cashPayment = array(
-						"transaction_mode" =>"Cash Diposit",
-						"action" =>$action_transaction,
-						"applicant_name" => $name,
-						"amount" => $amount,
-						"reason"=>$disc,
-						"date" => date('Y-m-d'),
-						"receipt_no" => $num1,
-						"school_code"=>$this->session->userdata("school_code")
-				);
-				$dayBook = array(
-						"paid_to" =>$name,
-						"paid_by" =>$this->session->userdata("username"),
-						"reason" => "Diposti to Director",
-						"dabit_cradit" => "Debit",
-						"amount" => $amount,
-						
-						"pay_date" => date('Y-m-d'),
-						"invoice_no" => $num1, 
-						"pay_mode" => "Cash",
-						"school_code"=>$this->session->userdata("school_code")
-				);
-=======
->>>>>>> 34999bc7201e86f7ca6dc4e94aa048ea6d3445f5
+
+
 			else:
 			$dabitCredit = 1;
 			endif;
@@ -519,12 +485,9 @@ function deleteBanTrans(){
 				$dayBook = array(
 						"paid_to" =>$name,
 						"paid_by" =>$this->session->userdata("username"),
-<<<<<<< HEAD
-						"reason" => "Recieve From Director",
-						"dabit_cradit" => "Credit",
-=======
+
 						"dabit_cradit" => $dabitCredit,
->>>>>>> 34999bc7201e86f7ca6dc4e94aa048ea6d3445f5
+
 						"amount" => $amount,
 						"pay_date" => date('Y-m-d'),
 						"invoice_no" => $num1, 

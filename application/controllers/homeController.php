@@ -258,13 +258,6 @@ class HomeController extends CI_Controller{
 			
 		}
 
-
-
-
-
-
-
-
 	public function schoolRegistration(){
 		//echo "string";
 		$this->load->view("headerCss/newschregcss");
@@ -430,8 +423,6 @@ class HomeController extends CI_Controller{
 		$this->db->update("invoice_serial",$headcode);
 		endforeach;
 	}
-	
-	
 	function updateCashpayment(){
 		$res1 = $this->db->get("cash_payment")->result();
 		foreach($res1 as $res):
@@ -442,18 +433,17 @@ class HomeController extends CI_Controller{
 		if($eid->num_rows()>0){
 			$this->db->select("id");
 			$this->db->where("exp_id",$eid->row()->id);
-			$this->db->where("sub_expenditure_name",$res->sub_exp_id);
 			$getsid = $this->db->get("sub_expenditure");
 			if($getsid->num_rows()>0){
 				$updateexp['sub_exp_id']=$getsid->row()->id;
 			}
 			
-		$updateexp['exp_id']=$eid->row()->id;
+			$updateexp['exp_id']=$eid->row()->id;
 		
 			$this->db->where("school_code",$res->school_code);
-		$this->db->where("receipt_no",$res->receipt_no);
-		$this->db->update("cash_payment",$updateexp);
-		}
+			$this->db->where("receipt_no",$res->receipt_no);
+			$this->db->update("cash_payment",$updateexp);
+			}
 		endforeach;
 	}
 
