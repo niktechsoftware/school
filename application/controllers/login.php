@@ -919,7 +919,8 @@ function createSchedule()
 		$data['subPage'] = 'Exam Time Table';
 		$res = $this->configureclassmodel->getClassName();
 		$data['noc'] = $res->result(); 
-		$fsd=$this->session->userdata("fsd");
+	$fsd=$this->session->userdata("fsd");
+
 		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$data['title'] = 'Exam Time Table';
@@ -938,7 +939,7 @@ function createSchedule()
 		$this->load->model("configurefeemodel");
 		$this->load->model("examModel");
 		$fsd=$this->session->userdata("fsd");
-		$var=$this->examModel->getExamName($fsd);
+	$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -954,8 +955,9 @@ function createSchedule()
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Results Summary';
 		$this->load->model("examModel");
+
 		$fsd=$this->session->userdata("fsd");
-		$var=$this->examModel->getExamName($fsd);
+	$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
