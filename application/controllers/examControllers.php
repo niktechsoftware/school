@@ -13,6 +13,7 @@ class examControllers extends CI_Controller
     	    'term'=>$this->input->post("term"),
     		'exam_name'=>$this->input->post("examName"),
     		'exam_date'=>$this->input->post("datet"),
+			'exam_mode' =>$this->input->post("exam_mode"),
     		'school_code'=>$this->session->userdata("school_code")
     		  );
 		 $this->load->model("examModel");
@@ -177,9 +178,10 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 	    $upexam=$this->input->post("upexam");
 	  $examName=$this->input->post("examName");
 	  $date=$this->input->post("datet");
+	  $exam_mode=$this->input->post('exam_mode');
 
 	   $this->load->model("examModel");
-		$var=$this->examModel->updateexam($examName,$date,$upexam);
+		$var=$this->examModel->updateexam($examName,$date,$upexam,$exam_mode);
 	if($var)
 		{
 			redirect("index.php/login/examsheduling");
@@ -195,15 +197,26 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 	
 			echo $var->row()->exam_date;
 		
-		
 	} 
-
+ function printMode(){
+	 $this->load->model("examModel");
+		$en = $this->input->post("examName");
+		$var=$this->examModel->gateDate1($en);
+	
+	
+			$em = $var->row()->exam_mode;
+			?>
+				<option value=1 <?php if($em==1){echo 'selected="selected"';}?>>OFFLINE </option>
+				<option value=2 <?php if($em==1){echo 'selected="selected"';}?>>ONLINE (SUBJECTIVE)</option>
+				<option value=3 <?php if($em==1){echo 'selected="selected"';}?>>ONLINE (OBJECTIVE)</option>
+			<?php
+ }
 	
 	function startScheduling()
 	{ 	
 		$exam_name = $this->input->post("examName");
-	
-	 	$edate = $this->input->post("edate");
+		$edate = $this->input->post("edate");
+		//$exam_mode=$this->input->post('exam_mode');
 	 	$this->load->model("examModel");
 		$data['exam_name'] = $exam_name;
 	//print_r($data);exit();
@@ -213,7 +226,8 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 		$data['mainPage'] = 'Exam Scheduling';
 		$data['subPage'] = 'Exam Scheduling';
 		//$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		//print_r($var->result());
 		$data['request']=$var->result();
 		$count = $this->db->count_all("exam_name");
