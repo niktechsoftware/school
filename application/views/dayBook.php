@@ -78,29 +78,7 @@
             		 </div>
                 </div>
                 </div>		
-                  <div class="row">
-            		 <div class="col-md-12 space20" >
-            		 	<div class="col-md-2">
-            		 		<label class="radio-inline">
-            		 		
-								<input type="radio" class="grey" value="Debit" name="value1" required="required" >
-							Debit</label>
-						</div>
-						<div class="col-md-2">
-            		 		<label class="radio-inline">
-            		 		
-								<input type="radio" class="grey" value="Credit" name="value1" required="required" >
-							Credit</label>
-						</div>	
-						<div class="col-md-2">
-            		 		<label class="radio-inline">
-            		 		
-								<input type="radio" class="grey" value="Both"  checked="checked" name="value1" required="required" >
-							Both</label>
-						</div>	
                 
-                </div>
-                </div>	
                 <div class="row">
             		 <div class="col-md-6">
             		 	<div class="col-md-4">

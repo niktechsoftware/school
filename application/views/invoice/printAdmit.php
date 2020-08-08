@@ -311,17 +311,17 @@ if($exam_day->num_rows()){
                         <?php } ?></td>
 
                         <?php 
-                         foreach($date as $ed):
+                        foreach($date as $ed):
+						
 						$this->db->where("school_code",$this->session->userdata("school_code"));
                         $this->db->where("exam_id",$exam_name);
                         $this->db->where("shift_id",$s->id);
-                     //  $this->db->where("start_date",$exam_date);
-                       $this->db->where("class_id",$rowc->class_id);
+                      //$this->db->where("start_date",$exam_date);
+                        $this->db->where("class_id",$rowc->class_id);
                         $this->db->where("exam_day_id",$ed->id);
 						$etb = $this->db->get("exam_time_table");
 						if($etb->num_rows()>0){
-						   
-                            foreach($etb->result() as $ff):
+						    foreach($etb->result() as $ff):
                                  if($ff->subject_id){
                                 $this->db->where('id',$ff->subject_id);
                                 $this->db->where('class_id',$ff->class_id);

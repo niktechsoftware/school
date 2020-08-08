@@ -270,7 +270,8 @@ function updatemaximum()
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Exam Marks Scheduling';
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -562,17 +563,7 @@ function updatemaximum()
 		$this->load->view("includes/mainContent", $data);
 	}
 	
-	function cashPaymentreort(){
-		$data['pageTitle'] = 'Cash Payment Report ';
-		$data['smallTitle'] = 'Cash Payment Report';
-		$data['mainPage'] = 'Cash Payment Report';
-		$data['subPage'] = 'Cash Payment Report';
-		$data['title'] = 'Cash Payment Report';
-		$data['headerCss'] = 'headerCss/feeCss';
-		$data['footerJs'] = 'footerJs/feeJs';
-		$data['mainContent'] = 'transactionreport';
-		$this->load->view("includes/mainContent", $data);
-	}
+	
 
 	function feeReport(){
 		$data['pageTitle'] = 'Fee Report';
@@ -856,13 +847,17 @@ function periodTimeSlot(){
 
 	function examsheduling()
 	  {
+	  	$fsd =$this->session->userdata("fsd");
 		$data['pageTitle'] = 'Exam Scheduling';
 		$data['smallTitle'] = 'Exam Scheduling';
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Exam Scheduling';
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$var=$this->examModel->getExamName($fsd);
+		$var1=$this->examModel->getExamNameForUpdate();
 		$data['request']=$var->result();
+		$data['requestforUpdate']=$var1->result();
+		
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$count = $this->db->count_all("exam_name");
 		$data['i']=$count;
@@ -924,7 +919,8 @@ function createSchedule()
 		$data['subPage'] = 'Exam Time Table';
 		$res = $this->configureclassmodel->getClassName();
 		$data['noc'] = $res->result(); 
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$data['title'] = 'Exam Time Table';
 		$data['headerCss'] = 'headerCss/examTimeTableCss';
@@ -941,7 +937,8 @@ function createSchedule()
 		$data['subPage'] = 'Exam Details';
 		$this->load->model("configurefeemodel");
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -957,7 +954,8 @@ function createSchedule()
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Results Summary';
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -1213,7 +1211,7 @@ function createSchedule()
 			$data['admin'] = $dt1->paid;
 
 			
-			$data['htd'] = $dt1->amount;
+			$data['htd'] = $dt1->paid;
 			$data['msg']="";
 			$data['title'] = 'Account Management';
 			$data['headerCss'] = 'headerCss/daybookCss';

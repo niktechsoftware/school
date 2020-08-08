@@ -7,8 +7,6 @@ class dayBookControllers extends CI_Controller
 			$this->load->model("daybookmodel");
 	
 	}
-	
-	
 		function is_login(){
 		$is_login = $this->session->userdata('is_login');
 	
@@ -67,8 +65,7 @@ function daybook()
 		$dt2        = $this->input->post("end_date");
 		$q          = $this->input->post("check_list");
 	
-	echo $q;
-	
+
 		/* if($q==1){
 			$a = $this->db->query("select DISTINCT expenditure_name from cash_payment where date >= '$dt1' AND date <= '$dt2' AND school_code='$school_code'");
 			
@@ -104,8 +101,8 @@ function daybook()
 			    redirect("index.php/login/dayBook/9");
 			}
 		} */
-	echo "t";
-	if(($q==1)|| ($q==2)||($q==3)||($q==4)||($q==5)||($q==6)||($q==7) ||($q==9)){
+	//echo "t";
+	if(($q==1)|| ($q==2)||($q==3)||($q==4)||($q==5)||($q==6)||($q==7) ||($q==9) ||($q==10)){
 		
 		if(($q==1)){
 			$reason = "by salary";
@@ -118,7 +115,7 @@ function daybook()
 	             $condition=0;
 		 }
 	          if(($q==4)){
-	          	echo "t";
+	          
 	              $reason = "Diposti to Director";
 	             $heads=7;
 	             $condition=0;
@@ -149,8 +146,15 @@ function daybook()
 	             $heads=6;
 	             $condition=1;
 	                 }
+	                 
+	          if(($q==10)){
+	                 	$reason="Receive From Bank";
+	                 	$heads=20;
+	                 	$condition=2;
+	                 	$status =1;
+	                 }        
 	          
-	      $a= $this->daybookmodel->getInvoiceByDate($school_code,$dt1,$dt2,$heads,$condition);
+	      $a= $this->daybookmodel->getInvoiceByDate($school_code,$dt1,$dt2,$heads,$condition,1);
 	      	$b = $a->num_rows();
 	     
 			$dabit = 0;
@@ -184,7 +188,7 @@ function daybook()
 			}
 		}
 		
-		if($q==10){
+		/* if($q==10){
 			$school_code = $this->session->userdata("school_code");
 			$a = mysqli_query($this->db->conn_id,"select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code'");
 			$b = mysqli_num_rows($a);
@@ -210,7 +214,7 @@ function daybook()
 			}
 			else
 				redirect("index.php/login/dayBook/9");
-		}
+		} */
 		
 	}
 	
@@ -358,16 +362,19 @@ function daybook()
 			
 			if($this->db->insert('cash_payment',$cashPayment) && $this->db->insert('day_book',$dayBook)):
 			//code for sms
+			$sender1 = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+			$sende_Detail = $sender1->row();
 			$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 			$master_id=$max_id->maxid+1;
-	     	$sender1 = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
-			$sende_Detail = $sender1->row();
 			$this->db->where("id",$this->session->userdata("school_code"));
 		    $mobile=$this->db->get("school")->row();
-			$msg = "Dear Sir/Ma'am ".$nm.", Cash Amount Rs " . $amount . "/- expend by Admin for expenditure " . $expenditure . " from your Account.";
+			$msg ="Dear Sir/Ma'am ".$nm.", Cash Amount Rs " . $amount . "/- expend by Admin for expenditure " . $expenditure . " from your Account.";
 			 sms($mobile->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 			 $getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$mobile->mobile_no);
+				//echo $getv;
+				if($getv){
 			 $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+				}
 			 // end code for sms
 				redirect("dayBookControllers/invoiceCashPayment/$num1");
 			else:
@@ -479,7 +486,7 @@ function deleteBanTrans(){
 			endif;
 				$cashPayment = array(
 						"name" =>$name,
-						"reason"=>"Hendover to Director ".$disc,
+						"reason"=>"Handover to Director ".$disc,
 						"receipt_no" => $num1,
 				);
 				$dayBook = array(

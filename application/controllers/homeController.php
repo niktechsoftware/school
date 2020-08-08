@@ -309,8 +309,7 @@ class HomeController extends CI_Controller{
 
 	
 	function updateTransportfee(){
-
-	    $schools = $this->db->get("general_settings");
+		$schools = $this->db->get("general_settings");
 	    foreach($schools->result() as $sch ):
 	        $this->db->where("school_code",$sch->school_code);
 	       $gettv =  $this->db->get("transport");
@@ -364,7 +363,6 @@ class HomeController extends CI_Controller{
 				$this->db->where("invoice_number",$row->invoice_number);
 				$this->db->update("transport_fee_month",$data);
 			}
-		
 		endforeach;
 	}
 	

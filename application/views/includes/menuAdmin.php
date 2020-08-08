@@ -529,10 +529,7 @@
 
          </li>
          <li>
-            <a href="<?php echo base_url(); ?>login/cashPaymentreort">
-              Transaction Report<i class="icon-arrow"></i>
-            </a>
-
+            
         </li>
       </ul>
     </li>

@@ -102,7 +102,7 @@
 	if($getInvoiceDate->heads==8){
 	$id_name = $getCashPayment->id_name;
 	if($getCashPayment->valid_id){
-	$valid_id = $rowb->valid_id;
+	$valid_id = $getCashPayment->valid_id;
 	if(strlen($valid_id) > 0):
 		$empInfo = $this->db->query("select * from employee_info where id = '$valid_id' AND school_code = '$school_code' ");
 	endif;
@@ -183,6 +183,7 @@
 					    	echo $empInfo->mobile;
 					}else{echo "N/A"; }
 		      	}?>
+
 		      </td>
 		      <td><?php echo $getCashPayment->reason; ?></td>
               <td><?php echo $getDaybookDetails->amount; ?></td>

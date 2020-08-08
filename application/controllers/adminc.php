@@ -28,7 +28,8 @@
 	function admitCard(){
 		$this->load->model("examModel");
 		$this->load->model("configureclassmodel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();

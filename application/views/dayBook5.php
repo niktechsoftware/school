@@ -89,6 +89,7 @@
 						<tbody>
 <?php
 $count = 1;
+$dicountTotal = 0;
 	$sno = 1;
 	foreach ( $a->result () as $row1 ) {
 		$this->db->where("invoice_no",$row1->invoice_no);
@@ -128,76 +129,58 @@ $count = 1;
 		?>
 	</td>
 	<td><?php
+	if($row1->heads==5 || $row1->heads==3){
+		if($row1->heads==5){
+			echo "Fee Deposit";
+		}
+		if($row1->heads==3){
+			echo "Sale Stock";
+		}
+	}else{
 		$this->db->where("receipt_no",$row->invoice_no);
 		$cpm = $this->db->get("cash_payment")->row();
 
 			echo $cpm->reason;
-		
+	}
 		?></td>
 <?php
 		$this->db->where ( 'school_code', $this->session->userdata ( 'school_code' ) );
 		$this->db->where ( 'invoice_number', $row->invoice_no );
 		$discountid = $this->db->get ( 'dis_den_tab' );
 		if ($discountid->num_rows () > 0) {
-			?><td><?php echo $discountid->row()->discount_rupee ; ?></td>
+			?><td><?php $dicountTotal = $dicountTotal + $discountid->row()->discount_rupee ; echo $discountid->row()->discount_rupee ; ?></td>
 <?php }else{?>
 <td>0.00</td>
 <?php } ?>
-<td><?php
-		if ($id_5 == 0) {
-		} else {
-			$id2->class_id;
-			$this->db->where ( 'school_code', $school_code );
-			$this->db->where ( 'id', $id2->class_id );
-			$classname = $this->db->get ( 'class_info' );
-			$classdf = $classname->row ();
-			$this->db->where ( "id", $classdf->section );
-			$secname = $this->db->get ( "class_section" )->row ()->section;
-			?><?php
 
-			
-echo $classdf->class_name . "-" . $secname;
-		}
-		?></td>
-								<td style="color: red"><?php if($dr_cr == 0 || $dr_cr == 0){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
-								<td style="color: green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
+								<td style="color: red"><?php if($dr_cr == 0 ){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
+								<td style="color: green"><?php if($dr_cr == 1 ){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
 
-<?php	if($this->session->userdata('login_type') == 'admin'){  ?>
+
 <td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>
-<?php }?>
+
 <td><?php if($row->pay_mode==1){ echo "Cash"; } elseif($row->pay_mode==2){ echo "Online Transfer" ;} elseif($row->pay_mode==3){ echo "Bank Chalan" ;} elseif($row->pay_mode==4){ echo "Cheque" ;}elseif($row->pay_mode==5){ echo "Swap Machine" ;}else{ echo "Cash Payment";} ?></td>
 								<td><?php echo $row->pay_date; ?></td>
 
 								<td>
 <?php 
-if(($row->invoice_no=="Delete Fee")||($row->invoice_no=="Delete")){
-echo "Deleted";}else{
-if(($row->dabit_cradit == 1) ){ ?>
-
- <?php if($row->reason=="Fee Deposit") { ?>
-<a
-									href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>/<?php echo $sinfo->id; ?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
-									class="btn btn-blue">
-<?php echo $row->invoice_no; ?>
-<?php } else{ ?>
-<a
-										href="<?php echo base_url()?>index.php/invoiceController/printSaleReciept/<?php echo $row->invoice_no;?>"
-										class="btn btn-blue">
+if(($row1->heads == 3)){ ?>
+<a href="<?php echo base_url()?>index.php/invoiceController/printSaleReciept/<?php echo $row->invoice_no;?>" class="btn btn-blue">
 <?php echo $row->invoice_no;  ?>
 </a>
-<?php }?>
-<?php } if(($row->dabit_cradit  == 0)){?>
-<a
-										href="<?php echo base_url()?>index.php/dayBookControllers/invoiceCashPayment/<?php echo $row->invoice_no;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
-										class="btn btn-blue">
-<?php echo $row->invoice_no; ?>
-<?php }if(($row->dabit_cradit  == 2)){?>
-<a
-											href="<?php echo base_url()?>index.php/invoiceController/printDueFee/<?php echo $row->invoice_no;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
-											class="btn btn-blue">
-<?php echo $row->invoice_no; ?>
-<?php }}?>
-
+<?php }
+if(($row1->heads == 5)){ ?>
+<a href="<?php echo base_url()?>index.php/invoiceController/fee/<?php echo $row->invoice_no;?>" class="btn btn-blue">
+<?php echo $row->invoice_no;  ?>
+</a>
+<?php }
+if(($row1->heads == 6) || ($row1->heads == 7) || ($row1->heads == 8) || ($row1->heads == 10)){?>
+<a href="<?php echo base_url()?>index.php/dayBookControllers/invoiceCashPayment/<?php echo $row->invoice_no;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo 'true'; } ?>" class="btn btn-blue">
+<?php echo $row->invoice_no;  }
+if(($row1->heads == 4)){?>
+<a href="<?php echo base_url()?>index.php/invoiceController/printDueFee/<?php echo $row->invoice_no;?>/<?php echo $fsdt;?>/<?php if($v == 1){echo "true"; } ?>"
+		class="btn btn-blue">
+		<?php echo $row->invoice_no;  } ?>
 								
 								</td>
 								<td><?php if($this->session->userdata('login_type') == 'admin'){
@@ -230,8 +213,8 @@ Delete</button>
 								<td>----------</td>
 								<td align="right"><strong>Total</strong></td>
 								<td>----------</td>
-								<td>----------</td>
-								<td>----------</td>
+							
+								<td><?php echo $dicountTotal;?></td>
 								<td><?php echo $dabit; ?></td>
 								<td><?php echo $cradit; ?></td>
 								<td>----------</td>
@@ -246,5 +229,7 @@ Delete</button>
 		</div>
 	</div>
 </div>
+
+
 
 

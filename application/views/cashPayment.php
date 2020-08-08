@@ -80,6 +80,7 @@
 										    <div class="col-sm-6">
 										     <div class="form-group">
 										        <label class="col-sm-3" > Expenditure Depart <span style="color:#F00">*</span></label> 
+<<<<<<< HEAD
 
 
 							                            <select id="expenditurer" name="expenditurer" class="col-sm-9" style="width:150px;" required>
@@ -88,12 +89,13 @@
 							                            </select>    
 							                               
 							                            </select>
+=======
+											<select id="expenditurer" name="expenditurer" class="col-sm-9" style="width:150px;" required></select>
+>>>>>>> 707fa18b98ca2acc3fcb6fcff821036771c98ea3
 										    </div>
 										    </div>
-										    
-										</div>
-				                      	
-				                      		<div class="col-sm-12 row">
+										 </div>
+				                      	    <div class="col-sm-12 row">
 				                      	 		<div class="form-group">
 				                      	    		<div class="col-sm-6">
 				                      	        		<label class="col-sm-3">Employee ID <span style="color:#F00">*</span></label> 

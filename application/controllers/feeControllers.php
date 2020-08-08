@@ -316,7 +316,7 @@ function getFsd(){
 		
 		}
 		
-		redirect("index.php/invoiceController/fee/$invoice_number/$stuid/$fsddate/yes");
+		redirect("index.php/invoiceController/fee/$invoice_number/");
 		}
 				
 		else{

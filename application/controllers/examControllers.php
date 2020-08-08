@@ -213,7 +213,8 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 		$data['mainPage'] = 'Exam Scheduling';
 		$data['subPage'] = 'Exam Scheduling';
 		//$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		//print_r($var->result());
 		$data['request']=$var->result();
 		$count = $this->db->count_all("exam_name");
