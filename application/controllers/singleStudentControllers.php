@@ -61,7 +61,9 @@ class singleStudentControllers extends CI_Controller{
 							}
 				 }
 					
+
 		}
+
 		
 		function stuattendence(){
 		$studid = $this->uri->segment(3);

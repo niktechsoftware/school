@@ -5,6 +5,7 @@ class InvoiceController extends CI_Controller{
         parent::__construct();
           $this->is_login();
         $this->load->model("exammodel");
+        $this->load->model("feemodel");
         $school_code = $this->session->userdata("school_code");
     }
     function is_login(){
@@ -167,6 +168,7 @@ class InvoiceController extends CI_Controller{
     }
 	
 }
+
 	function fee(){
 		$data['pageTitle'] = 'Fee Invoice';
 		$data['smallTitle'] = 'Fee Invoice';
@@ -178,6 +180,7 @@ class InvoiceController extends CI_Controller{
 		$data['mainContent'] = 'feeInvoice';
 		$this->load->view("includes/mainContent", $data);
 	}
+//read by end	
 		function printAdmitCard(){
 			
 		$data['pageTitle'] = 'Student Section';
@@ -219,26 +222,34 @@ class InvoiceController extends CI_Controller{
 		/////////////////////
 		//$this->load->view("invoice/Admit", $data);
 	}
+	//read
     function feeInvoice(){
+    	$school_code=$this->session->userdata("school_code");
 		$invoiceNo = $this->uri->segment(3);
-		$studentId = $this->uri->segment(4);
-		$isAdmission = $this->uri->segment(5);
-		$this->db->where("id",$studentId);
-		$sinfo = $this->db->get("student_info")->row();
-		$cid=$sinfo->class_id;
-		$this->db->where("id",$cid);
-		$school_code = $this->db->get("class_info")->row()->school_code;
-		$this->db->where("school_code",$school_code);
-		$this->db->where("invoice_no",$invoiceNo);
-		$fee_deposit = $this->db->get("fee_deposit");
-		if($fee_deposit->num_rows()>0)
-		{
-		$fee_deposite=$fee_deposit->row();
-		$this->db->where("school_code",$school_code);
-		$this->db->where("invoice_no",$invoiceNo);
-		$recieved_by = $this->db->get("day_book");
-		if($recieved_by->num_rows() > 0){
-			$emp = $recieved_by->row()->paid_by;
+		$getRecord = $this->feemodel->getFeeRecord($invoiceNo);
+		if($getRecord->num_rows()>0){
+			$data['feeRecord']=$getRecord->row();
+			
+
+			$this->db->where("id",$getRecord->row()->class_id);
+			$this->db->where("school_code",$school_code);
+			$classname =$this->db->get("class_info")->row();
+			$data['classname']=$classname;
+			$this->db->where("id",$getRecord->row()->student_id);
+			$stuInfo = $this->db->get("student_info")->row();
+			$data['rowc']=$stuInfo;
+			$this->db->where("student_id",$getRecord->row()->student_id);
+			$pInfo = $this->db->get("guardian_info")->row();
+			$data['pInfo']=$pInfo;
+			$deposit_months = $this->db->query("select deposite_month from deposite_months  where  invoice_no='$invoiceNo' order by id ASC");
+			$data['months']=$deposit_months;
+			
+			$this->db->where("id",$getRecord->row()->finance_start_date);
+			$fsddate=$this->db->get("fsd")->row()->finance_start_date;
+			$data['fsddate']=$fsddate;
+			$day_bookRecord = $this->db->query("select * from day_book where status =1 and invoice_no ='$invoiceNo'");
+			$data['daybook']=	$day_bookRecord->row();
+			$emp = $day_bookRecord->row()->paid_by;
 			$this->db->where("id",$emp);
 			$this->db->where("school_code",$school_code);
 			$temp = $this->db->get("employee_info");
@@ -247,30 +258,63 @@ class InvoiceController extends CI_Controller{
 			}else{
 				$reciever_name = $this->db->get("general_settings")->row()->school_code;
 			}
-	 }
-			else{
-			$reciever_name = $this->session->userdata("name");
+			//months name  starts
+					$monthmk=array();
+					$demont = $deposit_months->num_rows();
+					$data['demont']=$demont;
+					$i=0; foreach($deposit_months->result() as $tyu):
+					if($tyu->deposite_month < 4){
+						$ffffu=  $tyu->deposite_month-4+12;
+					
+					}else{
+						$ffffu= $tyu->deposite_month-4;}
+							
+						$monthDate[$i] = date('M-Y', strtotime("$ffffu months", strtotime($fsddate))).", ";
+						$monthmk[$i]=$tyu->deposite_month;
+						//echo date("d-M-y", $rdt);
+						$i++; endforeach;
+						$monthmk[$i]=13;
+				$data['printMonthDate']=	$monthDate;	
+			//months end
+			//feehead and amount
+				$feecata[0] = $getRecord->row()->feecat;
+				$feecata[1]=0;
+				$this->db->distinct();
+				$this->db->select("*");
+				$this->db->where_in("cat_id",$feecata);
+				$this->db->where_in('taken_month',$monthmk);
+				$this->db->where('fsd',$getRecord->row()->finance_start_date);
+				$this->db->where("class_id",$getRecord->row()->class_id);
+				$fee_head = $this->db->get("class_fees");
+				$data['fee_head']=$fee_head;
+			//feehead and amount
+			
+			//get transport
+					
+			//get transport end 
+			$this->db->where("school_code",$school_code);
+			$settingf  = $this->db->get("fee_setting");
+			if($settingf->num_rows()>0){
+				$data['font1']=$settingf->row()->font;
+				$data['numberofRecieptRow']=$settingf->row()->number_of_row;
+				$data['numberofReciept']=$settingf->row()->number_of_receipt;
+			}else{
+				$data['font1']=13;
+				$data['numberofRecieptRow']=2;
+				$data['numberofReciept']=2;
+			}
+			
+			$data['reciever_name'] = $reciever_name;
+			$data['school_code'] = $school_code;
+			$data['title'] = "Fee reciept invoice";
+			$this->load->view("invoice/feeInvoice",$data);
+		}else{
+			echo "not a Valid invoice";
 		}
 		
-		$this->db->where("id",$studentId);
-		$stuInfo = $this->db->get("student_info")->row();
 		
-		$this->db->where("student_id",$studentId);
-		$pInfo = $this->db->get("guardian_info")->row();
-		$data['rowb'] = $fee_deposite;
-		//$data['fee_bank_detail'] = $fee_bank_detail;
+
 		
-		$data['isAdmission'] = $isAdmission;
-		$data['reciever_name'] = $reciever_name;
-		$data['rowc'] = $stuInfo;
-		$data['pInfo'] = $pInfo;
-		$data['school_code'] = $school_code;
-	//	print_r($data1);
-		$data['title'] = "Fee reciept invoice";
-		$this->load->view("invoice/feeInvoice",$data);
-		}else{?>
-		    <h1> This invoice is deleted by Admin</h1>
-	<?php	}
 	}
 	function printSaleReciept(){
 		$data['pageTitle'] = 'Sale Invoice';
@@ -434,7 +478,11 @@ class InvoiceController extends CI_Controller{
                       $this->db->where("fsd",$this->uri->segment(3) );
     $examTypeResult = $this->db->get("exam_info")->result();
 		
-    		 $classid = $this->uri->segment(4);
+    		 $this->db->Distinct();
+		$this->db->select("class_id");
+		$this->db->where("stu_id", $id);
+		$this->db->where("fsd",$fsd1 );
+		$classid = $this->db->get("exam_info")->row();
     		 //echo $this->uri->segment(4);
 	            	/*	$this->db->Distinct();
                 		$this->db->select("subject_id");

@@ -72,9 +72,12 @@
 				});
 				$('#examName1').change(function(){
 					var examName = $('#examName1').val();
-					//alert("rahul");
+					alert(examName);
 				$.post("<?php echo site_url('index.php/examControllers/printDate') ?>",{examName : examName},function(data){
 					$('#printDate1').val(data);
+					});
+					$.post("<?php echo site_url('index.php/examControllers/printMode') ?>",{examName : examName},function(data){
+					$('#examModerahul').html(data);
 				});
 				});
 				$('#nos').change(function(){
@@ -251,14 +254,7 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
 						});
 					
 					});
-				var select = document.getElementById('examName1');
-                     var input1 = document.getElementById('upexam');
-                       select.onchange = function() {
-                         input1.value = select.value;
-                       }						
-
-
-
+				
                         var input = document.getElementById("examName");
                          input.addEventListener("keyup", function () {
                          });

@@ -110,6 +110,7 @@ echo $noticeForStudent->row()->message;
 	                    <i class="fa fa-inr fa-2x icon-big"></i><br>
 	                    <?php 
 	                    $totAmount =$this->feeModel->totFee_due_by_id($stuid_id,0);
+
 	                    $student_id =$this->session->userdata("id");
 	                   
 	                    ?>
@@ -123,6 +124,7 @@ echo $noticeForStudent->row()->message;
 	                  <!-- <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php // echo $student_id;?>/<?php //echo $totAmount;?>-->
 					<?php   } ?>
 	                   <span class="subtitle">
+
 							
 	                    </span>
 	                </div>

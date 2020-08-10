@@ -95,11 +95,23 @@ function getPeriodD()
 	return $query1;
 }
 
-function getExamName()
+function getExamName($fsd)
 {
+	$this->db->where("id",$fsd);
+	$getfsdDates = $this->db->get("fsd")->row();
 	$this->db->where("school_code",$this->session->userdata("school_code"));
-	//$this->db->where("fsd",$this->session->userdata("fsd"));
+	$this->db->where("exam_date >=",$getfsdDates->finance_start_date);
+	$this->db->where("exam_date <=",$getfsdDates->finance_end_date);
 	$query1 = $this->db->get("exam_name");
+	return $query1;
+}
+
+function getExamNameForUpdate(){
+	
+	$this->db->where("school_code",$this->session->userdata("school_code"));
+	$query1 = $this->db->get("exam_name");
+	//print_r( $query1->result());
+	//exit();
 	return $query1;
 }
 function insertexam($data)
@@ -107,12 +119,13 @@ function insertexam($data)
 	$query1 = $this->db->insert("exam_name",$data);
 	return $query1;
 }
-function updateexam($examid,$date,$examname)
+function updateexam($examid,$date,$examName,$exam_mode)
 {
 	
     $date= array(
-        'exam_name'=>$examname,
-    'exam_date' =>$date
+        'exam_name'=>$examName,
+    'exam_date' =>$date,
+	'exam_mode' =>$exam_mode
     );
    $this->db->where("school_code",$this->session->userdata("school_code"));   
     $this->db->where("id",$examid);
@@ -121,7 +134,7 @@ function updateexam($examid,$date,$examname)
 }
 function gateDate1($data)
 {$this->db->where("school_code",$this->session->userdata("school_code"));   
-$this->db->where("exam_name",$data);
+$this->db->where("id",$data);
 $query1 = $this->db->get("exam_name");
 return $query1;
 }

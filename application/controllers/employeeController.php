@@ -7,6 +7,7 @@ class EmployeeController extends CI_Controller{
 			$this->is_login();
 		
 		$this->load->model("employeeModel");
+		$this->load->model("daybookmodel");
 	}
 	
 	
@@ -934,22 +935,14 @@ function updateSalary(){
 				
 		);
 	$school_code=$this->session->userdata('school_code');
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		$close1 = $balance - $this->input->post("gross_s");
-		
-		$ocb = array("closing_balance"=>$close1);
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->update("opening_closing_balance",$ocb);
-		
+
+	
 		$dayBook = array(
 			"paid_to" =>$this->input->post("empid"),
 			"paid_by" =>$this->session->userdata("username"),
 			"reason" => "By Salary",
 			"dabit_cradit" => "Debit",
 			"amount" => $this->input->post("gross_s"),
-			"closing_balance" => $close1,
 			"pay_date" => date('Y-m-d'),
 			"pay_mode" => $this->input->post("payment_mode"),
 			"invoice_no" => $invoice_number,

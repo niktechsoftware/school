@@ -1,4 +1,3 @@
-
 <?php $school_code = $this->session->userdata("school_code");?>
 <div class="container">
 <form action="<?php echo base_url(); ?>index.php/newAdmissionControllers/addinfo" method="post" id="form">
