@@ -7,7 +7,6 @@ class InvoiceController extends CI_Controller{
         $this->load->model("exammodel");
         $school_code = $this->session->userdata("school_code");
     }
-    
     function is_login(){
         $is_login = $this->session->userdata('is_login');
         $is_lock = $this->session->userdata('is_lock');
@@ -29,10 +28,7 @@ class InvoiceController extends CI_Controller{
 		$data['classid']=$this->uri->segment(3);
 		$this->load->view("invoice/obtn_marks",$data);
 	}
-    
-    
     	function printempiCard(){
-			
 		$data['pageTitle'] = 'Employee Section';
 		$data['smallTitle'] = 'Employee Profile';
 		$data['mainPage'] = 'Employee';
@@ -52,25 +48,21 @@ class InvoiceController extends CI_Controller{
 		 $invoice_number = $this->uri->segment(3);
          $student_id = $this->uri->segment(4);
          $fsd2 = $this->uri->segment(5);
-		 
 		 $this->db->where("school_code",$school_code);
-        $this->db->where("invoice_no",$invoice_number);
-        $this->db->where("student_id",$student_id);
-        $fsd =$this->db->get("fee_deposit")->row();
-        
-        //  $this->db->where("school_code",$school_code);
+         $this->db->where("invoice_no",$invoice_number);
+            $this->db->where("student_id",$student_id);
+         $fsd =$this->db->get("fee_deposit")->row();
+         //  $this->db->where("school_code",$school_code);
         // $this->db->where("invoice_no",$invoice_number);
          $this->db->where("id",$student_id);
-        $student =$this->db->get("student_info")->row();
-        $this->load->model("smsmodel");
+         $student =$this->db->get("student_info")->row();
+         $this->load->model("smsmodel");
 	     $sende_Detail = $this->smsmodel->getsmssender($school_code);
 		 $sende_Detail1=$sende_Detail->row();
-				
-		$this->db->where("school_code",$school_code);
+	    	$this->db->where("school_code",$school_code);
 			$this->db->where("student_id",$student_id);
 			$this->db->where("invoice_no",$invoice_number);
 			$current_balance =$this->db->get("feedue")->row()->mbalance;
-			
 		$this->db->where("school_code",$school_code);
 			$this->db->where("student_id",$student_id);
 			$var=$this->db->get("guardian_info")->row();
@@ -106,17 +98,12 @@ class InvoiceController extends CI_Controller{
 				$msg2 = "Dear School Principle your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$fsd->paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
 			sms(7398863503,$msg2,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		    }
-			$this->db->where("school_code",$school_code);
-			$this->db->where("student_id",$this->input->post('stuId'));
-			$this->db->where("invoice_no",$invoice_number);
-		    $mode = $this->db->get('fee_deposit')->row()->payment_mode;
+		  
 		   redirect("index.php/invoiceController/fee/$invoice_number/$student_id/$fsd2/yes");
 		    //print_r($mode);exit;
 			
 	}
-
-
-     function onlinefee(){
+ function onlinefee(){
          
     $invoice_number = $this->uri->segment(3);
     $student_id = $this->uri->segment(4);
@@ -125,7 +112,6 @@ class InvoiceController extends CI_Controller{
    // print_r($invoice_number);
     //print_r($invoice_number1);
    
-    
     $school_code=$this->session->userdata("school_code");
    //  print_r($school_code);
    // exit();
@@ -135,8 +121,7 @@ class InvoiceController extends CI_Controller{
     $feerow =$this->db->get("fee_deposit");
     
     if($feerow->num_rows()>0){
-        
-    $paidamount= $feerow->row()->paid;
+     $paidamount= $feerow->row()->paid;
   	$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
 	$balance = $op1->closing_balance;
 	$close1 = $balance - $paidamount;
@@ -147,7 +132,6 @@ class InvoiceController extends CI_Controller{
 	$this->db->where("opening_date",date('Y-m-d'));
 	$this->db->update("opening_closing_balance",$bal);
    
-    
     $this->db->where("school_code",$school_code);
     $this->db->where("invoice_no",$invoice_number);
     $this->db->where("student_id",$student_id);
@@ -183,7 +167,6 @@ class InvoiceController extends CI_Controller{
     }
 	
 }
-
 	function fee(){
 		$data['pageTitle'] = 'Fee Invoice';
 		$data['smallTitle'] = 'Fee Invoice';
@@ -201,10 +184,8 @@ class InvoiceController extends CI_Controller{
 		$data['smallTitle'] = 'Student Profile';
 		$data['mainPage'] = 'Student';
 		$data['subPage'] = 'Profile';
-	
 		$studentId = $this->uri->segment(3);
-	
-		$this->load->model("studentModel");
+    	$this->load->model("studentModel");
 		$this->load->model("allFormModel");
 		$this->load->model("subjectModel");
 		$stDetail = $this->studentModel->getStudentDetail($studentId);
@@ -273,7 +254,6 @@ class InvoiceController extends CI_Controller{
 		
 		$this->db->where("id",$studentId);
 		$stuInfo = $this->db->get("student_info")->row();
-		
 		
 		$this->db->where("student_id",$studentId);
 		$pInfo = $this->db->get("guardian_info")->row();
@@ -345,7 +325,6 @@ class InvoiceController extends CI_Controller{
 		$data['title'] = "Fee reciept invoice";
 		$this->load->view("invoice/saleInvoice",$data);
 	}
-	
 	function invoiceCashPayment(){
 		$data['title'] = "Fee reciept invoice";
 		$this->load->view("invoice/invoiceCashPayment",$data);
@@ -704,7 +683,7 @@ function result(){
 			 * echo "</pre>";
 			 */
 
-			$this->load->view("invoice/si1/$callview",$data);
+			$this->load->view("invoice/si/$callview",$data);
 
 
 

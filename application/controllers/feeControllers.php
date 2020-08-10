@@ -15,7 +15,7 @@ class feeControllers extends CI_Controller{
         $is_login = $this->session->userdata('is_login');
         $is_lock = $this->session->userdata('is_lock');
         $logtype = $this->session->userdata('login_type');
-        if($logtype != "admin"){
+        if($logtype > 2){
             //echo $is_login;
             redirect("index.php/homeController/index");
         }
@@ -95,7 +95,6 @@ function getFsd(){
 	}
 	
 	function payFee(){
-	    
 		$school_code = $this->session->userdata("school_code");
 		$fsddate=$this->input->post('fsdid');
 		$class_id= $this->input->post("classidorg");
@@ -184,7 +183,7 @@ function getFsd(){
 			"updatedate"=>date('y-m-d'),
 			);
 
-		$this->db->insert("dis_den_tab",$discountv);
+		//$this->db->insert("dis_den_tab",$discountv);
 		if( $this->db->insert("fee_deposit",$updata) ){
 		    
 		   if($duedt2->num_rows()>0){
@@ -295,8 +294,6 @@ function getFsd(){
                     	//echo date("d-M-y", $rdt);
 					$i++; endforeach;	
 			//end get fee details
-			
-			
 			$stuname=$student->name;
 			$msg = "Dear Parent your child ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
 		//echo $msg;exit;
@@ -1130,7 +1127,7 @@ function getFsd(){
 					}}else{
 						$latefee1='0.00';
 					 }
-					 
+					$latefee1='0.00'; 
 				// 	 if($realm>0){
 					     
 				// 	}else{
@@ -1186,18 +1183,20 @@ function getFsd(){
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Transport Fee</div>
 	                                                    <div class="col-sm-7">
-	                                                   <?php if($school_code==14){ 
+	                                                   <?php if($school_code==14 || $school_code==9){ 
 																											$tmno=implode("",$month);
-																											
 																											 $this->db->where("month",$tmno);
 																											 $this->db->where("stu_id",$stuid);
 																											 $tamount=$this->db->get("transport_fee_month");
 																											 if($tamount->num_rows()>0){ ?>
-																											 <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
+																											  <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php  echo $transfee;?>" class="form-control">
+																											 <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="<?php echo $transfee;?>" class="form-control"  >
+																										 <?php $totfees+=$transfee;?>
 																											<?php }else{
 																											 ?>
-	                                                        <!--<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php // echo $transfee;?>" class="form-control">-->
-	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
+	                                                        <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php  echo $transfee;?>" class="form-control">
+	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="<?php echo $transfee;?>" class="form-control"  >
+	                                                          <?php $totfees+=$transfee;?>
 	                                                   <?php  } } else{ 
 																											
 																											//  print_r($month);
@@ -1428,15 +1427,17 @@ function getFsd(){
 ?>
 	<script>
 	$("#dtransport_fee1").change(function(){
-	   
+	            
+	            	var orgTrans=Number($("#transport_fee").val());
 	    	var tran=Number($("#dtransport_fee1").val());
-	   // 	alert(($("#dtransport_fee1").val()).length);
+	    		$("#transport_fee").val(tran);
+	    	alert("Total Has been Updated Successfully");
 	      if(tran.toString().length>0){
 	          
 	    		var tot = Number($("#total1").val());
-	    			//alert(tran + " "+ tot);
-	    		var totfee= tran + tot;
-	    		alert(totfee);
+	    			//alert(tran + " Add Transport Fee In Total"+ tot);
+	    		var totfee= tran + tot-orgTrans;
+	    		//alert(totfee);
 	    		$("#total1").val(totfee);
 	    		$("#total").val(totfee);
 	    }else{

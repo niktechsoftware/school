@@ -149,8 +149,9 @@ function daybook()
 	                 }
 	        if(($q==8)){
 	              $reason="Admission Fee + 1 Month Fee";
+	               $reason="Fee Deposit";
 	              }
-	       echo $reason;
+	       //echo $reason;
 	        $a = $this->db->query("select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code' AND reason='$reason'");
 			$b = $a->num_rows();
 			
@@ -410,11 +411,9 @@ function daybook()
 	 $feemonth= $this->db->get("cash_payment");
 		if($feemonth->num_rows()>0){
 			$amount= $feemonth->row()->amount;
-		 
-			$this->db->where("school_code",$this->session->userdata("school_code"));
+		 	$this->db->where("school_code",$this->session->userdata("school_code"));
 			$this->db->where("opening_date",date("y-m-d"));
 			$closing=$this->db->get("opening_closing_balance");
-	 
 			$close=$closing->row()->closing_balance;
 			$bal=$close + $amount;
 			$clos_arr=array(
@@ -944,4 +943,3 @@ function deleteBanTrans(){
 			}
     
 }
-

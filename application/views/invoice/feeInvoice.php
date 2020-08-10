@@ -317,7 +317,8 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 				  $this->db->where_in("cat_id",$feecata);
 				  $this->db->where_in('taken_month',$monthmk);
 				   $this->db->where('fsd',$rowb->finance_start_date);
-		  		$this->db->where("class_id",$stuid_details->class_id);
+		  		$this->db->where("class_id",$rowb->class_id);
+		  		//echo $rowb->finance_start_date;
 				  $fee_head = $this->db->get("class_fees");
 				  $total=0;
 				  if($fee_head->num_rows()>0)
@@ -412,7 +413,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 					$this->db->where('invoice_number',$rowb->invoice_no);
 				 $eunm1 = $this->db->get('dis_den_tab');
 				 //print_r($eunm->row()->discounter_id);
-				
+				 $totdisc=0;
 			     if($eunm1->num_rows()>0){
 			         $l=1;
 			          $totdisc=0;
@@ -1928,8 +1929,9 @@ $tdiscount=0;
 				 endforeach;
 				//  print_r($totdisc);
 				 
-				 }else{ 
-				 if(tdiscount>0){?>
+				 }
+				 else{ 
+				 if($tdiscount>0){?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
@@ -2292,7 +2294,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 				//  print_r($totdisc);
 				 
 				 }else{ 
-				 if(tdiscount>0){?>
+				 if($tdiscount>0){?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>

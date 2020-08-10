@@ -162,7 +162,6 @@
 		$invoice1=6000+$invoice->num_rows();
 		$invoice_number = $school_code."I19".$invoice1;
 	     	$billno = $invoice_number;
-	     	
 	     		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
 				"reason" => "Stock Sale",
@@ -404,7 +403,7 @@
 					}
 	}
 	
-function editSaleStock(){
+    function editSaleStock(){
 
     $billno = $this->input->post("billNo");
     $this->db->where("bill_no",$billno);
@@ -443,11 +442,9 @@ function editSaleStock(){
 
 							if($student->num_rows()>0){
 								$student= $student->row();
-
-
-				     $this->db->where('student_id',$student->id);
-				     $this->db->where('school_code',$this->session->userdata('school_code'));
-                      $studentfee=$this->db->get('feedue');
+                        $this->db->where('student_id',$student->id);
+				         $this->db->where('school_code',$this->session->userdata('school_code'));
+                        $studentfee=$this->db->get('feedue');
                       if($studentfee->num_rows()>0)
                       { 
                       	$fee=$studentfee->row();
@@ -482,7 +479,6 @@ function editSaleStock(){
 				$cb = $this->db->get("opening_closing_balance")->row()->closing_balance;
                 
 				$cl_balance = $cb + $this->input->post("paid");
-				
 				$cbData = array(
 					"closing_balance" => $cl_balance
 				);
@@ -501,8 +497,8 @@ function editSaleStock(){
 					//	"school_code"=>$this->session->userdata("school_code")
 				);
 			//	$daybook1 = $this->daybookModel->fromStock1($daybook,$billno);
-         $this->db->where('invoice_no',$billno);
-	      $this->db->where('reason',"From sale Stock");
+             $this->db->where('invoice_no',$billno);
+	         $this->db->where('reason',"From sale Stock");
 	    	$query = $this->db->update("day_book", $daybook);
 		 // print_r($query2);
 			redirect("index.php/invoiceController/printSaleReciept/$billno");

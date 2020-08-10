@@ -266,7 +266,7 @@
 
         <li>
             <a href="<?php echo base_url(); ?>index.php/Pay_Transport_Fee">
-                <span class="title">Collect Indivisual Fee </span>
+                <span class="title">Collect Individual Fee </span>
             </a>
         </li>
         <li>

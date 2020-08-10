@@ -148,12 +148,12 @@ $school_code = $this->session->userdata("school_code");
           <i class="fa fa-users fa-2x icon-big"></i>
           <br>
           <span class="subtitle"> <?php 
-											$date=Date("Y-m-d");
-											$this->db->select_sum("amount");
-											//$x= $this->db->from("cash_payment");
+						$date=Date("Y-m-d");
+						$this->db->select_sum("amount");
+					  //$x= $this->db->from("cash_payment");
                     	$this->db->where("school_code",$this->session->userdata("school_code"));
-			                 $this->db->where("date",$date); 
-		                   $info = $this->db->get('cash_payment')->row();
+			            $this->db->where("date",$date); 
+		                $info = $this->db->get('cash_payment')->row();
 									
                     	?> </span>
         </div>
@@ -188,12 +188,9 @@ $school_code = $this->session->userdata("school_code");
 						$this->db->select('opening_balance');
 						$this->db->where("school_code",$school_code);
 						$this->db->where("Date(closing_date)",$date);
-							$data=$this->db->get('opening_closing_balance')->row();
-						//	$this->db->join('class_info','class_info.id=student_info.class_id');
-						
-							
-						
-							echo $data->opening_balance ;?></mark>
+						$data=$this->db->get('opening_closing_balance')->row();
+					//	$this->db->join('class_info','class_info.id=student_info.class_id');
+						echo $data->opening_balance ;?></mark>
               </div>
               <div class="col-sm-6">
                 <h6 class="block no-margin">Closing</h6>
@@ -260,7 +257,7 @@ $school_code = $this->session->userdata("school_code");
             <div class="panel panel-default panel-white core-box">
                 <div class="panel-body no-padding">
                     <div class="partition-blue text-center core-icon">
-                        <i class="fa fa-users fa-2x icon-big"></i><br>Students
+                        <i class="fa fa-users fa-2x icon-big"></i><br>
                        </div>
                     <a href="<?php echo base_url(); ?>index.php/login/newAdmission">
     				<div class="padding-20 core-content">

@@ -22,6 +22,7 @@ class feeModel extends CI_Model{
 					$demandtotdate =date('Y-m-d', strtotime("+$i months", strtotime($student_fsd->row()->finance_start_date)));
 					
 					$totmonthwise = $this->getMonthFeeByMonth($demandtotdate ,$student_id);
+					
 					if($totmonthwise){
 						$fgh = $totmonthwise;
 					}else{
