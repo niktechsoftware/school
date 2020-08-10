@@ -432,6 +432,7 @@ class HomeController extends CI_Controller{
 		if($eid->num_rows()>0){
 			$this->db->select("id");
 			$this->db->where("exp_id",$eid->row()->id);
+				$this->db->where("sub_expenditure_name",$res->sub_exp_id);
 			$getsid = $this->db->get("sub_expenditure");
 			if($getsid->num_rows()>0){
 				$updateexp['sub_exp_id']=$getsid->row()->id;
@@ -445,6 +446,6 @@ class HomeController extends CI_Controller{
 			}
 		endforeach;
 	}
->>>>>>> c167edcca2d8234d60bcb572d8d0cc25bfbe9875
+
 
 }

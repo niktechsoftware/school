@@ -329,14 +329,11 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 											<tr class='text-uppercase'>
 												<td class="text-center"><b><?php echo $i;?></b></td>
 												<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
-												<td class="text-center"><?php echo $feeRecord->transport; ?></td>
+												<td class="text-center"><?php echo $feeRecord->transport; $i++?></td>
 											</tr>
 			
 		<?php
 
-		
-				$totdisc=$this->feemodel->getDiscount($feeRecord->invoice_no);
-				$totdisc=$totdisc+$tdiscount;
 				 if($feeRecord->late>0){?>
 
 		  	     <tr class='text-uppercase'>
@@ -350,7 +347,10 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 												<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE, IF ANY"; ?></b></td>
 												<td class="col-sm-3 text-center"><?php  echo $prbalanace=$feeRecord->previous_balance; $i++;?></td>
 											</tr>
-
+                    <?php 
+		
+				$totdisc=$this->feemodel->getDiscount($feeRecord->invoice_no,$i);
+				$totdisc=$totdisc+$tdiscount;?>
 											<!--<hr style="margin-top:5px; margin-bottom:0;">-->
 									
 									</tbody>
