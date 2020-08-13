@@ -110,9 +110,21 @@ echo $noticeForStudent->row()->message;
 	                    <i class="fa fa-inr fa-2x icon-big"></i><br>
 	                    <?php 
 	                    $totAmount =$this->feeModel->totFee_due_by_id($stuid_id,0);
-	                    $student_id =$this->session->userdata("id");?>
-	                 <!--  <a href="<?php //echo base_url();?>index.php/singleStudentControllers/payFee/<?php //echo $student_id;?>/<?php //echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>-->
-						<span class="subtitle">
+
+	                    $student_id =$this->session->userdata("id");
+	                   
+	                    ?>
+	                 
+	                  
+	                  <?php 
+	                  if($this->session->userdata("school_code")==6 && $this->session->userdata("school_code")==4 && $this->session->userdata("school_code")==9){ ?>
+               <a href="  <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php echo $student_id;?>/<?php echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>
+	               <?php	}else{ ?>
+	                  <a href="#" class="btn btn-warning" >Click To Pay</a>
+	                  <!-- <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php // echo $student_id;?>/<?php //echo $totAmount;?>-->
+					<?php   } ?>
+	                   <span class="subtitle">
+
 							
 	                    </span>
 	                </div>
@@ -121,7 +133,9 @@ echo $noticeForStudent->row()->message;
 		                <!--	<h3 class="title block no-margin">Fee Reports</h3>-->
 		                <h3 class="title block no-margin"><blink>Due Fee Status</blink></h3>
 		                	<br/>
-							<?php echo $this->feeModel->totFee_due_by_id($stuid_id,1);?>
+							<?php echo $this->feeModel->totFee_due_by_id($stuid_id,1);
+							//echo $stuid_id;
+							?>
 		                	<span class="subtitle">  <h3><blink ></blink></h3>   </span>
 	                        
 		                </div>
@@ -134,7 +148,7 @@ echo $noticeForStudent->row()->message;
 			$unm = $this->session->userdata ( "username" );
 			$this->db->where ( 'username', $unm );
 			$dt = $this->db->get ( 'student_info' )->row ();
-			$stud_id = $dt->id;
+			//$stud_id = $dt->id;
 			?>
     <div class="col-md-6 col-lg-4 col-sm-6">
 		<div class="panel panel-default panel-white core-box">
@@ -194,9 +208,7 @@ echo $noticeForStudent->row()->message;
 				<div class="partition-red padding-20 text-center core-icon">
 					<i class="fa fa-tasks fa-2x icon-big"></i>
 				</div>
-
-				<a
-					href="<?php echo base_url(); ?>index.php/singleStudentControllers/examResult/<?php echo $stuid_id;?>">
+				<a href="<?php echo base_url(); ?>index.php/singleStudentControllers/examResult/<?php echo $stuid_id;?>">
 					<div class="padding-20 core-content">
 						<h4 class="title block no-margin">Marks</h4>
 						<br /> <span class="subtitle"> Current Exam Marks </span>
@@ -206,7 +218,7 @@ echo $noticeForStudent->row()->message;
 		</div>
 	</div>
 
-    	<div class="col-md-6 col-lg-3 col-sm-6">
+    	<div class="col-md-6 col-lg-4 col-sm-6">
         <div class="panel panel-default panel-white core-box">
             <div class="panel-body no-padding">
                 <div class="partition-purple padding-20 text-center core-icon">
@@ -225,6 +237,111 @@ echo $noticeForStudent->row()->message;
                 </div>
                 </a>
             </div>
+        </div>
+    </div>
+	<div class="col-md-4 col-lg-8 col-sm-8">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-purple padding-20 text-center core-icon">
+                    <i class="fa fa-tasks fa-2x icon-big"></i>
+                </div>
+              <a href="#">
+                <div class="padding-20 core-content">
+                    <h4 class="title block no-margin"><blink>Exam SCHEDELE</blink></h4>
+                  <br /> <span class="subtitle"> Current Exam Schedule </span>
+				  </a>
+ <?php
+			
+			$unm = $this->session->userdata ( "username" );
+			$this->db->where ( 'username', $unm );
+			$dt = $this->db->get ( 'student_info' )->row ();
+			$stud_id = $dt->id;
+			$class_id=$dt->class_id;
+			 $exam =$this->examModel->exam_schedule($class_id);
+			//print_r($exam);
+			 $exam_id=$exam->exam_id;
+			 $this->db->where("exam_id", $exam_id);
+			$ex = $this->db->get ( 'exam_shift' )->row ();
+			//print_r($ex);
+			 $this->db->where("exam_id", $exam_id);
+			$dat=$this->db->get ( 'exam_day' )->row ();
+//print_r($dat);
+	$student_id =$this->session->userdata("id");
+			$class_id=$dt->class_id;
+			 $this->db->where("id",$class_id);
+			$class = $this->db->get ( 'class_info' )->row ();
+			//print_r($class);
+			?>				 
+		<div class="table-responsive">
+<?php 	
+		$m=1;
+		?><table class="table table-striped table-hover" style="width:100%;" id="sample-table-2">
+			<thead>
+			 <?php $i=1; if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
+             <tr class="<?php echo $rowcss;?>" >
+					<th class="column-left"> Date Of Exam/<br>Class & Shift</th>
+				<?php foreach ($dat as $col):
+				//print_r($dad->result());?>
+				<th><?php echo $dat->date1;?></th>
+				
+			<?php endforeach;?>
+		</thead>
+		<tbody>
+		
+		<?php 
+		    foreach ($ex as $row):
+		?>
+		 <?php if($i%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
+            <tr class="<?php echo $rowcss;?>">
+			<td class="column-left"><?php
+			echo $class->class_name;
+			echo $ex->shift;
+
+?><?php
+?></td><?php 
+			foreach ($exam as $col):
+			//$j=1;
+ //$col->id;
+			?><td class="column-right" ><?php
+			
+			$subject=$this->db->query("SELECT subject_id,id FROM exam_time_table where exam_day_id='$exam_id;'  AND shift_id='$ex->id' AND class_id='$class->id' AND school_code='$school_code'");
+				
+				foreach ($subject->result() as $sub):
+					$subjectid=$sub->subject_id;
+					$exam=$sub->id;
+
+				?>
+                  <?php    
+                       $this->db->where('id',$subjectid);
+                         $this->db->where('class_id',$class->id);
+                        $subject1=$this->db->get('subject')->result();            
+                      foreach ($subject1 as  $value) {   
+                           ?>
+
+				
+				<?php echo $value->subject; ?>
+			
+					
+				<?php $m++;
+			}
+				endforeach;
+				?></td>
+				
+				
+							<?php
+			endforeach;
+			?>
+			<?php 
+			endforeach;//claas print loop
+			?>
+			</tr></tbody></table>
+		
+
+										<div id="printsub"></div>
+
+										</div>
+ </div>
+ </div>
         </div>
     </div>
 

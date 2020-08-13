@@ -929,8 +929,6 @@ function createSchedule()
 		$data['mainContent'] = 'examTimeTable';
 		$this->load->view("includes/mainContent", $data);
 	}
-	
-	
 	function examDetail(){
 		$data['pageTitle'] = 'Exam Details';
 		$data['smallTitle'] = 'Exam Details';

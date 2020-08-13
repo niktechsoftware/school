@@ -94,6 +94,13 @@ function getPeriodD()
 	$query1 = $this->db->get("period");
 	return $query1;
 }
+function exam_schedule($class_id)
+{
+	$this->db->where("class_id",$class_id);
+	$exam = $this->db->get("exam_mode")->row();
+	//print_r($exam);
+	return $exam;
+}
 
 function getExamName($fsd)
 {
@@ -105,7 +112,6 @@ function getExamName($fsd)
 	$query1 = $this->db->get("exam_name");
 	return $query1;
 }
-
 function getExamNameForUpdate(){
 	
 	$this->db->where("school_code",$this->session->userdata("school_code"));

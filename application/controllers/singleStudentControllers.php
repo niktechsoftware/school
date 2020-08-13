@@ -7,6 +7,7 @@ class singleStudentControllers extends CI_Controller{
 			$this->load->model("subjectModel");
 			$this->load->model("singleStudentModel");
 			$this->load->model("feeModel");
+			$this->load->model("examModel");
 		}
 		
 		function is_login(){
@@ -21,7 +22,7 @@ class singleStudentControllers extends CI_Controller{
 				redirect("index.php/homeController/lockPage");
 			}
 		}
-	/*	function payFee(){
+		function payFee(){
 			$student_id=$this->uri->segment("3");
 			$school_code = $this->session->userdata("school_code");
 			$this->db->where("id",$student_id);
@@ -30,7 +31,7 @@ class singleStudentControllers extends CI_Controller{
 			$totAmount= $this->feeModel->totFee_due_by_id($student_id,9);
 			$amt_paid=$this->input->post('paid');
 			
-			/* $fsd_id = $fsdobject->row()->id;
+			 $fsd_id = $fsdobject->row()->id;
 			$monthDeposit =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd_id' and deposite_months.student_id='$student_id' order by deposite_months.id ASC");
 				
 				$this->db->select("*");
@@ -61,7 +62,9 @@ class singleStudentControllers extends CI_Controller{
 							}
 				 }
 					
-		}*/
+
+		}
+
 		
 		function stuattendence(){
 		$studid = $this->uri->segment(3);
@@ -97,37 +100,7 @@ class singleStudentControllers extends CI_Controller{
 		}
 		function index(){
 		$school_code=$this->session->userdata("school_code");
-		$this->db->where("school_code",$school_code);
-		$this->db->where("DATE(opening_date)",date("Y-m-d"));
-		$checkopeningclo  = $this->db->get("opening_closing_balance");
-		if($checkopeningclo->num_rows()>0){
-			$cr_date = date('Y-m-d H:i:s');
-				$balance = array(
-						"closing_date" => $cr_date,
-				);
-				$this->db->where("school_code",$school_code);
-				$this->db->where("opening_date",date("Y-m-d"));
-				$this->db->update('opening_closing_balance',$balance);
-			
-		}else{
-			$clo = $this->db->query("select * from opening_closing_balance where school_code = '$school_code'  ORDER BY id DESC LIMIT 1")->row();
 	
-			$cl_date = $clo->closing_date;
-			$cl_balance = $clo->closing_balance;
-			$cr_date = date('Y-m-d');
-			if($cl_date != $cr_date)
-			{
-				$balance = array(
-						"opening_balance" => $cl_balance,
-						"closing_balance" => $cl_balance,
-						"opening_date" => $cr_date,
-						"closing_date" => $cr_date,
-						"school_code"=>$school_code
-				);
-				$this->db->insert('opening_closing_balance',$balance);
-				//echo $cl_date;
-			}
-		}	
 		$data['stuid_id']=$this->session->userdata("id");
 		$data['school_code']=$school_code;
 			$data['pageTitle'] = 'Dashboard';
@@ -136,7 +109,9 @@ class singleStudentControllers extends CI_Controller{
 			$data['subPage'] = 'dashboard';
 			$data['title'] = 'Student Dashboard';
 			$data['headerCss'] = 'headerCss/dashboardCss';
+			$data['headerCss'] = 'headerCss/examTimeTableCss';
 			$data['footerJs'] = 'footerJs/dashboardJs';
+			$data['footerJs']='footerJs/examTimeTableJs';
 			$data['mainContent'] = 'dashboardStudent';
 			$this->load->view("includes/mainContent", $data);
 		

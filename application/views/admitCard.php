@@ -1,5 +1,4 @@
-
-    <div class="row">
+ <div class="row">
         <div class="col-md-12">
             <!-- start: RESPONSIVE TABLE PANEL -->
             <div class="panel panel-white">
@@ -35,9 +34,7 @@
                 <form action="<?php echo base_url();?>index.php/adminc/admitCardReports" method="post" role="form"
     class="smart-wizard form-horizontal" id="form">
                 <div class="panel-body">
-
-
-                    <div class="alert alert-info">
+					<div class="alert alert-info">
                         <h3 class="media-heading text-center">Welcome to Download Admit Card Area</h3>
                         <p class="media-timestamp">
                             Here You can see or Download Admit Card, for This Select Exam and Enter Student Id and then Show Get Admit Card Button.After Click this Button You Get Admit Card.</p>
@@ -45,9 +42,33 @@
                     <div id="msg"></div>
                     <div class="col-md-12">
                         <div class="panel">
-                            
                             <div class="panel-body">
                                 <div class="row space15">
+								 <div class="col-md-2">&nbsp;&nbsp;&nbsp;&nbsp;Select FSD </div>
+								 <?php 
+								   	$school_code = $this->session->userdata("school_code");
+								  $fsd= $this->session->userdata("fsd");
+						 $detail = $this->db->query("SELECT * FROM fsd where school_code='$school_code' Order BY id");
+					     if(($detail->num_rows() > 0)){
+							
+					     ?>
+					<div class="col-sm-2">
+						<select class="form-control" id="fsd" name = "fsd" style="width: 150px;">
+							<option value="">-select FSD-</option>
+		                      			<?php 
+		                      			if(($detail->num_rows() > 0)){
+		                      			foreach($detail->result() as $row):?>
+		                      				
+		                      			<option value="<?php echo $row->id;?>">
+		                      			<?php echo date("d-M-y", strtotime($row->finance_start_date));?>
+		                      		</option>
+		                      		<?php endforeach;
+		                      				
+		                      			}
+		                      			?>
+						</select>
+					</div>
+					<?php } ?>
                                     <div class="col-md-2">&nbsp;&nbsp;&nbsp;&nbsp;Select Exam </div>
                                     <div class="col-sm-2">
                                         <select id="selectExam" name="selectExam" class="form-control"
@@ -66,6 +87,8 @@
 
 
                                     </div>
+									
+                                     
 
                                     <div class="col-md-2">&nbsp;&nbsp;&nbsp;&nbsp;Enter Student ID </div>
                                     <div class="col-sm-2">
