@@ -6,6 +6,7 @@
 		$this->is_login();
 		$this->load->model("teacherModel");
 		$this->load->model("adminModel");
+		
 	}
 
 	function is_login(){
@@ -85,14 +86,32 @@
 }
 	
 	function AdmitCardDownload(){
-		   $id = $this->uri->segment(3);
+			$this->load->model("exammodel");
+		   	$sid = $this->uri->segment(3);
+		   	$this->db->where("username",$sid);
+		   	$rowc 	= $this->db->get("student_info")->row();
+		   	$data['studentData']=$rowc ;
+		   	$fsd = $this->uri->segment(5);
+		   	$this->db->where("student_id",$rowc->id);
+		   	$this->db->where("school_code",$this->session->userdata("school_code"));
+		   	$pInfo = $this->db->get("guardian_info")->row();
+		   	$data['pInfo']=$pInfo;
+		   	
+		   	$this->db->where('id',$fsd);
+		   	$date=$this->db->get('fsd')->row();
+		   	$data['fsdData']=$date;
+		   	$data['cyear'] = date('Y', strtotime($date->finance_start_date));
+		   	$data['nyear'] = date('Y', strtotime($date->finance_end_date));
 			$examrow = $this->uri->segment(4);
+			
 			$this->db->where("id",$examrow);
 			$exam_data = $this->db->get("exam_name")->row();
-			$data['exam_name']=$exam_data->id;
-		  $data['id']=$id;
-		  $data['title']="Admit Card";
-		  $this->load->view("invoice/printAdmit",$data);
+			$data['exam_name']=$exam_data;
+		  	$data['id']=$sid;
+		  	$data['fsd']=$fsd;
+		  	$data['title']="Admit Card";
+		  	$data['school_code']=$this->session->userdata("school_code");
+		  	$this->load->view("invoice/printAdmit",$data);
 	}	
 	function AdmitCardDownload1(){
 		$id = $this->uri->segment(3);

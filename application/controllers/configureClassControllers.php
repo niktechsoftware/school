@@ -7,9 +7,6 @@ function __construct()
 		$this->is_login();
 		
 	}
-
-
-
 	
 	public function migrate_class_data(){
 		echo "test is successfully";
