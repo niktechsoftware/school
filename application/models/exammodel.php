@@ -72,81 +72,24 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 
 public function getExamTimeNoticebySchool($exam_id,$class_id,$school_code){
 	$this->db->distinct();
-	
 	$this->db->where("exam_id",$exam_id);
 	$this->db->where("class_id",$class_id);
 	$exam_shift=$this->db->get("exam_time_table");
 	
+	$this->db->where("school_code",$school_code);
+	$ens = $this->db->get("exam_notice_setting");
+	if($ens->num_rows()>0){
 	?>
-	
 	<div align="left"><h3>
 	<!--for daffodils start-->
-	<?php   $row2=$this->db->get('db_name')->row()->name;
-	if(($school_code==5) && ($row2=="D")){ ?>
-	
-			&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift->result() as $s):   echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-	
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) A Student who gives or obtains unfair assistance at an examination 
-			will debarred for the rest of the examination and will</br> 
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
-	
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) 28-03-2020 Result Declaration & P.T.M.
-			<!--for daffodils end-->
-			<!--for scholar start-->
-			<?php }else if($school_code==13 && $row2=="A"){
-			?>	&nbsp;Note: 1) The reporting time to school will be at <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->from1)); endforeach; ?> and dispersal timing will be at <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->to1)); endforeach; ?>. 
-		    </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			2) Bring this admit card and all necessary instruments (Pen, Pencil box, Geometry box etc.) during exam is compulsory. </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			3) Unfair means or papers are strictly prohibited.</br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<?php if($school_code == 13){?>
-				4) PTM and Result Declaration will be held on 22nd of March.
-			    
-		<?php	}else{?>
+	<?php  
+	$i=1;	foreach($ens->result() as $enotice ):
+	?><h2 style="text-transform:uppercase; text-align:left;line-height:22px; margin-left:30px; padding-top:3px; padding-bottom:0px;">
+		<?php echo $i.")&nbsp;&nbsp;".$enotice->notice."<br>";
 			
-				4) Issuing of duplicate Admit card will charge 10 rs.
-			
-		<?php 	}?>
-		
-	
-			<?php }else if(($school_code==5) && ($row2=="C")) {	?>
-				&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
-			$endt =strtotime("-00 minutes",strtotime($s->to1));
-			echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
-			
-			<?php }	else if($school_code==8 || $school_code==9){ ?>
-			<!--for scholar end-->
-			<!--for dds start--><?php $a=$class_id;if($a==108 || $a==109 || $a==110 || $a==111){?>&nbsp;Note: 1)Exam timing is - 08:00 A.M. to 12:00 P.M.<br><?php }else{ ?>
-	
-			&nbsp;Note: 
-			<?php  } ?>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)Students reporting time is latest by 8:30 A.M. and departure time is 01:30 P.M.
-	
-			<?php /*foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
-			$endt =strtotime("-00 minutes",strtotime($s->to1));
-			echo $s->shift."-".date('H:i A', $startt)." "; endforeach;*/ ?> </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Unfair means or papers are strictly prohibited.</br>
-			<?php }else{ ?><!--for dds end-->
-	
-			&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-15 minutes",strtotime($s->from1));
-			$endt =strtotime("-00 minutes",strtotime($s->to1));
-			echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
-			<?php }?></h3>
-	
-		
-			</div>
-	<?php 		
+		$i++;  endforeach; ?>
+			</h2></div>
+	<?php 	}	
 }
 public function getExamInfo($data)
 { $this->db->where("school_code",$this->session->userdata("school_code"));
