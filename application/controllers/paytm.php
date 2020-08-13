@@ -1,8 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-
-
 class Paytm extends CI_Controller{
     
 	function __construct(){
@@ -83,8 +80,11 @@ class Paytm extends CI_Controller{
         $data['successURI'] = base_url()."invoiceController/onlinefeesubmit/$segment3/$segment4/$segment5";
         $data['failURI'] = base_url()."invoiceController/onlinefee/$segment3/$segment4/$segment5";
        // $data['studentDetail'] = $studentDetail;
-       
-        if($isValidChecksum == "TRUE"):
+
+       //echo $_POST["STATUS"];
+      
+        if( ($_POST["STATUS"]=="TXN_SUCCESS") ):
+
             $amount=$_POST["TXNAMOUNT"];
                 $updatea['status']=1;
                 $this->db->where("invoice_no",$invoice_no);
@@ -98,7 +98,7 @@ class Paytm extends CI_Controller{
            $this->db->delete("deposite_months");
            $this->db->where("invoice_number",$invoice_no);
            $this->db->delete("transport_fee_month");
-            echo "<strong>Checksum mismatched.</strong>";
+            $this->load->view("paytm/paytmResponse", $data);
         endif;
     }
 

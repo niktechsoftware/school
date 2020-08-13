@@ -139,7 +139,9 @@
         <div class="partition-pink text-center core-icon">
           <i class="fa fa-users fa-2x icon-big"></i>
           <br>
+
           <span class="subtitle"> </span>
+
         </div>
         <a href="<?php echo base_url(); ?>index.php/login/daybook">
           <div class="padding-20 core-content">
@@ -169,7 +171,6 @@
                 </br>
 
                 <mark><?php 
-
 							echo $openingBalance ;?></mark>
 
               </div>

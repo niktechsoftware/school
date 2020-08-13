@@ -158,7 +158,7 @@ function daybook()
 	             $heads=6;
 	             $condition=1;
 	                 }
-	                 
+               
 	          if(($q==10)){
 	                 	$reason="Receive From Bank";
 	                 	$heads=20;
@@ -169,6 +169,7 @@ function daybook()
 	      $a= $this->daybookmodel->getInvoiceByDate($school_code,$dt1,$dt2,$heads,$condition,1);
 	      	$b = $a->num_rows();
 	     
+
 			$dabit = 0;
 			$cradit = 0;
 			if($b > 0){
@@ -415,6 +416,7 @@ function daybook()
 	 $feemonth= $this->db->get("cash_payment");
 		if($feemonth->num_rows()>0){
 			$amount= $feemonth->row()->amount;
+
 			$this->db->where("invoice_no",$invoice_number);
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 		 $dfee= $this->db->delete("day_book");

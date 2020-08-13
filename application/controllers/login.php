@@ -14,7 +14,6 @@ class Login extends CI_Controller{
         //$this->load->model('client_model');
        
 	}
-
 	function is_login(){
 		$is_login = $this->session->userdata('is_login');
 		$is_lock = $this->session->userdata('is_lock');

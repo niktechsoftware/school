@@ -192,7 +192,7 @@
             </a>
             <?php if($this->session->userdata('login_type') == 'admin'){ ?>
             &nbsp;   &nbsp; <a style="margin-left:0px;"  href="https://niktechsoftware.com/index.php/welcome/pay" target="_blank"> 
-            <span class="button_blink" style="margin-top:-5px;">Due Amount : <?php
+            <span class="button_blink" style="margin-top:-5px;">Due Amount  : <?php
             	$school_code=   $this->session->userdata("school_code");
             			    $this->db->where("id",$school_code);
             		$cid  = $this->db->get("school")->row()->customer_id;

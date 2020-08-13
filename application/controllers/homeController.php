@@ -377,6 +377,7 @@ class HomeController extends CI_Controller{
 	         //echo "</pre>";
 	        endforeach;
 	}
+
 	
 	function updateOpeningClosing(){
 		$cdate = date("Y-m-d");
@@ -431,6 +432,7 @@ class HomeController extends CI_Controller{
 		if($eid->num_rows()>0){
 			$this->db->select("id");
 			$this->db->where("exp_id",$eid->row()->id);
+				$this->db->where("sub_expenditure_name",$res->sub_exp_id);
 			$getsid = $this->db->get("sub_expenditure");
 			if($getsid->num_rows()>0){
 				$updateexp['sub_exp_id']=$getsid->row()->id;
@@ -444,5 +446,6 @@ class HomeController extends CI_Controller{
 			}
 		endforeach;
 	}
+
 
 }
