@@ -1,5 +1,4 @@
-<?php
-class dayBookControllers extends CI_Controller
+<?php class dayBookControllers extends CI_Controller
 {
     	public function __construct(){
 		parent::__construct();
@@ -150,11 +149,9 @@ function daybook()
 	        if(($q==8)){
 	              $reason="Admission Fee + 1 Month Fee";
 	              }
-	       echo $reason;
+	       //echo $reason;
 	        $a = $this->db->query("select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code' AND reason='$reason'");
 			$b = $a->num_rows();
-			
-
 			$dabit = 0;
 			$cradit = 0;
 			if($b > 0){
@@ -944,4 +941,3 @@ function deleteBanTrans(){
 			}
     
 }
-

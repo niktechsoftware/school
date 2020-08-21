@@ -1,6 +1,4 @@
-
-<?php
-class StudentController extends CI_Controller{
+<?php class StudentController extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 			$this->is_login();

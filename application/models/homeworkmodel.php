@@ -1,6 +1,4 @@
-
-<?php
-class homeWorkModel extends CI_Model{
+<?php class homeWorkModel extends CI_Model{
 	function submitHomeWork($data){
 		$this->db->insert("homework",$data);
 		return true;
@@ -68,6 +66,4 @@ class homeWorkModel extends CI_Model{
 		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students' And school_code='$school_code' And class_id='$section'");
 		return $var;
 	}
-	
-
 }

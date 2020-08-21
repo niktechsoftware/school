@@ -15,10 +15,14 @@ class feeControllers extends CI_Controller{
         $is_login = $this->session->userdata('is_login');
         $is_lock = $this->session->userdata('is_lock');
         $logtype = $this->session->userdata('login_type');
-        if($logtype != "admin"){
+       /* if(($logtype != "admin") || ($logtype != "2")){
             //echo $is_login;
             redirect("index.php/homeController/index");
-        }
+        }*/
+        	if(($is_login != true)){
+			
+			redirect("index.php/homeController/index");
+		}
         elseif(!$is_login){
             //echo $is_login;
             redirect("index.php/homeController/index");
@@ -896,7 +900,6 @@ function getFsd(){
 		   $this->db->where("class_id",$class_id);
 		    $this->db->where_in("cat_id",$feecata);
 			$this->db->where_in("taken_month",$searchM);
-			
 		   $fee_head = $this->db->get("class_fees");
 		    $totfees=0;
 		    if($stuid_details->discount_id>0){
@@ -1183,7 +1186,7 @@ function getFsd(){
 	                                            	?>
 	                                             <div class="row space15">
 	                                                <div class="col-sm-12">
-	                                                    <div class="col-sm-5 text-uppercase">Transport Fee</div>
+	                                                    <div class="col-sm-5 text-uppercase"><?php echo $tffee->id;?>Transport Fee</div>
 	                                                    <div class="col-sm-7">
 	                                                   <?php if($school_code==14){ 
 																											$tmno=implode("",$month);
@@ -1211,11 +1214,38 @@ function getFsd(){
 																											 if($tamount->num_rows()<1){  ?>
 																												<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
 																												<input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
-																									<?php	  $totfees+=$transfee;	}else{ ?>
+																									<?php	  
+																									
+																									$bcheckj=0;
+	                                                                 
+	                                                               	$i=0; 
+	                                                               	if($this->session->userdata("fsd")==6){
+	                                                               	foreach($month as $mtable):
+	                                                               	    if($mtable<7){
+                                                            		      $bcheckj=1;
+	                                                               	    }
+                                                            		    $i++; endforeach;
+	                                                               	}
+                                                            		    if($bcheckj==1){}else{
+																									
+																									$totfees+=$transfee;}	}else{ ?>
 	                                                   <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php echo $transfee;?>" class="form-control">
 	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee" value="<?php echo $transfee;?>" class="form-control" disabled="disabled">
-	                                                 <?php $totfees+=$transfee;?>
-	                                                   <?php  } } ?>
+	                                                 <?php 
+	                                                 
+	                                                 $bcheckj=0;
+	                                                                 
+	                                                               	$i=0; 
+	                                                               	if($this->session->userdata("fsd")==6){
+	                                                               	foreach($month as $mtable):
+	                                                               	    if($mtable<7){
+                                                            		      $bcheckj=1;
+	                                                               	    }
+                                                            		    $i++; endforeach;
+	                                                               	}
+                                                            		    if($bcheckj==1){}else{
+	                                                 $totfees+=$transfee;?>
+	                                                   <?php  }} } ?>
 	                                                  
 	                                                    </div>
 	                                                </div>
@@ -1225,7 +1255,27 @@ function getFsd(){
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase">Description</div>
 	                                                    <div class="col-sm-7">
-	                                                       <textarea rows="5" cols="6" class="form-control" id="disc" name="disc" placeholder="Text Field"></textarea>
+	                                                        <?php if($this->session->userdata("fsd")==6){
+	                                                        
+	                                                        $bcheckj=0;
+	                                                                 
+	                                                               	$i=0; 
+	                                                               	if($this->session->userdata("fsd")==6){
+	                                                               	foreach($month as $mtable):
+	                                                               	    if($mtable<7){
+                                                            		      $bcheckj=1;
+	                                                               	    }
+                                                            		    $i++; endforeach;
+	                                                               	}
+                                                            		    if($bcheckj==1){
+                                                            		        ?><!--<textarea rows="5" cols="6" class="form-control" id="disc" name="disc" placeholder="Text Field">As Per Govt.Order Fee Of Months Apr, May and Jun are  remitted. </textarea>-->
+                                                            		         <textarea rows="5" cols="6" class="form-control" id="disc" name="disc" placeholder="Text Field"></textarea> <?php 
+                                                            		    }else{
+                                                            		        ?>  <textarea rows="5" cols="6" class="form-control" id="disc" name="disc" placeholder="Text Field"></textarea>  <?php
+                                                            		    }
+	                                                        
+	                                                        }else{}?>
+	                                                      
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -1279,7 +1329,21 @@ function getFsd(){
 	                                                                foreach($month as $m):
 	                                                                    $fhamount=$fhamount+$feeh->fee_head_amount;
 	                                                           
+	                                                                      $bcheckj=0;
+	                                                                 
+	                                                               	$i=0; 
+	                                                               	if($this->session->userdata("fsd")==6){
+	                                                               	foreach($month as $mtable):
+	                                                               	    if($mtable<7){
+                                                            		      $bcheckj=1;
+	                                                               	    }
+                                                            		    $i++; endforeach;
+	                                                               	}
+                                                            		    if($bcheckj==1){}else{
+                                                            		        
+                                                            		        
 	                                                                 $totfees+=$feeh->fee_head_amount;
+                                                            		    }
 	                                                                 endforeach;?>
 	                                                                  <div class="col-sm-6"> <?php echo $feeh->fee_head_name; ?>
 	                                                            <input type="hidden" id="h<?= $feeh->fee_head_name; ?>"  value="<?= $fhamount;?>" class="form-control"/>
@@ -1309,7 +1373,19 @@ function getFsd(){
 	                                                               </div>-->
 	                                                               
 	                                                                 <?php 
+	                                                                 $bcheckj=0;
+	                                                                 
+	                                                               	$i=0; 
+	                                                               	if($this->session->userdata("fsd")==6){
+	                                                               	foreach($month as $mtable):
+	                                                               	    if($mtable<7){
+                                                            		      $bcheckj=1;
+	                                                               	    }
+                                                            		    $i++; endforeach;
+	                                                               	}
+                                                            		    if($bcheckj==1){}else{
 	                                                                 $totfees+=$feeh->fee_head_amount;
+                                                            		    }
 	                                                            }
 	                                     //$count =$count+ $field->fee_head_amount;
 	                                                                // if($disValue->num_rows()>0){
@@ -1358,7 +1434,8 @@ function getFsd(){
 	                                            </div>
 	                                        </div>
 	                                        	<?php $totfees=$totfees-$disc ;
-	                                        	$totwlate =$totfees+$latefee1;
+	                                        //	$totwlate =$totfees+$latefee1;
+	                                            	$totwlate =$totfees;
 	                                        	if($stuid_details->discount_id>0){
 	                                        	if($studdiscount->num_rows()>0){
 	                                        		$discountRow = $studdiscount->row();
@@ -1374,17 +1451,13 @@ function getFsd(){
 	                                            <div class="col-sm-12">
 	                                                <div class="col-sm-6 text-uppercase">Total</div>
 	                                                <div class="col-sm-6">
-	                                                 <?php   if($school_code==14){
-	                                                     ?>
-	                                                    
-	                                                    <input type="hidden" id="total1"  value="<?php echo $totwlate;?>" name="total1" />
-	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
-	                                                    <input type="text" id="total"  value="<?php echo $totwlate;?>" class="form-control" readonly/>
-	                                                    <?php } else { ?>
+	                                               
+	                                                 
+	                                                   
 	                                                     <input type="hidden" id="total1"  value="<?php echo $totwlate;?>" name="total1" />
 	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
 	                                                    <input type="text" id="total"  value="<?php echo $totwlate;?>" class="form-control" readonly/>
-	                                                    <?php } ?>
+	                                                 
 	                                                </div>
 	                                            </div>
 	                                        </div>

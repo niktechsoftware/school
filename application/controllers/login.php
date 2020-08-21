@@ -1236,12 +1236,20 @@ function createSchedule()
 			$data['banktransaction'] = $dt1->amount;
 
 
+		
 			$this->db->select_sum('amount');
 			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
+			$this->db->where("DATE(pay_date)",$cdate);
+			$this->db->where("dabit_cradit","0");
 			$dt1=$this->db->get('day_book')->row();
-			$data['salary'] = $dt1->amount;
+			
+			$this->db->select_sum('amount');
+			$this->db->where("school_code",$school_code);
+			$this->db->where("DATE(pay_date)",$cdate);
+			$this->db->where("dabit_cradit","1");
+			$dtd=$this->db->get('day_book')->row();
+			
+			$data['salary'] = $dt1->amount-($dtd->amount);
 
 			$this->db->select_sum('paid');
 			$this->db->where("school_code",$school_code);
@@ -1301,13 +1309,21 @@ function createSchedule()
 		    $dt1=$this->db->get('bank_transaction')->row();
 		    $data['banktransaction'] = $dt1->amount;
 
+		
 			$this->db->select_sum('amount');
 			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
+			$this->db->where("DATE(pay_date)",$cdate);
+			$this->db->where("dabit_cradit","0");
 			$dt1=$this->db->get('day_book')->row();
-			$data['salary'] = $dt1->amount;
-
+			
+			$this->db->select_sum('amount');
+			$this->db->where("school_code",$school_code);
+			$this->db->where("DATE(pay_date)",$cdate);
+			$this->db->where("dabit_cradit","1");
+			$dtd=$this->db->get('day_book')->row();
+			
+			$data['salary'] = $dt1->amount-($dtd->amount);
+			
 
 			$this->db->select_sum('paid');
 			$this->db->where("school_code",$school_code);

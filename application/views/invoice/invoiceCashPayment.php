@@ -175,7 +175,7 @@
 		      	<?php echo $rowb->phone_no; ?>
 		      	<?php if(strlen($valid_id) > 0):
 				if($empInfo->num_rows()>0){
-				    	echo $empInfo->mobile;
+				    	//echo $empInfo->mobile;
 				}else{echo "N/A"; }
 				endif;?>
 		      </td>
@@ -187,7 +187,7 @@
 		
 		<div id="terms">
 		  <h5>Terms</h5>
-		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+		  <textarea></textarea>
 		</div>
 	
 	</div>

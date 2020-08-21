@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -722,19 +722,24 @@ This is computer generated invoice and verified by Accountant.
 				// 		$this->db->where('student_id',$stuid_details->id); 
 				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-						if(($rowb->transport)>0){
+					if(($rowb->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
 	                                                  $tffee=$tffee->row();
+	                                                   
+	                                                  $this->db->where("root_id",$tffee->id);
+	                                                  $this->db->where("fsd",$fsd_id);
+	                                                 $rtyh = $this->db->get("fsdwise_root_amount");
+	                                                  if($rtyh->num_rows()>0){
 	                                                  foreach($rty->result() as $tyu):
 		   
-		                                     if($junefee == 1){
+		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                  $transfee  +=$rtyh->row()->amount;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
-	                                         } endforeach;
+	                                                $transfee  +=$rtyh->row()->amount; 
+	                                            } endforeach;}
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
@@ -1092,19 +1097,24 @@ $monthmk[$i]=13;?>
 				// 		$this->db->where('student_id',$stuid_details->id); 
 				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-							if(($rowb->transport)>0){
+						if(($rowb->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
 	                                                  $tffee=$tffee->row();
+	                                                   
+	                                                  $this->db->where("root_id",$tffee->id);
+	                                                  $this->db->where("fsd",$fsd_id);
+	                                                 $rtyh = $this->db->get("fsdwise_root_amount");
+	                                                  if($rtyh->num_rows()>0){
 	                                                  foreach($rty->result() as $tyu):
 		   
 		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                  $transfee  +=$rtyh->row()->amount;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
-	                                            } endforeach;
+	                                                $transfee  +=$rtyh->row()->amount; 
+	                                            } endforeach;}
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
@@ -1454,19 +1464,24 @@ This is computer generated invoice and verified by accountant.
 				// 		$this->db->where('student_id',$stuid_details->id); 
 				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-						if(($rowb->transport)>0){
+					if(($rowb->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
 	                                                  $tffee=$tffee->row();
+	                                                   
+	                                                  $this->db->where("root_id",$tffee->id);
+	                                                  $this->db->where("fsd",$fsd_id);
+	                                                 $rtyh = $this->db->get("fsdwise_root_amount");
+	                                                  if($rtyh->num_rows()>0){
 	                                                  foreach($rty->result() as $tyu):
 		   
-		                                     if($junefee == 1){
+		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                  $transfee  +=$rtyh->row()->amount;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
-	                                         } endforeach;
+	                                                $transfee  +=$rtyh->row()->amount; 
+	                                            } endforeach;}
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
@@ -1841,19 +1856,24 @@ $tdiscount=0;
 				// 		$this->db->where('student_id',$stuid_details->id); 
 				// 		$depositedate=$this->db->get('fee_deposit')->row()->diposit_date;
 					  //if(($stuid_details->transport) && (date("Y-m-d" , strtotime($stuid_details->update_date))<=date("Y-m-d" , strtotime($rowb->diposit_date))))
-							if(($rowb->transport)>0){
+						if(($rowb->transport)>0){
 	                                                $this->db->where("id",$stuid_details->vehicle_pickup);
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
 	                                                  $tffee=$tffee->row();
+	                                                   
+	                                                  $this->db->where("root_id",$tffee->id);
+	                                                  $this->db->where("fsd",$fsd_id);
+	                                                 $rtyh = $this->db->get("fsdwise_root_amount");
+	                                                  if($rtyh->num_rows()>0){
 	                                                  foreach($rty->result() as $tyu):
 		   
 		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                  $transfee  +=$rtyh->row()->amount;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
-	                                            } endforeach;
+	                                                $transfee  +=$rtyh->row()->amount; 
+	                                            } endforeach;}
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
@@ -1910,7 +1930,7 @@ $tdiscount=0;
 				$this->db->where('username',$eunm->discounter_id);
 			     $eid = $this->db->get('employee_info');
 			?>
-			<?php if($eunm->discounter_id>0){?>
+			<?php if($eunm->discounter_id){?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
@@ -1972,7 +1992,7 @@ $tdiscount=0;
 				$this->db->where('id',$school_code);
 			$schoolname=$this->db->get('school')->row()->school_name;
 			?>
-				  <td class="col-sm-7" rowspan="3" style="color:white;" ><?php if(	strlen($rowb->description)>0){ echo "Discription: ".$rowb->description."<br>";}?>
+				  <td class="col-sm-7" rowspan="3" style="color:white;" ><?php if(	strlen($rowb->description)>0){ if($rowb->description=="As Per Govt.Order Fee Of Months Apr, May and Jun are  remitted. "){}else{echo "Discription: ".$rowb->description."<br>";}}?>
 				  <strong>   Received by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
 This is computer generated invoice and verified by accountant.
@@ -2209,14 +2229,19 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 	                                              $tffee=  $this->db->get("transport_root_amount");
 	                                              if($tffee->num_rows()>0){
 	                                                  $tffee=$tffee->row();
+	                                                   
+	                                                  $this->db->where("root_id",$tffee->id);
+	                                                  $this->db->where("fsd",$fsd_id);
+	                                                 $rtyh = $this->db->get("fsdwise_root_amount");
+	                                                  if($rtyh->num_rows()>0){
 	                                                  foreach($rty->result() as $tyu):
 		   
 		    if($junefee == 1){
 	                                            if($tyu->deposite_month != 6){
-	                                                $transfee  +=$tffee->transport_fee;
+	                                                  $transfee  +=$rtyh->row()->amount;
 	                                            }}else{
-	                                                $transfee  +=$tffee->transport_fee; 
-	                                            } endforeach;
+	                                                $transfee  +=$rtyh->row()->amount; 
+	                                            } endforeach;}
 	                                            	?>
 		  		     <td class="text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
@@ -2273,7 +2298,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 				$this->db->where('username',$eunm->discounter_id);
 			     $eid = $this->db->get('employee_info');
 			?>
-			<?php if($eunm->discounter_id>0){?>
+			<?php if($eunm->discounter_id){?>
 				<tr class='text-uppercase'>
 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 					<td class="col-sm-8"><b><?php if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
@@ -2335,7 +2360,7 @@ $tdiscount=0;$school_code=$this->session->userdata("school_code");
 				$this->db->where('id',$school_code);
 			$schoolname=$this->db->get('school')->row()->school_name;
 			?>
-				  <td class="col-sm-7" rowspan="3" style="color:white;" ><?php if(	strlen($rowb->description)>0){ echo "Discription: ".$rowb->description."<br>";}?>
+				  <td class="col-sm-7" rowspan="3" style="color:white;" ><?php if(	strlen($rowb->description)>0){  if($rowb->description=="As Per Govt.Order Fee Of Months Apr, May and Jun are  remitted. "){}else{echo "Discription: ".$rowb->description."<br>";}}?>
 				  <strong>   Received by :</strong><?php echo $schoolname; ?> &nbsp <strong>Paid By :</strong> <?php echo $rowc->username;?><br>
 				  <strong>Paid Amount in Words : </strong><script> document.write(convert_number(<?php echo $rowb->paid; ?>)); </script> Only /-<br>
 This is computer generated invoice and verified by accountant.

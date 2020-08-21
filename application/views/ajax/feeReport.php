@@ -40,9 +40,10 @@
 		 <p class="alert alert-info"> Note : This is the area you can send Fee reminder to send click send sms button . If you send SMS change to Success Message send Successfully . <br>
 		</div>
 	<?php 	$fsd=$this->input->post("fsd"); 
-	if($cla == "all" && $sec == "all"){ ?>
+	if($cla == "all" && $sec == "all"){
+
+	?>
 		<div class="table-responsive">
-		
 			<table class="table table-striped table-hover" id="sample-table-2">
 				<thead>
 					<tr class = "success">
@@ -63,7 +64,7 @@
 				<tbody>
 				<?php
 					if($stidRecord->num_rows() > 0){
-				foreach($stidRecord->result() as $sid):
+			 $count = 1;	foreach($stidRecord->result() as $sid):
 			
 				 $color = array(
 					    "progress-bar-danger",
@@ -79,7 +80,7 @@
 					    "progress-partition-green",
 					    "partition-purple"
 				    );
-				    $count = 1;
+				   
 				    $tot=0.00;
 				    $totalpaidp=0;
 				    $totalduep=0;
@@ -89,7 +90,7 @@
 				<?php 
 			
 				    $rowcss = "danger";
-				    $count = 1;
+				   // $count = 1;
 						$tot=0.00;
 						$this->db->where("id",$fsd);
 						$fdate =$this->db->get("fsd")->row()->finance_start_date;

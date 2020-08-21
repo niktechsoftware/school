@@ -22,8 +22,17 @@ class AllFormModel extends CI_Model{
 	//end 
             // function for fsdwise record 
         function getfsdwiseStudent($fsd){
-            $student=	$this->db->query("select student_info.id from student_info join old_student_info on student_info.id = old_student_info.student_id where student_info.status =1 and ( student_info.fsd ='$fsd' or old_student_info.fsd='$fsd')" );
-        	return 	$student;		
+            
+              if($fsd== $this->session->userdata("fsd")){
+                $student= $this->db->query("select DISTINCT(student_info.id) from student_info  where status =1 and fsd ='$fsd' " );
+                return 	$student;
+           }else{
+                $student=	$this->db->query("select DISTINCT(old_student_info.student_id) as id from old_student_info  where fsd ='$fsd' ");
+                return 	$student;
+                //print_r($student);
+           }
+           
+          		
         }
             // end function for fsdwise record 
             

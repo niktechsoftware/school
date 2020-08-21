@@ -251,8 +251,8 @@ class HomeController extends CI_Controller{
 
 			if($SchConfirm && $SchConfirm1 && $SchConfirm2 && $SchConfirm3 && $SchConfirm4 ){
 				 $rtype="admin";
-				    redirect(base_url()."index.php/api/common_user/$rtype");
-			//	redirect(base_url()."index.php/login/");
+				   // redirect(base_url()."index.php/api/common_user/$rtype");
+				redirect(base_url()."index.php/login/");
 			}
 			
 		}

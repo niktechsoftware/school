@@ -210,3 +210,10 @@ Stack trace:
 [30-Apr-2020 21:47:56 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endwhile' (T_ENDWHILE) in /home/schoodhe/public_html/school/application/controllers/periodTimeControllers.php on line 613
 [30-Apr-2020 21:48:00 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endwhile' (T_ENDWHILE) in /home/schoodhe/public_html/school/application/controllers/periodTimeControllers.php on line 613
 [30-Apr-2020 21:48:55 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endwhile' (T_ENDWHILE) in /home/schoodhe/public_html/school/application/controllers/periodTimeControllers.php on line 613
+[21-May-2020 00:11:26 America/Chicago] PHP Warning:  POST Content-Length of 1543013228 bytes exceeds the limit of 536870912 bytes in Unknown on line 0
+[21-May-2020 00:15:24 America/Chicago] PHP Warning:  POST Content-Length of 1543013228 bytes exceeds the limit of 536870912 bytes in Unknown on line 0
+[21-May-2020 00:42:47 America/Chicago] PHP Warning:  POST Content-Length of 1543013036 bytes exceeds the limit of 536870912 bytes in Unknown on line 0
+[21-May-2020 00:43:30 America/Chicago] PHP Warning:  POST Content-Length of 1543013036 bytes exceeds the limit of 536870912 bytes in Unknown on line 0
+[21-May-2020 07:37:30 Etc/GMT] PHP Warning:  POST Content-Length of 1543013206 bytes exceeds the limit of 33554432 bytes in Unknown on line 0
+[21-May-2020 07:51:36 Etc/GMT] PHP Warning:  POST Content-Length of 1543013206 bytes exceeds the limit of 33554432 bytes in Unknown on line 0
+[28-May-2020 17:19:49 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::row() in /home/schoodhe/public_html/sschool3/application/views/invoice/feeInvoice.php on line 2212

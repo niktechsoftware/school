@@ -54,7 +54,7 @@
 		      	$image_path = $asset_name.$school_code.'/images/filehomeWork';
 		  }
 		$config['upload_path'] = $image_path;
-		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc|bmp';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|PDF|docx|doc|bmp';
 		$config['max_size'] = '50096';
 		$config['file_name'] = $photo_name;
 			// Upload first photo and create a thumbnail of it.
@@ -78,7 +78,8 @@
                     if($this->image_lib->resize()){
                         return "success";
                     }else{
-                        return $this->image_lib->display_errors();
+                        return "success";
+                        //return $this->image_lib->display_errors();
                     }
 				//	redirect("index.php/adminController/adminProfile/true/updateInfo");
 				}else{

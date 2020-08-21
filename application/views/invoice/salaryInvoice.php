@@ -214,7 +214,7 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
              
               <tr class="item-row text-uppercase">
               		<td><label>6</label></td>
-                  <td><label>Encentieve :</label></td>
+                  <td><label>Incentieve :</label></td>
                   <th><label><?PHP echo $row->encentieve; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
