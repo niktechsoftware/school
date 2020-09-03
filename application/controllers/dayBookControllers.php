@@ -1,5 +1,5 @@
 <?php
- class dayBookControllers extends CI_Controller
+class dayBookControllers extends CI_Controller
 {
     	public function __construct(){
 		parent::__construct();
@@ -17,7 +17,7 @@
 	
 	}
 	
-	public function fullDetail(){
+	function fullDetail(){
 		$expenditure_name = $this->uri->segment(3);
 		 	$date1 = $this->uri->segment(4);
 		 	$date2 = $this->uri->segment(5);
@@ -146,7 +146,7 @@ function daybook()
 	             $heads=6;
 	             $condition=1;
 	                 }
-	                 
+               
 	          if(($q==10)){
 	                 	$reason="Receive From Bank";
 	                 	$heads=20;
@@ -157,6 +157,7 @@ function daybook()
 	      $a= $this->daybookmodel->getInvoiceByDate($school_code,$dt1,$dt2,$heads,$condition,1);
 	      	$b = $a->num_rows();
 	     
+
 			$dabit = 0;
 			$cradit = 0;
 			if($b > 0){
@@ -301,7 +302,6 @@ function daybook()
 		$reason = $this->input->post('reason');
 		$amount = $this->input->post('amount');
 		$date = date('Y-m-d');
-		
 		// Calculat and update Invoice serial start
 		
 		$this->db->where("school_code",$school_code);
@@ -404,6 +404,7 @@ function daybook()
 	 $feemonth= $this->db->get("cash_payment");
 		if($feemonth->num_rows()>0){
 			$amount= $feemonth->row()->amount;
+
 			$this->db->where("invoice_no",$invoice_number);
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 		 $dfee= $this->db->delete("day_book");
@@ -432,13 +433,14 @@ function deleteBanTrans(){
 	$this->db->delete("director_transaction");
 	
 	echo "Deleted Success";
-	}
 }
+
 	
 	function expenditure_depart(){
 		$expenditure_id = $this->input->post("expenditure_id");
 		$this->db->where("exp_id",$expenditure_id);
 		$rt = $this->db->get("sub_expenditure");
+
 		?> 
 		<option value="0">-Department-</option>
 		<?php 
@@ -455,7 +457,7 @@ function deleteBanTrans(){
 		$name = $this->input->post('name');
 		$disc = $this->input->post('disc');
 		$date = date('Y-m-d');
-		$school_code=	$this->session->userdata("school_code");
+			$school_code=	$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
 		$invoice1=6000+$invoice->num_rows();
@@ -468,15 +470,19 @@ function deleteBanTrans(){
 				"school_code"=>$this->session->userdata("school_code")
 		);
 		$this->db->insert("invoice_serial",$invoice);
+
        $cdate =date("Y-m-d");
        $closingBalance = $this->daybookmodel->getClosingBalance($cdate);
        $balance= $closingBalance ;
 		if($action_transaction == 0):
+
 			if($balance < $amount){
 				redirect("login/cashPayment/director/balanceFalse");
 			}else{
 			$dabitCredit = 0;	
 			}
+
+
 			else:
 			$dabitCredit = 1;
 			endif;
@@ -488,7 +494,9 @@ function deleteBanTrans(){
 				$dayBook = array(
 						"paid_to" =>$name,
 						"paid_by" =>$this->session->userdata("username"),
+
 						"dabit_cradit" => $dabitCredit,
+
 						"amount" => $amount,
 						"pay_date" => date('Y-m-d'),
 						"invoice_no" => $num1, 
@@ -665,7 +673,7 @@ function deleteBanTrans(){
             }
 	}
 }
- function Suceesotpdeleteexpby()
+	public  function Suceesotpdeleteexpby()
 
           {
                $expid=$this->input->post('exp_id');
@@ -748,5 +756,6 @@ function deleteBanTrans(){
 						</script>
 				<?php	}
 		
-    }
+			}
     
+}

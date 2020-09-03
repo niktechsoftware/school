@@ -264,12 +264,12 @@
 												                                <div class="alert panel-pink" id="onlinePayDetails" style="display: none">
 																					<button data-dismiss="alert" class="close">×</button>
 																					<h4 class="media-heading text-center">Online Fee Payment Charges</h4>
-																					<p>* Credit Card 2.00 %</p>
-																					<p>* Net Banking  Rs.28</p>
-																					<p>* Debit Card 0.0 % for transaction less than 2000, 1.90 % transaction for more than Rs.2000.</p>
+																					<p>* Credit Card Rs.0.03 + GST as applicable </p>
+																					<p>* Net Banking  Rs.20.00 + GST as applicable</p>
+																					<p>* Debit Card Rs.0.01 + GST as applicable </p>
 																					<p>* Amex Card 3.60 %</p>
 																					<p>* Wallet 2.50 %</p>
-																					<p>* UPI Rs.0 for transaction less than 2000, 28 transaction for more than Rs.2000.</p>
+																					<p>* BHIM UPI Rs.0.00 + GST as applicable</p>
 																					<p>* Post-Paid 2.90 %</p>
 																				</div>
 												                                

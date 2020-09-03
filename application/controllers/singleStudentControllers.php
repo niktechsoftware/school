@@ -21,7 +21,7 @@ class singleStudentControllers extends CI_Controller{
 				redirect("index.php/homeController/lockPage");
 			}
 		}
-	/*	function payFee(){
+		function payFee(){
 			$student_id=$this->uri->segment("3");
 			$school_code = $this->session->userdata("school_code");
 			$this->db->where("id",$student_id);
@@ -30,7 +30,7 @@ class singleStudentControllers extends CI_Controller{
 			$totAmount= $this->feeModel->totFee_due_by_id($student_id,9);
 			$amt_paid=$this->input->post('paid');
 			
-			/* $fsd_id = $fsdobject->row()->id;
+			 $fsd_id = $fsdobject->row()->id;
 			$monthDeposit =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd_id' and deposite_months.student_id='$student_id' order by deposite_months.id ASC");
 				
 				$this->db->select("*");
@@ -61,7 +61,9 @@ class singleStudentControllers extends CI_Controller{
 							}
 				 }
 					
-		}*/
+
+		}
+
 		
 		function stuattendence(){
 		$studid = $this->uri->segment(3);

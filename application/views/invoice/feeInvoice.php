@@ -137,6 +137,7 @@
 </head>
 
 <body>
+
 	<div id="printcontent" style="width: 95%;">
 		<div class="col-md-12 row">
 			<table id="items">
@@ -147,6 +148,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 	$tdiscount=0;
 	$this->db->where("id",$school_code);
 	$info =$this->db->get("school")->row();
+
 	$size =$numberofReciept/$numberofRecieptRow;
 	$font = $font1;
 	if($nop%2==0){
@@ -180,6 +182,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 				        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:<?php echo $font+4;?>px">
 				            <?php echo "Contact No. : " ;
 										if(strlen($info->mobile_no > 0 )){echo $info->mobile_no ;}
+
 									if(strlen($info->other_mobile_no > 0 )){echo ", ".$info->other_mobile_no ;}
 									?>
 			           </span></td>
@@ -326,14 +329,13 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 											<tr class='text-uppercase'>
 												<td class="text-center"><b><?php echo $i;?></b></td>
 												<td class="col-sm-8"><b><?php echo "TRANSPORT FEE"; ?></b></td>
-												<td class="text-center"><?php echo $feeRecord->transport; ?></td>
+												<td class="text-center"><?php echo $feeRecord->transport; $i++?></td>
 											</tr>
 			
 		<?php
-		
-				$totdisc=$this->feemodel->getDiscount($feeRecord->invoice_no);
-				$totdisc=$totdisc+$tdiscount;
+
 				 if($feeRecord->late>0){?>
+
 		  	     <tr class='text-uppercase'>
 												<td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 												<td class="col-sm-8"><b><?php echo "LATE FEE"; ?></b></td>
@@ -345,7 +347,10 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 												<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE, IF ANY"; ?></b></td>
 												<td class="col-sm-3 text-center"><?php  echo $prbalanace=$feeRecord->previous_balance; $i++;?></td>
 											</tr>
-
+                    <?php 
+		
+				$totdisc=$this->feemodel->getDiscount($feeRecord->invoice_no,$i);
+				$totdisc=$totdisc+$tdiscount;?>
 											<!--<hr style="margin-top:5px; margin-bottom:0;">-->
 									
 									</tbody>
@@ -406,6 +411,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 <?php }?>	
 </tbody>
 			</table>
+
 		</div>
 	</div>
 

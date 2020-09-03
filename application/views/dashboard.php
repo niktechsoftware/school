@@ -1,4 +1,3 @@
-
 <?php if($this->uri->segment("3") == "noteTrue"){?>
 <div class="row">
   <div class="col-md-6 col-lg-12 col-sm-6">
@@ -140,7 +139,9 @@
         <div class="partition-pink text-center core-icon">
           <i class="fa fa-users fa-2x icon-big"></i>
           <br>
+
           <span class="subtitle"> </span>
+
         </div>
         <a href="<?php echo base_url(); ?>index.php/login/daybook">
           <div class="padding-20 core-content">
@@ -168,8 +169,8 @@
               <div class="col-sm-6">
                 <h6 class="block no-margin">Opening</h6>
                 </br>
-                <mark><?php 
 
+                <mark><?php 
 							echo $openingBalance ;?></mark>
 
               </div>

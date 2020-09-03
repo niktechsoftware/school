@@ -98,9 +98,11 @@
          <?php
  
 	//$id = $this->uri->segment(3);
+
 	$sqlb=$this->db->query("select * from sale_info where bill_no = '$id' AND school_code = '$school_code'");
 	$rowb=$sqlb->row();
 	//print_r($school_code);
+
 	$category = $rowb->category;
 	$valid_id = $rowb->valid_id;
 	if($category == "Employee Id")

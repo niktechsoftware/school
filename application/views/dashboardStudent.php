@@ -110,9 +110,21 @@ echo $noticeForStudent->row()->message;
 	                    <i class="fa fa-inr fa-2x icon-big"></i><br>
 	                    <?php 
 	                    $totAmount =$this->feeModel->totFee_due_by_id($stuid_id,0);
-	                    $student_id =$this->session->userdata("id");?>
-	                 <!--  <a href="<?php //echo base_url();?>index.php/singleStudentControllers/payFee/<?php //echo $student_id;?>/<?php //echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>-->
-						<span class="subtitle">
+
+	                    $student_id =$this->session->userdata("id");
+	                   
+	                    ?>
+	                 
+	                  
+	                  <?php 
+	                  if($this->session->userdata("school_code")==6 && $this->session->userdata("school_code")==4 && $this->session->userdata("school_code")==9){ ?>
+               <a href="  <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php echo $student_id;?>/<?php echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>
+	               <?php	}else{ ?>
+	                  <a href="#" class="btn btn-warning" >Click To Pay</a>
+	                  <!-- <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php // echo $student_id;?>/<?php //echo $totAmount;?>-->
+					<?php   } ?>
+	                   <span class="subtitle">
+
 							
 	                    </span>
 	                </div>
@@ -121,7 +133,9 @@ echo $noticeForStudent->row()->message;
 		                <!--	<h3 class="title block no-margin">Fee Reports</h3>-->
 		                <h3 class="title block no-margin"><blink>Due Fee Status</blink></h3>
 		                	<br/>
-							<?php echo $this->feeModel->totFee_due_by_id($stuid_id,1);?>
+							<?php echo $this->feeModel->totFee_due_by_id($stuid_id,1);
+							//echo $stuid_id;
+							?>
 		                	<span class="subtitle">  <h3><blink ></blink></h3>   </span>
 	                        
 		                </div>

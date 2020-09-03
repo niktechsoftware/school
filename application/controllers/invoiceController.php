@@ -99,10 +99,7 @@ class InvoiceController extends CI_Controller{
 				$msg2 = "Dear School Principle your Student ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$fsd->paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
 			sms(7398863503,$msg2,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
 		    }
-			$this->db->where("school_code",$school_code);
-			$this->db->where("student_id",$this->input->post('stuId'));
-			$this->db->where("invoice_no",$invoice_number);
-		    $mode = $this->db->get('fee_deposit')->row()->payment_mode;
+		  
 		   redirect("index.php/invoiceController/fee/$invoice_number/$student_id/$fsd2/yes");
 		    //print_r($mode);exit;
 			
@@ -171,7 +168,7 @@ class InvoiceController extends CI_Controller{
     }
 	
 }
-//read
+
 	function fee(){
 		$data['pageTitle'] = 'Fee Invoice';
 		$data['smallTitle'] = 'Fee Invoice';
@@ -316,8 +313,7 @@ class InvoiceController extends CI_Controller{
 		}
 		
 		
-	
-		
+
 		
 	}
 	function printSaleReciept(){

@@ -7,8 +7,6 @@ function __construct()
 		$this->is_login();
 		
 	}
-
-
 	
 	public function migrate_class_data(){
 		echo "test is successfully";
@@ -467,19 +465,18 @@ endforeach;
 public function addClass(){
 			$this->load->model('configureClassModel');
 			$classData = array(
-					"class_name" => $this->input->post("className"),
-					"stream" => $this->input->post("classStream"),
-					"section" => $this->input->post("classSection"),
+				 "class_name" => $this->input->post("className"),
+						"stream" => $this->input->post("classStream"),
+						"section" => $this->input->post("classSection"),
 					//"class_teacher_id" => $this->session->userdata('username'),
-					"school_code" => $this->session->userdata('school_code')
+						"school_code" => $this->session->userdata('school_code')
 			  );
+
 			$sectionList = $this->configureClassModel->addClass($classData);
-
-				$i = 1;
+		$i = 1;
+		
 		     foreach ($sectionList as $row)
-
-
-				 {
+ {
 				 	$sectionid=$row->section;
 				 	$streamid=$row->stream;
 	$sectionname = $this->configureClassModel->getsectionforclass($sectionid);

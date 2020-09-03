@@ -14,8 +14,6 @@
                     <i class="green fa fa-home"></i> Add/Update House/Team Name
                   </a>
                 </li>
-               
-               
               </ul>
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="myTab_example1">

@@ -14,7 +14,6 @@ class Login extends CI_Controller{
         //$this->load->model('client_model');
        
 	}
-
 	function is_login(){
 		$is_login = $this->session->userdata('is_login');
 		$is_lock = $this->session->userdata('is_lock');
@@ -270,7 +269,8 @@ function updatemaximum()
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Exam Marks Scheduling';
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -918,7 +918,8 @@ function createSchedule()
 		$data['subPage'] = 'Exam Time Table';
 		$res = $this->configureclassmodel->getClassName();
 		$data['noc'] = $res->result(); 
-		$fsd=$this->session->userdata($fsd);
+	$fsd=$this->session->userdata("fsd");
+
 		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$data['title'] = 'Exam Time Table';
@@ -936,8 +937,8 @@ function createSchedule()
 		$data['subPage'] = 'Exam Details';
 		$this->load->model("configurefeemodel");
 		$this->load->model("examModel");
-		$fsd=$this->session->userdata($fsd);
-		$var=$this->examModel->getExamName($fsd);
+		$fsd=$this->session->userdata("fsd");
+	$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -953,8 +954,9 @@ function createSchedule()
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Results Summary';
 		$this->load->model("examModel");
-		$fsd=$this->session->userdata($fsd);
-		$var=$this->examModel->getExamName($fsd);
+
+		$fsd=$this->session->userdata("fsd");
+	$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();

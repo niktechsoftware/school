@@ -2,8 +2,7 @@
   <div class="col-md-12">
     <!-- start: DYNAMIC TABLE PANEL -->
     <div class="panel panel-white">
-
-      <div class="panel-heading panel-pink">
+ <div class="panel-heading panel-pink">
         <h3 class="panel-title">Export <span class="text-bold">Simple Employee List</span></h3>
         <div class="panel-tools">
           <div class="dropdown">
@@ -124,7 +123,7 @@ print employee Icard by click on that Employee Id.
 								</thead>
 								<?php
 									$this->db->where("school_code",$this->session->userdata("school_code"));
-								// 	$this->db->where("status",1);
+								 	$this->db->where("status",1);
 									$result = $this->db->get("employee_info");
 								?>
 								<tbody>
