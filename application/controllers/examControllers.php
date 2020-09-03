@@ -12,8 +12,7 @@ class examControllers extends CI_Controller
 		    'fsd'=>$this->session->userdata("fsd"),
     	    'term'=>$this->input->post("term"),
     		'exam_name'=>$this->input->post("examName"),
-    		'exam_date'=>$this->input->post("datet"),
-			'exam_mode' =>$this->input->post("exam_mode"),
+    		'exam_mode' =>$this->input->post("exam_mode"),
     		'school_code'=>$this->session->userdata("school_code")
     		  );
 		 $this->load->model("examModel");
@@ -23,6 +22,26 @@ class examControllers extends CI_Controller
 			redirect("index.php/login/examsheduling");
 		}	
 	}
+	public function exammode(){
+		
+		$data=array(
+			'exam_id'=>$this->input->post("examName2"),
+    		'class_id'=>$this->input->post("className2"),
+			'section'=>$this->input->post("sectionName"),
+			'language' =>$this->input->post("language"),
+			
+			'exam_mode' =>$this->input->post("exam_mode"),
+    		'school_code'=>$this->session->userdata("school_code")
+    		  );
+			 // print_r($data);
+		 $this->load->model("examModel");
+		$var=$this->examModel->exam_mode($data);
+		if($var)
+		{
+			redirect("index.php/login/exammode");
+		}	
+	}
+	
 	public function deleteexambyotp()
 	{
                $otp=$this->input->post('otp');
@@ -198,6 +217,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 			echo $var->row()->exam_date;
 		
 	} 
+	
  function printMode(){
 	 $this->load->model("examModel");
 		$en = $this->input->post("examName");
@@ -209,7 +229,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 				<option value=1 <?php if($em==1){echo 'selected="selected"';}?>>OFFLINE </option>
 				<option value=2 <?php if($em==1){echo 'selected="selected"';}?>>ONLINE (SUBJECTIVE)</option>
 				<option value=3 <?php if($em==1){echo 'selected="selected"';}?>>ONLINE (OBJECTIVE)</option>
-			<?php
+			<?php 
  }
 	
 	function startScheduling()
@@ -956,4 +976,275 @@ function insertMarksdetail()
 		    
 		
 	}
+		public function getClass(){
+		$sectionid = $this->input->post("sectionid");
+		$this->load->model("exammodel");
+		
+		$var = $this->exammodel->getClass($sectionid);?>
+	
+			<?php if($var->num_rows() > 0){
+				echo '<option value="">-Select Class-</option>';
+				foreach ($var->result() as $row){
+					echo '<option value="'.$row->id.'">'.$row->class_name.'</option>';
+				} 
+				
+				
+			}
+	}
+	
+	public function select_exam()
+	{
+		$exam_id = $this->input->post('exam_n');
+		$lang_id = $this->input->post('lang_n');
+		$da = $this->exammodel->select_exam_data($exam_id,$lang_id);
+		if($da->num_rows()>0)
+		{
+			foreach($da->result() as $dx)
+			{ ?>
+			<option value="">--Select Test--</option>
+				<option value="<?= $dx->id;?>"><?= $dx->exam_name;?></option>
+			<?php }
+		}
+		else
+		{
+			?>
+			<option><b style="font-color:red;">Test Not Found</b></option>
+		<?php
+		}
+	}
+//*----------------------------------------------online exam -----------------------------------------------*//
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+
+	function create_ques(){
+		$lang_id = $this->input->post('select_lang');
+		//echo $lang_id;
+		$select_exam = $this->input->post('select_exam');
+		//$select_test = $this->input->post('select_test');
+		$select_subject = $this->input->post('select_subject');
+		$this->load->model('exammodel');
+		$data['dt_qt'] = $this->exammodel->question_data($select_exam,$select_subject);
+		//print_r($data);
+		$data['language'] = $this->exammodel->select_language($lang_id);
+		$data['select_exam'] = $select_exam;
+		//$data['select_test'] = $select_test;
+		$data['select_subject'] = $select_subject;
+		$data['pageTitle'] = 'Create Questions';
+		$data['smallTitle'] = 'Create Questions';
+		$data['mainPage'] = 'Create Questions';
+		$data['subPage'] = 'Create Questions';
+		$data['title'] = 'Create Questions';
+	
+		//$this->db->where("school_code",$this->session->userdata("school_code"));
+		
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'create_ques';
+		$this->load->view("includes/mainContent", $data);
+	}
+		public function insert_question()
+	{	
+	//echo "uppu";
+	//exit();
+	$this->load->model('exammodel');
+		 $ques = $this->input->post('ques');
+		// echo $ques;
+		 $ans = $this->input->post('ans');
+		 //echo $ans;
+		 $a = $this->input->post('a');
+		 $b = $this->input->post('b');
+		 $c = $this->input->post('c');
+		 $d = $this->input->post('d');
+		 $e = $this->input->post('e');
+		 $exam_subject_id = $this->input->post('exam_subject_id');
+		 //echo $exam_subject_id;
+		 //exit();
+		// $exam_name_id = $this->input->post('exam_name_id');
+		 $exam_master_id = $this->input->post('exam_master_id');
+		 $wh_val = array(
+			'question'=>$ques,
+			//'exam_name_id'=>$exam_name_id,
+			'exam_subject_id'=>$exam_subject_id,
+			'exam_master_id'=>$exam_master_id
+			);
+			
+				$da = $this->exammodel->insert_ques($ques,$exam_subject_id,$exam_master_id,$ans,$a,$b,$c,$d,$e);
+				if($da){
+				echo "1";
+				}else{
+					echo "0";
+				}
+			
+		
+	}
+	
+	function delete_q()
+	{
+		//echo "hii";
+		$this->load->model('exammodel');
+		$q_id = $this->input->post('ques_id');
+		
+		$chk = $this->exammodel->delete_q($q_id);
+		if($chk)
+		{
+			echo "1";
+		}
+		else
+		{
+			echo "0";
+		}
+	}
+	function new_ques()
+	{
+		$this->load->model('exammodel');
+		$sel_ct = $this->input->post("sel_ct");
+		$exam_subject_id = $this->input->post('exam_subject_id');
+		//$exam_name_id = $this->input->post('exam_test_id');
+		$exam_master_id = $this->input->post('exam_master_id');
+		$exam_language = $this->input->post('exam_language');
+		if($sel_ct != 0)
+		{
+			$ques = $this->input->post("ques1");
+			$op_txt1 = $this->input->post("txt_af1");
+			$op_txt2 = $this->input->post("txt_af2");
+			$op_txt3 = $this->input->post("txt_af3");
+			$op_txt4 = $this->input->post("txt_af4");
+			$op_txt5 = $this->input->post("txt_af5");
+			$qf1 = $_FILES['qf1']['name'];
+			$qf2 = $_FILES['qf2']['name'];
+			$qf3 = $_FILES['qf3']['name'];
+			$qf4 = $_FILES['qf4']['name'];
+			$af1 = $_FILES['af1']['name'];
+			$af2 = $_FILES['af2']['name'];
+			$af3 = $_FILES['af3']['name'];
+			$af4 = $_FILES['af4']['name'];
+			$af5 = $_FILES['af5']['name'];
+			
+			switch($sel_ct)
+			{
+				case 1:
+				$ans = 'A';
+				break;
+				case 2:
+				$ans = 'B';
+				break;
+				case 3:
+				$ans = 'C';
+				break;
+				case 4:
+				$ans = 'D';
+				break;
+				case 5:
+				$ans = 'E';
+				break;
+			}
+			
+			for($i=1;$i<=4;$i++)
+			{
+				$image_path = realpath(APPPATH . '../assets/images/question_img');
+				$photo_name = str_replace(' ','',$_FILES['qf'.$i]['name']);
+				$config['upload_path'] = $image_path;
+				$config['allowed_types'] = 'gif|jpg|jpeg|png';
+				$config['max_size'] = '1024';
+				$config['file_name'] = $photo_name;
+				
+			}
+			for($i=1;$i<=5;$i++)
+			{
+				$image_path = realpath(APPPATH . '../assets/images/question_img');
+				$photo_name = str_replace(' ','',$_FILES['af'.$i]['name']);
+				$config['upload_path'] = $image_path;
+				$config['allowed_types'] = 'gif|jpg|jpeg|png';
+				$config['max_size'] = '1024';
+				$config['file_name'] = $photo_name;
+				
+			}
+			$chk = $this->exammodel->insert_img_question($ques,$exam_subject_id,$exam_master_id,$qf1,$qf2,$qf3,$qf4,$af1,$af2,$af3,$af4,$af5,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5);
+			if($chk)
+			{
+			    echo "Question upload successfully";
+			}
+			else 
+			{
+				echo "Question Not Upload";
+			}
+		}
+		else
+		{
+		    echo "Image Not Found";
+// 			redirect('adminController/create_ques/0'.$exam_master_id.'/'.$exam_name_id.'/'.$exam_subject_id.'/'.$exam_language);
+		}
+		
+	}
+	function update_question()
+	{	
+		$this->load->model('exammodel');
+		$ques = $this->input->post("ques");
+		$a = $this->input->post("a");
+		$b = $this->input->post("b");
+		$c = $this->input->post("c");
+		$d = $this->input->post("d");
+		$e = $this->input->post("e");
+		$ans = $this->input->post("ans");
+		$q_id = $this->input->post("q_id");
+		$chk = $this->exammodel->update_ques($ques,$q_id,$ans,$a,$b,$c,$d,$e);
+		if($chk)
+		{
+			echo "1";
+		}
+		else
+		{
+			echo "0";
+		}
+	}
+	function submit_ques()
+	{	 	
+	
+			$school_code = $this->session->userdata("school_code");
+			//$photo_name = time().trim($_FILES['sheet']['name']);
+			//$photo_name=str_replace(' ', '_', $photo_name);
+			$sheet= $this->input->post('sheet');
+			//echo $sheet;
+			$this->load->library('upload');
+			$image_path = realpath(APPPATH . '../assets/images/'.$school_code.'/');
+			$config['upload_path'] = $image_path;
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
+			$config['max_size'] = '2048';
+			//$config['file_name'] = $photo_name;
+	if (!empty($_FILES['sheet']['name'])) {
+			$this->upload->initialize($config);
+			if($this->upload->do_upload('sheet')){
+				$data=array(
+				  
+				 'sheet'=>$sheet,
+				  'date'=>date("Y-m-d"),
+				'school_code'=>$school_code
+        		);
+        		 $this->db->insert("subjective_question",$data);
+				 $query =	$this->db->insert_id();
+					//echo $query;
+						//echo $photo_name;	
+					//redirect(base_url()."login/subjective_ques/".$query);
+					//echo $image_path;
+						}
+					else{
+					 echo "Somthing going wrong. Please Contact Site administrator";
+					}}else{
+						echo "file not Select";
+					}
+					}
+function deletesheet(){
+		$id = $this->input->post("id");
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$this->db->where("id",$id);
+		$delete=$this->db->delete("subjective_question");
+		 echo "deleted";
+	     
+	    
+	}
+
+
+	//-----------------------------------**********************---------------------------------------//
+	///////////////////////////////////END OF ONLINE EXAM/////////////////////////////////////////
 }

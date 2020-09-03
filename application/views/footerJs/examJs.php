@@ -62,6 +62,17 @@
 
 			jQuery(document).ready(function() {
 				
+				$("#sectionId").change(function(){
+    	        	 var sectionid = $("#sectionId").val();
+    	        	  alert(sectionid);
+    	            $.post("<?php echo site_url('index.php/examControllers/getClass') ?>", {sectionid : sectionid}, function(data){
+						//alert(data);
+    	                $("#classIdSet").html(data);
+    	    		});
+    	        });
+				
+				
+				
 				$('#examName').change(function(){
 					var examName = $('#examName').val();
 					//alert("rahul");
@@ -314,9 +325,11 @@ $("#sub_type").change(function(){
 
 
 <?php } ?>
-	Main.init();
-				FormElements.init();
+
 				
 				SVExamples.init();
 				TableExport.init();
+				FormElements.init();
+				
+					Main.init();
 		</script>

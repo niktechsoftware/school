@@ -164,7 +164,7 @@
 	     	$billno = $invoice_number;
 	     		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
-				"reason" => "Stock Sale",
+				"heads" => "Stock Sale",
 				"invoice_date" => date('Y-m-d'),
 				"school_code"=>$school_code
 		);

@@ -67,11 +67,7 @@
 														<br><br>
 													    	</td>
 													    </tr>
-														  <tr>
-													    	<td><label class="panel-title">Select Mode</label></td>
-													    	<td>  <select name="exam_mode" required="required" style="width: 180px;"><option>--SELECT MODE--</option><option value="1" >OFFLINE </option><option value="2" >ONLINE (SUBJECTIVE)</option><option value="3" >ONLINE (OBJECTIVE)</option></select>
-															<br><br></td>
-													    </tr>
+														
 													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Submit <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
@@ -145,11 +141,7 @@
 													    	</td>
 													    </tr>
 														  <tr>
-													    	<td><label class="panel-title">Select Mode</label></td>
-													    	<td>  <select class="form-control space10" id="examModerahul" name="exam_mode" style="width: 160px;">
-														<option value="01">-Select Exam Mode-</option>
-														</select><br><br></td>
-													    </tr>
+
 													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Update <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
@@ -179,14 +171,14 @@
 														<th>Exam Name</th>
 														<th>Term</th>
 														<th>Exam Month</th>
-														<th>Exam Mode</th>
+														
 														<th>Setting</th>
 														<th>Action</th>
 													</tr>
 											</thead>
 											<tbody>
 											
-											<?php $i=1; foreach ($request as $row): 
+											<?php $i=1; $cd1=date("Y-m-d"); foreach ($request as $row): 
 											 ?><form action="<?php echo base_url();?>index.php/examControllers/startScheduling" method="post" >
 													
 													<tr>
@@ -200,14 +192,11 @@
 															<input  type="text" style="width: 95px;" data-date-format="yyyy-mm-dd" id="edate<?php echo $i;?>" data-date-viewmode="years" value="<?php echo date('d-F-Y', strtotime($row->exam_date));  ?>" disabled="disabled"/>
 															<input type="hidden" name="edate" value="<?php echo date('d-F-Y', strtotime($row->exam_date));?>"/>		
 														</td>
-														<td>
-															<input type="text" style="width: 140px;" name="exam_mode<?php echo $i;?>" value="<?php echo $row->exam_mode;?>" id="exammode<?php echo $i;?>" disabled="disabled"/>									
-											 
-											</td>
+												
 														<td >
 													<?php 	$ds= $row->exam_date;
 															$ename=$row->exam_name;
-															$cd=date("Y-m-d");
+															//$cd1=date("Y-m-d");
 															if(($ename=="Class Test")||($ename=="Other Exam"))
 																	{?>
 
@@ -218,7 +207,9 @@
 															
 															<?php }else
 															{
-																if($ds<$cd)
+																//echo date('Y-m-d',strtotime($ds));
+																//echo $cd1;
+																if($ds <= $cd1)
 															{?><button type='submit' disabled="disabled"  style="width: 100px;" class="btn btn-xs btn-light-blue" id="scheduling1"><i class="fa fa-check"></i>Exam Done </button>
 														    </td> 
 														    <td>
@@ -244,7 +235,7 @@
 						      $("#delete<?php echo $i;?>").click(function(){
 					            var id =$('#rowid<?php echo $i;?>').val();
                                 //window.confirm('Are you sure to delete the exam');
-				           $.post("<?php echo site_url('index.php/examControllers/deleteExam') ?>",{id : id},function(data){
+				           $.post("<?php echo site_url('index.php/examControllers/deletesheet') ?>",{id : id},function(data){
 				    	  	alert(" Exam deleted Successfully!!!!! ");
                              $("#delete<?php echo $i;?>").hide();
                               window.location.reload();
