@@ -87,6 +87,22 @@
 															<br><br></td>
 													    </tr>
 														<tr>
+														<td><label class="panel-title">Select Subject</label></td>
+														<td>  <select name="subject" id="select_subject" style="width: 180px">
+														<option value="">-select Subject-</option>
+																			<?php
+																					$sub = $this->db->get('subject');
+																					if($sub->num_rows()>0){
+																					foreach($sub->result() as $row):
+																					echo '<option value="'.$row->id.'">'.$row->subject.'</option>';?>
+																					<?php endforeach ;}?>
+														</select>
+															<br><br></td>
+																	
+																
+															</select>
+															</tr>
+														<tr>
 													    	<td><label class="panel-title">Select Mode</label></td>
 													    	<td>  <select name="exam_mode" required="required" style="width: 180px;"><option>--SELECT MODE--</option><option value="1" >OFFLINE </option><option value="2" >ONLINE (SUBJECTIVE)</option><option value="3" >ONLINE (OBJECTIVE)</option></select>
 															<br><br></td>
@@ -134,6 +150,7 @@
 													<th>Section Name</th>
 													<th>Exam Mode</th>
 													<th>Language</th>
+													<th>Subject</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -164,7 +181,7 @@
 													<?php $this->db->where('id',$row->section);
 													$sec=$this->db->get('class_section')->row();
 													?>
-														<input type="text" style="width: 140px;" name="exam_mode<?php echo $i;?>" value="<?php echo $sec->section;?>" id="section<?php echo $i;?>" disabled="disabled"/>									
+														<input type="text" style="width: 140px;" name="class<?php echo $i;?>" value="<?php echo $sec->section;?>" id="section<?php echo $i;?>" disabled="disabled"/>									
 													</td>
 													<td>
 													<?php $this->db->where('id',$row->exam_mode);
@@ -176,21 +193,26 @@
 													<?php $this->db->where('id',$row->language);
 													$lan=$this->db->get('language')->row();
 													?>
-														<input type="text" style="width: 140px;" name="exam_mode<?php echo $i;?>" value="<?php echo $lan->language;?>" id="exammode<?php echo $i;?>" disabled="disabled"/>									
+													<input type="text" style="width: 140px;" name="language<?php echo $i;?>" value="<?php echo $lan->language;?>" id="exammode<?php echo $i;?>" disabled="disabled"/>									
+													</td>
+													<td>
+													<?php $this->db->where('id',$row->subject);
+													$sub=$this->db->get('subject')->row();
+													?>
+														<input type="text" style="width: 140px;" name="subject<?php echo $i;?>" value="<?php echo $sub->subject;?>" id="exammode<?php echo $i;?>" disabled="disabled"/>									
 													</td>
 													<td>
 													<?php 
-													
 														if($row->exam_mode=='3'){?>
-														<a href="<?php echo base_url();?>index.php/examControllers/create_ques">
-														<input type="submit" style="width: 160px;" value="Objective" id="<?php echo $i;?>" class="btn btn-xs btn-light-blue" id="">
+														<a href="<?php echo base_url();?>index.php/examControllers/create_ques/<?php echo $row->exam_id;?>">
+														<input type="submit" style="width:100px; height:38px;" value="OBJECTIVE" id="<?php echo $i;?>" class="btn btn-xs btn-light-blue" id="">
 														</a>
 														<?php }elseif($row->exam_mode=='2'){?>
 														<a href="<?php echo base_url();?>index.php/login/subjective_ques">
-														<input type='submit' style="width: 160px;" value="Subjective" id="<?php echo $i;?>" class="btn btn-xs btn-light-green" id="">
+														<input type='submit' style="width:100px; height:38px;" value="SUBJECTIVE" id="<?php echo $i;?>" class="btn btn-xs btn-light-green" id="">
 														</a>
-														<?php } else{?>
-														<input type='submit' style="width: 160px;"  value="Offline" class="btn btn-xs btn-light-red" id="">
+														<?php } else{ ?>
+														<input type='submit' style="width:100px; height:38px;"  value="OFFLINE" class="btn btn-xs btn-light-red" id="">
 														<?php }?>
 													</td>
 												</tr>

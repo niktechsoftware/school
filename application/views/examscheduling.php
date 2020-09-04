@@ -235,7 +235,7 @@
 						      $("#delete<?php echo $i;?>").click(function(){
 					            var id =$('#rowid<?php echo $i;?>').val();
                                 //window.confirm('Are you sure to delete the exam');
-				           $.post("<?php echo site_url('index.php/examControllers/deletesheet') ?>",{id : id},function(data){
+				           $.post("<?php echo site_url('index.php/examControllers/deleteExam') ?>",{id : id},function(data){
 				    	  	alert(" Exam deleted Successfully!!!!! ");
                              $("#delete<?php echo $i;?>").hide();
                               window.location.reload();

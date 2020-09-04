@@ -59,21 +59,40 @@ tr:nth-child(even) {
 			</div>
 		          <div class="panel-body">
 										  <?php 
-										  //$this->db->where('id',$select_exam);
-										  //$ex=$this->db->get('exam_name');
-										 //$this->db->where('id',$select_test);
-										 //$tst=$this->db->get('test_name');
-										  //$this->db->where('id',$select_subject);
-										  //$sub=$this->db->get('subject');?>
-										  <!--<table>
+										
+										 //$this->db->where('id',$exam->id);
+										// $info=$this->db->get('exam_mode');
+										// $this->db->where('id',$exam->exam_id);
+										// $sec=$this->db->get('section');
+										  //$this->db->where('id',$exam->exam_id);
+										// $sec=$this->db->get('language');
+										 ?>
+										<table>
 											<tr></tr>
-											 <tr>
-												<td><?php  //if($ex->num_rows()>0){ echo $ex->row()->exam_name;}else{ echo "N/A";} ?></td>
-												<td><?php   //echo "PRACTICE SET"; ?></td>
-												<td><?php  //if($sub->num_rows()>0){ echo $sub->row()->subject;}else{ echo "N/A";} ?></td>
-												<td><?php //echo $language->language; ?></td>
+											<tr>
+											<?php $i=1;
+											
+											foreach($exam->result() as $res):?>
+											 <?php $this->db->where('id',$res->exam_id);
+											 $ename=$this->db->get('exam_name')->row();
+											 $this->db->where('id',$res->class_id);
+											$info=$this->db->get('class_info')->row();
+											$this->db->where('id',$res->section);
+											$sec=$this->db->get('class_section')->row();
+											 $this->db->where('id',$res->language);
+											$lan=$this->db->get('language')->row();
+											$this->db->where('id',$res->subject);
+											$sub=$this->db->get('subject')->row();
+											 ?>
+												<td><?php   echo  $ename->exam_name;;  ?></td>
+												<td><?php   echo $info->class_name;  ?></td>
+												<td><?php   echo $sec->section;  ?></td>
+												<td><?php   echo $lan->language;  ?></td>
+												<td><?php   echo $sub->subject;  ?></td>
+											 <?php $i++;
+											 endforeach; ?>
 											 </tr>
-										  </table>-->
+										  </table>
 											</br>
 											</br>
 	  
@@ -124,9 +143,9 @@ tr:nth-child(even) {
 							<div id="image_ques">
                                  <form method="post" id="uploadform" action="" enctype="multipart/form-data" >
                                     <div class="row">
-                                        <input type="hidden" name="exam_master_id" value="<?php echo $select_exam; ?>">
+                                        <input type="hidden" name="exam_master_id" value="<?php echo $res->exam_id; ?>">
                                       <!--  <input type="hidden" name="exam_test_id" value="<?php //echo $select_test; ?>">-->
-                                        <input type="hidden" name="exam_subject_id" value="<?php echo $select_subject; ?>">
+                                        <input type="hidden" name="exam_subject_id" value="<?php echo $res->subject; ?>">
                                         <div class="col-md-3"><label style="float:right"><b>Question :</b></label></div>
                                         <div class="col-md-6">
                                             <textarea id="ques1" name="ques1" class="form-control" placeholder="Write Question here"></textarea>
@@ -195,7 +214,7 @@ tr:nth-child(even) {
                                                 <th class="text-center"> #</th>
                                                 <th class="text-center">Exam Name</th>
                                                 <th class="text-center">Language</th>
-                                                <th class="text-center">Test Name</th>
+
                                                 <th class="text-center">Subject</th>
                                                 <th class="text-center">Question</th>
                                                 <th class="text-center">Answer</th>
@@ -209,11 +228,12 @@ tr:nth-child(even) {
 												foreach($dt_qt->result() as $data_q){ ?>
 											<tr>
 												<td class="text-center"><?php echo $i;?></td>
-												<td><?php  //if($ex->num_rows()>0) { echo $ex->row()->exam_name; } else { echo "N/A"; }?></td> 
+									
+												<td><?php  echo $ename->exam_name;?></td> 
 												
-												<td><?php echo $language->language;?></td>
-												<td></td>
-												<td><?php //if($ex->num_rows()>0) { echo $sub->row()->subject;} else{ echo "N/A"; }?></td>
+												<td><?php echo $lan->language;?></td>
+												
+												<td><?php echo $sub->subject; ?></td>
 													
 												<td><?php echo $data_q->question; ?></td> 
 													<?php $this->db->where('question_master_id',$data_q->id);
@@ -292,8 +312,9 @@ $("#radio_2").click(function(){
 </script>
 
 <script>
-$("#submit_q").click(function(){
+//alert('dfdfdfdf');
 
+$("#submit_q").click(function(){
 		var ques = $('#ques').val();
         var a = $('#a1').val();
         var b = $('#b1').val();
@@ -302,11 +323,11 @@ $("#submit_q").click(function(){
         var e = $('#e1').val();
 		var sel = $('#sel_ct').val();
       
-        var exam_master_id = <?php echo $select_exam; ?>;
-		//alert(exam_master_id);
+        var exam_master_id = <?php $res->exam_id;?>;
+		alert(exam_master_id);
         
 		//alert(exam_name_id);
-        var exam_subject_id = <?php echo $select_subject; ?>;
+        var exam_subject_id = <?php echo $res->subject ?>;
 		//alert(exam_subject_id);
     if((ques.length>0) && (($('#a1').val()).length>0) && (($('#b1').val()).length>0) && (($('#c1').val()).length>0) && (($('#d1').val()).length>0))
     {

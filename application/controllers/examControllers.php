@@ -29,7 +29,7 @@ class examControllers extends CI_Controller
     		'class_id'=>$this->input->post("className2"),
 			'section'=>$this->input->post("sectionName"),
 			'language' =>$this->input->post("language"),
-			
+			'subject' =>$this->input->post('subject'),
 			'exam_mode' =>$this->input->post("exam_mode"),
     		'school_code'=>$this->session->userdata("school_code")
     		  );
@@ -1018,6 +1018,11 @@ function insertMarksdetail()
 
 
 	function create_ques(){
+		 $uri= $this->uri->segment("3");
+		 $this->db->where('exam_id',$uri);
+		$ex=$this->db->get('exam_mode');
+		//print_r($ex);
+		$data['exam']=$ex;
 		$lang_id = $this->input->post('select_lang');
 		//echo $lang_id;
 		$select_exam = $this->input->post('select_exam');
@@ -1035,9 +1040,6 @@ function insertMarksdetail()
 		$data['mainPage'] = 'Create Questions';
 		$data['subPage'] = 'Create Questions';
 		$data['title'] = 'Create Questions';
-	
-		//$this->db->where("school_code",$this->session->userdata("school_code"));
-		
 		$data['headerCss'] = 'headerCss/examCss';
 		$data['footerJs'] = 'footerJs/examJs';
 		$data['mainContent'] = 'create_ques';
@@ -1200,48 +1202,48 @@ function insertMarksdetail()
 	}
 	function submit_ques()
 	{	 	
-	
 			$school_code = $this->session->userdata("school_code");
-			//$photo_name = time().trim($_FILES['sheet']['name']);
-			//$photo_name=str_replace(' ', '_', $photo_name);
-			$sheet= $this->input->post('sheet');
-			//echo $sheet;
+			$photo_name = time().trim($_FILES['image']['name']);
+			$photo_name=str_replace(' ', '_', $photo_name);
+			$image= $this->input->post('image');
+			//echo $image;
+			//echo $photo_name;
+		
 			$this->load->library('upload');
 			$image_path = realpath(APPPATH . '../assets/images/'.$school_code.'/');
 			$config['upload_path'] = $image_path;
 			$config['allowed_types'] = 'gif|jpg|jpeg|png';
-			$config['max_size'] = '2048';
-			//$config['file_name'] = $photo_name;
-	if (!empty($_FILES['sheet']['name'])) {
+			$config['max_size'] = '3048';
+			$config['file_name'] = $photo_name;
+			
+		if (!empty($_FILES['image']['name'])) {
 			$this->upload->initialize($config);
-			if($this->upload->do_upload('sheet')){
+			if($this->upload->do_upload('image')){
 				$data=array(
-				  
-				 'sheet'=>$sheet,
-				  'date'=>date("Y-m-d"),
-				'school_code'=>$school_code
+				 'image'=>$photo_name,
+				 'date'=>date("Y-m-d"),
+				 'school_code'=>$school_code
         		);
-        		 $this->db->insert("subjective_question",$data);
-				 $query =	$this->db->insert_id();
+				
+				//print_r($data);
+        		$this->db->insert("subjective_question",$data);
+				$query =	$this->db->insert_id();
 					//echo $query;
-						//echo $photo_name;	
-					//redirect(base_url()."login/subjective_ques/".$query);
-					//echo $image_path;
-						}
+					//echo $sheet;	
+					redirect(base_url()."login/subjective_ques/".$query);
+			}
 					else{
 					 echo "Somthing going wrong. Please Contact Site administrator";
-					}}else{
+					    }}else{
 						echo "file not Select";
-					}
-					}
+						  }
+	}
 function deletesheet(){
 		$id = $this->input->post("id");
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("id",$id);
 		$delete=$this->db->delete("subjective_question");
-		 echo "deleted";
-	     
-	    
+		// echo "deleted";
 	}
 
 

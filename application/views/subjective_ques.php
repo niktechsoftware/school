@@ -60,15 +60,7 @@ tr:nth-child(even) {
 								   <button data-dismiss="alert" class="close">×</button>
 								   <h2 class="media-heading text-center">Welcome to Subjective Questions Area</h2>
 							 </div>
-							   <table>
-											<tr></tr>
-											 <tr>
-												<td><?php  //if($ex->num_rows()>0){ echo $ex->row()->exam_name;}else{ echo "N/A";} ?></td>
-												<td><?php   //echo "PRACTICE SET"; ?></td>
-												<td><?php//if($sub->num_rows()>0){ echo $sub->row()->subject;}else{ echo "N/A";} ?></td>
-												<td><?php //echo $language->language; ?></td>
-											 </tr>
-										  </table>
+							  
 						  </div>
 						   <div class="row">
 						 
@@ -83,7 +75,7 @@ tr:nth-child(even) {
                           <form action="<?php echo base_url();?>index.php/examControllers/submit_ques"  method ="post" enctype="multipart/form-data">
 						  </br>
 						  
-								<input type="file" id="myfile" name="sheet"><br><br>
+								<input type="file" id="myfile" name="image"><br><br>
 									<input type="submit" value="Upload" class="btn btn-red">
 										
 												</form>
@@ -97,8 +89,8 @@ tr:nth-child(even) {
                     </div>
                     <div class="col-sm-6">
                       <div class="panel panel-calendar">
-                        <div class="panel-heading panel-green border-light">
-                          <h4 class="panel-title">Stream List</h4>
+                        <div class="panel-heading panel-red border-light">
+                          <h4 class="panel-title">List</h4>
                         </div>
                         <div class="panel-body" id="streamList1">
 							<table class="table table-responsive">
@@ -120,26 +112,24 @@ tr:nth-child(even) {
 												?>
 												<td><?php echo $i;?></td>
 
-												<td><?php echo $row->sheet ;?>
+												<td><?php echo $row->image ;?>
 												<input type="hidden" name="dlt" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/></td>
 												<td><?php echo $row->date; ?></td>
 												
 												<td class="text-center"><input type="button" value="Delete" id="dlt<?php echo $i; ?>" class="btn btn-danger"/></td>
 												
 											</tr>
-												<script >
-											//alert("fhjfhjdfk");												
-												$("#dlt<?php echo $i; ?>").click(function(){
-													//alert("fhjfhjdfk");
-													var id =$('#rowid<?php echo $i;?>').val();
-													//window.confirm('Are you sure to delete the exam');
-											   $.post("<?php echo site_url('index.php/examControllers/deletesheet') ?>",{id : id},function(data){
-												alert("deleted Successfully!!!!! ");
-												 $("#dlt<?php echo $i;?>").hide();
-												  window.location.reload();
-												 });
-											   }); 
-											</script>
+																		<script >
+																		$("#dlt<?php echo $i; ?>").click(function(){
+																		var id =$('#rowid<?php echo $i;?>').val();
+																		
+																	   $.post("<?php echo site_url('index.php/examControllers/deletesheet') ?>",{id : id},function(data){
+																		alert("deleted Successfully!!!!! ");
+																		 $("#dlt<?php echo $i;?>").hide();
+																		  window.location.reload();
+																		 });
+																	   }); 
+																	</script>
 												<?php $i++; endforeach; }?>
 										
 							
