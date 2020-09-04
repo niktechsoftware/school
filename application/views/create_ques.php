@@ -143,9 +143,9 @@ tr:nth-child(even) {
 							<div id="image_ques">
                                  <form method="post" id="uploadform" action="" enctype="multipart/form-data" >
                                     <div class="row">
-                                        <input type="hidden" name="exam_master_id" value="<?php echo $res->exam_id; ?>">
+                                        <input type="hidden" name="exam_master_id" value="<?php echo $select_exam; ?>">
                                       <!--  <input type="hidden" name="exam_test_id" value="<?php //echo $select_test; ?>">-->
-                                        <input type="hidden" name="exam_subject_id" value="<?php echo $res->subject; ?>">
+                                        <input type="hidden" name="exam_subject_id" value="<?php echo $select_subject; ?>">
                                         <div class="col-md-3"><label style="float:right"><b>Question :</b></label></div>
                                         <div class="col-md-6">
                                             <textarea id="ques1" name="ques1" class="form-control" placeholder="Write Question here"></textarea>
@@ -312,9 +312,8 @@ $("#radio_2").click(function(){
 </script>
 
 <script>
-//alert('dfdfdfdf');
-
 $("#submit_q").click(function(){
+
 		var ques = $('#ques').val();
         var a = $('#a1').val();
         var b = $('#b1').val();
@@ -323,11 +322,11 @@ $("#submit_q").click(function(){
         var e = $('#e1').val();
 		var sel = $('#sel_ct').val();
       
-        var exam_master_id = <?php $res->exam_id;?>;
+        var exam_master_id = <?php echo $select_exam; ?>;
 		alert(exam_master_id);
         
 		//alert(exam_name_id);
-        var exam_subject_id = <?php echo $res->subject ?>;
+        var exam_subject_id = <?php echo $select_subject; ?>;
 		//alert(exam_subject_id);
     if((ques.length>0) && (($('#a1').val()).length>0) && (($('#b1').val()).length>0) && (($('#c1').val()).length>0) && (($('#d1').val()).length>0))
     {
