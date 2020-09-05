@@ -274,74 +274,39 @@ echo $noticeForStudent->row()->message;
 			?>				 
 		<div class="table-responsive">
 <?php 	
-		$m=1;
-		?><table class="table table-striped table-hover" style="width:100%;" id="sample-table-2">
-			<thead>
-			 <?php $i=1; if($i%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
-             <tr class="<?php echo $rowcss;?>" >
-					<th class="column-left"> Date Of Exam/<br>Class & Shift</th>
-				<?php foreach ($dat as $col):
-				//print_r($dad->result());?>
-				<th><?php echo $dat->date1;?></th>
-				
-			<?php endforeach;?>
-		</thead>
-		<tbody>
+		$this->examModel->getExamTimeTableChartBy($exam_id,$class_id,$school_code);?>
 		
-		<?php 
-		    foreach ($ex as $row):
-		?>
-		 <?php if($i%2==0){$rowcss="warning";}else{$rowcss ="danger";}?>
-            <tr class="<?php echo $rowcss;?>">
-			<td class="column-left"><?php
-			echo $class->class_name;
-			echo $ex->shift;
-
-?><?php
-?></td><?php 
-			foreach ($exam as $col):
-			//$j=1;
- //$col->id;
-			?><td class="column-right" ><?php
-			
-			$subject=$this->db->query("SELECT subject_id,id FROM exam_time_table where exam_day_id='$exam_id;'  AND shift_id='$ex->id' AND class_id='$class->id' AND school_code='$school_code'");
-				
-				foreach ($subject->result() as $sub):
-					$subjectid=$sub->subject_id;
-					$exam=$sub->id;
-
-				?>
-                  <?php    
-                       $this->db->where('id',$subjectid);
-                         $this->db->where('class_id',$class->id);
-                        $subject1=$this->db->get('subject')->result();            
-                      foreach ($subject1 as  $value) {   
-                           ?>
-
-				
-				<?php echo $value->subject; ?>
-			
-					
-				<?php $m++;
-			}
-				endforeach;
-				?></td>
-				
-				
-							<?php
-			endforeach;
-			?>
-			<?php 
-			endforeach;//claas print loop
-			?>
-			</tr></tbody></table>
-		
-
-										<div id="printsub"></div>
 
 										</div>
  </div>
  </div>
+        </div>
+    </div>
+	<div class="col-md-6 col-lg-4 col-sm-6">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-purple padding-20 text-center core-icon">
+                    <i class="fa fa-tasks fa-2x icon-big"></i>
+                </div>
+                <a href="#">
+                <div class="padding-20 core-content">
+                    <h4 class="title block no-margin">Exam Mode</h4>
+                    <br/>
+                    <span class="subtitle"> 	
+                    
+                        <?php 	
+		$this->db->where("exam_id",$exam_id);
+	$this->db->where("class_id",$class_id);
+	$emode=$this->db->get("exam_mode");?>
+		<p>	Subjective  <a href="/images/myw3schoolsimage.jpg" download>
+  <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142">
+</a></p>
+			<p>
+		<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectivePaper">	Objecive</a></p>			
+                                        					
+                </div>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -351,6 +316,4 @@ echo $noticeForStudent->row()->message;
 
 
 </div>
-
-
 <!-- end: PAGE CONTENT-->

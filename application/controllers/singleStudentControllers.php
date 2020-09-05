@@ -128,6 +128,18 @@ class singleStudentControllers extends CI_Controller{
 		$data['mainContent'] = 'stufeesdetail';
 		$this->load->view("includes/mainContent", $data);
 		}
+		function objectivePaper(){
+		
+		$data['pageTitle'] = 'Objective Paper';
+		$data['smallTitle'] = 'Objective Paper';
+		$data['mainPage'] = ' Objective Paper';
+		$data['subPage'] = 'Objective Paper';
+		$data['title'] = 'Objective Papert';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'objectivePaper';
+		$this->load->view("includes/mainContent", $data);
+		}
 		
 		function studentProfile(){
 			$this->load->model("allFormModel");
