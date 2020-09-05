@@ -12,8 +12,8 @@ class examControllers extends CI_Controller
 		    'fsd'=>$this->session->userdata("fsd"),
     	    'term'=>$this->input->post("term"),
     		'exam_name'=>$this->input->post("examName"),
-    		'exam_mode' =>$this->input->post("exam_mode"),
-    		'school_code'=>$this->session->userdata("school_code")
+    		'school_code'=>$this->session->userdata("school_code"),
+			'exam_date'	=>$this->input->post("datet")
     		  );
 		 $this->load->model("examModel");
 		$var=$this->examModel->insertexam($data);
@@ -31,7 +31,7 @@ class examControllers extends CI_Controller
 			'language' =>$this->input->post("language"),
 			'subject' =>$this->input->post('subject'),
 			'exam_mode' =>$this->input->post("exam_mode"),
-    		'school_code'=>$this->session->userdata("school_code")
+    		
     		  );
 			 // print_r($data);
 		 $this->load->model("examModel");
@@ -1019,21 +1019,18 @@ function insertMarksdetail()
 
 	function create_ques(){
 		 $uri= $this->uri->segment("3");
+		 $school_code=$this->session->userdata("school_code");
 		 $this->db->where('exam_id',$uri);
 		$ex=$this->db->get('exam_mode');
-		//print_r($ex);
+		$getmode=$this->db->query("select * from exam_mode where exam_id='$uri'");
 		$data['exam']=$ex;
-		$lang_id = $this->input->post('select_lang');
-		//echo $lang_id;
-		$select_exam = $this->input->post('select_exam');
-		//$select_test = $this->input->post('select_test');
-		$select_subject = $this->input->post('select_subject');
+		$lang_id = $ex->row()->language;
+		$select_exam = $ex->row()->exam_id;
+		$select_subject = $ex->row()->subject;
 		$this->load->model('exammodel');
 		$data['dt_qt'] = $this->exammodel->question_data($select_exam,$select_subject);
-		//print_r($data);
 		$data['language'] = $this->exammodel->select_language($lang_id);
 		$data['select_exam'] = $select_exam;
-		//$data['select_test'] = $select_test;
 		$data['select_subject'] = $select_subject;
 		$data['pageTitle'] = 'Create Questions';
 		$data['smallTitle'] = 'Create Questions';

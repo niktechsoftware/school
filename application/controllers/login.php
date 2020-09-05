@@ -1486,7 +1486,6 @@ function exammode(){
 		$var1=$this->examModel->getExamNameForUpdate();
 		$data['request']=$var->result();
 		$data['requestforUpdate']=$var1->result();
-		
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$count = $this->db->count_all("exam_name");
 		$data['i']=$count;

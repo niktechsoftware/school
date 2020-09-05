@@ -58,40 +58,33 @@ tr:nth-child(even) {
 				</div>
 			</div>
 		          <div class="panel-body">
-										  <?php 
 										
-										 //$this->db->where('id',$exam->id);
-										// $info=$this->db->get('exam_mode');
-										// $this->db->where('id',$exam->exam_id);
-										// $sec=$this->db->get('section');
-										  //$this->db->where('id',$exam->exam_id);
-										// $sec=$this->db->get('language');
-										 ?>
-										<table>
-											<tr></tr>
-											<tr>
+										<table class="table table-responsive">
+										<thead>
+											<tr style="background-color:#E2EFED">
 											<?php $i=1;
 											
 											foreach($exam->result() as $res):?>
 											 <?php $this->db->where('id',$res->exam_id);
-											 $ename=$this->db->get('exam_name')->row();
-											 $this->db->where('id',$res->class_id);
-											$info=$this->db->get('class_info')->row();
-											$this->db->where('id',$res->section);
-											$sec=$this->db->get('class_section')->row();
-											 $this->db->where('id',$res->language);
-											$lan=$this->db->get('language')->row();
-											$this->db->where('id',$res->subject);
-											$sub=$this->db->get('subject')->row();
+											 	$ename=$this->db->get('exam_name')->row();
+											 	$this->db->where('id',$res->class_id);
+												$info=$this->db->get('class_info')->row();
+												$this->db->where('id',$res->section);
+												$sec=$this->db->get('class_section')->row();
+											 	$this->db->where('id',$res->language);
+												$lan=$this->db->get('language')->row();
+												$this->db->where('id',$res->subject);
+												$sub=$this->db->get('subject')->row();
 											 ?>
-												<td><?php   echo  $ename->exam_name;;  ?></td>
-												<td><?php   echo $info->class_name;  ?></td>
-												<td><?php   echo $sec->section;  ?></td>
-												<td><?php   echo $lan->language;  ?></td>
-												<td><?php   echo $sub->subject;  ?></td>
+												<th><?php   echo $ename->exam_name;;  ?></th>
+												<th><?php   echo $info->class_name;  ?></th>
+												<th><?php   echo $sec->section;  ?></th>
+												<th><?php   echo $lan->language;  ?></th>
+												<th><?php   echo $sub->subject;  ?></th>
 											 <?php $i++;
 											 endforeach; ?>
 											 </tr>
+											 <thead>
 										  </table>
 											</br>
 											</br>
@@ -99,7 +92,7 @@ tr:nth-child(even) {
 					   <div class="form-group">
 							<div>
                                       <center><label><h5 style="font-size:150%;">Select Question Type :</h5></label><br>
-                                      <label><h5 style="font-size:130%;">Questions :</h5></label><input type="radio" name="radio_q" id="radio_1" style="width:20px; height:18px;"/>
+                                      <label><h5 style="font-size:130%;">Normal Questions :</h5></label><input type="radio" name="radio_q" id="radio_1" style="width:20px; height:18px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                       <label><h5 style="font-size:130%;">Questions With Images:</h5></label><input type="radio" name="radio_q" id="radio_2" style="width:20px; height:18px;"/></center>
                             </div>
 							<div id="normal_ques">
@@ -143,9 +136,9 @@ tr:nth-child(even) {
 							<div id="image_ques">
                                  <form method="post" id="uploadform" action="" enctype="multipart/form-data" >
                                     <div class="row">
-                                        <input type="hidden" name="exam_master_id" value="<?php echo $select_exam; ?>">
-                                      <!--  <input type="hidden" name="exam_test_id" value="<?php //echo $select_test; ?>">-->
-                                        <input type="hidden" name="exam_subject_id" value="<?php echo $select_subject; ?>">
+                                        <input type="hidden" name="exam_master_id"  id="exam_master_id"value="<?php echo $select_exam; ?>">
+                                     
+                                        <input type="hidden" name="exam_subject_id" id="exam_subject_id" value="<?php echo $select_subject; ?>">
                                         <div class="col-md-3"><label style="float:right"><b>Question :</b></label></div>
                                         <div class="col-md-6">
                                             <textarea id="ques1" name="ques1" class="form-control" placeholder="Write Question here"></textarea>
@@ -322,11 +315,11 @@ $("#submit_q").click(function(){
         var e = $('#e1').val();
 		var sel = $('#sel_ct').val();
       
-        var exam_master_id = <?php echo $select_exam; ?>;
+        var exam_master_id = $('#exam_master_id').val();
 		alert(exam_master_id);
         
 		//alert(exam_name_id);
-        var exam_subject_id = <?php echo $select_subject; ?>;
+        var exam_subject_id = $('#exam_subject_id').val();
 		//alert(exam_subject_id);
     if((ques.length>0) && (($('#a1').val()).length>0) && (($('#b1').val()).length>0) && (($('#c1').val()).length>0) && (($('#d1').val()).length>0))
     {

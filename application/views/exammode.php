@@ -47,7 +47,7 @@
 													<table>
 													    <tr>
 													    	<td><label class="panel-title">Select Exam:</label></td>
-													    	<td><select name="examName2" required="required" style="width: 180px;"><option>--SELECT EXAM--</option>
+													    	<td><select name="examName2" required="required" style="width: 180px;">
 															<option value="01">-Select Exam-</option>
 															<?php foreach ($requestforUpdate as $row):
 															$ds= $row->exam_date;
@@ -118,19 +118,6 @@
 										</div>
 									</form>
 								</div>
-											<script type="text/javascript">
-												var input = document.getElementById("examName");
-                                                   input.addEventListener("keyup", function () {
-
-                                                    });
-
-                                                   input.addEventListener("keyup", function () {
-                                                     var x = document.getElementById("examName");
-                                                          x.value = x.value.toUpperCase();
-                                
-                                                            });
-				
-											</script>
 										
 							</div>
 							</br>
@@ -156,19 +143,17 @@
 											</thead>
 											<tbody>
 												<?php $i=1;
-												$getmode=$this->db->get('exam_mode');
+												$school_code = $this->session->userdata("school_code");
+												$getmode=$this->db->query("select exam_mode.exam_id, exam_name.exam_name, exam_mode.class_id,exam_mode.section, exam_mode.subject,exam_mode.language, exam_mode.exam_mode from exam_mode join exam_name on exam_mode.exam_id = exam_name.id where exam_name.school_code='$school_code'");
 												if($getmode->num_rows()>0){
 													foreach($getmode->result() as $row):
 												?>
 												<tr>
 													<td><?php echo $i;?></td>
 													<td>	
-													<?php $this->db->where('id',$row->exam_id);
-													$ename=$this->db->get('exam_name')->row();
 													
-													?>
-														<input type="text" style="width: 140px;" name="examName<?php echo $i;?>" value="<?php echo $ename->exam_name;?>" id="ename<?php echo $i;?>" disabled="disabled"/>									
-														<input type="hidden" name="examName" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/>
+														<input type="text" style="width: 140px;" name="examName<?php echo $i;?>" value="<?php echo $row->exam_name;?>" id="ename<?php echo $i;?>" disabled="disabled"/>									
+														<input type="hidden" name="examName" id="rowid<?php echo $i;?>" value="<?php echo $row->exam_id;?>"/>
 													</td>
 													<td>
 													<?php $this->db->where('id',$row->class_id);

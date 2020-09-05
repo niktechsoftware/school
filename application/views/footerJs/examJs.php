@@ -57,11 +57,8 @@
 		 $(document).ready(function() {
     $('#table12').DataTable();
      $('#sample-table-2').DataTable();
-} );
 
-
-			jQuery(document).ready(function() {
-				
+     
 				$("#sectionId").change(function(){
     	        	 var sectionid = $("#sectionId").val();
     	        	  alert(sectionid);
@@ -266,18 +263,8 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
 					
 					});
 				
-                        var input = document.getElementById("examName");
-                         input.addEventListener("keyup", function () {
-                         });
+                        
 
-                         input.addEventListener("keyup", function () {
-                          var x = document.getElementById("examName");
-                             x.value = x.value.toUpperCase();
-                         
-                  });
-				
-                           
-	});
 <?php
 
     $school_code = $this->session->userdata("school_code");
@@ -326,10 +313,10 @@ $("#sub_type").change(function(){
 
 <?php } ?>
 
-				
-				SVExamples.init();
-				TableExport.init();
-				FormElements.init();
-				
-					Main.init();
+
+Main.init();
+SVExamples.init();
+TableExport.init();
+		 } );				
+			
 		</script>
