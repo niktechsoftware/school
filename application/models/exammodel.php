@@ -72,81 +72,24 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 
 public function getExamTimeNoticebySchool($exam_id,$class_id,$school_code){
 	$this->db->distinct();
-	
 	$this->db->where("exam_id",$exam_id);
 	$this->db->where("class_id",$class_id);
 	$exam_shift=$this->db->get("exam_time_table");
 	
+	$this->db->where("school_code",$school_code);
+	$ens = $this->db->get("exam_notice_setting");
+	if($ens->num_rows()>0){
 	?>
-	
 	<div align="left"><h3>
 	<!--for daffodils start-->
-	<?php   $row2=$this->db->get('db_name')->row()->name;
-	if(($school_code==5) && ($row2=="D")){ ?>
-	
-			&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift->result() as $s):   echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-	
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) A Student who gives or obtains unfair assistance at an examination 
-			will debarred for the rest of the examination and will</br> 
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
-	
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) 28-03-2020 Result Declaration & P.T.M.
-			<!--for daffodils end-->
-			<!--for scholar start-->
-			<?php }else if($school_code==13 && $row2=="A"){
-			?>	&nbsp;Note: 1) The reporting time to school will be at <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->from1)); endforeach; ?> and dispersal timing will be at <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->to1)); endforeach; ?>. 
-		    </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			2) Bring this admit card and all necessary instruments (Pen, Pencil box, Geometry box etc.) during exam is compulsory. </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			3) Unfair means or papers are strictly prohibited.</br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<?php if($school_code == 13){?>
-				4) PTM and Result Declaration will be held on 22nd of March.
-			    
-		<?php	}else{?>
+	<?php  
+	$i=1;	foreach($ens->result() as $enotice ):
+	?><h2 style="text-transform:uppercase; text-align:left;line-height:22px; margin-left:30px; padding-top:3px; padding-bottom:0px;">
+		<?php echo $i.")&nbsp;&nbsp;".$enotice->notice."<br>";
 			
-				4) Issuing of duplicate Admit card will charge 10 rs.
-			
-		<?php 	}?>
-		
-	
-			<?php }else if(($school_code==5) && ($row2=="C")) {	?>
-				&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
-			$endt =strtotime("-00 minutes",strtotime($s->to1));
-			echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
-			
-			<?php }	else if($school_code==8 || $school_code==9){ ?>
-			<!--for scholar end-->
-			<!--for dds start--><?php $a=$class_id;if($a==108 || $a==109 || $a==110 || $a==111){?>&nbsp;Note: 1)Exam timing is - 08:00 A.M. to 12:00 P.M.<br><?php }else{ ?>
-	
-			&nbsp;Note: 
-			<?php  } ?>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)Students reporting time is latest by 8:30 A.M. and departure time is 01:30 P.M.
-	
-			<?php /*foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
-			$endt =strtotime("-00 minutes",strtotime($s->to1));
-			echo $s->shift."-".date('H:i A', $startt)." "; endforeach;*/ ?> </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Unfair means or papers are strictly prohibited.</br>
-			<?php }else{ ?><!--for dds end-->
-	
-			&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-15 minutes",strtotime($s->from1));
-			$endt =strtotime("-00 minutes",strtotime($s->to1));
-			echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
-			<?php }?></h3>
-	
-		
-			</div>
-	<?php 		
+		$i++;  endforeach; ?>
+			</h2></div>
+	<?php 	}	
 }
 public function getExamMode($exam_id,$class_id){
 	
@@ -282,6 +225,11 @@ function insertexam($data)
 	$query1 = $this->db->insert("exam_name",$data);
 	return $query1;
 }
+function exam_mode($data)
+{
+	$query1 = $this->db->insert("exam_mode",$data);
+	return $query1;
+}
 function updateexam($examid,$date,$examName,$exam_mode)
 {
 	
@@ -407,7 +355,202 @@ return $query1;
 		return $cat;
 	}
 	
+		public function getClass($sectionid){
+		$query = $this->db->query("SELECT * from class_info where section='$sectionid'  ORDER BY id ASC");
+		return $query;
+	}
 	
-
+	//-------------------------****************************-------------------------//
+	//////////////////////////////////////////////////////////////////////////////////
+	//-------------------------*****Online Exam*******-------------------------------//
+	public function exam_name()
+		{
+			 $gt = $this->db->get('exam_name');
+			 return $gt;
+		}
+		public function subject_name()
+		{
+			 $gt_sub = $this->db->get('subject');
+			 return $gt_sub;
+		}
+		public function language()
+		{
+			$gt = $this->db->get('language');
+			return $gt;
+		}
+		public function test_data()
+		{
+			// $gt_ex_nm = $this->db->get('test_data');
+			// return $gt_ex_nm;
+		}
+	public function insert_ques($ques,$exam_subject_id,$exam_master_id,$ans,$a,$b,$c,$d,$e)
+		{
+			$val1 = array(
+				'question'=>$ques,
+				//'exam_name_id'=>$exam_name_id,
+				'exam_subject_id'=>$exam_subject_id,
+				'exam_master_id'=>$exam_master_id 
+				);
+			$in_q1 = $this->db->insert('question_master',$val1);
+			if($in_q1)
+			{
+				$tt=$this->db->insert_id();
+				$val2 = array(
+					'question_master_id'=>$tt,
+					'A'=>$a,
+					'B'=>$b,
+					'C'=>$c,
+					'D'=>$d,
+					'E'=>$e);
+				$in_q2 = $this->db->insert('question_ans',$val2);
+				if($in_q2)
+				{
+					$val3 = array(
+						'question_master_id'=>$tt,
+						'right_answer'=>$ans,
+						);
+					$in_q3 = $this->db->insert('right_answer',$val3);
+					return $in_q3;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+function delete_q($q_id)
+		{
+			$this->db->where('id',$q_id);
+			$dlt = $this->db->delete('question_master');
+			return $dlt;
+		}
+		function edit_q($q_id)
+		{
+			$this->db->where('id',$q_id);
+			return $q = $this->db->get('question_master');
+		}
+		function ques_op($q_id)
+		{
+			$this->db->where('question_master_id',$q_id);
+			return $op = $this->db->get('question_ans');
+		}
+	function insert_img_question($ques,$exam_subject_id,$exam_master_id,$qf1,$qf2,$qf3,$qf4,$af1,$af2,$af3,$af4,$af5,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5)
+		{
+			$val1 = array(
+				'question'=>$ques,
+				//'exam_name_id'=>$exam_name_id,
+				'exam_subject_id'=>$exam_subject_id,
+				'exam_master_id'=>$exam_master_id );
+			$in_q1 = $this->db->insert('question_master',$val1);
+			if($in_q1)
+			{
+				$tt=$this->db->insert_id();
+				$val2 = array(
+					'question_master_id'=>$tt,
+					'A'=>$op_txt1,
+					'B'=>$op_txt2,
+					'C'=>$op_txt3,
+					'D'=>$op_txt4,
+					'E'=>$op_txt5 );
+				$in_q2 = $this->db->insert('question_ans',$val2);
+				if($in_q2)
+				{
+					$val3 = array(
+						'question_master_id'=>$tt,
+						'right_answer'=>$ans,
+						);
+					$in_q3 = $this->db->insert('right_answer',$val3);
+					if($in_q3)
+					{
+						$val4 = array(
+						'question'=>$tt,
+						'q_img1'=>$qf1,
+						'q_img2'=>$qf2,
+						'q_img3'=>$qf3,
+						'q_img4'=>$qf4,
+						'q_ans_img1'=>$af1,
+						'q_ans_img2'=>$af2,
+						'q_ans_img3'=>$af3,
+						'q_ans_img4'=>$af4,
+						'q_ans_img5'=>$af5,
+						'right_answer'=>$ans
+						);
+						return $in_q = $this->db->insert('question_images',$val4);
+					}
+					else
+					{
+						return 0;
+					}
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		public function select_language($lang_id)
+		{
+			 //echo $lang_id;
+			$this->db->where('id',$lang_id);
+			return $lg = $this->db->get('language')->row();
+			//print_r($lg);
+		}
+		public function question_data($select_exam,$select_subject)
+		{
+			$this->db->where('exam_subject_id',$select_subject);
+			//$this->db->where('exam_name_id',$select_test);
+			$this->db->where('exam_master_id',$select_exam);
+			$dx_q = $this->db->get('question_master');
+			return $dx_q;
+		}
+		public function select_exam_data($exam_id,$lang_id)
+		{
+			$this->db->where('exam_master_id',$exam_id);
+			$this->db->where('test_language_id',$lang_id);
+			$this->db->group_by('exam_name');
+			$st_dt = $this->db->get('exam_name');
+			return $st_dt;
+		}
+		function update_ques($ques,$q_id,$ans,$a,$b,$c,$d,$e)
+		{
+			$val1 = array('question'=>$ques);
+			$this->db->where('id',$q_id);
+			$up_q1 = $this->db->update('question_master',$val1);
+			if($up_q1)
+			{
+				$val2 = array(
+					'A'=>$a,
+					'B'=>$b,
+					'C'=>$c,
+					'D'=>$d,
+					'E'=>$e);
+				$this->db->where('question_master_id',$q_id);
+				$up_q2 = $this->db->update('question_ans',$val2);
+				if($up_q2)
+				{
+					$val3 = array('right_answer'=>$ans);
+					$this->db->where('question_master_id',$q_id);
+					$up_q3 = $this->db->update('right_answer',$val3);
+					return $up_q3;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		
 }
 ?>
