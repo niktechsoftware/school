@@ -134,11 +134,11 @@ tr:nth-child(even) {
 									</br>
 									</br>
 							<div id="image_ques">
-                                 <form method="post" id="uploadform" action="" enctype="multipart/form-data" >
+                                 <form method="post" id="uploadform" enctype="multipart/form-data" action="" >
                                     <div class="row">
-                                        <input type="hidden" name="exam_master_id"  id="exam_master_id"value="<?php echo $select_exam; ?>">
-                                     
-                                        <input type="hidden" name="exam_subject_id" id="exam_subject_id" value="<?php echo $select_subject; ?>">
+                                        <input type="hidden" name="exam_master_id1"  id="exam_master_id" value="<?php echo $select_exam; ?>">
+                                     <input type="hidden" name="exam_language"  id="exam_language" value="<?php echo $language; ?>">
+                                        <input type="hidden" name="exam_subject_id1" id="exam_subject_id" value="<?php echo $select_subject; ?>">
                                         <div class="col-md-3"><label style="float:right"><b>Question :</b></label></div>
                                         <div class="col-md-6">
                                             <textarea id="ques1" name="ques1" class="form-control" placeholder="Write Question here"></textarea>
@@ -402,9 +402,9 @@ $("#submit_q").click(function(){
     processData:false,
     success: function(data){
     // $("#targetLayer").html(data);
-	alert("simran");
+	
    alert(data);
-	alert("simran");
+	
     location.reload();
     // if(console.log(data)=='1')
     //     {

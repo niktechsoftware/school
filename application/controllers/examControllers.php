@@ -1027,9 +1027,10 @@ function insertMarksdetail()
 		$lang_id = $ex->row()->language;
 		$select_exam = $ex->row()->exam_id;
 		$select_subject = $ex->row()->subject;
+		$data['language'] = $ex->row()->language;
 		$this->load->model('exammodel');
 		$data['dt_qt'] = $this->exammodel->question_data($select_exam,$select_subject);
-		$data['language'] = $this->exammodel->select_language($lang_id);
+		//$data['language'] = $this->exammodel->select_language($lang_id);
 		$data['select_exam'] = $select_exam;
 		$data['select_subject'] = $select_subject;
 		$data['pageTitle'] = 'Create Questions';
@@ -1098,11 +1099,12 @@ function insertMarksdetail()
 	{
 		$this->load->model('exammodel');
 		$sel_ct = $this->input->post("sel_ct");
-		$exam_subject_id = $this->input->post('exam_subject_id');
+		$exam_subject_id = $this->input->post('exam_subject_id1');
 		//$exam_name_id = $this->input->post('exam_test_id');
-		$exam_master_id = $this->input->post('exam_master_id');
+		$exam_master_id = $this->input->post('exam_master_id1');
 		$exam_language = $this->input->post('exam_language');
-		if($sel_ct != 0)
+		//echo $sel_ct;
+		 if($sel_ct != 0)
 		{
 			$ques = $this->input->post("ques1");
 			$op_txt1 = $this->input->post("txt_af1");
@@ -1119,6 +1121,8 @@ function insertMarksdetail()
 			$af3 = $_FILES['af3']['name'];
 			$af4 = $_FILES['af4']['name'];
 			$af5 = $_FILES['af5']['name'];
+			
+			
 			
 			switch($sel_ct)
 			{
@@ -1141,23 +1145,49 @@ function insertMarksdetail()
 			
 			for($i=1;$i<=4;$i++)
 			{
-				$image_path = realpath(APPPATH . '../assets/images/question_img');
+				$rawname = "qf".$i;
+				if (!empty($_FILES['qf'.$i]['name'])) {
+					$rawname = "qf".$i;
+				$image_path = realpath(APPPATH . '../assets/images/question_img/');
 				$photo_name = str_replace(' ','',$_FILES['qf'.$i]['name']);
 				$config['upload_path'] = $image_path;
-				$config['allowed_types'] = 'gif|jpg|jpeg|png';
-				$config['max_size'] = '1024';
+				echo $image_path;
+				$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf';
+				$config['max_size'] = '2024';
 				$config['file_name'] = $photo_name;
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+				//print_r($config);
+				if($this->upload->do_upload($rawname))
+				{
+					
+				}
+					else{
+						echo $this->upload->display_errors();
+				}
 				
+			}
 			}
 			for($i=1;$i<=5;$i++)
 			{
-				$image_path = realpath(APPPATH . '../assets/images/question_img');
+				if (!empty($_FILES['af'.$i]['name'])) {
+					$rawname = "af".$i;
+				$image_path = realpath(APPPATH . '../assets/images/question_img/');
 				$photo_name = str_replace(' ','',$_FILES['af'.$i]['name']);
 				$config['upload_path'] = $image_path;
 				$config['allowed_types'] = 'gif|jpg|jpeg|png';
-				$config['max_size'] = '1024';
+				$config['max_size'] = '2024';
 				$config['file_name'] = $photo_name;
+				$this->upload->initialize($config);
+				$this->load->library('upload',$config);
+				if($this->upload->do_upload($rawname))
+				{
 				
+				}
+				else{
+					echo $this->upload->display_errors();
+				}
+			}
 			}
 			$chk = $this->exammodel->insert_img_question($ques,$exam_subject_id,$exam_master_id,$qf1,$qf2,$qf3,$qf4,$af1,$af2,$af3,$af4,$af5,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5);
 			if($chk)
@@ -1173,7 +1203,7 @@ function insertMarksdetail()
 		{
 		    echo "Image Not Found";
 // 			redirect('adminController/create_ques/0'.$exam_master_id.'/'.$exam_name_id.'/'.$exam_subject_id.'/'.$exam_language);
-		}
+		} 
 		
 	}
 	function update_question()
