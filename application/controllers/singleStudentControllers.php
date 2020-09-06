@@ -129,7 +129,18 @@ class singleStudentControllers extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 		}
 		function objectivePaper(){
+		$exam_id=$this->uri->segment(3);
+		 $class_id=$this->uri->segment(4);
+		 
+			//echo $ex->class_id;
+			$this->db->where("exam_id",$exam_id);
+			$this->db->where("class_id",$class_id);
+			$que=$this->db->get("exam_mode")->row();
 		
+			$this->db->where("exam_master_id",$exam_id);
+			$this->db->where("exam_subject_id",$que->subject);
+			$data1=$this->db->get("question_master");
+			$data['ques']=$data1;
 		$data['pageTitle'] = 'Objective Paper';
 		$data['smallTitle'] = 'Objective Paper';
 		$data['mainPage'] = ' Objective Paper';

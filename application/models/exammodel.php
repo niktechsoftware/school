@@ -5,7 +5,8 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 	$this->db->where("exam_id",$exam_id);
 	$this->db->where("class_id",$class_id);
 	$exam_day=$this->db->get("exam_time_table");
-	
+	//echo $exam_id;
+	//echo $shift_id;
 	$this->db->distinct();
 	$this->db->select("shift_id");
 	$this->db->where("exam_id",$exam_id);

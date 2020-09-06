@@ -302,7 +302,7 @@ echo $noticeForStudent->row()->message;
   <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142">
 </a></p>
 			<p>
-		<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectivePaper">	Objecive</a></p>			
+		<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectivePaper/<?php echo $exam_id;?>/<?php echo $class_id;?>/">	Objecive</a></p>			
                                         					
                 </div>
                 </a>
