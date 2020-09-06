@@ -23,7 +23,7 @@
     }
 </script>
 <!-- start: PAGE CONTENT -->
-<div class="row">
+<div class="row">=
 	<div class="col-sm-12">
 		<!-- start: INLINE TABS PANEL -->
 		<div class="panel panel-white">

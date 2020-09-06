@@ -7,6 +7,7 @@ class singleStudentControllers extends CI_Controller{
 			$this->load->model("subjectModel");
 			$this->load->model("singleStudentModel");
 			$this->load->model("feeModel");
+			$this->load->model("examModel");
 		}
 		
 		function is_login(){
@@ -99,37 +100,7 @@ class singleStudentControllers extends CI_Controller{
 		}
 		function index(){
 		$school_code=$this->session->userdata("school_code");
-		$this->db->where("school_code",$school_code);
-		$this->db->where("DATE(opening_date)",date("Y-m-d"));
-		$checkopeningclo  = $this->db->get("opening_closing_balance");
-		if($checkopeningclo->num_rows()>0){
-			$cr_date = date('Y-m-d H:i:s');
-				$balance = array(
-						"closing_date" => $cr_date,
-				);
-				$this->db->where("school_code",$school_code);
-				$this->db->where("opening_date",date("Y-m-d"));
-				$this->db->update('opening_closing_balance',$balance);
-			
-		}else{
-			$clo = $this->db->query("select * from opening_closing_balance where school_code = '$school_code'  ORDER BY id DESC LIMIT 1")->row();
 	
-			$cl_date = $clo->closing_date;
-			$cl_balance = $clo->closing_balance;
-			$cr_date = date('Y-m-d');
-			if($cl_date != $cr_date)
-			{
-				$balance = array(
-						"opening_balance" => $cl_balance,
-						"closing_balance" => $cl_balance,
-						"opening_date" => $cr_date,
-						"closing_date" => $cr_date,
-						"school_code"=>$school_code
-				);
-				$this->db->insert('opening_closing_balance',$balance);
-				//echo $cl_date;
-			}
-		}	
 		$data['stuid_id']=$this->session->userdata("id");
 		$data['school_code']=$school_code;
 			$data['pageTitle'] = 'Dashboard';
@@ -138,7 +109,9 @@ class singleStudentControllers extends CI_Controller{
 			$data['subPage'] = 'dashboard';
 			$data['title'] = 'Student Dashboard';
 			$data['headerCss'] = 'headerCss/dashboardCss';
+			$data['headerCss'] = 'headerCss/examTimeTableCss';
 			$data['footerJs'] = 'footerJs/dashboardJs';
+			$data['footerJs']='footerJs/examTimeTableJs';
 			$data['mainContent'] = 'dashboardStudent';
 			$this->load->view("includes/mainContent", $data);
 		
@@ -153,6 +126,29 @@ class singleStudentControllers extends CI_Controller{
 		$data['headerCss'] = 'headerCss/feeCss';
 		$data['footerJs'] = 'footerJs/feeJs';
 		$data['mainContent'] = 'stufeesdetail';
+		$this->load->view("includes/mainContent", $data);
+		}
+		function objectivePaper(){
+		$exam_id=$this->uri->segment(3);
+		 $class_id=$this->uri->segment(4);
+		 
+			//echo $ex->class_id;
+			$this->db->where("exam_id",$exam_id);
+			$this->db->where("class_id",$class_id);
+			$que=$this->db->get("exam_mode")->row();
+		
+			$this->db->where("exam_master_id",$exam_id);
+			$this->db->where("exam_subject_id",$que->subject);
+			$data1=$this->db->get("question_master");
+			$data['ques']=$data1;
+		$data['pageTitle'] = 'Objective Paper';
+		$data['smallTitle'] = 'Objective Paper';
+		$data['mainPage'] = ' Objective Paper';
+		$data['subPage'] = 'Objective Paper';
+		$data['title'] = 'Objective Papert';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'objectivePaper';
 		$this->load->view("includes/mainContent", $data);
 		}
 		

@@ -5,7 +5,8 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 	$this->db->where("exam_id",$exam_id);
 	$this->db->where("class_id",$class_id);
 	$exam_day=$this->db->get("exam_time_table");
-	
+	//echo $exam_id;
+	//echo $shift_id;
 	$this->db->distinct();
 	$this->db->select("shift_id");
 	$this->db->where("exam_id",$exam_id);
@@ -90,6 +91,17 @@ public function getExamTimeNoticebySchool($exam_id,$class_id,$school_code){
 		$i++;  endforeach; ?>
 			</h2></div>
 	<?php 	}	
+}
+public function getExamMode($exam_id,$class_id){
+	
+	$this->db->where("exam_id",$exam_id);
+	$this->db->where("class_id",$class_id);
+	$emode=$this->db->get("exam_mode");
+	//print_r($emode);
+	return $emode;
+	
+	
+	
 }
 public function getExamInfo($data)
 { $this->db->where("school_code",$this->session->userdata("school_code"));
@@ -183,6 +195,13 @@ function getPeriodD()
 	$query1 = $this->db->get("period");
 	return $query1;
 }
+function exam_schedule($class_id)
+{
+	$this->db->where("class_id",$class_id);
+	$exam = $this->db->get("exam_mode")->row();
+	//print_r($exam);
+	return $exam;
+}
 
 function getExamName($fsd)
 {
@@ -194,7 +213,6 @@ function getExamName($fsd)
 	$query1 = $this->db->get("exam_name");
 	return $query1;
 }
-
 function getExamNameForUpdate(){
 	
 	$this->db->where("school_code",$this->session->userdata("school_code"));
