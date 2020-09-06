@@ -5,7 +5,8 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 	$this->db->where("exam_id",$exam_id);
 	$this->db->where("class_id",$class_id);
 	$exam_day=$this->db->get("exam_time_table");
-	
+	//echo $exam_id;
+	//echo $shift_id;
 	$this->db->distinct();
 	$this->db->select("shift_id");
 	$this->db->where("exam_id",$exam_id);
@@ -90,6 +91,17 @@ public function getExamTimeNoticebySchool($exam_id,$class_id,$school_code){
 		$i++;  endforeach; ?>
 			</h2></div>
 	<?php 	}	
+}
+public function getExamMode($exam_id,$class_id){
+	
+	$this->db->where("exam_id",$exam_id);
+	$this->db->where("class_id",$class_id);
+	$emode=$this->db->get("exam_mode");
+	//print_r($emode);
+	return $emode;
+	
+	
+	
 }
 public function getExamInfo($data)
 { $this->db->where("school_code",$this->session->userdata("school_code"));
@@ -183,6 +195,13 @@ function getPeriodD()
 	$query1 = $this->db->get("period");
 	return $query1;
 }
+function exam_schedule($class_id)
+{
+	$this->db->where("class_id",$class_id);
+	$exam = $this->db->get("exam_mode")->row();
+	//print_r($exam);
+	return $exam;
+}
 
 function getExamName($fsd)
 {
@@ -194,7 +213,6 @@ function getExamName($fsd)
 	$query1 = $this->db->get("exam_name");
 	return $query1;
 }
-
 function getExamNameForUpdate(){
 	
 	$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -206,6 +224,11 @@ function getExamNameForUpdate(){
 function insertexam($data)
 {
 	$query1 = $this->db->insert("exam_name",$data);
+	return $query1;
+}
+function exam_mode($data)
+{
+	$query1 = $this->db->insert("exam_mode",$data);
 	return $query1;
 }
 function updateexam($examid,$date,$examName,$exam_mode)
@@ -333,7 +356,202 @@ return $query1;
 		return $cat;
 	}
 	
+		public function getClass($sectionid){
+		$query = $this->db->query("SELECT * from class_info where section='$sectionid'  ORDER BY id ASC");
+		return $query;
+	}
 	
-
+	//-------------------------****************************-------------------------//
+	//////////////////////////////////////////////////////////////////////////////////
+	//-------------------------*****Online Exam*******-------------------------------//
+	public function exam_name()
+		{
+			 $gt = $this->db->get('exam_name');
+			 return $gt;
+		}
+		public function subject_name()
+		{
+			 $gt_sub = $this->db->get('subject');
+			 return $gt_sub;
+		}
+		public function language()
+		{
+			$gt = $this->db->get('language');
+			return $gt;
+		}
+		public function test_data()
+		{
+			// $gt_ex_nm = $this->db->get('test_data');
+			// return $gt_ex_nm;
+		}
+	public function insert_ques($ques,$exam_subject_id,$exam_master_id,$ans,$a,$b,$c,$d,$e)
+		{
+			$val1 = array(
+				'question'=>$ques,
+				//'exam_name_id'=>$exam_name_id,
+				'exam_subject_id'=>$exam_subject_id,
+				'exam_master_id'=>$exam_master_id 
+				);
+			$in_q1 = $this->db->insert('question_master',$val1);
+			if($in_q1)
+			{
+				$tt=$this->db->insert_id();
+				$val2 = array(
+					'question_master_id'=>$tt,
+					'A'=>$a,
+					'B'=>$b,
+					'C'=>$c,
+					'D'=>$d,
+					'E'=>$e);
+				$in_q2 = $this->db->insert('question_ans',$val2);
+				if($in_q2)
+				{
+					$val3 = array(
+						'question_master_id'=>$tt,
+						'right_answer'=>$ans,
+						);
+					$in_q3 = $this->db->insert('right_answer',$val3);
+					return $in_q3;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+function delete_q($q_id)
+		{
+			$this->db->where('id',$q_id);
+			$dlt = $this->db->delete('question_master');
+			return $dlt;
+		}
+		function edit_q($q_id)
+		{
+			$this->db->where('id',$q_id);
+			return $q = $this->db->get('question_master');
+		}
+		function ques_op($q_id)
+		{
+			$this->db->where('question_master_id',$q_id);
+			return $op = $this->db->get('question_ans');
+		}
+	function insert_img_question($ques,$exam_subject_id,$exam_master_id,$qf1,$qf2,$qf3,$qf4,$af1,$af2,$af3,$af4,$af5,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5)
+		{
+			$val1 = array(
+				'question'=>$ques,
+				//'exam_name_id'=>$exam_name_id,
+				'exam_subject_id'=>$exam_subject_id,
+				'exam_master_id'=>$exam_master_id );
+			$in_q1 = $this->db->insert('question_master',$val1);
+			if($in_q1)
+			{
+				$tt=$this->db->insert_id();
+				$val2 = array(
+					'question_master_id'=>$tt,
+					'A'=>$op_txt1,
+					'B'=>$op_txt2,
+					'C'=>$op_txt3,
+					'D'=>$op_txt4,
+					'E'=>$op_txt5 );
+				$in_q2 = $this->db->insert('question_ans',$val2);
+				if($in_q2)
+				{
+					$val3 = array(
+						'question_master_id'=>$tt,
+						'right_answer'=>$ans,
+						);
+					$in_q3 = $this->db->insert('right_answer',$val3);
+					if($in_q3)
+					{
+						$val4 = array(
+						'question'=>$tt,
+						'q_img1'=>$qf1,
+						'q_img2'=>$qf2,
+						'q_img3'=>$qf3,
+						'q_img4'=>$qf4,
+						'q_ans_img1'=>$af1,
+						'q_ans_img2'=>$af2,
+						'q_ans_img3'=>$af3,
+						'q_ans_img4'=>$af4,
+						'q_ans_img5'=>$af5,
+						'right_answer'=>$ans
+						);
+						return $in_q = $this->db->insert('question_images',$val4);
+					}
+					else
+					{
+						return 0;
+					}
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		public function select_language($lang_id)
+		{
+			 //echo $lang_id;
+			$this->db->where('id',$lang_id);
+			return $lg = $this->db->get('language')->row();
+			//print_r($lg);
+		}
+		public function question_data($select_exam,$select_subject)
+		{
+			$this->db->where('exam_subject_id',$select_subject);
+			//$this->db->where('exam_name_id',$select_test);
+			$this->db->where('exam_master_id',$select_exam);
+			$dx_q = $this->db->get('question_master');
+			return $dx_q;
+		}
+		public function select_exam_data($exam_id,$lang_id)
+		{
+			$this->db->where('exam_master_id',$exam_id);
+			$this->db->where('test_language_id',$lang_id);
+			$this->db->group_by('exam_name');
+			$st_dt = $this->db->get('exam_name');
+			return $st_dt;
+		}
+		function update_ques($ques,$q_id,$ans,$a,$b,$c,$d,$e)
+		{
+			$val1 = array('question'=>$ques);
+			$this->db->where('id',$q_id);
+			$up_q1 = $this->db->update('question_master',$val1);
+			if($up_q1)
+			{
+				$val2 = array(
+					'A'=>$a,
+					'B'=>$b,
+					'C'=>$c,
+					'D'=>$d,
+					'E'=>$e);
+				$this->db->where('question_master_id',$q_id);
+				$up_q2 = $this->db->update('question_ans',$val2);
+				if($up_q2)
+				{
+					$val3 = array('right_answer'=>$ans);
+					$this->db->where('question_master_id',$q_id);
+					$up_q3 = $this->db->update('right_answer',$val3);
+					return $up_q3;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		
 }
 ?>

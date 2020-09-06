@@ -163,6 +163,7 @@
 	     	$billno = $invoice_number;
 	     		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
+
 				"heads" => 3,
 				"invoice_date" => date('Y-m-d'),
 				"school_code"=>$school_code

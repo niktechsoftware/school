@@ -928,8 +928,6 @@ function createSchedule()
 		$data['mainContent'] = 'examTimeTable';
 		$this->load->view("includes/mainContent", $data);
 	}
-	
-	
 	function examDetail(){
 		$data['pageTitle'] = 'Exam Details';
 		$data['smallTitle'] = 'Exam Details';
@@ -1478,6 +1476,119 @@ function createSchedule()
 		$data['mainContent'] = 'table';
 		$this->load->view("includes/mainContent", $data);
 	}
+function exammode(){
+		$fsd =$this->session->userdata("fsd");
+		$data['pageTitle'] = 'Exam Mode';
+		$data['smallTitle'] = 'Exam Mode';
+		$data['mainPage'] = 'Exam Mode';
+		$data['subPage'] = 'Exam Mode';
+		$data['title'] = 'Exam Mode';
+		$this->load->model("examModel");
+		$var=$this->examModel->getExamName($fsd);
+		$var1=$this->examModel->getExamNameForUpdate();
+		$data['request']=$var->result();
+		$data['requestforUpdate']=$var1->result();
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$count = $this->db->count_all("exam_name");
+		$data['i']=$count;
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'exammode';
+		$this->load->view("includes/mainContent", $data);
+	}
+	function subjective_ques(){
+		$fsd =$this->session->userdata("fsd");
+		$data['pageTitle'] = 'Subjective Question';
+		$data['smallTitle'] = 'Subjective Question';
+		$data['mainPage'] = 'Subjective Question';
+		$data['subPage'] = 'Subjective Question';
+		$data['title'] = 'Subjective Question';
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'subjective_ques';
+		$this->load->view("includes/mainContent", $data);
+	}
 
+function config_test(){
+		$fsd =$this->session->userdata("fsd");
+		$this->load->model('exammodel');
+		$data['gt_val'] = $this->exammodel->exam_name();
+		$data['dt_subject'] = $this->exammodel->subject_name();
+		$data['dt_test'] =  $this->exammodel->test_data();
+		$data['dt_lang'] = $this->exammodel->language();
+		$data['pageTitle'] = 'Configuration Test';
+		$data['smallTitle'] = 'Configuration Test';
+		$data['mainPage'] = 'Configuration Test';
+		$data['subPage'] = 'Configuration Test';
+		$data['title'] = 'Configuration Test';
+		$this->load->model("examModel");
+		$var=$this->examModel->getExamName($fsd);
+		$var1=$this->examModel->getExamNameForUpdate();
+		$data['request']=$var->result();
+		$data['requestforUpdate']=$var1->result();
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$count = $this->db->count_all("exam_name");
+		$data['i']=$count;
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'config_test';
+		$this->load->view("includes/mainContent", $data);
+	}
+	function edit_q()
+	{
+		$this->load->model('exammodel');
+		$q_id = $this->uri->segment(3);
+		$data['q_dt'] = $this->exammodel->edit_q($q_id);
+		$data['q_op'] = $this->exammodel->ques_op($q_id);
+	    $data['pageTitle'] = 'Update Question';
+		$data['smallTitle'] = 'Update Question';
+		$data['mainPage'] = 'Update Question';
+		$data['subPage'] = 'Update Question';
+		$data['title'] = 'Update Question';
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'edit_ques';
+		$this->load->view("includes/mainContent", $data);	
+
+	}
+	function edit_imgques()
+	{
+		$this->load->model('exammodel');
+		$q_id = $this->uri->segment(3);
+		$data['q_dt'] = $this->exammodel->edit_q($q_id);
+		$data['q_op'] = $this->exammodel->ques_op($q_id);
+	    $data['pageTitle'] = 'Update Question';
+		$data['smallTitle'] = 'Update Question';
+		$data['mainPage'] = 'Update Question';
+		$data['subPage'] = 'Update Question';
+		$data['title'] = 'Update Question';
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'edit_imgques';
+		$this->load->view("includes/mainContent", $data);	
+
+	}
+	function quesScheduling()
+	{
+		//$period_name = $this->input->post("periodName");
+	    //print_r($period_name);exit;
+		//$pdate = $this->input->post("pdate");
+		//$data['period_name'] = $period_name;
+	 //print_r($data);exit();
+	   //$data['pdate'] = $pdate;
+	   $data['pageTitle'] = 'Question Scheduling';
+	   $data['smallTitle'] = 'Question Scheduling';
+	   $data['mainPage'] = 'Question Scheduling';
+	   $data['subPage'] = 'Question Scheduling';
+	   //$this->load->model("examModel");
+	   //$var=$this->periodmodel->getPeriodD($period_name);
+	   //print_r($var->result());
+	  // $data['request']=$var->result();
+	   $data['title'] = 'Question Scheduling';
+	   $data['headerCss'] = 'headerCss/examCss';
+	   $data['footerJs'] = 'footerJs/examJs';
+	   $data['mainContent'] = 'quesScheduling';
+	   $this->load->view("includes/mainContent", $data);
+	}
 }
 ?>
