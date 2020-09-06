@@ -451,16 +451,16 @@ function delete_q($q_id)
 					{
 						$val4 = array(
 						'question'=>$tt,
-						'q_img1'=>$qf1,
-						'q_img2'=>$qf2,
-						'q_img3'=>$qf3,
-						'q_img4'=>$qf4,
-						'q_ans_img1'=>$af1,
-						'q_ans_img2'=>$af2,
-						'q_ans_img3'=>$af3,
-						'q_ans_img4'=>$af4,
-						'q_ans_img5'=>$af5,
-						'right_answer'=>$ans
+						'q_img1'=>str_replace(' ','',$qf1),
+						'q_img2'=>str_replace(' ','',$qf2),
+						'q_img3'=>str_replace(' ','',$qf3),
+						'q_img4'=>str_replace(' ','',$qf4),
+						'q_ans_img1'=>str_replace(' ','',$af1),
+						'q_ans_img2'=>str_replace(' ','',$af2),
+						'q_ans_img3'=>str_replace(' ','',$af3),
+						'q_ans_img4'=>str_replace(' ','',$af4),
+						'q_ans_img5'=>str_replace(' ','',$af5),
+						'right_answer'=>str_replace(' ','',$ans)
 						);
 						return $in_q = $this->db->insert('question_images',$val4);
 					}
