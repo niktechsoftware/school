@@ -90,8 +90,9 @@
 														<td><label class="panel-title">Select Subject</label></td>
 														<td>  <select name="subject" id="select_subject" style="width: 180px">
 														<option value="">-select Subject-</option>
-																			<?php
-																					$sub = $this->db->get('subject');
+																			<?php $school_code = $this->session->userdata('school_code');
+																		$sub=	$this->db->query("select subject.subject, subject.id from subject join class_info on subject.class_id = class_info.id where school_code = '$school_code'");
+																				
 																					if($sub->num_rows()>0){
 																					foreach($sub->result() as $row):
 																					echo '<option value="'.$row->id.'">'.$row->subject.'</option>';?>

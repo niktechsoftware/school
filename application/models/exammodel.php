@@ -14,15 +14,17 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 	             	$exam_shift=$this->db->get("exam_time_table");?>
 				<table id="items" align="center"  style="width:100%; margin-top:8px;color:#d80707;font-size: 11px;">
 						<thead>
-							<th style="text-transform: uppercase;"><b>Date</b></th>
+						    <tr>
+							<th style="text-align: center; text-transform: uppercase;"><b>Date</b></th>
 	                        <?php 
 	
 	if($exam_day->num_rows()){
 	                        $this->db->where('exam_id',$exam_day->row()->exam_id);
 	                        $date=$this->db->get('exam_day')->result();
 	                        foreach($date as $ed):?>
-							<th><b><?php echo date("d-m-Y",strtotime($ed->date1));?></b></th>
+							<th style="text-align: center; text-transform: uppercase;"><b><?php echo date("d-m-Y",strtotime($ed->date1));?></b></th>
 							<?php endforeach; }?>
+							</tr>
 						</thead>
 						<tbody>
 	                        <?php
@@ -33,16 +35,15 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 	                        ?>
 	                        <tr>
 	
-	                        <td style="text-align: center;text-transform: uppercase;"><?php if($school_code==5){ ?><?php }else{ ?>
-	                        <?php echo $exshift->shift;  ?>
-	                        <?php //echo $s->shift;?>
+	                           <td style="text-align: center;text-transform: uppercase;"><?php 
+	                             echo $exshift->shift;  ?>
 	                        
-	                        <?php } ?></td>
+	                      </td>
 	
 	                        <?php 
-	                   
+	                   $school_code =$this->session->userdata("school_code");
 	                        foreach($date as $ed):
-							
+						
 							$this->db->where("school_code",$this->session->userdata("school_code"));
 	                        $this->db->where("exam_id",$exam_id);
 	                        $this->db->where("shift_id",$s->shift_id);
@@ -51,14 +52,38 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 							$etb = $this->db->get("exam_time_table");
 							if($etb->num_rows()>0){
 							    foreach($etb->result() as $ff):
+							        	$etype="";
 	                                 if($ff->subject_id){
 	                                $this->db->where('id',$ff->subject_id);
 	                                $this->db->where('class_id',$ff->class_id);
 	                                 $subject=$this->db->get('subject');
+	                                 
+	                                  $this->db->where("exam_id",$exam_id);
+	                                       $this->db->where("class_id",$class_id);
+	                                      $this->db->where("subject",$ff->subject_id);
+	                                      $mode = $this->db->get("exam_mode");
+	                                      if($mode->num_rows()>0){
+	                                          $modev = $mode->row();
+	                                          if($modev->exam_mode==3){
+	                                              $etype = "objective";
+	                                          }
+	                                          if($modev->exam_mode==2){
+	                                               $etype ="subjective";
+	                                          }
+	                                      }
 	                                    ?>
-	                                <td style="text-align: center;text-transform: uppercase;"> <?php echo $subject->row()->subject;?></td>
+	                                <td style="text-align: center;text-transform: uppercase;"> <?php echo $subject->row()->subject."".$ff->subject_id;?><br>
+	                                <?php if($etype){?>
+	                              <a href="<?php echo base_url();?>singleStudentControllers/objectivePaper/<?php echo $school_code;?>/<?php echo $ff->id;?>">
+                        	
+                        		<p> Click For Start</p><span class="arrow"></span>
+                        	</a>  <?php }?>
+	                                </td>
 	                                
-								<?php }else{?> <td> </td> <?php }
+								<?php 
+	                                     
+	                                     
+	                                 }else{?> <td> </td> <?php }
 							endforeach;?>
 	                        <?php }else{ ?>
 	                            <td>-</td>

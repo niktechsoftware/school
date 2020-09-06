@@ -224,3 +224,9 @@ Stack trace:
 [24-Aug-2020 13:50:45 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 383
 [24-Aug-2020 13:51:42 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 383
 [24-Aug-2020 13:52:52 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 401
+[06-Sep-2020 17:36:03 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '$sub' (T_VARIABLE) in /home/schoodhe/public_html/sschool3/application/views/exammode.php on line 95
+[06-Sep-2020 18:29:29 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/sschool3/application/controllers/singleStudentControllers.php on line 139
+[06-Sep-2020 18:36:49 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/sschool3/application/views/objectivePaper.php on line 43
+[06-Sep-2020 18:37:03 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/sschool3/application/views/objectivePaper.php on line 43
+[06-Sep-2020 18:37:28 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/sschool3/application/views/objectivePaper.php on line 43
+[06-Sep-2020 18:38:15 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/sschool3/application/views/objectivePaper.php on line 43

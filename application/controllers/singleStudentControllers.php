@@ -22,6 +22,36 @@ class singleStudentControllers extends CI_Controller{
 				redirect("index.php/homeController/lockPage");
 			}
 		}
+		
+	function updateGivenAnswer(){
+	  $qid=  $this->input->post("qid");
+	  $sid=  $this->input->post("sid");
+	    $result =  $this->input->post("result");
+	  $school_code=  $this->input->post("school_code");
+	  $exam_id=  $this->input->post("exam_id");
+	  $subject_id=  $this->input->post("subject_id");
+	  $data =array(
+	      "exam_id"=>$exam_id,
+	      "question_id"=>$qid,
+	      "student_id"=>$sid,
+	      "given_answer"=>$result,
+	      "subject_id"=>$subject_id
+	      
+	      );
+	      
+	      $this->db->where("exam_id",$exam_id);
+	      $this->db->where("question_id",$qid);
+	      $this->db->where("student_id",$sid);
+	      $this->db->where("subject_id",$subject_id);
+	      $res =$this->db->get("objective_exam_result");
+	      if($res->num_rows()>0){
+	          $this->db->where("id",$res->row()->id);
+	          $this->db->update("objective_exam_result",$data);
+	      }else{
+	           $this->db->insert("objective_exam_result",$data);
+	      }
+	}
+		
 		function payFee(){
 			$student_id=$this->uri->segment("3");
 			$school_code = $this->session->userdata("school_code");
@@ -129,18 +159,27 @@ class singleStudentControllers extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 		}
 		function objectivePaper(){
-		$exam_id=$this->uri->segment(3);
-		 $class_id=$this->uri->segment(4);
+		$school_code=$this->uri->segment(3);
+		 $exam_time_table_id =$this->uri->segment(4);
 		 
-			//echo $ex->class_id;
-			$this->db->where("exam_id",$exam_id);
-			$this->db->where("class_id",$class_id);
-			$que=$this->db->get("exam_mode")->row();
+		 $this->db->where("id",$exam_time_table_id);
+		$ettD= $this->db->get("exam_time_table")->row();
+		 
 		
-			$this->db->where("exam_master_id",$exam_id);
-			$this->db->where("exam_subject_id",$que->subject);
+			$this->db->where("exam_master_id",$ettD->exam_id);
+			$this->db->where("exam_subject_id",$ettD->subject_id);
 			$data1=$this->db->get("question_master");
-			$data['ques']=$data1;
+		$i=1;	foreach($data1->result() as $rt):
+			    $quar[$i]=$rt->id;
+			    
+			  $i++;  endforeach;
+			 
+			$this->db->where("id",$quar[1]);
+			$firstQuestion=$this->db->get("question_master")->row();
+			 $data['firstQuestion'] =$firstQuestion;
+			$data['ques']=$quar;
+			$data['school_code']=$school_code;
+			$data['stud_id']=$this->session->userdata("id");
 		$data['pageTitle'] = 'Objective Paper';
 		$data['smallTitle'] = 'Objective Paper';
 		$data['mainPage'] = ' Objective Paper';
