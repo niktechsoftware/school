@@ -3,6 +3,7 @@
 		parent::__construct();
 			$this->is_login();
 		$this->load->model("employeeModel");
+		$this->load->model("daybookmodel");
 	}
 		function is_login(){
 		$is_login = $this->session->userdata('is_login');
@@ -262,12 +263,12 @@
 				 	$msg="Dear Employee ".$f_name." welcome to ".$school.". Your Employee ID= ".$username." and Password=".$password.". Now You can login and Manage all school updates click .".$sende_Detail->web_url." Thanks for Reliance.Principal ".$school;
 				// 	sms($f_mobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				 	$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$f_mobile);
-				 	//echo $getv;
+
 				 	$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 				 }
 				//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 				$rtype="employee";
-				//	redirect("index.php/api/common_user/$rtype");
+
 				redirect("index.php/employeeController/employeeProfile/$eid");
 			}
 		}
@@ -845,6 +846,7 @@ function updateSalary(){
 	}
 	
 	function saveSalary(){
+
 	    $school_code=$this->session->userdata("school_code");
 		$abc = $this->input->post("diposit_month");
 		foreach($abc as $a){
@@ -924,22 +926,14 @@ function updateSalary(){
 				
 		);
 	$school_code=$this->session->userdata('school_code');
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		$close1 = $balance - $this->input->post("gross_s");
-		
-		$ocb = array("closing_balance"=>$close1);
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->update("opening_closing_balance",$ocb);
-		
+
+	
 		$dayBook = array(
 			"paid_to" =>$this->input->post("empid"),
 			"paid_by" =>$this->session->userdata("username"),
 			"reason" => "By Salary",
 			"dabit_cradit" => "Debit",
 			"amount" => $this->input->post("gross_s"),
-			"closing_balance" => $close1,
 			"pay_date" => date('Y-m-d'),
 			"pay_mode" => $this->input->post("payment_mode"),
 			"invoice_no" => $invoice_number,

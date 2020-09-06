@@ -28,8 +28,6 @@
 		$id1 = 4000+$maxusername;
 		$id= $db.$school_code.'S'.$id1;
 		
-		 //print_r($id);exit();
-		
 		$this->form_validation->set_error_delimiters('<div class="col-sm-12"><label class="text-danger">', '</label></div>');
 		$this->form_validation->set_rules('scholerNumber','Scholar Number', 'trim|required');
 		$this->form_validation->set_rules('dateOfAdmission','Date Of Admission', 'trim|required');
@@ -210,9 +208,7 @@
 				     //redirect(base_url()."index.php/api/common_user/$rtype");
 				    	redirect(base_url()."index.php/studentController/admissionSuccess/$student_id");
 				}
-
-
-					
+		
 			//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 			
 		}
@@ -237,14 +233,12 @@
 		 if($id1->num_rows()>0){
 		$id = $id1->row()->maxnumber;
 		}else{
-		
 		$id=0;
 	    }
- $db=$this->db->get('db_name')->row()->name;
+    	$db=$this->db->get('db_name')->row()->name;
 		$maxusername=$id+1;
 		$id1 = 4000+$maxusername;
 		$id=$db.$school_code.'S'.$id1;
-		
 		$this->form_validation->set_error_delimiters('<div class="col-sm-12"><label class="text-danger">', '</label></div>');
 		$this->form_validation->set_rules('dateOfAdmission','Date Of Admission', 'trim|required');
 		$this->form_validation->set_rules('firstName','Name', 'trim|required');
@@ -332,10 +326,8 @@
 					$f_mobile = $this->input->post("mobileNumber");
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
-						
-					if($school_code==8){
-					    	$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks. 9415863922, 9369771737.";	
-			
+					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	
+
 					}else{
 						$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	
 			    
@@ -388,7 +380,7 @@
 		$this->load->view("includes/mainContent", $data);
 	}
 	
-	public function changeUsernameToid(){
+	 function changeUsernameToid(){
 	    $schoolid = $this->db->get("school")->result();
 	   foreach($schoolid as $scode){
 	       $this->db->where("school_code",$scode->id);
@@ -406,4 +398,3 @@
 	}
 		
 
-}

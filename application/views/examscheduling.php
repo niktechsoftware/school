@@ -48,20 +48,38 @@
 												<div class="panel-body space10">
 													<div class="row col-sm-12">
 													    <div class="space10" >
-														<label class="panel-title">Select Term&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-					                           <select name="term"><option>--SELECT TERM--</option><option value="1" >TERM 1</option><option value="2">TERM 2</option><option value="3">TERM 3</option><option value="4">TERM 4</option></select>
-													</div>
-													<div class="space10" >
-														<label class="panel-title">Test Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;</label>
-					                            <input type="text" name="examName" style="width: 180px;" id="examName" required="" onkeyup="myfunction1()" onkeyup="myfunction()" />
-													</div>
-													<label class="panel-title">Starting Date&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
-															<input  type="date" data-date-format="yyyy-mm-dd"  id= "printDate" name ="datet" data-date-viewmode="years"  style="width: 180px;" class="date-picker" required=""> 
-												
-												 <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
+													    <table>
+													    <tr>
+													    	<td><label class="panel-title">Select Term</label></td>
+													    	<td>  <select name="term" required="required" style="width: 180px;"><option>--SELECT TERM--</option><option value="1" >TERM 1</option><option value="2">TERM 2</option><option value="3">TERM 3</option><option value="4">TERM 4</option></select>
+															<br><br></td>
+													    	
+													    </tr>
+													    <tr>
+													    	<td><label class="panel-title">Test Name: </label></td>
+													    	<td> <input type="text" name="examName" style="width: 180px;"  required="" onkeyup="myfunction1()" onkeyup="myfunction()" />
+													    	<br><br></td>
+													    </tr>
+													    <tr>
+													    	<td><label class="panel-title">Starting Date</label> 
+													    	</td>
+													    	<td><input  type="date" data-date-format="yyyy-mm-dd"   name ="datet" data-date-viewmode="years"  style="width: 180px;" class="date-picker" required=""> 
+														<br><br>
+													    	</td>
+													    </tr>
+														  <tr>
+													    	<td><label class="panel-title">Select Mode</label></td>
+													    	<td>  <select name="exam_mode" required="required" style="width: 180px;"><option>--SELECT MODE--</option><option value="1" >OFFLINE </option><option value="2" >ONLINE (SUBJECTIVE)</option><option value="3" >ONLINE (OBJECTIVE)</option></select>
+															<br><br></td>
+													    </tr>
+													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Submit <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
-												
+														</td></tr>
+													    </table>
+														
+					                         		</div>
+													
 												</div>	
 												
 												</div>
@@ -81,48 +99,72 @@
 				
 											</script>
 											<div class="col-sm-15">
+											
+										
 											<div class="panel  panel-calendar">
+											
 												<div class="panel-heading panel-blue border-light">
-													<h4 class="panel-title">Edit Exam Details</h4>
+													<h3 class="panel-title">Edit Exam Details</h3>
 												</div>
-												<form action="<?php echo base_url();?>index.php/examControllers/updateData1"  method ="post"  id="form">
+											<form action="<?php echo base_url();?>index.php/examControllers/updateData1"  method ="post"  id="form">
+												
 												<div class="panel-body space10">
-												<div class="input-group" >
-													<select class="form-control space10" id="examName1" name="examName" style="width: 160px;" onClick="checkPrice()">
+													<div class="row col-sm-12">
+													    <div class="space10" >
+													    <table>
+													    <tr>
+													    	<td><label class="panel-title">Select Term</label></td>
+													    	<td>  <select class="form-control space10" id="examName1" name="examName" style="width: 160px;" >
 														<option value="01">-Select Exam-</option>
-														<?php foreach ($request as $row):
+														<?php foreach ($requestforUpdate as $row):
 															$ds= $row->exam_date;
 															$id=$row->id;
 															$ename=$row->exam_name;
-															$cd=date("Y-m-d");
-															if(($ename=="Class Test")||($ename=="Other Exam"))
-															{?>
-															<option  value="<?php echo $row->id?>"><?php echo $row->exam_name?></option>
-															<?php }
-																elseif($ds>=$cd)
-																{
-																	?><option  value="<?php echo $row->id?>"><?php echo $row->exam_name?></option><?php
-																}endforeach;?>
-														</select>
-
-														<div id="upadteexam" class="input-group">	
-								                      <input  type="text" id="upexam" name ="upexam"  style="width:200px;height:35px;margin-left:10px;" placeholder="Enter Exam Name">
-														
-													</div>
-												</div>
-											<div class="input-group" >
-								                  <input  type="date" data-date-format="yyyy-mm-dd" id = "printDate1" name ="datet"  style="width: 160px;" class="form-control date-picker" placeholder="Enter Date">
-												<div class="col-sm-4 ">
+															$this->db->where("id",$this->session->userdata("fsd"));
+															$getfsdDates = $this->db->get("fsd")->row();
+															$cd=$getfsdDates->finance_start_date;
 															
-															<button class="btn btn-red ">
-
-																Update <i class="fa fa-arrow-circle-right"></i>
-															</button>
-														</div>
-													</div>
+																if($ds>=$cd)
+																{
+																	?><option  value="<?php echo $row->id?>"><?php echo $row->exam_name?></option><?php }endforeach;?>
+														</select>
+													
+														<br></td></tr>
+													    	<tr><td>
+															<label class="panel-title">Enter Exam Name</label> </td>
+								                     <td> <input  type="text" id="upexam" name ="upexam"  style="width:200px;height:35px;margin-left:10px;" placeholder="Enter Exam Name">
+														</br></td></tr>
+														</br>
+													
+													    
+													    <tr>
+													    	<td><label class="panel-title">Date</label> 
+													    	</td>
+													    	<td> <input  type="text" class="form-control space10"  id = "printDate1" name ="datet"  style="width: 160px;"  placeholder="Enter Date"> 
+														<br>
+													    	</td>
+													    </tr>
+														  <tr>
+													    	<td><label class="panel-title">Select Mode</label></td>
+													    	<td>  <select class="form-control space10" id="examModerahul" name="exam_mode" style="width: 160px;">
+														<option value="01">-Select Exam Mode-</option>
+														</select><br><br></td>
+													    </tr>
+													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
+                                                            Update <i class="fa fa-arrow-circle-right"></i>
+                                                        </button>
+														</td></tr>
+													    </table>
+														
+					                         		</div>
+													
+												</div>	
+												
 												</div>
 												</form>
 											</div>
+												
+										<!-- ------------------------------ -->
 										</div>
 										</div>
 										<div class="col-sm-7">
@@ -137,6 +179,7 @@
 														<th>Exam Name</th>
 														<th>Term</th>
 														<th>Exam Month</th>
+														<th>Exam Mode</th>
 														<th>Setting</th>
 														<th>Action</th>
 													</tr>
@@ -157,7 +200,10 @@
 															<input  type="text" style="width: 95px;" data-date-format="yyyy-mm-dd" id="edate<?php echo $i;?>" data-date-viewmode="years" value="<?php echo date('d-F-Y', strtotime($row->exam_date));  ?>" disabled="disabled"/>
 															<input type="hidden" name="edate" value="<?php echo date('d-F-Y', strtotime($row->exam_date));?>"/>		
 														</td>
-														
+														<td>
+															<input type="text" style="width: 140px;" name="exam_mode<?php echo $i;?>" value="<?php echo $row->exam_mode;?>" id="exammode<?php echo $i;?>" disabled="disabled"/>									
+											 
+											</td>
 														<td >
 													<?php 	$ds= $row->exam_date;
 															$ename=$row->exam_name;

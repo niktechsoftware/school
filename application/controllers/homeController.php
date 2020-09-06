@@ -116,9 +116,10 @@ class HomeController extends CI_Controller{
 			elseif($query['login_type'] == "student"):
 				//echo $query['login_type'];
 				$this->session->set_userdata($query);
-				redirect("index.php/singleStudentControllers");
+			redirect("index.php/singleStudentControllers");
 			elseif(($query['login_type'] == 3)||($query['login_type'] == 2)):
 				//echo $query['login_type'];
+				//echo "t";
 				$this->session->set_userdata($query);
 				redirect("index.php/singleTeacherControllers");
 			elseif($query['login_type'] == 1):
@@ -257,13 +258,6 @@ class HomeController extends CI_Controller{
 			
 		}
 
-
-
-
-
-
-
-
 	public function schoolRegistration(){
 		//echo "string";
 		$this->load->view("headerCss/newschregcss");
@@ -315,8 +309,7 @@ class HomeController extends CI_Controller{
 
 	
 	function updateTransportfee(){
-
-	    $schools = $this->db->get("general_settings");
+		$schools = $this->db->get("general_settings");
 	    foreach($schools->result() as $sch ):
 	        $this->db->where("school_code",$sch->school_code);
 	       $gettv =  $this->db->get("transport");
@@ -373,7 +366,6 @@ class HomeController extends CI_Controller{
 				$this->db->where("invoice_number",$row->invoice_number);
 				$this->db->update("transport_fee_month",$data);
 			}
-		
 		endforeach;
 	}
 	
@@ -388,5 +380,75 @@ class HomeController extends CI_Controller{
 	         //echo "</pre>";
 	        endforeach;
 	}
+
+	
+	function updateOpeningClosing(){
+		$cdate = date("Y-m-d");
+		$this->load->model("daybookmodel");
+		echo $this->daybookmodel->getClosingBalance($cdate);
+	}
+	
+	function updateinvoiceHeads(){
+		$this->db->distinct();
+		$this->db->select("reason");
+		$ish = $this->db->get("invoice_serial");
+		foreach($ish->result() as $row):
+		if($row->reason=="Bank Transaction"){
+			$head =6;
+		}
+		if($row->reason=="Fee Deposit"){
+			$head =5;
+		}
+		if($row->reason=="Fee Due"){
+			$head =4;
+		}
+		if($row->reason=="Sale Invoice"){
+			$head =3;
+		}
+		if($row->reason=="Cash Payment handove"){
+			$head =8;
+		}
+		if($row->reason=="Director Transaction"){
+			$head =7;
+		}
+		if($row->reason=="Employee Salary"){
+			$head =10;
+		}
+		if($row->reason=="Stock Sale"){
+			$head =3;
+		}
+		if($row->reason=="Indi. transport fee"){
+			$head =11;
+		}
+		$headcode['reason']=$head;
+		$this->db->where("reason",$row->reason);
+		$this->db->update("invoice_serial",$headcode);
+		endforeach;
+	}
+	function updateCashpayment(){
+		$res1 = $this->db->get("cash_payment")->result();
+		foreach($res1 as $res):
+		$this->db->select("id");
+		$this->db->where("expenditure_name",$res->exp_id);
+		$this->db->where("school_code",$res->school_code);
+		$eid = $this->db->get("expenditure");
+		if($eid->num_rows()>0){
+			$this->db->select("id");
+			$this->db->where("exp_id",$eid->row()->id);
+				$this->db->where("sub_expenditure_name",$res->sub_exp_id);
+			$getsid = $this->db->get("sub_expenditure");
+			if($getsid->num_rows()>0){
+				$updateexp['sub_exp_id']=$getsid->row()->id;
+			}
+			
+			$updateexp['exp_id']=$eid->row()->id;
+		
+			$this->db->where("school_code",$res->school_code);
+			$this->db->where("receipt_no",$res->receipt_no);
+			$this->db->update("cash_payment",$updateexp);
+			}
+		endforeach;
+	}
+
 
 }

@@ -15,10 +15,7 @@ class feeControllers extends CI_Controller{
         $is_login = $this->session->userdata('is_login');
         $is_lock = $this->session->userdata('is_lock');
         $logtype = $this->session->userdata('login_type');
-       /* if(($logtype != "admin") || ($logtype != "2")){
-            //echo $is_login;
-            redirect("index.php/homeController/index");
-        }*/
+
         	if(($is_login != true)){
 			
 			redirect("index.php/homeController/index");
@@ -99,14 +96,11 @@ function getFsd(){
 	}
 	
 	function payFee(){
-	    
 		$school_code = $this->session->userdata("school_code");
 		$fsddate=$this->input->post('fsdid');
 		$class_id= $this->input->post("classidorg");
-// 		print_r($fsddate);
-// 		exit;
-		// Calculate naxt month start	
 		$feecat = $this->input->post("feecat");
+		
 		//invoice number logic start
 		$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
@@ -114,15 +108,16 @@ function getFsd(){
 		$invoice_number = $school_code."I20".$invoice1;
 		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
-				"reason" => "Fee Deposit",
+				"heads" => 5,
 				"invoice_date" => $this->input->post("subdate"),
 				"school_code"=>$school_code
 		);
 		$this->db->insert("invoice_serial",$invoiceDetail);
 		$months = $this->input->post("diposit_month");
-		//echo "<pre>";
-		//print_r($this->session->all_userdata());
-		//echo "</pre>";
+		/* echo "<pre>";
+		print_r($months);
+		echo "</pre>";
+		exit(); */
 		$this->load->model("studentModel");
 		$student = $this->studentModel->getStudentDetail($this->input->post('stuId'))->row();
 		
@@ -189,7 +184,7 @@ function getFsd(){
 			"updatedate"=>date('y-m-d'),
 			);
 
-		$this->db->insert("dis_den_tab",$discountv);
+		//$this->db->insert("dis_den_tab",$discountv);
 		if( $this->db->insert("fee_deposit",$updata) ){
 		    
 		   if($duedt2->num_rows()>0){
@@ -241,10 +236,8 @@ function getFsd(){
 		        $trnsfeemon=	$this->input->post("dtransport_fee");
 			}else{
 				$trnsfeemon	=$this->input->post("transport_fee");
-			}
-					
-			
-
+			}	
+			$this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
 		endforeach;
 		//---------------------------------------------- Opening Colsing Balance Start -----------------------------------------
 		
@@ -266,7 +259,7 @@ function getFsd(){
 			$this->db->where("student_id",$this->input->post('stuId'));
 			$this->db->where("invoice_no",$invoice_number);
 		    $mode = $this->db->get('fee_deposit')->row()->payment_mode;
-		    $this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
+		    
 		    if($mode==1 || $mode==5 || $mode==4 ){
 		        $this->feeModel->updateDaybook($school_code,$this->input->post("paid"),$this->input->post("stuId"),$this->input->post("payment_mode"),$invoice_number);
 		        //$this->feeModel->updateTransport($trnsfeemon,$invoice_number,$school_code,$g,$fsddate);
@@ -302,8 +295,6 @@ function getFsd(){
                     	//echo date("d-M-y", $rdt);
 					$i++; endforeach;	
 			//end get fee details
-			
-			
 			$stuname=$student->name;
 			$msg = "Dear Parent your child ".$stuname.",Fee of Month ".$printMonth.",is deposited of Rs.".$paid."/-with due balance Rs.".$current_balance."/-.For more info visit: ".$sende_Detail1->web_url;
 		//echo $msg;exit;
@@ -326,7 +317,7 @@ function getFsd(){
 		
 		}
 		
-		redirect("index.php/invoiceController/fee/$invoice_number/$stuid/$fsddate/yes");
+		redirect("index.php/invoiceController/fee/$invoice_number/");
 		}
 				
 		else{
@@ -463,7 +454,7 @@ function getFsd(){
     		
 			$invoiceDetail = array(
 					"invoice_no" => $invoice_number,
-					"reason" => "Fee Due",
+					"reason" => 4,
 					"invoice_date" => date("Y-m-d"),
 					"school_code"=>$this->session->userdata("school_code")
 			);
@@ -498,24 +489,18 @@ function getFsd(){
 		
 		$this->load->model("feeduemodel");
 		$var = $this->feeduemodel->enterDetail($feeDueData,$studid);
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$Clbalance = $op1->closing_balance;
 		$amount=$this->input->post("paid");
 		$cbal=$Clbalance+$amount;
 		$bal = array(
 				"closing_balance" => $cbal
 		);
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->update("opening_closing_balance",$bal);
 		
 		$daybookdata=array(
 				'paid_to'=>"Admin",
 				'paid_by'=>$this->input->post("studentId"),
-				'reason'=>$this->input->post("desc"),
+				
 				'dabit_cradit'=>2,
 				'amount'=>$this->input->post("paid"),
-				'closing_balance'=>$cbal,
 				'pay_date'=>date('Y-m-d'),
 				'pay_mode'=>"Cash",
 				'invoice_no'=>$invoice_number,
@@ -719,29 +704,11 @@ function getFsd(){
 			$this->db->where("school_code",$school_code);
 			$this->db->where('invoice_no', $invoiceNo);
 			$val = $this->db->get("day_book")->row();
-			$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'");
-			if($op1->num_rows()>0){
-			$balance = $op1->row()->closing_balance;}else{$balance="0.00";}
-			$close1 = $balance - $val->amount;
-			$data = array(
-					'paid_to' =>$student_id ,
-					'paid_by' => $this->session->userdata('username'),
-					'reason' => " Wrong Fee Entered",
-					'dabit_cradit' => 0,
-					'amount' =>$uprow->row()->paid,
-					'closing_balance' => $close1,
-					'pay_date' => date("Y-m-d"),
-					'pay_mode' => "Software",
-					'invoice_no' => "Delete Fee",
-					'school_code'=>$school_code
-					
-			);
-			$bal = array(
-					"closing_balance" => $close1
-			);
-			$this->load->model('feemodel');
-			$this->feemodel->insertocanddaybook($bal,$data);
-			if(($this->feemodel->fee_deposite($invoiceNo,$student_id))&&($this->feemodel->deposite_month($invoiceNo,$student_id))){
+			
+			if($this->feemodel->fee_deposite($invoiceNo,$student_id)){
+				$this->db->where("invoice_no",$invoiceNo);
+				$this->db->where("school_code",$school_code);
+				$this->db->delete("day_book");
 				redirect(base_url()."index.php/feeControllers/feesDetail/".$student_id."/".$df); 
 			   }else{
 				   echo "Please Contact to Admin";
@@ -759,50 +726,12 @@ function getFsd(){
 			$invoiceNo = $this->uri->segment(3);
 			$student_id = $this->uri->segment(4);
 			$fristfee = $this->uri->segment(5);
-			$this->db->where('invoice_no', $invoiceNo);
-			if($val = $this->db->get("day_book")->row()){
-			$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$this->session->userdata(school_code)'")->row();
-			$balance = $op1->closing_balance;
-			$close1 = $balance - $val->amount;
-			$data = array(
-					'paid_to' => "student",
-					'paid_by' => "admin",
-					'reason' => " Wrong Fee Entered",
-					'dabit_cradit' => "Debit",
-					'amount' => $val->amount,
-					'closing_balance' => $close1,
-					'pay_date' => date("Y-m-d"),
-					'pay_mode' => "Software",
-					'invoice_no' => "Delete Fee",
-					'school_code'=>$this->session->userdata("school_code")
-			
-			);
-			$bal = array(
-					"closing_balance" => $close1
-			);
-			
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("opening_date",date('Y-m-d'));
-			$this->db->update("opening_closing_balance",$bal);
-			
-			$this->db->insert("day_book",$data);
-			}
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 			$this->db->where('invoice_no', $invoiceNo);
 			$this->db->where('student_id', $student_id);
 			$this->db->delete('feedue2');
-			//$data1 = array(
-					//"current_balance" => $val->amount
-			///); 
-			
-			//$sno = $this->db->query("SELECT * FROM fee_deposit WHERE student_id ='".$student_id."' ORDER BY ID DESC limit 1")->row();
-			//$this->db->where("id",$sno->id);
-			//if($this->db->update("fee_deposit",$data1)){
 			redirect(base_url()."index.php/feeControllers/fullDetail/".$student_id);
-			//}
-			//else{l
-			//	echo "Wrong Value";
-			//}
+			
 		}
 		function transReport(){
 			$data['fsd'] = $this->input->post("fsd");
@@ -988,6 +917,7 @@ function getFsd(){
 												if($stuid_details->discount_id>0){
 													if($studdiscount->num_rows()>0){
 														$discountRow = $studdiscount->row();
+														if($discountRow->applied_head_id!="all"){
 													//$this->db->where("school_code",$school_code);
 													//print_r($discountRow->applied_head_id);
 													//print_r($stuid_details->class_id);
@@ -1002,7 +932,10 @@ function getFsd(){
 													$disc1 = ($dmo * $discountRow->discount_persent)/100;
 													}else{
 														$disc1=$discountRow->discount_amount;
-													}}
+													}}}
+													else{
+													    
+													}
 													?>
 												<div class="row space15">
 	                                                <div class="col-sm-12">
@@ -1132,7 +1065,7 @@ function getFsd(){
 					}}else{
 						$latefee1='0.00';
 					 }
-					 
+					$latefee1='0.00'; 
 				// 	 if($realm>0){
 					     
 				// 	}else{
@@ -1188,18 +1121,20 @@ function getFsd(){
 	                                                <div class="col-sm-12">
 	                                                    <div class="col-sm-5 text-uppercase"><?php echo $tffee->id;?>Transport Fee</div>
 	                                                    <div class="col-sm-7">
-	                                                   <?php if($school_code==14){ 
+	                                                   <?php if($school_code==14 || $school_code==9){ 
 																											$tmno=implode("",$month);
-																											
 																											 $this->db->where("month",$tmno);
 																											 $this->db->where("stu_id",$stuid);
 																											 $tamount=$this->db->get("transport_fee_month");
 																											 if($tamount->num_rows()>0){ ?>
-																											 <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
+																											  <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php  echo $transfee;?>" class="form-control">
+																											 <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="<?php echo $transfee;?>" class="form-control"  >
+																										 <?php $totfees+=$transfee;?>
 																											<?php }else{
 																											 ?>
-	                                                        <!--<input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php // echo $transfee;?>" class="form-control">-->
-	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="" class="form-control" onkeyup="trans();" >
+	                                                        <input type="hidden" name ="transport_fee" id="transport_fee" value ="<?php  echo $transfee;?>" class="form-control">
+	                                                         <input type="text" name ="dtransport_fee" id="dtransport_fee1" value="<?php echo $transfee;?>" class="form-control"  >
+	                                                          <?php $totfees+=$transfee;?>
 	                                                   <?php  } } else{ 
 																											
 																											//  print_r($month);
@@ -1452,12 +1387,11 @@ function getFsd(){
 	                                                <div class="col-sm-6 text-uppercase">Total</div>
 	                                                <div class="col-sm-6">
 	                                               
-	                                                 
-	                                                   
+
 	                                                     <input type="hidden" id="total1"  value="<?php echo $totwlate;?>" name="total1" />
 	                                                    <input type="hidden" value="<?php echo $totfees;?>" id="tempValue"/>
 	                                                    <input type="text" id="total"  value="<?php echo $totwlate;?>" class="form-control" readonly/>
-	                                                 
+
 	                                                </div>
 	                                            </div>
 	                                        </div>
@@ -1506,15 +1440,17 @@ function getFsd(){
 ?>
 	<script>
 	$("#dtransport_fee1").change(function(){
-	   
+	            
+	            	var orgTrans=Number($("#transport_fee").val());
 	    	var tran=Number($("#dtransport_fee1").val());
-	   // 	alert(($("#dtransport_fee1").val()).length);
+	    		$("#transport_fee").val(tran);
+	    	alert("Total Has been Updated Successfully");
 	      if(tran.toString().length>0){
 	          
 	    		var tot = Number($("#total1").val());
-	    			//alert(tran + " "+ tot);
-	    		var totfee= tran + tot;
-	    		alert(totfee);
+	    			//alert(tran + " Add Transport Fee In Total"+ tot);
+	    		var totfee= tran + tot-orgTrans;
+	    		//alert(totfee);
 	    		$("#total1").val(totfee);
 	    		$("#total").val(totfee);
 	    }else{

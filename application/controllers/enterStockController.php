@@ -149,27 +149,25 @@
 		
 		function saleStock(){
 		    $school_code = $this->session->userdata("school_code");
-
 			$this->db->where("school_code",$school_code);
 			$billno = $this->db->count_all("invoice_serial");
 
-		//print_r($billno);exit();
+		   //print_r($billno);exit();
 
 			$this->load->model("daybookModel");
 			$this->load->model("enterStockModel");
 			$this->db->where("school_code",$school_code);
-		$invoice = $this->db->get("invoice_serial");
-		$invoice1=6000+$invoice->num_rows();
-		$invoice_number = $school_code."I19".$invoice1;
+		    $invoice = $this->db->get("invoice_serial");
+		    $invoice1=6000+$invoice->num_rows();
+		    $invoice_number = $school_code."I19".$invoice1;
 	     	$billno = $invoice_number;
-	     	
 	     		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
-				"reason" => "Stock Sale",
+				"heads" => 3,
 				"invoice_date" => date('Y-m-d'),
 				"school_code"=>$school_code
-		);
-		$this->db->insert("invoice_serial",$invoiceDetail);
+		    );
+		   $this->db->insert("invoice_serial",$invoiceDetail);
 		
 				$validID = "";
 				if(strlen($this->input->post("studID"))>0){
@@ -223,7 +221,7 @@
 				$daybook=array(
 						"amount" => $this->input->post("paid"),
 						"pay_date"=> date("Y-m-d"),
-						"reason" =>"From sale Stock",
+						"heads" =>3,
 						"pay_mode"=>1,
 						"invoice_no"=>$billno,
 						"closing_balance" => $cl_balance,
@@ -342,7 +340,7 @@
 					{
 					$invoiceData = array(
 						"invoice_no" => $billno,
-						"reason" => "Sale Invoice",
+						"heads" => 3,
 						"invoice_date" => date("Y-m-d"),
 							"school_code"=>$this->session->userdata("school_code")
 					);
@@ -404,7 +402,7 @@
 					}
 	}
 	
-function editSaleStock(){
+    function editSaleStock(){
 
     $billno = $this->input->post("billNo");
     $this->db->where("bill_no",$billno);
@@ -443,11 +441,9 @@ function editSaleStock(){
 
 							if($student->num_rows()>0){
 								$student= $student->row();
-
-
-				     $this->db->where('student_id',$student->id);
-				     $this->db->where('school_code',$this->session->userdata('school_code'));
-                      $studentfee=$this->db->get('feedue');
+                        $this->db->where('student_id',$student->id);
+				         $this->db->where('school_code',$this->session->userdata('school_code'));
+                        $studentfee=$this->db->get('feedue');
                       if($studentfee->num_rows()>0)
                       { 
                       	$fee=$studentfee->row();
@@ -482,7 +478,6 @@ function editSaleStock(){
 				$cb = $this->db->get("opening_closing_balance")->row()->closing_balance;
                 
 				$cl_balance = $cb + $this->input->post("paid");
-				
 				$cbData = array(
 					"closing_balance" => $cl_balance
 				);
@@ -501,8 +496,8 @@ function editSaleStock(){
 					//	"school_code"=>$this->session->userdata("school_code")
 				);
 			//	$daybook1 = $this->daybookModel->fromStock1($daybook,$billno);
-         $this->db->where('invoice_no',$billno);
-	      $this->db->where('reason',"From sale Stock");
+             $this->db->where('invoice_no',$billno);
+	         $this->db->where('reason',"From sale Stock");
 	    	$query = $this->db->update("day_book", $daybook);
 		 // print_r($query2);
 			redirect("index.php/invoiceController/printSaleReciept/$billno");

@@ -171,7 +171,7 @@
 		$this->load->view("includes/mainContent", $data);
 	
 	}
-
+	
 	function student_wise_icard(){
 		$stuid=$this->input->post('stdid');
 		$this->db->where('username',$stuid);
@@ -917,9 +917,6 @@ function admissionSuccess(){
 				redirect(base_url()."index.php/login/simpleSearchStudent");
 				}
 			}
-			
-		
-			
 			
 		function stuAttenReport(){
 			   

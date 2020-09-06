@@ -21,6 +21,49 @@ class singleStudentControllers extends CI_Controller{
 				redirect("index.php/homeController/lockPage");
 			}
 		}
+		function payFee(){
+			$student_id=$this->uri->segment("3");
+			$school_code = $this->session->userdata("school_code");
+			$this->db->where("id",$student_id);
+			$sinfo = $this->db->get("student_info")->row();
+			$fsdobject=$this->feeModel->getFsdByStudentId($sinfo->username);
+			$totAmount= $this->feeModel->totFee_due_by_id($student_id,9);
+			$amt_paid=$this->input->post('paid');
+			
+			 $fsd_id = $fsdobject->row()->id;
+			$monthDeposit =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd_id' and deposite_months.student_id='$student_id' order by deposite_months.id ASC");
+				
+				$this->db->select("*");
+				$this->db->where("school_code",$this->session->userdata("school_code"));
+				$apm1  =  $this->db->get("late_fees");
+				if($monthDeposit->num_rows()>0){
+				if($apm1->num_rows()>0){
+					$apm=$apm1->row()->apply_method;
+					$h=0; $pm=12/$apm;
+				for($j=1;$j<$pm+1;$j++){
+					if($j > $monthDeposit->num_rows()){
+															                                        
+						echo $ft;
+					  $h=$h+$apm; $i++;}}}}//endforeach;
+						else{
+							if($apm1->num_rows()>0){
+									$apm =$apm1->row()->apply_method;
+										$h=0; $pm=12/$apm;
+										for($j=1;$j<$pm+1;$j++){
+				
+										$rdt = date('Y-m-d', strtotime("$h months", strtotime($fsddate)));
+												$ft=$h+4;
+												if($ft>12){
+												$ft=$ft-12;}
+												$h=$h+$apm;
+												echo $ft;
+										}
+							}
+				 }
+					
+
+		}
+
 		
 		function stuattendence(){
 		$studid = $this->uri->segment(3);

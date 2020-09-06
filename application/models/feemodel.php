@@ -1,8 +1,55 @@
 <?php
 class feeModel extends CI_Model{
+	function getFeeRecord($invoice_no){
+		$res = $this->db->query("select * from  fee_deposit  where status=1 and invoice_no='$invoice_no'");
+		return $res;
+	}
+	function getDiscount($invoice_no,$i){
+		$this->db->where('invoice_number',$invoice_no);
+		$eunm1 = $this->db->get('dis_den_tab');
+		$tdiscount=0;
+		$totdisc=0;
+		if($eunm1->num_rows()>0){
+			$l=$i;
+			
+			foreach($eunm1->result() as $eunm):
+			$this->db->where('username',$eunm->discounter_id);
+			$eid = $this->db->get('employee_info');
+			?>
+							<?php if($eunm->discounter_id){?>
+								<tr class='text-uppercase'>
+						  		     <td class="col-sm-1 text-center"><b><?php echo $l;?></b></td>
+									<td class="col-sm-8"><b><?php 
+									if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
+									else{ $this->db->where("id",$eunm->discounter_id);
+										$getdname = $this->db->get("discounttable");
+										if($getdname->num_rows()>0){
+											echo $getdname->row()->discount_head." "." (DISCOUNT)";
+										 }
+										 else{
+										 echo "DISCOUNT";}} ?></b></td>
+									<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
+								</tr>
+								 <?php  } 
+								 $l++;
+								 endforeach;
+								 }else{
+								 				 if($tdiscount>0){?>
+								 				<tr class='text-uppercase'>
+								 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
+								 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
+								 					<td class="col-sm-3 text-center"> <?php echo $tdiscount="0.00"; $i++; ?></td>
+								 				</tr>
+								 				tdiscount
+								 				 <?php }}
+								//  print_r($totdisc);
+								return $totdisc;
+			}
 	
 	function totFee_due_by_id($stu_id,$indicator){
+		
 		$student_id = $stu_id;
+		$monthArray =array();
 		$getpreviousDue 	= $this->getPreviousDue($student_id);
 		$student_fsd = $this->getFsdByStudentId($student_id);
 		if($student_fsd){
@@ -20,14 +67,23 @@ class feeModel extends CI_Model{
 					$demandtotdate =date('Y-m-d', strtotime("+$i months", strtotime($student_fsd->row()->finance_start_date)));
 					
 					$totmonthwise = $this->getMonthFeeByMonth($demandtotdate ,$student_id);
+					
 					if($totmonthwise){
 						$fgh = $totmonthwise;
 					}else{
 						$fgh="N/A";
 					}
-					if($indicator > 0){echo date("M-Y",strtotime($demandtotdate))." [ ".$fgh." ]<br>";}
+					//echo $demandtotdate."<br>";
+					$mon = date("m",strtotime($demandtotdate));
+					array_push($monthArray,$mon);
+					
+					if($indicator == 1){echo date("M-Y",strtotime($demandtotdate))." [ ".$fgh." ]<br>";}
 					$totv=$totv+$totmonthwise;
 				}
+				$totv=$totv+$getpreviousDue;
+				 if($indicator == 9){
+				 	$this->depositeFee($monthArray,$student_id,$student_fsd->row()->id,$totv,$getpreviousDue);
+				 }
 				return $totv;
 				}else{
 					return $totv;
@@ -37,6 +93,74 @@ class feeModel extends CI_Model{
 				echo "Student is Not Enroll.";
 			}
 			 
+	}
+	function depositeFee($monthArray,$student_id,$fsd,$totv,$getpreviousDue){
+		$school_code =$this->session->userdata("school_code");
+		$fsd1 =$this->session->userdata("fsd");
+		$this->db->where("school_code",$school_code);
+		$invoice = $this->db->get("invoice_serial");
+		$invoice1=6000+$invoice->num_rows();
+		$invoice_number = $school_code."I20".$invoice1;
+		$invoiceDetail = array(
+				"invoice_no" => $invoice_number,
+				"heads" => 5,
+				"invoice_date" => $this->input->post("subdate"),
+				"school_code"=>$school_code
+		);
+		$this->db->insert("invoice_serial",$invoiceDetail);
+		$this->db->where("id",$student_id);
+		$studDetails=$this->db->get("student_info")->row();
+		if($studDetails->transport){
+			$tranportAm =$this->studentFeeTransportById($studDetails->vehicle_pickup);
+		}else{
+			$tranportAm=0;
+		}
+		$feecatd = $this->db->query("select feecat from fee_deposit where student_id='$student_id' order by diposit_date desc limit 1")->row()->feecat;
+		$feeDepositData["student_id"]=$student_id;
+		$feeDepositData["class_id"]=$studDetails->class_id;
+		$feeDepositData["deposite_month"]=sizeof($monthArray);
+		$feeDepositData["late"]="0.00";
+		$feeDepositData["transport"]=$tranportAm;
+		$feeDepositData["previous_balance"]=$getpreviousDue;
+		$feeDepositData["description"]="On line fee Deposit";
+		$feeDepositData["payment_mode"]="4";
+		$feeDepositData["feecat"]=$feecatd;
+		$feeDepositData["total"]=$totv;
+		$feeDepositData["paid"]=$totv;
+		$feeDepositData["diposit_date"]=date("Y-m-d H:i:s");
+		$feeDepositData["invoice_no"]=$invoice_number;
+		$feeDepositData["finance_start_date"]=$fsd1;
+		$feeDepositData["school_code"]=$school_code;
+		$feeDepositData["status"]=0;
+		$this->db->insert("fee_deposit",$feeDepositData);
+		
+		$this->feeModel->updateDaybook($school_code,$totv,$student_id,"4",$invoice_number);
+		$i=1; foreach($monthArray as $moi):
+		if(($moi==4)&&($i>1)){
+			$fsdid = $this->db->query("select id from fsd where id > '$fsd' and school_code ='$school_code' order by id DESC limit 1 ")->row()->id;
+		}else{
+			$fsdid=$fsd;
+		}
+		
+		$depositeMonthData['student_id']=$student_id;
+		$depositeMonthData['deposite_month']=$moi;
+		$depositeMonthData['invoice_no']=$invoice_number;
+		$depositeMonthData['fsd']=$fsdid;
+		$this->db->where("student_id",$student_id);
+		$this->db->where("deposite_month",$moi);
+		$this->db->where("invoice_no",$invoice_number);
+		$this->db->where("fsd",$fsdid);
+		$oldcheck = $this->db->get("deposite_months");
+		if($oldcheck->num_rows()>0){
+		$this->db->where("id",$oldcheck->row()->id);
+		$this->db->delete("deposite_months");
+		$this->db->insert("deposite_months",$depositeMonthData);	
+		}else{
+			$this->db->insert("deposite_months",$depositeMonthData);
+		}
+		$this->feeModel->updateTransport($tranportAm,$invoice_number,$school_code,$moi,$fsdid);
+		$i++; endforeach;
+		redirect("index.php/paytm/pgRedirect/$invoice_number/$student_id/$fsdid/$totv/2/");
 	}
 	
 	function getMonthFeeByMonth($demandtotdate,$student_id){
@@ -84,7 +208,7 @@ class feeModel extends CI_Model{
 			$this->db->where("fsd",$getfsdid);
 			$this->db->where("class_id",$classid);
 			$this->db->where("cat_id",0);
-			
+
 			$this->db->where_in("taken_month",$mon);
 			$fee_head = $this->db->get("class_fees")->row();
 			$totf = $fee_head->fee_head_amount;
@@ -103,11 +227,11 @@ class feeModel extends CI_Model{
 			//echo $totf;
 			return $totf;
 	}
-	function studentFeeTransportById($transportid){
+		function studentFeeTransportById($transportid){
 		$this->db->where("v_id",$transportid);
 		$tranportAmount  = $this->db->get("transport_root_amount");
 		if($tranportAmount->num_rows()>0){
-			return $tranportAmount->transport_fee;
+			return $tranportAmount->row()->transport_fee;
 		}else{
 			return 0;
 		}
@@ -167,6 +291,7 @@ class feeModel extends CI_Model{
 				$i =0;foreach($fsddetails->result() as $row):
 					$this->db->select_sum("deposite_month");
 					$this->db->where("student_id",$student_id);
+					$this->db->where("status",1);
 					$this->db->where("finance_start_date",$row->finance_start_date);
 					$totdm = $this->db->get("fee_deposit")->row()->deposite_month;
 					if($totdm < 12){ 
@@ -275,28 +400,24 @@ class feeModel extends CI_Model{
 	    $this->db->where("invoice_no",$invoice_no);
 	    $checknum = $this->db->get("day_book");
 	    if($checknum->num_rows()<1){
-	     $op1 = $this->db->query("select closing_balance from opening_closing_balance where  school_code='$school_code' order by id DESC Limit 1")->row();
-		$balance = $op1->closing_balance;
-		$close1 = $balance +$amount;
+	     
 		$dayBook = array(
 				"paid_to" =>$this->session->userdata("username"),
 				"paid_by" =>$paidID,
-				"reason" => "Fee Deposit",
+				"status"=>1,
 				"dabit_cradit" => "1",
 				"amount" => $amount,
-				"closing_balance" => $close1,
 				"pay_date" => date("Y-m-d H:s:i"),
 				"pay_mode" => $paymode,
 				"invoice_no" => $invoice_no,
 				"school_code"=>$school_code
 		);
 		$this->db->insert("day_book",$dayBook);
-		$bal = array(
-				"closing_balance" => $close1
-		);
-		$this->db->where("school_code",$school_code);
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->update("opening_closing_balance",$bal); 
+		 
+		return true;
+	    }
+	    else{
+	        return false;
 	    }
 	}
 	////
@@ -457,17 +578,13 @@ class feeModel extends CI_Model{
 		$this->db->where('invoice_no', $invoiceNo);
 		$this->db->where('student_id', $student_id);
 		$this->db->delete("fee_deposit");
-
-		return true;
-	}
-
-	function deposite_month($invoiceNo,$student_id){
 		$this->db->where('invoice_no', $invoiceNo);
 		$this->db->where('student_id', $student_id);
 		$this->db->delete("deposite_months");
 		return true;
 	}
 
+	
 	function del_feedue($invoiceNo, $student_id){
 		$this->db->where('invoice_no', $invoiceNo);
 		$this->db->delete("feedue");
@@ -522,11 +639,11 @@ class feeModel extends CI_Model{
 	{
 	    $school_code = $this->session->userdata("school_code");
 		if($fsd){
-			$query1 = $this->db->query("SELECT * FROM fee_deposit WHERE student_id='$id' and finance_start_date='$fsd' AND school_code='$school_code'");
+			$query1 = $this->db->query("SELECT * FROM fee_deposit WHERE student_id='$id' and status=1 and finance_start_date='$fsd' AND school_code='$school_code'");
 			return $query1;
 		}
 		else{
-			$query1 = $this->db->query("SELECT * FROM fee_deposit WHERE student_id='$id' AND school_code='$school_code'");
+			$query1 = $this->db->query("SELECT * FROM fee_deposit WHERE student_id='$id' and status=1 AND school_code='$school_code'");
 			return $query1;
 		}
 	
@@ -536,12 +653,12 @@ class feeModel extends CI_Model{
 	function feedetails($id)
 	{
 		$school_code = $this->session->userdata("school_code");
-		$query1 = $this->db->query("SELECT month_number,SUM(total) as tt FROM fee_deposit where student_id='$id' AND school_code='$school_code'");
+		$query1 = $this->db->query("SELECT month_number,SUM(total) as tt FROM fee_deposit where student_id='$id' and status=1 AND school_code='$school_code'");
 		return $query1;
 	}
 	function lastpaid($id)
 	{$school_code = $this->session->userdata("school_code");
-		$query1 = $this->db->query("SELECT * FROM fee_deposit WHERE student_id='$id' AND school_code='$school_code' ORDER BY id DESC LIMIT 1");
+		$query1 = $this->db->query("SELECT * FROM fee_deposit WHERE student_id='$id' and status=1 AND school_code='$school_code' ORDER BY id DESC LIMIT 1");
 		return $query1;
 	}
 	

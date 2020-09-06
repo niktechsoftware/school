@@ -217,3 +217,10 @@ Stack trace:
 [21-May-2020 07:37:30 Etc/GMT] PHP Warning:  POST Content-Length of 1543013206 bytes exceeds the limit of 33554432 bytes in Unknown on line 0
 [21-May-2020 07:51:36 Etc/GMT] PHP Warning:  POST Content-Length of 1543013206 bytes exceeds the limit of 33554432 bytes in Unknown on line 0
 [28-May-2020 17:19:49 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::row() in /home/schoodhe/public_html/sschool3/application/views/invoice/feeInvoice.php on line 2212
+[24-Aug-2020 13:35:44 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 383
+[24-Aug-2020 13:39:41 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 383
+[24-Aug-2020 13:45:01 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 383
+[24-Aug-2020 13:46:50 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 383
+[24-Aug-2020 13:50:45 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 383
+[24-Aug-2020 13:51:42 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 383
+[24-Aug-2020 13:52:52 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/sschool3/application/controllers/newAdmissionControllers.php on line 401

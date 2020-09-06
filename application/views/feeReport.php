@@ -1,4 +1,3 @@
-
 <?php $school_code = $this->session->userdata("school_code");?>
 <div class="row">
 	<div class="col-md-12">
@@ -102,10 +101,7 @@
 						<select class="form-control" id="sectionId" name="class">
 						</select>
 					</div>
-
-					
-				
-				</div>
+            	</div>
 				<div class="col-sm-12">				
 					<div class="table-responsive" id="rahul"></div><!-- end: table-responsive -->
 				</div>

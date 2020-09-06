@@ -66,10 +66,7 @@
                     </div>
                   </div>
                 </div>
-                
-                
-                
-                <div class="tab-pane fade" id="myTab_example2">
+               <div class="tab-pane fade" id="myTab_example2">
                   <!-- start: PAGE CONTENT -->
 						<div class="row">
 							<div class="col-sm-12">
@@ -136,11 +133,9 @@
 								</div>
 							</div>
 						</div>
-						
-		<div class="row" id="subjectBox">
+			<div class="row" id="subjectBox">
 		</div>
 						
-					
 						<!-- end: PAGE CONTENT-->
                     </div>
                 

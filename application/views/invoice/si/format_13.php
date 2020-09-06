@@ -555,7 +555,7 @@
 						if($marks->num_rows()>0){
 							$marks=$marks->row();
 				if($classid->class_id == 260 || $classid->class_id==314){
-					$exammarks=($marks->marks)/2;
+					$exammarks=round(($marks->marks)/2);
 				}else{
 				$exammarks=	$marks->marks;
 				}      		
@@ -563,7 +563,7 @@
 					  $gtptal= $gtptal+$exammarks;
 					}else{ $gtptal= $gtptal;}
 					
-							echo (round($exammarks));
+							echo $exammarks;
 							
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid->class_id);
@@ -656,7 +656,9 @@
 					</td> 
 				<?php $i++; $t++;endforeach; ?>
 																						<?php }
-																						if($classid->class_id==260 || $classid->class_id ==314){}else{?>
+																						if($classid->class_id==260 || $classid->class_id ==314){
+																						  $grandtotal=$grandtotal+$gtptal; 
+																						}else{?>
 				<td class="center bold" style="background-color: #efef70;"><?php  $grandtotal=$grandtotal+$gtptal; echo $gtptal;  ?>/<?php print_r($ttal);?>
 			   <?php }?></td>
 			    <!--1st term marks end-->
@@ -717,7 +719,7 @@
 						  
 						   if($classid->class_id == 260 || $classid->class_id==314){
 						       	if($sd==0){
-				            	$exammarks=($marks->marks)/2;
+				            	$exammarks=round(($marks->marks)/2);
 			               }else{
 			                   	$exammarks=	$marks->marks;
 			               }}else{
@@ -727,7 +729,7 @@
 					if(is_numeric($exammarks)){
 					  $gtptal_2= $gtptal_2+$exammarks;
 					}else{ $gtptal_2= $gtptal_2;}
-							echo (round($exammarks));
+							echo ($exammarks);
 							$this->db->where('subject_id',$sub['subject']);
 					$this->db->where('class_id',$classid->class_id);
 					$this->db->where('exam_id',$value->exam_id);
@@ -821,7 +823,7 @@
 				<?php $i++; $t++;endforeach; ?>
 																						<?php } ?>
 				<!--2nd term marks end-->
-				  <?php if($classid->class_id ==260 || $classid->class_id==314){}else{?>
+				  <?php if($classid->class_id ==260 || $classid->class_id==314){ $grandtotal_2=$grandtotal_2+$gtptal_2;}else{?>
 					<td class="center bold" style="background-color: #efef70;"><?php  $grandtotal_2=$grandtotal_2+$gtptal_2; echo $gtptal_2;  ?>/<?php print_r($ttal_2);?></td>
 				<?php }?>
 				<!--overall total & grade start-->	
@@ -839,7 +841,7 @@
                 <table
                     style="width:95%; margin-left:auto; margin-right:auto; border:1px solid black; background-color:orange;font-size: 14px;">
                      <tr>
-                        <td> Overall Marks : <?php echo $overall_g= $grandtotal+$grandtotal_2; ?>/<?php echo $dhtm;?> </td>
+                        <td> Overall Marks : <?php echo $overall_g=($grandtotal+$grandtotal_2); ?>/<?php echo $dhtm;?> </td>
                         <td> Percentage: <?php if($dhtm>0){echo $per=round((($overall_g*100)/$dhtm), 2);}?>%  </td>
                        <!-- <td >
                              Grade: <label style="text-transform: uppercase;"><?php if($dhtm>0){echo $gradecal =calculateGrade($per,$classid->class_id);}?></label>

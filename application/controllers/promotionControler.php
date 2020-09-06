@@ -208,6 +208,7 @@ function pramoteClass(){
 				$datastudent["class_id"] 	=  $checkcurrent->row()->class_id;
 				$datastudent['date']=date("y-m-d");
 				$data=	$this->db->insert("old_student_info",$datastudent);
+				echo "Promoted";
 				?><script>alert("successfully Promoted")</script><?php
 			}else{
 				?> <script>alert("You can not promote this student because this student is already present in current fsd ")</script>
@@ -224,7 +225,7 @@ function pramoteClass(){
 					$cfsd = $this->input->post("cfsd");
 					$pfsd = $this->input->post("pfsd");
 					$this->db->where('class_id',$classv);
-					$this->db->where("status",1);
+				
 					$this->db->where("fsd",$cfsd);
 					$studata=$this->db->get("student_info");
 					if(($studata->num_rows())>0)
@@ -250,7 +251,7 @@ function pramoteClass(){
 								echo "SuccessFully Promoted";
 							}else{
 								 ?>
-							 <script>alert("You can not promote this student because this student is already present in current fsd")</script>
+							 
 							<?php
 								}	
 						}

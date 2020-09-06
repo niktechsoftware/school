@@ -76,11 +76,16 @@
                     $this->image_lib->clear();
                     $this->image_lib->initialize($configer);
                     if($this->image_lib->resize()){
+                        
                         return "success";
+                        
                     }else{
+
                         return "success";
+
                         //return $this->image_lib->display_errors();
                     }
+                   
 				//	redirect("index.php/adminController/adminProfile/true/updateInfo");
 				}else{
 				   return $this->upload->display_errors();

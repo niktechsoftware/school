@@ -94,7 +94,7 @@
 
                       $("#notApprove<?php echo $j ;?>").click(function(){
                       var id =$('#id<?php echo $j ;?>').val();
-                     alert(id);
+                     //alert(id);
                       $.post("<?php echo site_url('index.php/adminController/deleleave') ?>",{id : id},function(data){
                       if(data==1){
                      alert("Leave Deleted Successfully!!!!! ");
@@ -113,11 +113,13 @@
 	<?php for($j = 1; $j <= $sno; $j++):?>
               $("#Approveemp<?php echo $j ;?>").click(function(){
                       var id =$('#empid<?php echo $j ;?>').val();
-                     //alert(id);
+                    // alert(id);
                       $.post("<?php echo site_url('index.php/adminController/appleaveemp') ?>",{id : id},function(data){
-                    if(data==1){
+                          //alert(data);
+                    if(data=="1"){
                      alert("Leave Approved Successfully!!!!! ");
-                       $("#Approve<?php echo $j ;?>").html("Approved");
+                       $("#Approveemp<?php echo $j ;?>").html("Approved");
+                       $("#notApproveemp<?php echo $j;?>").hide();
                      }else{
                         alert("Please Try Again");
                      }

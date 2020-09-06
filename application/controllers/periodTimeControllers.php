@@ -1172,5 +1172,4 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 		$this->load->view("includes/mainContent", $data);
 	}
 	
-}
-?>
+}?>

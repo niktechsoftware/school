@@ -67,13 +67,12 @@
 		<?php 
 		$school_code = $this->session->userdata("school_code");
 		$school_info = mysqli_query($this->db->conn_id,"select * from school where id = '$school_code'");
-
-	    $info = mysqli_fetch_object($school_info);
+        $info = mysqli_fetch_object($school_info);
       ?>		
 		<table style="width: 100%;border:1px solid black;" >
 			<tr>
 				<td width="10%" style="border: none;">
-					  <img src="<?= base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:right;" />
+					<img src="<?= base_url();?>assets/<?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:right;" />
 				</td>
 				<td style="border: none;">
 					<h1 align="center" style="text-transform:uppercase;"><?php echo $info->school_name; ?></h1>
@@ -93,30 +92,25 @@
 		
         
 		<div style="clear:both"></div>
-		
 		<div style="clear:both"></div>
-		
-		<div id="customer">
+			<div id="customer">
         	<div style="display:inline-block;">
          <?php
  
 	//$id = $this->uri->segment(3);
-	
-	$sqlb=mysqli_query($this->db->conn_id,"select * from sale_info where bill_no = '$id' AND school_code = '$school_code'");
-	
-	$rowb=mysqli_fetch_object($sqlb);
-	
+
+	$sqlb=$this->db->query("select * from sale_info where bill_no = '$id' AND school_code = '$school_code'");
+	$rowb=$sqlb->row();
+	//print_r($school_code);
+
 	$category = $rowb->category;
-	
 	$valid_id = $rowb->valid_id;
-	
 	if($category == "Employee Id")
 	{
 		$sqlc=mysqli_query($this->db->conn_id,"select * from employee_info where id='$valid_id' AND school_code = '$school_code'");
 		$rowc=mysqli_fetch_object($sqlc);
 	}
-	
-	if($category == "Student Id")
+		if($category == "Student Id")
 	{     
 		$sqlc=mysqli_query($this->db->conn_id,"select * from student_info where id='$valid_id' ");
 		$rowc=mysqli_fetch_object($sqlc);
@@ -205,8 +199,8 @@
 						                                    	}else{
 								  $this->db->where('id',$valid_id);
 							$sunm=$this->db->get('employee_info');
-						                                        	}
-						                                        	if($sunm->num_rows()>0){
+						  	}
+						 	if($sunm->num_rows()>0){
 							echo	$sunm= $sunm->row()->username;}
 						            ?>
                     </td>
@@ -221,8 +215,7 @@
 		</div>
 		
 		<table id="items" style="width: 100%;border:1px solid black;">
-		
-		  <tr>
+		 <tr>
 		       <th width="5%">No.</th>
                <th width="12%">Item Code</th>
                <th width="30%">Item-Description/Size</th>
@@ -255,8 +248,7 @@
 	$rowb=mysqli_fetch_array($sqlb);
 
     ?>		  
-		  
-		  <tr>
+	 <tr>
 		      <td colspan="3" align="right"><strong>Total</strong></td>
 		      <td colspan="2"><?php echo $rowb['SUM(item_quant)']; ?></td>
 		      <td><?php echo $rowb['SUM(dis_rs)']; ?></td>
@@ -277,9 +269,7 @@
               <td class="total-line" colspan="4"><strong>Balance Due</strong></td>
 		      <td class="total-value"><div id="total"><?php echo $sb->balance; ?></div></td>
 		  </tr>
-		
 		</table>
-		
 		<div id="terms">
 		  <h5>Terms</h5>
 		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>

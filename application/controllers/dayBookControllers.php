@@ -3,10 +3,9 @@
     	public function __construct(){
 		parent::__construct();
 			$this->is_login();
+			$this->load->model("daybookmodel");
 	
 	}
-	
-	
 		function is_login(){
 		$is_login = $this->session->userdata('is_login');
 	
@@ -38,6 +37,7 @@
 	}
 	
 	function deleteCashPay(){
+		if($this->session->userdata("school_code")){
 	    $school_code = $this->session->userdata("school_code");
 		$di = $this->uri->segment(3);
 		$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -46,34 +46,14 @@
 		
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("invoice_no",$di);
-		$drowd = $this->db->get("day_book")->row();
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		$close1 = $balance + $drowd->amount;
-		$bal = array(
-				"closing_balance" => $close1
-		);
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("opening_date",date('Y-m-d'));
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->update("opening_closing_balance",$bal);
-		$dayBook = array(
-				"paid_to" =>"Return",
-				"paid_by" =>$this->session->userdata("username"),
-				"reason" => "Wrong by Admin",
-				"dabit_cradit" => 1,
-				"amount" => $drowd->amount,
-				"closing_balance" => $close1,
-				"pay_date" => date('Y-m-d'),
-				"pay_mode" => "wrong Cash by Admin",
-				"school_code"=>$this->session->userdata("school_code")
-		);
-		$this->db->insert("day_book",$dayBook);
-		
+		$drowd = $this->db->delete("day_book");
 		$date1 = $this->uri->segment(4);
 		$date2 = $this->uri->segment(5);
 		$exname = $this->uri->segment(6);
 		redirect("index.php/dayBookControllers/fullDetail/$exname/$date1/$date2");
+	}else{
+		echo "<h2>Please Login Again!!!!!</h2>";
+	}
 	}
 function daybook()
 	{
@@ -84,8 +64,8 @@ function daybook()
 		$dt2        = $this->input->post("end_date");
 		$q          = $this->input->post("check_list");
 	
-	//echo $q;
-		if($q==1){
+
+		/* if($q==1){
 			$a = $this->db->query("select DISTINCT expenditure_name from cash_payment where date >= '$dt1' AND date <= '$dt2' AND school_code='$school_code'");
 			
 			$b = $a->num_rows();
@@ -119,39 +99,65 @@ function daybook()
 			else{
 			    redirect("index.php/login/dayBook/9");
 			}
+		} */
+	//echo "t";
+	if(($q==1)|| ($q==2)||($q==3)||($q==4)||($q==5)||($q==6)||($q==7) ||($q==9) ||($q==10)){
+		
+		if(($q==1)){
+			$reason = "by salary";
+			$heads=8;
+			$condition=0;
 		}
-	
-	if(($q==2)||($q==3)||($q==4)||($q==5)||($q==6)||($q==7)||($q==8) ||($q==9)){
 	        if(($q==2)){
 	             $reason = "by salary";
+	             $heads=10;
+	             $condition=0;
 		 }
 	          if(($q==4)){
+	          
 	              $reason = "Diposti to Director";
+	             $heads=7;
+	             $condition=0;
 	          }
 	        if(($q==3)){
 	            $reason="Diposit To Bank";
+	            $heads=6;
+	            $condition=0;
 	                 }
-	         if(($q==2)){
-	             $reason="By Salary";
-	                   }
+	       
 	         if(($q==9)){
 	              $reason="Recieve From Director";
+	              $heads=7;
+	              $condition=1;
 	                }
 	         if(($q==5)){
 	               $reason="Fee Deposit";
+	               $heads=5;
+	               $condition=1;
 	                }
 	         if(($q==6)){
 	              $reason="From sale Stock";
+	              $heads=3;
+	              $condition=1;
 	                 }
 	        if(($q==7)){
 	             $reason="Receive From Bank";
+	             $heads=6;
+	             $condition=1;
 	                 }
-	        if(($q==8)){
-	              $reason="Admission Fee + 1 Month Fee";
-	              }
-	       //echo $reason;
-	        $a = $this->db->query("select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code' AND reason='$reason'");
-			$b = $a->num_rows();
+
+               
+	          if(($q==10)){
+	                 	$reason="Receive From Bank";
+	                 	$heads=20;
+	                 	$condition=2;
+	                 	$status =1;
+	                 }        
+	          
+	      $a= $this->daybookmodel->getInvoiceByDate($school_code,$dt1,$dt2,$heads,$condition,1);
+	      	$b = $a->num_rows();
+	     
+
 			$dabit = 0;
 			$cradit = 0;
 			if($b > 0){
@@ -183,7 +189,7 @@ function daybook()
 			}
 		}
 		
-		if($q==10){
+		/* if($q==10){
 			$school_code = $this->session->userdata("school_code");
 			$a = mysqli_query($this->db->conn_id,"select * from day_book where Date(pay_date) >= '$dt1' AND Date(pay_date) <= '$dt2' AND school_code='$school_code'");
 			$b = mysqli_num_rows($a);
@@ -209,7 +215,7 @@ function daybook()
 			}
 			else
 				redirect("index.php/login/dayBook/9");
-		}
+		} */
 		
 	}
 	
@@ -218,11 +224,11 @@ function daybook()
 	    $school_code = $this->session->userdata("school_code");
 		$scholer_no = $this->input->post('q1');
 
-		$balance1 = $this->db->query("select closing_balance from opening_closing_balance where DATE(opening_date) = '".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		// 	$this->db->where("DATE(opening_date)","2019-03-11");
-		// 	$this->db->where("school_code",1);
-		//	$balance1 =$this->db->get("opening_closing_balance")->row();
-		$balance = $balance1->closing_balance;
+		$cdate =date("Y-m-d");
+		$backDate = date('Y-m-d',(strtotime ( '-1 day' , strtotime ( $cdate) ) ));
+		$openingBalance=$this->daybookmodel->getClosingBalance($backDate);
+		$closingBalance = $this->daybookmodel->getClosingBalance($cdate);
+		$balance=$closingBalance;
 		if($balance < $scholer_no){
 			echo '<font color="#FF0000">There is not enough avilable. Avl bal : Rs.'.$balance.'/-</font>';
 		}
@@ -234,11 +240,12 @@ function daybook()
 	    $school_code = $this->session->userdata("school_code");
 		$scholer_no = $this->input->post('q1');
 
-		$balance1 = $this->db->query("select closing_balance from opening_closing_balance where DATE(opening_date) = '".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		// 	$this->db->where("DATE(opening_date)","2019-03-11");
-		// 	$this->db->where("school_code",1);
-		//	$balance1 =$this->db->get("opening_closing_balance")->row();
-		$balance = $balance1->closing_balance;
+		$cdate =date("Y-m-d");
+		$backDate = date('Y-m-d',(strtotime ( '-1 day' , strtotime ( $cdate) ) ));
+		$openingBalance=$this->daybookmodel->getClosingBalance($backDate);
+		$closingBalance = $this->daybookmodel->getClosingBalance($cdate);
+		$balance=$closingBalance;
+		
 		if($balance < $scholer_no){
 			echo '<font color="#FF0000">There is not enough avilable. Avl bal : Rs.'.$balance.'/-</font>';
 		}
@@ -250,11 +257,11 @@ function daybook()
 	    $school_code = $this->session->userdata("school_code");
 		$scholer_no = $this->input->post('q1');
 
-		$balance1 = $this->db->query("select closing_balance from opening_closing_balance where DATE(opening_date) = '".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		// 	$this->db->where("DATE(opening_date)","2019-03-11");
-		// 	$this->db->where("school_code",1);
-		//	$balance1 =$this->db->get("opening_closing_balance")->row();
-		$balance = $balance1->closing_balance;
+	$cdate =date("Y-m-d");
+		$backDate = date('Y-m-d',(strtotime ( '-1 day' , strtotime ( $cdate) ) ));
+		$openingBalance=$this->daybookmodel->getClosingBalance($backDate);
+		$closingBalance = $this->daybookmodel->getClosingBalance($cdate);
+		$balance=$closingBalance;
 		if($balance < $scholer_no){
 			echo '<font color="#FF0000">There is not enough avilable. Avl bal : Rs.'.$balance.'/-</font>';
 		}
@@ -287,7 +294,7 @@ function daybook()
 	    $school_code =  $this->session->userdata("school_code");
         $paydate=$this->input->post('paydate');
         $expenditure=$this->input->post('expenditure');
-        $expenditurer=$this->input->post('expenditurer');
+        $depart=$this->input->post('expenditurer');
 		$id_name = $this->input->post('id_name');
 		$emp_id = $this->input->post('emp_id');
 		$name = $this->input->post('name');
@@ -295,9 +302,8 @@ function daybook()
 		$reason = $this->input->post('reason');
 		$amount = $this->input->post('amount');
 		$date = date('Y-m-d');
-		
 		// Calculat and update Invoice serial start
-		$school_code=	$this->session->userdata("school_code");
+		
 		$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
 		$invoice1=6000+$invoice->num_rows();
@@ -305,7 +311,7 @@ function daybook()
 		$num1=$invoice_number;
 		$invoice = array(
 				"invoice_no" =>$num1,
-				"reason" => "Cash Payment handover",
+				"heads" => $this->input->post("heads"),
 				"invoice_date" => $paydate,
 				"school_code"=>$school_code
 		);
@@ -318,8 +324,11 @@ function daybook()
 			$nm = $emp_id;
 		endif;
 		
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
+		$cdate =date("Y-m-d");
+		$backDate = date('Y-m-d',(strtotime ( '-1 day' , strtotime ( $cdate) ) ));
+		$openingBalance=$this->daybookmodel->getClosingBalance($backDate);
+		$closingBalance = $this->daybookmodel->getClosingBalance($cdate);
+		$balance=$closingBalance;
 		
 		if($balance < $amount)
 		{
@@ -327,59 +336,47 @@ function daybook()
 		}
 		else
 		{	
-			$close1 = $balance - $amount;
-			$bal = array(
-				"closing_balance" => $close1
-			);
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("opening_date",date('Y-m-d'));
-			$this->db->update("opening_closing_balance",$bal);
 			
 			$cashPayment = array(
-					"expenditure_name"=>$expenditure,
-					"exp_depart"=>$expenditurer,
+					"exp_id"=>$expenditure,
+					"sub_exp_id"=>$depart,
 					"id_name" =>$id_name,
 					"valid_id" =>$emp_id,
 					"name" => $name,
 					"phone_no" => $phone_no,
 					"reason" => $reason,
-					"amount" => $amount,
-					"date" => $paydate,
 					"receipt_no" => $num1,
-					"school_code"=>$this->session->userdata("school_code")
+					
 			);
 			
 			$dayBook = array(
 					"paid_to" =>$nm,
 					"paid_by" =>$this->session->userdata("username"),
-					"reason" => $reason,
-					"dabit_cradit" => "Debit",
+					"dabit_cradit" => 0,
 					"amount" => $amount,
-					"closing_balance" => $close1,
 					"pay_date" => date('Y-m-d'),
 					"pay_mode" => "Cash",
 					"invoice_no"=>$num1,
+					"status"=>1,
 					"school_code"=>$this->session->userdata("school_code")
 			);
 			
 			if($this->db->insert('cash_payment',$cashPayment) && $this->db->insert('day_book',$dayBook)):
-			    
-	     	$sender1 = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+			//code for sms
+			$sender1 = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
 			$sende_Detail = $sender1->row();
+			$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+			$master_id=$max_id->maxid+1;
 			$this->db->where("id",$this->session->userdata("school_code"));
 		    $mobile=$this->db->get("school")->row();
-			$msg = "Dear Sir/Ma'am ".$nm.", Cash Amount Rs " . $amount . "/- expend by Admin for expenditure " . $expenditure . " from your Account.";
-			if($school_code==8){
-		//	sms($mobile->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}else{
-			    sms($mobile->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-			}
-			if($mobile->id==1){
-				$msg = "Dear Sir/Ma'am ".$nm.", Cash Amount Rs " . $amount . "/- expend by Admin for expenditure " . $expenditure . " from your Account.";
-			
-				  sms(7398863503,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);  
-				
-			}
+			$msg ="Dear Sir/Ma'am ".$nm.", Cash Amount Rs " . $amount . "/- expend by Admin for expenditure " . $expenditure . " from your Account.";
+			 sms($mobile->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+			 $getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$mobile->mobile_no);
+				//echo $getv;
+				if($getv){
+			 $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+				}
+			 // end code for sms
 				redirect("dayBookControllers/invoiceCashPayment/$num1");
 			else:
 				redirect("login/cashPayment/cash/balanceFalse");
@@ -407,20 +404,7 @@ function daybook()
 	 $feemonth= $this->db->get("cash_payment");
 		if($feemonth->num_rows()>0){
 			$amount= $feemonth->row()->amount;
-		 
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("opening_date",date("y-m-d"));
-			$closing=$this->db->get("opening_closing_balance");
-	 
-			$close=$closing->row()->closing_balance;
-			$bal=$close + $amount;
-			$clos_arr=array(
-				 "closing_balance"=>$bal
-			);
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("opening_date",date("y-m-d"));
-			$this->db->update("opening_closing_balance",$clos_arr);
-	 
+
 			$this->db->where("invoice_no",$invoice_number);
 			$this->db->where("school_code",$this->session->userdata("school_code"));
 		 $dfee= $this->db->delete("day_book");
@@ -441,184 +425,33 @@ function deleteBanTrans(){
 	$getrow = $this->db->get("day_book");
 	if($getrow->num_rows()>0){
 		$rowt = $getrow->row();
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("opening_date",date("y-m-d"));
-		$closing=$this->db->get("opening_closing_balance");
-		
-		$close=$closing->row()->closing_balance;
-		if($rowt->dabit_cradit){
-			$dc = 0;
-			$bal=$close - $rowt->amount;
-		}else{
-			$dc = 1;
-			$bal=$close + $rowt->amount;
-		}
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("opening_date",date("y-m-d"));
-		$closing=$this->db->get("opening_closing_balance");
-		
-		$close=$closing->row()->closing_balance;
-		
-		$clos_arr=array(
-				"closing_balance"=>$bal
-		);
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("opening_date",date("y-m-d"));
-		$this->db->update("opening_closing_balance",$clos_arr);
-		$dataa = array(
-				"paid_to"		=>$rowt->paid_by,
-				"paid_by"		=>$rowt->paid_to,
-				"reason"		=>"Wrong ".$rowt->invoice_no."-".$rowt->reason,
-				"dabit_cradit"	=>$dc,
-				"amount"		=>$rowt->amount,
-				"closing_balance"=>$bal,
-				"pay_date"		=>date("Y-m-d"),
-				"pay_mode"		=>1,
-				"invoice_no"	=>"Deleted",
-				"school_code"	=>$rowt->school_code
-		);
-	}
-	$this->db->insert("day_book",$dataa);
 	$this->db->where("invoice_no",$invoiceid);
 	$getrow = $this->db->delete("day_book");
 	$this->db->where("receipt_no",$invoiceid);
 	$this->db->delete("bank_transaction");
 	$this->db->where("receipt_no",$invoiceid);
 	$this->db->delete("director_transaction");
+	
 	echo "Deleted Success";
 }
-	function bankTransactionDb(){
-		$id_name = $this->input->post('id_name');
-		$bank_name = $this->input->post('bank_name');
-		$account_no = $this->input->post('account_no');
-	$school_code=	$this->session->userdata("school_code");
-		$amount = $this->input->post('amount');
-		$chequeTran_no = $this->input->post('chequeTranNum');
-		$remark = $this->input->post('remark');
-		$date = date('Y-m-d');
-		$this->db->where("school_code",$school_code);
-		$invoice = $this->db->get("invoice_serial");
-		$invoice1=6000+$invoice->num_rows();
-		$invoice_number = $school_code."I19".$invoice1;
-		$num1=	$invoice_number;
-		$invoice = array(
-				"invoice_no" =>$num1,
-				"reason" => "Bank Transaction",
-				"invoice_date" => date('Y-m-d'),
-				"school_code"=>$this->session->userdata("school_code")
-		);
-		$this->db->insert("invoice_serial",$invoice);
-		
-		
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		
-		if($id_name == 'deposite')
-		{
-			
-			if($balance < $amount){
-				redirect("login/cashPayment/bank/balanceFalse");
-			}
-			else{
-				$close1 = $balance - $amount;
-				$bal = array(
-					"closing_balance" => $close1
-				);
-				$this->db->where("school_code",$this->session->userdata("school_code"));
-				$this->db->where("opening_date",date('Y-m-d'));
-				$this->db->update("opening_closing_balance",$bal);
-				
-				$cashPayment = array(
-					"id_name" =>$id_name,
-					"bank_name" =>$bank_name,
-					"account_no" => $account_no,
-					"amount" => $amount,
-					"date" => date('Y-m-d'),
-					"receipt_no" => $num1,
-					"chequeTran_no"=>$chequeTran_no,
-					"remark"=>$remark,
-						"school_code"=>$this->session->userdata("school_code")
-				);
-				
-				$dayBook = array(
-						"paid_to" =>$id_name,
-						"paid_by" =>$this->session->userdata("username"),
-						"reason" => "Diposit To Bank",
-						"dabit_cradit" => "Debit",
-						"amount" => $amount,
-						"closing_balance" => $close1,
-						"pay_date" => date('Y-m-d'),
-						"invoice_no" => $num1,
-						"pay_mode" => "Cash",
-						"school_code"=>$this->session->userdata("school_code")
-				);
-				
-				if($this->db->insert('bank_transaction',$cashPayment) && $this->db->insert('day_book',$dayBook)):
-					redirect("index.php/login/cashPayment/bank/bankTrue");
-				else:
-					redirect("index.php/login/cashPayment/bank/bankFalse");
-				endif;
-			}
-		}
-		elseif($id_name == 'receive'){
-			$close1 = $balance + $amount;
-				$bal = array(
-					"closing_balance" => $close1
-						
-				);
-				$this->db->where("school_code",$this->session->userdata("school_code"));
-				$this->db->where("opening_date",date('Y-m-d'));
-				$this->db->update("opening_closing_balance",$bal);
-				
-				$cashPayment = array(
-					"id_name" =>$id_name,
-					"bank_name" =>$bank_name,
-					"account_no" => $account_no,
-					"amount" => $amount,
-					"date" => date('Y-m-d'),
-					"receipt_no" => $num1,
-					"chequeTran_no"=>$chequeTran_no,
-					"remark"=>$remark,
-						"school_code"=>$this->session->userdata("school_code")
-				);
-				
-				$dayBook = array(
-						"paid_to" =>$id_name,
-						"paid_by" =>$this->session->userdata("username"),
-						"reason" => "Receive From Bank",
-						"dabit_cradit" => "Credit",
-						"amount" => $amount,
-						"closing_balance" => $close1,
-						"pay_date" => date('Y-m-d'),
-						"invoice_no" => $num1,
-						"pay_mode" => "Cash",
-						"school_code"=>$this->session->userdata("school_code")
-				);
-				
-				if($this->db->insert('bank_transaction',$cashPayment) && $this->db->insert('day_book',$dayBook)):
-					redirect("index.php/login/cashPayment/bankTrue");
-				else:
-					redirect("index.php/login/cashPayment/bankFalse");
-				endif;
-		}
-	}
+
+	
 	function expenditure_depart(){
-		$expenditure_name = $this->input->post("expenditure_name");
-		
-		$this->db->where("expenditure_name",$expenditure_name);
-		$rt = $this->db->get("expenditure");
+		$expenditure_id = $this->input->post("expenditure_id");
+		$this->db->where("exp_id",$expenditure_id);
+		$rt = $this->db->get("sub_expenditure");
+
 		?> 
-		
-		<option value="">-Department-</option>
+		<option value="0">-Department-</option>
 		<?php 
 		if($rt->num_rows()>0){
 			foreach($rt->result() as $row):
-			?>  <option value="<?php echo $row->exp_depart;?>"><?php echo $row->exp_depart;?> </option>
+			?>  <option value="<?php echo $row->id;?>"><?php echo $row->sub_expenditure_name;?> </option>
 			 <?php  endforeach;}
-			
-		
 	}
+	
 	function directorTransaction(){
+		$this->load->model("smsmodel");
 		$action_transaction = $this->input->post('action_transaction');
 		$amount = $this->input->post('amount');
 		$name = $this->input->post('name');
@@ -632,81 +465,65 @@ function deleteBanTrans(){
 		$num1=$invoice_number;
 		$invoice = array(
 				"invoice_no" =>$num1,
-				"reason" => "Director Transaction",
+				"heads" => $this->input->post("heads"),
 				"invoice_date" => date('Y-m-d'),
 				"school_code"=>$this->session->userdata("school_code")
 		);
 		$this->db->insert("invoice_serial",$invoice);
-       $school_code=$this->session->userdata("school_code");
-		
-		$op1 = $this->db->query("select closing_balance from opening_closing_balance where  opening_date='".date('Y-m-d')."' AND school_code='$school_code'")->row();
-		$balance = $op1->closing_balance;
-		
-				
-		
-		
-			if($action_transaction == 'Diposited'):
+
+       $cdate =date("Y-m-d");
+       $closingBalance = $this->daybookmodel->getClosingBalance($cdate);
+       $balance= $closingBalance ;
+		if($action_transaction == 0):
+
 			if($balance < $amount){
 				redirect("login/cashPayment/director/balanceFalse");
+			}else{
+			$dabitCredit = 0;	
 			}
-				$close1 = $balance - $amount;
+
+
+			else:
+			$dabitCredit = 1;
+			endif;
 				$cashPayment = array(
-						"transaction_mode" =>"Cash Diposit",
-						"action" =>$action_transaction,
-						"applicant_name" => $name,
-						"amount" => $amount,
-						"reason"=>$disc,
-						"date" => date('Y-m-d'),
+						"name" =>$name,
+						"reason"=>"Handover to Director ".$disc,
 						"receipt_no" => $num1,
-						"school_code"=>$this->session->userdata("school_code")
 				);
 				$dayBook = array(
 						"paid_to" =>$name,
 						"paid_by" =>$this->session->userdata("username"),
-						"reason" => "Diposti to Director",
-						"dabit_cradit" => "Debit",
+
+						"dabit_cradit" => $dabitCredit,
+
 						"amount" => $amount,
-						"closing_balance" => $close1,
 						"pay_date" => date('Y-m-d'),
 						"invoice_no" => $num1, 
-						"pay_mode" => "Cash",
+						"pay_mode" => 1,
+						"status"=>1,
 						"school_code"=>$this->session->userdata("school_code")
 				);
-			else:
-				$close1 = $balance + $amount;
-				$cashPayment = array(
-						"transaction_mode" =>"Cash Recieve",
-						"action" =>$action_transaction,
-						"applicant_name" => $name,
-						"amount" => $amount,
-						"reason"=>$disc,
-						"date" => date('Y-m-d'),
-						"receipt_no" => $num1,
-						"school_code"=>$this->session->userdata("school_code")
-				);
-				$dayBook = array(
-						"paid_to" =>$name,
-						"paid_by" =>$this->session->userdata("username"),
-						"reason" => "Recieve From Director",
-						"dabit_cradit" => "Credit",
-						"amount" => $amount,
-						"closing_balance" => $close1,
-						"pay_date" => date('Y-m-d'),
-						"invoice_no" => $num1,
-						"pay_mode" => "Cash",
-						"school_code"=>$this->session->userdata("school_code")
-				);
-			endif;
-			$bal = array(
-					"closing_balance" => $close1
-			);
-			$this->db->where("school_code",$this->session->userdata("school_code"));
-			$this->db->where("opening_date",date('Y-m-d'));
-			$this->db->update("opening_closing_balance",$bal);
-	
+			//code for sms
+			if($dabitCredit==0){
+				$tran = "Debited";
+			}else{
+				$tran = "credited";
+			}
+				$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+				$master_id=$max_id->maxid+1;
+				$sender1 = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
+				$sende_Detail = $sender1->row();
+				$this->db->where("id",$this->session->userdata("school_code"));
+				$mobile=$this->db->get("school")->row();
+				$msg = "School Account is ".$tran.", Cash Amount Rs " . $amount . "/- By Director Name ".$name.".";
+				sms($mobile->mobile_no,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
+				$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$mobile->mobile_no);
+				$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
+				// end code for sms
 					
-			if($this->db->insert('director_transaction',$cashPayment) && $this->db->insert('day_book',$dayBook)):
-			redirect("index.php/login/cashPayment/director/directorTrue");
+			if($this->db->insert('cash_payment',$cashPayment) && $this->db->insert('day_book',$dayBook)):
+			redirect("dayBookControllers/invoiceCashPayment/$num1");
 			else:
 			redirect("index.php/login/cashPayment/director/directorFalse");
 			endif;
@@ -855,6 +672,7 @@ function deleteBanTrans(){
              return false;
             }
 	}
+}
 	public  function Suceesotpdeleteexpby()
 
           {

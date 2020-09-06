@@ -53,18 +53,18 @@
 								    			</thead>
 								    			<tbody>	
 								    		<?php		$i=1; 	
-								    		foreach($row->result() as $rows):?>
-								<?php $this->db->where('student_id',$rows->valid_id);
-								      	$this->db->where("school_code",$this->session->userdata("school_code"));
+								    		foreach($row->result() as $rows):
+								      		$this->db->where("bill_no",$rows->bill_no);
+								      		$fee = $this->db->get("sale_info");
 								      		$this->db->where("invoice_no",$rows->bill_no);
-								      		$fee = $this->db->get("fee_deposit");?>
+								      		$bill=$this->db->get("day_book");?>
 								    				<tr>
 								    				<td> <?php echo $i;?> </td>
 								    				<td> <?php echo $rows->item_no;?> </td>
 								    				<td> <?php echo $rows->date;?> </td>
-								    				<td> <?php if($fee->num_rows()>0){ echo $fee->row()->total;}else{ echo "0.00";}?> </td>
-								    				<td> <?php if($fee->num_rows()>0){echo $fee->row()->paid;}else{ echo "0.00";}?> </td>
-								    				<td> <?php echo $rows->bill_no;?> </td>
+								    				<td> <?php if($fee->num_rows()>0){ echo $fee->row()->total_price;}else{ echo "0.00";}?> </td>
+								    				<td> <?php if($bill->num_rows()>0){echo $bill->row()->amount;}else{ echo "0.00";}?> </td>
+								    				<td> <?php echo $fee->row()->bill_no;?> </td>
 								    				</tr>
 								    				<?php $i++; 
 								    				endforeach; ?>
