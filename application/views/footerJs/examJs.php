@@ -61,10 +61,19 @@
      
 				$("#sectionId").change(function(){
     	        	 var sectionid = $("#sectionId").val();
-    	        	  alert(sectionid);
+    	        	  //alert(sectionid);
     	            $.post("<?php echo site_url('index.php/examControllers/getClass') ?>", {sectionid : sectionid}, function(data){
 						//alert(data);
     	                $("#classIdSet").html(data);
+    	    		});
+    	        });
+    	        
+    	        $("#classIdSet").change(function(){
+    	        	 var classid = $("#classIdSet").val();
+    	        	  //alert(sectionid);
+    	            $.post("<?php echo site_url('index.php/examControllers/getSubjectByClass') ?>", {classid : classid}, function(data){
+						//alert(data);
+    	                $("#select_subjectid").html(data);
     	    		});
     	        });
 				

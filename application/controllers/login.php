@@ -1498,7 +1498,7 @@ function exammode(){
 	}
 	function subjective_ques(){
 		$fsd =$this->session->userdata("fsd");
-		$data['pageTitle'] = 'Subjective Question';
+		$data['pageTitle'] = 'Exam Section';
 		$data['smallTitle'] = 'Subjective Question';
 		$data['mainPage'] = 'Subjective Question';
 		$data['subPage'] = 'Subjective Question';

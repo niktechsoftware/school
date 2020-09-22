@@ -1085,6 +1085,11 @@
                 <span class="title">Enter Maximum Marks</span>
             </a>
         </li>
+          <li>
+           <a href="<?php echo base_url(); ?>index.php/login/exammode">
+                <span class="title">Exam Mode</span>
+            </a>
+        </li>
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/examTimeTable">
                 <span class="title">Exam Time Table </span>

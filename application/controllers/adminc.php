@@ -92,13 +92,15 @@
 		   	$rowc 	= $this->db->get("student_info")->row();
 		   	$data['studentData']=$rowc ;
 		   	$fsd = $this->uri->segment(5);
+		   
 		   	$this->db->where("student_id",$rowc->id);
 		   	$this->db->where("school_code",$this->session->userdata("school_code"));
 		   	$pInfo = $this->db->get("guardian_info")->row();
 		   	$data['pInfo']=$pInfo;
-		   	
+		 
 		   	$this->db->where('id',$fsd);
 		   	$date=$this->db->get('fsd')->row();
+		   
 		   	$data['fsdData']=$date;
 		   	$data['cyear'] = date('Y', strtotime($date->finance_start_date));
 		   	$data['nyear'] = date('Y', strtotime($date->finance_end_date));

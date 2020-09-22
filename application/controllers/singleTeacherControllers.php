@@ -22,7 +22,7 @@
 	
 	function index(){
 			$school_code=$this->session->userdata("school_code");
-		$this->db->where("school_code",$school_code);
+		/*$this->db->where("school_code",$school_code);
 		$this->db->where("DATE(opening_date)",date("Y-m-d"));
 		$checkopeningclo  = $this->db->get("opening_closing_balance");
 		if($checkopeningclo->num_rows()>0){
@@ -57,7 +57,7 @@
 				$this->db->insert('opening_closing_balance',$balance);
 				//echo $cl_date;
 			}
-		}
+		}*/
 		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
 		$data['mainPage'] = 'Dashboard';

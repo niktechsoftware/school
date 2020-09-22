@@ -72,7 +72,7 @@
 	});
 	});
 	$("#fsd").change(function(){
-	alert("khushbu");		
+	
 	var fsd = $("#fsd").val();
 	
 	//alert(teacherid);
