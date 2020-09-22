@@ -15,7 +15,7 @@ corn_job/sendAccountSms.php
 application/libraries/PaytmKit/lib/config_paytm?.php
 application/libraries/PaytmKit/lib/config_paytm??.php
 application/libraries/PaytmKit/lib/config_paytm.php
-
+assets/images/question_img/
 application/libraries/PaytmKit/lib
 application/libraries/PaytmKit/*
 application/controllers/paytm.php
