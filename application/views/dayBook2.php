@@ -323,9 +323,11 @@ if ($condition == 'Both') {
 								<td><?php echo $sno; ?></td>
 								<td><?php 
 								
+
 								$idempl=$this->db->query ( "SELECT * From employee_info where id ='$row->paid_to' AND school_code='$school_code'" )->row ();
 								if ($idempl) {
 									echo $idempl->name;
+
 								}else{echo $row->paid_to; }?></td>
 <?php
 		$id = $this->db->query ( "SELECT name From student_info where id ='$row->paid_by'" )->row ();
@@ -387,14 +389,15 @@ if (($row->reason) == "Fee Deposit") {
 			$this->db->where ( 'school_code', $school_code );
 			$this->db->where ( 'id', $id2->class_id );
 			$classname = $this->db->get ( 'class_info' );
-			$classdf = $classname->row ();
+			if($classname->num_rows()>0){
+			$classdf = $classname->row();
 			$this->db->where ( "id", $classdf->section );
 			$secname = $this->db->get ( "class_section" )->row ()->section;
 			?><?php
 
 			
 echo $classdf->class_name . "-" . $secname;
-		}
+		}}
 		?></td>
 								<td style="color: red"><?php if($dr_cr == 0 || $dr_cr == 0){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
 								<td style="color: green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>

@@ -1085,6 +1085,11 @@
                 <span class="title">Enter Maximum Marks</span>
             </a>
         </li>
+          <li>
+           <a href="<?php echo base_url(); ?>index.php/login/exammode">
+                <span class="title">Exam Mode</span>
+            </a>
+        </li>
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/examTimeTable">
                 <span class="title">Exam Time Table </span>
@@ -1114,7 +1119,7 @@
             </a>
         </li>
         <li>
-            <a href="<?php echo base_url(); ?>/index.php/singleTeacherControllers/showHomeWork">
+            <a href="<?php echo base_url(); ?>index.php/singleTeacherControllers/showHomeWork">
               	Show HomeWork <i class="icon-arrow"></i>
             </a>
         </li>

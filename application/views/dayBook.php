@@ -101,7 +101,7 @@
            	<div class="col-md-12"> 
             	<div class="col-md-6">
             		<div class="form-group">
-            			<H3 style="margin-left: 100px;">Debit</H3>
+            			<H3 style="margin-left: 100px;">Credit</H3>
             		</div>
             		<div class="col-md-12">
             				<label class="control-label col-md-6">Opening Balance</label>
@@ -137,7 +137,7 @@
             	</div>
             	 <div class="col-md-6">
             	 	<div class="form-group">
-            	 		<H3 style="margin-left: 100px;">Credit</H3>
+            	 		<H3 style="margin-left: 100px;">Debit</H3>
             		</div>
             	 	<div class="col-md-12">
             	 		    

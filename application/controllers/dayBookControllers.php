@@ -1,5 +1,4 @@
-<?php
-class dayBookControllers extends CI_Controller
+<?php class dayBookControllers extends CI_Controller
 {
     	public function __construct(){
 		parent::__construct();
@@ -158,6 +157,7 @@ function daybook()
 	             $heads=6;
 	             $condition=1;
 	                 }
+
                
 	          if(($q==10)){
 	                 	$reason="Receive From Bank";

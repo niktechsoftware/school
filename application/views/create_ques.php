@@ -18,6 +18,10 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+#demo {
+  display: none;
+}
+</style>
 </style>
 
 <div class="row">
@@ -95,6 +99,25 @@ tr:nth-child(even) {
                                       <label><h5 style="font-size:130%;">Normal Questions :</h5></label><input type="radio" name="radio_q" id="radio_1" style="width:20px; height:18px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                       <label><h5 style="font-size:130%;">Questions With Images:</h5></label><input type="radio" name="radio_q" id="radio_2" style="width:20px; height:18px;"/></center>
                             </div>
+                           <div style="margin-left:80%;">  <button type="button"  onclick="myFunction()" class="btn btn-info" >View Demo</button>
+                              <div class="form-group" id="demo" >
+                                  <form action="<?php echo base_url();?>index.php/examControllers/demoExam"  method ="post" role="form" class="smart-wizard form-horizontal" id="form">
+                                  <input type="text" name="stu_id" id="stu_id" placeholder="Stundent Id ">
+                                  <input type="hidden" name="class_id" value="<?php echo $res->class_id;?>">
+                                  <input type="hidden"  name="exam_id" value="<?php echo $res->exam_id;?>">
+                                  <input type="hidden"  name="fsd" value="<?php echo $this->session->userdata("fsd");?>">
+                                   <input type="hidden"  name="subjectid" value="<?php echo $res->subject;?>">
+                                  
+                                  </br>
+                                  <input  type="submit">
+                                   </form>
+                            </div>
+                                  </div>
+                              <script>
+function myFunction() {
+  document.getElementById("demo").style.display = "block";
+}
+</script>
 							<div id="normal_ques">
                                  <div class="row">
                                         <div class="col-md-3 "><label style="float:right"><h4>Question :</h4></label></div>
@@ -104,7 +127,7 @@ tr:nth-child(even) {
 										</br>
 										</br>
 								 <div class="row">
-									 <div class="panel-heading panel-red border-light"><h4 class="panel-title">Question Options :</h4></div>
+									 <div class="panel-heading panel-red border-light"><h4 class="panel-title">Answer Options :</h4></div>
                                         </br>
 										</br>
 										<div class="row" style="margin-left:55px;">
@@ -138,7 +161,7 @@ tr:nth-child(even) {
                                     <div class="row">
                                         <input type="hidden" name="exam_master_id1"  id="exam_master_id" value="<?php echo $select_exam; ?>">
                                      <input type="hidden" name="exam_language"  id="exam_language" value="<?php echo $language; ?>">
-                                        <input type="hidden" name="exam_subject_id1" id="exam_subject_id" value="<?php echo $select_subject; ?>">
+                                        <input type="hidden" name="exam_subject_id1" id="exam_subject_id" value="<?php echo $res->subject; ?>">
                                         <div class="col-md-3"><label style="float:right"><b>Question :</b></label></div>
                                         <div class="col-md-6">
                                             <textarea id="ques1" name="ques1" class="form-control" placeholder="Write Question here"></textarea>
@@ -228,7 +251,9 @@ tr:nth-child(even) {
 												
 												<td><?php echo $sub->subject; ?></td>
 													
-												<td><?php echo $data_q->question; ?></td> 
+												<td><?php 	echo $this->examModel->getOrgQuestion($data_q->id);
+												 ?></td> 
+												
 													<?php $this->db->where('question_master_id',$data_q->id);
 														  $dx_q = $this->db->get('right_answer'); ?>
 												<input type="hidden" id="questt_id<?= $i;?>" value="<?= $data_q->id;?>">
@@ -316,11 +341,11 @@ $("#submit_q").click(function(){
 		var sel = $('#sel_ct').val();
       
         var exam_master_id = $('#exam_master_id').val();
-		alert(exam_master_id);
+	//	alert(exam_master_id);
         
 		//alert(exam_name_id);
         var exam_subject_id = $('#exam_subject_id').val();
-		//alert(exam_subject_id);
+		alert(exam_subject_id);
     if((ques.length>0) && (($('#a1').val()).length>0) && (($('#b1').val()).length>0) && (($('#c1').val()).length>0) && (($('#d1').val()).length>0))
     {
         if(sel == "" || sel == 0)
@@ -350,6 +375,7 @@ $("#submit_q").click(function(){
                 var ans = 'E';
             } 
  
+
             $.post("<?php echo site_url();?>examControllers/insert_question", {
 				//alert("uppu");
                 ques : ques,a:a,b:b,c:c,d:d,e:e,ans:ans,
@@ -357,7 +383,7 @@ $("#submit_q").click(function(){
                
                 exam_subject_id : exam_subject_id
                 }, function(data){
-               alert(data);
+               //alert(data);
                 if(data==1)
                 {
                     alert("Question Created Successfully.");
@@ -401,9 +427,10 @@ $("#submit_q").click(function(){
     cache: false,
     processData:false,
     success: function(data){
+        alert(data);
     // $("#targetLayer").html(data);
 	
-   alert(data);
+  // alert(data);
 	
     location.reload();
     // if(console.log(data)=='1')
@@ -413,7 +440,7 @@ $("#submit_q").click(function(){
     },
     error: function(data){
 //alert("khushbu");
-        alert(data);
+       // alert(data);
     } 	        
     });
     }));
@@ -442,27 +469,27 @@ $("#qf1_id").change(function(){
         });
         $("#af1_id").change(function(){
             var op1 = $("#txt_af1_id").val();
-            var new_op1 = op1+"<=5!>";
+            var new_op1 = op1+"<=1!>";
             $("#txt_af1_id").val(new_op1);
         });
         $("#af2_id").change(function(){
             var op2 = $("#txt_af2_id").val();
-            var new_op2 = op2+"<=6!>";
+            var new_op2 = op2+"<=2!>";
             $("#txt_af2_id").val(new_op2);
         });
         $("#af3_id").change(function(){
             var op3 = $("#txt_af3_id").val();
-            var new_op3 = op3+"<=7!>";
+            var new_op3 = op3+"<=3!>";
             $("#txt_af3_id").val(new_op3);
         });
         $("#af4_id").change(function(){
             var op4 = $("#txt_af4_id").val();
-            var new_op4 = op4+"<=8!>";
+            var new_op4 = op4+"<=4!>";
             $("#txt_af4_id").val(new_op4);
         });
         $("#af5_id").change(function(){
             var op5 = $("#txt_af5_id").val();
-            var new_op5 = op5+"<=9!>";
+            var new_op5 = op5+"<=5!>";
             $("#txt_af5_id").val(new_op5);
         });
 </script>			

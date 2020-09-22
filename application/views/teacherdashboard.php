@@ -151,7 +151,6 @@ if($logtype==3)
                     <br/>
                     <span class="subtitle"> 	
                     	<?php  
-                    	        
 								$this->db->where("chat_username",$this->session->userdata("username"));
 								$chat_id = $this->db->get("chat")->row()->chat_username;
 								echo $chat_id;

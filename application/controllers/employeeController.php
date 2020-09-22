@@ -1,16 +1,10 @@
-<?php
-class EmployeeController extends CI_Controller{
-
-	
+<?php class EmployeeController extends CI_Controller{
 		public function __construct(){
 		parent::__construct();
 			$this->is_login();
-		
 		$this->load->model("employeeModel");
 		$this->load->model("daybookmodel");
 	}
-	
-	
 		function is_login(){
 		$is_login = $this->session->userdata('is_login');
 	
@@ -269,12 +263,12 @@ class EmployeeController extends CI_Controller{
 				 	$msg="Dear Employee ".$f_name." welcome to ".$school.". Your Employee ID= ".$username." and Password=".$password.". Now You can login and Manage all school updates click .".$sende_Detail->web_url." Thanks for Reliance.Principal ".$school;
 				// 	sms($f_mobile,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 				 	$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$f_mobile);
-				 //	echo $getv;
+
 				 	$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 				 }
 				//---------------------------------------------- END CHECK SMS SETTINGS -----------------------------------------
 				$rtype="employee";
-					//redirect("index.php/api/common_user/$rtype");
+
 				redirect("index.php/employeeController/employeeProfile/$eid");
 			}
 		}
@@ -544,8 +538,6 @@ function updateSalary(){
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		if($query = $this->employeeModel->updateImage($new_img)){
 			$this->load->library('upload');
-			// Set configuration array for uploaded photo.
-		//	$image_path = realpath(APPPATH . '../assets/'.$school_code.'/images/empImage');
 			$asset_name = $this->db->get('upload_asset')->row()->asset_name;
 			$image_path = $asset_name.$school_code.'/images/empImage'; 
 			$config['upload_path'] = $image_path;
@@ -854,8 +846,7 @@ function updateSalary(){
 	}
 	
 	function saveSalary(){
-	   // print_r($this->input->post("empid")); print_r($this->input->post('gross_s'));
-	    //exit;
+
 	    $school_code=$this->session->userdata("school_code");
 		$abc = $this->input->post("diposit_month");
 		foreach($abc as $a){
@@ -1183,5 +1174,4 @@ function updateSalary(){
 			$qres = $this->employeeModel->updateApprove($this->input->post("id"),$this->input->post("total_leave"),$this->input->post("end_date"),$this->input->post("start_date"),$data);
 		}
 
-}
-?>
+}?>

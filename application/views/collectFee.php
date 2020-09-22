@@ -366,32 +366,38 @@
                                                                                                 $mpinffd[$j]  = $fd->deposite_month;
                                                                                             $j++;
                                                                                             endforeach;
-												                                        $this->db->distinct();
-                                                                                		   $this->db->select("taken_month");
-                                                                                		   $this->db->where("class_id",$pk->class_id);
+												                                            $this->db->distinct();
+                                                                                		    $this->db->select("taken_month");
+                                                                                		    $this->db->where("class_id",$pk->class_id);
                                                                                 		    $this->db->where_not_in("taken_month",$mpinffd);
-                                                                                		    
-                                                                                		    
                                                                                 		   $monthDeposit1 = $this->db->get("class_fees");
                                                                                 		   $monthDe=$monthDeposit1->num_rows();
                                                                                 		   //foreach($monthDeposit1->result() as $mdf1):
                                                                                 		    $apm =$apm1->row()->apply_method;
 													                                              $h=0; $pm=12/$apm;
                                                                                 		   for($j=1;$j<$pm+1;$j++){
-                                                                                            if($j > $monthDeposit->num_rows()){
+                                                                                           // if($j > $monthDeposit->num_rows()){
 												                                           ?>
 												                                            <div class="progress-bar <?php echo $color[$i];?>" style="width: 8.33%">
 												                                            <?php
 												                                            //$deposite_month1 =$mdf1->taken_month-4;
 												                                            $rdt =date('Y-m-d', strtotime("$h months", strtotime($fsddate)));
-												                                          ?>
+												                                           $print=0;
+												                                            foreach($mpinffd as $mcheck):
+												                                                if($mcheck==$h+4){
+												                                                    $print =1;
+												                                                }
+												                                                endforeach;
+												                                            
+												                                         if($print==1){}else{ ?>
 													                                     
 													                                            <option value="<?php if(($h+4)>12){echo $h+4-12;}else{ echo $h+4;}?>">
 													                                                <?php echo date("M-Y",strtotime($rdt));?>
 													                                            </option>
-													                                            
+													                                            <?php }?>
 												                                        </div>
-												                                        <?php   }  $h=$h+$apm; $i++;}//endforeach;
+												                                        <?php  // }  
+												                                        $h=$h+$apm; $i++;}//endforeach;
 													                                      }else{
 																							if($apm1->num_rows()>0){
 																								$apm =$apm1->row()->apply_method;
@@ -456,7 +462,7 @@
 															var fsdid = $("#fsd_id").val();
 														$('#form-field-select-2 :selected').each(function(i, selectedElement) {
 															month[i] =$(selectedElement).val();
-															//alert(month[i]+stuId+catId);
+															//alert(month[i]+fsdid);
 
 															});
 

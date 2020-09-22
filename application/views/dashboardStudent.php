@@ -240,15 +240,13 @@ echo $noticeForStudent->row()->message;
         </div>
     </div>
 	<div class="col-md-4 col-lg-8 col-sm-8">
-        <div class="panel panel-default panel-white core-box">
-            <div class="panel-body no-padding">
-                <div class="partition-purple padding-20 text-center core-icon">
-                    <i class="fa fa-tasks fa-2x icon-big"></i>
-                </div>
+        <div class="panel panel-default panel-white ">
+          
+              
               <a href="#">
                 <div class="padding-20 core-content">
-                    <h4 class="title block no-margin"><blink>Exam SCHEDELE</blink></h4>
-                  <br /> <span class="subtitle"> Current Exam Schedule </span>
+                    <h4 class="title block no-margin"><blink>Exam SCHEDULE</blink></h4>
+                  <br /> <span class="subtitle"> <h3>Current Exam Schedule</h3> </span>
 				  </a>
  <?php
 			
@@ -257,9 +255,13 @@ echo $noticeForStudent->row()->message;
 			$dt = $this->db->get ( 'student_info' )->row ();
 			$stud_id = $dt->id;
 			$class_id=$dt->class_id;
-			 $exam =$this->examModel->exam_schedule($class_id);
-			//print_r($exam);
-			 $exam_id=$exam->exam_id;
+			$exam =$this->examModel->exam_schedule($class_id);
+		
+			if($exam){
+			//echo $class_id;
+		//	print_r($exam);
+		//	exit();
+			 	$exam_id=$exam->exam_id;
 			 $this->db->where("exam_id", $exam_id);
 			$ex = $this->db->get ( 'exam_shift' )->row ();
 			//print_r($ex);
@@ -274,15 +276,21 @@ echo $noticeForStudent->row()->message;
 			?>				 
 		<div class="table-responsive">
 <?php 	
-		$this->examModel->getExamTimeTableChartBy($exam_id,$class_id,$school_code);?>
+        echo $exam_id;
+        echo $class_id;
+        echo $stuid_id;
+		$this->examModel->getExamTimeTableChartBy($exam_id,$class_id,$school_code,$stuid_id,1);?>
 		
 
 										</div>
+									
  </div>
- </div>
+ 	<?php }else{  ?> Exam Mode is not Defined.
+ 	<?php }?>
+
         </div>
     </div>
-	<div class="col-md-6 col-lg-4 col-sm-6">
+<!--	<div class="col-md-6 col-lg-4 col-sm-6">
         <div class="panel panel-default panel-white core-box">
             <div class="panel-body no-padding">
                 <div class="partition-purple padding-20 text-center core-icon">
@@ -294,26 +302,28 @@ echo $noticeForStudent->row()->message;
                     <br/>
                     <span class="subtitle"> 	
                     
-                        <?php 	
-		$this->db->where("exam_id",$exam_id);
+                        <?php if($exam){	
+		$this->db->where("exam_id",$exam_id);	
 	$this->db->where("class_id",$class_id);
 	$emode=$this->db->get("exam_mode");?>
 		<p>	Subjective  <a href="/images/myw3schoolsimage.jpg" download>
   <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142">
 </a></p>
 			<p>
-		<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectivePaper/<?php echo $exam_id;?>/<?php echo $class_id;?>/">	Objecive</a></p>			
-                                        					
+		<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectivePaper/<?php echo $exam_id;?>/<?php echo $class_id;?>/">	Objective</a></p>			
+              <?php }else{  ?> Exam Mode is not Defined.
+ 	<?php }?>                       					
                 </div>
                 </a>
             </div>
         </div>
     </div>
+-->
+
+</div>
+
 
 
 </div>
 
-
-
-</div>
 <!-- end: PAGE CONTENT-->

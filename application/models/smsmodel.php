@@ -126,14 +126,14 @@ function sentmasterRecord($msg,$totsmssent,$master_id,$response_id){
 	}
 	
 	function getMobileSendSms($str_arr,$master_id,$mv,$sende_Detail){
-		
 			$sessionv = 0;
 			$fmobile =$this->session->userdata("mobile_number");
-		$i=0;	foreach($str_arr as $xuv):
+		$i=0;	
+		foreach($str_arr as $xuv):
 			$checknum = $this->checknumSendSms($xuv->mobile,$master_id);
 			if($checknum){
-				$msg="Dear Student ".$xuv->name." your Username For login is ".$xuv->username." and Password is ".$xuv->password." Please Use for Login And check your account for homework, on line classess and other details.<br> For more info login to our website.".$sende_Detail->web_url;
-			$getv=  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$checknum);
+			$msg        =   "Dear Student ".$xuv->name." your Username For login is ".$xuv->username." and Password is ".$xuv->password." Please Use for Login And check your account for homework, on line classess and other details.<br> For more info login to our website.".$sende_Detail->web_url;
+			$getv       =  mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$checknum);
 			$this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 			$i++;
 			}

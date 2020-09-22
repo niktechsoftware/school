@@ -51,7 +51,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<?php $fsd= $this->input->post("fsd");?>
-						<?php $fsd= 20;?>
+					
 						<IFRAME SRC="<?php echo base_url(); ?>index.php/adminc/AdmitCardDownload/<?php echo $this->input->post("student_id"); ?>/<?php echo $this->input->post("selectExam"); ?>/<?php echo $fsd; ?>" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
 					
 					 

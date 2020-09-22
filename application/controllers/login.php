@@ -1167,6 +1167,8 @@ function createSchedule()
 			$data['directorTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,0);
 			$data['cash'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,8,0);
 			
+
+
 			$this->db->select_sum('paid');
 			$this->db->where("school_code",$school_code);
 			$this->db->where("diposit_date",$cdate);
@@ -1195,6 +1197,7 @@ function createSchedule()
     		$data['subPage'] = 'Accounting';
 
 			$cdate=date('Y-m-d');
+
 			$data['sale'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,3,1);
 			$data['salary'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,10,0);
 			$data['bankTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,1);
@@ -1202,6 +1205,7 @@ function createSchedule()
 			$data['directorTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,1);
 			$data['directorTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,0);
 			$data['cash'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,8,0);
+
 
 			$this->db->select_sum('paid');
 			$this->db->where("school_code",$school_code);
@@ -1494,7 +1498,7 @@ function exammode(){
 	}
 	function subjective_ques(){
 		$fsd =$this->session->userdata("fsd");
-		$data['pageTitle'] = 'Subjective Question';
+		$data['pageTitle'] = 'Exam Section';
 		$data['smallTitle'] = 'Subjective Question';
 		$data['mainPage'] = 'Subjective Question';
 		$data['subPage'] = 'Subjective Question';

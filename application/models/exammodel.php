@@ -1,7 +1,53 @@
 <?php class examModel extends CI_Model{
 	
+	
+public function getOrgQuestion($qid){
+    $this->db->where("id",$qid);
+   $data_q= $this->db->get("question_master")->row();
+    $sgring=$data_q->question;
+    for($i=1; $i<5; $i++){
+        	$word = '<='.$i.'!>';
+                $this->db->where("question",$data_q->id);
+					$quesImage=$this->db->get("question_images");
+					if($quesImage->num_rows()>0){
+					if(strpos($sgring, $word) !== false){
+					    $qname = "q_img".$i;
+					    if($quesImage->row()->$qname){
+					$rep = '  <img src='.base_url().'assets/images/question_img/'.$quesImage->row()->$qname.' alt="Question Image" width="90" height="70">  ';
+                    $sgring  =str_replace($word,$rep,$sgring);
+                      } 	
+					}
+    }
+    										
+	}
+	return $sgring;
+}	
+
+public function getOrgAnswer($qid,$ansno,$num){
+   
+    $sgring=$ansno;
+   
+        	$word = '<='.$num.'!>';
+                $this->db->where("question",$qid);
+					$quesImage=$this->db->get("question_images");
+					if($quesImage->num_rows()>0){
+					if(strpos($sgring, $word) !== false){
+					    $qname = "q_ans_img".$num;
+					    if($quesImage->row()->$qname){
+					$rep = '  <img src='.base_url().'assets/images/question_img/'.$quesImage->row()->$qname.' alt="Question Image" width="50" height="40">  ';
+                    $sgring  =str_replace($word,$rep,$sgring);
+                      } 	
+					}
+    
+    										
+	}
+	return $sgring;
+}	
+
+
 //create by rahul
-public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
+public function getExamTimeTableChartBy($exam_id,$class_id,$school_code,$student_id,$indicator){
+   // echo $class_id;
 	$this->db->where("exam_id",$exam_id);
 	$this->db->where("class_id",$class_id);
 	$exam_day=$this->db->get("exam_time_table");
@@ -12,17 +58,19 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 	$this->db->where("exam_id",$exam_id);
 	$this->db->where("class_id",$class_id);
 	             	$exam_shift=$this->db->get("exam_time_table");?>
-				<table id="items" align="center"  style="width:100%; margin-top:8px;color:#d80707;font-size: 11px;">
+				<table id="items" align="center"  border="1" style="width:100%; margin-top:8px;color:#d80707;font-size: 15px;">
 						<thead>
-							<th style="text-transform: uppercase;"><b>Date</b></th>
+						    <tr>
+							<th style="text-align: center; text-transform: uppercase;"><b>Date</b></th>
 	                        <?php 
 	
 	if($exam_day->num_rows()){
 	                        $this->db->where('exam_id',$exam_day->row()->exam_id);
-	                        $date=$this->db->get('exam_day')->result();
-	                        foreach($date as $ed):?>
-							<th><b><?php echo date("d-m-Y",strtotime($ed->date1));?></b></th>
+	                        $dated=$this->db->get('exam_day')->result();
+	                        foreach($dated as $ed):?>
+							<th style="text-align: center; text-transform: uppercase;"><b><?php echo date("d-m-Y",strtotime($ed->date1));?></b></th>
 							<?php endforeach; }?>
+							</tr>
 						</thead>
 						<tbody>
 	                        <?php
@@ -33,16 +81,15 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 	                        ?>
 	                        <tr>
 	
-	                        <td style="text-align: center;text-transform: uppercase;"><?php if($school_code==5){ ?><?php }else{ ?>
-	                        <?php echo $exshift->shift;  ?>
-	                        <?php //echo $s->shift;?>
+	                           <td style="text-align: center;text-transform: uppercase;"><?php 
+	                             echo $exshift->shift;  ?>
 	                        
-	                        <?php } ?></td>
+	                      </td>
 	
 	                        <?php 
-	                   
-	                        foreach($date as $ed):
-							
+	                   $school_code =$this->session->userdata("school_code");
+	                        foreach($dated as $ed):
+						
 							$this->db->where("school_code",$this->session->userdata("school_code"));
 	                        $this->db->where("exam_id",$exam_id);
 	                        $this->db->where("shift_id",$s->shift_id);
@@ -51,14 +98,84 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code){
 							$etb = $this->db->get("exam_time_table");
 							if($etb->num_rows()>0){
 							    foreach($etb->result() as $ff):
+							        	$etype="";
 	                                 if($ff->subject_id){
 	                                $this->db->where('id',$ff->subject_id);
 	                                $this->db->where('class_id',$ff->class_id);
 	                                 $subject=$this->db->get('subject');
+	                                 
+	                                  $this->db->where("exam_id",$exam_id);
+	                                       $this->db->where("class_id",$class_id);
+	                                      $this->db->where("subject",$ff->subject_id);
+	                                      $mode = $this->db->get("exam_mode");
+	                                      if($mode->num_rows()>0){
+	                                          $modev = $mode->row();
+	                                          if($modev->exam_mode==3){
+	                                              $etype = "objective";
+	                                          }
+	                                          if($modev->exam_mode==2){
+	                                               $etype ="subjective";
+	                                          }
+	                                      }
+	                                      
+	                                      
 	                                    ?>
-	                                <td style="text-align: center;text-transform: uppercase;"> <?php echo $subject->row()->subject;?></td>
+	                                <td style="text-align: center;text-transform: uppercase;"> <?php echo $subject->row()->subject;?><br>
+	                                <?php if($etype){  
+	                                    $this->db->where("id",$ff->exam_day_id);
+	                                    $examDate = $this->db->get("exam_day")->row();
+	                                    $datagh = " ".date("Y-m-d");
+	                                    $date2 = " ".$examDate->date1;
+	                                     
+	                                    if($indicator==0){
+	                                   if($modev->exam_mode==3){    
+	                                        
+	                                ?>
+	                               
+	                              <a href="<?php echo base_url();?>singleStudentControllers/objectivePaper/<?php echo $school_code;?>/<?php echo $ff->id;?>/<?php echo $student_id;?>">
+                        	
+                        		<p> Click For Start</p><span class="arrow"></span>
+                        	</a>  <?php 
+	                                    }else{
+	                                        if($modev->exam_mode==2){ ?>
+	                                            
+	                              <a href="<?php echo base_url();?>examControllers/demoExamSubjective/<?php echo $student_id;?>/<?php echo $mode->row()->id;?>">
+                        	
+                        		<p> Click For Start</p><span class="arrow"></span>
+                        	</a>   
+	                                     <?php   }else{
+	                                            echo "OffLine Paper";
+	                                        }
+	                                        }}else{
+	                                     
+	                                    if($date2 == $datagh){
+	                                       // echo $student_id;
+	                                        if($student_id>0){
+	                                             if($modev->exam_mode==3){ 
+	                                ?>
+	                               
+	                              <a href="<?php echo base_url();?>singleStudentControllers/objectivePaper/<?php echo $school_code;?>/<?php echo $ff->id;?>/<?php echo $student_id;?>">
+                        	
+                        		<p> Click For Start</p><span class="arrow"></span>
+                        	</a>  <?php 
+	                                        }else{ if($modev->exam_mode==2){ ?>
+	                                            <a href="<?php echo base_url();?>examControllers/demoExamSubjective/<?php echo $student_id;?>/<?php echo $mode->row()->id;?>">
+	                                                	<p> Click For Start</p><span class="arrow"></span>
+                        	</a> 
+	                                         <?php    
+	                                        }else{
+	                                            echo "OffLine Paper";
+	                                        }
+                        	    
+                        	}
+                        	
+                        	}}}}?>
+	                                </td>
 	                                
-								<?php }else{?> <td> </td> <?php }
+								<?php 
+	                                     
+	                                     
+	                                 }else{?> <td> </td> <?php }
 							endforeach;?>
 	                        <?php }else{ ?>
 	                            <td>-</td>
@@ -191,14 +308,16 @@ function getClassRank($rowstudent,$classid,$fsd){
        }
    }
 function getPeriodD()
-{$this->db->where("school_code",$this->session->userdata("school_code"));
+{
+    $this->db->where("school_code",$this->session->userdata("school_code"));
 	$query1 = $this->db->get("period");
 	return $query1;
 }
 function exam_schedule($class_id)
 {
-	$this->db->where("class_id",$class_id);
-	$exam = $this->db->get("exam_mode")->row();
+$this->db->where("class_id",$class_id);
+$exam = $this->db->get("exam_mode")->row();
+
 	//print_r($exam);
 	return $exam;
 }
@@ -360,6 +479,11 @@ return $query1;
 		$query = $this->db->query("SELECT * from class_info where section='$sectionid'  ORDER BY id ASC");
 		return $query;
 	}
+		public function getsubjectClass($classid){
+		   $school_code = $this->session->userdata('school_code');
+		$sub=	$this->db->query("select subject.subject, subject.id from subject join class_info on subject.class_id = class_info.id where class_info.id ='$classid' and school_code = '$school_code'");
+		return $sub;
+	}
 	
 	//-------------------------****************************-------------------------//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -439,7 +563,7 @@ function delete_q($q_id)
 			$this->db->where('question_master_id',$q_id);
 			return $op = $this->db->get('question_ans');
 		}
-	function insert_img_question($ques,$exam_subject_id,$exam_master_id,$qf1,$qf2,$qf3,$qf4,$af1,$af2,$af3,$af4,$af5,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5)
+	function insert_img_question($ques,$exam_subject_id,$exam_master_id,$dq,$aq,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5)
 		{
 			$val1 = array(
 				'question'=>$ques,
@@ -469,6 +593,7 @@ function delete_q($q_id)
 					{
 						$val4 = array(
 						'question'=>$tt,
+<<<<<<< HEAD
 						'q_img1'=>str_replace(' ','',$qf1),
 						'q_img2'=>str_replace(' ','',$qf2),
 						'q_img3'=>str_replace(' ','',$qf3),
@@ -479,6 +604,18 @@ function delete_q($q_id)
 						'q_ans_img4'=>str_replace(' ','',$af4),
 						'q_ans_img5'=>str_replace(' ','',$af5),
 						'right_answer'=>str_replace(' ','',$ans)
+=======
+						'q_img1'=>$dq[1],
+						'q_img2'=>$dq[2],
+						'q_img3'=>$dq[3],
+						'q_img4'=>$dq[4],
+						'q_ans_img1'=>$aq[1],
+						'q_ans_img2'=>$aq[2],
+						'q_ans_img3'=>$aq[3],
+						'q_ans_img4'=>$aq[4],
+						'q_ans_img5'=>$aq[5],
+						'right_answer'=>$ans
+>>>>>>> 4d8baa602bf019be7adf4c371c41d1dd96b9f8d5
 						);
 						return $in_q = $this->db->insert('question_images',$val4);
 					}
@@ -506,6 +643,7 @@ function delete_q($q_id)
 		}
 		public function question_data($select_exam,$select_subject)
 		{
+		    echo $select_exam."/".$select_subject;
 			$this->db->where('exam_subject_id',$select_subject);
 			//$this->db->where('exam_name_id',$select_test);
 			$this->db->where('exam_master_id',$select_exam);

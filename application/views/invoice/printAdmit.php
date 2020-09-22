@@ -163,7 +163,7 @@
 							<?php 
 							
 						
-							$etyear=substr(date('Y',strtotime($nyear)),2);
+							$etyear=substr(date('Y',strtotime($nyear)),2)+1;
 							echo $exam_name->exam_name." [ " .$cyear."-".$etyear. " ]";?>
 							<br>
 							Admit Card : <?php 
@@ -254,7 +254,7 @@
         
         
       <?php  
-      $this->exammodel->getExamTimeTableChartBy($exam_name->id,$studentData->class_id,$school_code);
+      $this->exammodel->getExamTimeTableChartBy($exam_name->id,$studentData->class_id,$school_code,$studentData->id,1);
       
       $this->exammodel->getExamTimeNoticebySchool($exam_name->id,$studentData->class_id,$school_code);
       ?>
