@@ -1,4 +1,3 @@
-
 <div class="row">
 	 <div class="col-sm-12">
 		<!-- start: INLINE TABS PANEL -->
@@ -67,11 +66,7 @@
 														<br><br>
 													    	</td>
 													    </tr>
-														  <tr>
-													    	<td><label class="panel-title">Select Mode</label></td>
-													    	<td>  <select name="exam_mode" required="required" style="width: 180px;"><option>--SELECT MODE--</option><option value="1" >OFFLINE </option><option value="2" >ONLINE (SUBJECTIVE)</option><option value="3" >ONLINE (OBJECTIVE)</option></select>
-															<br><br></td>
-													    </tr>
+														 
 													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Submit <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
@@ -144,12 +139,7 @@
 														<br>
 													    	</td>
 													    </tr>
-														  <tr>
-													    	<td><label class="panel-title">Select Mode</label></td>
-													    	<td>  <select class="form-control space10" id="examModerahul" name="exam_mode" style="width: 160px;">
-														<option value="01">-Select Exam Mode-</option>
-														</select><br><br></td>
-													    </tr>
+														  
 													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Update <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
@@ -179,7 +169,7 @@
 														<th>Exam Name</th>
 														<th>Term</th>
 														<th>Exam Month</th>
-														<th>Exam Mode</th>
+														
 														<th>Setting</th>
 														<th>Action</th>
 													</tr>
@@ -200,10 +190,6 @@
 															<input  type="text" style="width: 95px;" data-date-format="yyyy-mm-dd" id="edate<?php echo $i;?>" data-date-viewmode="years" value="<?php echo date('d-F-Y', strtotime($row->exam_date));  ?>" disabled="disabled"/>
 															<input type="hidden" name="edate" value="<?php echo date('d-F-Y', strtotime($row->exam_date));?>"/>		
 														</td>
-														<td>
-															<input type="text" style="width: 140px;" name="exam_mode<?php echo $i;?>" value="<?php echo $row->exam_mode;?>" id="exammode<?php echo $i;?>" disabled="disabled"/>									
-											 
-											</td>
 														<td >
 													<?php 	$ds= $row->exam_date;
 															$ename=$row->exam_name;

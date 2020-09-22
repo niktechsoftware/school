@@ -80,18 +80,8 @@
 										    <div class="col-sm-6">
 										     <div class="form-group">
 										        <label class="col-sm-3" > Expenditure Depart <span style="color:#F00">*</span></label> 
-<<<<<<< HEAD
+						<select id="expenditurer" name="expenditurer" class="col-sm-9" style="width:150px;" required></select>
 
-
-							                            <select id="expenditurer" name="expenditurer" class="col-sm-9" style="width:150px;" required>
-
-							                               
-							                            </select>    
-							                               
-							                            </select>
-=======
-											<select id="expenditurer" name="expenditurer" class="col-sm-9" style="width:150px;" required></select>
->>>>>>> 707fa18b98ca2acc3fcb6fcff821036771c98ea3
 										    </div>
 										    </div>
 										 </div>
@@ -225,7 +215,7 @@
 											<h4 class="center"><b>WELCOME TO THE BANK TRANSACTION AREA</b></h4><br>
 	                                    <center>  Here You Can Maintain bank Related Transaction's Entries .</center>
 										</div>
-												<form method="post" action="<?php echo base_Url()?>dayBookControllers/directorTransaction">
+												<form method="post" action="<?php echo base_Url()?>index.php/dayBookControllers/directorTransaction">
 					                            <div class="form-group">
 					                              	<div class="form-group" align="center">
 					                              	 <input type ="hidden"  name="heads" value="6"/>
@@ -331,7 +321,7 @@
 										<?php }?>
 									
 									
-										 <form method="post" action="<?php echo base_Url()?>dayBookControllers/directorTransaction">
+										 <form method="post" action="<?php echo base_Url()?>index.php/dayBookControllers/directorTransaction">
 										 	  <input type ="hidden"  name="heads" value="7"/>
 										 	<div class="panel panel-calendar">
 												<div class="panel-heading panel-blue border-light">

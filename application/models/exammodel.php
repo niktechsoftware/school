@@ -100,8 +100,8 @@ function getExamName($fsd)
 	$this->db->where("id",$fsd);
 	$getfsdDates = $this->db->get("fsd")->row();
 	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("exam_date >=",$getfsdDates->finance_start_date);
-	$this->db->where("exam_date <=",$getfsdDates->finance_end_date);
+//	$this->db->where("exam_date >=",$getfsdDates->finance_start_date);
+//	$this->db->where("exam_date <=",$getfsdDates->finance_end_date);
 	$query1 = $this->db->get("exam_name");
 	return $query1;
 }

@@ -13,7 +13,7 @@ class examControllers extends CI_Controller
     	    'term'=>$this->input->post("term"),
     		'exam_name'=>$this->input->post("examName"),
     		'exam_date'=>$this->input->post("datet"),
-			'exam_mode' =>$this->input->post("exam_mode"),
+		
     		'school_code'=>$this->session->userdata("school_code")
     		  );
 		 $this->load->model("examModel");

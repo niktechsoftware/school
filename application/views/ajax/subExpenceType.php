@@ -8,16 +8,16 @@
     <table class="table table-bordered table-hover " id="sample-table-2">
     <thead>
     <tr class="text-center">
-        <th>ID </th>
+        <th>ID</th>
     <th>Name</th>
-    <th> Sub Type</th>
+    <th>Sub Type</th>
     <th>Action</th>
     </tr>
     </thead>
     <tbody>
       <?php 
     $i=1;
-foreach($explist->result() as $row){?>
+foreach($explist->result() as $row){ ?>
         <tr>
     <td class="text-center"><?php echo $i;?> </td>
         <td class="text-center">

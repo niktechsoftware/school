@@ -231,7 +231,7 @@ class feeModel extends CI_Model{
 		$this->db->where("v_id",$transportid);
 		$tranportAmount  = $this->db->get("transport_root_amount");
 		if($tranportAmount->num_rows()>0){
-			return $tranportAmount->transport_fee;
+			return $tranportAmount->row()->transport_fee;
 		}else{
 			return 0;
 		}

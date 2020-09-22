@@ -703,7 +703,7 @@ function getFsd(){
 			$this->db->where("school_code",$school_code);
 			$this->db->where('invoice_no', $invoiceNo);
 			$val = $this->db->get("day_book")->row();
-			
+			$this->load->model("feemodel");
 			if($this->feemodel->fee_deposite($invoiceNo,$student_id)){
 				$this->db->where("invoice_no",$invoiceNo);
 				$this->db->where("school_code",$school_code);

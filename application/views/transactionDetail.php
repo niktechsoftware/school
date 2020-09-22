@@ -129,9 +129,10 @@
 						<tbody>
 		                <?php 
 		                $sno = 1;
-		               
-		                	foreach($this->db->query("SELECT * FROM bank_transaction WHERE id_name='deposite' AND school_code='$school_code' ")->result() as $row):
+		               if($result_q->num_rows()>0){
+		                   foreach($result_q->result() as $row):
 		                	?>
+		                
 		                	<tr>
 		                    	<td><?php echo $sno; ?></td>
 		                        <td><?php echo $row->id_name; ?></td>
@@ -141,7 +142,7 @@
 		                        <td><?php echo date("d-M-Y", strtotime($row->date)); ?></td>
 		                        <td><?php echo $row->receipt_no; ?></td>
 		                    </tr>
-		                <?php $sno++; endforeach; ?>
+		                <?php $sno++; endforeach;} //endforeach; ?>
 		                </tbody>
 					<?php
 					elseif(($seg3 == "bank") && ($seg4 == "withdrwal")):
