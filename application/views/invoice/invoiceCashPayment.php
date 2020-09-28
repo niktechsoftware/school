@@ -91,38 +91,43 @@
         	<div style="display:inline-block;">
 <?php
 	$id = $this->uri->segment(3);
-	$rowd = $this->db->query("select * from bank_transaction where receipt_no = '$id' AND school_code = '$school_code'")->row();
-	$rowc = $this->db->query("select * from director_transaction where receipt_no = '$id' AND school_code = '$school_code'")->row();
 	
-	$rowb = $this->db->query("select * from cash_payment where receipt_no = '$id' AND school_code = '$school_code'")->row();
-	if($rowb){
-	$id_name = $rowb->id_name;
-	$valid_id = $rowb->valid_id;
+	$this->db->where("invoice_no",$id);
+	$getDaybookDetails = $this->db->get("day_book")->row();
+	$this->db->where("receipt_no",$id);
+	$getCashPayment = $this->db->get("cash_payment")->row();
 	
+	$this->db->where("invoice_no",$id);
+	$getInvoiceDate = $this->db->get("invoice_serial")->row();
+	if($getInvoiceDate->heads==8){
+	$id_name = $getCashPayment->id_name;
+	if($getCashPayment->valid_id){
+	$valid_id = $getCashPayment->valid_id;
 	if(strlen($valid_id) > 0):
 		$empInfo = $this->db->query("select * from employee_info where id = '$valid_id' AND school_code = '$school_code' ");
 	endif;
 	
+	}
 ?>
             <table>
                     <tr><td style="border:none;"><strong>To</strong></td></tr>
                     <tr>
                     	<td style="border:none;">
                         	<?php $i = $id_name; ?>
-                        	<?php if(strlen($valid_id) > 0):
+                        	<?php if($getCashPayment->valid_id){
 							if($empInfo->num_rows()>0){	echo $empInfo->row()->name; } else {echo "N/A";}
-							endif;?>
-                    		<strong><?php echo $rowb->name; ?></strong>
+                        	}?>
+                    		<strong><?php echo $getCashPayment->name; ?></strong>
                         </td>
                     </tr>
                     <tr>
                     	<td style="border:none;">
-                        	<?php echo '<strong>Mobile No. :</strong>'.$rowb->phone_no; ?>
-                        	<?php if(strlen($valid_id) > 0):
-				if($empInfo->num_rows()>0){	echo $empInfo->row()->mobile;} else {
-					echo "N/A";
-				}
-				endif; ?>
+                        	<?php echo '<strong>Mobile No. :</strong>'.$getCashPayment->phone_no; ?>
+                        	<?php if($getCashPayment->valid_id){
+									if($empInfo->num_rows()>0){	echo $empInfo->row()->mobile;} else {
+										echo "N/A";
+									}
+                        	} ?>
                         </td>
                     </tr>
             </table>
@@ -142,8 +147,8 @@
                     <td><?php echo $id; ?></td>
                 </tr>
                 <tr>
-                    <td class="meta-head">Date</td>
-                    <td><?php echo $rowb->date; ?></td>
+                    <td class="meta-head">Paid Date</td>
+                    <td><?php echo $getDaybookDetails->pay_date; ?></td>
                 </tr>
             </table>
             </div>
@@ -166,35 +171,37 @@
 		  </tr>
 		  <tr class="item-row">
 		      <td><?php echo 1; ?></td>
-		      <td><?php echo $rowb->expenditure_name; ?></td>
-		      <td><?php echo $rowb->exp_depart; ?></td>
-		      <td><?php echo $rowb->id_name; ?></td>
-		      <td><?php echo $rowb->valid_id; ?></td>
-		      <td><?php echo $rowb->name; ?></td>
+		      <td><?php echo $getCashPayment->exp_id; ?></td>
+		      <td><?php echo $getCashPayment->sub_exp_id; ?></td>
+		      <td><?php echo $getCashPayment->id_name; ?></td>
+		      <td><?php echo $getCashPayment->valid_id; ?></td>
+		      <td><?php echo $getCashPayment->name; ?></td>
 		      <td>
-		      	<?php echo $rowb->phone_no; ?>
-		      	<?php if(strlen($valid_id) > 0):
-				if($empInfo->num_rows()>0){
-				    	echo $empInfo->mobile;
-				}else{echo "N/A"; }
-				endif;?>
+
+		      	<?php echo $getCashPayment->phone_no; ?>
+		      	<?php if($getCashPayment->valid_id){
+					if($empInfo->num_rows()>0){
+					    	echo $empInfo->mobile;
+					}else{echo "N/A"; }
+		      	}?>
+
 		      </td>
-		      <td><?php echo $rowb->reason; ?></td>
-              <td><?php echo $rowb->amount; ?></td>
+		      <td><?php echo $getCashPayment->reason; ?></td>
+              <td><?php echo $getDaybookDetails->amount; ?></td>
 		     
 		  </tr>
 		</table>
 		
 		<div id="terms">
 		  <h5>Terms</h5>
-		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+		  <textarea></textarea>
 		</div>
 	
 	</div>
 	<br/><br/>
  
-    <?php }elseif($rowc){ 
-				$id_name = $rowc->applicant_name;
+    <?php }elseif($getInvoiceDate->heads==7 || $getInvoiceDate->heads==6){ 
+				$id_name = $getCashPayment->name;
 			
 				
 			?>
@@ -202,8 +209,12 @@
 													<tr><td style="border:none;"><strong>To</strong></td></tr>
 													<tr>
 														<td style="border:none;">
-															
-															<strong><?php echo "Director"; ?></strong>
+															<?php if($getInvoiceDate->heads==6){?>
+																<strong><?php echo "Transaction ID".$id_name; ?>
+															<?php 	
+															}else{?>
+															<strong><?php echo "Director ".$id_name; ?></strong>
+															<?php } ?>
 															</td>
 													</tr>
 													<tr>
@@ -217,7 +228,11 @@
 									<div style="display:inline-block; float:right">
 									<table>
 											<tr>
-													<td class="meta-head" colspan="2"><h3>Cash Payment</h3></td>
+											<?php if($getInvoiceDate->heads==6){?>
+											<td class="meta-head" colspan="2"><h3>Bank Transaction</h3></td>	
+											<?php }else{?>
+													<td class="meta-head" colspan="2"><h3>Director Transaction</h3></td>
+											<?php }?>
 											</tr>
 											<tr>
 													<td class="meta-head">
@@ -230,7 +245,7 @@
 											</tr>
 											<tr>
 													<td class="meta-head">Date</td>
-													<td><?php echo $rowc->date; ?></td>
+													<td><?php echo $getDaybookDetails->pay_date; ?></td>
 											</tr>
 									</table>
 									</div>
@@ -243,24 +258,21 @@
 								 <th width="3%">No.</th>
 									<th width="12%">Transaction Mode</th>
 									 <th width="12%">Deposit/Credit</th>
-										 <th width="8%">Cheque no</th>
-										 <th width="8%">Bank Name</th>
-										 <th width="10%">Account Number</th>
-										 <th width="10%">Paid_by</th>
+										
+										
+										 <th width="10%">Paid_by(Transaction ID)</th>
 										 <th width="28%">reason</th>
 										 <th width="5%">amount</th>
 										 
 						</tr>
 						<tr class="item-row">
 								<td><?php echo 1; ?></td>
-								<td><?php echo $rowc->transaction_mode; ?></td>
-								<td><?php echo $rowc->action; ?></td>
-								<td><?php echo $rowc->cheque_no; ?></td>
-								<td><?php echo $rowc->bank_name; ?></td>
-								<td><?php echo $rowc->account_no; ?></td>
-								<td><?php echo $rowc->applicant_name; ?></td>
-								<td><?php echo $rowc->reason; ?></td>
-								<td><?php echo $rowc->amount; ?></td>
+								<td><?php echo $getDaybookDetails->pay_mode; ?></td>
+								<td><?php echo $getDaybookDetails->dabit_cradit; ?></td>
+							
+								<td><?php echo $getCashPayment->name; ?></td>
+								<td><?php echo $getCashPayment->reason; ?></td>
+								<td><?php echo $getDaybookDetails->amount; ?></td>
 							
 								
 						</tr>
@@ -268,7 +280,7 @@
 					
 					<div id="terms">
 						<h5>Terms</h5>
-						<textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+						<textarea> Notice Area:-</textarea>
 					</div>
 				
 				</div>

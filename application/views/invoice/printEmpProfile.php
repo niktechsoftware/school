@@ -122,12 +122,12 @@
 				
 				
 					<td  style="border: none;float:right;">
-					<div style="width: 140px; height: 150px; border: 1px solid #ccc;">
+			<!--		<div style="width: 140px; height: 150px; border: 1px solid #ccc;">
 						<?php if(strlen($info->logo > 0)):?>
 							<img alt="<?php echo $info->school_name;?>" height="148" width="138" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" />
 						<?php else:?>
-								<img alt="<?php echo $info->school_name;?>" height="148" width="138" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/lo.png" />	
-						<?php endif;?>
+								<img alt="<?php echo $info->school_name;?>" height="148" width="138" src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/<?php echo $info->logo;?>" />	
+						<?php endif;?>-->
 					</div>
 				</td>
 				

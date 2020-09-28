@@ -97,6 +97,29 @@ table h1, h2, h3 {
 	$school_info = mysqli_query($this->db->conn_id,"select * from school where id= '$school_code'");
 	$info = mysqli_fetch_object($school_info);
 ?>	
+<?php if($this->session->userdata("school_code")==9){?>
+    
+	<table style="width: 100%; padding-top:10px; padding-bottom:10px;margin-bottom: 15px; ">
+			<tr style="color:#002D65;">
+			<!--	<td width="10%" style="border: none;margin-left: 50px;">
+					<img src="<?php echo base_url();?>assets/<?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" alt="" width="80" />
+				</td>
+				<td style="border: none;">
+					<h2 align="center" style="text-transform:uppercase;"><b><?php echo $info->school_name; ?></b></h2>
+				
+			        <h4 align="center" style="font-variant:small-caps;">
+						<?php echo $info->address1." ".$info->address2." ".$info->city; ?>
+			        </h4>
+			        <h4 align="center" style="font-variant:small-caps;">
+						<?php if(strlen($info->mobile_no > 0 )){echo $info->state." - ".$info->pin.", Phone : ".$info->mobile_no.", ";} ?>
+			            
+			        </h4>
+				</td>-->
+			</tr>
+			
+		</table>
+<?php }else{?>
+
 
  <!--<input type="hidden" value="<?php echo $id;?>" id="stuid"/>-->
 			<table style="width: 100%; padding-top:10px; padding-bottom:10px;margin-bottom: 15px; ">
@@ -118,8 +141,9 @@ table h1, h2, h3 {
 			</tr>
 			
 		</table>
+	<?php	}?>
 		<div class="row"> 
-	<div class="col-md-12"><center><span style="font-size:20px;letter-spacing: 2px;border-radius: 25px;border: 2px solid #002D65;padding: 10px;width: 250px;color:white;background-color:#002D65;">
+	<div class="col-md-12"><center><span style="font-size:20px;letter-spacing: 2px;border-radius: 25px;border: 2px solid #002D65;font-family:arial; padding: 10px;width: 250px;color:black;background-color:#002D65;">
 	    <b>CHARACTER CERTIFICATE</b></span></center></div>	
     </div>
 		

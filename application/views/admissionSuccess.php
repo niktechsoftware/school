@@ -18,7 +18,7 @@
     <?php $school_code=$this->session->userdata("school_code");?>
 	<div class="col-sm-12">
 	 <!-- <div class="padding-20 core-content">
-        		<a href="<?php echo base_url(); ?>index.php/login/newAdmission">
+        		<a href="<?php //echo base_url(); ?>index.php/login/newAdmission">
                   <button class="btn btn-dark-purple">Take Another New Admission right now <i class="fa fa-arrow-circle-right"></i></button>
                     </a>
   </div> -->
@@ -1614,7 +1614,7 @@
 						<ul id="Grid" class="list-unstyled">
 							<li class="col-md-3 col-sm-6 col-xs-12">
 								<div class="portfolio-item">
-									<?php if(strlen($personalInfo->cc > 0)):?>
+									<?php if(strlen($personalInfo->photo)>0):?>
 										<a class="thumb-info" href="<?php echo base_url(); ?>assets/images/stuImage/<?php echo $personalInfo->cc;?>" data-lightbox="gallery" data-title="Website">
 											<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $personalInfo->cc;?>" height="200" class="img-responsive" alt="">
 											<span class="thumb-info-title"> Character Certificates </span>

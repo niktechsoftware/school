@@ -1,5 +1,7 @@
 <?php function sms($number,$msg,$user,$pass,$senderid)
-{ 
+
+{  
+
 $url="http://bulksms.niktechsoftware.com/vendorsms/pushsms.aspx?user=".$user."&password=".$pass."&msisdn=".$number."&sid=".$senderid."&msg=".urlencode($msg)."&fl=0&gwid=2";
 	$object1 =array();
 //$url="http://bulksms.gfinch.in/api/sendmsg.php?user=ramdoot&pass=ghazipur@123&sender=RAMDOT&phone=".$number."&text=".urlencode($msg)."&priority=ndnd&stype=normal";
@@ -92,8 +94,6 @@ function smshindi($number,$msg,$user,$pass,$senderid)
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 	$output=curl_exec($ch);
 	$rt=json_decode($output,true);
-	?> <pre> <?php
-//print_r(json_decode($output));?></pre><?php 
 
 $numn = ((strlen($number)+1)/11);
 for($i=0; $i<$numn;$i++){
@@ -161,6 +161,6 @@ function highlightText($text, $keywords) {
 		$text = preg_replace ("/" . trim($keyword) . "/", $highlightWord, $text);
 	}
 	$keywords = array("Coding 4 Developers","Coding for developers");
-//	echo highlightText($text, $keywords);
+
 	return $text;
 }

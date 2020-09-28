@@ -110,9 +110,21 @@ echo $noticeForStudent->row()->message;
 	                    <i class="fa fa-inr fa-2x icon-big"></i><br>
 	                    <?php 
 	                    $totAmount =$this->feeModel->totFee_due_by_id($stuid_id,0);
-	                    $student_id =$this->session->userdata("id");?>
-	                 <!--  <a href="<?php //echo base_url();?>index.php/singleStudentControllers/payFee/<?php //echo $student_id;?>/<?php //echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>-->
-						<span class="subtitle">
+
+	                    $student_id =$this->session->userdata("id");
+	                   
+	                    ?>
+	                 
+	                  
+	                  <?php 
+	                  if($this->session->userdata("school_code")==6 && $this->session->userdata("school_code")==4 && $this->session->userdata("school_code")==9){ ?>
+               <a href="  <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php echo $student_id;?>/<?php echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>
+	               <?php	}else{ ?>
+	                  <a href="#" class="btn btn-warning" >Click To Pay</a>
+	                  <!-- <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php // echo $student_id;?>/<?php //echo $totAmount;?>-->
+					<?php   } ?>
+	                   <span class="subtitle">
+
 							
 	                    </span>
 	                </div>
@@ -121,7 +133,9 @@ echo $noticeForStudent->row()->message;
 		                <!--	<h3 class="title block no-margin">Fee Reports</h3>-->
 		                <h3 class="title block no-margin"><blink>Due Fee Status</blink></h3>
 		                	<br/>
-							<?php echo $this->feeModel->totFee_due_by_id($stuid_id,1);?>
+							<?php echo $this->feeModel->totFee_due_by_id($stuid_id,1);
+							//echo $stuid_id;
+							?>
 		                	<span class="subtitle">  <h3><blink ></blink></h3>   </span>
 	                        
 		                </div>
@@ -134,7 +148,7 @@ echo $noticeForStudent->row()->message;
 			$unm = $this->session->userdata ( "username" );
 			$this->db->where ( 'username', $unm );
 			$dt = $this->db->get ( 'student_info' )->row ();
-			$stud_id = $dt->id;
+			//$stud_id = $dt->id;
 			?>
     <div class="col-md-6 col-lg-4 col-sm-6">
 		<div class="panel panel-default panel-white core-box">
@@ -194,9 +208,7 @@ echo $noticeForStudent->row()->message;
 				<div class="partition-red padding-20 text-center core-icon">
 					<i class="fa fa-tasks fa-2x icon-big"></i>
 				</div>
-
-				<a
-					href="<?php echo base_url(); ?>index.php/singleStudentControllers/examResult/<?php echo $stuid_id;?>">
+				<a href="<?php echo base_url(); ?>index.php/singleStudentControllers/examResult/<?php echo $stuid_id;?>">
 					<div class="padding-20 core-content">
 						<h4 class="title block no-margin">Marks</h4>
 						<br /> <span class="subtitle"> Current Exam Marks </span>
@@ -206,7 +218,7 @@ echo $noticeForStudent->row()->message;
 		</div>
 	</div>
 
-    	<div class="col-md-6 col-lg-3 col-sm-6">
+    	<div class="col-md-6 col-lg-4 col-sm-6">
         <div class="panel panel-default panel-white core-box">
             <div class="panel-body no-padding">
                 <div class="partition-purple padding-20 text-center core-icon">
@@ -227,13 +239,91 @@ echo $noticeForStudent->row()->message;
             </div>
         </div>
     </div>
+	<div class="col-md-4 col-lg-8 col-sm-8">
+        <div class="panel panel-default panel-white ">
+          
+              
+              <a href="#">
+                <div class="padding-20 core-content">
+                    <h4 class="title block no-margin"><blink>Exam SCHEDULE</blink></h4>
+                  <br /> <span class="subtitle"> <h3>Current Exam Schedule</h3> </span>
+				  </a>
+ <?php
+			
+			$unm = $this->session->userdata ( "username" );
+			$this->db->where ( 'username', $unm );
+			$dt = $this->db->get ( 'student_info' )->row ();
+			$stud_id = $dt->id;
+			$class_id=$dt->class_id;
+			$exam =$this->examModel->exam_schedule($class_id);
+		
+			if($exam){
+			//echo $class_id;
+		//	print_r($exam);
+		//	exit();
+			 	$exam_id=$exam->exam_id;
+			 $this->db->where("exam_id", $exam_id);
+			$ex = $this->db->get ( 'exam_shift' )->row ();
+			//print_r($ex);
+			 $this->db->where("exam_id", $exam_id);
+			$dat=$this->db->get ( 'exam_day' )->row ();
+//print_r($dat);
+	$student_id =$this->session->userdata("id");
+			$class_id=$dt->class_id;
+			 $this->db->where("id",$class_id);
+			$class = $this->db->get ( 'class_info' )->row ();
+			//print_r($class);
+			?>				 
+		<div class="table-responsive">
+<?php 	
+        echo $exam_id;
+        echo $class_id;
+        echo $stuid_id;
+		$this->examModel->getExamTimeTableChartBy($exam_id,$class_id,$school_code,$stuid_id,1);?>
+		
 
+										</div>
+									
+ </div>
+ 	<?php }else{  ?> Exam Mode is not Defined.
+ 	<?php }?>
+
+        </div>
+    </div>
+<!--	<div class="col-md-6 col-lg-4 col-sm-6">
+        <div class="panel panel-default panel-white core-box">
+            <div class="panel-body no-padding">
+                <div class="partition-purple padding-20 text-center core-icon">
+                    <i class="fa fa-tasks fa-2x icon-big"></i>
+                </div>
+                <a href="#">
+                <div class="padding-20 core-content">
+                    <h4 class="title block no-margin">Exam Mode</h4>
+                    <br/>
+                    <span class="subtitle"> 	
+                    
+                        <?php if($exam){	
+		$this->db->where("exam_id",$exam_id);	
+	$this->db->where("class_id",$class_id);
+	$emode=$this->db->get("exam_mode");?>
+		<p>	Subjective  <a href="/images/myw3schoolsimage.jpg" download>
+  <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142">
+</a></p>
+			<p>
+		<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectivePaper/<?php echo $exam_id;?>/<?php echo $class_id;?>/">	Objective</a></p>			
+              <?php }else{  ?> Exam Mode is not Defined.
+ 	<?php }?>                       					
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+-->
 
 </div>
 
 
 
 </div>
-
 
 <!-- end: PAGE CONTENT-->

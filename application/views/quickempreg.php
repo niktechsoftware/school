@@ -110,6 +110,7 @@
 															<option value="1">Accountent</option>
 															<option value="2">Employee</option>
 															<option value="3">Teacher</option>
+															<option value="4">Principal</option>
 														</select>
 													</div>
 													<?php echo form_error('jobCategory'); ?>

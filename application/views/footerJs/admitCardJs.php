@@ -71,6 +71,17 @@
 		
 	});
 	});
+	$("#fsd").change(function(){
+	
+	var fsd = $("#fsd").val();
+	
+	//alert(teacherid);
+	$.post("<?php echo site_url("index.php/dayBookControllers/getExamList") ?>",{fsd : fsd}, function(data){
+		$("#selectExam").html(data);
+		
+		
+	});
+	});
 		Main.init();
 		SVExamples.init();
 		FormElements.init();

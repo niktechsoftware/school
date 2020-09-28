@@ -83,7 +83,7 @@ $("#newpassword").hide();
 		$('#emp_id').hide();
 		$('#Other_name').hide();
 		$('#name').hide();
-		$('#Other_phno').hide();
+		
 		$('#phone_no').hide();
 		$('#cash_detail').hide();
 		$('select#stu_emp_id').change(function(){
@@ -129,8 +129,8 @@ $("#newpassword").hide();
 		});
 		
 		$('#expenditure').change(function(){
-			var expenditure_name = $('#expenditure').val();
-			$.post("<?php echo base_url('index.php/dayBookControllers/expenditure_depart')?>", {expenditure_name : expenditure_name}, function(data){						
+			var expenditure_id = $('#expenditure').val();
+			$.post("<?php echo base_url('index.php/dayBookControllers/expenditure_depart')?>", {expenditure_id : expenditure_id}, function(data){						
 				 $('#expenditurer').html(data);
 			})
 		});

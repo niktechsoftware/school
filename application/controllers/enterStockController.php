@@ -148,27 +148,27 @@
 		}
 		
 		function saleStock(){
-		    $school_code = $this->session->userdata("school_code");
-
+		  $school_code = $this->session->userdata("school_code");
 			$this->db->where("school_code",$school_code);
 			$billno = $this->db->count_all("invoice_serial");
 
-		//print_r($billno);exit();
+		   //print_r($billno);exit();
 
 			$this->load->model("daybookModel");
 			$this->load->model("enterStockModel");
 			$this->db->where("school_code",$school_code);
-		$invoice = $this->db->get("invoice_serial");
-		$invoice1=6000+$invoice->num_rows();
-		$invoice_number = $school_code."I19".$invoice1;
+		    $invoice = $this->db->get("invoice_serial");
+		    $invoice1=6000+$invoice->num_rows();
+		    $invoice_number = $school_code."I19".$invoice1;
 	     	$billno = $invoice_number;
 	     		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
-				"reason" => "Stock Sale",
+
+				"heads" => 3,
 				"invoice_date" => date('Y-m-d'),
 				"school_code"=>$school_code
-		);
-		$this->db->insert("invoice_serial",$invoiceDetail);
+		    );
+		   $this->db->insert("invoice_serial",$invoiceDetail);
 		
 				$validID = "";
 				if(strlen($this->input->post("studID"))>0){
@@ -222,7 +222,7 @@
 				$daybook=array(
 						"amount" => $this->input->post("paid"),
 						"pay_date"=> date("Y-m-d"),
-						"reason" =>"From sale Stock",
+						"heads" =>3,
 						"pay_mode"=>1,
 						"invoice_no"=>$billno,
 						"closing_balance" => $cl_balance,
@@ -341,7 +341,7 @@
 					{
 					$invoiceData = array(
 						"invoice_no" => $billno,
-						"reason" => "Sale Invoice",
+						"heads" => 3,
 						"invoice_date" => date("Y-m-d"),
 							"school_code"=>$this->session->userdata("school_code")
 					);

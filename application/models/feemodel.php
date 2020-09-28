@@ -1,5 +1,50 @@
 <?php
 class feeModel extends CI_Model{
+	function getFeeRecord($invoice_no){
+		$res = $this->db->query("select * from  fee_deposit  where status=1 and invoice_no='$invoice_no'");
+		return $res;
+	}
+	function getDiscount($invoice_no,$i){
+		$this->db->where('invoice_number',$invoice_no);
+		$eunm1 = $this->db->get('dis_den_tab');
+		$tdiscount=0;
+		$totdisc=0;
+		if($eunm1->num_rows()>0){
+			$l=$i;
+			
+			foreach($eunm1->result() as $eunm):
+			$this->db->where('username',$eunm->discounter_id);
+			$eid = $this->db->get('employee_info');
+			?>
+							<?php if($eunm->discounter_id){?>
+								<tr class='text-uppercase'>
+						  		     <td class="col-sm-1 text-center"><b><?php echo $l;?></b></td>
+									<td class="col-sm-8"><b><?php 
+									if($eid->num_rows()>0){ echo "TEACHER DISCOUNT"."(".$eid->row()->name.")";}
+									else{ $this->db->where("id",$eunm->discounter_id);
+										$getdname = $this->db->get("discounttable");
+										if($getdname->num_rows()>0){
+											echo $getdname->row()->discount_head." "." (DISCOUNT)";
+										 }
+										 else{
+										 echo "DISCOUNT";}} ?></b></td>
+									<td class="col-sm-3 text-center"> <?php echo $tdiscount=$eunm->discount_rupee; $i++; ?></td>
+								</tr>
+								 <?php  } 
+								 $l++;
+								 endforeach;
+								 }else{
+								 				 if($tdiscount>0){?>
+								 				<tr class='text-uppercase'>
+								 		  		     <td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
+								 					<td class="col-sm-8"><b><?php echo "DISCOUNT (N/A)";?></b></td>
+								 					<td class="col-sm-3 text-center"> <?php echo $tdiscount="0.00"; $i++; ?></td>
+								 				</tr>
+								 				tdiscount
+								 				 <?php }}
+								//  print_r($totdisc);
+								return $totdisc;
+			}
 	
 	function totFee_due_by_id($stu_id,$indicator){
 		
@@ -22,6 +67,7 @@ class feeModel extends CI_Model{
 					$demandtotdate =date('Y-m-d', strtotime("+$i months", strtotime($student_fsd->row()->finance_start_date)));
 					
 					$totmonthwise = $this->getMonthFeeByMonth($demandtotdate ,$student_id);
+					
 					if($totmonthwise){
 						$fgh = $totmonthwise;
 					}else{
@@ -57,7 +103,7 @@ class feeModel extends CI_Model{
 		$invoice_number = $school_code."I20".$invoice1;
 		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
-				"reason" => "Fee Deposit",
+				"heads" => 5,
 				"invoice_date" => $this->input->post("subdate"),
 				"school_code"=>$school_code
 		);
@@ -181,11 +227,11 @@ class feeModel extends CI_Model{
 			//echo $totf;
 			return $totf;
 	}
-	function studentFeeTransportById($transportid){
+		function studentFeeTransportById($transportid){
 		$this->db->where("v_id",$transportid);
 		$tranportAmount  = $this->db->get("transport_root_amount");
 		if($tranportAmount->num_rows()>0){
-			return $tranportAmount->transport_fee;
+			return $tranportAmount->row()->transport_fee;
 		}else{
 			return 0;
 		}
@@ -358,7 +404,7 @@ class feeModel extends CI_Model{
 		$dayBook = array(
 				"paid_to" =>$this->session->userdata("username"),
 				"paid_by" =>$paidID,
-				"reason" => "Fee Deposit",
+				"status"=>1,
 				"dabit_cradit" => "1",
 				"amount" => $amount,
 				"pay_date" => date("Y-m-d H:s:i"),

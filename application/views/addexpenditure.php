@@ -128,7 +128,7 @@
                                       <option>-Select-</option> 
                                       <?php
                                          foreach($exp->result() as $row): ?>
-                                      <option value="<?php echo $row->sno;?>"><?php echo $row->expenditure_name; ?></option> 
+                                      <option value="<?php echo $row->id;?>"><?php echo $row->expenditure_name; ?></option> 
                                      <?php 
                                         endforeach; ?>
                                    

@@ -264,12 +264,12 @@
 												                                <div class="alert panel-pink" id="onlinePayDetails" style="display: none">
 																					<button data-dismiss="alert" class="close">×</button>
 																					<h4 class="media-heading text-center">Online Fee Payment Charges</h4>
-																					<p>* Credit Card 2.00 %</p>
-																					<p>* Net Banking  Rs.28</p>
-																					<p>* Debit Card 0.0 % for transaction less than 2000, 1.90 % transaction for more than Rs.2000.</p>
+																					<p>* Credit Card Rs.0.03 + GST as applicable </p>
+																					<p>* Net Banking  Rs.20.00 + GST as applicable</p>
+																					<p>* Debit Card Rs.0.01 + GST as applicable </p>
 																					<p>* Amex Card 3.60 %</p>
 																					<p>* Wallet 2.50 %</p>
-																					<p>* UPI Rs.0 for transaction less than 2000, 28 transaction for more than Rs.2000.</p>
+																					<p>* BHIM UPI Rs.0.00 + GST as applicable</p>
 																					<p>* Post-Paid 2.90 %</p>
 																				</div>
 												                                
@@ -290,7 +290,7 @@
 												                                       $this->db->distinct();
 
 												                                     $monthDeposit =  $this->db->query("select deposite_months.deposite_month from deposite_months join fee_deposit on fee_deposit.invoice_no = deposite_months.invoice_no where fee_deposit.status=1 and fee_deposit.finance_start_date='$fsd_id' and deposite_months.student_id='$pk->id' order by deposite_months.id ASC");
-
+                       // echo "<pre>";    print_r($monthDeposit->result()); echo "</pre>";
                                                                                 		 /*  $this->db->select("*");
                                                                                 		   $this->db->where("student_id",$pk->id);
                                                                                 		    $this->db->where("fsd",$fsd_id);
@@ -366,32 +366,44 @@
                                                                                                 $mpinffd[$j]  = $fd->deposite_month;
                                                                                             $j++;
                                                                                             endforeach;
-												                                        $this->db->distinct();
-                                                                                		   $this->db->select("taken_month");
-                                                                                		   $this->db->where("class_id",$pk->class_id);
+                                                                                          
+												                                            $this->db->distinct();
+                                                                                		    $this->db->select("taken_month");
+                                                                                		    $this->db->where("class_id",$pk->class_id);
                                                                                 		    $this->db->where_not_in("taken_month",$mpinffd);
-                                                                                		    
-                                                                                		    
                                                                                 		   $monthDeposit1 = $this->db->get("class_fees");
                                                                                 		   $monthDe=$monthDeposit1->num_rows();
                                                                                 		   //foreach($monthDeposit1->result() as $mdf1):
                                                                                 		    $apm =$apm1->row()->apply_method;
 													                                              $h=0; $pm=12/$apm;
                                                                                 		   for($j=1;$j<$pm+1;$j++){
-                                                                                            if($j > $monthDeposit->num_rows()){
+                                                                                           // if($j > $monthDeposit->num_rows()){
 												                                           ?>
-												                                            <div class="progress-bar <?php echo $color[$i];?>" style="width: 8.33%">
+												                                            <div class="progress-bar <?php echo $color[$j];?>" style="width: 8.33%">
 												                                            <?php
 												                                            //$deposite_month1 =$mdf1->taken_month-4;
 												                                            $rdt =date('Y-m-d', strtotime("$h months", strtotime($fsddate)));
-												                                          ?>
+												                                           $print=0;
+												                                            foreach($mpinffd as $mcheck):
+												                                                  if($h+4 > 12){
+												                                                       $h=$h-12;  
+												                                                    }
+												                                                if($mcheck==$h+4){
+												                                                    $print =1;
+												                                                    echo $mcheck."tttt".$mcheck;
+												                                                }else{
+												                                                     echo $mcheck."ggggg".$mcheck;
+												                                                }
+												                                                endforeach;
+												                                         if($print==1){ }else{ ?>
 													                                     
-													                                            <option value="<?php if(($h+4)>12){echo $h+4-12;}else{ echo $h+4;}?>">
+													                                            <option value="<?php  echo $h+4;?>">
 													                                                <?php echo date("M-Y",strtotime($rdt));?>
 													                                            </option>
-													                                            
+													                                            <?php }?>
 												                                        </div>
-												                                        <?php   }  $h=$h+$apm; $i++;}//endforeach;
+												                                        <?php  // }  
+												                                        $h=$h+$apm; $i++;}//endforeach;
 													                                      }else{
 																							if($apm1->num_rows()>0){
 																								$apm =$apm1->row()->apply_method;
@@ -415,6 +427,7 @@
 												                                    </select>
 												                                </div>
 												                            </div>
+												                             
 												                            <br/><br/>
 												                        </div>
 												                    </div>
@@ -451,12 +464,14 @@
 												    
 													$("#form-field-select-2").change(function(){
 														var month=[];var i=0;
+													
 														var stuId = $("#stuId").val();
 															var catId = $("#scat").val();
 															var fsdid = $("#fsd_id").val();
+															
 														$('#form-field-select-2 :selected').each(function(i, selectedElement) {
 															month[i] =$(selectedElement).val();
-															//alert(month[i]+stuId+catId);
+															alert(month[i]+fsdid);
 
 															});
 

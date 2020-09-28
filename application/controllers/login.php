@@ -14,7 +14,6 @@ class Login extends CI_Controller{
         //$this->load->model('client_model');
        
 	}
-
 	function is_login(){
 		$is_login = $this->session->userdata('is_login');
 		$is_lock = $this->session->userdata('is_lock');
@@ -46,12 +45,11 @@ class Login extends CI_Controller{
 		$data['totalIncome']=$closingBalance-$openingBalance;
 		$this->load->model('dashboard_p');
 		$data['emp_lev']=$this->dashboard_p->emp_leave($school_code);
-		///////////////////
 		$data['school_code']= $this->session->userdata("school_code");
         $data['client_due_list'] = $this->client_model->list_product($cid);
-	//	print_r($data1);
-		//////////////
         $data['openingBalance']=$openingBalance;
+        $expendiAmmount =$this->daybookmodel->expenditureAmount($cdate,$school_code);
+        $data['totalExpenditure']=$expendiAmmount;
         $data['closingBalance']=$closingBalance;
 		$data['pageTitle'] = 'Dashboard';
 		$data['smallTitle'] = 'Overview of all Section';
@@ -271,7 +269,8 @@ function updatemaximum()
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Exam Marks Scheduling';
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -563,17 +562,7 @@ function updatemaximum()
 		$this->load->view("includes/mainContent", $data);
 	}
 	
-	function cashPaymentreort(){
-		$data['pageTitle'] = 'Cash Payment Report ';
-		$data['smallTitle'] = 'Cash Payment Report';
-		$data['mainPage'] = 'Cash Payment Report';
-		$data['subPage'] = 'Cash Payment Report';
-		$data['title'] = 'Cash Payment Report';
-		$data['headerCss'] = 'headerCss/feeCss';
-		$data['footerJs'] = 'footerJs/feeJs';
-		$data['mainContent'] = 'transactionreport';
-		$this->load->view("includes/mainContent", $data);
-	}
+	
 
 	function feeReport(){
 		$data['pageTitle'] = 'Fee Report';
@@ -852,18 +841,75 @@ function periodTimeSlot(){
 		$data['mainContent'] = 'schedulingReport';
 		$this->load->view("includes/mainContent", $data);
 	}
+		function deleteInvoice(){
+		    $school_code =$this->session->userdata("school_code");
+		$data['pageTitle'] = 'Delete Invoice';
+		$data['smallTitle'] = 'Delete Invoice';
+		$data['mainPage'] = 'Delete Invoice';
+		$data['subPage'] = 'Delete Invoice';
+		$data['title'] = 'Delete Invoice';
+		$data['headerCss'] = 'headerCss/periodTimeCss';
+		$data['footerJs'] = 'footerJs/periodTimeJs';
+		$data['mainContent'] = 'deleteInvoice';
+		//echo $this->session->userdata("school_code");
+		$invoice=$this->db->query("select * from day_book where school_code='$school_code' and (status='0' or invoice_no='Delete Fee') ");
 
-
+	   $data['invoice1']=$invoice;
+	    //print_r($invoice->result());
+	    $this->load->view("includes/mainContent", $data);
+    	}
+	function feeStructure(){
+		$data['pageTitle'] = 'Fee Structure';
+		$data['smallTitle'] = 'Fee Structure';
+		$data['mainPage'] = 'Fee Structure';
+		$data['subPage'] = 'Fee Structure';
+		$data['title'] = 'Fee Structure';
+		$data['headerCss'] = 'headerCss/periodTimeCss';
+		$data['footerJs'] = 'footerJs/periodTimeJs';
+		$data['mainContent'] = 'feeStructure';
+		//echo $this->session->userdata("school_code");
+	   $this->db->where("school_code",$this->session->userdata("school_code"));
+	    $fee=$this->db->get("fee_setting");
+	   $data['fee']=$fee;
+	    //print_r($invoice->result());
+	    $this->load->view("includes/mainContent", $data);
+    	}
+         function feestru(){
+             if($this->uri->segment(3)){
+                $data1=array(
+            'font'  => $this->input->post('font'),
+             'number_of_row'  =>  $this->input->post('row'),
+            'number_of_receipt	'  => $this->input->post('receipt'),
+           'school_code'=>$this->session->userdata("school_code")
+            ); 
+            	$this->db->where("id",$this->uri->segment(3));
+            $this->db->update("fee_setting",$data1);
+           	redirect("index.php/login/feeStructure"); 
+             }else{
+             $data=array(
+            'font'  => $this->input->post('font'),
+             'number_of_row'  =>  $this->input->post('row'),
+            'number_of_receipt	'  => $this->input->post('receipt'),
+           'school_code'=>$this->session->userdata("school_code")
+            ); 
+            $this->db->insert("fee_setting",$data);
+           	redirect("index.php/login/feeStructure");
+            }
+        }
 
 	function examsheduling()
 	  {
+	  	$fsd =$this->session->userdata("fsd");
 		$data['pageTitle'] = 'Exam Scheduling';
 		$data['smallTitle'] = 'Exam Scheduling';
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Exam Scheduling';
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$var=$this->examModel->getExamName($fsd);
+		$var1=$this->examModel->getExamNameForUpdate();
 		$data['request']=$var->result();
+		$data['requestforUpdate']=$var1->result();
+		
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$count = $this->db->count_all("exam_name");
 		$data['i']=$count;
@@ -925,7 +971,9 @@ function createSchedule()
 		$data['subPage'] = 'Exam Time Table';
 		$res = $this->configureclassmodel->getClassName();
 		$data['noc'] = $res->result(); 
-		$var=$this->examModel->getExamName();
+	$fsd=$this->session->userdata("fsd");
+
+		$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$data['title'] = 'Exam Time Table';
 		$data['headerCss'] = 'headerCss/examTimeTableCss';
@@ -933,8 +981,6 @@ function createSchedule()
 		$data['mainContent'] = 'examTimeTable';
 		$this->load->view("includes/mainContent", $data);
 	}
-	
-	
 	function examDetail(){
 		$data['pageTitle'] = 'Exam Details';
 		$data['smallTitle'] = 'Exam Details';
@@ -942,7 +988,8 @@ function createSchedule()
 		$data['subPage'] = 'Exam Details';
 		$this->load->model("configurefeemodel");
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$fsd=$this->session->userdata("fsd");
+	$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -958,7 +1005,9 @@ function createSchedule()
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Results Summary';
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+
+		$fsd=$this->session->userdata("fsd");
+	$var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -1162,38 +1211,16 @@ function createSchedule()
 			$data['smallTitle'] = 'Day Book';
 			$data['mainPage'] = 'Day Book';
 			$data['subPage'] = 'Accounting ';
-
-            $cdate=date('Y-m-d');
-	    	$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-		    $this->db->where("reason","From sale Stock");
-			$dt=$this->db->get('day_book')->row();
-			$data['sale'] = $dt->amount;
+			$cdate=date('Y-m-d');
+			$data['sale'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,3,1);
+			$data['salary'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,10,0);
+			$data['bankTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,1);
+			$data['bankTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,0);
+			$data['directorTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,1);
+			$data['directorTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,0);
+			$data['cash'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,8,0);
 			
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
-			$this->db->where("pay_mode","Cash");
-			$dt1=$this->db->get('day_book')->row();
-			$data['cash'] = $dt1->amount;
 
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
-			$this->db->where("pay_mode","Online");
-			$dt1=$this->db->get('day_book')->row();
-			$data['banktransaction'] = $dt1->amount;
-
-
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
-			$dt1=$this->db->get('day_book')->row();
-			$data['salary'] = $dt1->amount;
 
 			$this->db->select_sum('paid');
 			$this->db->where("school_code",$school_code);
@@ -1208,16 +1235,7 @@ function createSchedule()
 			$dt1=$this->db->get('fee_deposit')->row();
 			$data['bt'] = $dt1->paid;
 
-			$total = mysqli_query($this->db->conn_id,"select SUM(amount) from director_transaction where date='".date('Y-m-d')."' AND action='taken' AND school_code='".$school_code."'  ORDER by sno");
-			$no = mysqli_fetch_array($total);
-			$data['dt']=$no['SUM(amount)'];
-			// $total = mysqli_query($this->db->conn_id,"select SUM(amount) from bank_transaction where date='".date('Y-m-d')."' AND  id_name='receive' AND school_code='".$school_code."'  ORDER by id");
-			// $no = mysqli_fetch_array($total);
-			// $data['bt']=$no['SUM(amount)'];	
-			$total = mysqli_query($this->db->conn_id,"select SUM(amount) from director_transaction where date='".date('Y-m-d')."' AND school_code='".$school_code."'AND  action='given'  ORDER by sno");
-			$no = mysqli_fetch_array($total);
-			$data['htd']=$no['SUM(amount)'];
-
+		
 			$data['title'] = 'Accounting';
 			$data['headerCss'] = 'headerCss/daybookCss';
 			$data['footerJs'] = 'footerJs/daybookJs';
@@ -1232,33 +1250,14 @@ function createSchedule()
     		$data['subPage'] = 'Accounting';
 
 			$cdate=date('Y-m-d');
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-		    $this->db->where("reason","From sale Stock");
-			$dt=$this->db->get('day_book')->row();
-			$data['sale'] = $dt->amount;
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("Date(date)",$cdate);
-		//	$this->db->where("reason","Pay Salary");
-		//	$this->db->where("pay_mode","Cash");
-			$dt1=$this->db->get('cash_payment')->row();
-			$data['cash'] = $dt1->amount;
 
-			$this->db->select_sum('amount');
-		    $this->db->where("school_code",$school_code);
-		    $this->db->where("Date(date)",$cdate);	
-		    $this->db->where("id_name","receive");
-		    $dt1=$this->db->get('bank_transaction')->row();
-		    $data['banktransaction'] = $dt1->amount;
-
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("pay_date",$cdate);
-			$this->db->where("reason","Pay Salary");
-			$dt1=$this->db->get('day_book')->row();
-			$data['salary'] = $dt1->amount;
+			$data['sale'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,3,1);
+			$data['salary'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,10,0);
+			$data['bankTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,1);
+			$data['bankTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,6,0);
+			$data['directorTransactionw'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,1);
+			$data['directorTransactiond'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,7,0);
+			$data['cash'] = $this->daybookmodel->getDayTranByDate($school_code,$cdate,8,0);
 
 
 			$this->db->select_sum('paid');
@@ -1267,26 +1266,8 @@ function createSchedule()
 			$dt1=$this->db->get('fee_deposit')->row();
 			$data['admin'] = $dt1->paid;
 
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("Date(date)",$cdate);
-	      	$this->db->where("id_name","deposite");
-			$dt1=$this->db->get('bank_transaction')->row();
-			$data['bt'] = $dt1->amount;
 			
-			$this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("Date(date)",$cdate);
-				$this->db->where("action","Receive");
-			$dt1=$this->db->get('director_transaction')->row();
-			$data['dt'] = $dt1->amount;
-			
-	        $this->db->select_sum('amount');
-			$this->db->where("school_code",$school_code);
-			$this->db->where("Date(date)",$cdate);
-			$this->db->where("action","Diposited");
-			$dt1=$this->db->get('director_transaction')->row();
-			$data['htd'] = $dt1->amount;
+			$data['htd'] = $dt1->paid;
 			$data['msg']="";
 			$data['title'] = 'Account Management';
 			$data['headerCss'] = 'headerCss/daybookCss';
@@ -1297,6 +1278,9 @@ function createSchedule()
 	}
 	
 	function cashPayment(){
+		$school_code = $this->session->userdata("school_code");
+		$expinditureList = $this->daybookmodel->getExpenditureList($school_code);
+		$data['expenditureList']=$expinditureList;
 		$data['pageTitle'] = 'Accounting';
 		$data['smallTitle'] = 'Transaction';
 		$data['mainPage'] = 'Transaction';
@@ -1545,6 +1529,119 @@ function createSchedule()
 		$data['mainContent'] = 'table';
 		$this->load->view("includes/mainContent", $data);
 	}
+function exammode(){
+		$fsd =$this->session->userdata("fsd");
+		$data['pageTitle'] = 'Exam Mode';
+		$data['smallTitle'] = 'Exam Mode';
+		$data['mainPage'] = 'Exam Mode';
+		$data['subPage'] = 'Exam Mode';
+		$data['title'] = 'Exam Mode';
+		$this->load->model("examModel");
+		$var=$this->examModel->getExamName($fsd);
+		$var1=$this->examModel->getExamNameForUpdate();
+		$data['request']=$var->result();
+		$data['requestforUpdate']=$var1->result();
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$count = $this->db->count_all("exam_name");
+		$data['i']=$count;
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'exammode';
+		$this->load->view("includes/mainContent", $data);
+	}
+	function subjective_ques(){
+		$fsd =$this->session->userdata("fsd");
+		$data['pageTitle'] = 'Exam Section';
+		$data['smallTitle'] = 'Subjective Question';
+		$data['mainPage'] = 'Subjective Question';
+		$data['subPage'] = 'Subjective Question';
+		$data['title'] = 'Subjective Question';
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'subjective_ques';
+		$this->load->view("includes/mainContent", $data);
+	}
 
+function config_test(){
+		$fsd =$this->session->userdata("fsd");
+		$this->load->model('exammodel');
+		$data['gt_val'] = $this->exammodel->exam_name();
+		$data['dt_subject'] = $this->exammodel->subject_name();
+		$data['dt_test'] =  $this->exammodel->test_data();
+		$data['dt_lang'] = $this->exammodel->language();
+		$data['pageTitle'] = 'Configuration Test';
+		$data['smallTitle'] = 'Configuration Test';
+		$data['mainPage'] = 'Configuration Test';
+		$data['subPage'] = 'Configuration Test';
+		$data['title'] = 'Configuration Test';
+		$this->load->model("examModel");
+		$var=$this->examModel->getExamName($fsd);
+		$var1=$this->examModel->getExamNameForUpdate();
+		$data['request']=$var->result();
+		$data['requestforUpdate']=$var1->result();
+		$this->db->where("school_code",$this->session->userdata("school_code"));
+		$count = $this->db->count_all("exam_name");
+		$data['i']=$count;
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'config_test';
+		$this->load->view("includes/mainContent", $data);
+	}
+	function edit_q()
+	{
+		$this->load->model('exammodel');
+		$q_id = $this->uri->segment(3);
+		$data['q_dt'] = $this->exammodel->edit_q($q_id);
+		$data['q_op'] = $this->exammodel->ques_op($q_id);
+	    $data['pageTitle'] = 'Update Question';
+		$data['smallTitle'] = 'Update Question';
+		$data['mainPage'] = 'Update Question';
+		$data['subPage'] = 'Update Question';
+		$data['title'] = 'Update Question';
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'edit_ques';
+		$this->load->view("includes/mainContent", $data);	
+
+	}
+	function edit_imgques()
+	{
+		$this->load->model('exammodel');
+		$q_id = $this->uri->segment(3);
+		$data['q_dt'] = $this->exammodel->edit_q($q_id);
+		$data['q_op'] = $this->exammodel->ques_op($q_id);
+	    $data['pageTitle'] = 'Update Question';
+		$data['smallTitle'] = 'Update Question';
+		$data['mainPage'] = 'Update Question';
+		$data['subPage'] = 'Update Question';
+		$data['title'] = 'Update Question';
+		$data['headerCss'] = 'headerCss/examCss';
+		$data['footerJs'] = 'footerJs/examJs';
+		$data['mainContent'] = 'edit_imgques';
+		$this->load->view("includes/mainContent", $data);	
+
+	}
+	function quesScheduling()
+	{
+		//$period_name = $this->input->post("periodName");
+	    //print_r($period_name);exit;
+		//$pdate = $this->input->post("pdate");
+		//$data['period_name'] = $period_name;
+	 //print_r($data);exit();
+	   //$data['pdate'] = $pdate;
+	   $data['pageTitle'] = 'Question Scheduling';
+	   $data['smallTitle'] = 'Question Scheduling';
+	   $data['mainPage'] = 'Question Scheduling';
+	   $data['subPage'] = 'Question Scheduling';
+	   //$this->load->model("examModel");
+	   //$var=$this->periodmodel->getPeriodD($period_name);
+	   //print_r($var->result());
+	  // $data['request']=$var->result();
+	   $data['title'] = 'Question Scheduling';
+	   $data['headerCss'] = 'headerCss/examCss';
+	   $data['footerJs'] = 'footerJs/examJs';
+	   $data['mainContent'] = 'quesScheduling';
+	   $this->load->view("includes/mainContent", $data);
+	}
 }
 ?>

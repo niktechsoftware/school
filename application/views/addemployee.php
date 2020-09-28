@@ -117,7 +117,7 @@
                   <div class="col-sm-7">
                     <select class="form-control text-uppercase" id="standered" name="standered"
                       value="<?php echo set_value('standered'); ?>" required="required">
-                      <option value="0">-Standered-</option>
+                      <option value="0">-Standared-</option>
                       <option value="1">PG to UKG</option>
                       <option value="2">1 to 5</option>
                       <option value="3">6 to 8</option>
@@ -378,7 +378,7 @@
               Bank Name
             </label>
             <div class="col-sm-7">
-              <input type="text" onkeyup="bankname();"  class="form-control text-uppercase" minLength="3" maxLength="12" id="empBnakName"
+              <input type="text" onkeyup="bankname();"  class="form-control text-uppercase" minLength="3" maxLength="40" id="empBnakName"
                 name="empBnakName" value="<?php echo set_value('empBnakName'); ?>">
             </div>
           </div>
@@ -388,7 +388,7 @@
               Account Number
             </label>
             <div class="col-sm-7">
-              <input type="text" onkeyup="accnumber();" class="form-control" id="empAccountNumber"   onkeypress="return isNumber(event)" minlength="5" maxlength="15"
+              <input type="text" onkeyup="accnumber();" class="form-control" id="empAccountNumber"   onkeypress="return isNumber(event)" minlength="5" maxlength="20"
                 name="empAccountNumber" value="<?php echo set_value('empAccountNumber'); ?>">
             </div>
           </div>
@@ -413,7 +413,7 @@
             </label>
 
             <div class="col-sm-7">
-              <input type="text" onkeyup="branchname();"  onkeypress="return isAplha(event)"  minLength="8" maxLength="15" class="form-control text-uppercase" id="empBranchName"
+              <input type="text" onkeyup="branchname();"  onkeypress="return isAplha(event)"  minLength="8" maxLength="40" class="form-control text-uppercase" id="empBranchName"
                 name="empBranchName" value="<?php echo set_value('empBranchName'); ?>">
 
             </div>
@@ -430,7 +430,7 @@
             </label>
 
             <div class="col-sm-7">
-              <input type="text"  minLength="8" maxLength="15"   class="form-control text-uppercase" id="empBankAddress"
+              <input type="text"  minLength="8" maxLength="80"   class="form-control text-uppercase" id="empBankAddress"
                 name="empBankAddress" value="<?php echo set_value('empBankAddress'); ?>">
             </div>
           </div>
@@ -441,7 +441,7 @@
             </label>
 
             <div class="col-sm-7">
-              <input type="text"  onkeypress="return isAplha(event)"  minLength="8" maxLength="12" class="form-control text-uppercase" id="empPayeeName"
+              <input type="text"  onkeypress="return isAplha(event)"  minLength="8" maxLength="50" class="form-control text-uppercase" id="empPayeeName"
                 name="empPayeeName" value="<?php echo set_value('empPayeeName'); ?>">
 
             </div>

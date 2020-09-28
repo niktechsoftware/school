@@ -15,7 +15,7 @@ corn_job/sendAccountSms.php
 application/libraries/PaytmKit/lib/config_paytm?.php
 application/libraries/PaytmKit/lib/config_paytm??.php
 application/libraries/PaytmKit/lib/config_paytm.php
-
+assets/images/question_img/
 application/libraries/PaytmKit/lib
 application/libraries/PaytmKit/*
 application/controllers/paytm.php
@@ -30,5 +30,3 @@ application/views/invoice/si/*
 application/views/invoice/si1/*
 application/views/invoice/si2/*
 application/views/invoice/si3/*
-
-application/controllers/invoiceController.php

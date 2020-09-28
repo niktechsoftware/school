@@ -8,20 +8,20 @@
     <table class="table table-bordered table-hover " id="sample-table-2">
     <thead>
     <tr class="text-center">
-        <th>ID </th>
+        <th>ID</th>
     <th>Name</th>
-    <th> Sub Type</th>
+    <th>Sub Type</th>
     <th>Action</th>
     </tr>
     </thead>
     <tbody>
       <?php 
     $i=1;
-foreach($explist->result() as $row){?>
+foreach($explist->result() as $row){ ?>
         <tr>
     <td class="text-center"><?php echo $i;?> </td>
         <td class="text-center">
-        <input type="hidden" id="exp_id<?php echo $i;?>" name="exp_id" value="<?php echo $row->sno; ?>">
+        <input type="hidden" id="exp_id<?php echo $i;?>" name="exp_id" value="<?php echo $row->id; ?>">
         <input type="text" name="exp_name" id="exp_name<?php echo $i;?>" value="<?php echo $row->expenditure_name;?>"></td>
         <td class="text-center">
         <!-- <input type="hidden" id="exp_id<?php echo $i;?>" name="exp_id" value="<?php echo $row->sno; ?>"> -->
