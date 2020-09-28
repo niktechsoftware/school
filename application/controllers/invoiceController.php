@@ -727,7 +727,7 @@ function result(){
 			 * echo "</pre>";
 			 */
 
-			$this->load->view("invoice/si/$callview",$data);
+			$this->load->view("invoice/si4/$callview",$data);
 
 
 		}

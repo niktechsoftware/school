@@ -13,9 +13,7 @@ class examControllers extends CI_Controller
 		    'fsd'=>$this->session->userdata("fsd"),
     	    'term'=>$this->input->post("term"),
     		'exam_name'=>$this->input->post("examName"),
-
     		'exam_date'=>$this->input->post("datet"),
-		
     		'school_code'=>$this->session->userdata("school_code")
 
     		  );
