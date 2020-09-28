@@ -4,95 +4,186 @@ class HomeController extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->model('loginModel');
+		$this->load->model("smsmodel");
 		$school_code = $this->session->userdata("school_code");
 	}
 	function sendEmail(){
 	$userid=$this->input->post("userID");
 	$email1=$this->input->post("email1");
-	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("email",$email1);
-	$this->db->where("username",$userid);
-	$this->db->from('employee_info');
-	$count = $this->db->count_all_results();
-	
-	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("email",$email1);
+    $this->db->where("status",1);
 	$this->db->where("username",$userid);
 	$var = $this->db->get('employee_info');
-	
-	if($count>0)
+	if($var->num_rows()>0)
 	{  $pass=  $var->row()->password;
-	
-		$to      = $email1;
-		$subject = 'Password recovery';
-		$message = "Your password is ".$pass." Thanks for using E-mail to password Recovery System";
-		$headers = 'From: rahul@gfinch.in' . "\r\n" .
-		    'Reply-To: rahul@gfinch.in' . "\r\n" .
-		    'X-Mailer: PHP/' . phpversion();
+	$school_code =  $var->row()->school_code;
+	    $school_info =$this->db->query("select * from school  where id ='$school_code'");
+	if($school_info->num_rows()>0){
+		        $schoolname=$school_info->row()->school_name;
+		         if($var->row()->email == $email1){ 
+        		        if((strlen($school_info->row()->email1)>0) || (strlen($school_info->row()->email2)>0)){
+        		            $ccregisterEmail= $school_info->row()->email1.",".$school_info->row()->email2;
+        		            $message = "Dear Student ".$var->row()->name." Your password is ".$pass." Thanks for using E-mail to password Recovery System. ".$schoolname;
+        		            $this->sendMail($email1,$schoolname,$ccregisterEmail,$message);
+        		        if($var->row()->mobile){
+                		    $school_code=  $school_info->row()->id;
+                		    $this->db->where("school_code",$school_code);
+                	     	$sender=$this->db->get("sms_setting");
+                		  	$sende_Detail =$sender->row();
+                		  	//print_r($school_code);
+                			$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+                		    $master_id=$max_id->maxid+1;
+                		    $msg = "Dear Teacher ".$var->row()->name."  your Password is successfully sent to your Register E-mail id also your Login password  is  ".$pass." ".$schoolname;
+                			$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$var->row()->mobile);
+            				 $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$school_info->row()->id);
+        			
+        		    }
+        		    } 
+		    }else{
+		        if($var->row()->mobile){
+		    $school_code=  $school_info->row()->id;
+		    $this->db->where("school_code",$school_code);
+	     	$sender=$this->db->get("sms_setting");
+		  	$sende_Detail =$sender->row();
+		  	//print_r($school_code);
+			$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
+		    $msg = "Dear Teacher ".$var->row()->name." your E-mail is not registered  please contact to school and update E-mail id your Login password  is  ".$pass." ".$schoolname;
+			$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$var->row()->mobile);
+				// $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$school_info->row()->id);
+			
+		    }
+		    
+		    }
+		    	redirect("index.php/homeController/index/8");
+		    }
 		
-		$succ = mail($to, $subject, $message, $headers);
-		if($succ)
-		{
-		redirect("index.php/homeController/index/8");
-		}
-		else
-		{
-		echo "error";
-		}
 	}
 	else
 	{
-	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("email",$email1);
-	$this->db->where("student_id",$userid);
-	$this->db->from('student_info');
-	$count = $this->db->count_all_results();
-	
-	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("email",$email1);
-	$this->db->where("student_id",$userid);
+	$this->db->where("status",1);
+	$this->db->where("username",$userid);
 	$var = $this->db->get('student_info');
-	if($count>0)
-	{  $pass=  $var->row()->password;
+	if($var->num_rows()>0)
+	{   
+	      
+	    $pass=  $var->row()->password;
+	        $class_id=  $var->row()->class_id;
+	        $school_info =$this->db->query("select school.id,school.email1,school.email2,school.school_name,school.mobile_no from school inner join class_info on school.id = class_info.school_code where class_info.id ='$class_id'");
+		    if($school_info->num_rows()>0){
+		        $schoolname=$school_info->row()->school_name;
+		         if($var->row()->email==$email1){ 
+        		        if((strlen($school_info->row()->email1)>0) || (strlen($school_info->row()->email2)>0)){
+        		            $ccregisterEmail= $school_info->row()->email1.",".$school_info->row()->email2;
+        		            $message = "Dear Teacher ".$var->row()->name." Your password is ".$pass." Thanks for using E-mail to password Recovery System. ".$schoolname;
+        		            $this->sendMail($email1,$schoolname,$ccregisterEmail,$message);
+        		        if($var->row()->mobile){
+                		    $school_code=  $school_info->row()->id;
+                		    $this->db->where("school_code",$school_code);
+                	     	$sender=$this->db->get("sms_setting");
+                		  	$sende_Detail =$sender->row();
+                		  	//print_r($school_code);
+                			$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+                		    $master_id=$max_id->maxid+1;
+                		    $msg = "Dear Student ".$var->row()->name." your Password is successfully sent to your Register E-mail id also your Login password  is  ".$pass." ".$schoolname;
+                			$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$var->row()->mobile);
+            				 $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$school_info->row()->id);
+        			
+        		    }
+        		    } 
+		    }else{
+		        if($var->row()->mobile){
+		    $school_code=  $school_info->row()->id;
+		    $this->db->where("school_code",$school_code);
+	     	$sender=$this->db->get("sms_setting");
+		  	$sende_Detail =$sender->row();
+		  	//print_r($school_code);
+			$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
+		    $msg = "Dear Student".$var->row()->name." your E-mail is not  registered by us please contact to school and update E-mail id your Login password  is  ".$pass." ".$schoolname;
+			$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$var->row()->mobile);
+				 $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$school_info->row()->id);
+			
+		    }
+		    }
+		    	redirect("index.php/homeController/index/8");
+		    }
 	
-		$to      = $email1;
-		$subject = 'Password recovery';
-		$message = "Your password is ".$pass." Thanks for using E-mail to password Recovery System";
-		$headers = 'From: rahul@gfinch.in' . "\r\n" .
-		    'Reply-To: rahul@gfinch.in' . "\r\n" .
-		    'X-Mailer: PHP/' . phpversion();
-		
-		$succ = mail($to, $subject, $message, $headers);
-		if($succ)
-		{
-		redirect("index.php/homeController/index/8");
-		}
-		else
-		{
-		echo "error";
-		}
+	
 	}
 	else{
-		$to      = $email1;
-		$subject = 'Password recovery';
-		$message = "Your sorry Please enter a valid E_mail";
-		$headers = 'From: rahul@gfinch.in' . "\r\n" .
-		    'Reply-To: rahul@gfinch.in' . "\r\n" .
-		    'X-Mailer: PHP/' . phpversion();
+	$this->db->where("admin_username",$userid);
+	$var = $this->db->get('general_settings');
+		if($var->num_rows()>0)
+	{   
+	    $newpass = rand(111111,999999);  
+	    $pass=  $newpass;
+	    $school_code=  $var->row()->school_code;
+	        $school_info =$this->db->query("select * from school where id ='$school_code'");
+		    if($school_info->num_rows()>0){
+		        $schoolname=$school_info->row()->school_name;
+		         if(($school_info->row()->email1==$email1) || ($school_info->row()->email2==$email1)){ 
+        		        if((strlen($school_info->row()->email1)>0) || (strlen($school_info->row()->email2)>0)){
+        		            $ccregisterEmail= $school_info->row()->email1.",".$school_info->row()->email2;
+        		            $message = "Dear Admin ".$school_info->row()->principle_name." Your password is ".$pass." Thanks for using E-mail to password Recovery System. ".$schoolname;
+        		            $this->sendMail($email1,$schoolname,$ccregisterEmail,$message);
+        		        if($school_info->row()->mobile_no){
+                		    $school_code=  $school_info->row()->id;
+                		    $this->db->where("school_code",$school_code);
+                	     	$sender=$this->db->get("sms_setting");
+                		  	$sende_Detail =$sender->row();
+                		  	//print_r($school_code);
+                			$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+                		    $master_id=$max_id->maxid+1;
+                		    $msg = "Dear Admin ".$school_info->row()->principle_name." your Password is successfully sent to your Register E-mail id also your Login password  is  ".$pass." ".$schoolname;
+                			$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$school_info->row()->mobile_no);
+            				 $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$school_info->row()->id);
+            				 $uppassword['admin_password'] = md5($pass);
+		                    $this->db->where("school_code",$school_code);
+		                    $this->db->update("general_settings",$uppassword);
+		                   
+        			
+        		    }
+        		    } 
+		    }else{
+		        if($school_info->row()->mobile_no){
+		    $school_code=  $school_info->row()->id;
+		    $this->db->where("school_code",$school_code);
+	     	$sender=$this->db->get("sms_setting");
+		  	$sende_Detail =$sender->row();
+		  	//print_r($school_code);
+			$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+		    $master_id=$max_id->maxid+1;
+		    $msg = "Dear Admin ".$school_info->row()->principle_name." your E-mail is not  registered by us please contact to school and update E-mail id your Login password  is  ".$pass." ".$schoolname;
+			$getv=mysms($sende_Detail->auth_key,$msg,$sende_Detail->sender_id,$school_info->row()->mobile_no);
+				 $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$school_info->row()->id);
+				$uppassword['admin_password'] = md5($pass);
+		        $this->db->where("school_code",$school_code);
+		        $this->db->update("general_settings",$uppassword);
 		
-		$succ = mail($to, $subject, $message, $headers);
-		if($succ)
-		{
-		redirect("index.php/homeController/index/8");
+		    }
+		    }
+		      redirect("index.php/homeController/index/8");
+		    }
+	
+	
+	}else{
+	    	redirect("index.php/homeController/index/9");
+	}
 		}
-		else
-		{
-		echo "error";
-		}
-		}
+	
 	}
 	
 	}
+	   function sendMail($email1,$schoolname,$ccregisterEmail,$message){
+	        $this->load->library('email');
+			$this->email->from('support@schoolerp-niktech.in', $schoolname);
+			$this->email->to($email1);
+			$this->email->cc($ccregisterEmail);
+			$this->email->subject('Password Recovery');
+			$this->email->message($message);
+			$this->email->send();
+        }
+
 
 		function index(){
 		if($this->session->userdata("is_login") == true){
@@ -252,8 +343,8 @@ class HomeController extends CI_Controller{
 
 			if($SchConfirm && $SchConfirm1 && $SchConfirm2 && $SchConfirm3 && $SchConfirm4 ){
 				 $rtype="admin";
-				    redirect(base_url()."index.php/api/common_user/$rtype");
-			//	redirect(base_url()."index.php/login/");
+				   // redirect(base_url()."index.php/api/common_user/$rtype");
+				redirect(base_url()."index.php/login/");
 			}
 			
 		}
@@ -333,12 +424,15 @@ class HomeController extends CI_Controller{
 		
 		
 		 $school_code = 2;
+
+		
 	    $query=$this->db->get("student_info");
+
 		foreach($query->result() as $stuid):
 			$updateclass['class_id']=$stuid->class_id;
 		$this->db->where("student_id",$stuid->id);
 		$this->db->update("fee_deposit",$updateclass);
-		
+
 		endforeach; 
 		echo "done- ".$school_code;
 		

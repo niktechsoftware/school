@@ -82,14 +82,15 @@
 	
 								<!--  <div class="form-group form-actions">
 								<span class="input-icon">
-									<input type="text" class="form-control password" name="mobile" placeholder="<?php echo $this->lang->line('login_mobile'); ?>">
+									<input type="text" class="form-control password" name="mobile" placeholder="<?php //echo $this->lang->line('login_mobile'); ?>">
 									<i class="fa fa-lock"></i>
 									<a class="forgot" href="#">
 										<?php echo $this->lang->line('login_forgot_mobile'); ?>
 									</a> </span>
 							</div> -->
 							<?php if($this->uri->segment(3) == "authFalse"):?> <code>Wrong Userid or Password...</code><?php endif;?>
-							<?php if($this->uri->segment(3) == "8"):?> <code>Password sent to your Email-Account</code><?php endif;?>
+							<?php if($this->uri->segment(3) == "8"):?> <code>Password sent to your Email-Account or Registered Mobile Number</code><?php endif;?>
+								<?php if($this->uri->segment(3) == "9"):?> <code>Wrong Username Please Contact to School Office</code><?php endif;?>
 							<div class="form-actions">
 								<label for="remember" class="checkbox-inline">
 									<input type="checkbox" class="grey remember" id="remember" name="remember">
@@ -121,12 +122,12 @@
 						
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="text" class="form-control" name="userID" placeholder="User ID">
+									<input type="text" class="form-control" name="userID" placeholder="User ID" required="required">
 									<i class="fa fa-envelope"></i> </span>
 							</div>
 							<div class="form-group">
 								<span class="input-icon">
-									<input type="email" class="form-control" name="email1" placeholder="Email">
+									<input type="email" class="form-control" name="email1" placeholder="Email" required="required">
 									<i class="fa fa-envelope"></i> </span>
 							</div>
 							<div class="form-actions">

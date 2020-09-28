@@ -227,7 +227,7 @@ class feeModel extends CI_Model{
 			//echo $totf;
 			return $totf;
 	}
-	function studentFeeTransportById($transportid){
+		function studentFeeTransportById($transportid){
 		$this->db->where("v_id",$transportid);
 		$tranportAmount  = $this->db->get("transport_root_amount");
 		if($tranportAmount->num_rows()>0){

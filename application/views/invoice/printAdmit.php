@@ -129,34 +129,21 @@
 
 	<div id="page-wrap" style="height: 540px;width:800px; border: 1px solid black; outline: 1px solid black; solid #333;">
 
-	<?php $school_code = $this->session->userdata("school_code");
+	<?php 
 
     $this->db->where("id",$school_code);
     $info =$this->db->get("school")->row();
-		
-	 $this->db->where("username",$id);
-	$rowc = $this->db->get("student_info")->row();
-	 $this->db->where("student_id",$rowc->id);
-	 $this->db->where("school_code",$this->session->userdata("school_code"));
-	 $pInfo = $this->db->get("guardian_info")->row();
-	 $fsd = $this->session->userdata("fsd");
-
-	  $this->db->where('school_code',$school_code);
-	  $this->db->where('id',$fsd);
-	  $date=$this->db->get('fsd')->row();
-	   $cyear = date('Y', strtotime($date->finance_start_date));
-		$nyear = date('Y', strtotime($date->finance_end_date));
 ?>		
 
 		<table>
 			<tr>
 			<td style="width:20%; border:none;">
-					<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/empImage/<?php echo $info->logo;?>" style="width:65%;" />
+					<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code?>/images/empImage/<?php echo $info->logo;?>" style="width:65%;" />
 				</td>
 				<td style="text-align:center; border:none; width:60%;">
 
 			<h1 style="text-transform:uppercase; text-align:center;line-height:12px; padding-top:8px; padding-bottom:8px;color:#ec1d0d;">
-			    <b> <span class="schoolTitle"><?php if(($rowc->class_id==98)||($rowc->class_id==99) || ($rowc->class_id==116)||($rowc->class_id== 100) ||($rowc->class_id== 101) ||($rowc->class_id== 102) ||($rowc->class_id== 103) ||($rowc->class_id== 104) ){ echo "THE MANNER SCHOOL";}else{echo $info->school_name;}?></span><?php //echo $info->school_name; ?></b>
+			    <b> <span class="schoolTitle"><?php if(($studentData->class_id==98)||($studentData->class_id==99) || ($studentData->class_id==116)||($studentData->class_id== 100) ||($studentData->class_id== 101) ||($studentData->class_id== 102) ||($studentData->class_id== 103) ||($studentData->class_id== 104) ){ echo "THE MANNER SCHOOL";}else{echo $info->school_name;}?></span><?php //echo $info->school_name; ?></b>
 			    </h1><h2 style="font-variant:small-caps;color:#21901f;">
             		<?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
                 </h2>
@@ -174,18 +161,15 @@
                 <?php } ?>
                 <h2  style="border: 2px solid #000; text-align:center;margin-left:auto;margin-right:auto; width:72%">
 							<?php 
-							$this->db->where("id",$exam_name);
-						$exname  =	$this->db->get("exam_name")->row()->exam_name;
-						$this->db->where("id",$this->session->userdata("fsd"))	;
-						$fsdarray = $this->db->get("fsd")->row();
-						$styear=date('Y',strtotime($fsdarray->finance_start_date));
-							$etyear=substr(date('Y',strtotime($fsdarray->finance_end_date)),2);
-							echo $exname." [ " .$styear."-".$etyear. " ]";?>
+							
+						
+							$etyear=substr(date('Y',strtotime($nyear)),2)+1;
+							echo $exam_name->exam_name." [ " .$cyear."-".$etyear. " ]";?>
 							<br>
 							Admit Card : <?php 
 							
 							
-							$this->db->where("id",$rowc->class_id);
+							$this->db->where("id",$studentData->class_id);
 						$rtyg  =	$this->db->get("class_info")->row();
 						$this->db->where("id",$rtyg->section);
 						$section = $this->db->get("class_section")->row();
@@ -224,7 +208,7 @@
                      <tr>
                     	<td style="border:none; line-height: 15px;text-transform: uppercase;">
                         	
-				  		<h3>Student ID : <strong><?php echo $rowc->username; ?></strong>	</h3>
+				  		<h3>Student ID : <strong><?php echo $studentData->username; ?></strong>	</h3>
 				  		
                         </td>
                        
@@ -238,7 +222,7 @@
                     </tr>
                     <tr>
                     	<td style="border:none;  line-height: 15px;text-transform: uppercase;">
-                    		<h3>Student Name : <strong><?php echo $rowc->name ?></strong></h3>
+                    		<h3>Student Name : <strong><?php echo $studentData->name ?></strong></h3>
 
                         </td>
                     </tr>
@@ -258,155 +242,23 @@
                 <tr>
                     	<td style="border:none; line-height: 20px;">
 
-                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $rowc->photo; ?>"  alt="" width="75" height="100"/>
+                    		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/stuImage/<?php echo $studentData->photo; ?>"  alt="" width="75" height="100"/>
 
                         </td>
                     </tr>
                    
             </table>
             </div>
-       <?php
-            
-            
-            //$this->db->distinct();
-           // $this->db->select("date1");
-            $this->db->where("school_code",$this->session->userdata("school_code"));
-             $this->db->where("exam_id",$exam_name);
-          //  $this->db->where("start_date",$exam_date);
-            $this->db->where("class_id",$rowc->class_id);
-           //  $this->db->order_by("date1","asc");
-             $exam_day=$this->db->get("exam_time_table");
-
-            
-             //print_r($exam_day->exam_id);print_r($rowc->class_id);exit;
-             ?>
+     
         </div>
+        
+        
+      <?php  
+      $this->exammodel->getExamTimeTableChartBy($exam_name->id,$studentData->class_id,$school_code,$studentData->id,1);
       
-			<table id="items" align="center"  style="width:100%; margin-top:8px;color:#d80707;font-size: 11px;">
-					<thead>
-						<th style="text-transform: uppercase;"><b>Date</b></th>
-                        <?php 
-
-if($exam_day->num_rows()){
-                        $this->db->where('exam_id',$exam_day->row()->exam_id);
-                        $date=$this->db->get('exam_day')->result();
-                        foreach($date as $ed):?>
-						<th><b><?php echo date("d-m-Y",strtotime($ed->date1));?></b></th>
-						<?php endforeach; }?>
-					</thead>
-					<tbody>
-                        <?php
-                        $this->db->where("exam_id",$exam_name);
-                        //$this->db->where("to1",$exam_date);
-                        $shift=$this->db->get("exam_shift")->result();
-                        //print_r($exam_name);print_r($exam_date);exit;
-                        foreach($shift as $s):
-                        ?>
-                        <tr>
-
-                        <td style="text-align: center;text-transform: uppercase;"><?php if($school_code==5){ ?><?php }else{ ?>
-                        <?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?><?php }else{echo $s->shift; } ?>
-                        <?php //echo $s->shift;?>
-                        
-                        <?php } ?></td>
-
-                        <?php 
-                        foreach($date as $ed):
-						
-						$this->db->where("school_code",$this->session->userdata("school_code"));
-                        $this->db->where("exam_id",$exam_name);
-                        $this->db->where("shift_id",$s->id);
-                      //$this->db->where("start_date",$exam_date);
-                        $this->db->where("class_id",$rowc->class_id);
-                        $this->db->where("exam_day_id",$ed->id);
-						$etb = $this->db->get("exam_time_table");
-						if($etb->num_rows()>0){
-						    foreach($etb->result() as $ff):
-                                 if($ff->subject_id){
-                                $this->db->where('id',$ff->subject_id);
-                                $this->db->where('class_id',$ff->class_id);
-                                 $subject=$this->db->get('subject');
-                                    ?>
-                                <td style="text-align: center;text-transform: uppercase;"> <?php echo $subject->row()->subject;?></td>
-                                
-							<?php }else{?> <td> </td> <?php }
-						endforeach;?>
-                        <?php }else{ ?>
-                            <td>-</td>
-                            <?php } endforeach;?>
-						</tr>
-					<?php endforeach;?>
-					</tbody>
-			
-            </table>
+      $this->exammodel->getExamTimeNoticebySchool($exam_name->id,$studentData->class_id,$school_code);
+      ?>
         <br>
-		<div align="left"><h3>
-	    <!--for daffodils start-->
-		<?php   $row2=$this->db->get('db_name')->row()->name;
-		if(($school_code==5) && ($row2=="D")){ ?>
-
-		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) A Student who gives or obtains unfair assistance at an examination 
-		will debarred for the rest of the examination and will</br> 
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get Zero in that paper.</br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Attendance of the students for oral and Written exam is essential.</br>
-
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) 28-03-2020 Result Declaration & P.T.M.
-		<!--for daffodils end-->
-		<!--for scholar start-->
-		<?php }else if($school_code==13 && $row2=="A"){
-		?>	&nbsp;Note: 1) The reporting time to school will be at <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->from1)); endforeach; ?> and dispersal timing will be at <?php foreach($shift as $s):  echo date('H:i A',strtotime($s->to1)); endforeach; ?>. 
-	    </br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		2) Bring this admit card and all necessary instruments (Pen, Pencil box, Geometry box etc.) during exam is compulsory. </br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		3) Unfair means or papers are strictly prohibited.</br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<?php if($school_code == 13){?>
-			4) PTM and Result Declaration will be held on 22nd of March.
-		    
-	<?php	}else{?>
-		
-			4) Issuing of duplicate Admit card will charge 10 rs.
-		
-	<?php 	}?>
-	
-
-		<?php }else if(($school_code==5) && ($row2=="C")) {	?>
-			&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
-		$endt =strtotime("-00 minutes",strtotime($s->to1));
-		echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
-		
-		<?php }	else if($school_code==8 || $school_code==9){ ?>
-		<!--for scholar end-->
-		<!--for dds start--><?php $a=$rowc->class_id;if($a==108 || $a==109 || $a==110 || $a==111){?>&nbsp;Note: 1)Exam timing is - 08:00 A.M. to 12:00 P.M.<br><?php }else{ ?>
-
-		&nbsp;Note: 
-		<?php  } ?>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)Students reporting time is latest by 8:30 A.M. and departure time is 01:30 P.M.
-
-		<?php /*foreach($shift as $s): $startt=strtotime("-30 minutes",strtotime($s->from1));
-		$endt =strtotime("-00 minutes",strtotime($s->to1));
-		echo $s->shift."-".date('H:i A', $startt)." "; endforeach;*/ ?> </br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Bringing this admit card during exam is compulsory.</br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Unfair means or papers are strictly prohibited.</br>
-		<?php }else{ ?><!--for dds end-->
-
-		&nbsp;Note: 1)Exam timing for Shift <?php foreach($shift as $s):  echo $s->shift." - ".date('H:i A',strtotime($s->from1))." to ".date('H:i A',strtotime($s->to1))." "; endforeach; ?><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Students reporting time is <?php foreach($shift as $s): $startt=strtotime("-15 minutes",strtotime($s->from1));
-		$endt =strtotime("-00 minutes",strtotime($s->to1));
-		echo $s->shift."-".date('H:i A', $startt)." "; endforeach; ?> </br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Bringing this admit card during exam is compulsory.</br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Unfair means or papers are strictly prohibited.</br>
-		<?php }?></h3>
-
-	
-		</div>
 		
 		<div>
 		    <br/>
@@ -420,7 +272,7 @@ if($exam_day->num_rows()){
 		<br>Principal</td>
 		</tr>
 		</table></div>
-		<div> </div>
+		
 	</div>
 	
 	</div>

@@ -13,4 +13,5 @@ $lang['login_forgot']='I forgot my password';
 $lang['login_forgot_mobile']='I forgot my login Mobile';
 $lang['login_forgot_msg']='Forget Password?';
 $lang['login_reset_msg']='Enter your e-mail address below to reset your password.';
+$lang['common_submit']='Get Password.';
 ?>

@@ -177,6 +177,7 @@
 		      <td><?php echo $getCashPayment->valid_id; ?></td>
 		      <td><?php echo $getCashPayment->name; ?></td>
 		      <td>
+
 		      	<?php echo $getCashPayment->phone_no; ?>
 		      	<?php if($getCashPayment->valid_id){
 					if($empInfo->num_rows()>0){
@@ -193,7 +194,7 @@
 		
 		<div id="terms">
 		  <h5>Terms</h5>
-		  <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+		  <textarea></textarea>
 		</div>
 	
 	</div>

@@ -43,9 +43,11 @@
 	    }
 
 function getclassforexam(){
+	
 		$streamid = $this->input->post("streamid");
 		$sectionid = $this->input->post("sectionid");
 		$this->load->model("teacherModel");
+		//echo $sectionid;
 		//echo $streamid."-".$sectionid;
 		$var = $this->teacherModel->getclassforexam($streamid,$sectionid);
 			if($var->num_rows() > 0){

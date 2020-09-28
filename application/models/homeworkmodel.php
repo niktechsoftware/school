@@ -66,6 +66,4 @@
 		$var = $this->db->query("SELECT * FROM homework_name WHERE workfor ='students' And school_code='$school_code' And class_id='$section'");
 		return $var;
 	}
-	
-
 }

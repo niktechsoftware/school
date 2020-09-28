@@ -1,5 +1,4 @@
-<?php
-class dayBookControllers extends CI_Controller
+<?php class dayBookControllers extends CI_Controller
 {
     	public function __construct(){
 		parent::__construct();
@@ -14,6 +13,18 @@ class dayBookControllers extends CI_Controller
 			
 			redirect("index.php/homeController/index");
 		}
+	
+	}
+	function getExamList()
+	{
+	$fsd=$this->input->post("fsd");
+	//echo $fsd;
+	$exam = $this->db->query("select * from exam_name where fsd ='$fsd'");
+		if($exam->num_rows()>0):
+							foreach ($exam->result() as $row):?>
+                            <option value="<?php echo $row->id;?>">
+                            <?php echo $row->exam_name."[".date('d-m-y',strtotime($row->exam_date))."]";?></option>
+                            <?php endforeach;  endif;
 	
 	}
 	
@@ -146,6 +157,7 @@ function daybook()
 	             $heads=6;
 	             $condition=1;
 	                 }
+
                
 	          if(($q==10)){
 	                 	$reason="Receive From Bank";

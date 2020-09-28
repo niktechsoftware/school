@@ -136,8 +136,7 @@
 				                         	    <div class="col-sm-12 row">
 				                         	     <div class="form-group">
 				                         	        <div class="col-sm-6">
-				                         	         
-				                        				<label id="res" class="col-sm-3">Reason  <span style="color:#F00">*</span></label>
+				                         	         <label id="res" class="col-sm-3">Reason  <span style="color:#F00">*</span></label>
 				                            			<textarea name="reason" class="col-sm-9" cols="20" rows="6" required></textarea>
 				                            		
 				                         	        </div>

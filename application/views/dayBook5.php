@@ -138,10 +138,10 @@ $dicountTotal = 0;
 		}
 	}else{
 		$this->db->where("receipt_no",$row->invoice_no);
-		$cpm = $this->db->get("cash_payment")->row();
-
-			echo $cpm->reason;
-	}
+		$cpm = $this->db->get("cash_payment");
+		if($cpm->num_rows() > 0){
+    	echo $cpm->row()->reason;
+	}}
 		?></td>
 <?php
 		$this->db->where ( 'school_code', $this->session->userdata ( 'school_code' ) );

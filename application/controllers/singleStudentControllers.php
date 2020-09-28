@@ -7,6 +7,7 @@ class singleStudentControllers extends CI_Controller{
 			$this->load->model("subjectModel");
 			$this->load->model("singleStudentModel");
 			$this->load->model("feeModel");
+			$this->load->model("examModel");
 		}
 		
 		function is_login(){
@@ -21,6 +22,40 @@ class singleStudentControllers extends CI_Controller{
 				redirect("index.php/homeController/lockPage");
 			}
 		}
+		
+	function updateGivenAnswer(){
+	  $qid=  $this->input->post("qid");
+	  $sid=  $this->input->post("sid");
+	    $result =  $this->input->post("result");
+	  $school_code=  $this->input->post("school_code");
+	  $exam_id=  $this->input->post("exam_id");
+	  $subject_id=  $this->input->post("subject_id");
+	  $data =array(
+	      "exam_id"=>$exam_id,
+	      "question_id"=>$qid,
+	      "student_id"=>$sid,
+	      "given_answer"=>$result,
+	      "subject_id"=>$subject_id
+	      
+	      );
+	      
+	      $this->db->where("exam_id",$exam_id);
+	      $this->db->where("question_id",$qid);
+	      $this->db->where("student_id",$sid);
+	      $this->db->where("subject_id",$subject_id);
+	      $res =$this->db->get("objective_exam_result");
+	      if($res->num_rows()>0){
+	          if($res->row()->status==1){
+	              ?><script>alert("You can not change Answer After submission");</script><?php
+	          }else{
+	          $this->db->where("id",$res->row()->id);
+	          $this->db->update("objective_exam_result",$data);
+	      }
+	      }else{
+	           $this->db->insert("objective_exam_result",$data);
+	      }
+	}
+		
 		function payFee(){
 			$student_id=$this->uri->segment("3");
 			$school_code = $this->session->userdata("school_code");
@@ -108,8 +143,116 @@ class singleStudentControllers extends CI_Controller{
 			$data['subPage'] = 'dashboard';
 			$data['title'] = 'Student Dashboard';
 			$data['headerCss'] = 'headerCss/dashboardCss';
+			$data['headerCss'] = 'headerCss/examTimeTableCss';
 			$data['footerJs'] = 'footerJs/dashboardJs';
+			$data['footerJs']='footerJs/examTimeTableJs';
 			$data['mainContent'] = 'dashboardStudent';
+			$this->load->view("includes/mainContent", $data);
+		
+		}
+			function totalquestion(){	
+		    $school_code=$this->session->userdata("school_code");
+		     $uri=$this->uri->segment(3);
+		   // exit();
+		      $uri1=$this->uri->segment(4);
+		      $subid=$this->uri->segment(5);
+		      $this->db->where("exam_subject_id",$subid);
+		    $this->db->where('exam_master_id',$uri1);
+		    $question=$this->db->get('question_master');
+		    $data['question']=$question;
+			$data['pageTitle'] = 'Total Question';
+			$data['smallTitle'] = 'Total Question';
+			$data['mainPage'] = 'Total Question';
+			$data['subPage'] = 'Total Question';
+			$data['title'] = 'Total Question';
+			$data['headerCss'] = 'headerCss/feeCss';
+
+			$data['footerJs'] = 'footerJs/feeJs';
+			$data['mainContent'] = 'totalquestion';
+			$this->load->view("includes/mainContent", $data);
+		
+		
+		
+		}
+		function totalattempt(){	
+		    $school_code=$this->session->userdata("school_code");
+		    $stud_id=$this->uri->segment(3);
+		    $exam_id=$this->uri->segment(4);
+		    $this->db->where('exam_id',$exam_id);
+		    $this->db->where('student_id',$stud_id);
+		    $result=$this->db->get('objective_exam_result');
+		    $data['result1']=$result;
+			$data['pageTitle'] = 'Total Attempt Question';
+			$data['smallTitle'] = 'Total Attempt Question';
+			$data['mainPage'] = 'Total Attempt Question';
+			$data['subPage'] = 'Total Attempt Question';
+			$data['title'] = 'Total Attempt Question';
+			$data['headerCss'] = 'headerCss/feeCss';
+
+			$data['footerJs'] = 'footerJs/feeJs';
+			$data['mainContent'] = 'totalattempt';
+			$this->load->view("includes/mainContent", $data);
+		
+		
+		
+		}
+		function rightanswer(){
+		$school_code=$this->session->userdata("school_code");
+		     $stud_id=$this->uri->segment(3);
+		    $exam_id=$this->uri->segment(4);
+		    $this->db->where('exam_id',$exam_id);
+		    $this->db->where('student_id',$stud_id);
+		    $result=$this->db->get('objective_exam_result');
+		    $data['res']=$result;
+			$data['pageTitle'] = 'Right Answer';
+			$data['smallTitle'] = 'Right Answer';
+			$data['mainPage'] = 'Right Answer';
+			$data['subPage'] = 'Right Answer';
+			$data['title'] = 'Right Answer';
+			$data['headerCss'] = 'headerCss/feeCss';
+
+			$data['footerJs'] = 'footerJs/feeJs';
+			$data['mainContent'] = 'rightanswer';
+			$this->load->view("includes/mainContent", $data);
+		
+		}
+		function wronganswer(){
+		$school_code=$this->session->userdata("school_code");
+		  $stud_id=$this->uri->segment(3);
+		    $exam_id=$this->uri->segment(4);
+		    $this->db->where('exam_id',$exam_id);
+		    $this->db->where('student_id',$stud_id);
+		    $obj=$this->db->get('objective_exam_result');
+		    $data['obj']=$obj;
+			$data['pageTitle'] = 'Wrong Answer';
+			$data['smallTitle'] = 'Wrong Answer';
+			$data['mainPage'] = 'Wrong Answer';
+			$data['subPage'] = 'Wrong Answer';
+			$data['title'] = 'Wrong Answer';
+			$data['headerCss'] = 'headerCss/feeCss';
+
+			$data['footerJs'] = 'footerJs/feeJs';
+			$data['mainContent'] = 'wronganswer';
+			$this->load->view("includes/mainContent", $data);
+		
+		}
+		function leftquestion(){
+		$school_code=$this->session->userdata("school_code");
+		$stud_id=$this->uri->segment(3);
+		    $exam_id=$this->uri->segment(4);
+		    $this->db->where('exam_id',$exam_id);
+		    $this->db->where('student_id',$stud_id);
+		    $ex=$this->db->get('objective_exam_result');
+		    $data['exam']=$ex;
+			$data['pageTitle'] = 'Left Question';
+			$data['smallTitle'] = 'Left Question';
+			$data['mainPage'] = 'Left Question';
+			$data['subPage'] = 'Left Question';
+			$data['title'] = 'Left Question';
+			$data['headerCss'] = 'headerCss/feeCss';
+
+			$data['footerJs'] = 'footerJs/feeJs';
+			$data['mainContent'] = 'leftquestion';
 			$this->load->view("includes/mainContent", $data);
 		
 		}
@@ -125,7 +268,98 @@ class singleStudentControllers extends CI_Controller{
 		$data['mainContent'] = 'stufeesdetail';
 		$this->load->view("includes/mainContent", $data);
 		}
+		function objectivePaper(){
+		 $school_code=$this->uri->segment(3);
+		 $exam_time_table_id =$this->uri->segment(4);
+		 $this->db->where("id",$exam_time_table_id);
+	   	 $ettD= $this->db->get("exam_time_table")->row();
+	   	 print_r($ettD);
+		 $this->db->where("exam_master_id",$ettD->exam_id);
+		 $this->db->where("exam_subject_id",$ettD->subject_id);
+		 $data1=$this->db->get("question_master");
+		 $i=1;	
 		
+		 if($data1->num_rows()>0){
+		 foreach($data1->result() as $rt):
+			    $quar[$i]=$rt->id;
+			    $i++;  
+			    endforeach;
+			$this->db->where("id",$quar[1]);
+			$firstQuestion=$this->db->get("question_master")->row();
+			$data['firstQuestion'] =$firstQuestion;
+			$data['ques']=$quar;
+			$data['school_code']=$school_code;
+			$data['stud_id']=$this->uri->segment(5);
+		//	echo $this->session->userdata("id");
+		//	exit();
+		$data['pageTitle'] = 'Objective Paper';
+		$data['smallTitle'] = 'Objective Paper';
+		$data['mainPage'] = ' Objective Paper';
+		$data['subPage'] = 'Objective Paper';
+		$data['title'] = 'Objective Paper';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'objectivePaper';
+		$this->load->view("includes/mainContent", $data);
+		}else{
+		    echo "Question Paper is in Process";
+		}
+		}
+    function objectiveque_result(){
+	//	$school_code=$this->uri->segment(3);
+	    $sid=$this->uri->segment(4);
+    	$exam=$this->uri->segment(3);
+    	$subid=$this->uri->segment(5);
+    	
+        $upstatus['status']=1;
+        $this->db->where('exam_id',$exam);
+    	$this->db->where('student_id',$sid);
+    	$this->db->where('subject_id',$subid);
+    	$this->db->update("objective_exam_result",$upstatus);
+    	
+    	$this->db->where('exam_id',$exam);
+    	$this->db->where('student_id',$sid);
+    	$this->db->where('subject_id',$subid);
+    	$getid=$this->db->get('objective_exam_result');
+        	  $i=1; 
+        	  $right=0;
+        	  $left=0;
+        	  $wrong=0;
+        	  if($getid->num_rows()>0){
+        	  foreach($getid->result() as $res):
+    		   $this->db->where("question_master_id",$res->question_id);
+    		   $resd = $this->db->get("right_answer")->row();
+    		   
+    		    if($resd->right_answer == $res->given_answer){
+    		     $right++;   
+    		    }else{
+    		      $wrong++;  
+    		    }
+    		 endforeach;
+    			 $totAttempt = $right+$wrong;
+    	    $this->db->where('exam_master_id',$exam);
+        	$this->db->where('exam_subject_id',$subid);
+        	$getidq=$this->db->get('question_master');
+        	$left = $getidq->num_rows()-$totAttempt;
+    		
+        	  }
+        $data['subid']=$subid;
+        $data['left']=$left;
+        $data['wrong']=$wrong;
+        $data['right']=$right;
+        $data['stu_id']=$sid;
+        $data['exam']=$exam;
+      
+    	$data['pageTitle'] = 'Objective Question Result';
+		$data['smallTitle'] = 'Objective Question Result';
+		$data['mainPage'] = ' Objective Question Result';
+		$data['subPage'] = 'Objective Question Result';
+		$data['title'] = 'Objective Question Result';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'objectiveque_result';
+		$this->load->view("includes/mainContent", $data);
+		}
 		function studentProfile(){
 			$this->load->model("allFormModel");
 			$this->load->model("studentModel");

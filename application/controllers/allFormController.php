@@ -142,13 +142,13 @@ function getpickup(){
 	function getpickupAmount(){
 		$pickp = $this->input->post("pickupAmount");
 		//$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("id",$pickp);
-		$rty = $this->db->get("transport_root_amount");
+		$this->db->where("root_id",$pickp);
+		$rty = $this->db->get("fsdwise_root_amount");
 	
 		if($rty->num_rows()>0)
 		{
 		    $rty=$rty->row();
-			 echo $rty->transport_fee;
+			 echo $rty->amount;
 			
 		}
 	}

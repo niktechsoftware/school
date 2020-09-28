@@ -143,6 +143,7 @@
 			<table id="items">
 				<tbody>
 <?php 
+
 for($nop=1;$nop <= $numberofReciept;$nop++ ){
 	$school_code=$this->session->userdata("school_code");
 	$tdiscount=0;
@@ -182,6 +183,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 				        <span style="font-variant:small-caps; margin-top:0; margin-bottom:0;font-size:<?php echo $font+4;?>px">
 				            <?php echo "Contact No. : " ;
 										if(strlen($info->mobile_no > 0 )){echo $info->mobile_no ;}
+
 
 									if(strlen($info->other_mobile_no > 0 )){echo ", ".$info->other_mobile_no ;}
 									?>
@@ -264,8 +266,10 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 
 														<script> document.write(convert_number(<?php echo ($feeRecord->deposite_month)*($applymonth); ?>)); </script>
 
+
 													</td>
 												</tr>
+
 
 												<tr class='text-uppercase'>
 													<td class="meta-head" style="padding: 0 5px 0 5px; font-size:<?php echo $font+1;?>px;">
@@ -283,6 +287,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 													<td style="padding: 0 5px 0 5px; font-size:<?php echo $font;?>px;">
 
                     	<?php 
+
                     	$i=1;foreach($printMonthDate as $mprint):
                     	
                     	echo $mprint;
@@ -314,6 +319,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 											<th class="col-sm-3 text-center">Amount</th>
 										</tr>
 			<?php 
+
 				  $total=0;
 				  if($fee_head->num_rows()>0)
 				  { $i=1;
@@ -325,6 +331,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 											<td class="col-sm-3 text-center"><?php  if($feeh->taken_month==13){ $total+=$feeh->fee_head_amount*$demont; echo $feeh->fee_head_amount*$demont;}else{ $total+=$feeh->fee_head_amount; echo $feeh->fee_head_amount;}?></td>
 										</tr>
 		  		<?php $i++; }
+
 		  		 endforeach;}?>	  				  				  				  				  				  				  				  				  				  		<tr>
 											<tr class='text-uppercase'>
 												<td class="text-center"><b><?php echo $i;?></b></td>
@@ -336,6 +343,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 
 				 if($feeRecord->late>0){?>
 
+
 		  	     <tr class='text-uppercase'>
 												<td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 												<td class="col-sm-8"><b><?php echo "LATE FEE"; ?></b></td>
@@ -343,6 +351,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 											</tr>
 				 <?php }	?> 
 				<tr class='text-uppercase'>
+
 												<td class="col-sm-1 text-center"><b><?php echo $i;?></b></td>
 												<td class="col-sm-8"><b><?php echo "PREVIOUS MONTH BALANCE, IF ANY"; ?></b></td>
 												<td class="col-sm-3 text-center"><?php  echo $prbalanace=$feeRecord->previous_balance; $i++;?></td>
@@ -404,6 +413,7 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 		echo "</td>";
 		echo "</tr>";
 		echo '<tr class ="highlight">';
+
 		
 	}
 	?>
@@ -416,8 +426,10 @@ for($nop=1;$nop <= $numberofReciept;$nop++ ){
 	</div>
 
 </body>
+
 <div class="invoice-buttons" style="text-align: center;">
 	<button class="button button2" type="button" onclick="window.print();">
 		<i class="fa fa-print padding-right-sm"></i> Print Receipt
 	</button>
 </div>
+

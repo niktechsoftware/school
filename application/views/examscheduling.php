@@ -66,7 +66,7 @@
 														<br><br>
 													    	</td>
 													    </tr>
-														 
+
 													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Submit <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
@@ -139,7 +139,7 @@
 														<br>
 													    	</td>
 													    </tr>
-														  
+
 													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Update <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
@@ -176,7 +176,7 @@
 											</thead>
 											<tbody>
 											
-											<?php $i=1; foreach ($request as $row): 
+											<?php $i=1; $cd1=date("Y-m-d"); foreach ($request as $row): 
 											 ?><form action="<?php echo base_url();?>index.php/examControllers/startScheduling" method="post" >
 													
 													<tr>
@@ -190,10 +190,11 @@
 															<input  type="text" style="width: 95px;" data-date-format="yyyy-mm-dd" id="edate<?php echo $i;?>" data-date-viewmode="years" value="<?php echo date('d-F-Y', strtotime($row->exam_date));  ?>" disabled="disabled"/>
 															<input type="hidden" name="edate" value="<?php echo date('d-F-Y', strtotime($row->exam_date));?>"/>		
 														</td>
+
 														<td >
 													<?php 	$ds= $row->exam_date;
 															$ename=$row->exam_name;
-															$cd=date("Y-m-d");
+															//$cd1=date("Y-m-d");
 															if(($ename=="Class Test")||($ename=="Other Exam"))
 																	{?>
 
@@ -204,7 +205,9 @@
 															
 															<?php }else
 															{
-																if($ds<$cd)
+																//echo date('Y-m-d',strtotime($ds));
+																//echo $cd1;
+																if($ds <= $cd1)
 															{?><button type='submit' disabled="disabled"  style="width: 100px;" class="btn btn-xs btn-light-blue" id="scheduling1"><i class="fa fa-check"></i>Exam Done </button>
 														    </td> 
 														    <td>

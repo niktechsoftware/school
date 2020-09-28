@@ -730,7 +730,6 @@ function result(){
 			$this->load->view("invoice/si/$callview",$data);
 
 
-
 		}
 		else{
 			 echo "<div class='alert alert-warning'> .

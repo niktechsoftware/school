@@ -191,8 +191,14 @@
 					$f_mobile = $this->input->post("mobileNumber");
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
-					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	
-				$getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$f_mobile);
+				if($school_code==8){
+					    	$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks. 9415863922, 9369771737.";	
+			
+					}else{
+						$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	
+			    
+					}
+					$getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$f_mobile);
 				    $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 				    $rtype="student";
 				     //redirect(base_url()."index.php/api/common_user/$rtype");
@@ -220,6 +226,22 @@
 		// }
 	}
 
+
+	function newAdmission(){
+		$data['pageTitle'] = 'Student Section';
+		$data['smallTitle'] = 'New Admission';
+		$data['mainPage'] = 'Students';
+		$data['subPage'] = 'New Admission';
+	
+		$this->load->model("allFormModel");
+		$data['className'] = $this->allFormModel->getClass()->result();
+	
+		$data['title'] = 'New Admission';
+		$data['headerCss'] = 'headerCss/newAdmissionCss';
+		$data['footerJs'] = 'footerJs/newAdmission';
+		$data['mainContent'] = 'newAdmission';
+		$this->load->view("includes/mainContent", $data);
+	}
 	function quickStureginsert(){	
 		$school_code = $this->session->userdata("school_code");
 		
@@ -321,7 +343,12 @@
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
 					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	
-			
+
+					}else{
+						$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	
+			    
+					}
+				
 					$getv=mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$f_mobile);
 				    $this->smsmodel->sentmasterRecord($msg,2,$master_id,$getv);
 				    $rtype="student";
@@ -337,21 +364,7 @@
 		}
 	}
 	
-	function newAdmission(){
-		$data['pageTitle'] = 'Student Section';
-		$data['smallTitle'] = 'New Admission';
-		$data['mainPage'] = 'Students';
-		$data['subPage'] = 'New Admission';
-	
-		$this->load->model("allFormModel");
-		$data['className'] = $this->allFormModel->getClass()->result();
-	
-		$data['title'] = 'New Admission';
-		$data['headerCss'] = 'headerCss/newAdmissionCss';
-		$data['footerJs'] = 'footerJs/newAdmission';
-		$data['mainContent'] = 'newAdmission';
-		$this->load->view("includes/mainContent", $data);
-	}
+
 
 	function quickregiter(){
 		$data['pageTitle'] = 'Student Section';
@@ -369,7 +382,7 @@
 		$this->load->view("includes/mainContent", $data);
 	}
 	
-	public function changeUsernameToid(){
+	 function changeUsernameToid(){
 	    $schoolid = $this->db->get("school")->result();
 	   foreach($schoolid as $scode){
 	       $this->db->where("school_code",$scode->id);
@@ -387,4 +400,3 @@
 	}
 		
 
-}

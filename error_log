@@ -1,14 +1,78 @@
-[11-Aug-2020 13:24:10 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 155
-[11-Aug-2020 15:55:11 Asia/Calcutta] PHP Fatal error:  Call to undefined function getinvoicebydate() in /home/schoodhe/public_html/school/application/views/transactionDetail.php on line 132
-[11-Aug-2020 16:10:31 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/transactionDetail.php on line 244
-[11-Aug-2020 16:27:44 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'receive' (T_STRING) in /home/schoodhe/public_html/school/application/views/transactionDetail.php on line 163
-[11-Aug-2020 16:28:02 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'receive' (T_STRING) in /home/schoodhe/public_html/school/application/views/transactionDetail.php on line 163
-[11-Aug-2020 16:28:16 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'Y' (T_STRING) in /home/schoodhe/public_html/school/application/views/transactionDetail.php on line 132
-[11-Aug-2020 16:30:47 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'Y' (T_STRING) in /home/schoodhe/public_html/school/application/views/transactionDetail.php on line 132
-[11-Aug-2020 16:49:01 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/transactionDetail.php on line 132
-[18-Aug-2020 10:41:38 Asia/Calcutta] PHP Fatal error:  Call to a member function fee_deposite() on a non-object in /home/schoodhe/public_html/school/application/controllers/feeControllers.php on line 707
-[07-Sep-2020 03:15:52 Asia/Calcutta] PHP Fatal error:  require_once(): Failed opening required 'application/libraries/PaytmKit/lib/config_paytm.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/schoodhe/public_html/school/application/controllers/paytm.php on line 50
-[07-Sep-2020 03:24:16 Asia/Calcutta] PHP Fatal error:  require_once(): Failed opening required 'application/libraries/PaytmKit/lib/config_paytm.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/schoodhe/public_html/school/application/controllers/paytm.php on line 50
-[12-Sep-2020 09:44:26 Asia/Calcutta] PHP Fatal error:  require_once(): Failed opening required 'application/libraries/PaytmKit/lib/config_paytm.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/schoodhe/public_html/school/application/controllers/paytm.php on line 50
-[12-Sep-2020 09:46:02 Asia/Calcutta] PHP Fatal error:  require_once(): Failed opening required 'application/libraries/PaytmKit/lib/config_paytm.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/schoodhe/public_html/school/application/controllers/paytm.php on line 50
-[12-Sep-2020 14:40:50 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '.' in /home/schoodhe/public_html/school/application/views/invoice/si/format_6.php on line 1727
+[22-Sep-2020 12:45:06 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:45:32 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 16
+[22-Sep-2020 12:46:04 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:46:41 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 16
+[22-Sep-2020 12:47:03 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:47:03 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:47:20 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:51:41 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 16
+[22-Sep-2020 12:52:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:56:58 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:56:59 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:57:01 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:57:02 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:57:03 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:57:04 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:57:05 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:57:07 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:57:08 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 12:57:32 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 16
+[22-Sep-2020 13:00:12 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/models/exammodel.php on line 596
+[22-Sep-2020 13:05:55 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ')' in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 16
+[22-Sep-2020 13:44:50 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'foreach' (T_FOREACH) in /home/schoodhe/public_html/school/application/views/collectFee.php on line 387
+[22-Sep-2020 15:06:51 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[22-Sep-2020 15:43:43 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[22-Sep-2020 16:04:46 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[22-Sep-2020 16:35:50 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[22-Sep-2020 16:42:59 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[22-Sep-2020 16:43:12 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[22-Sep-2020 17:04:47 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 1497
+[22-Sep-2020 17:04:57 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 1497
+[22-Sep-2020 17:05:30 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 1497
+[22-Sep-2020 17:06:11 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 1497
+[22-Sep-2020 17:06:34 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 1497
+[22-Sep-2020 17:08:28 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/schoodhe/public_html/school/application/controllers/examControllers.php on line 1497
+[23-Sep-2020 09:59:15 Asia/Calcutta] PHP Fatal error:  Call to undefined method newAdmissionControllers::newAdmission() in /home/schoodhe/public_html/school/application/controllers/newAdmissionControllers.php on line 77
+[23-Sep-2020 09:59:57 Asia/Calcutta] PHP Fatal error:  Call to undefined method newAdmissionControllers::newAdmission() in /home/schoodhe/public_html/school/application/controllers/newAdmissionControllers.php on line 77
+[23-Sep-2020 10:02:22 Asia/Calcutta] PHP Fatal error:  Call to undefined method newAdmissionControllers::newAdmission() in /home/schoodhe/public_html/school/application/controllers/newAdmissionControllers.php on line 77
+[23-Sep-2020 10:46:11 Asia/Calcutta] PHP Fatal error:  Call to undefined method newAdmissionControllers::newAdmission() in /home/schoodhe/public_html/school/application/controllers/newAdmissionControllers.php on line 77
+[23-Sep-2020 10:55:02 Asia/Calcutta] PHP Fatal error:  Call to undefined method newAdmissionControllers::newAdmission() in /home/schoodhe/public_html/school/application/controllers/newAdmissionControllers.php on line 77
+[23-Sep-2020 10:57:24 Asia/Calcutta] PHP Fatal error:  Call to undefined method newAdmissionControllers::newAdmission() in /home/schoodhe/public_html/school/application/controllers/newAdmissionControllers.php on line 77
+[23-Sep-2020 11:10:12 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[23-Sep-2020 12:56:32 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/school/application/views/feeReport.php on line 51
+[23-Sep-2020 13:10:29 Asia/Calcutta] PHP Fatal error:  Call to a member function fee_setting() on a non-object in /home/schoodhe/public_html/school/application/controllers/login.php on line 885
+[23-Sep-2020 13:11:56 Asia/Calcutta] PHP Fatal error:  Call to a member function fee_setting() on a non-object in /home/schoodhe/public_html/school/application/controllers/login.php on line 885
+[23-Sep-2020 13:44:34 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/feeStructure.php on line 86
+[23-Sep-2020 13:48:35 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/school/application/views/feeStructure.php on line 86
+[23-Sep-2020 13:49:20 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/school/application/views/feeReport.php on line 51
+[23-Sep-2020 13:49:40 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/school/application/views/feeStructure.php on line 27
+[23-Sep-2020 14:07:32 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/school/application/controllers/login.php on line 1515
+[23-Sep-2020 14:08:22 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/school/application/controllers/login.php on line 1515
+[23-Sep-2020 14:08:56 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/school/application/controllers/login.php on line 1645
+[23-Sep-2020 14:09:18 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/school/application/controllers/login.php on line 1645
+[23-Sep-2020 14:09:27 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/school/application/controllers/login.php on line 1645
+[23-Sep-2020 14:35:22 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[23-Sep-2020 15:26:00 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/school/application/views/feeReport.php on line 51
+[23-Sep-2020 15:26:57 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/school/application/views/feeReport.php on line 51
+[23-Sep-2020 16:05:41 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/school/application/views/feeReport.php on line 51
+[24-Sep-2020 15:42:21 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_DB_mysqli_result::num_row() in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[24-Sep-2020 15:42:48 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_DB_mysqli_result::num_row() in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[24-Sep-2020 15:45:12 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[24-Sep-2020 15:46:25 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[24-Sep-2020 15:57:39 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 155
+[24-Sep-2020 15:58:01 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 155
+[24-Sep-2020 15:58:22 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 155
+[24-Sep-2020 16:09:01 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/invoice/saleInvoice.php on line 155
+[25-Sep-2020 13:58:04 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 13:58:46 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 13:59:01 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 13:59:20 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 13:59:47 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 14:00:17 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 14:01:03 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 14:02:08 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 14:02:52 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 14:10:40 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 14:10:56 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[25-Sep-2020 15:39:41 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
+[28-Sep-2020 05:52:53 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_Encrypt::decrypt() in /home/schoodhe/public_html/school/application/controllers/homeController.php on line 123

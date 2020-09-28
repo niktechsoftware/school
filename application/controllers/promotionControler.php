@@ -84,18 +84,17 @@ class promotionControler extends CI_Controller{
 				$data['cfsd']	= $fsd;
 			    $data['cla']  = $this->input->post("classv");
 			    $data['check'] =$studata;
-			    	$this->load->view("ajax/allStudentClassPromotion",$data);
+			    $this->load->view("ajax/allStudentClassPromotion",$data);
 			}else{
 			     ?>
 				   <script>alert("You can not promote this student because this student is already present in current fsd")</script>
 				  <?php
-			   // 	$this->load->view("allStudentClassPromotion");
-			   redirect('login/allStudentClassPromotion','refresh');
+			   	$this->load->view("allStudentClassPromotion");
+			  // redirect('login/allStudentClassPromotion','refresh');
 			   //$this->load->view("allStudentClassPromotion");
 	}
 
-	
-	}
+		}
 	
 	function presenti12(){
 		$data['sec'] = $this->input->post("section");

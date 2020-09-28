@@ -23,7 +23,7 @@
     }
 </script>
 <!-- start: PAGE CONTENT -->
-<div class="row">
+<div class="row">=
 	<div class="col-sm-12">
 		<!-- start: INLINE TABS PANEL -->
 		<div class="panel panel-white">
@@ -50,8 +50,9 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-12">
-						
-						<IFRAME SRC="<?php echo base_url(); ?>index.php/adminc/AdmitCardDownload/<?php echo $this->input->post("student_id"); ?>/<?php echo $this->input->post("selectExam"); ?>" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
+						<?php $fsd= $this->input->post("fsd");?>
+					
+						<IFRAME SRC="<?php echo base_url(); ?>index.php/adminc/AdmitCardDownload/<?php echo $this->input->post("student_id"); ?>/<?php echo $this->input->post("selectExam"); ?>/<?php echo $fsd; ?>" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
 					
 					 
 					</div>
