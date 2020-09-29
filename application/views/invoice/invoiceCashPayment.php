@@ -375,7 +375,7 @@
 
 
 <?php	}else{
-        echo "<h1>Employee Salary Not Piad . Plz Pay First Employee Salary. </h1>";
+        echo "<h1>Employee Salary Not Paid . Plz Pay First Employee Salary. </h1>";
     }
     
     

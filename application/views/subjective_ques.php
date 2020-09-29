@@ -141,13 +141,15 @@ tr:nth-child(even) {
 													$row=$getsheet->row();
 													    for($i=1; $i<5;$i++){
 													   $vb1= "image".$i;
+													   if($row->$vb1){
 												?>
 												<tr>
 												<td><?php echo $i;?>    <input type="hidden" id="rowf<?php echo $i;?>" value ="<?php echo $i;?>">   </td>
                                                 <td><?php if($classname){echo $classname->row()->class_name;}?> </td>
                                                 <td><?php if($subject){ echo $subject->row()->subject;}?></td>
-												<td><a href="<?php echo base_url();?>assets/images/question_img/<?php echo $row->$vb1 ;?>" id="img<?php echo $i ;?>"><?php echo $row->$vb1 ;?></a>
-												<input type="hidden" name="dlt" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/></td>
+												<td><a href="<?php echo base_url();?>assets/images/question_img/<?php echo $row->$vb1 ;?>" id=""><?php echo $row->$vb1 ;?></a>
+												<input type="hidden" name="dlt" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/>
+												<input type="hidden" name="img" id="img<?php echo $i ;?>" value="<?php echo $row->$vb1 ;?>"/></td>
 												<td><?php echo $row->date; ?></td>
 												
 												<td class="text-center"><input type="button" value="Delete" id="dlt<?php echo $i; ?>" class="btn btn-danger"/></td>
@@ -157,7 +159,7 @@ tr:nth-child(even) {
 																		$("#dlt<?php echo $i; ?>").click(function(){
 																		var id =$('#rowid<?php echo $i;?>').val();
 																		var img =$('#img<?php echo $i ;?>').val();
-																			var rowg =$('#rowf<?php echo $i;?>').val();
+																		var rowg =$('#rowf<?php echo $i;?>').val();
 																		
 																	   $.post("<?php echo site_url('index.php/examControllers/deletesheet') ?>",{id : id , img : img ,rowg : rowg },function(data){
 																		alert("deleted Successfully!!!!! ");
@@ -167,7 +169,7 @@ tr:nth-child(even) {
 																	   }); 
 																	</script>
 																		</tr>
-												<?php }; }?>
+												<?php };} }?>
 										
 							
 											</tbody>

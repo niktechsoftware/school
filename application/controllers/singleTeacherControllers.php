@@ -260,7 +260,7 @@
 			$this->load->model("configureclassmodel");
 			$this->load->model("configurefeemodel");
 		$this->load->model("examModel");
-		$var=$this->examModel->getExamName();
+		$var=$this->examModel->getExamName($this->session->userdata("fsd"));
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();

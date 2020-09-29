@@ -65,15 +65,18 @@
                                         $this->db->where("exam_id",$exam_mode_details->exam_id);
                                         $this->db->where("subject_id",$exam_mode_details->subject);
                                         
-                                        $getshiftandday = $this->db->get("exam_time_table")->row();
+                                        $getshiftandday = $this->db->get("exam_time_table");
+                                         if($getshiftandday->num_rows()>0){
+                                            $getshiftandday1=$getshiftandday->row();
+                                      
                                         
-                                        $this->db->where("id",$getshiftandday->class_id);
+                                        $this->db->where("id",$getshiftandday1->class_id);
                                        $cin =  $this->db->get("class_info")->row();
                                       /*  print_r($getshiftandday);
                                         exit();*/
-                                        $this->db->where("id",$getshiftandday->exam_day_id);
+                                        $this->db->where("id",$getshiftandday1->exam_day_id);
                                         $exam_date =$this->db->get("exam_day");
-                                         $this->db->where("id",$getshiftandday->shift_id);
+                                         $this->db->where("id",$getshiftandday1->shift_id);
                                         $exam_shift =$this->db->get("exam_shift");
                                         
                                          $this->db->where('exam_master_id',$exam_mode_details->exam_id);
@@ -214,6 +217,9 @@ foreach ( $var->result () as $lv ) :
 								
 							</div>
 						</div>
+						<?php }else{
+						    echo "Update Time Table First";
+						}?>
 					</div>
 				</div>
 			</div>

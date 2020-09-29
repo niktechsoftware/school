@@ -150,15 +150,15 @@ var x = setInterval(function() {
             							                <td>
             							                    <?php $vi ="image".$i; echo $subject->subject;?>
             							                </td>
-            							                <td>
-            							                   <a href="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->$vi ;?>"><?php echo $getsheet->image ;?>
+            							                <td><?php if($getsheet->$vi){?>
+            							                   <a href="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->$vi ;?>"><?php echo $getsheet->$vi ;?>
             							                 <!--  <img src="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->image ;?>" alt="" width="200" height="250"/>-->
             							                  <!--<iframe src="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->image ;?>" ></iframe> -->
             							                  <object src="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->$vi ;?>"><embed src="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->$vi ;?> " width="200" height="250"></embed></object>
             							                   
             							                   </a>
             											
-								                            
+								                            <?php }?>
             							                </td>
             							                <td>
             							                    <?php if($sar->num_rows()>0){

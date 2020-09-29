@@ -1428,7 +1428,7 @@ function insertMarksdetail()
 			$image_path = realpath(APPPATH . '../assets/images/question_img/');
 			$config['upload_path'] = $image_path;
 			$config['allowed_types'] = 'gif|jpg|jpeg|png|docx|doc|pdf';
-			$config['max_size'] = '5048';
+			$config['max_size'] = '15048';
 			$config['file_name'] = $photo_name;
 			
 			
@@ -1469,16 +1469,22 @@ function deletesheet(){
 		$id = $this->input->post("id");
 		$img = $this->input->post("img");
 		$i = $this->input->post("rowg");
-		$imgv = $img.$i;
+		$imgv = $img;
 		$imc="image".$i;
+		$update[$imc]="";
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("id",$id);
 			$this->db->where($imc,$imgv);
-		$delete=$this->db->delete("subjective_question");
+		$delete=$this->db->update("subjective_question",$update);
 		// echo "deleted";
 	}
-
-
+public function deleteExamMode(){
+    
+   $this->db->where("id",$this->uri->segment(3)) ;
+   $this->db->delete("exam_mode");
+   	redirect(base_url()."login/exammode/");
+    
+}
 	//-----------------------------------**********************---------------------------------------//
 	///////////////////////////////////END OF ONLINE EXAM/////////////////////////////////////////
 }
