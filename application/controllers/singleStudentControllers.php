@@ -27,22 +27,19 @@ class singleStudentControllers extends CI_Controller{
 	  $qid=  $this->input->post("qid");
 	  $sid=  $this->input->post("sid");
 	    $result =  $this->input->post("result");
-	  $school_code=  $this->input->post("school_code");
-	  $exam_id=  $this->input->post("exam_id");
-	  $subject_id=  $this->input->post("subject_id");
+	  $exam_mode_id=  $this->input->post("exam_mode_id");
 	  $data =array(
-	      "exam_id"=>$exam_id,
+	      "exam_mode_id"=>$exam_mode_id,
 	      "question_id"=>$qid,
 	      "student_id"=>$sid,
 	      "given_answer"=>$result,
-	      "subject_id"=>$subject_id
+	     
 	      
 	      );
 	      
-	      $this->db->where("exam_id",$exam_id);
+	      $this->db->where("exam_mode_id",$exam_mode_id);
 	      $this->db->where("question_id",$qid);
 	      $this->db->where("student_id",$sid);
-	      $this->db->where("subject_id",$subject_id);
 	      $res =$this->db->get("objective_exam_result");
 	      if($res->num_rows()>0){
 	          if($res->row()->status==1){
@@ -269,13 +266,14 @@ class singleStudentControllers extends CI_Controller{
 		$this->load->view("includes/mainContent", $data);
 		}
 		function objectivePaper(){
-		 $school_code=$this->uri->segment(3);
 		 $exam_time_table_id =$this->uri->segment(4);
 		 $this->db->where("id",$exam_time_table_id);
 	   	 $ettD= $this->db->get("exam_time_table")->row();
-	   	 print_r($ettD);
-		 $this->db->where("exam_master_id",$ettD->exam_id);
-		 $this->db->where("exam_subject_id",$ettD->subject_id);
+	   	 $this->db->where("exam_id",$ettD->exam_id);
+		 $this->db->where("subject",$ettD->subject_id);
+		 $emd =$this->db->get("exam_mode");
+	   	 if($emd->num_rows()==1){
+		 $this->db->where("exam_mode_id",$emd->row()->id);
 		 $data1=$this->db->get("question_master");
 		 $i=1;	
 		
@@ -288,10 +286,9 @@ class singleStudentControllers extends CI_Controller{
 			$firstQuestion=$this->db->get("question_master")->row();
 			$data['firstQuestion'] =$firstQuestion;
 			$data['ques']=$quar;
-			$data['school_code']=$school_code;
+			
 			$data['stud_id']=$this->uri->segment(5);
-		//	echo $this->session->userdata("id");
-		//	exit();
+	    $data['exam_mode_id']=$emd->row()->id;
 		$data['pageTitle'] = 'Objective Paper';
 		$data['smallTitle'] = 'Objective Paper';
 		$data['mainPage'] = ' Objective Paper';
@@ -304,22 +301,23 @@ class singleStudentControllers extends CI_Controller{
 		}else{
 		    echo "Question Paper is in Process";
 		}
+		}else{
+		    echo "Paper Not Define or multiple paper";
+		}
 		}
     function objectiveque_result(){
-	//	$school_code=$this->uri->segment(3);
-	    $sid=$this->uri->segment(4);
-    	$exam=$this->uri->segment(3);
-    	$subid=$this->uri->segment(5);
+	   
+    	$exammode=$this->uri->segment(3);
+        $student_id=$this->uri->segment(4);
     	
         $upstatus['status']=1;
-        $this->db->where('exam_id',$exam);
-    	$this->db->where('student_id',$sid);
-    	$this->db->where('subject_id',$subid);
+        $this->db->where('exam_mode_id',$exammode);
+    	$this->db->where('student_id',$student_id);
+    
     	$this->db->update("objective_exam_result",$upstatus);
     	
-    	$this->db->where('exam_id',$exam);
-    	$this->db->where('student_id',$sid);
-    	$this->db->where('subject_id',$subid);
+    	$this->db->where('exam_mode_id',$exammode);
+    	$this->db->where('student_id',$student_id);
     	$getid=$this->db->get('objective_exam_result');
         	  $i=1; 
         	  $right=0;
@@ -337,19 +335,19 @@ class singleStudentControllers extends CI_Controller{
     		    }
     		 endforeach;
     			 $totAttempt = $right+$wrong;
-    	    $this->db->where('exam_master_id',$exam);
-        	$this->db->where('exam_subject_id',$subid);
+    	    $this->db->where('exam_mode_id',$exammode);
         	$getidq=$this->db->get('question_master');
         	$left = $getidq->num_rows()-$totAttempt;
     		
         	  }
-        $data['subid']=$subid;
+        $data['exam_mode_id']=$exammode;
         $data['left']=$left;
         $data['wrong']=$wrong;
         $data['right']=$right;
-        $data['stu_id']=$sid;
-        $data['exam']=$exam;
-      
+        $data['stu_id']=$student_id;
+        $data['exam']=$exammode;
+         $data['exam_mode_id']=	$exammode=$this->uri->segment(3);
+        $data['student_id']=$this->uri->segment(4);
     	$data['pageTitle'] = 'Objective Question Result';
 		$data['smallTitle'] = 'Objective Question Result';
 		$data['mainPage'] = ' Objective Question Result';
