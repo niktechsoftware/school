@@ -541,5 +541,43 @@ class HomeController extends CI_Controller{
 		endforeach;
 	}
 
-
+function updateExamMode_inQuestion(){
+    $this->db->distinct();
+    $this->db->select('exam_subject_id,exam_master_id');
+   $qm = $this->db->get("question_master");
+   if($qm->num_rows()>0){
+       foreach($qm->result() as $q):
+       $this->db->where("exam_id",$q->exam_master_id);
+       $this->db->where("subject",$q->exam_subject_id);
+     $emid =  $this->db->get("exam_mode");
+     if($emid->num_rows()>0){
+         $update['exam_mode_id']=$emid->row()->id;
+         $this->db->where("exam_master_id",$q->exam_master_id);
+       $this->db->where("exam_subject_id",$q->exam_subject_id);
+          $this->db->update("question_master",$update);
+     }else{
+         
+            $this->db->where("exam_master_id",$q->exam_master_id);
+            $this->db->where("exam_subject_id",$q->exam_subject_id);
+            $fordeleteid = $this->db->get("question_master");
+            if($fordeleteid->num_rows()>0){
+                foreach($fordeleteid->result() as $fr):
+                    echo $fr->id."-";
+                    $this->db->where("question_master_id",$fr->id);
+                    $this->db->delete("question_ans");
+                        $this->db->where("question",$fr->id);
+                        $this->db->delete("question_images");
+                    endforeach;
+            }
+       
+         $this->db->where("exam_master_id",$q->exam_master_id);
+       $this->db->where("exam_subject_id",$q->exam_subject_id);
+       $this->db->delete("question_master");
+       
+     
+     }
+     endforeach;  
+   }
+    
+}
 }

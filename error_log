@@ -76,3 +76,14 @@
 [25-Sep-2020 14:10:56 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
 [25-Sep-2020 15:39:41 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/views/dayBook5.php on line 142
 [28-Sep-2020 05:52:53 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_Encrypt::decrypt() in /home/schoodhe/public_html/school/application/controllers/homeController.php on line 123
+[29-Sep-2020 13:45:08 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 13:51:17 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 13:51:30 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 13:56:52 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 13:58:08 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 13:58:49 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 14:01:29 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 14:03:36 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '1' (T_LNUMBER), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 148
+[29-Sep-2020 14:04:30 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 14:04:35 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 14:05:39 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156

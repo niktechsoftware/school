@@ -1148,14 +1148,14 @@ function insertMarksdetail()
 		 $school_code=$this->session->userdata("school_code");
 		 $this->db->where('id',$uri);
 		$ex=$this->db->get('exam_mode');
-		$getmode=$this->db->query("select * from exam_mode where id='$uri'");
+	    $data['exam_mode_id']=$uri;
 		$data['exam']=$ex;
 		$lang_id = $ex->row()->language;
 		$select_exam = $ex->row()->exam_id;
 		$select_subject = $ex->row()->subject;
 		$data['language'] = $ex->row()->language;
 		$this->load->model('exammodel');
-		$data['dt_qt'] = $this->exammodel->question_data($select_exam, $select_subject);
+		$data['dt_qt'] = $this->exammodel->question_data($uri);
 		$data['select_exam'] = $select_exam;
 		$data['select_subject'] = $select_subject;
 		$data['pageTitle'] = 'Create Questions';
@@ -1170,31 +1170,25 @@ function insertMarksdetail()
 	}
 		public function insert_question()
 	{	
-	//echo "uppu";
-	//exit();
+
 	$this->load->model('exammodel');
 		 $ques = $this->input->post('ques');
-		// echo $ques;
 		 $ans = $this->input->post('ans');
-		 //echo $ans;
 		 $a = $this->input->post('a');
 		 $b = $this->input->post('b');
 		 $c = $this->input->post('c');
 		 $d = $this->input->post('d');
 		 $e = $this->input->post('e');
 		 $exam_subject_id = $this->input->post('exam_subject_id');
-		 //echo $exam_subject_id;
-		 //exit();
-		// $exam_name_id = $this->input->post('exam_name_id');
+		
+		 $exam_mode_id = $this->input->post('exam_mode_id');
 		 $exam_master_id = $this->input->post('exam_master_id');
 		 $wh_val = array(
 			'question'=>$ques,
-			//'exam_name_id'=>$exam_name_id,
-			'exam_subject_id'=>$exam_subject_id,
-			'exam_master_id'=>$exam_master_id
+			'exam_mode_id'=>$exam_mode_id,
 			);
 			
-				$da = $this->exammodel->insert_ques($ques,$exam_subject_id,$exam_master_id,$ans,$a,$b,$c,$d,$e);
+				$da = $this->exammodel->insert_ques($ques,$wh_val,$ans,$a,$b,$c,$d,$e);
 				if($da){
 				echo "1";
 				}else{
@@ -1224,11 +1218,9 @@ function insertMarksdetail()
 	{
 		$this->load->model('exammodel');
 		$sel_ct = $this->input->post("sel_ct");
-		$exam_subject_id = $this->input->post('exam_subject_id1');
-		//$exam_name_id = $this->input->post('exam_test_id');
-		$exam_master_id = $this->input->post('exam_master_id1');
-		$exam_language = $this->input->post('exam_language');
-		//echo $sel_ct;
+		$exam_mode_id = $this->input->post('exam_mode_id');
+	
+	
 		 if($sel_ct != 0)
 		{
 			$ques = $this->input->post("ques1");
@@ -1309,7 +1301,6 @@ function insertMarksdetail()
 				$config['file_name'] = $photo_name;
 					$this->load->library('upload',$config);
 				$this->upload->initialize($config);
-			
 				if($this->upload->do_upload($rawname))
 				{
 				$aq[$i]=$photo_name;
@@ -1323,7 +1314,7 @@ function insertMarksdetail()
 			      $aq[$i]=0;
 			}
 			}
-			$chk = $this->exammodel->insert_img_question($ques,$exam_subject_id,$exam_master_id,$dq,$aq,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5);
+			$chk = $this->exammodel->insert_img_question($ques,$exam_mode_id,$dq,$aq,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5);
 			if($chk)
 			{
 			    echo "Question upload successfully";
