@@ -226,6 +226,22 @@
 		// }
 	}
 
+
+	function newAdmission(){
+		$data['pageTitle'] = 'Student Section';
+		$data['smallTitle'] = 'New Admission';
+		$data['mainPage'] = 'Students';
+		$data['subPage'] = 'New Admission';
+	
+		$this->load->model("allFormModel");
+		$data['className'] = $this->allFormModel->getClass()->result();
+	
+		$data['title'] = 'New Admission';
+		$data['headerCss'] = 'headerCss/newAdmissionCss';
+		$data['footerJs'] = 'footerJs/newAdmission';
+		$data['mainContent'] = 'newAdmission';
+		$this->load->view("includes/mainContent", $data);
+	}
 	function quickStureginsert(){	
 		$school_code = $this->session->userdata("school_code");
 		
@@ -346,23 +362,9 @@
 
 			}
 		}
-	}
 	
-	function newAdmission(){
-		$data['pageTitle'] = 'Student Section';
-		$data['smallTitle'] = 'New Admission';
-		$data['mainPage'] = 'Students';
-		$data['subPage'] = 'New Admission';
 	
-		$this->load->model("allFormModel");
-		$data['className'] = $this->allFormModel->getClass()->result();
-	
-		$data['title'] = 'New Admission';
-		$data['headerCss'] = 'headerCss/newAdmissionCss';
-		$data['footerJs'] = 'footerJs/newAdmission';
-		$data['mainContent'] = 'newAdmission';
-		$this->load->view("includes/mainContent", $data);
-	}
+
 
 	function quickregiter(){
 		$data['pageTitle'] = 'Student Section';
@@ -397,4 +399,4 @@
 	   }
 	}
 		
-
+}

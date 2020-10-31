@@ -62,7 +62,7 @@ tr:nth-child(even) {
 				</div>
 			</div>
 		          <div class="panel-body">
-										
+									 <input type="hidden"  id="exam_mode_id" value="<?php echo $exam_mode_id;?>">	
 										<table class="table table-responsive">
 										<thead>
 											<tr style="background-color:#E2EFED">
@@ -107,6 +107,7 @@ tr:nth-child(even) {
                                   <input type="hidden"  name="exam_id" value="<?php echo $res->exam_id;?>">
                                   <input type="hidden"  name="fsd" value="<?php echo $this->session->userdata("fsd");?>">
                                    <input type="hidden"  name="subjectid" value="<?php echo $res->subject;?>">
+                                    <input type="hidden"  name="exam_mode_id" value="<?php echo $exam_mode_id;?>">
                                   
                                   </br>
                                   <input  type="submit">
@@ -118,6 +119,7 @@ function myFunction() {
   document.getElementById("demo").style.display = "block";
 }
 </script>
+
 							<div id="normal_ques">
                                  <div class="row">
                                         <div class="col-md-3 "><label style="float:right"><h4>Question :</h4></label></div>
@@ -140,7 +142,7 @@ function myFunction() {
 											<div class="col-md-4">                                                                                                         
 												D:<input class="form-control" type="text" id="d1"/><br>
 												E:<input class="form-control" type="text" id="e1"/><br>   
-												Select Answer:<select class="form-control" id="sel_ct" style="width:350px">
+												Select Answer:<select class="form-control" id="sel_ct" style="width:350px" required>
 													<option value="0">--Select--</option>
 													<option value="1">A</option>
 													<option value="2">B</option>
@@ -159,9 +161,8 @@ function myFunction() {
 							<div id="image_ques">
                                  <form method="post" id="uploadform" enctype="multipart/form-data" action="" >
                                     <div class="row">
-                                        <input type="hidden" name="exam_master_id1"  id="exam_master_id" value="<?php echo $select_exam; ?>">
-                                     <input type="hidden" name="exam_language"  id="exam_language" value="<?php echo $language; ?>">
-                                        <input type="hidden" name="exam_subject_id1" id="exam_subject_id" value="<?php echo $res->subject; ?>">
+                                        <input type="hidden" name="exam_mode_id"  id="exam_mode_id12" value="<?php echo $exam_mode_id; ?>">
+                                    
                                         <div class="col-md-3"><label style="float:right"><b>Question :</b></label></div>
                                         <div class="col-md-6">
                                             <textarea id="ques1" name="ques1" class="form-control" placeholder="Write Question here"></textarea>
@@ -228,10 +229,7 @@ function myFunction() {
                                         <thead>
                                             <tr>
                                                 <th class="text-center"> #</th>
-                                                <th class="text-center">Exam Name</th>
-                                                <th class="text-center">Language</th>
-
-                                                <th class="text-center">Subject</th>
+                                                
                                                 <th class="text-center">Question</th>
                                                 <th class="text-center">Answer</th>
                                                 <th class="text-center">Edit</th>
@@ -245,11 +243,7 @@ function myFunction() {
 											<tr>
 												<td class="text-center"><?php echo $i;?></td>
 									
-												<td><?php  echo $ename->exam_name;?></td> 
-												
-												<td><?php echo $lan->language;?></td>
-												
-												<td><?php echo $sub->subject; ?></td>
+											
 													
 												<td><?php 	echo $this->examModel->getOrgQuestion($data_q->id);
 												 ?></td> 
@@ -339,7 +333,8 @@ $("#submit_q").click(function(){
         var d = $('#d1').val();
         var e = $('#e1').val();
 		var sel = $('#sel_ct').val();
-      
+			var  exam_mode_id = $('#exam_mode_id').val();
+     
         var exam_master_id = $('#exam_master_id').val();
 	//	alert(exam_master_id);
         
@@ -381,7 +376,7 @@ $("#submit_q").click(function(){
                 ques : ques,a:a,b:b,c:c,d:d,e:e,ans:ans,
                 exam_master_id :exam_master_id,
                
-                exam_subject_id : exam_subject_id
+                exam_subject_id : exam_subject_id, exam_mode_id : exam_mode_id
                 }, function(data){
                //alert(data);
                 if(data==1)
@@ -416,11 +411,8 @@ $("#submit_q").click(function(){
  <script>
  //alert("uppu");
     $("#uploadform").on('submit',(function(e){
-		//alert("diksha");
     e.preventDefault();
-    $.ajax({
-		//alert("mayank");
-    url: "<?= site_url();?>examControllers/new_ques",
+    $.ajax({ url: "<?= site_url();?>examControllers/new_ques",
     type: "POST",
     data:  new FormData(this),
     contentType: false,
@@ -428,19 +420,10 @@ $("#submit_q").click(function(){
     processData:false,
     success: function(data){
         alert(data);
-    // $("#targetLayer").html(data);
-	
-  // alert(data);
-	
     location.reload();
-    // if(console.log(data)=='1')
-    //     {
-           
-    //     }
     },
     error: function(data){
-//alert("khushbu");
-       // alert(data);
+
     } 	        
     });
     }));

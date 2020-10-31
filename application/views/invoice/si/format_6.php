@@ -262,7 +262,7 @@
 		<?php 
 			$school=$this->session->userdata('school_code');
 					
-		if($school == 8 && $row2 == "A"){ ?>
+		if($school == 8 && $row2 == "A1"){ ?>
 		<tr class="tableHeader">
 			<td class="center" colspan="1" >A. SCHOLASTIC AREAS</td>
     		<td class="center" colspan="4">TERM - 1</td>
@@ -738,7 +738,7 @@ $cumulativetotal=0;
 			echo $this->exammodel->getSchoolRank($studentInfo->id,  $fsd);?></td>
 		</tr>
 		<!---dds manner marks table end--->
-		<?php }else if($school == 1 && $row2== "A"){ ?>
+		<?php }else if($school == 1 && $row2== "A1"){ ?>
 		<!---mla marks table start--->
 		<tr class="tableHeader">
 			<td class="center" colspan="2" >A SCHOLASTIC AREAS</td>
@@ -1242,14 +1242,25 @@ $cumulativetotal=0;
 			<td colspan="6">RANK</td>
 		</tr>
 		<!---mla marks table end--->
-		<?php }else if($school == 6 && $row2== "A"){ ?>
+		<?php }else if($school == 6 && $row2== "A1"){ ?>
 		<!---samrat ashok marks table start--->
 		<tr class="tableHeader">
 			<td class="center" colspan="4" >A SCHOLASTIC AREAS</td>
-			<td class="center" colspan="2">TERM - 1</td>
+			<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+			<td class="center" colspan="1">TERM - 1</td>
+			<td class="center" colspan="1">TERM - 2</td>
+			<td class="center" colspan="1">TERM - 3</td>
+			<? }else {?>
+				<td class="center" colspan="2">TERM - 1</td>
 			<td class="center" colspan="2">TERM - 2</td>
 			<td class="center" colspan="2">TERM - 3</td>
+			<?php }?>
 			<td class="center" colspan="2">Overall</td>
+			<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+			<td class="center" colspan="3 ">Remark</td>
+			<?php }else{}?>
+			
+			
 		</tr>
 		<tr class="yellow">
 			<td colspan="4" >SUBJECT</td>
@@ -1283,10 +1294,14 @@ $cumulativetotal=0;
 						}
 						$i++;
 						endforeach ; ?>
+							<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+							<?php }else{?>
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;"></td>
+						<?php }?>
 			<?php  }else{ ?>
 						<?php 
 							$i=1;
+							
 							 foreach ($examid->result() as $value):
 							   $examid1=$value->exam_id;	
 							   $this->db->where('id',$examid1);
@@ -1322,7 +1337,10 @@ $cumulativetotal=0;
 						}
 						$i++;
 						endforeach ; ?>
+						<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+							<?php }else{?>
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;"></td>
+						<?php }?>
 			<?php  }else{ ?>
 						<?php 
 							$i=1;
@@ -1361,7 +1379,10 @@ $cumulativetotal=0;
 						}
 						$i++;
 						endforeach ; ?>
+						<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+							<?php }else{?>
 						<td colspan="1" style="text-transform: uppercase; font-weight:bold;"></td>
+						<?php }?>
 			<?php  }else{ ?>
 						<?php 
 							$i=1;
@@ -1382,6 +1403,9 @@ $cumulativetotal=0;
 			<!---3rd term exam name end--->
 			<!---overall start--->
 			<td  class="text-center" colspan="2">Obtain Marks</td>
+				<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+			<td  class="text-center" colspan="3">Remark</td>
+			<?php }?>
 			<!---overall end--->
 		</tr>
 		<?php 
@@ -1395,9 +1419,18 @@ $cumulativetotal=0;
 			$ctotal["tot2"]=0;
 			$ctotal["tot4"]=0;
 			$ctotal["tot6"]=0;
+			//
+				$cgtotal =array();
+				$cgtotal[0]=0;
+			$cgtotal[1]=0;
+			$cgtotal[2]=0;
+			$cgtotal[3]=0;
+			$cgtotal[4]=0;
+			$cgtotal["tot2"]=0;
+			$cgtotal["tot4"]=0;
+			$cgtotal["tot6"]=0;
 			
-			
-			
+			//
 			$ctotal_2 =array();
 			$ctotal_2[0]=0;
 			$ctotal_2[1]=0;
@@ -1407,6 +1440,16 @@ $cumulativetotal=0;
 			$ctotal_2["tot2"]=0;
 			$ctotal_2["tot4"]=0;
 			$ctotal_2["tot6"]=0;
+			
+				$cgtotal_2 =array();
+			$cgtotal_2[0]=0;
+			$cgtotal_2[1]=0;
+			$cgtotal_2[2]=0;
+			$cgtotal_2[3]=0;
+			$cgtotal_2[4]=0;
+			$cgtotal_2["tot2"]=0;
+			$cgtotal_2["tot4"]=0;
+			$cgtotal_2["tot6"]=0;
 			
 			
 			$ctotal_3 =array();
@@ -1418,11 +1461,24 @@ $cumulativetotal=0;
 			$ctotal_3["tot2"]=0;
 			$ctotal_3["tot4"]=0;
 			$ctotal_3["tot6"]=0;
+			$cgtotal_3 =array();
+			$cgtotal_3[0]=0;
+			$cgtotal_3[1]=0;
+			$cgtotal_3[2]=0;
+			$cgtotal_3[3]=0;
+			$cgtotal_3[4]=0;
+			$cgtotal_3["tot2"]=0;
+			$cgtotal_3["tot4"]=0;
+			$cgtotal_3["tot6"]=0;
+			      $totsubtot1=0;
+                   $totsubtot2=0;
+                     $totsubtot3=0;
 			$cumulativetotal=0;
 			$totalp= 0;   
 			$pi=1;$grnd_1=0;$grnd_2=0;$grnd_3=0;
 			$grndt_1=0;$grndt_2=0;$grndt_3=0;
 			foreach($resultData as $sub):
+			     
 			?><?php 
 							 $this->db->where('class_id',$classid->class_id);
 							 $this->db->where('id',$sub['subject']);
@@ -1435,6 +1491,7 @@ $cumulativetotal=0;
 			     <?php 
                  $gtptal=0;
                  $subtatal=0;
+            
 		         $i=1; $t=0; $coltptal=0; $ttal=0; ?>
 				 <?php  if($examid->num_rows()==0){?>
 					<td></td><td></td>
@@ -1463,13 +1520,19 @@ $cumulativetotal=0;
 				 $dhtm=$exammm+$dhtm;			
 				  if(is_numeric($exammm)){
 					  $ttal=$ttal+$exammm;
+					  	$cgtotal[$t]+=$exammm;
 				    $dhtm=$exammm+$dhtm;
+				     $totsubtot1=$totsubtot1+$exammm;
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
 					}
 				 } ?>
 					</td>
-					<td></td>
+						<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+							<?php }else{?>
+						<td></td>
+						<?php }?>
+					
 				<?php  $i++; $t++; endforeach; ?>
 				 <?php }else{ ?>
 				 <?php foreach ($examid->result() as $value): ?>
@@ -1496,6 +1559,8 @@ $cumulativetotal=0;
 				 $dhtm=$exammm+$dhtm;	
 if(is_numeric($exammm)){
 					  $ttal=$ttal+$exammm;
+					  	$cgtotal[$t]+=$exammm;
+					   $totsubtot1=$totsubtot1+$exammm;
 				    $dhtm=$exammm+$dhtm;
 					}else{ $ttal= $ttal;
 					 $dhtm= $dhtm;   
@@ -1509,6 +1574,7 @@ if(is_numeric($exammm)){
 				 <?php 
                  $gtptal_2=0;
                  $subtatal=0;
+                  
 		         $i=1; $t=0; $coltptal=0; $ttal_2=0; ?>
 				 <?php  if($examid_2->num_rows()==0){?>
 					<td></td><td></td>
@@ -1538,13 +1604,18 @@ if(is_numeric($exammm)){
 				 $dhtm=$exammm+$dhtm;		
  if(is_numeric($exammm)){
 					  $ttal_2=$ttal_2+$exammm;
+					  	$cgtotal_2[$t]+=$exammm;
+					   $totsubtot2=$totsubtot2+$exammm;
 				    $dhtm=$exammm+$dhtm;
 					}else{ $ttal_2= $ttal_2;
 					 $dhtm= $dhtm;   
 					}
 				 } ?>
 					</td>
-					<td></td>
+					<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+							<?php }else{?>
+						<td></td>
+						<?php }?>
 				<?php  $i++; $t++; endforeach; ?>
 				 <?php }else{ ?>
 				 <?php foreach ($examid_2->result() as $value): ?>
@@ -1571,6 +1642,8 @@ if(is_numeric($exammm)){
 				 $dhtm=$exammm+$dhtm;	
  if(is_numeric($exammm)){
 					  $ttal_2=$ttal_2+$exammm;
+					  	$cgtotal_2[$t]+=$exammm;
+					   $totsubtot2=$totsubtot2+$exammm;
 				    $dhtm=$exammm+$dhtm;
 					}else{ $ttal_2= $ttal_2;
 					 $dhtm= $dhtm;   
@@ -1584,6 +1657,7 @@ if(is_numeric($exammm)){
 				 <?php 
                  $gtptal_3=0;
                  $subtatal=0;
+               
 		         $i=1; $t=0; $coltptal=0; $ttal_3=0; ?>
 				 <?php  if($examid_3->num_rows()==0){?>
 					<td></td><td></td>
@@ -1612,13 +1686,18 @@ if(is_numeric($exammm)){
 				 $dhtm=$exammm+$dhtm;		
 				if(is_numeric($exammm)){
 					  $ttal_3=$ttal_3+$exammm;
+					  	$cgtotal_3[$t]+=$exammm;
+					  $totsubtot3=$totsubtot3+$exammm;
 				    $dhtm=$exammm+$dhtm;
 					}else{ $ttal_3= $ttal_3;
 					 $dhtm= $dhtm;   
 					}
 				 } ?>
 					</td>
-					<td></td>
+					<?php if($classid->class_id == 240 || $classid->class_id == 238){?>
+							<?php }else{?>
+						<td></td>
+						<?php }?>
 				<?php  $i++; $t++; endforeach; ?>
 				 <?php }else{ ?>
 				 <?php foreach ($examid_3->result() as $value): ?>
@@ -1642,10 +1721,13 @@ if(is_numeric($exammm)){
 					$this->db->where('exam_id',$value->exam_id);
 				 $exammm=	$this->db->get('exam_max_subject')->row()->max_m;
 				 echo "/".$exammm;
-				 $dhtm=$exammm+$dhtm;	
+				 $dhtm=$exammm+$dhtm;
+				
 				if(is_numeric($exammm)){
 					  $ttal_3=$ttal_3+$exammm;
 				    $dhtm=$exammm+$dhtm;
+				    	$cgtotal_3[$t]+=$exammm;
+				     $totsubtot3=$totsubtot3+$exammm;
 					}else{ $ttal_3= $ttal_3;
 					 $dhtm= $dhtm;   
 					}
@@ -1671,30 +1753,41 @@ if(is_numeric($exammm)){
 		
 		<tr class="wight">
 					<td class="subject" colspan="4" >GRAND TOTAL</td>
-					<?php $h=1;$i=0; foreach($ctotal as $cd):
-					if($h<3){?>
+					<?php 
+					 if($classid->class_id == 240 || $classid->class_id == 238){
+						    $compair =2;
+						}
+						    else{
+						         $compair =3;
+						    }
+						
+					$h=1;$i=0; foreach($ctotal as $cd):
+					if($h<$compair){?>
 					<td class="center">
-					<?php echo $ctotal[$i];  ?>
+					<?php echo $ctotal[$i]."/".$cgtotal[$i];  ?>
 					</td>
 					<?php $h++; $i++; } endforeach;	
 					?>
 					
 					<?php $h=1;$i=0; foreach($ctotal_2 as $cd):
-					if($h<3){?>
+					if($h<$compair){?>
 					<td class="center">
-					<?php echo $ctotal_2[$i];  ?>
+					<?php echo $ctotal_2[$i]."/".$cgtotal_2[$i];  ?>
 					</td>
 					<?php $h++; $i++; } endforeach;	
 					?>
 					
 					<?php $h=1;$i=0; foreach($ctotal_3 as $cd):
-					if($h<3){?>
+					if($h<$compair){?>
 					<td class="center">
-					<?php echo $ctotal_3[$i];  ?>
+					<?php echo $ctotal_3[$i]."/".$cgtotal_3[$i];  ?>
 					</td>
 					<?php $h++; $i++; } endforeach;	
 					?>
-			<td class="center bold"><?php echo $a= $grnd_1+$grnd_2+$grnd_3;?></td>
+			<td class="center bold" colspan="2" ><?php $a= $grnd_1+$grnd_2+$grnd_3;
+		$otg= 	$totsubtot3+$totsubtot2+$totsubtot1;
+			echo $a."/".$otg  ;
+			?></td>
 		</tr>
 		
 		

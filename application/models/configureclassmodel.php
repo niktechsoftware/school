@@ -1,4 +1,3 @@
-
 <?php
 class Configureclassmodel extends CI_Model{
 

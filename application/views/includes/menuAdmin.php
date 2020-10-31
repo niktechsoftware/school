@@ -242,6 +242,11 @@
             </a>
         </li>
          <li>
+            <a href="<?php echo base_url(); ?>index.php/login/feeStructure">
+                <span class="title"> Fee Structure</span>
+            </a>
+        </li>
+         <li>
             <a href="<?php echo base_url(); ?>index.php/login/transport">
                 <span class="title">Student Fee Card</span>
             </a>
@@ -527,6 +532,12 @@
             </a>
 
             </li>
+             <li>
+            <a href="<?php echo base_url(); ?>login/deleteInvoice">
+              Delete Invoice<i class="icon-arrow"></i>
+            </a>
+
+            </li>
          <li>
             <a href="<?php echo base_url(); ?>login/cashPayment">
               Transaction <i class="icon-arrow"></i>
@@ -699,16 +710,22 @@
 <li>
     <a href="javascript:void(0)"><i class="fa fa-pencil-square-o"></i> <span class="title">Fee </span><i class="icon-arrow"></i> </a>
     <ul class="sub-menu">
+       
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/collectFee">
                 <span class="title">Collect Fee</span>
             </a>
         </li>
+        
+        
+        
+        
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/feeReport">
                 <span class="title">Fee Report</span>
             </a>
         </li>
+        
          <li>
             <a href="<?php echo base_url(); ?>index.php/login/feedue">
                 <span class="title">Due Fee Report</span>
@@ -1002,7 +1019,7 @@
                <i class="fa fa-money"></i> <span class="title">Salary Summary </span>
             </a>
         </li>
-
+    
         <li>
             <a href="<?php echo base_url(); ?>index.php/singleTeacherControllers/TeacherLeave">
                <i class="fa fa-user"></i> <span class="title"> Leave Detail </span>
@@ -1081,15 +1098,22 @@
             </a>
         </li> -->
          <li>
+            <a href="<?php echo base_url(); ?>index.php/login/exammode">
+                <span class="title">Exam Mode</span>
+            </a>
+        </li>
+         <li>
             <a href="<?php echo base_url(); ?>index.php/login/exammarksdetail">
                 <span class="title">Enter Maximum Marks</span>
             </a>
         </li>
+
           <li>
            <a href="<?php echo base_url(); ?>index.php/login/exammode">
                 <span class="title">Exam Mode</span>
             </a>
         </li>
+
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/examTimeTable">
                 <span class="title">Exam Time Table </span>

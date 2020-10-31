@@ -1,4 +1,3 @@
-
 <div class="row">
 	 <div class="col-sm-12">
 		<!-- start: INLINE TABS PANEL -->
@@ -67,7 +66,7 @@
 														<br><br>
 													    	</td>
 													    </tr>
-														
+
 													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Submit <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
@@ -140,7 +139,6 @@
 														<br>
 													    	</td>
 													    </tr>
-														  <tr>
 
 													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Update <i class="fa fa-arrow-circle-right"></i>
@@ -192,7 +190,7 @@
 															<input  type="text" style="width: 95px;" data-date-format="yyyy-mm-dd" id="edate<?php echo $i;?>" data-date-viewmode="years" value="<?php echo date('d-F-Y', strtotime($row->exam_date));  ?>" disabled="disabled"/>
 															<input type="hidden" name="edate" value="<?php echo date('d-F-Y', strtotime($row->exam_date));?>"/>		
 														</td>
-												
+
 														<td >
 													<?php 	$ds= $row->exam_date;
 															$ename=$row->exam_name;

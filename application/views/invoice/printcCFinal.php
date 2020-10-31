@@ -143,7 +143,7 @@ table h1, h2, h3 {
 		</table>
 	<?php	}?>
 		<div class="row"> 
-	<div class="col-md-12"><center><span style="font-size:20px;letter-spacing: 2px;border-radius: 25px;border: 2px solid #002D65;padding: 10px;width: 250px;color:white;background-color:#002D65;">
+	<div class="col-md-12"><center><span style="font-size:20px;letter-spacing: 2px;border-radius: 25px;border: 2px solid #002D65;font-family:arial; padding: 10px;width: 250px;color:black;background-color:#002D65;">
 	    <b>CHARACTER CERTIFICATE</b></span></center></div>	
     </div>
 		

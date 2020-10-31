@@ -401,7 +401,6 @@ function daybook()
 		$data['smallTitle'] = 'Cash Payment';
 		$data['mainPage'] = 'Cash Payment';
 		$data['subPage'] = 'Cash Invoice';
-		
 		$data['title'] = 'Accounts Cash Payment';
 		$data['headerCss'] = 'headerCss/configureClassCss';
 		$data['footerJs'] = 'footerJs/transactionJs';
@@ -446,7 +445,7 @@ function deleteBanTrans(){
 	
 	echo "Deleted Success";
 }
-
+}
 	
 	function expenditure_depart(){
 		$expenditure_id = $this->input->post("expenditure_id");
@@ -463,13 +462,15 @@ function deleteBanTrans(){
 	}
 	
 	function directorTransaction(){
+	    echo "rahul";
+	    exit();
 		$this->load->model("smsmodel");
 		$action_transaction = $this->input->post('action_transaction');
 		$amount = $this->input->post('amount');
 		$name = $this->input->post('name');
 		$disc = $this->input->post('disc');
 		$date = date('Y-m-d');
-			$school_code=	$this->session->userdata("school_code");
+		$school_code=	$this->session->userdata("school_code");
 		$this->db->where("school_code",$school_code);
 		$invoice = $this->db->get("invoice_serial");
 		$invoice1=6000+$invoice->num_rows();
@@ -535,6 +536,8 @@ function deleteBanTrans(){
 				// end code for sms
 					
 			if($this->db->insert('cash_payment',$cashPayment) && $this->db->insert('day_book',$dayBook)):
+			    echo "directorTransaction";
+			   // exit();
 			redirect("dayBookControllers/invoiceCashPayment/$num1");
 			else:
 			redirect("index.php/login/cashPayment/director/directorFalse");
@@ -545,7 +548,7 @@ function deleteBanTrans(){
 	function transactionDetail(){		
 		$seg3 = $this->uri->segment(3);
 		$seg4 = $this->uri->segment(4);
-		
+		$school_code = $this->session->userdata("school_code");
 		$data['pageTitle'] = 'Transaction Detail';
 		if(($seg3 == "bank") && ($seg4 == "deposit")):
 			$data['smallTitle'] = 'Bank Deposit';
@@ -568,6 +571,12 @@ function deleteBanTrans(){
 			$data['subPage'] = 'Received from Director Detail';
 			$data['title'] = 'Transaction Detail';
 		endif;
+		$data['school_code']=	$school_code;
+		$this->db->where("id",$school_code);
+		$sdate=$this->db->get("school")->row()->created_date;
+		$edate=date('Y-m-d');
+		$query=$this->daybookmodel->getInvoiceByDate($school_code,$sdate,$edate,6,0,1);
+		$data['result_q']=$query;
 		$data['headerCss'] = 'headerCss/configureClassCss';
 		$data['footerJs'] = 'footerJs/daybookJs';
 		$data['mainContent'] = 'transactionDetail';
@@ -683,7 +692,7 @@ function deleteBanTrans(){
              </script><?php
              return false;
             }
-	}
+	
 }
 	public  function Suceesotpdeleteexpby()
 

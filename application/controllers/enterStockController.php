@@ -148,7 +148,7 @@
 		}
 		
 		function saleStock(){
-		    $school_code = $this->session->userdata("school_code");
+		  $school_code = $this->session->userdata("school_code");
 			$this->db->where("school_code",$school_code);
 			$billno = $this->db->count_all("invoice_serial");
 

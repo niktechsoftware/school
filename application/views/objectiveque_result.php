@@ -1,6 +1,3 @@
-<?php  $sid=$this->uri->segment(4);
-    	$exam=$this->uri->segment(3);
-    	$subid=$this->uri->segment(5); ?>
 
 <style>
 table {
@@ -76,12 +73,7 @@ tr:nth-child(even) {
                         </button>
                     </h3></p></td>
                    
-               <!--  <td><a href="<?php echo base_url();?>singleStudentControllers/totalquestion/<?php echo $stu_id;?>/<?php echo $exam; ?>/<?php echo $subid; ?>">
-                        <button class="btn btn-sm btn-light-green" style="font-size:15px;">
-                        View List<i class="<?php //echo "fa fa-arrow-right";?>"></i>
-                        </button>
-                        </a>
-                    </td>-->
+              
                  
                 </tr>
                  <tr>
@@ -89,20 +81,15 @@ tr:nth-child(even) {
                      <button class="btn btn-sm btn-light-green" style="font-size:15px;">
                          <?php echo $wrong+$right;?><i class="<?php //echo "fa fa-arrow-right";?>"></i></button>
                    </h3></p></td>
-                   <!-- <td><a href="<?php echo base_url();?>singleStudentControllers/totalattempt/<?php //echo $stu_id;?>/<?php //echo $exam; ?>/<?php //echo $subid; ?>">
-                        <button class="btn btn-sm btn-light-green" style="font-size:15px;">
-                        View List<i class="<?php echo "fa fa-arrow-right";?>"></i></button>
-                        </a>
-                    </td>-->
+                
                   </tr>
                   <tr><td>
-                      <?php $this->db->where('exam_id',$exam);
-                		    $this->db->where('student_id',$sid);
-                		      	$this->db->where('subject_id',$subid);
+                      <?php $this->db->where('exam_mode_id',$exam_mode_id);
+                		    $this->db->where('student_id',$student_id);
                 		    $result1=$this->db->get('objective_exam_result');
                 		    $i=1;foreach($result1->result() as $res):
                             $this->db->where('id',$res->question_id);
-                            $this->db->where('exam_subject_id',$subid);
+                            $this->db->where('exam_mode_id',$exam_mode_id);
                             $ques=$this->db->get('question_master')?>
                            <?php echo $i." ) ";if($ques->num_rows()>0){ $ques=$ques->row();  ?><strong><?php echo $ques->question;?></strong><br>
                            <?php } $i++; endforeach;
@@ -112,7 +99,7 @@ tr:nth-child(even) {
                   <tr>
                   <td> <p><h3>Total number of right answer&nbsp &nbsp&nbsp 
                    <button class="btn btn-sm btn-light-green" style="font-size:15px;" >
-                        <?php echo $right;?><i class="<?php //echo "fa fa-arrow-right";?>"></i></button>
+                        <?php echo $right;?><i class="<?php echo "fa fa-arrow-right";?>"></i></button>
                   </h3></p></td>
                 </tr><tr><td><?php
                     
@@ -130,29 +117,18 @@ tr:nth-child(even) {
                             ?> 
                 
                 </td></tr>
-                  
-                  
-                     <!-- <td><a href="<?php echo base_url();?>singleStudentControllers/rightanswer/<?php echo $stu_id;?>/<?php echo $exam; ?>/<?php echo $subid; ?>">
-                        <button class="btn btn-sm btn-light-green" style="font-size:15px;" >
-                        View List<i class="<?php echo "fa fa-arrow-right";?>"></i></button>
-                        </a>
-                    </td>-->
-                  </tr>
+                 
                   <tr>
                    <td>  <p><h3>Total number of wrong Answer
                    <button class="btn btn-sm btn-light-green" style="font-size:15px;" >
                         <?php echo $wrong;?><i class="<?php //echo "fa fa-arrow-right";?>"></i></button>
                    </h3></p></td>
-                   <!--  <td><a href="<?php echo base_url();?>singleStudentControllers/wronganswer/<?php echo $stu_id;?>/<?php echo $exam; ?>/<?php echo $subid; ?>"> 
-                        <button class="btn btn-sm btn-light-green" style="font-size:15px;" >
-                        View List<i class="<?php echo "fa fa-arrow-right";?>"></i></button>
-                        </a>
-                    </td>-->
+                 
    
                   </tr>
                   <tr><td>
-                                  <?php  
-                                		    $i=1;foreach($result1->result() as $row):
+                           <?php  
+                            $i=1;foreach($result1->result() as $row):
                             $this->db->where('question_master_id',$row->question_id);
                             $ans=$this->db->get('right_answer')->row();
                             if($ans->right_answer==$row->given_answer){ 
@@ -166,17 +142,13 @@ tr:nth-child(even) {
                      <button class="btn btn-sm btn-light-green" style="font-size:15px;" >
                 	<?php echo $left;?><i class="<?php //echo "fa fa-arrow-right";?>"></i></button> 
                     </h3></p></td>
-                    <!--<td><a href="<?php echo base_url();?>singleStudentControllers/leftquestion/<?php echo $stu_id;?>/<?php echo $exam; ?>/<?php echo $subid; ?>">
-                        <button class="btn btn-sm btn-light-green" style="font-size:15px;" >
-                		View List<i class="<?php echo "fa fa-arrow-right";?>"></i></button> 
-                        </a>
-                    </td>-->
+                   
                   </tr>
                   <tr><td><!-- <?php 
                 		     $i=1; foreach($result1->result() as $row):
-                              $this->db->where('exam_master_id',$exam);
+                              $this->db->where('exam_mode_id',$exam_mode_id);
                               $this->db->where('id',$row->question_id);
-                            $this->db->where('exam_subject_id',$subid);
+                          
                               $ques=$this->db->get('question_master');
                               if($ques->num_rows()>0){
                                   $k=0;
@@ -192,36 +164,35 @@ tr:nth-child(even) {
              
                   <style> 
         .piechart { 
-            margin-top: 300px; 
+            margin-top: 50px; 
             display: block; 
             position: absolute; 
-            width: 400px; 
-            height: 400px; 
+            width: 300px; 
+            height: 300px; 
             border-radius: 50%; 
             background-image: conic-gradient( 
                 pink <?php echo $right*10;?>deg,  
                 lightblue 0 <?php echo $wrong*80;?>deg,  
                 orange 0 <?php echo $left;?>deg); 
         } 
-  
-      
-    
-                  
-              </style>
-             <div class="col-md-6 col-lg-6 col-sm-6">   <?php $this->db->where("id",$sid);
+      </style>
+             <div class="col-md-6 col-lg-6 col-sm-6"> <?php 
+             $this->db->where("id",$exam_mode_id);
+             $exammodeD= $this->db->get("exam_mode")->row();
+             $this->db->where("id",$student_id);
                                                        $student_Details= $this->db->get("student_info")->row();
                                                        $this->db->where("id",$student_Details->class_id);
                                                        $classD= $this->db->get("class_info")->row();
-                                                       $this->db->where("id",$exam);
+                                                       $this->db->where("id",$exammodeD->exam_id);
                                                        $examn = $this->db->get("exam_name")->row();
                                                         echo "<h2>".$student_Details->name. "<br> Class : ".$classD->class_name."<br>Exam Name : ".$examn->exam_name."</h2>";?>
                             <div class="piechart"></div>                           
                </div>
            </div>
-        <p><h3><span style="color:green;">Thanks For giving online exam!!!!!</span></h3></p>      
+                    <p><h3><span style="color:green;">Thanks For giving online exam!!!!!</span></h3></p>      
         </div>
       </div>
     </div>
   </div>
 </div>
-  </div>  
+</div>  

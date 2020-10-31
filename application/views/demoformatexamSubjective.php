@@ -150,15 +150,16 @@ var x = setInterval(function() {
             							                <td>
             							                    <?php $vi ="image".$i; echo $subject->subject;?>
             							                </td>
-            							                <td><?php if($getsheet->$vi){?>
+
+            							                <td>
+            							                    <?php if($getsheet->$vi){?>
             							                   <a href="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->$vi ;?>"><?php echo $getsheet->$vi ;?>
-            							                 <!--  <img src="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->image ;?>" alt="" width="200" height="250"/>-->
-            							                  <!--<iframe src="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->image ;?>" ></iframe> -->
+            							                 
             							                  <object src="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->$vi ;?>"><embed src="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->$vi ;?> " width="200" height="250"></embed></object>
             							                   
             							                   </a>
-            											
-								                            <?php }?>
+            											<?php }?>
+
             							                </td>
             							                <td>
             							                    <?php if($sar->num_rows()>0){
@@ -171,7 +172,7 @@ var x = setInterval(function() {
             							                        </a>
             							                   <?php  }}?>
             							                    <input type="file" name="answerSheet<?php echo $i;?>" class= "form-controll" accept="image/*" capture="camera">
-            							                   
+            							                 
             							                    
             							                </td>
             							                 <td>

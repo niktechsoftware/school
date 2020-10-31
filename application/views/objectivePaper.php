@@ -97,7 +97,7 @@ var x = setInterval(function() {
 
         
 						<div class="row" >
-							<input type="hidden" id="school_code" value = "<?php echo $school_code;?>">
+							
 								<input type="hidden" id="stud_id" value = "<?php echo $stud_id;?>">
 							
 								<div class="col-md-8 col-lg-8 col-sm-8">
@@ -110,27 +110,22 @@ var x = setInterval(function() {
                         <div class="panel-body" id="list" >
 						
 							   <?php  $i=1;   foreach($ques as $key => $value):
-							   	$this->db->where("id",$ques[$i]);
+							$this->db->where("id",$ques[$i]);
 			                $firstQuestion=$this->db->get("question_master")->row();
 			                $this->db->where("question_master_id",$ques[$key]);
-			               $option= $this->db->get("question_ans")->row();
-			               
-			               //make model
-			            $this->db->where("exam_id",$firstQuestion->exam_master_id);
-						              $this->db->where("subject_id",$firstQuestion->exam_subject_id);
-						              $this->db->where("question_id",$ques[$key]);
-						              $this->db->where("student_id",$stud_id);
-						             // echo $stud_id;
-						             // exit();
-						               $quesStatus = $this->db->get("objective_exam_result");
+			                $option= $this->db->get("question_ans")->row();
+			                
+			                $this->db->where("exam_mode_id",$exam_mode_id);
+						    $this->db->where("question_id",$ques[$key]);
+						      $this->db->where("student_id",$stud_id);
+						      $quesStatus = $this->db->get("objective_exam_result");
 						               if($quesStatus->num_rows()>0){
 						                   $AnswerP = $quesStatus->row()->given_answer;
 						               }else{
 						                   $AnswerP="H";
 						               }
 			?>
-						<input type="hidden" id="exam_id" value = "<?php echo $firstQuestion->exam_master_id;?>">
-							<input type="hidden" id="subject_id" value = "<?php echo $firstQuestion->exam_subject_id;?>">	 
+						<input type="hidden" id="exam_mode_id" value = "<?php echo $exam_mode_id;?>">
 							<div id ="question<?php echo $i;?>" > 
 						<h1 style=""><?php echo $i;?>.&nbsp&nbsp<?php echo $this->examModel->getOrgQuestion($firstQuestion->id);?></h1> 
 							<h1 style="margin-left:290px;"></h1>  
@@ -215,21 +210,17 @@ var x = setInterval(function() {
 								         if(result.length > 0){
 								                var qid =  $("#qid<?php echo $i;?>").val();
 								                var sid =  $("#stud_id").val();
-								                var school_code =  $("#school_code").val();
-								                 var exam_id =  $("#exam_id").val();
-								                var subject_id =  $("#subject_id").val();
-								               // alert(sid);
-								             $.post("<?php echo site_url("index.php/singleStudentControllers/updateGivenAnswer") ?>",{qid : qid,sid : sid,school_code : school_code, exam_id : exam_id, subject_id : subject_id , result : result}, function(data){
-                        						
-                        						$("#questionleft<?php echo $i;?>").removeClass("btn btn-sm btn-light-red").addClass("btn btn-sm btn-light-green");
+								                 var exam_mode_id =  $("#exam_mode_id").val();
+								             $.post("<?php echo site_url("index.php/singleStudentControllers/updateGivenAnswer") ?>",{qid : qid,sid : sid, exam_mode_id : exam_mode_id,  result : result}, function(data){
+                        					    $("#questionleft<?php echo $i;?>").removeClass("btn btn-sm btn-light-red").addClass("btn btn-sm btn-light-green");
                         						});
 								         }
 								        
                             				 $("#question<?php echo $i+1;?>").show();
                             				 	 $("#question<?php echo $i;?>").hide();
                             					});
-                            		 $("#previous<?php echo $i;?>").click(function(){
-                            				 $("#question<?php echo $i-1;?>").show();
+                            		            $("#previous<?php echo $i;?>").click(function(){
+                            				    $("#question<?php echo $i-1;?>").show();
                             				 	 $("#question<?php echo $i;?>").hide();
                             					});			
 			
@@ -250,7 +241,7 @@ var x = setInterval(function() {
 						<br>                                           
 						                            
 					
-						<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectiveque_result/<?php echo $firstQuestion->exam_master_id;?>/<?php echo $stud_id;?>/<?php echo $firstQuestion->exam_subject_id;?>">
+						<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectiveque_result/<?php echo $exam_mode_id;?>/<?php echo $stud_id;?>">
 						<button id="submit" class="btn btn-info button" style="margin-left:45%;" >Submit</button></a>
 						
 						</div>
@@ -265,13 +256,11 @@ var x = setInterval(function() {
                         </div>
                         <div class="panel-body" id="list">
                             	 <?php  $i=1;   foreach($ques as $key => $value):
-                            	      $this->db->where("exam_id",$firstQuestion->exam_master_id);
-						              $this->db->where("subject_id",$firstQuestion->exam_subject_id);
+                            	      $this->db->where("exam_mode_id",$exam_mode_id);
 						              $this->db->where("question_id",$ques[$key]);
 						              $this->db->where("student_id",$stud_id);
 						               $quesStatus = $this->db->get("objective_exam_result");
-						               if($quesStatus->num_rows()>0){
-			  ?>                            
+						               if($quesStatus->num_rows()>0){ ?>                            
                                        <button class="btn btn-sm btn-light-green" id="questionleft<?php echo $i;?>" style="font-size:15px;">
 												<i class="<?php echo "fa fa-check";?>"></i> 
 												<?php echo $key;?>

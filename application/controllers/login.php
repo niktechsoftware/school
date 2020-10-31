@@ -841,8 +841,61 @@ function periodTimeSlot(){
 		$data['mainContent'] = 'schedulingReport';
 		$this->load->view("includes/mainContent", $data);
 	}
+		function deleteInvoice(){
+		    $school_code =$this->session->userdata("school_code");
+		$data['pageTitle'] = 'Delete Invoice';
+		$data['smallTitle'] = 'Delete Invoice';
+		$data['mainPage'] = 'Delete Invoice';
+		$data['subPage'] = 'Delete Invoice';
+		$data['title'] = 'Delete Invoice';
+		$data['headerCss'] = 'headerCss/periodTimeCss';
+		$data['footerJs'] = 'footerJs/periodTimeJs';
+		$data['mainContent'] = 'deleteInvoice';
+		//echo $this->session->userdata("school_code");
+		$invoice=$this->db->query("select * from day_book where school_code='$school_code' and (status='0' or invoice_no='Delete Fee') ");
 
-
+	   $data['invoice1']=$invoice;
+	    //print_r($invoice->result());
+	    $this->load->view("includes/mainContent", $data);
+    	}
+	function feeStructure(){
+		$data['pageTitle'] = 'Fee Structure';
+		$data['smallTitle'] = 'Fee Structure';
+		$data['mainPage'] = 'Fee Structure';
+		$data['subPage'] = 'Fee Structure';
+		$data['title'] = 'Fee Structure';
+		$data['headerCss'] = 'headerCss/periodTimeCss';
+		$data['footerJs'] = 'footerJs/periodTimeJs';
+		$data['mainContent'] = 'feeStructure';
+		//echo $this->session->userdata("school_code");
+	   $this->db->where("school_code",$this->session->userdata("school_code"));
+	    $fee=$this->db->get("fee_setting");
+	   $data['fee']=$fee;
+	    //print_r($invoice->result());
+	    $this->load->view("includes/mainContent", $data);
+    	}
+         function feestru(){
+             if($this->uri->segment(3)){
+                $data1=array(
+            'font'  => $this->input->post('font'),
+             'number_of_row'  =>  $this->input->post('row'),
+            'number_of_receipt	'  => $this->input->post('receipt'),
+           'school_code'=>$this->session->userdata("school_code")
+            ); 
+            	$this->db->where("id",$this->uri->segment(3));
+            $this->db->update("fee_setting",$data1);
+           	redirect("index.php/login/feeStructure"); 
+             }else{
+             $data=array(
+            'font'  => $this->input->post('font'),
+             'number_of_row'  =>  $this->input->post('row'),
+            'number_of_receipt	'  => $this->input->post('receipt'),
+           'school_code'=>$this->session->userdata("school_code")
+            ); 
+            $this->db->insert("fee_setting",$data);
+           	redirect("index.php/login/feeStructure");
+            }
+        }
 
 	function examsheduling()
 	  {

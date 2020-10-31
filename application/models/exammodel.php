@@ -327,8 +327,8 @@ function getExamName($fsd)
 	$this->db->where("id",$fsd);
 	$getfsdDates = $this->db->get("fsd")->row();
 	$this->db->where("school_code",$this->session->userdata("school_code"));
-	$this->db->where("exam_date >=",$getfsdDates->finance_start_date);
-	$this->db->where("exam_date <=",$getfsdDates->finance_end_date);
+//	$this->db->where("exam_date >=",$getfsdDates->finance_start_date);
+//	$this->db->where("exam_date <=",$getfsdDates->finance_end_date);
 	$query1 = $this->db->get("exam_name");
 	return $query1;
 }
@@ -508,15 +508,10 @@ return $query1;
 			// $gt_ex_nm = $this->db->get('test_data');
 			// return $gt_ex_nm;
 		}
-	public function insert_ques($ques,$exam_subject_id,$exam_master_id,$ans,$a,$b,$c,$d,$e)
+	public function insert_ques($ques,$wh_val,$ans,$a,$b,$c,$d,$e)
 		{
-			$val1 = array(
-				'question'=>$ques,
-				//'exam_name_id'=>$exam_name_id,
-				'exam_subject_id'=>$exam_subject_id,
-				'exam_master_id'=>$exam_master_id 
-				);
-			$in_q1 = $this->db->insert('question_master',$val1);
+		    $in_q1 = $this->db->insert('question_master',$wh_val);
+		    
 			if($in_q1)
 			{
 				$tt=$this->db->insert_id();
@@ -563,13 +558,11 @@ function delete_q($q_id)
 			$this->db->where('question_master_id',$q_id);
 			return $op = $this->db->get('question_ans');
 		}
-	function insert_img_question($ques,$exam_subject_id,$exam_master_id,$dq,$aq,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5)
+	function insert_img_question($ques,$exam_mode_id,$dq,$aq,$ans,$op_txt1,$op_txt2,$op_txt3,$op_txt4,$op_txt5)
 		{
 			$val1 = array(
 				'question'=>$ques,
-				//'exam_name_id'=>$exam_name_id,
-				'exam_subject_id'=>$exam_subject_id,
-				'exam_master_id'=>$exam_master_id );
+				'exam_mode_id'=>$exam_mode_id );
 			$in_q1 = $this->db->insert('question_master',$val1);
 			if($in_q1)
 			{
@@ -603,6 +596,7 @@ function delete_q($q_id)
 						'q_ans_img4'=>$aq[4],
 						'q_ans_img5'=>$aq[5],
 						'right_answer'=>$ans
+
 						);
 						return $in_q = $this->db->insert('question_images',$val4);
 					}
@@ -628,12 +622,9 @@ function delete_q($q_id)
 			return $lg = $this->db->get('language')->row();
 			//print_r($lg);
 		}
-		public function question_data($select_exam,$select_subject)
+		public function question_data($uri)
 		{
-		    echo $select_exam."/".$select_subject;
-			$this->db->where('exam_subject_id',$select_subject);
-			//$this->db->where('exam_name_id',$select_test);
-			$this->db->where('exam_master_id',$select_exam);
+		   	$this->db->where('exam_mode_id',$uri);
 			$dx_q = $this->db->get('question_master');
 			return $dx_q;
 		}
