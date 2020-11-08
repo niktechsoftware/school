@@ -82,7 +82,7 @@ public function getExamTimeTableChartBy($exam_id,$class_id,$school_code,$student
 	                        <tr>
 	
 	                           <td style="text-align: center;text-transform: uppercase;"><?php 
-	                             echo $exshift->shift;  ?>
+	                             echo $exshift->shift."<br>[".$exshift->from1."] to [".$exshift->to1."]";  ?>
 	                        
 	                      </td>
 	

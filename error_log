@@ -87,3 +87,8 @@
 [29-Sep-2020 14:04:30 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
 [29-Sep-2020 14:04:35 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
 [29-Sep-2020 14:05:39 Asia/Calcutta] PHP Fatal error:  Cannot access empty property in /home/schoodhe/public_html/school/application/views/demoformatexamSubjective.php on line 156
+[29-Sep-2020 22:46:05 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/school/application/controllers/cronjobsA.php on line 23
+[29-Sep-2020 22:49:45 Asia/Calcutta] PHP Fatal error:  Call to a member function row() on a non-object in /home/schoodhe/public_html/school/application/controllers/cronjobsA.php on line 26
+[30-Sep-2020 13:01:04 Asia/Calcutta] PHP Fatal error:  Function name must be a string in /home/schoodhe/public_html/school/application/controllers/cronjobsA.php on line 80
+[10-Oct-2020 12:13:01 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ';' in /home/schoodhe/public_html/school/application/views/invoice/printTCFinal.php on line 375
+[13-Oct-2020 14:15:59 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/school/application/controllers/employeeController.php on line 103

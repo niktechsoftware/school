@@ -7,7 +7,7 @@ $lang['login_mobile']='Login Mobile';
 $lang['login_keep_me']='Keep me signed in';
 $lang['login_invalid_username_and_password']='Invalid username/password';
 $lang['login_welcome_message']='Sign in to your account';
-$lang['login_message']='Please enter your name and password to log in.';
+$lang['login_message']='Please enter your username and password to login.';
 
 $lang['login_forgot']='I forgot my password';
 $lang['login_forgot_mobile']='I forgot my login Mobile';

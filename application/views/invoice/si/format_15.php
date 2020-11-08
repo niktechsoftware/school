@@ -168,8 +168,8 @@
     							</tr>
     							 <tr class="wight" style="font-size: 16px;">
     								<td 
-    									<span style="text-transform: uppercase;">Scholar ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:red;"> <?= $studentInfo->username; ?></span><br>
-    									<span style="text-transform: uppercase;">Student's Name: </span><span style="text-transform: uppercase;color:blue;"> <?= strtoupper($studentInfo->name);?> </span><br>
+    									<span style="text-transform: uppercase;">Scholar ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:red;"> <?= $studentInfo->username; ?></span><br>
+    									<span style="text-transform: uppercase;">Date of Birth&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:blue;"> <?= date("d-M-Y", strtotime($studentInfo->dob)); ?></span><br>
     								   <?php
     											  $this->db->where('school_code',$school_code);
 												$this->db->where('id',$classid->class_id);
@@ -181,12 +181,13 @@
     									  $this->db->where("id",$classdf->section);
     									  $secname = $this->db->get("class_section")->row()->section;
     									  ?>
-    									<span style="text-transform: uppercase;">Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:blue;">  <?php  echo $classdf->class_name."-".$secname; ?></span>
+    									<span style="text-transform: uppercase;">Class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:blue;">  <?php  echo $classdf->class_name."-".$secname; ?></span>
     									 <?php } else { echo "something wrong please try again";  }?>
     								
     								</td>
     								<td >
-    									<span style="text-transform: uppercase;">Date of Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:blue;"> <?= date("d-M-Y", strtotime($studentInfo->dob)); ?></span><br>
+    								    	<span style="text-transform: uppercase;">Student's Name&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:blue;"> <?= strtoupper($studentInfo->name);?> </span><br>
+    								
     									<span style="text-transform: uppercase;">Mother's Name&nbsp;&nbsp;&nbsp;:</span><span style="text-transform: uppercase;color:blue;">  <?= strtoupper($parentInfo->mother_full_name); ?></span><br>
     									<span style="text-transform: uppercase;">Father's Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span><span style="text-transform: uppercase;color:blue;"> <?= strtoupper($parentInfo->father_full_name); ?></span><br>
     								</td>

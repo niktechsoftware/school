@@ -241,11 +241,11 @@
                 <span class="title">Collect Fee</span>
             </a>
         </li>
-         <li>
+         <!--<li>
             <a href="<?php echo base_url(); ?>index.php/login/feeStructure">
                 <span class="title"> Fee Structure</span>
             </a>
-        </li>
+        </li>-->
          <li>
             <a href="<?php echo base_url(); ?>index.php/login/transport">
                 <span class="title">Student Fee Card</span>

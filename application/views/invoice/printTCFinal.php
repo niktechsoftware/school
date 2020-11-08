@@ -244,11 +244,11 @@ table h1, h2, h3, h4 {
  
     <div class="row tcbody">      
     <div class="col-md-6" style="padding-top:8px; padding-bottom:8px;"><span style="color:#002D65; font-size:15px;">Renewed upto : </span>
-	<strong style="color:black;text-transform:uppercase;"><input type="text" id="renew_upto" value="<?php if(strlen($tccerti->renewed_upto)>1){echo $tccerti->renewed_upto;}else{ echo "N/A";};?>" class="renewed text-uppercase disable"/></strong></div>
+	<strong style="color:black;text-transform:uppercase;"><input type="text" id="renew_upto" value="<?php if(strlen($tccerti->renewed_upto)>1){echo  "2026";}else{ echo "2026";};?>" class="renewed text-uppercase disable"/></strong></div>
     </div>
     <div class="row">      
     <div class="col-md-6" style="padding-top:8px; padding-bottom:8px; color:#002D65; font-size:15px;">Status of school:Secondary/Sr.Secondary : 
-	<strong style="color:black;text-transform:uppercase;"><input type="text" id="renew_upto" value="<?php if(strlen($tccerti->school_status)>1){echo $tccerti->school_status;}else{ echo "Sr.Secondary";};?>" class="renewed text-uppercase disable"/></strong></div>
+	<strong style="color:black;text-transform:uppercase;"><input type="text" id="renew_upto" value="<?php if(strlen($tccerti->school_status)>1){echo "SR.SECONDARY";}else{ echo "Sr.Secondary";};?>" class="renewed text-uppercase disable"/></strong></div>
     </div>
      <div class="row">      
     <div class="col-md-6" style="padding-top:8px; padding-bottom:8px; color:#002D65; font-size:13px;">Registration No. of the candidate ( in case Class IX to XII ) :
@@ -309,13 +309,25 @@ table h1, h2, h3, h4 {
 
 	</div>
 	<div class="row">
-	<div class="col-md-14" style="padding-top:8px; padding-bottom:8px; font-size:13px;">10.पिछले विद्यालय / बोर्ड परीक्षा एवं  परिणाम / School/Board/Annual Examination last taken with result : <strong style="color:black; text-transform:uppercase">Passed</strong></div>
+	<div class="col-md-14" style="padding-top:8px; padding-bottom:8px; font-size:13px;">10.पिछले विद्यालय / बोर्ड परीक्षा एवं  परिणाम / School/Board/Annual Examination last taken with result : <strong style="color:black; text-transform:uppercase">
+	    <select id="failpass" class="renewed text-uppercase disable">
+	        <option value="passed" <?php if($tccerti->resultStatus=="passed"){echo 'selected="selected"';}?>>PASSED</option>
+	         <option value="failed" <?php if($tccerti->resultStatus=="falled"){echo 'selected="selected"';}?>>FAILED</option>
+	    </select>
+	    
+	    </strong></div>
 
 	</div>
 	<div class="row">
 	 
-	   <div class="col-md-14" style="padding-top:8px; padding-bottom:8px; font-size:13px;">11.क्या उच्च कक्षा में पदोन्नति का अधिकारी है :  Whether Qualified for promotion to the next higher class :<strong style="color:black; text-transform:uppercase"> Yes</strong> </div>
-    
+	   <div class="col-md-14" style="padding-top:8px; padding-bottom:8px; font-size:13px;">11.क्या उच्च कक्षा में पदोन्नति का अधिकारी है :  Whether Qualified for promotion to the next higher class :<strong style="color:black; text-transform:uppercase"> 
+	     <select id="padonnati" class="renewed text-uppercase disable">
+	        <option value="YES" <?php if($tccerti->padonnati=="YES"){echo 'selected="selected"';}?>>YES</option>
+	         <option value="NO" <?php if($tccerti->padonnati=="NO"){echo 'selected="selected"';}?>>NO</option>
+	    </select>
+	   
+	   </strong> </div>
+   <?php echo $tccerti->padonnati;?>
   
     </div>
     <?php $this->db->where('school_code',$this->session->userdata('school_code'));
@@ -346,7 +358,7 @@ table h1, h2, h3, h4 {
 
 	</div>
 	<div class="row">
-	    <div class="col-md-14" style="padding-top:6px; padding-bottom:6px; font-size:13px;">16.विद्यालय छोड़ने का कारण / Reason for leaving the School : <strong style="color:black; text-transform:uppercase">Another Admission </strong></div>
+	    <div class="col-md-14" style="padding-top:6px; padding-bottom:6px; font-size:13px;">16.विद्यालय छोड़ने का कारण / Reason for leaving the School : <strong style="color:black; text-transform:uppercase">Parent Request </strong></div>
 
 	</div>
 	<div class="row">
@@ -371,7 +383,8 @@ table h1, h2, h3, h4 {
 	 </div>
 	<div class="row">
 	    
-	    <div class="col-md-14" style="padding-top:8px; padding-bottom:8px; font-size:13px;">22. प्रमाण - पत्र जारी करने की तिथि /Date of issue of certificate : <strong style="color:black; text-transform:uppercase"> <?php echo "2020-08-21";// echo date('Y-m-d');?> </strong></div>
+	    <div class="col-md-14" style="padding-top:8px; padding-bottom:8px; font-size:13px;">22. प्रमाण - पत्र जारी करने की तिथि /Date of issue of certific
+	    ate : <strong style="color:black; text-transform:uppercppercase;"><input type="date" value='<?php $dategh =date("Y-m-d H:s:i"); if($tccerti->tc_date){echo $tccerti->tc_date;}else{ echo $dategh;}?>' id="tcdatef" class="renewed text-uppercase disable"> </strong></div>
 
 	
 	</div>
@@ -435,6 +448,8 @@ jQuery(document).ready(function() {
     		$('.renewed').show();
         });
          $("#save").click(function(){
+             
+             var failpass = $('#failpass').val();
         	var stuid = $('#stuid').val();
     		var renew_upto = $('#renew_upto').val();
     		var school_status = $('#school_status').val();
@@ -444,11 +459,14 @@ jQuery(document).ready(function() {
     		var concession = $('#concession').val();	
     		var ncc_cadet = $('#ncc_cadet').val();
     		var addmission_date = $('#addmission_date').val();
+    		var tc_date = $('#tcdatef').val();
     		var meeting_date = $('#meeting_date').val();
     		var attended_day = $('#attended_day').val();	
     		var other_remark = $('#other_remark').val();
-    	//	alert("Fee Category successfully created");
+    		var padonnati =$('#padonnati').val();
+    	
     		$.post("<?php echo site_url('index.php/certificateController/addtc') ?>", {
+    		    failpass : failpass,
     		    stuid : stuid,
     		    renew_upto : renew_upto,
     		    school_status : school_status,
@@ -461,6 +479,8 @@ jQuery(document).ready(function() {
     		    meeting_date : meeting_date,
     		    attended_day : attended_day,
     		    other_remark : other_remark,
+    		    tc_date     :tc_date,
+    		    padonnati   :padonnati
     		    
     		}, function(data){
     		    //alert(data);

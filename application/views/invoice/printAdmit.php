@@ -262,16 +262,20 @@
 		
 		<div>
 		    <br/>
+		    <br/>
+		   
 		<table id="items" align="center"  style="width:100%; margin-top:8px; alignment-adjust:central;">
 		<!--<tr>
 		<td><br>(Signature)<br>Class Teacher</td><td><br>(Signature)<br>Principal</td>
 		</tr>-->
 		<tr>
 		<td style="width: 50%;">(Signature)<br>Class Teacher</td>
-		<td>(Signature)<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpg" alt="" width="100" height="50" style="float:right;"  />
+		<td>(Signature)<img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?php echo $info->principle_sign;?>" alt="" width="100" height="50" style="float:right;"  />
 		<br>Principal</td>
 		</tr>
-		</table></div>
+		</table>
+		
+		</div>
 		
 	</div>
 	

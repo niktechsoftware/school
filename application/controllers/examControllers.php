@@ -654,7 +654,8 @@ function defineExam1(){
    $this->load->view("print_obtain",$data);		
 	}
 	function print_obtain()
-	{ 	 $this->load->model("allformmodel");
+	{ 	 
+	    $this->load->model("allformmodel");
 /*	echo $this->uri->segment("3");
 	echo $this->uri->segment("5");
 	exit();*/
@@ -909,24 +910,13 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 }}
  }
  function deletesubMarks(){
-	 $stuid=$this->input->post('stuid'); 
-	    $marks=$this->input->post('marks');
-	    $sub_type=$this->input->post('sub_type');
-	    $mmarks=$this->input->post('mmarks');
-	    $classid=$this->input->post('classid');
-	    $subjectid=$this->input->post('subjectid');
-	    $examid=$this->input->post('examid');
-		$attendence=$this->input->post('attendence');
-		$this->db->where('school_code' ,$this->session->userdata('school_code'));
-		$this->db->where('class_id',$classid);
-			$this->db->where('sub_type',$sub_type);
-			$this->db->where('fsd',$this->input->post('fsd'));
-		$this->db->where('subject_id',$subjectid);
-		$this->db->where('stu_id',$stuid);
-		$this->db->where('exam_id',$examid);
+      $vrow=$this->input->post('vrow'); 
+		$this->db->where('id',$vrow);
 	$dt=	$this->db->delete('exam_info');
 	if($dt){
-				echo "Deleted";
+				echo "Deleted Successfully please refresh the page for updation";
+			}else{
+			    echo "Fail To Delete";
 			}
 		
  }

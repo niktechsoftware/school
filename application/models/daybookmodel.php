@@ -33,7 +33,7 @@ class daybookModel extends CI_Model{
 			return $res;
 		}
 		if($contition==2){
-			$resd = $this->db->query("SELECT invoice_serial.invoice_no, invoice_serial.heads FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE day_book.status=1 and invoice_serial.school_code='$school_code'  AND (dabit_cradit = 0 or dabit_cradit = 1 )and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
+			$resd = $this->db->query("SELECT invoice_serial.invoice_no, invoice_serial.heads FROM day_book join invoice_serial on invoice_serial.invoice_no = day_book.invoice_no WHERE day_book.status=1 and invoice_serial.school_code='$school_code'  AND (dabit_cradit = 0 or dabit_cradit = 1 or dabit_cradit = 2 )and DATE(day_book.pay_date)>='".$sdate."' and DATE(day_book.pay_date)<='".$edate."'");
 			$res =$resd;
 			return $res;
 		}

@@ -146,7 +146,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   <tr>
                     <td><?php echo $j; ?></td>
                     <td>
-                       
+                       <input type="hidden" id="rowidt<?php echo $i; ?>" value="<?php echo $v->id; ?>" />
 						<input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
                         <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
 					
@@ -178,18 +178,10 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   </tr>
 				  <script>
 				  $("#deletemmarks1<?php echo $i;?>").click(function(){
-				      var fsd = $("fsd").val();
-                           var mmarks = $("#mammarks<?php echo $i; ?>").val();
-							var classid = $("#classid<?php echo $i; ?>").val();
-							var stuid= $("#stu_id<?php echo $i; ?>").val();
-							var marks = $("#mark<?php echo $i; ?>").val();
-							var subjectid = $("#subjectid<?php echo $i; ?>").val();
-							var examid = $("#examid<?php echo $i; ?>").val();
-							var attendence = $("input[name='attendence']:checked").val();
-							//alert(classid +" "+ subjectid +" "+examid);
-                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{fsd : fsd, examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+				       var vrow = $("#rowidt<?php echo $i; ?>").val();
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{vrow : vrow}, function(data){
                       $("#deletemmarks1<?php echo $i;?>").html(data);
-                      alert('Marks Deleted Successfully');
+                      alert(data);
                       $("#deletemmarks1<?php echo $i;?>").html();
                     });
                             

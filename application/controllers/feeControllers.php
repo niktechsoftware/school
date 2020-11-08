@@ -454,7 +454,7 @@ function getFsd(){
     		
 			$invoiceDetail = array(
 					"invoice_no" => $invoice_number,
-					"reason" => 4,
+					"heads" => 4,
 					"invoice_date" => date("Y-m-d"),
 					"school_code"=>$this->session->userdata("school_code")
 			);
@@ -490,19 +490,16 @@ function getFsd(){
 		$this->load->model("feeduemodel");
 		$var = $this->feeduemodel->enterDetail($feeDueData,$studid);
 		$amount=$this->input->post("paid");
-		$cbal=$Clbalance+$amount;
-		$bal = array(
-				"closing_balance" => $cbal
-		);
+		
 		
 		$daybookdata=array(
 				'paid_to'=>"Admin",
 				'paid_by'=>$this->input->post("studentId"),
-				
+				'status'=>1,
 				'dabit_cradit'=>2,
 				'amount'=>$this->input->post("paid"),
 				'pay_date'=>date('Y-m-d'),
-				'pay_mode'=>"Cash",
+				'pay_mode'=>1,
 				'invoice_no'=>$invoice_number,
 				'school_code'=>$this->session->userdata("school_code")
 		);
@@ -522,7 +519,8 @@ function getFsd(){
 			'diposit_date'=>date('Y-m-d H:i:s'),
 			'invoice_no'=>$invoice_number,
 			'finance_start_date'=>$this->session->userdata('fsd'),
-			'school_code'=>$school_code
+			'school_code'=>$school_code,
+			'status'=>1
 	);
 	$this->db->insert("fee_deposit",$feedepositedata);
 		         $this->db->where("school_code",$school_code);
@@ -752,12 +750,17 @@ function getFsd(){
 	     	$this->load->model("smsmodel");
 		  	$sende_Detail =$sender->row();
 	      	$sdue=$this->input->post("smstodue");
-			echo 'Send';
+			 $duemonth= str_replace("<br>"," ",	$sdue);
+			 //echo "Send";
 			$mnum=$this->input->post("mnum");
 			$sname=$this->input->post("sname");
+		//	echo $sname;
 			$amt=$this->input->post("amount");
 			$amt1=$this->input->post("amount1");
-			
+			//echo $sdue;
+			//echo $amt;
+			//echo $sdue;
+			//exit();
 			
 // 			if($amt==0)	{
 // 			    $amt2=$this->input->post("amount");
@@ -776,7 +779,7 @@ function getFsd(){
 		  	
 // 				sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
 //           }else	{
-		  			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit the fee before the exam otherwise Your ward will not allow to take the exam.".$schoolname->school_name;
+		  			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$duemonth." is remain to deposit and your previous Balance is ".$amt1.". Please deposit the fee before due date.".$schoolname->school_name;
    
 		  		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;

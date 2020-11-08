@@ -82,7 +82,7 @@
 					<thead>
 						<tr class="text-center"
 							style="background-color: #1ba593; color: white;">
-							<th class="text-center">S No.</th>
+							<th class="text-center">S.No.</th>
 							<th class="text-center">Student Id</th>
 							<th class="text-center">Total Fees</th>
 							<th class="text-center">Deposit Month</th>
@@ -150,7 +150,7 @@ $v = 1;
 														<td class="text-center"><?php  echo $row->diposit_date;?></td>
 														
 																				<?php 
-																			if($this->session->userdata("login_type")=="admin"){
+																		
 																			echo 	"<td>";
 																			
 																				$this->db->where ( 'school_code', $scd );
@@ -171,7 +171,7 @@ $v = 1;
 															href="<?php echo base_url()?>index.php/feeControllers/deleteFee/<?php echo $row->invoice_no;?>/<?php echo $row->student_id;?>/<?php if($v == 1){echo "true"; } ?>"
 															class="btn btn-warning"> Delete Fee </a>
 																					<?php }}
-													echo "</td>"; }?>
+													echo "</td>"; ?>
 						</tr>	<?php $v++; endforeach; ?>
 												
 													</tbody>

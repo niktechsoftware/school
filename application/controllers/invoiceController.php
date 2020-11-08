@@ -3,7 +3,7 @@ class InvoiceController extends CI_Controller{
     function __construct()
     {
         parent::__construct();
-          $this->is_login();
+        $this->is_login();
         $this->load->model("exammodel");
         $this->load->model("feemodel");
         $school_code = $this->session->userdata("school_code");
@@ -29,7 +29,8 @@ class InvoiceController extends CI_Controller{
 		$data['classid']=$this->uri->segment(3);
 		$this->load->view("invoice/obtn_marks",$data);
 	}
-    	function printempiCard(){
+	
+   function printempiCard(){
 		$data['pageTitle'] = 'Employee Section';
 		$data['smallTitle'] = 'Employee Profile';
 		$data['mainPage'] = 'Employee';
@@ -44,8 +45,7 @@ class InvoiceController extends CI_Controller{
 	
 		function onlinefeesubmit(){
 		 $school_code = $this->session->userdata("school_code");
-// 		 print_r($school_code);
-// 		 exit();
+
 		 $invoice_number = $this->uri->segment(3);
          $student_id = $this->uri->segment(4);
          $fsd2 = $this->uri->segment(5);
@@ -215,6 +215,7 @@ class InvoiceController extends CI_Controller{
 		  
            if($val->num_rows()>0)
             {
+                
 			$val=	$val->row()->studenticard_format;
 			$callview = "Admit_".$val;
 			$this->load->view("invoice/$callview",$data);

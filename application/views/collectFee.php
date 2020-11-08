@@ -471,7 +471,7 @@
 															
 														$('#form-field-select-2 :selected').each(function(i, selectedElement) {
 															month[i] =$(selectedElement).val();
-															alert(month[i]+fsdid);
+															//alert(month[i]+fsdid);
 
 															});
 

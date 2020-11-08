@@ -360,7 +360,7 @@ class AdminController extends CI_Controller{
 		}
 	}
 	public function uploadprinciple_sign(){
-	    	$rawName ='logo';
+	    $rawName ='logo';
 		$school_code = $this->session->userdata("school_code");
 		$photo_name = time().trim($_FILES['logo']['name']);
 		$photo_name = str_replace(' ', '_', $photo_name);
