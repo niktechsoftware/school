@@ -80,7 +80,9 @@
 										    <div class="col-sm-6">
 										     <div class="form-group">
 										        <label class="col-sm-3" > Expenditure Depart <span style="color:#F00">*</span></label> 
+
 						<select id="expenditurer" name="expenditurer" class="col-sm-9" style="width:150px;" required></select>
+
 
 										    </div>
 										    </div>

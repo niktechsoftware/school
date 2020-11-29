@@ -91,7 +91,7 @@
         	<div style="display:inline-block;">
 <?php
 	$id = $this->uri->segment(3);
-	
+
 	$this->db->where("invoice_no",$id);
 	$getDaybookDetails = $this->db->get("day_book")->row();
 	$this->db->where("receipt_no",$id);
@@ -99,7 +99,7 @@
 	
 	$this->db->where("invoice_no",$id);
 	$getInvoiceDate = $this->db->get("invoice_serial")->row();
-	if($getInvoiceDate->heads==8){
+	if($getInvoiceDate->heads==8 || $getInvoiceDate->heads==10){
 	$id_name = $getCashPayment->id_name;
 	if($getCashPayment->valid_id){
 	$valid_id = $getCashPayment->valid_id;
@@ -171,17 +171,28 @@
 		  </tr>
 		  <tr class="item-row">
 		      <td><?php echo 1; ?></td>
-		      <td><?php echo $getCashPayment->exp_id; ?></td>
-		      <td><?php echo $getCashPayment->sub_exp_id; ?></td>
+		      <td><?php $this->db->where("id",$getCashPayment->exp_id);
+		      $exm_name =$this->db->get("expenditure")->row();
+		      echo $exm_name->expenditure_name; ?></td>
+		      <td><?php $this->db->where("id",$getCashPayment->sub_exp_id);
+		      $subexm_name =$this->db->get("sub_expenditure")->row();
+		      echo $subexm_name->sub_expenditure_name; ?></td>
 		      <td><?php echo $getCashPayment->id_name; ?></td>
-		      <td><?php echo $getCashPayment->valid_id; ?></td>
+		      <td><?php 
+		      $this->db->where("id",$getCashPayment->valid_id);
+		     $empd =  $this->db->get("employee_info");
+		      if($empd->num_rows()>0){
+		          echo $empd->row()->name;
+		      }
+		      
+		       ?></td>
 		      <td><?php echo $getCashPayment->name; ?></td>
 		      <td>
 
 		      	<?php echo $getCashPayment->phone_no; ?>
 		      	<?php if($getCashPayment->valid_id){
 					if($empInfo->num_rows()>0){
-					    	echo $empInfo->mobile;
+					    	echo $empInfo->row()->mobile;
 					}else{echo "N/A"; }
 		      	}?>
 
@@ -375,7 +386,7 @@
 
 
 <?php	}else{
-        echo "<h1>Employee Salary Not Piad . Plz Pay First Employee Salary. </h1>";
+        echo "<h1>Employee Salary Not Paid . Plz Pay First Employee Salary. </h1>";
     }
     
     

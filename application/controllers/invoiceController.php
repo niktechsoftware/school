@@ -727,8 +727,9 @@ function result(){
 			 * print_r($data);
 			 * echo "</pre>";
 			 */
+            $folderDetails = $this->db->get("db_name")->row();
+			$this->load->view("invoice/$folderDetails->resultfolder/$callview",$data);
 
-			$this->load->view("invoice/si/$callview",$data);
 
 
 		}

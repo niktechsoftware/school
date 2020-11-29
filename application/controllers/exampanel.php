@@ -363,6 +363,32 @@ class Exampanel extends CI_Controller{
 
 
   }
+   public function classWiseonlineResult(){
+       if($this->input->post("class")){
+           $class_id=$this->input->post("class");
+           $fsd=$this->input->post("fsd");
+          $resulta= $this->db->query("select exam_mode.id, exam_mode.exam_id, exam_name.exam_name, exam_mode.exam_mode, exam_mode.subject from exam_mode join exam_name on exam_mode.exam_id = exam_name.id where fsd='$fsd' and exam_mode.class_id='$class_id'");
+        $data['result']=$resulta->result();
+        $data['class_id']=$class_id;
+      
+       }else{
+           $data['result']=0;
+            $data['class_id']=0;
+       }
+       	$this->load->model("allFormModel");
+		$data['request'] = $this->allFormModel->getsectionfeereport()->result();
+		$data['pageTitle'] = 'Exam Panel';
+		$data['smallTitle'] = 'Exam Panel';
+		$data['mainPage'] = 'Exam Panel Area';
+		$data['subPage'] = 'Exam Panel';
+		$data['title'] = 'Exam Panel Area ';
+		$data['headerCss'] = 'headerCss/noticeCss';
+		$data['footerJs'] = 'footerJs/noticeJs';
+		$data['mainContent'] = 'panel/exam/classwiseonlineResult';
+		$this->load->view("includes/mainContent", $data);
+
+
+  }
 }
 
 ?>

@@ -70,7 +70,7 @@ function __construct()
         		                www.schoolerp-niktech.in, www.niktechsoftware.com
         		                ";
         		                $this->sendMail($dd->email1,$dd->school_name,$ccregisterEmail,$message);
-        		                //echo $message;
+
                 		  }
                 		  if(($dd->email2) && ($dd->email2  != $dd->email1)){
                 		        $ccregisterEmail= "schoolerp@niktechsoftware.com";

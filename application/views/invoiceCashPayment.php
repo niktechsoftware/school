@@ -50,6 +50,7 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-12">
+					   
 						<IFRAME SRC="<?php echo base_url(); ?>index.php/invoiceController/invoiceCashPayment/<?php echo $this->uri->segment(3); ?>/" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
 					</div>
 				</div>

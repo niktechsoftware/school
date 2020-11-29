@@ -147,9 +147,11 @@ tr:nth-child(even) {
 												<td><?php echo $i;?>    <input type="hidden" id="rowf<?php echo $i;?>" value ="<?php echo $i;?>">   </td>
                                                 <td><?php if($classname){echo $classname->row()->class_name;}?> </td>
                                                 <td><?php if($subject){ echo $subject->row()->subject;}?></td>
+
 												<td><a href="<?php echo base_url();?>assets/images/question_img/<?php echo $row->$vb1 ;?>" ><?php echo $row->$vb1 ;?></a>
 												<input type="hidden" name="dlt" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/></td>
 													<input type="hidden" name="img" id="img<?php echo $i ;?>" value="<?php echo $row->$vb1 ;?>"/></td>
+
 												<td><?php echo $row->date; ?></td>
 												
 												<td class="text-center"><input type="button" value="Delete" id="dlt<?php echo $i; ?>" class="btn btn-danger"/></td>
@@ -159,8 +161,10 @@ tr:nth-child(even) {
 																		$("#dlt<?php echo $i; ?>").click(function(){
 																		var id =$('#rowid<?php echo $i;?>').val();
 																		var img =$('#img<?php echo $i ;?>').val();
+
 																			var rowg =$('#rowf<?php echo $i;?>').val();
 																		//alert(rowg+id);
+
 																	   $.post("<?php echo site_url('index.php/examControllers/deletesheet') ?>",{id : id , img : img ,rowg : rowg },function(data){
 																		alert("deleted Successfully!!!!! ");
 																		 $("#dlt<?php echo $i;?>").hide();
@@ -169,7 +173,9 @@ tr:nth-child(even) {
 																	   }); 
 																	</script>
 																		</tr>
+
 												<?php }; }}?>
+
 										
 							
 											</tbody>

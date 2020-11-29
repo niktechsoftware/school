@@ -1597,7 +1597,7 @@
 							</p>
 						</div>
 						<div class="col-md-4">
-							<input type="submit" value="Update Gurdian Information" class="btn btn-blue btn-block  text-uppercase"/>
+							<input type="submit" value="Update Guardian Information" class="btn btn-blue btn-block  text-uppercase"/>
 						</div>
 					</div>
 			</div>

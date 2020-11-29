@@ -9,7 +9,6 @@
 		$school_code = $this->session->userdata("school_code");
 	}
 	
-
 		function is_login(){
 		$is_login = $this->session->userdata('is_login');
 	
@@ -17,7 +16,6 @@
 			
 			redirect("index.php/homeController/index");
 		}
-	
 	}
 	
 	function index(){

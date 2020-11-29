@@ -13,9 +13,7 @@ class examControllers extends CI_Controller
 		    'fsd'=>$this->session->userdata("fsd"),
     	    'term'=>$this->input->post("term"),
     		'exam_name'=>$this->input->post("examName"),
-
     		'exam_date'=>$this->input->post("datet"),
-		
     		'school_code'=>$this->session->userdata("school_code")
 
     		  );
@@ -113,10 +111,10 @@ class examControllers extends CI_Controller
 	         if($exam_model_name_id==3){
 	              $subject_id =$this->uri->segment(3);
             	    $exam_id    =$this->uri->segment(4);
-            	    $exam_mode_id=$this->uri->segment(5);
+            	    $exam_moden_id=$this->uri->segment(5);
             	    $status = $this->uri->segment(6);
             	    $exam_mode_id=$this->uri->segment(7);
-	                $attn = $this->db->query("Select distinct student_id from objective_exam_result where subject_id='$subject_id' and exam_id='$exam_id' and status=1");
+	                $attn = $this->db->query("Select distinct student_id from objective_exam_result where exam_mode_id='$exam_mode_id' and status=1");
 	         }else{
 	             echo "Please Select Other Options.";
 	         }
@@ -1412,7 +1410,7 @@ function insertMarksdetail()
 			$image_path = realpath(APPPATH . '../assets/images/question_img/');
 			$config['upload_path'] = $image_path;
 			$config['allowed_types'] = 'gif|jpg|jpeg|png|docx|doc|pdf';
-			$config['max_size'] = '5048';
+			$config['max_size'] = '15048';
 			$config['file_name'] = $photo_name;
 			
 			
@@ -1456,18 +1454,16 @@ function deletesheet(){
 		$imgv = $img;
 		$imc="image".$i;
 		$update1[$imc]="";
-		
 		$this->db->where("id",$id);
-		
 		$delete=$this->db->update("subjective_question",$update1);
 		// echo "deleted";
 	}
 	
 	public function deleteExamMode(){
     if($this->session->userdata("login_type")=="admin"){
-   $this->db->where("id",$this->uri->segment(3)) ;
-   $this->db->delete("exam_mode");
-   	redirect(base_url()."login/exammode/");
+        $this->db->where("id",$this->uri->segment(3)) ;
+        $this->db->delete("exam_mode");
+   	    redirect(base_url()."login/exammode/");
     }else{
         echo "Please Contact to principal";
     }

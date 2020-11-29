@@ -571,11 +571,7 @@
 
 }
   function buysms(){
-    	header("Pragma: no-cache");
-		header("Cache-Control: no-cache");
-		header("Expires: 0");
-		
-		$checkSum = "";
+    	$checkSum = "";
 		$paramList = array();
 
        $smsid= $this->input->post("vehicle");
@@ -587,7 +583,7 @@
             $quant= $smsrow->row()->sms_quantity;
             $amount= $smsrow->row()->amount;
             $tot=$quant*$amount;
-            $rannum=rand(10000,99999);
+            $rannum=date("ymdhis");
             $orderno="ORD".$rannum;
             $arr=array(
                "order_id" =>$orderno,
@@ -599,27 +595,23 @@
                
                );
            
-           $this->db->insert("sms_transaction",$arr);
+            $this->db->insert("sms_transaction",$arr);
            	$ORDER_ID = $orderno;
-           		$CUST_ID=$school_code;
+           	$CUST_ID=$school_code;
            	$INDUSTRY_TYPE_ID = "Retail";
-
 		$CHANNEL_ID = "WEB";
 		$TXN_AMOUNT = $tot;
-		
 		// Create an array having all required parameters for creating checksum.
-		
 		$paramList["MID"] = PAYTM_MERCHANT_MID;
 		$paramList["ORDER_ID"] = $ORDER_ID;
-			$paramList["CUST_ID"] = $CUST_ID;
+		$paramList["CUST_ID"] = $CUST_ID;
 		$paramList["INDUSTRY_TYPE_ID"] = $INDUSTRY_TYPE_ID;
 		$paramList["CHANNEL_ID"] = $CHANNEL_ID;
 		$paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
 		$paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
-       
-
-		$paramList["CALLBACK_URL"] = "https://www.schoolerp-niktech.in/school/index.php/smsAjax/payStatus/";
-	
+        $serverDetails = $this->db->get("db_name")->row();
+		$paramList["CALLBACK_URL"] = "https://www.schoolerp-niktech.in/".$serverDetails->server."/index.php/smsAjax/payStatus/";
+	//echo $paramList["CALLBACK_URL"];
 		/*$paramList["MSISDN"] = $MSISDN; //Mobile number of customer
 		$paramList["EMAIL"] = $EMAIL; //Email ID of customer
 		$paramList["VERIFIED_BY"] = "EMAIL"; //
@@ -661,10 +653,7 @@
 
 function pgResponse(){
 
-		header("Pragma: no-cache");
-		header("Cache-Control: no-cache");
-		header("Expires: 0");
-
+	
 		$paytmChecksum = "";
 		$paramList = array();
 		$isValidChecksum = "FALSE";
@@ -706,13 +695,7 @@ function pgResponse(){
 			}
 			
 public function payStatus(){
-
-        header("Pragma: no-cache");
-		header("Cache-Control: no-cache");
-		header("Expires: 0");
-
-       
-        	$data['pageTitle'] = 'View SMS Report';
+        $data['pageTitle'] = 'View SMS Report';
 		$data['smallTitle'] = 'View SMS Report';
 		$data['mainPage'] = 'View SMS Report';
 		$data['subPage'] = 'View SMS Report';
