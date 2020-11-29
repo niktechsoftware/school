@@ -226,7 +226,7 @@ echo $noticeForStudent->row()->message;
                 </div>
                 <a href="#">
                 <div class="padding-20 core-content">
-                    <h4 class="title block no-margin">Join On Line Class</h4>
+                    <h4 class="title block no-margin">Join Online Class</h4>
                     <br/>
                     <span class="subtitle"> 	
                     

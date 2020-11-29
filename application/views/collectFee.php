@@ -464,14 +464,13 @@
 												    
 													$("#form-field-select-2").change(function(){
 														var month=[];var i=0;
-													
 														var stuId = $("#stuId").val();
 															var catId = $("#scat").val();
 															var fsdid = $("#fsd_id").val();
 															
 														$('#form-field-select-2 :selected').each(function(i, selectedElement) {
 															month[i] =$(selectedElement).val();
-															alert(month[i]+fsdid);
+														//	alert(month[i]+fsdid);
 
 															});
 

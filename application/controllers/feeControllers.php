@@ -715,13 +715,8 @@ function getFsd(){
 				   echo "Please Contact to Admin";
 			   }
 
-			  
 			//}
-			
-			
-		
 			//redirect(base_url()."index.php/feeControllers/fullDetail/".$student_id."/".$df); 
-			
 		}
 		function deleteFeedue2(){
 			$invoiceNo = $this->uri->segment(3);
@@ -758,25 +753,7 @@ function getFsd(){
 			$amt=$this->input->post("amount");
 			$amt1=$this->input->post("amount1");
 			
-			
-// 			if($amt==0)	{
-// 			    $amt2=$this->input->post("amount");
-// 			}else{
-// 			    $amt2="0.00";
-// 			}
-// 			if($amt1==0){
-// 			    $amt3=$this->input->post("amount1");
-// 			}else{
-// 			    $amt3="0.00";
-// 			}
-// 		  if($amt==0)	{
-		  		   
-		  		
-// 			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt1." is remain to deposit. Please deposit soon.".$schoolname->school_name;
-		  	
-// 				sms($mnum,$msg,$sende_Detail->uname,$sende_Detail->password,$sende_Detail->sender_id);
-//           }else	{
-		  			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit the fee before the exam otherwise Your ward will not allow to take the exam.".$schoolname->school_name;
+	  			$msg =	"Dear Sir/Madam your Ward's (".$sname.") School Fee ".$amt." of month ".$sdue." is remain to deposit and your previous Balance is ".$amt1.". Please deposit the fee before the exam otherwise Your ward will not allow to take the exam.".$schoolname->school_name;
    
 		  		$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;

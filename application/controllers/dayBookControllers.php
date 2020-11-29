@@ -401,7 +401,6 @@ function daybook()
 		$data['smallTitle'] = 'Cash Payment';
 		$data['mainPage'] = 'Cash Payment';
 		$data['subPage'] = 'Cash Invoice';
-		
 		$data['title'] = 'Accounts Cash Payment';
 		$data['headerCss'] = 'headerCss/configureClassCss';
 		$data['footerJs'] = 'footerJs/transactionJs';

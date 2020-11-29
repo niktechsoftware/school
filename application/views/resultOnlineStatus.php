@@ -64,10 +64,10 @@
                                         $this->db->select("class_id");
                                         $this->db->where("exam_id",$exam_mode_details->exam_id);
                                         $this->db->where("subject_id",$exam_mode_details->subject);
+
                                         $getshiftandday1 = $this->db->get("exam_time_table");
                                         if($getshiftandday1->num_rows()>0){
                                             $getshiftandday=$getshiftandday1->row();
-                                        
                                         $this->db->where("id",$getshiftandday->class_id);
                                        $cin =  $this->db->get("class_info")->row();
                                       /*  print_r($getshiftandday);
@@ -77,8 +77,8 @@
                                          $this->db->where("id",$getshiftandday->shift_id);
                                         $exam_shift =$this->db->get("exam_shift");
                                         
-                                         $this->db->where('exam_master_id',$exam_mode_details->exam_id);
-                                        $this->db->where('exam_subject_id',$exam_mode_details->subject);
+                                      
+                                        $this->db->where('exam_mode_id',$exam_mode_id);
                                         $tot_ques = $this->db->get("question_master");
                                         $this->db->where("id",$exam_mode_details->subject);
                                         $subjectname = $this->db->get("subject")->row();
@@ -138,8 +138,7 @@ foreach ( $var->result () as $lv ) :
    echo "<br>".$student_Details->class_id;*/
    
     
-    $this->db->where('exam_id',$exam_mode_details->exam_id);
-    $this->db->where('subject_id',$exam_mode_details->subject);
+    $this->db->where('exam_mode_id',$exam_mode_id);
         		    $this->db->where('student_id',$lv->student_id);
         		    $result1=$this->db->get('objective_exam_result');
         		     $i=1;  $right=0; $wrong = 0;
@@ -161,7 +160,7 @@ foreach ( $var->result () as $lv ) :
 <tr class="<?php echo $rowcss;?>">
 											<td><?php echo $count;?></td>
 											<td><?php echo $student_Details->username;?></td>
-											<td><?php echo $gDetails->father_full_name;?></td>
+											<td><?php echo $student_Details->name;?></td>
 											<td><?php if($exam_date->num_rows()>0){echo $exam_date->row()->date1;}?></td>
 											<td><?php if($exam_shift->num_rows()>0){echo $exam_shift->row()->from1." to ".$exam_shift->row()->to1;}?></td>
 											<?php if($exam_mode_details->exam_mode==3){?>
@@ -171,7 +170,7 @@ foreach ( $var->result () as $lv ) :
 												<td><?php echo $tot_ques->num_rows()-$result1->num_rows();?></td>
 										
 
-											<td>	<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectiveque_result/<?php echo $exam_mode_details->exam_id;?>/<?php echo $lv->student_id;?>/<?php echo $exam_mode_details->subject;?>">
+											<td>	<a href="<?php echo base_url();?>index.php/singleStudentControllers/objectiveque_result/<?php echo $exam_mode_id;?>/<?php echo $lv->student_id;?>">
 											    <button type="submit" id="leavedelete"
 													class="btn btn-red">View Report</button></td>
 												<?php 	}else{

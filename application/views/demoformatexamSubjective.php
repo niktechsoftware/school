@@ -150,6 +150,7 @@ var x = setInterval(function() {
             							                <td>
             							                    <?php $vi ="image".$i; echo $subject->subject;?>
             							                </td>
+
             							                <td>
             							                    <?php if($getsheet->$vi){?>
             							                   <a href="<?php echo base_url();?>assets/images/question_img/<?php echo $getsheet->$vi ;?>"><?php echo $getsheet->$vi ;?>
@@ -158,7 +159,7 @@ var x = setInterval(function() {
             							                   
             							                   </a>
             											<?php }?>
-								                            
+
             							                </td>
             							                <td>
             							                    <?php if($sar->num_rows()>0){

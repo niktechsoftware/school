@@ -130,56 +130,7 @@
 								</button>
 								<?php if($this->session->userdata('login_type') == 'admin'){?>
 								<ul class="dropdown-menu dropdown-light pull-right">
-									<!--<li>-->
-									<!--	<a href="#" class="export-pdf" data-table="#sample-table-2" >-->
-									<!--		Save as PDF-->
-									<!--	</a>-->
-									<!--</li>-->
-									<!--<li>-->
-									<!--	<a href="#" class="export-png" data-table="#sample-table-2">-->
-									<!--		Save as PNG-->
-									<!--	</a>-->
-									<!--</li>-->
-									<!--<li>-->
-									<!--	<a href="#" class="export-csv" data-table="#sample-table-2" >-->
-									<!--		Save as CSV-->
-									<!--	</a>-->
-									<!--</li>-->
-									<!--<li>-->
-									<!--	<a href="#" class="export-txt" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
-									<!--		Save as TXT-->
-									<!--	</a>-->
-									<!--</li>-->
-									<!--<li>-->
-									<!--	<a href="#" class="export-xml" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
-									<!--		Save as XML-->
-									<!--	</a>-->
-									<!--</li>-->
-									<!--<li>-->
-									<!--	<a href="#" class="export-sql" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
-									<!--		Save as SQL-->
-									<!--	</a>-->
-									<!--</li>-->
-									<!--<li>-->
-									<!--	<a href="#" class="export-json" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
-									<!--		Save as JSON-->
-									<!--	</a>-->
-									<!--</li>-->
-									<li>
-										<a href="#" class="export-excel" data-table="#sample-table-2" >
-											Export to Excel
-										</a>
-									</li>
-									<!--<li>-->
-									<!--	<a href="#" class="export-doc" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
-									<!--		Export to Word-->
-									<!--	</a>-->
-									<!--</li>-->
-									<!--<li>-->
-									<!--	<a href="#" class="export-powerpoint" data-table="#sample-table-2" data-ignoreColumn ="3,4">-->
-									<!--		Export to PowerPoint-->
-									<!--	</a>-->
-									<!--</li>-->
+								
 								</ul>
 								<?php }?>
 							</div>
@@ -256,7 +207,7 @@
 													    $this->db->where("class_id",$row->class_id);
 													        $total_student= $this->db->get("student_info");
 													        if($getmode->id==3){
-													     $attn = $this->db->query("Select distinct student_id from objective_exam_result where subject_id='$row->subject' and exam_id='$row->exam_id' and status=1");
+													     $attn = $this->db->query("Select distinct student_id from objective_exam_result where exam_mode_id='$row->id' and status=1");
 													        }else{
 													            if($getmode->id==2){
 													                  $attn = $this->db->query("Select distinct student_id from subjective_answer_report where exam_mode_id='$row->id' and status=0");

@@ -120,6 +120,13 @@
 												</button>
 												</a>
 											</div>
+											<div class="col-sm-4"><a href="<?php echo base_url(); ?>index.php/exampanel/classWiseonlineResult">
+												<button class="btn panel-orange btn-icon btn-block space10">
+
+													<font size="5">Online Result  </font><span class="badge badge-info partition-red"> 8 </span>
+												</button>
+												</a>
+											</div>
 
 
 								</div>

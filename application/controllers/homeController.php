@@ -593,4 +593,52 @@ function updateExamMode_inQuestion(){
    }
     
 }
+
+function deleteQuestionans(){
+    $qs = $this->db->get("right_answer");
+    foreach($qs->result() as $r):
+        $this->db->where("id",$r->question_master_id);
+        $qm = $this->db->get("question_master");
+        if($qm->num_rows()>0){
+            
+        }else{
+            $this->db->where("question_master_id",$r->question_master_id);
+            $this->db->delete("right_answer");
+        }
+        endforeach;
+}
+
+function deleteObjective(){
+        $this->db->distinct();
+        $this->db->select('exam_id,subject_id');
+        $qm = $this->db->get("objective_exam_result");
+   if($qm->num_rows()>0){
+       foreach($qm->result() as $q):
+       $this->db->where("exam_id",$q->exam_id);
+       $this->db->where("subject",$q->subject_id);
+     $emid =  $this->db->get("exam_mode");
+     if($emid->num_rows()>0){
+         $update['exam_mode_id']=$emid->row()->id;
+         $this->db->where("exam_id",$q->exam_id);
+       $this->db->where("subject_id",$q->subject_id);
+          $this->db->update("objective_exam_result",$update);
+     }
+     endforeach;  
+   }
+}
+
+function update_questiondrom2(){
+    $result = $this->db->get("question_master");
+    foreach($result->result() as $back):
+        $this->db->where("id",$back->id);
+       $getv =  $this->db->get("question_master2");
+       if($getv->num_rows()>0){
+           $dataup['question']= $getv->row()->question;
+           $this->db->where("id",$back->id);
+           $this->db->update("question_master",$dataup);
+       }
+        endforeach;
+} 
+
+
 }
