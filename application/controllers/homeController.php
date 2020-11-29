@@ -296,14 +296,20 @@ class HomeController extends CI_Controller{
 		//$fsd=$this->db->get('fsd')->row()->id;
             $dataschool = array(				
 				"school_name" => $this->input->post("schoolName"),
+				"customer_id"=>$this->input->post("cid"),
 				"principle_name" => $this->input->post("principalName"),
 				"wise_principle_name" => $this->input->post("wiseprincipalName"),
 				"mobile_no" => $this->input->post("mobile"),
 				"email1" => $this->input->post("emailAddress"),
 				"created_date" => date("Y-m-d H:i:s"),
-				"id"=>$id,
+				'address1'=>$this->input->post("address1"),
+    			 'address2'=>$this->input->post("address2"),
+    			 'state'=>$this->input->post("state"),
+    			  "pin"=>$this->input->post("pin"),
+    			    "id"=>$id,
 				"agree"=>"YES"
-			);
+		    	);
+			
 			$this->load->model('schoolmodel');
 			$SchConfirm = $this->schoolmodel->schInfo($dataschool);
 
@@ -323,14 +329,21 @@ class HomeController extends CI_Controller{
 			);
 			$this->load->model('schoolmodel');
 			$SchConfirm3 = $this->schoolmodel->schInfo2($datasms);
-
-			$datasmssetting = array(
+            $datasmssett =array(
+			         'uname'=>$this->input->post("uname"),
+			         'password'=>$this->input->post("smspassword"),
+			         'sender_id'=>$this->input->post("smssender_id"),
+			         'auth_key'=>$this->input->post("authkey"),
+			         'web_url'=>$this->input->post("smsweburl"),
+			         "school_code" => $id
+			         );
+	/*	$datasmssetting = array(
 				"sender_id" =>  $this->input->post("smsid"),
 				"web_url" => $this->input->post("smsweburl"),
 				"school_code" => $id
-			);
+			);*/
 			$this->load->model('schoolmodel');
-			$SchConfirm4 = $this->schoolmodel->schInfo3($datasmssetting);
+			$SchConfirm4 = $this->schoolmodel->schInfo3($datasmssett);
 
 			$datafsd = array(
 				"finance_start_date" => $this->input->post("fsdS"),

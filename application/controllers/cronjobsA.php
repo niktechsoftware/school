@@ -5,23 +5,27 @@ function __construct()
 		parent::__construct();
 	$this->load->model("smsmodel");
 	$this->load->model("studentmodel");
+	 $this->load->model("daybookmodel");
 		
 	}
  function getCronA(){
+            
           $res = $this->db->get("school");
           if($res->num_rows()>0)
           {
+              	$cdate =date("Y-m-d");
+               	$datec=$cdate;
              foreach($res->result() as $dd):
-              
-                $datec  = date('Y-m-d');
-                    $this->db->where("school_code",$dd->id);
-                    $this->db->where("DATE(opening_date)",$datec);
-                   $getDaybook = $this->db->get("opening_closing_balance");
-                   if($getDaybook->num_rows()>0){
-                       $getDaybook = $getDaybook->row();
-                          $query3=$this->db->query("select sum(amount) as cradit from day_book where dabit_cradit='1' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."'");
-                           $oldfee=$this->db->query("select sum(amount) as cradite from day_book where dabit_cradit='2' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."'");
-                          $query4=$this->db->query("select sum(amount) as dabit from day_book where dabit_cradit='0' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."'");
+        		$backDate = date('Y-m-d',(strtotime ( '-1 day' , strtotime ( $cdate) ) ));
+        		$openingBalance=$this->daybookmodel->getClosingBalance($backDate);
+        		$closingBalance = $this->daybookmodel->getClosingBalance($cdate);
+        		$closingBalance=$closingBalance;
+                    $bln=$closingBalance  - $openingBalance;
+                   if($bln != 0){
+                       
+                          $query3=$this->db->query("select sum(amount) as cradit from day_book where dabit_cradit='1' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."' and status= 1");
+                           $oldfee=$this->db->query("select sum(amount) as cradite from day_book where dabit_cradit='2' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."' and status= 1");
+                          $query4=$this->db->query("select sum(amount) as dabit from day_book where dabit_cradit='0' and school_code ='".$dd->id."' and DATE(pay_date)= '".$datec."' and status= 1");
 
                           if($oldfee->num_rows()>0){
                               $trv =$oldfee->row()->cradite;
@@ -34,28 +38,56 @@ function __construct()
                                $credit =0;
                           }
                           if($query4->num_rows()>0){
-                              $dabit = $query4->row()->dabit;
+                              $dabit = $query4->row()->dabit+0;
                           }else{
                                $dabit =0;
                           }
                          	$sender = $this->smsmodel->getsmssender($dd->id);
                     		$sende_Detail =$sender;
                     		$isSMS = $this->smsmodel->getsmsseting($dd->id);
-                    		 $sende_Detail1=$sende_Detail->row();
-                         $bln=$getDaybook->closing_balance - $getDaybook->opening_balance;
-						$number ="8382829593";
+                    		$sende_Detail1=$sende_Detail->row();
+                            $bln=$closingBalance  - $openingBalance;
+						    $number ="8382829593";
 
 
-						$msg ="Dear Sir/Madam [".$dd->school_name."], Today's School Profit Amount is Rs.".$bln.". Credited Amount is Rs.".$credit." and Debited Amount is Rs. ".$dabit."for Query dial 6389027901,2,3 Niktech Software Solutions." ; 
-
-					$mob = $dd->mobile_no;
-					    $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
+    						$msg ="Dear Sir/Mam [".$dd->school_name."], Today's School Profit Amount is Rs.".$bln.". Credited Amount is Rs.".$credit." and Debited Amount is Rs.".$dabit." for Query dial +91 9580121878, 8382829593. Niktech Software Solutions." ; 
+                            $mob = $dd->mobile_no;
+    					    $max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
                 		    $master_id=$max_id->maxid+1;
-                		     $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$dd->mobile_no);
-				 
-                		    	//	$getv=sms($dd->mobile_no,$msg,$sende_Detail1->uname,$sende_Detail1->password,$sende_Detail1->sender_id);
-                		     $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$dd->id);
-                		    
+                		    $getv=  mysms($sende_Detail1->auth_key,$msg,$sende_Detail1->sender_id,$dd->mobile_no);
+                		    $this->smsmodel->sentmasterRecord1($msg,2,$master_id,$getv,$dd->id);
+                		  if($dd->email1){
+                		        $ccregisterEmail= "schoolerp@niktechsoftware.com";
+        		                $message = "Dear Sir/Mam, 
+        		                [".$dd->school_name."], Today's School Profit Amount is Rs.".$bln.". Credited Amount is Rs.".$credit." and Debited Amount is Rs. ".$dabit." for Query dial +91 9580121878, 8382829593. Niktech Software Solutions.
+        		                
+        		              
+        		               
+        		                Deepika Pandey
+        		                Niktech Software Solutions
+        		                Accounts Department
+        		                +91-9454012026
+        		                www.schoolerp-niktech.in, www.niktechsoftware.com
+        		                ";
+        		                $this->sendMail($dd->email1,$dd->school_name,$ccregisterEmail,$message);
+        		               // echo $message;
+                		  }
+                		  if(($dd->email2) && ($dd->email2  != $dd->email1)){
+                		        $ccregisterEmail= "schoolerp@niktechsoftware.com";
+        		                $message = "Dear Sir/Mam, 
+        		                [".$dd->school_name."], Today's School Profit Amount is Rs.".$bln.". Credited Amount is Rs.".$credit." and Debited Amount is Rs. ".$dabit." for Query dial +91 9580121878, 8382829593. Niktech Software Solutions.
+        		                
+        		              
+        		               
+        		                Deepika Pandey
+        		                Niktech Software Solutions
+        		                Accounts Department
+        		                +91-9454012026
+        		                www.schoolerp-niktech.in, www.niktechsoftware.com
+        		                ";
+        		                $this->sendMail($dd->email2,$dd->school_name,$ccregisterEmail,$message);
+        		               
+                		  }
 					
                         }   
                         
@@ -64,5 +96,14 @@ function __construct()
           }
  }
 
-
+ function sendMail($email1,$schoolname,$ccregisterEmail,$message){
+        $subject = "Opening and Closing Balance of ".date("Y-m-d"); 
+	        $this->load->library('email');
+			$this->email->from('support@schoolerp-niktech.in', $schoolname);
+			$this->email->to($email1);
+			$this->email->cc($ccregisterEmail);
+			$this->email->subject($subject);
+			$this->email->message($message);
+			$this->email->send();
+        }
 }

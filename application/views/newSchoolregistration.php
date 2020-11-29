@@ -1,15 +1,21 @@
+<style>
+.control-label{
+  color:2134F3;  
+}
 
+</style>
 <div class="container">
-    <form class="form-horizontal" action="<?php echo base_url(); ?>index.php/homeController/schoolInfo/" method="post" role="form">
-        <h2> School Registration Form</h2>
+    <form class="form-horizontal" action="<?php echo base_url(); ?>index.php/homeController/schoolInfo/" method="post" role="form" style="background-color:white;">
+        <h2 style="color:#C70039 ;"> School Registration Form</h2>
+        <br/>
         <div class="form-group">
-            <label for="firstName" class="col-sm-3 control-label">School Name</label>
+            <label for="firstName" class="col-sm-3 control-label" style="color:blue;">School Name</label>
             <div class="col-sm-9">
                 <input type="text" id="schoolName" name="schoolName" placeholder="School Name" class="form-control" autofocus>
             </div>
         </div>
         <div class="form-group">
-            <label for="startDate" class="col-sm-3 control-label">FSD* Start</label>
+            <label for="startDate" class="col-sm-3 control-label" >FSD* Start</label>
             <div class="col-sm-4">
                 <input type="date" id="fsdS" name="fsdS"class="form-control">
             </div>
@@ -35,7 +41,7 @@
             <label for="mobileNumber" class="col-sm-3 control-label">Mobile number </label>
             <div class="col-sm-9">
                 <input type="mobileNumber" id="mobile" name="mobile" placeholder="Enter Mobile number" class="form-control">
-                <span class="help-block">Your phone number won't be disclosed anywhere </span>
+                <span class="help-block" style="color:red;">Your phone number won't be disclosed anywhere </span>
             </div>
         </div>
         <div class="form-group">
@@ -80,12 +86,79 @@
                 <input type="date" data-date-format="yyyy-mm-dd" data-date-viewmode="years" min="2018-01-01" max="Date()" id="regisDate" value="<?php echo date("Y-m-d");?>" placeholder="School Registration Date" class="form-control">
             </div>
         </div>
+         <h2 style="color:red;">School Information</h2>
+          <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Customer Id*</label>
+            <div class="col-sm-9">
+                <input type="text" id="cid" name="cid" placeholder="Customer Id" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Address 1*</label>
+            <div class="col-sm-9">
+                <input type="text" id="address1" name="address1" placeholder="Address 1" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Address 2*</label>
+            <div class="col-sm-9">
+                <input type="text" id="address2" name="address2" placeholder="Address 2" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Mobile No*</label>
+            <div class="col-sm-9">
+                <input type="text" id="mobile" name="mobile" placeholder="Mobile No" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">State*</label>
+            <div class="col-sm-9">
+                <input type="text" id="state" name="state"placeholder="State" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="pin" class="col-sm-3 control-label">Pin Code*</label>
+            <div class="col-sm-9">
+                <input type="text" id="pin"  name="pin"placeholder="Pin Code" class="form-control">
+            </div>
+        </div>
+        <h2 style="color:red;">SMS DETAIL</h2>
+         <div class="form-group">
+            <label for="smsweburl" class="col-sm-3 control-label">SMS USER NAME*</label>
+            <div class="col-sm-9">
+                <input type="text" id="uname" name="uname" placeholder="SMS USER NAME" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">SMS password*</label>
+            <div class="col-sm-9">
+                <input type="text" id="spassword"  name="smspassword" placeholder="SMS password" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">SMS SENDER ID*</label>
+            <div class="col-sm-9">
+                <input type="text" id="senderid"  name="smssender_id"placeholder="SMS SENDER ID" class="form-control">
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="text" class="col-sm-3 control-label">AUTH KEY*</label>
+            <div class="col-sm-9">
+                <input type="password" id="authkey" name="authkey" placeholder="AUTH KEY" class="form-control">
+            </div>
+        </div> 
+         
          <!-- /.form-group -->
         <div class="form-group">
             <div class="col-sm-9 col-sm-offset-3">
                 <span class="help-block">*Required fields</span>
             </div>
         </div>
+       
+        
+        
+        
         <button type="submit"  class="btn btn-primary btn-block">Register</button>
     </form> <!-- /form -->
 </div> <!--container -->
