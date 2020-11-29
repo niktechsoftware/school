@@ -409,15 +409,15 @@
 																								$apm =$apm1->row()->apply_method;
 																								$h=0; $pm=12/$apm;
 																								for($j=1;$j<$pm+1;$j++){
-
-																									$rdt = date('Y-m-d', strtotime("$h months", strtotime($fsddate)));
+                                                                                            	$rdt = date('Y-m-d', strtotime("$h months", strtotime($fsddate)));
 																									$ft=$h+4;
 																									if($ft>12){
-											                                    $ft=$ft-12;}?>
+											                                                         $ft=$ft-12;}?>
 																									<option value="<?php echo $ft;?>">
 																									<?php echo date("M-Y",strtotime($rdt));?>
 																									</option>
-																						            <?php
+																		                              <?php
+																						             
 																						             $h=$h+$apm;
 
 																						    }

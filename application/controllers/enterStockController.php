@@ -205,7 +205,7 @@
 				}
 				
 				//$this->db->select("closing_balance as cb");
-				$this->db->where("school_code",$this->session->userdata("school_code"));
+			/*	$this->db->where("school_code",$this->session->userdata("school_code"));
 				$this->db->where("opening_date",date("Y-m-d"));
 				$cb = $this->db->get("opening_closing_balance");
     //     	$this->db->where("school_code",$this->session->userdata("school_code"));
@@ -218,14 +218,12 @@
 				);
 				$this->db->where("school_code",$this->session->userdata("school_code"));
 				$this->db->where("opening_date",date("Y-m-d"));
-				$this->db->update("opening_closing_balance",$cbData);
+				$this->db->update("opening_closing_balance",$cbData);*/
 				$daybook=array(
 						"amount" => $this->input->post("paid"),
 						"pay_date"=> date("Y-m-d"),
-						"heads" =>3,
 						"pay_mode"=>1,
 						"invoice_no"=>$billno,
-						"closing_balance" => $cl_balance,
 						"paid_to" => $this->session->userdata("username"),
 						"dabit_cradit"=> 1,
 						"paid_by"=> $validID,

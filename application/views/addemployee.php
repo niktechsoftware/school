@@ -45,7 +45,7 @@
          This is Employee Registration Area.If you want a membership in this School Management Software,first of all filling in the correct information in the box below.
         You can also do Quick Registration on click Quick Registration button.Thank you
         </div>
-
+<?php echo validation_errors(); ?>
         <form action="<?php echo base_url();?>index.php/employeeController/addEmpInfo" method="post" role="form"
           class="form-horizontal" id="form">
           <div class="panel-heading panel-green">
@@ -59,13 +59,13 @@
                     Name <span class="symbol required"></span>
                   </label>
                   <div class="col-sm-7">
-                    <input type="text" onkeyup="namevalidation();" class="form-control text-uppercase"  maxlength="20"  minlength="5" id="empFirstName"
-                      name="empName" value="<?php echo set_value('empFirstName'); ?>" required="required" />
+                    <input type="text" onkeyup="namevalidation();" class="form-control text-uppercase"  maxlength="20"  minlength="5" id="empName"
+                      name="empName" value="<?php echo set_value('empName'); ?>" required="required" />
                     <!-- <span  class="text-danger" id="fname"></span> -->
                   </div>
-                  <?php echo form_error('empFirstName'); ?>
+                  <?php echo form_error('empName'); ?>
                 </div>
-                <div class="col-sm-5">
+              <!--  <div class="col-sm-5">
                   <label class="col-sm-5">
                     Job Title <span class="symbol required"></span>
                   </label>
@@ -73,28 +73,48 @@
                     <input type="text" onkeyup="jobtitle();"  maxlength="10"  minlength="5"  value="<?php echo set_value('jobTitle'); ?>"
                       class="text-uppercase form-control" id="jobTitle" name="jobTitle" required="required" />
                   </div>
-                  <?php echo form_error('jobTitle'); ?>
-                </div>
-
-              </div>
-
-              <div class="form-group">
-                <div class="col-sm-5">
+                  <?php //echo form_error('jobTitle'); ?>
+                </div>-->
+                 <div class="col-sm-5">
                   <label class="col-sm-5">
                     Job Category <span class="symbol required"></span>
                   </label>
                   <div class="col-sm-7">
                     <select class="form-control text-uppercase" id="jobCategory" name="jobCategory"
                       value="<?php echo set_value('jobCategory'); ?>" required="required">
-                      <option value="0">-Category-</option>
-                      <option value="1">Accountant</option>
-                      <option value="2">Employee</option>
-                      <option value="3">Teacher</option>
-                      <option value="9">Principal</option>
+                      <option value="">-Category-</option>
+                      <?php $empcat=$this->db->get('emp_category');
+                      foreach($empcat->result() as $empcat): ?>
+                      <option value="<?php echo $empcat->id; ?>"><?php echo $empcat->Name; ?></option>
+                      <?php endforeach;?>
                     </select>
                   </div>
                   <?php echo form_error('jobCategory'); ?>
                 </div>
+              </div>
+               <div class="form-group" id="stanrow">
+                <div class="col-sm-5">
+                  <label class="col-sm-5" id="standlbl">
+                    Select Standered <span class="symbol required"></span>
+                  </label>
+                  <div class="col-sm-7">
+                    <select class="form-control text-uppercase" id="standered" name="standered"
+                      value="<?php echo set_value('standered'); ?>">
+                      <option value="">-Standared-</option>
+                      <?php $teacherLev=$this->db->get('teacher_level');
+                      foreach($teacherLev->result() as $teacherLev):?>
+                      <option value="<?php echo $teacherLev->id; ?>"><?php echo $teacherLev->Name;?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                  <?php echo form_error('standered'); ?>
+                </div>
+                <div class="col-sm-5">
+                 
+                </div>
+            </div>
+              <div class="form-group">
+               
                 <div class="col-sm-5">
                   <label class="col-sm-5">
                     Address <span class="symbol required"></span>
@@ -109,29 +129,7 @@
 
               </div>
               
-              <div class="form-group" id="stanrow">
-                <div class="col-sm-5">
-                  <label class="col-sm-5" id="standlbl">
-                    Select Standered <span class="symbol required"></span>
-                  </label>
-                  <div class="col-sm-7">
-                    <select class="form-control text-uppercase" id="standered" name="standered"
-                      value="<?php echo set_value('standered'); ?>" required="required">
-                      <option value="0">-Standared-</option>
-                      <option value="1">PG to UKG</option>
-                      <option value="2">1 to 5</option>
-                      <option value="3">6 to 8</option>
-                      <option value="4">9 to 10</option>
-                      <option value="5">11 to 12</option>
-                    </select>
-                  </div>
-                  <?php echo form_error('standered'); ?>
-                </div>
-                <div class="col-sm-5">
-                 
-                </div>
-
-              </div>
+             
 
               <div class="form-group">
                 <div class="col-sm-5">

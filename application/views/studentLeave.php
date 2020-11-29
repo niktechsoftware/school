@@ -31,12 +31,16 @@
 					</a>
 				</div>
 			</div>
+			 <br>
 			<div class="panel-body">
-				<div class="form-group">
-
-					<div class="col-sm-12">
-
-						<br />
+			    <div class="alert btn-purple">
+					<h3 class="media-heading text-center">Welcome to Leave Deatil Area Area</h3>
+					<p class="media-timestamp">Here Stundent Can Apply For New  Leave and See All Leave details  . 
+					</p>
+				</div>
+            <div class="form-group">
+        	<div class="col-sm-12">
+            	<br />
 						<br />
 						<div class="row">
 							<div class="col-md-12 space20">

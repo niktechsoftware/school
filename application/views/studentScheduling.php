@@ -1,26 +1,19 @@
-		<?php $snm=$this->session->userdata('username');
-			$this->db->where("username",$snm);
-			$dt=$this->db->get("student_info")->row();
-			$cid=$dt->class_id;
-			$this->db->where("id",$cid);
-			$dtf=$this->db->get("class_info")->row();
-			$school_code=$dtf->school_code;
-			//$this->db->where('school_code',$school_code);
-			//$pp=$this->db->get('period');
-			//foreach($pp->result() as $p1){
-			//$p11=$p1->id;
-			//$this->db->where("period_id",$p11);
-             $this->db->where("class_id",$cid);
-             // $this->db->where("school_code",$school_code);
-			$dt1=$this->db->get("time_table")->result();
+		<?php 
+		    $stu_id=$this->session->userdata("id");
+			$school_code=$this->session->userdata('school_code');
+			$this->db->where('id',$stu_id);
+			$stu_info=$this->db->get("student_info")->row();
+			$class_id=$stu_info->class_id;
+			$this->db->where("class_id",$class_id);  
+		    $dt1=$this->db->get("time_table")->result();
 			//print_r($dt1);
 			//} exit();
            // $pid= $dt1->period_id;
            // print_r($dt1);
            
+           $period=$dt1->period_id;
 			?>
-		
-		<div class="row">
+			<div class="row">
 			<div class="col-sm-12">
 					<div class="tabbable">
 									<ul class="nav nav-tabs tab-padding tab-space-3 tab-blue" id="myTab4">
@@ -62,7 +55,7 @@
 												<thead>
 													<tr>
 														<th>Period</th>
-														<?php 
+														<?php  
 														$uniquePeriod=$this->db->query("SELECT * from period WHERE school_code='$school_code' and nop_id='$period'");
 														foreach($uniquePeriod->result() as $row):?>
 														<th>
@@ -165,8 +158,6 @@
 														<th><?php echo $row1->from; ?> to <?php echo $row1->to; ?></th>
 														<?php endforeach;;
 													endforeach;?>
-														
-														
 													</tr>
 												</thead>
 												<tbody>

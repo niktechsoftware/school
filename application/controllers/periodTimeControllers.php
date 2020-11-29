@@ -287,11 +287,12 @@ echo '<div class="alert alert-info">Teacher is added into time table are Success
 											$a = $num / 2;
 											if(($i >= $a-3) && ($i <= $a + 3)):
 											?>
-                                			<td  align="center">
+                                			<td align="center">
 		                        				<input type="radio" value="<?php echo $i; ?>" name="lunch" />Lunch
 		                        			</td>
 		                            		<?php endif; ?>
 		                      			</tr>
+		                      		
 		                  			 </table>
 		               			 </td>
 		                			<td>

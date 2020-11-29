@@ -148,7 +148,7 @@
     <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Employee </span><i class="icon-arrow"></i> </a>
     <ul class="sub-menu">
         <li>
-            <a href="<?php echo base_url(); ?>index.php/login/addemployee">
+            <a href="<?php echo base_url(); ?>index.php/employeeController/addemployee">
                 <span class="title"> Add Employee </span>
             </a>
         </li>
@@ -640,7 +640,7 @@
     <a href="javascript:void(0)"><i class="fa fa-cogs"></i> <span class="title">Employee </span><i class="icon-arrow"></i> </a>
     <ul class="sub-menu">
         <li>
-            <a href="<?php echo base_url(); ?>index.php/login/addemployee">
+            <a href="<?php echo base_url(); ?>index.php/employeeController/addemployee">
                 <span class="title"> Add Employee </span>
             </a>
         </li>

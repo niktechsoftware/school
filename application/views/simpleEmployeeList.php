@@ -114,7 +114,7 @@ print employee Icard by click on that Employee Id.
 										<th>SNo.</th>
 										<th>Employee ID</th>
 										<th>Full Name</th>
-										<th>Job Title</th>
+										<th>Job Category</th>
 										<th>Mobile</th>
 										<th>Address</th>
 										<th>Email</th>
@@ -129,16 +129,26 @@ print employee Icard by click on that Employee Id.
 								<tbody>
 									<?php $sno = 1; foreach ($result->result() as $row): ?>
 									<tr class="text-uppercase">
-										<td><?php echo $sno; ?></td>
-										<td><a href="<?php echo base_url(); ?>index.php/employeeController/empicard/<?php echo $row->id; ?>"><?php echo $row->username; ?></a></td>
+										<td style="color:black"><?php echo $sno; ?></td>
+										<td style="color:DodgerBlue"><a href="<?php echo base_url(); ?>index.php/employeeController/empicard/<?php echo $row->id; ?>"><?php echo $row->username; ?></a></td>
 										<td><?php echo $row->name?></td>
-										<td><?php echo $row->job_title; ?></td>
-										<td><?php echo $row->mobile; ?></td>
+									    <td><?php $this->db->where("id",$row->job_category);
+									              $jobcat=$this->db->get('emp_category')->row();
+									        
+									    echo $jobcat->Name; ?></td>
+										<td><i class="fa fa-phone" aria-hidden="true"><?php echo $row->mobile; ?></i></td>
 										<td><?php echo $row->address ?></td>
 										<td class="text-lowercase"><?php echo $row->email; ?></td>
-										<td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">Full Profile</a>
-									<?php if($row->status == 0){ ?><a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-red">InActive</a><?php } else{?>
-									<a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-green">Active</a><?php } ?></td>
+										<td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">
+										    <?php if($row->photo){?>
+										    <img  class="img-circle" height="50" width="50" src="https://schoolerp-niktech.in/a_school/9/images/empImage/<?php echo $row->photo;?>"/>
+										    <?php }else{?>
+										    <img src="https://www.schoolerp-niktech.in/a_school/icon/1.png" class="img-circle" style="height:50px; width:50px;" alt="">
+								       <?php }?>
+								        </a>
+								<!--	<?php if($row->status == 0){ ?><a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-red">InActive</a><?php } else{?>
+									<a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-green">Active</a><?php } ?>--> 
+									</td>
 									</tr>
 									<?php $sno++; endforeach; ?>
 								</tbody>

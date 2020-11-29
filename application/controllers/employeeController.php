@@ -53,7 +53,20 @@
 		$data['mainContent'] = 'empicard';
 		$this->load->view("includes/mainContent", $data);
 	}
-	
+	function addemployee(){
+		$data['pageTitle'] = 'Employee Section';
+		$data['smallTitle'] = 'Employee Registration';
+		$data['mainPage'] = 'Employee';
+		$data['subPage'] = 'Employee Registration';
+		$this->load->model('allFormModel');
+		$state = $this->allFormModel->getState()->result();
+		$data['state'] = $state;
+		$data['title'] = 'Employee Registration';
+		$data['headerCss'] = 'headerCss/addEmployeeCss';
+		$data['footerJs'] = 'footerJs/addEmployeeJs';
+		$data['mainContent'] = 'addemployee';
+		$this->load->view("includes/mainContent", $data);
+	}
 	function addEmpInfo(){ 
 	$school_code = $this->session->userdata("school_code");
 			$this->db->from('employee_info');
@@ -70,7 +83,7 @@
 			$eid=$db.$school_code.'E' .$eid1;
 		
 		$this->form_validation->set_error_delimiters('<div class="col-sm-12"><label class="text-danger">', '</label></div>');
-		$this->form_validation->set_rules('jobTitle','Job Title', 'trim|required');
+	//	$this->form_validation->set_rules('jobTitle','Job Title', 'trim|required');
 		$this->form_validation->set_rules('jobCategory','Job Category', 'trim|required');
 		$this->form_validation->set_rules('empName','Full Name', 'trim|required');
 		$this->form_validation->set_rules('standered','standered', 'trim|required');
@@ -100,7 +113,8 @@
 		$this->form_validation->set_rules("empPhoneNumber",'Phone Number', 'trim');
 		
 		if($this->form_validation->run() == FALSE){
-			$this->addemployee();
+		   $this->addemployee();
+			//echo validation_errors(); 
 		}
 		else{
 			//$fsd=$this->db->get('fsd')->row()->id;
@@ -148,10 +162,10 @@
 					"bank_payee_name" => $this->input->post("empPayeeName"),
 					//"school_code"=>$this->session->userdata("school_code")
 			);
-			
-			$addInfoConfirm1 = $this->employeeModel->addEmployeeBankDetail($dataempbank);
-			
-				if($addInfoConfirm && $addInfoConfirm1 ){
+		    
+				$addInfoConfirm1 = $this->employeeModel->addEmployeeBankDetail($dataempbank);
+		
+		if($addInfoConfirm && $addInfoConfirm1 ){
 					//---------------------------------------------- CHECK SMS SETTINGS -----------------------------------------
 					 $this->load->model("smsmodel");
 					 $sender = $this->smsmodel->getsmssender($this->session->userdata("school_code"));
@@ -384,7 +398,7 @@ function updateSalary(){
 			'category' => $this->input->post("category"),
 			'dob' => $this->input->post("dob"),
 			'gender' => $this->input->post("gender"),
-			'job_title' => $this->input->post("job_title"),
+			'job_category' => $this->input->post("job_category"),
 			'qualification' => $this->input->post("qualification"),
 			'experiance' => $this->input->post("experiance"),
 			'status' =>  $this->input->post("status"),
@@ -400,6 +414,7 @@ function updateSalary(){
 			//"school_code"=>$this->session->userdata("school_code"),
 			'password' => $this->input->post("password")
 		);
+	//	print_r($data);
 		$result = $this->employeeModel->updateEmployeProfile($empNo,$data);
 		if($result):
 			echo '<div class="alert alert-success">
@@ -878,7 +893,7 @@ function updateSalary(){
 		$invoice_number = $school_code."I".$invoice1;
 		$invoiceDetail = array(
 				"invoice_no" => $invoice_number,
-				"reason" => "Employee Salary",
+				"heads" => "Employee Salary",
 				"invoice_date" => date("Y-m-d"),
 				"school_code"=>$this->session->userdata("school_code")
 		);
@@ -916,13 +931,13 @@ function updateSalary(){
 				"school_code"=>$this->session->userdata("school_code")
 		);
 		$chashdata = array(
-				"expenditure_name"=>"SALARY",
-				"exp_depart"=>"TEACHING STAFF",
+				"name"=>"SALARY",
+				"exp_id"=>"TEACHING STAFF",
 				"valid_id"=>$this->input->post("empid"),
 				"reason"=>"Monthly Salary ".$diposit_month,
-				"amount"=>date("Y-m-d"),
+				//"amount"=>date("Y-m-d"),
 				"receipt_no"=>$invoice_number,
-				"school_code"=>$this->session->userdata("school_code")
+			//	"school_code"=>$this->session->userdata("school_code")
 				
 		);
 	$school_code=$this->session->userdata('school_code');
@@ -931,7 +946,7 @@ function updateSalary(){
 		$dayBook = array(
 			"paid_to" =>$this->input->post("empid"),
 			"paid_by" =>$this->session->userdata("username"),
-			"reason" => "By Salary",
+			//"reason" => "By Salary",
 			"dabit_cradit" => "Debit",
 			"amount" => $this->input->post("gross_s"),
 			"pay_date" => date('Y-m-d'),

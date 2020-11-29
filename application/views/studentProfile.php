@@ -7,12 +7,10 @@
             newheight=document.getElementById(id).contentWindow.document .body.scrollHeight;
             newwidth=document.getElementById(id).contentWindow.document .body.scrollWidth;
         }
-
-        document.getElementById(id).height= (newheight) + "px";
+         document.getElementById(id).height= (newheight) + "px";
         document.getElementById(id).width= (newwidth) + "px";
     }
 </script>
-
 <div class="row">
 	<div class="col-sm-12">
 		<?php 
@@ -24,15 +22,13 @@
 				$id=$this->session->userdata("username");
 			    $cid=$personalInfo->class_id;
 			    $this->db->where('id',$cid);
-			   $data= $this->db->get('class_info')->row();
-			  $cnm= $data->class_name;
-			  $sid=$data->section;
-			   $this->db->where('id',$sid);
-			   $data1= $this->db->get('class_section')->row();
-			   $sec=$data1->section;
-			
-		
-		?>
+			    $data= $this->db->get('class_info')->row();
+			    $cnm= $data->class_name;
+			    $sid=$data->section;
+			    $this->db->where('id',$sid);
+			    $data1= $this->db->get('class_section')->row();
+			    $sec=$data1->section;
+		    ?>
 		<div class="tabbable">
 			<ul class="nav nav-tabs tab-padding tab-space-3 tab-blue" id="myTab4">
 				<li<?php if(strlen($this->uri->segment(4)) <= 0){ echo ' class="active"';}?>>
@@ -40,11 +36,6 @@
 						Profile
 					</a>
 				</li>
-				<!--<li<?php // if($this->uri->segment(4) == 'Fee Report'){ echo ' class="active"';}?>>-->
-				<!--	<a data-toggle="tab" href="#fee_report">-->
-				<!--		Fee Report-->
-				<!--	</a>-->
-				<!--</li>-->
 				<li<?php if($this->uri->segment(4) == 'Attendance'){ echo ' class="active"';}?>>
 					<a data-toggle="tab" href="#attendance_report">
 						Attendance
@@ -61,8 +52,7 @@
 					</a>
 				</li>
 			</ul>
-
-			<div class="tab-content">
+        	<div class="tab-content">
 				<div id="panel_overview" class="tab-pane fade <?php if(strlen($this->uri->segment(4)) <= 0){ echo "in active";}?>">
 					<div class="row">
 						<div class="col-sm-5 col-md-4">
@@ -403,7 +393,7 @@
 				</div>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->	
 				<div id="attendance_report" class='tab-pane fade <?php if($this->uri->segment(4) == 'Attendance'){ echo "in active";}?>'>
-				<div class="row">
+<div class="row">
 <div class="col-md-12">
 <!-- start: RESPONSIVE TABLE PANEL -->
 <div class="panel panel-white">
@@ -440,15 +430,14 @@
 </a>
 </div>
 </div>
-<div class="panel-body panel-scroll height-450" >
+<div class="panel-body panel-scroll"  style="height:auto" >
 <table class="table table-bordered table-hover " id="a_tb">
 <thead>
 <tr class="text-center">
 <th class="text-center">S No.</th>
 <th class="text-center">Student Userid</th>
-
 <th class="text-center">Attendance (Green for present,Red for absent)</th>
-<th class="text-center">Attendance Date</th>
+<th class="text-center">Attendance Date/Day</th>
 <th class="text-center">Shift 1</th>
 <th class="text-center">Shift 2</th>
 
@@ -459,10 +448,15 @@
 <?php 
 $username=$this->session->userdata("username");
 $this->db->where("username",$username);
-$id=$this->db->get("student_info")->row()->id;
+$this->db->where("status",1);
+$id=$this->db->get("student_info")->row();
 
-$this->db->where("stu_id",$id);
-$dt=$this->db->get("attendance")->result();
+// $this->db->where("stu_id",$id->id);
+$this->db->where("class_id",$id->class_id);
+$this->db->where("school_code",$this->session->userdata('school_code'));
+$dt=$this->db->get("school_attendance")->result();
+// echo "<pre>";
+// print_r($dt);exit;
 ?>
 
 <?php $v=1;$p=0;$a1=0; foreach($dt as $row):
@@ -470,32 +464,48 @@ $dt=$this->db->get("attendance")->result();
 <td class="text-center"><?php echo $v; ?> </td>
 <td class="text-center"><?php echo $username;?></td>
 
-<td class="text-center"><?php $this->db->where("attendance",0);
-$a=$this->db->get("attendance")->result();
-if($row->attendance==1){ ?>
- <svg height="30" width="30">
-  <circle cx="15" cy="15" r="13" stroke="black" stroke-width="1" fill="green" />
-</svg>  
-<?php $p=$p+1; }else{ //echo 'Absent';?>
-    <svg height="30" width="30">
-  <circle cx="15" cy="15" r="13" stroke="black" stroke-width="1" fill="red" />
-</svg> 
-<?php $a1=$a1+1; };?></td>
 
-<td class="text-center"><?php echo $row->a_date; $at=$row->a_date; echo " ( ".date('D', strtotime("D", strtotime($at)))." )"; ?></td>
+<?php 
+
+$this->db->where("class_id",$row->class_id);
+$this->db->where("stu_id",$id->id);
+$this->db->where("attendance",0);
+$this->db->where("a_date",$row->date);
+$this->db->where("school_code",$this->session->userdata('school_code'));
+$a=$this->db->get("attendance");
+if($a->num_rows()>0){ ?>
 <td class="text-center">
-
-<?php echo $row->shift_1;?></td>
-
+ <svg height="30" width="30">
+  <circle cx="15" cy="15" r="13" stroke="black" stroke-width="1" fill="red" />
+</svg>  
 </td>
-<td class="text-center"><?php echo $row->shift_2;?></td> 
+<td class="text-center"><?php echo $a->row()->a_date; $at=$a->row()->a_date; echo " ( ".date('D', strtotime("D", strtotime($at)))." )"; ?></td>
+<td class="text-center"><?php if($a->row()->shift_1==1){echo "YES";}else{echo "NO";}?></td>
+<td class="text-center"><?php if($a->row()->shift_2==1){echo "YES";}else{echo "NO";};?></td>
+<?php $p=$p+1;}else{ 
+  ?>
+  <td class="text-center">
+    <svg height="30" width="30">
+  <circle cx="15" cy="15" r="13" stroke="black" stroke-width="1" fill="green" />
+</svg> 
+</td>
+<td class="text-center"><?php echo $row->date; $at=$row->date; echo " ( ".date('D', strtotime("D", strtotime($at)))." )"; ?></td>
+<td class="text-center"><?php echo "YES";?></td>
+<td class="text-center"><?php echo "NO";?></td>
+  <?php $a1=$a1+1;}?>
+
+
+ 
 
 </tr>	<?php $v++; endforeach; ?>
-
 </tbody>
 
-           <span style="font-size:20px;">Attendance (in %) = <?php $totatt=$p+$a1;if($totatt!=0){echo round(($p/$totatt)*100,2) ."%";}else{echo "0%";}?></span>
-        
+            <span style="font-size:20px;">Attendance (in %) = <?php $totatt=$p+$a1;if($totatt!=0){echo round(($a1/$totatt)*100,2) ."%";}else{echo "0%";}?></span>
+        <?php $totatt=$p+$a1;if($totatt!=0){ ?>
+<div><label>Total Attendence=</label><label><?php echo $totatt; ?></label></div>
+<div><label>Total Present =</label><label><?php echo $a1; ?></label></div>
+<div><label>Total Absent =</label><label><?php echo $absent= $totatt-$a1; ?></label></div>
+<?php } ?>
 </table>
 </div>
 </div>
@@ -570,37 +580,33 @@ $dt=$this->db->get("fee_deposit")->result();
 $sid=$row->student_id;
 $this->db->where('id',$sid);
 $stud_unm= $this->db->get('student_info')->row();
-
-?><tbody>
-	<tr>
-<td class="text-center"><?php echo $v; ?> </td>
-<td class="text-center"><?php echo $stud_unm->username;?></td>
-
-<td class="text-center"><?php $dte= $row->total; echo $dte;?></td>
-
-<td class="text-center"><?php echo $row->deposite_month;?></td>
-<td class="text-center"><?php if($row->payment_mode==1){ echo "Cash";} else{ echo "Online";}?></td>
-<td class="text-center"><?php echo $row->late;?></td> 
-<td class="text-center"><?php $pd= $row->paid; echo $pd?></td> 
-<td class="text-center"><?php $cr=$dte-$pd; echo $cr;?></td> 
-
-</tr>	<?php $v++; endforeach; ?>
-
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
+                            
+                            ?><tbody>
+                            	<tr>
+                            <td class="text-center"><?php echo $v; ?> </td>
+                            <td class="text-center"><?php echo $stud_unm->username;?></td>
+                            
+                            <td class="text-center"><?php $dte= $row->total; echo $dte;?></td>
+                            
+                            <td class="text-center"><?php echo $row->deposite_month;?></td>
+                            <td class="text-center"><?php if($row->payment_mode==1){ echo "Cash";} else{ echo "Online";}?></td>
+                            <td class="text-center"><?php echo $row->late;?></td> 
+                            <td class="text-center"><?php $pd= $row->paid; echo $pd?></td> 
+                            <td class="text-center"><?php $cr=$dte-$pd; echo $cr;?></td> 
+                            
+                     </tr>	<?php $v++; endforeach; ?>
+                 </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 				</div>
-				
 				<div id="print_report" class="tab-pane fade <?php if(!$this->uri->segment(4) == 'Print Profile'){ echo "in active";}?>">
 					<div class="panel-body">
 						<IFRAME src="<?php echo base_url(); ?>index.php/invoiceController/printProfile/<?php echo $id; ?>" width="100%" height="200px" id="iframe1" style="border: 0px;" onLoad="autoResize('iframe1');"></iframe>
 					</div>
 				</div>
-				
-				
 				<div id="Purchase_report" class="tab-pane fade <?php if($this->uri->segment(4) == 'Purchase Report'){ echo "in active";}?>">
 					<div class="panel-body">
 					 <?php 	 

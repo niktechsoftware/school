@@ -384,6 +384,7 @@
 										
 									</div>
     								</div>
+    						
     <div class="col-md-6 col-lg-3 col-sm-6">
     								<div class="panel panel-blue core-box">
 									<div class="e-slider owl-carousel owl-theme">
@@ -707,7 +708,119 @@
         </div>
       </div>
     </div>
-
+   <!-- <div class="col-md-12 col-lg-4 col-sm-12">
+								<div id="notes">
+									<div class="panel panel-note">
+										<div class="e-slider owl-carousel owl-theme">
+											<div class="item">
+												<div class="panel-heading">
+													<h4 class="no-margin">This is a Note</h4>
+												</div>
+												<div class="panel-body space10">
+													<div class="note-short-content">
+														Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...
+													</div>
+													<div class="note-content">
+														Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+														Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat.
+														Quis aute iure reprehenderit in <strong>voluptate velit</strong> esse cillum dolore eu fugiat nulla pariatur.
+														<br>
+														Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+														<br>
+														Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci v'elit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem.
+														<br>
+														Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut <strong>aliquid ex ea commodi consequatur?</strong>
+														<br>
+														Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?
+														<br>
+														At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+														<br>
+														Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae.
+														<br>
+														Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+													</div>
+												</div>
+												<div class="panel-footer">
+													<div class="avatar-note"><img src="assets/images/avatar-2-small.jpg" alt="">
+													</div>
+													<span class="author-note">Nicole</span>
+													<time class="timestamp" title="2014-02-18T00:00:00-05:00">
+														2014-02-18T00:00:00-05:00
+													</time>
+													<div class="note-options pull-right">
+														<a href="#readNote" class="read-note" data-subviews-options='{"startFrom": "right", "onShow": "readNote(subViewElement)", "onHide": "hideNote()"}'><i class="fa fa-chevron-circle-right"></i> Read</a><a href="#" class="delete-note"><i class="fa fa-times"></i> Delete</a>
+													</div>
+												</div>
+											</div>
+											<div class="item">
+												<div class="panel-heading">
+													<h4 class="no-margin">This is the second Note</h4>
+												</div>
+												<div class="panel-body space10">
+													<div class="note-short-content">
+														Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nemo enim ipsam voluptatem, quia voluptas sit...
+													</div>
+													<div class="note-content">
+														Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+														<br>
+														Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci v'elit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem.
+														<br>
+														Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut <strong>aliquid ex ea commodi consequatur?</strong>
+														<br>
+														Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur?
+														<br>
+														Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae.
+														<br>
+														Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+													</div>
+												</div>
+												<div class="panel-footer">
+													<div class="note-options pull-right">
+														<a href="#readNote" class="show-subviews read-note" data-subviews-options='{"startFrom": "right", "onShow": "readNote(subViewElement)", "onHide": "hideNote()"}'><i class="fa fa-chevron-circle-right"></i> Read</a><a href="#" class="delete-note"><i class="fa fa-times"></i> Delete</a>
+													</div>
+													<div class="avatar-note"><img src="assets/images/avatar-3-small.jpg" alt="">
+													</div>
+													<span class="author-note">Steven</span>
+													<time class="timestamp" title="2014-02-18T00:00:00-05:00">
+														2014-02-18T00:00:00-05:00
+													</time>
+												</div>
+											</div>
+											<div class="item">
+												<div class="panel-heading">
+													<h4 class="no-margin">This is yet another Note</h4>
+												</div>
+												<div class="panel-body space10">
+													<div class="note-short-content">
+														At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores...
+													</div>
+													<div class="note-content">
+														At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+														<br>
+														Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+														<br>
+														Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci v'elit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem.
+														<br>
+														Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut <strong>aliquid ex ea commodi consequatur?</strong>
+													</div>
+												</div>
+												<div class="panel-footer">
+													<div class="note-options pull-right">
+														<a href="#readNote" class="show-subviews read-note" data-subviews-options='{"startFrom": "right", "onShow": "readNote(subViewElement)", "onHide": "hideNote()"}'><i class="fa fa-chevron-circle-right"></i> Read</a><a href="#" class="delete-note"><i class="fa fa-times"></i> Delete</a>
+													</div>
+													<div class="avatar-note"><img src="assets/images/avatar-4-small.jpg" alt="">
+													</div>
+													<span class="author-note">Ella</span>
+													<time class="timestamp" title="2014-02-18T00:00:00-05:00">
+														2014-02-18T00:00:00-05:00
+													</time>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>-->
+						</div>
 
 
   </div>

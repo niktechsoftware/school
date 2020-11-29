@@ -1,5 +1,3 @@
-
-
 <div class="row">
   <div class="col-md-12">
     <!-- start: RESPONSIVE TABLE PANEL -->
@@ -37,42 +35,64 @@
           </a>
         </div>
       </div>
-
-  <div class="panel-body">
+ <br>
+			<div class="panel-body">
+			    <div class="alert alert-info">
+					<h3 class="media-heading text-center">Welcome to Show Exam Result Area</h3>
+					<p class="media-timestamp">Here Stundent Can See  Exam Result. 
+						.
+					</p>
+				</div>
+  
        <div class="text-white text-large">
        <div class="row">
-           
+          <?php  
+        /*  $this->db->where("username",$this->session->userdata("username"));
+        $st_id = $this->db->get("student_info")->row();
+          echo $st_id->id;
+          $this->db->where("stu_id",$st_id->id);
+          $e=$this->db->get("exam_info");
+          print_r($e);
+          
+          //exam_id,stu_id,fsd need for data/
+          
+          */
+          
+          ?>
            <div class="col-md-4">
             <select id="fsda" class="form-control">
                 <option value="">Select FSD</option><?php
-                    $school_code=$this->session->userdata("school_code");
-                    $this->db->where("school_code",$school_code);
-            	   $fsd = $this->db->get("fsd");
-                    if($fsd->num_rows()>0){
-                    foreach($fsd->result() as $fd):
+                    $id=$this->session->userdata("id");
+                    $query= $this->db->query("SELECT  distinct (fsd) as fsd from exam_info where stu_id='$id'");
+                   
+                    if($query->num_rows()>0){
+                    foreach($query->result() as $fd):
+                        $this->db->where('id',$fd->fsd);
+                       $fsd1=$this->db->get("fsd");
+                        if($fsd1->num_rows()>0){
+                    foreach($fsd1->result() as $fd1):
                         ?>
-                        <option value="<?php echo $fd->id;?>"><?php echo $fd->finance_start_date." to ".$fd->finance_end_date;?></option>
+                        <option value="<?php echo $fd1->id;?>"><?php echo $fd1->finance_start_date." to ".$fd1->finance_end_date;?></option>
                         <?php
+                         endforeach; } 
                     endforeach; } ?>
                 </select>
         </div> 
         <div class="col-md-4">
             <select id="examid" class="form-control">
                 <option value="">Select Exam Name</option><?php
-                   
-                    $this->db->where("school_code",$school_code);
-            	  
-                    $emp= $this->db->get('exam_name')->result();
+                $school_code=$this->session->userdata("school_code");
+                   $this->db->where("school_code",$school_code);
+            	   $emp= $this->db->get('exam_name')->result();
                     foreach($emp as $data)
                     {
                         ?>
-                
-                        <option value="<?php echo $data->id;?>"><?php echo $data->exam_name;?></option>
+                <option value="<?php echo $data->id;?>"><?php echo $data->exam_name;?></option>
                         <?php
                     }  ?>
                 </select>
 </div>
-<?php  $unm=$this->session->userdata("username");
+<?php  $unm=$this->session->userdata("id");
       
       ?>
 <div class="col-md-2">
@@ -103,50 +123,41 @@
             
         </div>
     
-<script>
-
-
-
-     jQuery(document).ready(function() {
-        $("#stdexambutton").click(function(){
-        var examid = $('#examid').val(); 
-         var stdexam = $('#stdexam').val(); 
-          var fsd = $('#fsda').val();
-         
-            
-        	$.ajax({
-						"url": "<?= base_url() ?>index.php/exampanel/findstdexam",
-						"method": 'POST',
-						"data": {fsd : fsd,examid : examid,stdexam : stdexam},
-						beforeSend: function(data) {
-							$("#examtimetablelist").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
-						},
-						success: function(data) {
-							$("#examtimetablelist").html(data);
-						},
-						error: function(data) {
-							$("#examtimetablelist").html(data)
-						}
-					})
-     
-        });
-        
-      
-
-        $("#stdexam").keyup(function(){
-             $("#stdexambutton").show();
-
-                    var student_id = $("#stdexam").val();
-                    //alert(teacherid);
-                    $.post("<?php echo site_url("index.php/studentController/checkID") ?>",{student_id : student_id}, function(data){
-                        $("#validId").html(data);
-                        });
+                            <script>
+                            jQuery(document).ready(function() {
+                                $("#stdexambutton").click(function(){
+                                var examid = $('#examid').val(); 
+                                var stdexam = $('#stdexam').val(); 
+                                var fsd = $('#fsda').val();
+                                 	$.ajax({
+						        "url": "<?= base_url() ?>index.php/exampanel/findstdexam",
+						        "method": 'POST',
+						        "data": {fsd : fsd,examid : examid,stdexam : stdexam},
+						        beforeSend: function(data) {
+							    $("#examtimetablelist").html("<center><img src='<?= base_url()?>assets/images/loading.gif' /></center>")
+						        },
+						        success: function(data) {
+							    $("#examtimetablelist").html(data);
+						        },
+						        error: function(data) {
+							    $("#examtimetablelist").html(data)
+						        }
+					            })
+                                 });
+                         $("#stdexam").keyup(function(){
+                             $("#stdexambutton").show();
+                
+                                    var student_id = $("#stdexam").val();
+                                    //alert(teacherid);
+                                    $.post("<?php echo site_url("index.php/studentController/checkID") ?>",{student_id : student_id}, function(data){
+                                        $("#validId").html(data);
+                                        });
+                                    });
+                        
+                        //              Main.init();
+                        // SVExamples.init();
+                        
                     });
-        
-        //              Main.init();
-        // SVExamples.init();
-        
-    });
-    
+                    
 
 </script>

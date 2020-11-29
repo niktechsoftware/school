@@ -175,11 +175,13 @@ echo $noticeForStudent->row()->message;
 				<div class="partition-azure padding-20 text-center core-icon">
 					<i class="fa fa-book fa-2x icon-big"></i>
 				</div>
-				<a
-					href="<?php echo base_url(); ?>index.php/studentHWControllers/studentShowHomeWork">
-					<div class="padding-20 core-content">
-						<h4 class="title block no-margin">Home Work</h4>
-						<br /> <span class="subtitle">Home Work And Project Details. </span>
+				<a href="<?php echo base_url(); ?>index.php/studentHWControllers/studentShowHomeWork">
+				    <div class="padding-20 core-content">
+				   	    <h4 class="title block no-margin">Home Work</h4>
+				   	    <br/>
+					    <span class="subtitle">Home Work And Project Details. </span>
+					<!--<img src="<?php echo base_url();?>assets/book2.gif" style="height:60px;">-->
+						
 					</div>
 				</a>
 			</div>
@@ -241,9 +243,7 @@ echo $noticeForStudent->row()->message;
     </div>
 	<div class="col-md-4 col-lg-8 col-sm-8">
         <div class="panel panel-default panel-white ">
-          
-              
-              <a href="#">
+           <a href="#">
                 <div class="padding-20 core-content">
                     <h4 class="title block no-margin"><blink>Exam SCHEDULE</blink></h4>
                   <br /> <span class="subtitle"> <h3>Current Exam Schedule</h3> </span>

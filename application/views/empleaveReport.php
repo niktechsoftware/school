@@ -141,8 +141,8 @@ or if you want to Cancel Empolyee leave then click on Cancel Button.<br>NOTE =>E
 										$snameid  = $this->db->get("employee_info")->row();?>
 								    	<?php if($sno%2==0){$rowcss="danger";}else{$rowcss ="warning";}?>
                                        <tr class="<?php echo $rowcss;?>">
-										<td><?php echo $sno; ?></td>
-										<td><?php echo $snameid->username; ?></a></td>
+										<td style="color:black"><?php echo $sno; ?></td>
+										<td style="color:DodgerBlue"><?php echo $snameid->username; ?></a></td>
 										<td><?php echo strtoupper($snameid->name); ?></td>	
 										<td><?php echo strtoupper($snameid->job_title); ?></td>
 										<td><?php echo strtoupper($snameid->mobile); ?></td>
@@ -150,21 +150,25 @@ or if you want to Cancel Empolyee leave then click on Cancel Button.<br>NOTE =>E
 										<td><?php echo   $row->total_leave; ?></td>
 										<td><?php echo   $row->start_date; ?></td>
 										<td><?php echo   $row->end_date; ?></td>
-										<td><?php echo  strtoupper($row->reason); ?></td>
+										<td style="color:rgba(255, 99, 71, 0.5)"><?php echo  strtoupper($row->reason); ?></td>
 										<?php if($row->status==0){?>
-                                        <td><?php echo "NO"; ?></td>
+                                        <td> <img src="https://www.schoolerp-niktech.in/a_school/icon/redc.png" class="img-circle" style="height:30px; width:30px;" alt=""></td>
                                         <?php } else { ?>
-                                          <td><?php echo "Yes"; ?></td>
+                                          <td> <img src="https://www.schoolerp-niktech.in/a_school/icon/greench.jpg" class="img-circle" style="height:40px; width:40px;" alt=""></td>
                                            <?php } ?>
                                          <?php if($row->status==0){?>  
-										<td><button type="submit" class="btn btn-light-blue" id="Approveemp<?php echo $sno ;?>">Approve</button>       
-										<input type="hidden" name="id" id="empid<?php echo $sno ;?>" value="<?php echo $row->id?>"> 
-
-												<button type="submit" class="btn btn-light-red" id="notApproveemp<?php echo $sno ;?>">Cancel</button> 
+										<td><a id="Approveemp<?php echo $sno ;?>">
+										    <img src="https://www.schoolerp-niktech.in/a_school/icon/app.png" class="img-circle" style="height:20px; width:20px;" alt=""></a>
+			                        <input type="hidden" name="id" id="empid<?php echo $sno ;?>" value="<?php echo $row->id?>"> 
+                                    <a id="notApproveemp<?php echo $sno ;?>">
+                                    <img src="https://www.schoolerp-niktech.in/a_school/icon/can.png" class="img-circle" style="height:30px; width:30px;" alt=""></a>
+			                       
+                                    </a> 
 									  <input type="hidden" name="id" id="empid<?php echo $sno ;?>" value="<?php echo $row->id?>"> 
 												</td>
 										 <?php } else { ?>
-                                        <td><button type="submit" class="btn btn-light-green" id="Approved">Approved</button> 
+                                        <td> <img src="https://www.schoolerp-niktech.in/a_school/icon/approved.jpg" class="img-circle" style="height:40px; width:40px;" alt=""></a>
+			                       
 												</td>
                                            <?php } ?>
 							

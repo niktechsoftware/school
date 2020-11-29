@@ -1,11 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-	
 	<title>Student Profile</title>
-	
 	<link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
 	<link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/print.css' media="print" />
 	<script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
@@ -30,6 +27,7 @@
       position: absolute;
       top: 40px;
       left: 30px;
+     
     }
   }
   
@@ -42,7 +40,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 10px 2px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
@@ -67,7 +65,7 @@
 </head>
 
 <body>
-
+<center>
 	<div id="printcontent" id="page-wrap" style="border: 1px solid #FFF; width:1000px;">
 		<?php 
 	$school_code = $this->session->userdata("school_code");
@@ -273,7 +271,7 @@
 		</div>
 
 	</div>
-	
+	</center>
 </body>
 	<div class="invoice-buttons" style="text-align:center;">
     <button class="button button2" type="button"  onclick="window.print();">

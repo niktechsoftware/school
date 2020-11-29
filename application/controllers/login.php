@@ -219,19 +219,7 @@ function configuredoc(){
 		$this->load->view("includes/mainContent", $data);
 	}
 
-	function addemployee(){
-		$data['pageTitle'] = 'Employee Section';
-		$data['smallTitle'] = 'Employee Registration';
-		$data['mainPage'] = 'Employee';
-		$data['subPage'] = 'Employee Registration';
-		$state = $this->allFormModel->getState()->result();
-		$data['state'] = $state;
-		$data['title'] = 'Employee Registration';
-		$data['headerCss'] = 'headerCss/addEmployeeCss';
-		$data['footerJs'] = 'footerJs/addEmployeeJs';
-		$data['mainContent'] = 'addemployee';
-		$this->load->view("includes/mainContent", $data);
-	}
+	
 function updatemaximum()
 	  {
 		$data['pageTitle'] = 'Maximum Marks Sheduling';

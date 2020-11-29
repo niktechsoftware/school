@@ -92,13 +92,7 @@
 											</td>
 											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
 										</tr>
-										<tr>
-											<td>Job Title</td>
-											<td>
-											    <?php if(strlen($personalInfo->job_title) > 1) {echo strtoupper($personalInfo->job_title); }else echo '<span style="color:#ff9999">N/A</span>'; ?>
-											</td>
-											<td><a href="#panel_edit_account" class="show-tab"><i class="fa fa-pencil edit-user-info"></i></a></td>
-										</tr>
+										
 										<tr>
 											<td>Qualification</td>
 											<td>
@@ -384,9 +378,19 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label text-bold">
-												Job Title
+												Job Category
 											</label>
-											<input type="text"   minLength="2" maxLength="25"  onkeypress="return isAplha(event)" value="<?php echo $personalInfo->job_title;?>" class="form-control text-uppercase" id="job_title">
+											<select minLength="2" maxLength="10"  onkeypress="return isAplha(event)" class="form-control text-uppercase" name="job_category" id="job_category">
+											    <?php //$this->db->where("id",$personalInfo->job_category);
+											          //$jobcat= $this->db->get('emp_category');
+											          //foreach($jobcat->result() as $jobcat):?>
+    											    <option value="1" <?php if($personalInfo->job_category==1){echo 'selected="selected"';}?>)>Accountent</option>
+    											    <option value="2" <?php if($personalInfo->job_category==2){echo 'selected="selected"';}?>)>Employee</option>
+    											    <option value="3" <?php if($personalInfo->job_category==3){echo 'selected="selected"';}?>)>Teacher</option>
+    											    <option value="4" <?php if($personalInfo->job_category==4){echo 'selected="selected"';}?>)>Student</option>
+    											    <option value="5" <?php if($personalInfo->job_category==5){echo 'selected="selected"';}?>)>Principal</option>
+    											    <?php //endforeach; ?>
+											</select>
 										</div>
 									</div>
 									<div class="col-md-6">

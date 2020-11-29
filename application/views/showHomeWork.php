@@ -78,38 +78,38 @@
 								if($do)
 								{echo "successfully home work is Given";
 								}?></div>
-								<select name="showhomeworkfor" id="showhomeworkfor" >
+							<!--	<select name="showhomeworkfor" id="showhomeworkfor" >
 								<option value="01">-Select-</option>
 									<?php $logtype = $this->session->userdata('login_type');
-											if($logtype == "admin"){
+										//	if($logtype == "admin"){
 											?>
 											<option value="employee">Employee</option>
 											<option value="teachers">Teachers</option>
 											<option value="students">Students</option>
 											<?php
-											}
-											elseif($logtype == "3"){
+											//}
+										//	elseif($logtype == "3"){
 											?>
 											<option value="teachers">Teachers</option>
 											<option value="students">Students</option>
 											
-											<?php }
-											elseif($logtype == "2"){
+											<?php// }
+										//	elseif($logtype == "2"){
 												?>
 											<option value="employee">Employee</option>
-											<?php }
-											elseif($logtype == "student"){
+											<?php// }
+											//elseif($logtype == "student"){
 												?>
 											<option value="students">Students</option>
-											<?php }
-											elseif($logtype == "accountent"){
+											<?php// }
+										//	elseif($logtype == "accountent"){
 											?>
 											<option value="employee">Employee></option>
 											<option value="teachers">Teachers</option>
 											<option value="students">Students</option>
-										<?php	}
+										<?php//	}
 											 ?>
-								</select>
+								</select>-->
 							</div>
 						</div>
 					</div>

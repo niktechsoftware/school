@@ -115,7 +115,7 @@
               <th>SNo.</th>
               <th>Employee No.</th>
               <th>Employee Name</th>
-              <th>Job Title</th>
+              <th>Job Category</th>
               <th>Mobile Number</th>
               <th>Address</th>
               <th>View</th>
@@ -130,12 +130,18 @@
             <td><?php echo $sno; ?></td>
               <td><?php echo $row->username; ?></td>
               <td><?php echo $row->name; ?></td>
-              <td><?php echo $row->job_title; ?></td>
+              <td><?php $this->db->where("id",$row->job_category);
+					$jobcat=$this->db->get('emp_category')->row();
+					echo $jobcat->Name; ?></td>
               <td><?php echo $row->mobile; ?></td>
                <td><?php echo $row->address; ?></td>
-              <td><a
-                  href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">Full
-                  Profile</a></td>
+              <td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">
+                   <?php if($row->photo){?>
+				 <img  class="img-circle" height="50" width="50" src="https://schoolerp-niktech.in/a_school/9/images/empImage/<?php echo $row->photo;?>"/>
+				<?php }else{?>
+				<img src="https://www.schoolerp-niktech.in/a_school/icon/2.png" class="img-circle" style="height:50px; width:50px;" alt="">
+			    <?php }?>
+                  	</a></td>
             </tr>
             <?php $sno++; endforeach;
 									} else{
