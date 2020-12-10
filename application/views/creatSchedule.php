@@ -5,9 +5,12 @@
 		<div class="panel panel-calendar">
 			<div class="panel-heading panel-blue border-light">
 				<?php 
+			         $exam_id=$this->uri->segment('3');
 				     $this->db->where('school_code',$school_code);
-				      $this->db->where('id',$exam_name);
-                        $exam=$this->db->get('exam_name')->row();
+				     $this->db->where('id',$exam_id);
+                    $exam=$this->db->get('exam_name')->row();
+                   /* $this->db->where("exam_id",$exam->exam_id);
+                    $eh=$this->db->get("exam_head")->row();*/
 				     ?>
 				            
 				<h4 class="panel-title">Scheduling For-Exam Name:<?php echo $exam->exam_name;?> </h4>

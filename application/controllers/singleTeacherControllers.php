@@ -19,18 +19,28 @@
 	}
 	
 	function index(){
-
-			$school_code=$this->session->userdata("school_code");
-
-		$data['pageTitle'] = 'Dashboard';
-		$data['smallTitle'] = 'Overview of all Section';
-		$data['mainPage'] = 'Dashboard';
-		$data['subPage'] = 'dashboard';
-		$data['title'] = 'School Dashboard';
-		$data['headerCss'] = 'headerCss/dashboardCss';
-		$data['footerJs'] = 'footerJs/dashboardJs';
-		$data['mainContent'] = 'teacherdashboard';
-		$this->load->view("includes/mainContent", $data);
+       
+       
+	       $school_code=$this->session->userdata("school_code");
+	      $emp_id=$this->session->userdata("username");
+	     
+	      $this->db->where("username",$emp_id);
+    	    $emp =$this->db->get("employee_info")->row();
+            $empId=$emp->id;
+    	     $this->db->where('school_code',$school_code);
+    	    $this->db->where("emp_id",$empId);
+    	    $this->db->where('status',0);
+    	    $result=$this->db->get("emp_leave")->num_rows();;
+    	    $data['pending']= $result;
+            $data['pageTitle'] = 'Dashboard';
+	    	$data['smallTitle'] = 'Overview of all Section';
+		    $data['mainPage'] = 'Dashboard';
+		    $data['subPage'] = 'dashboard';
+		    $data['title'] = 'School Dashboard';
+		    $data['headerCss'] = 'headerCss/dashboardCss';
+		    $data['footerJs'] = 'footerJs/dashboardJs';
+		    $data['mainContent'] = 'teacherdashboard';
+		    $this->load->view("includes/mainContent", $data);
 	
 	}
 		function chat() {
@@ -586,23 +596,23 @@
 	$this->load->view("includes/mainContent", $data);
 }*/
 
-function showHomeWork()
-{
-		$school_code=$this->session->userdata('school_code');
-	$this->load->model("homeWorkModel");
-	$res=$this->db->query("SELECT DISTINCT section,id FROM class_section where school_code = $school_code ");
-		$data['noc'] = $res->result();
-		$va=$this->homeWorkModel->getHomeWorkDetail();
-		$data['var1']=$va->result();
-	$data['pageTitle'] = 'Show HomeWork';
-	$data['smallTitle'] = 'Employee/Teacher/Student';
-	$data['mainPage'] = 'Show HomeWork';
-	$data['subPage'] = 'Employee/Teacher/Student';
-	$data['title'] = 'Show HomeWork';
-	$data['headerCss'] = 'headerCss/homeWorkCss';
-	$data['footerJs'] = 'footerJs/showHomeWorkJs';
-	$data['mainContent'] = 'showHomeWork';
-	$this->load->view("includes/mainContent", $data);
+         function showHomeWork()
+          {
+		    $school_code=$this->session->userdata('school_code');
+	        $this->load->model("homeWorkModel");
+	        $res=$this->db->query("SELECT DISTINCT section,id FROM class_section where school_code = $school_code ");
+		    $data['noc'] = $res->result();
+		    $va=$this->homeWorkModel->getHomeWorkDetail();
+		    $data['var1']=$va->result();
+	        $data['pageTitle'] = 'Show HomeWork';
+	        $data['smallTitle'] = 'Employee/Teacher/Student';
+	        $data['mainPage'] = 'Show HomeWork';
+	        $data['subPage'] = 'Employee/Teacher/Student';
+	        $data['title'] = 'Show HomeWork';
+	        $data['headerCss'] = 'headerCss/homeWorkCss';
+	        $data['footerJs'] = 'footerJs/showHomeWorkJs';
+	        $data['mainContent'] = 'showHomeWork';
+	        $this->load->view("includes/mainContent", $data);
 
 	
 }

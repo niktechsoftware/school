@@ -110,11 +110,15 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						?>
                     </th>
                   </tr>
+                 
               </table>
               <br><br>
                 <?php  //$fsd=$this->session->userdata('fsd');?>
+                 
 		<div class="table-responsive">
 			<div class="table-responsive">
+			    
+			 
                <table class="table table-striped table-bordered table-hover" id="sample-table-2">
 					<thead>
 						<tr>
@@ -127,6 +131,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 							<th>Activity</th>
 						</tr>
 					</thead>
+					
+					   
                 <tbody>
                 <?php
 								$i = 1;$j=1;
@@ -146,6 +152,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   <tr>
                     <td><?php echo $j; ?></td>
                     <td>
+                       
                        <input type="hidden" id="rowidt<?php echo $i; ?>" value="<?php echo $v->id; ?>" />
 						<input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
                         <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
@@ -165,6 +172,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 
                  <?php if($result1)
                     { ?>
+                    
                     <td> <input type="text" id="mammarks<?php echo $i;?>" value="<?php echo $m = $result1->max_m;?>" readonly  name="mammarks<?php echo $i; ?>"/>  <?php //echo $result1->max_m; ?></td>
                     <?php }?>
                       
@@ -206,7 +214,6 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						  <input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
                         <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
                         <?php echo $stu1->username; ?>
-                      </td>
                       <td><?php echo $stu1->name; ?></td>
                       <td class="text-center">
                       <label class="radio-inline">
@@ -472,6 +479,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 						</tr>
 					</thead>
                 <tbody>
+                    
                 <?php
 								$i = 1;$j=1;
 								
@@ -496,17 +504,17 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
         }
                 $fsd = $this->uri->segment(3);     
                 if($studentList->num_rows()>0){
-                 foreach ($studentList->result() as $stu):
+                foreach ($studentList->result() as $stu):
               
-              $this->db->where("student_id",$stu->id);
+                $this->db->where("student_id",$stu->id);
 				$fname  = $this->db->get("guardian_info"); 
 				foreach ($fname->result() as $pname):
 				
                
 	          
-	              $this->db->where("id",$stu->id);
+	           $this->db->where("id",$stu->id);
 	           $stu1 = $this->db->get("student_info")->row();
-	            $val=$this->db->query("select * from exam_info WHERE exam_id = '$examid' AND class_id='$classid' AND subject_id='$subjectid' AND sub_type='$sub_type' AND fsd = '$fsd' and school_code='$school_code' AND stu_id='$stu->id'");
+	           $val=$this->db->query("select * from exam_max_subject join exam_info on exam_max_subject.id= exam_info.exam_max_id WHERE exam_max_subject.exam_id = '$examid' AND exam_max_subject.class_id='$classid' AND exam_max_subject.subject_id='$subjectid' AND exam_max_subject.sub_type='$sub_type' AND exam_max_subject.fsd = '$fsd' and exam_info.stu_id='$stu->id'");
 	  		 
 	  		if($val->num_rows()>0){
 	  		     $v=$val->row();
@@ -515,8 +523,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   <tr>
                     <td><?php echo $j; ?></td>
                     <td>
-						<input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $examid; ?>" />
-                        <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $stu->id; ?>" />
+						<input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $result1->id; ?>" />
+                        <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $result1->fsd; ?>" />
 						<input type="hidden" id="fsd<?php echo $i; ?>" value="<?php echo $fsd; ?>" />
                         <input type="hidden" id="classid<?php echo $i; ?>" value="<?php echo $classid; ?>" />
 						<input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
@@ -630,19 +638,22 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 
               $("#submit<?php echo $i;?>").click(function(){
                   var fsd = $("#fsd").val();
+                
                 var mmarks = $("#mammarks<?php echo $i; ?>").val();
-                var classid = $("#classid<?php echo $i; ?>").val();
+               // var classid = $("#classid<?php echo $i; ?>").val();
                 var stuid= $("#stu_id<?php echo $i; ?>").val();
                 var marks = $("#mark<?php echo $i; ?>").val();
-                var subjectid = $("#subjectid<?php echo $i; ?>").val();
-				var sub_type = $("#sub_type<?php echo $i; ?>").val();
+                //var subjectid = $("#subjectid<?php echo $i; ?>").val();
+				//var sub_type = $("#sub_type<?php echo $i; ?>").val();
                 var examid = $("#examid<?php echo $i; ?>").val();
-                var term = $("#term<?php echo $i; ?>").val();
+               // var term = $("#term<?php echo $i; ?>").val();
                 var attendence = $("input[name='attendence<?php echo $i; ?>']:checked").val();
     				   //alert(marks +" "+ sub_type +" "+mmarks);
     				   //alert(fsd);
     				    if(mmarks!="" && marks!=""){
-    					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{fsd : fsd, sub_type:sub_type,term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+    					
+    					$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,}, function(data){
+    					//$.post("<?php echo site_url("index.php/examControllers/insertMarksdetail") ?>",{fsd : fsd, sub_type:sub_type,term:term,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);
     						 $("#submit<?php echo $i;?>").show();
 

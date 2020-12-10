@@ -641,6 +641,520 @@ function update_questiondrom2(){
         endforeach;
 } 
 
+function testResult(){
+    ?> <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/style.css' />
+    <link rel='stylesheet' type='text/css' href='<?php echo base_url(); ?>assets/css/invoice_css/prin_result.css'
+        media="print" />
+    <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/invoice_js/example.js'></script>
+    <?php
+$school_code =15;
+$class_id =322;
+$fsd_id=24;
+$student_id=6391;
+$totalIndicator=0;
+$termTotal=1;
+$term = $this->db->query("select distinct (term) as trm from exam_name where school_code='$school_code'");
+if($term->num_rows()>0){
+   $i=0; foreach($term->result() as $trmv):
+      $termColv[$i] =  $this->db->query("select * from exam_name where school_code='$school_code' and term='$trmv->trm'");
+      $termCol[$i]=$termColv[$i]->num_rows();
+     $i++;   endforeach;
+?>
+     <table style="width:95%;text-transform: uppercase; margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;">
+                    <tr >
+                        <th colspan="1" rowspan="2">SCHOLASTIC AREA </th>
+                        <?php if($term->num_rows()>0){
+                         $i=0; foreach($term->result() as $trmv): ?>
+                        <th colspan="<?php if($termTotal==1){echo $termCol[$i]+1;}else{echo $termCol[$i];}?>" rowspan="2">TERM <?php echo $trmv->trm;?> (100 MARKS) </th>
+                        <?php $i++; endforeach;}?>
+                        <th colspan="3">OVERALL</th>
 
+                    </tr>
+
+                    <tr>
+                        <th colspan="3">
+                           
+                            <?php  $ovtg = "TERM"; 
+                            if($term->num_rows()>0){
+                            $i=0; foreach($term->result() as $trmv): 
+                             if($i>0){
+                           $ovt = $ovt."+".$ovtg."-".$trmv->trm ;
+                           }else{
+                            $ovt = $ovtg."-".$trmv->trm ;
+                           }
+                          // echo $ovt."<br>";
+                           $i++; endforeach;
+                           echo $ovt;
+                           }
+                           ?> 
+                           
+                           </th>
+                    </tr>
+
+                    <tr>
+
+                        <th colspan="1" rowspan="1" style="text-transform: uppercase;">Subjects</th>
+                     <?php  foreach($termColv as $examCol):
+                                foreach($examCol->result() as $examName):
+                                    echo '<th>'.$examName->exam_name."</th>";
+					            endforeach;
+					            if($termTotal==1){
+					                echo '<th>Total</th>';
+					            }
+							endforeach;
+					?>
+						<!--2 term exam nam end-->
+                        <th style="text-transform: uppercase;">Grand<br> Total</th>
+                        <th rowspan="1" style="text-transform: uppercase;">Grade</th>
+                        <th rowspan="1" style="text-transform: uppercase;">Rank:</th>
+                    </tr>
+                  <?php 
+                   ///marks print
+				$subjectList = $this->db->query("select DISTINCT subject.id, subject.subject from subject join exam_max_subject on exam_max_subject.subject_id=subject.id where exam_max_subject.fsd='$fsd_id' and exam_max_subject.class_id ='$class_id' order by subject.id ASC ");
+			
+				if($subjectList->num_rows()>0){
+				     $rankcounter=0;
+				    foreach($subjectList->result() as $sl):?>
+                 <tr class="wight"> 
+					 <td class="subject" ><?php echo  $sl->subject;?></td>
+			    <?php $m=0;
+			    $subTotal =0;
+			    $GrandTotal=0;
+			   
+			    foreach($termColv as $examCol):
+			            $termsubTotal=0;
+			            $termmamTotal=0;
+                                foreach($examCol->result() as $examName):
+                                   $exam_id= $examName->id;
+                                $getsubMarks =   $this->db->query("select * from exam_info join exam_max_subject on exam_max_subject.id = exam_info.exam_max_id where exam_max_subject.exam_id ='$exam_id' and exam_max_subject.subject_id ='$sl->id' and exam_max_subject.fsd='$fsd_id' and exam_max_subject.class_id ='$class_id' and exam_info.stu_id='$student_id' ");
+                                   
+                                if($getsubMarks->num_rows()>0){
+                                    $gtotal =$getsubMarks->row()->max_m;
+                                    $subMarks = $getsubMarks->row()->marks;
+                                    $termsubTotal+=$subMarks;
+                                    $termmamTotal+=$subMarks;
+                                     $GrandTotal+=$gtotal;
+                                    $subTotal+=$subMarks;
+                                }else{
+                                    $subMarks="(N/A)";
+                                    $gtotal="(N/A)";
+                                }
+                                if($totalIndicator ==1){
+                                    echo '<th>'.$subMarks." / ".$gtotal."</th>";
+                                }else{
+                                    echo '<th>'.$subMarks."</th>";
+                                }
+                                   
+					            endforeach;
+					            if($termTotal==1){
+					                if($totalIndicator ==1){
+                                    echo '<th>'.$termsubTotal." / ".$termmamTotal."</th>";
+                                    }else{
+                                    echo '<th>'.$termsubTotal."</th>";
+                                    } 
+					            }
+					            
+					          
+						$m++;	endforeach;
+					?>		
+				
+				<th class="center bold" ><?php  
+				if($totalIndicator ==1){
+				echo $subTotal." / ".$GrandTotal; }
+				else{
+				   	echo $subTotal; 
+				}?></th>
+				<!--overall total & grade start-->	
+				<?php 	if($GrandTotal>0){ 
+				    $per=round((($subTotal*100)/$GrandTotal), 2);}
+				?>
+				<td class="center bold"><?php echo $this->calculateGrade($per,$class_id);?></td>
+				<?php if($rankcounter < 1){?>
+			    <td rowspan ="<?php echo $subjectList->num_rows();?>">Class Rank: 1 <br> School Rank: 2</td>
+			    <?php }?>
+					<!--overall total & grade end-->
+                </tr>
+               
+                    <?php 
+                        
+                     $rankcounter++;    endforeach;}
+                        ?>
+                        <tr>
+                   <?php $this->subjectTotal($termColv,$class_id,$student_id,$fsd_id,$totalIndicator,$termTotal);?>
+                </tr> 
+                </table>
+                 <div style=" width:95%; margin-left:auto; margin-right:auto;font-size: 14px;">
+    	                <div style="width:50%; float:left;">
+    						<!--scholar,mkd,bsd,spring SCHOLASTIC start-->
+    	                        
+    						 <?php $this->co_ScolasticGrade($per,$class_id,$fsd_id,$student_id,$school_code);?>   
+    						 <?php $this->getAttendance($class_id,$fsd_id,$student_id);?>
+    	                  
+    	                </div>
+    	
+    	
+    	
+    	                <div style="width:50%; float:right;">
+    					
+    						<!--scholar,spring,mkd,bsd DISCIPLINE start-->
+    						<?php $this->discipline($per,$class_id,$fsd_id,$student_id,$school_code);?>
+    	                   <!--scholar,spring,mkd,bsd DISCIPLINE end-->
+    				
+    	                    <table style="width:70%; border:1px solid black; background-color:white;">
+    	                        <tr> 
+    								<!--bsd,spring,gyanodya,sarvodya remark start-->
+    								<td>Remarks:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php if($per>0){echo $gradecal =$this->remarks1($per,$class_id);} ?></label></td>
+    								<!--bsd,spring,gyanodya,sarvodya remark end-->									
+    																	
+    	                        </tr>
+    	                    </table>
+    	
+    	                </div>
+    	                   
+    	            </div>
+                    
+                    
+               
+               
+                <div>
+                    <?php $this->gradeTable();?>
+                </div>
+                
+                <?php
+               
+                
+}else{
+    echo "Please create Exam Schedule First  ";
+}
+}
+
+function remarks1($val,$classid){
+								if($val >= 91 && $val < 101):
+									return 'Outstanding';
+								elseif($val >= 81 && $val < 91):
+									return 'Excellent';
+								elseif($val >= 71 && $val < 81):
+									return 'Very Good';
+								elseif($val >= 61 && $val < 71):
+									return 'Good';
+								elseif($val >= 51 && $val < 61):
+									return 'Average';
+								elseif($val >= 41 && $val < 51):
+									return 'Fair';
+								elseif($val >= 33 && $val < 41):
+									return 'Marginal';
+								else:
+									return 'Poor';
+								endif;
+							}
+							
+function discipline($per,$class_id,$fsd_id,$student_id,$school_code){?>
+                        <table style="width:90%; border:1px solid black;">
+    						<tr>
+    	                        <th colspan="3" style="text-transform: uppercase;"> Discipline</th>
+    	                    </tr>
+    						<tr>
+    	                         <th style="text-transform: uppercase;"> Element </th>
+    	                           <?php  $term = $this->db->query("select distinct (term) as trm from exam_name where school_code='$school_code'");
+                                    if($term->num_rows()>0){
+                                        foreach($term->result() as $trmv):?>
+    	                            <th>TERM <?php echo $trmv->trm;?></th>
+    	                            <?php endforeach;}?>
+    	                        </tr>
+    	                      <?php $displName = $this->db->query("select * from exam_decipline where school_code = '$school_code'");
+    	                      foreach($displName->result() as $dName):?>
+    	                       <tr>
+    	                            <td><?php echo $dName->name;?></td>
+    	                           <?php  foreach($term->result() as $trmv):
+    	                               $getRecord =  $this->db->query("select * from exam_dicipline_marks where dmaster_id='$dName->id' and term ='$trmv->trm' and fsd ='$fsd_id' and student_id='$student_id' ");
+    	                                ?>
+    	                            <td><?php if($getRecord->num_rows()>0){echo $getRecord->grade;}else{
+    	                                echo $this->co_scolastic($per,$class_id);
+    	                            }?></td>
+    	                            <?php endforeach;?>
+    	                        </tr>
+    	                        <?php endforeach;?>
+    					
+    	                      
+    	                    </table>
+    	                    <?php
+}
+	function co_scolastic($val,$classid){
+								if($val > 80):
+									return 'A';
+								elseif($val >= 61  && $val < 81 ):
+									return 'A';
+								else:
+									return 'B';
+								endif;
+							}
+function co_ScolasticGrade($per,$class_id,$fsd_id,$student_id,$school_code){
+    ?>
+    <table style="width:90%; border:1px solid black;">
+    						<tr>
+    	                            <th colspan="3" style="text-transform: uppercase;">Co- SCHOLASTIC Area</th>
+    	                      </tr>
+    							<tr>
+    	                            <th style="text-transform: uppercase;"> Activity </th>
+    	                           <?php  $term = $this->db->query("select distinct (term) as trm from exam_name where school_code='$school_code'");
+                                    if($term->num_rows()>0){
+                                        foreach($term->result() as $trmv):?>
+    	                            <th>TERM <?php echo $trmv->trm;?></th>
+    	                            <?php endforeach;}?>
+    	                        </tr>
+    	                        <!-- Dynamic -->
+    							 <?php $displName = $this->db->query("select * from exam_activity where school_code = '$school_code'");
+    	                      foreach($displName->result() as $dName):?>
+    	                       <tr>
+    	                            <td><?php echo $dName->activiy_name;?></td>
+    	                           <?php  foreach($term->result() as $trmv):
+    	                               $getRecord =  $this->db->query("select * from exam_activity_marks where activity_id='$dName->id' and term ='$trmv->trm' and fsd ='$fsd_id' and student_id='$student_id' ");
+    	                                ?>
+    	                            <td><?php if($getRecord->num_rows()>0){echo $getRecord->grade;}else{
+    	                                echo $this->co_scolastic($per,$class_id);
+    	                            }?></td>
+    	                            <?php endforeach;?>
+    	                        </tr>
+    	                        <?php endforeach;?>
+    					
+    	                      
+    	                    </table>
+<?php }
+
+function getAttendance($class_id,$fsd_id,$student_id){?>
+      <table style="width:70%; border:1px solid black; background-color:white;">
+    	                        <tr>
+    	                            <?php
+    	                            $this->db->where("class_id",$class_id);
+    								$dt=$this->db->get("school_attendance");
+    							    $atotal=$dt->num_rows();
+    								$this->db->where('id',$fsd_id);
+    								$fsdval=$this->db->get('fsd')->row();
+    								$this->db->where('a_date >=',$fsdval->finance_start_date);
+    								$this->db->where('a_date <=',$fsdval->finance_end_date);
+    								$this->db->where('stu_id',$student_id);
+    								$this->db->where('attendance',0);
+    								$row1=$this->db->get('attendance');
+    								$absnt=$row1->num_rows();
+    								$present =$atotal-$absnt;
+    								?>
+    							
+    	                              <td><b>Attendance:&nbsp;&nbsp;&nbsp;&nbsp;<label><?php echo $present; ?>/<?php echo $atotal; ?></label></b></td>
+    	                              
+    	                        </tr>
+    	                    </table><?php
+}
+
+function calculateGrade($val,$classid){
+                                if($val >= 91 && $val < 101):
+                                    return 'A1';
+                                elseif($val >= 81 && $val < 91):
+                                    return 'A2';
+                                elseif($val >= 71 && $val < 81):
+                                    return 'B1';
+                                elseif($val >= 61 && $val < 71):
+                                    return 'B2';
+                                elseif($val >= 51 && $val < 61):
+                                    return 'C1';
+                                elseif($val >= 41 && $val < 51):
+                                    return 'C2';
+                                elseif($val >= 33 && $val < 41):
+                                    return 'D';
+                                else:
+                                    return 'E';
+                                endif;
+                                
+                            }
+                            function remarks($val,$classid){
+                                if($val >= 91 && $val < 101):
+                                    return 'Excellent';
+                                elseif($val >= 81 && $val < 91):
+                                    return 'Very Good';
+                                elseif($val >= 71 && $val < 81):
+                                    return 'Good';
+                                elseif($val >= 61 && $val < 71):
+                                    return 'Good';
+                                elseif($val >= 51 && $val < 61):
+                                    return 'Progressive';
+                                else:
+                                    return 'Needs Improvement';
+                                endif;
+                                
+                            }
+                            
+         function subjectTotal($termColv,$class_id,$student_id,$fsd,$totalIndicator,$termTotal){
+        ?>
+             <th>Subject Total</th>
+                   <?php 
+                   $grandcoltotal=0;
+                   $grandallcoltotal=0;
+                   foreach($termColv as $examCol):
+                       $termctotal=0;
+                       $termmtotal=0;
+                                foreach($examCol->result() as $examName):
+                                     //print_r($examName->id);
+                                        $subtotget =   $this->db->query("select sum(exam_info.marks) as totmarks from exam_info join exam_max_subject on exam_max_subject.id = exam_info.exam_max_id where exam_max_subject.exam_id ='$examName->id' and  exam_max_subject.fsd='$fsd' and exam_max_subject.class_id ='$class_id' and exam_info.stu_id='$student_id' ");
+                                        $subtotMax =   $this->db->query("select sum(exam_max_subject.max_m) as totmmmarks from exam_info join exam_max_subject on exam_max_subject.id = exam_info.exam_max_id where exam_max_subject.exam_id ='$examName->id' and  exam_max_subject.fsd='$fsd' and exam_max_subject.class_id ='$class_id' and exam_info.stu_id='$student_id' ");
+                              
+                              if($subtotget->num_rows()>0){
+                                  $columnsubTotal = $subtotget->row()->totmarks;
+                                  $grandcoltotal+=$columnsubTotal;
+                                  $termctotal+=$columnsubTotal;
+                                 
+                              }else{
+                                  $columnsubTotal="(N/A)";
+                              }
+                              if($subtotMax->num_rows()>0){
+                                  $columnGTotal = $subtotMax->row()->totmmmarks;
+                                  $grandallcoltotal+=$columnGTotal;
+                                   $termmtotal+=$columnGTotal;
+                              }else{
+                                  $columnGTotal="(N/A)";
+                              }
+                              
+                                if($totalIndicator ==1){
+                                    echo '<th>'.$columnsubTotal." / ".$columnGTotal."</th>";
+                                }else{
+                                    echo '<th>'.$subtotget->row()->totmarks."</th>";
+                                }
+					            endforeach;
+					             if($termTotal==1){
+					                if($totalIndicator ==1){
+                                    echo '<th>'.$termctotal." / ".$termmtotal."</th>";
+                                    }else{
+                                    echo '<th>'.$termctotal."</th>";
+                                    } 
+					            }
+					            
+							endforeach;
+					?>
+						<!--2 term exam nam end-->
+                        <th style="text-transform: uppercase;"><?php   if($totalIndicator ==1){ echo $grandcoltotal." / ".$grandallcoltotal; }else{ echo $grandcoltotal;}?></th>
+                        <th rowspan="1" style="text-transform: uppercase;">
+                           <?php if($grandallcoltotal>0){ $per=round((($grandcoltotal*100)/$grandallcoltotal), 2);};
+                             echo $this->calculateGrade($per,$class_id);?></th>
+                        <th rowspan="1" style="text-transform: uppercase;"></th><?php
+        }      
+        
+        function gradeTable(){
+            ?>
+             <div>
+    	                <center><b><label style="text-transform: uppercase;font-size: 14px; ">Instructions</label></b></center>
+    	                <center><label style="font-size: 14px;">Grading Scale For Scholastic areas:Grades are awarded on a 8-point Grading Scale as Follows-</label></center>
+    	            </div>
+    	    <div>        
+             <table style="width:95%;  margin-left:auto; margin-right:auto; border:1px solid black; background-color:white;font-size: 14px;">
+    						<thead> 
+    							<tr style="background-color: orange;">
+    								<th>MARKS RANGE </th>
+    								<th>GRADE</th>
+    							
+    								<!--<th>INDICATOR</th>-->
+    							
+    							</tr>
+    						</thead>
+    						<tbody>
+    	                    <!-- Dynamic -->
+    						<!--for scholar & mkd grade chart start-->
+    	                    
+    						<!--for bsd,spring grade chart start-->
+    	                    <tr>
+    	                        <td>91-100</td>
+    	                        <td>A1</td>
+    							<!--<td>Outstanding</td>-->
+    	                    </tr>
+    	                    <tr>
+    	                        <td>81-90</td>
+    	                        <td>A2</td>
+    							<!--<td>Excellent</td>-->
+    	                    </tr>
+    	                    <tr>
+    	                        <td>71-80</td>
+    	                        <td>B1</td>
+    							<!--<td>Very Good</td>-->
+    	                    </tr>
+    	                    <tr>
+    	                        <td>61-70</td>
+    	                        <td>B2</td>
+    							<!--<td>Good</td>-->
+    	                    </tr>
+    	                    <tr>
+    	                        <td>51-60</td>
+    	                        <td>C1</td>
+    							<!--<td>Average</td>-->
+    	                    </tr>
+    	                     <tr>
+    	                        <td>41-50</td>
+    	                        <td>C2</td>
+    							<!--<td>Fair</td>-->
+    	                    </tr>
+    	                     <tr>
+    	                        <td>33-40</td>
+    	                        <td>D1</td>
+    							<!--<td>Marginal</td>-->
+    	                    </tr>
+    	                     <tr>
+    	                        <td>32 & Below</td>
+    	                        <td>D2</td>
+    							<!--<td>Poor</td>-->
+    	                    </tr>
+    						<!--for bsd,spring grade chart end-->
+    	                   
+    						</tbody>
+    	                </table> 
+    	           </div>      
+            <?php
+        }
+                            
+        function examFsdCopy(){
+           $exam_name =  $this->db->get("exam_max_subject");
+           foreach($exam_name->result() as $examDetails):
+               echo $examDetails->exam_id;
+               echo "p".$examDetails->class_id;
+               echo "m".$examDetails->subject_id."<br>";
+              $getfsdAndTerm =  $this->db->query("select distinct(fsd),term,sub_type from exam_info where exam_id = '$examDetails->exam_id' and class_id ='$examDetails->class_id' and subject_id ='$examDetails->subject_id'");
+              //print_r($getfsdAndTerm->result());
+             $i=0; foreach($getfsdAndTerm->result() as $csv):
+                  if($csv->fsd >0 ){
+                      if($i>0){
+                        $insertMaxData['fsd']=$csv->fsd;
+                        $insertMaxData['term']=$csv->term;
+                        $insertMaxData['sub_type']=$csv->sub_type;
+                        $insertMaxData['exam_id']=$examDetails->exam_id;
+                        $insertMaxData['class_id']=$examDetails->class_id;
+                        $insertMaxData['subject_id']=$examDetails->subject_id;
+                        $insertMaxData['max_m']=$examDetails->max_m;
+                        $this->db->insert("exam_max_subject",$insertMaxData);
+                        //echo "insert";
+                      }else{
+                $updateMaxData['fsd']=$csv->fsd;
+                $updateMaxData['term']=$csv->term;
+                $updateMaxData['sub_type']=$csv->sub_type;
+                $this->db->where("id",$examDetails->id);
+                $this->db->update("exam_max_subject",$updateMaxData);
+                 //echo "update";
+                  }}
+           $i++; endforeach;
+            
+               endforeach;
+            
+        }    
+        
+        function updateExamInfo(){
+           $getexamInfo= $this->db->get("exam_max_subject");
+           foreach($getexamInfo->result() as $ei):
+              $updateDid['exam_max_id']= $ei->id;
+            $this->db->where("exam_id",$ei->exam_id);
+            $this->db->where("subject_id",$ei->subject_id);
+            $this->db->where("class_id",$ei->class_id);
+            $this->db->where("fsd",$ei->fsd);
+            $this->db->where("term",$ei->term);
+            $getid = $this->db->update("exam_info",$updateDid);
+            endforeach;
+            
+        }
+        
+       
 
 }

@@ -131,8 +131,9 @@
 										  		<?php echo $msg->message; ?>
 				                          	</td>
 				                          	<td class="email-menu-date">
-				                            	<input type="checkbox" id="del" value="<?php echo $msg->send_date; ?>" />
+				                            	<?php echo $msg->send_date; ?>
 				                            </td>
+				                            <!--<input type="checkbox" id="del" value="<?php //echo $msg->send_date; ?>" />-->
 				                        </tr>
 											<?php $i++; endforeach; ?>
 				                      </tbody>

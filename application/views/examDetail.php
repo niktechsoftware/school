@@ -146,10 +146,7 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
 										    </div>
 										</div>
 										<div id="enterMarks" class="table-responsive"></div>
-									</div>
-								</div>
-							</div>
-
+								
 						</div>
 <?PHP }else{ ?>
 <style>

@@ -116,7 +116,7 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
 												<select class="form-control" id="classId" name="class" class="form-control" style="width: 200px;" required=""></select>
 											</label>
 											</div>
-											 <div class="col-lg-2 col-md-4 col-sm-6">
+											 <div class="col-lg-2 col-md-2 col-sm-4">
 											<label>
 												Subject
 												<select class="form-control" id="subjectIdmarks" name="subject" class="form-control" style="width: 200px;" required=""></select>

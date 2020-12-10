@@ -64,7 +64,6 @@
                 <option value="">Select FSD</option><?php
                     $id=$this->session->userdata("id");
                     $query= $this->db->query("SELECT  distinct (fsd) as fsd from exam_info where stu_id='$id'");
-                   
                     if($query->num_rows()>0){
                     foreach($query->result() as $fd):
                         $this->db->where('id',$fd->fsd);

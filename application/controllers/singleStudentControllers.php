@@ -242,7 +242,6 @@ class singleStudentControllers extends CI_Controller{
 
 			$data['footerJs'] = 'footerJs/feeJs';
 			$data['mainContent'] = 'leftquestion';
-			$this->load->view("includes/mainContent", $data);
 		
 		}
 		function feesDetail(){
@@ -255,6 +254,17 @@ class singleStudentControllers extends CI_Controller{
 		$data['headerCss'] = 'headerCss/feeCss';
 		$data['footerJs'] = 'footerJs/feeJs';
 		$data['mainContent'] = 'stufeesdetail';
+		$this->load->view("includes/mainContent", $data);
+		}
+		function duefeereport(){
+		$data['pageTitle'] = 'Fee Report';
+		$data['smallTitle'] = 'Student Fee Report';
+		$data['mainPage'] = ' Fee Report';
+		$data['subPage'] = 'Fee Report';
+		$data['title'] = 'Student Fee Report';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
+		$data['mainContent'] = 'duefeereport';
 		$this->load->view("includes/mainContent", $data);
 		}
 		function objectivePaper(){
@@ -278,8 +288,7 @@ class singleStudentControllers extends CI_Controller{
 			$firstQuestion=$this->db->get("question_master")->row();
 			$data['firstQuestion'] =$firstQuestion;
 			$data['ques']=$quar;
-			
-			$data['stud_id']=$this->uri->segment(5);
+		$data['stud_id']=$this->uri->segment(5);
 	    $data['exam_mode_id']=$emd->row()->id;
 		$data['pageTitle'] = 'Objective Paper';
 		$data['smallTitle'] = 'Objective Paper';
@@ -298,16 +307,12 @@ class singleStudentControllers extends CI_Controller{
 		}
 		}
     function objectiveque_result(){
-	   
-    	$exammode=$this->uri->segment(3);
+	    $exammode=$this->uri->segment(3);
         $student_id=$this->uri->segment(4);
-    	
-        $upstatus['status']=1;
+    	$upstatus['status']=1;
         $this->db->where('exam_mode_id',$exammode);
     	$this->db->where('student_id',$student_id);
-    
-    	$this->db->update("objective_exam_result",$upstatus);
-    	
+        $this->db->update("objective_exam_result",$upstatus);
     	$this->db->where('exam_mode_id',$exammode);
     	$this->db->where('student_id',$student_id);
     	$getid=$this->db->get('objective_exam_result');
@@ -383,17 +388,14 @@ class singleStudentControllers extends CI_Controller{
 			$user = $this->session->userdata('username');
 			$data['stu_id']=$user;
 			$data['stuname']=$this->singleStudentModel->getStudentName($user)->row();
-			
 			$stuFatherName = $this->singleStudentModel->getStudentFatherName($user);
 			$data['stuFatherName']=$stuFatherName->result();
 			$stuFee = $this->singleStudentModel->getStudentFeeDetail($user);
 			$data['stuFee']=$stuFee->result();
-			
 			$data['pageTitle'] = 'Fee Report';
 			$data['smallTitle'] = 'Student Personal fee Detail';
 			$data['mainPage'] = 'Fee';
 			$data['subPage'] = 'Student Personal fee Detail';
-			
 			$data['title'] = 'Student Personal fee Detail';
 			$data['headerCss'] = 'headerCss/studentCss';
 			$data['footerJs'] = 'footerJs/studentJs';
@@ -426,7 +428,6 @@ class singleStudentControllers extends CI_Controller{
 			$data['smallTitle'] = 'Student Attendance Report';
 			$data['mainPage'] = 'Student';
 			$data['subPage'] = 'Student  Attendance Report';
-			
 			$data['title'] = 'Student Personal Attendance Report';
 			$data['headerCss'] = 'headerCss/studentCss';
 			$data['footerJs'] = 'footerJs/studentJs';

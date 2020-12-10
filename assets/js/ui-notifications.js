@@ -1,8 +1,8 @@
-var UINotifications = function() {
-	"use strict";
-	//function to initiate Toastr notifications
-	var initToastr = function() {
-		var i = -1;
+var UINotifications = function () {
+    "use strict";
+    //function to initiate Toastr notifications
+    var initToastr = function () {
+        var i = -1;
         var toastCount = 0;
         var $toastlast;
 
@@ -107,7 +107,7 @@ var UINotifications = function() {
                 });
             }
         });
-        function getLastToast(){
+        function getLastToast() {
             return $toastlast;
         }
         $('#clearlasttoast').on("click", function () {
@@ -116,11 +116,83 @@ var UINotifications = function() {
         $('#cleartoasts').on("click", function () {
             toastr.clear();
         });
-	};
-	
-	return {
-		init : function() {
-			initToastr();
-		}
-	};
-}(); 
+    };
+
+    var initSweetAlert = function () {
+
+        $("#basicSweetAlert").on("click", function (e) {
+            swal("Here's a message!")
+
+            e.preventDefault();
+        });
+
+        $("#textUnderSweetAlert").on("click", function (e) {
+            swal("Here's a message!", "It's pretty, isn't it?")
+
+            e.preventDefault();
+        });
+
+        $("#successSweetAlert").on("click", function (e) {
+            swal("Good job!", "You clicked the button!", "success")
+
+            e.preventDefault();
+        });
+
+        $("#confirmSweetAlert").on("click", function (e) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function () {
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            });
+
+            e.preventDefault();
+        })
+        
+        $("#cancellSweetAlert").on("click", function (e) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                } else {
+                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                }
+            });
+
+            e.preventDefault();
+        })
+        
+        $("#customIconSweetAlert").on("click", function (e) {
+            swal({
+                title: "Sweet!",
+                text: "Here's a custom image.",
+                imageUrl: "http://i.imgur.com/4NZ6uLY.jpg"
+            });
+
+            e.preventDefault();
+        })
+    };
+
+    return {
+        init: function () {
+            initToastr();
+            initSweetAlert();
+        }
+    };
+}();

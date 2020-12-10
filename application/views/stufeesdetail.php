@@ -84,7 +84,7 @@
 							<th class="text-center">S.No.</th>
 							<th class="text-center">Student Id</th>
 							<th class="text-center">Total Fees</th>
-							<th class="text-center">No Deposit Month</th>
+							<th class="text-center">No  Of Deposit Month</th>
 							<th class="text-center">Payment Mode</th>
 							<!-- <th class="text-center">Late Fees</th> -->
 							<th class="text-center">Paid Amount</th>

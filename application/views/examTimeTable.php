@@ -48,8 +48,11 @@
 											Select Exam Name
 											<select name="exam_name" id="exam_name" class="form-control">
 												<option value="01">-Select-</option>
-												<?php foreach ($request as $en):?>
-												<option value="<?php echo $en->id?>"><?php echo $en->exam_name?></option>
+												<?php foreach ($request as $en):
+												
+												//$this->db->where('exam_id',$en->exam_id);
+												//$ename=$this->db->get("exam_head")->row();-->?>
+												<option value="<?php echo $en->id?>"><?php echo $en->exam_name;?></option>
 												<?php endforeach;?>
 											</select>
 										</label>
@@ -59,34 +62,10 @@
 										</div>
 										
 										<div class="table-responsive">
-
-
-										<div id="printsub"></div>
-
-										</div>
-										</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    	<div id="printsub"></div>
+            	</div>
+		  </div>
+	   </div>
+	</div>
+ </div>
+</div>

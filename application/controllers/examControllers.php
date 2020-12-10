@@ -10,7 +10,7 @@ class examControllers extends CI_Controller
 	public function getData1()
 	{
 		$data=array(
-		    'fsd'=>$this->session->userdata("fsd"),
+		    'fsd'=>$this->input->post("fsd"),
     	    'term'=>$this->input->post("term"),
     		'exam_name'=>$this->input->post("examName"),
     		'exam_date'=>$this->input->post("datet"),
@@ -307,7 +307,7 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 	    $upexam=$this->input->post("upexam");
 	  $examName=$this->input->post("examName");
 	  $date=$this->input->post("datet");
-	  $exam_mode=$this->input->post('exam_mode');
+	  //$exam_mode=$this->input->post('exam_mode');
 
 	   $this->load->model("examModel");
 		$var=$this->examModel->updateexam($examName,$date,$upexam,$exam_mode);
@@ -344,11 +344,13 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 	
 	function startScheduling()
 	{ 	
-		$exam_name = $this->input->post("examName");
-		$edate = $this->input->post("edate");
+		$exam_id = $this->input->post("examName");
+    	$edate = $this->input->post("edate");
+		$fsd=$this->input->post("fsd");
 		//$exam_mode=$this->input->post('exam_mode');
 	 	$this->load->model("examModel");
-		$data['exam_name'] = $exam_name;
+		$data['exam_id'] = $exam_id;
+	
 	//print_r($data);exit();
 		$data['edate'] = $edate;
 		$data['pageTitle'] = 'Exam Scheduling';
@@ -356,14 +358,14 @@ if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
 		$data['mainPage'] = 'Exam Scheduling';
 		$data['subPage'] = 'Exam Scheduling';
 		//$this->load->model("examModel");
-		$fsd=$this->session->userdata("fsd");
-		$var=$this->examModel->getExamName($fsd);
+	/*	$fsd=$this->session->userdata("fsd");*/
+    	/*$this->db->where("exam_id",$exam_id);
+    	$var=$this->db->get("exam_head");*/
+    	$var=$this->examModel->getExamName($fsd);
 		//print_r($var->result());
 		$data['request']=$var->result();
 		$count = $this->db->count_all("exam_name");
-		
 		$data['i']=$count;
-		
 		$data['title'] = 'Configure Class/Section';
 		$data['headerCss'] = 'headerCss/examCss';
 		$data['footerJs'] = 'footerJs/examJs';
@@ -519,7 +521,9 @@ function defineExam1(){
 	function createExam()
 	{
 		$this->load->model("examModel");
-		$exam_name=	$this->input->post("exam_name");
+		$exam_id=	$this->input->post("exam_name");
+	/*	echo $exam_id;
+		exit();*/
 		$edate=$this->input->post("edate");
 		$nos = 	$this->input->post("nos");
 		$nod =	$this->input->post("nod");
@@ -527,20 +531,19 @@ function defineExam1(){
 		for($i=1;$i<$nos+1;$i++)
 		{
 		$data=array(
-				'exam_id'=>$exam_name,
+				'exam_id'=>$exam_id,
 				'shift'=>$this->input->post("shift$i"),
-				
-				
 				'to1'=>	$this->input->post("to$i"),
-						'from1'=> $this->input->post("from$i")
+				'from1'=> $this->input->post("from$i")
 						);
 						$this->examModel->ensertshift($data);
+					
 		}
 			
 		for($i=1;$i<$nod+1;$i++)
 		{
 		$data1 = array(
-		'exam_id'=>$exam_name,
+		'exam_id'=>$exam_id,
 				
 		
 		'date1'=>	$this->input->post("date$i")
@@ -548,7 +551,7 @@ function defineExam1(){
 		);
 		$this->examModel->ensertdays1($data1);
 		}
-		redirect("index.php/login/createSchedule/$exam_name");
+		redirect("index.php/login/createSchedule/$exam_id");
 	}
 	
 	
@@ -947,7 +950,7 @@ function insertMarksdetail()
 				
 				$this->db->where('school_code' ,$this->session->userdata('school_code'));
 				$this->db->where('class_id',$classid);
-				$this->db->where('fsd',$fsd);
+			//	$this->db->where('fsd',$fsd);
 				$this->db->where('subject_id',$subjectid);
 				$this->db->where('stu_id',$stuid);
 				$this->db->where('exam_id',$examid);
@@ -974,27 +977,27 @@ function insertMarksdetail()
 			//for ramdoot end
 		}else{
 			
-			$this->db->where('fsd',$fsd);
+			/*$this->db->where('fsd',$fsd);
 			$this->db->where('school_code' ,$this->session->userdata('school_code'));
-			$this->db->where('class_id',$classid);
-			$this->db->where('sub_type',$sub_type);
-			$this->db->where('subject_id',$subjectid);
+		   //$this->db->where('class_id',$classid);
+			$this->db->where('sub_type',$sub_type);*/
+			//$this->db->where('subject_id',$subjectid);
 			$this->db->where('stu_id',$stuid);
-			$this->db->where('exam_id',$examid);
+			$this->db->where('exam_max_id',$examid);
 	$v=	$this->db->get('exam_info');
 	if($v->num_rows()<1){
 	    $data=array(
-			'term'=>$term,
-			'class_id'=>$classid,
-			'subject_id'=>$subjectid,
+			//'term'=>$term,
+			//'class_id'=>$classid,
+			//'subject_id'=>$subjectid,
+			//'out_of'=>$mmarks,
+			//'sub_type'=>$sub_type,
 			'stu_id'=> $stuid,
-			'out_of'=>$mmarks,
-			'sub_type'=>$sub_type,
 			'marks'=> $marks,
-			'exam_id'=>$examid,
+			'exam_max_id'=>$examid,
 			'Attendance'=>$attendence,
-		        'fsd'=>$fsd,
-			'school_code'=>$this->session->userdata('school_code'),
+		        //'fsd'=>$fsd,
+			//'school_code'=>$this->session->userdata('school_code'),
 			"created" => date('Y-m-d'),
 			);
 	        $this->db->insert('exam_info',$data);
@@ -1007,6 +1010,7 @@ function insertMarksdetail()
 	function resultRender(){
 		$school_code =$this->session->userdata("school_code");
 		$data['examName'] = $this->input->post("examName");
+	
 		$data['student_id'] = $this->input->post("student_id");
 		$data['fsd'] = $this->input->post("fsd");
 	    

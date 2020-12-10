@@ -4,6 +4,23 @@ class feeModel extends CI_Model{
 		$res = $this->db->query("select * from  fee_deposit  where status=1 and invoice_no='$invoice_no'");
 		return $res;
 	}
+		function getTotMonthsHaveDeposited($stu_id,$fsd){
+		$totj =0;
+		$getDepositeMonth = $this->db->query("select sum(deposite_month) as totmonth from fee_deposit where student_id='$stu_id' and status =1 and finance_start_date='$fsd' ");
+		if($getDepositeMonth->num_rows()>0){
+			
+		if($getDepositeMonth->row()->totmonth){
+			$totj=$getDepositeMonth->row()->totmonth;
+		}else{
+			$totj=0;
+		}
+		
+		}else{
+			$totj=0;
+			
+		}
+		return $totj;
+	}
 	function getDiscount($invoice_no,$i){
 		$this->db->where('invoice_number',$invoice_no);
 		$eunm1 = $this->db->get('dis_den_tab');
@@ -45,8 +62,10 @@ class feeModel extends CI_Model{
 								//  print_r($totdisc);
 								return $totdisc;
 			}
-	
-	function totFee_due_by_id($stu_id,$indicator){
+			
+		//single stundent fee report 
+		///
+		function totFee_due_by_id($stu_id,$indicator){
 		
 		$student_id = $stu_id;
 		$monthArray =array();
@@ -165,6 +184,7 @@ class feeModel extends CI_Model{
 	
 	function getMonthFeeByMonth($demandtotdate,$student_id){
 		//echo $demandtotdate;
+	
 		$this->db->where("school_code",$this->session->userdata("school_code"));
 		$this->db->where("finance_start_date <= ",$demandtotdate);
 		$this->db->where("finance_end_date >= ",$demandtotdate);
@@ -190,13 +210,14 @@ class feeModel extends CI_Model{
 		}
 		if($stu_record){
 		$totMonthly = $this->getOnemonthFee($student_id,$classid,$getmonth,$getfsdid,$stu_record->discount_id,$stu_record->vehicle_pickup);
-			//echo $totMonthly."<br>";
+		//	echo $totMonthly."<br>";
+			//exit();
 		return $totMonthly;
 		}}
 	}
-	
-	function getOnemonthFee($student_id,$classid,$getmonth,$getfsdid,$discount,$transportid){
-		//echo $getfsdid."<br>";
+		function getOnemonthFee($student_id,$classid,$getmonth,$getfsdid,$discount,$transportid){
+	//echo $getfsdid."<br>";
+
 		$school_code =$this->session->userdata("school_code");
 		$this->db->select_sum("fee_head_amount");
 		/* if($school_code ==1){
@@ -208,13 +229,11 @@ class feeModel extends CI_Model{
 			$this->db->where("fsd",$getfsdid);
 			$this->db->where("class_id",$classid);
 			$this->db->where("cat_id",0);
-
-			$this->db->where_in("taken_month",$mon);
+            $this->db->where_in("taken_month",$mon);
 			$fee_head = $this->db->get("class_fees")->row();
 			$totf = $fee_head->fee_head_amount;
 			$discount = $this->studentFeeDiscountById($classid,$totf,$discount,$mon);
 			$transport = $this->studentFeeTransportById($transportid);
-			
 			$this->db->where("month",$getmonth);
 			$this->db->where("stu_id",$student_id);
 			$this->db->where("fsd",$getfsdid);
@@ -224,7 +243,7 @@ class feeModel extends CI_Model{
 			}else{
 				$totf=$totf-$discount+$transport;
 			}
-			//echo $totf;
+		
 			return $totf;
 	}
 		function studentFeeTransportById($transportid){
@@ -319,23 +338,7 @@ class feeModel extends CI_Model{
 		}
 	}	
 	//total deposited by student
-	function getTotMonthsHaveDeposited($stu_id,$fsd){
-		$totj =0;
-		$getDepositeMonth = $this->db->query("select sum(deposite_month) as totmonth from fee_deposit where student_id='$stu_id' and status =1 and finance_start_date='$fsd' ");
-		if($getDepositeMonth->num_rows()>0){
-			
-		if($getDepositeMonth->row()->totmonth){
-			$totj=$getDepositeMonth->row()->totmonth;
-		}else{
-			$totj=0;
-		}
-		
-		}else{
-			$totj=0;
-			
-		}
-		return $totj;
-	}
+
 	//end total deposited by student
 	function getTotMonthsToDeposite($stu_id,$fsddate){
 			$fsdStartDate = $fsddate;

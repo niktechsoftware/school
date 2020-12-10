@@ -598,6 +598,7 @@
     										
     									</div>
     								</div>
+    								
 </div>
 <!--3rd row end-->
 <!--4rth row start-->
@@ -1005,7 +1006,181 @@
         </div>
       </div>
     </div>
-
+<div class="col-lg-4 col-md-4">
+								<div class="panel panel-red panel-calendar">
+									<div class="panel-heading border-light">
+										<h4 class="panel-title">Appointments</h4>
+										<div class="panel-tools">
+											<div class="dropdown">
+												<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-white">
+													<i class="fa fa-cog"></i>
+												</a>
+												<ul class="dropdown-menu dropdown-light pull-right" role="menu">
+													<li>
+														<a class="panel-collapse collapses" href="#"><i class="fa fa-angle-up"></i> <span>Collapse</span> </a>
+													</li>
+													<li>
+														<a class="panel-refresh" href="#">
+															<i class="fa fa-refresh"></i> <span>Refresh</span>
+														</a>
+													</li>
+													<li>
+														<a class="panel-config" href="#panel-config" data-toggle="modal">
+															<i class="fa fa-wrench"></i> <span>Configurations</span>
+														</a>
+													</li>
+													<li>
+														<a class="panel-expand" href="#">
+															<i class="fa fa-expand"></i> <span>Fullscreen</span>
+														</a>
+													</li>
+												</ul>
+											</div>
+											<a class="btn btn-xs btn-link panel-close" href="#">
+												<i class="fa fa-times"></i>
+											</a>
+										</div>
+									</div>
+									<div class="panel-body">
+										<div class="height-300">
+											<div class="row">
+												<div class="col-xs-6">
+													<div class="actual-date">
+													   <?php $cdate=date("Y-m-d H:i:s");
+													  $day = date('d', strtotime($cdate));
+													     $month = date('M', strtotime($cdate));
+													      $h = date('H', strtotime($cdate));
+													     $i = date('i', strtotime($cdate));
+													      $s = date('s', strtotime($cdate));
+													   ?>
+														<span class="actual-day"><?php echo $day; ?></span>
+														<span class="actual-month"><?php echo $month; ?></span>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="clock-wrapper">
+																<div class="clock">
+																	<div class="circle">
+																		<div class="face">
+																			<div id="hour" style="transform: rotate(237.758deg);"></div>
+																			<div id="minute" style="transform: rotate(337.1deg);"></div>
+																			<div id="second" style="transform: rotate(234deg);"></div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="weather text-light">
+																<i class="wi-day-sunny"></i>
+																25°
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="row">
+														<div class="appointments border-top border-bottom border-light space15">
+															<a class="btn btn-sm owl-prev text-light">
+																<i class="fa fa-chevron-left"></i>
+															</a>
+															<div class="e-slider owl-carousel owl-theme" data-plugin-options='{"transitionStyle": "goDown", "pagination": false}'>
+																<div class="item">
+																	<div class="inline-block padding-10 border-right border-light">
+																		<span class="bold-text text-small"><i class="fa fa-clock-o"></i> 17:00</span>
+																		<span class="text-light text-extra-small">1 hour</span>
+																	</div>
+																	<div class="inline-block padding-10">
+																		<span class="bold-text text-small">NETWORKING</span>
+																		<span class="text-light text-small">Out to design conference</span>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inline-block padding-10 border-right border-light">
+																		<span class="bold-text text-small"><i class="fa fa-clock-o"></i> 18:30</span>
+																		<span class="text-light text-extra-small">30 mins</span>
+																	</div>
+																	<div class="inline-block padding-10">
+																		<span class="bold-text text-small">BOOTSTRAP SEMINAR</span>
+																		<span class="text-light text-small">Problem Solving</span>
+																	</div>
+																</div>
+																<div class="item">
+																	<div class="inline-block padding-10 border-right border-light">
+																		<span class="bold-text text-small"><i class="fa fa-clock-o"></i> 20:00</span>
+																		<span class="text-light text-extra-small">2 hour</span>
+																	</div>
+																	<div class="inline-block padding-10">
+																		<span class="bold-text text-small">Lunch with Nicole</span>
+																		<span class="text-light text-small">Next on Tuesday</span>
+																	</div>
+																</div>
+															</div>
+															<a class="btn btn-sm owl-next text-light"><i class="fa fa-chevron-right"></i> </a>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="pull-right">
+														<a href="#newEvent" class="btn btn-sm btn-transparent-white new-event"><i class="fa fa-plus"></i> New Event </a>
+														<a href="#showCalendar" class="btn btn-sm btn-transparent-white show-calendar"><i class="fa fa-calendar-o"></i> Calendar </a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+<div class="col-md-12 col-lg-4 col-sm-12">
+								<div id="notes">
+									<div class="panel panel-note">
+										<div class="e-slider owl-carousel owl-theme">
+										    <?php  $cdate=date("Y-m-d");
+										    $this->db->where('DATE(send_date)',$cdate);
+										     $this->db->where('school_code',$this->session->userdata('school_code'));
+										    $message=$this->db->get('message');
+										    if($message->num_rows()>0){ 
+										    foreach($message->result() as $message):
+										    ?>
+											<div class="item">
+												<div class="panel-heading">
+													<h4 class="no-margin">Today's Thought</h4>
+												</div>
+												<div class="panel-body space10">
+													<div class="note-short-content">
+													   <h4><b> <?php echo $message->message; ?></b></h4>
+													</div>
+												
+												</div>
+												<div class="panel-footer">
+													<div class="avatar-note"><img src="assets/images/avatar-2-small.jpg" alt="">
+													</div>
+													<span class="author-note"><?php echo $message->sender_id; ?></span>
+													<time class="timestamp" title="<?php echo $message->send_time;?>">
+													<?php echo $message->send_date;?>
+													</time>
+													<div class="note-options pull-right">
+													</div>
+												</div>
+											</div>
+											<?php endforeach; } ?>
+									    </div>
+									</div>
+								</div>
+							</div>
+						</div>							
+						</div>
+						
+						
+						
 </div>
 </div>
 

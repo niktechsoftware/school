@@ -36,11 +36,8 @@
 									</div>
 									<div class="row">
 										<div class="col-sm-5">
-										
-
-											<div class="panel  panel-calendar">
-											
-												<div class="panel-heading panel-blue border-light">
+										<div class="panel  panel-calendar">
+											<div class="panel-heading panel-blue border-light">
 													<h3 class="panel-title">Enter Test Name And Starting Date</h3>
 												</div>
 												<form action="<?php echo base_url();?>index.php/examControllers/getData1"  method ="post"  id="form">
@@ -52,7 +49,6 @@
 													    	<td><label class="panel-title">Select Term</label></td>
 													    	<td>  <select name="term" required="required" style="width: 180px;"><option>--SELECT TERM--</option><option value="1" >TERM 1</option><option value="2">TERM 2</option><option value="3">TERM 3</option><option value="4">TERM 4</option></select>
 															<br><br></td>
-													    	
 													    </tr>
 													    <tr>
 													    	<td><label class="panel-title">Test Name: </label></td>
@@ -72,11 +68,8 @@
                                                         </button>
 														</td></tr>
 													    </table>
-														
-					                         		</div>
-													
-												</div>	
-												
+													</div>
+													</div>	
 												</div>
 												</form>
 											</div>
@@ -91,18 +84,13 @@
                                                           x.value = x.value.toUpperCase();
                                 
                                                             });
-				
-											</script>
+				                                	</script>
 											<div class="col-sm-15">
-											
-										
-											<div class="panel  panel-calendar">
-											
-												<div class="panel-heading panel-blue border-light">
+												<div class="panel  panel-calendar">
+											<div class="panel-heading panel-blue border-light">
 													<h3 class="panel-title">Edit Exam Details</h3>
 												</div>
 											<form action="<?php echo base_url();?>index.php/examControllers/updateData1"  method ="post"  id="form">
-												
 												<div class="panel-body space10">
 													<div class="row col-sm-12">
 													    <div class="space10" >
@@ -114,14 +102,14 @@
 														<?php foreach ($requestforUpdate as $row):
 															$ds= $row->exam_date;
 															$id=$row->id;
-															$ename=$row->exam_name;
+														 $ename=$row->exam_name;
 															$this->db->where("id",$this->session->userdata("fsd"));
 															$getfsdDates = $this->db->get("fsd")->row();
 															$cd=$getfsdDates->finance_start_date;
 															
 																if($ds>=$cd)
 																{
-																	?><option  value="<?php echo $row->id?>"><?php echo $row->exam_name?></option><?php }endforeach;?>
+																	?><option  value="<?php echo $row->id?>"><?php echo $ename;?></option><?php }endforeach;?>
 														</select>
 													
 														<br></td></tr>
@@ -130,30 +118,24 @@
 								                     <td> <input  type="text" id="upexam" name ="upexam"  style="width:200px;height:35px;margin-left:10px;" placeholder="Enter Exam Name">
 														</br></td></tr>
 														</br>
-													
-													    
-													    <tr>
+													 <tr>
 													    	<td><label class="panel-title">Date</label> 
 													    	</td>
 													    	<td> <input  type="text" class="form-control space10"  id = "printDate1" name ="datet"  style="width: 160px;"  placeholder="Enter Date"> 
 														<br>
 													    	</td>
 													    </tr>
-
-													    <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
+                                                      <tr>	<td> <button class="btn btn-red " style="margin-left:150px; margin-top:10px;">
                                                             Update <i class="fa fa-arrow-circle-right"></i>
                                                         </button>
 														</td></tr>
 													    </table>
-														
-					                         		</div>
-													
+													</div>
 												</div>	
 												
 												</div>
 												</form>
 											</div>
-												
 										<!-- ------------------------------ -->
 										</div>
 										</div>
@@ -182,7 +164,7 @@
 													<tr>
 														<td>	
 															
-											<input type="text" style="width: 140px;" name="examName<?php echo $i;?>" value="<?php echo $row->exam_name;?>" id="ename<?php echo $i;?>" disabled="disabled"/>									
+											<input type="text" style="width: 140px;" name="examName<?php echo $i;?>" value="<?php echo $ename;?>" id="ename<?php echo $i;?>" disabled="disabled"/>									
 											 <input type="hidden" name="examName" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/>
 														</td>
 														<td><?php echo $row->term;?> Term</td>
@@ -199,10 +181,7 @@
 																	{?>
 
 																	<button type='submit' style="width: 80px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
-
-														
-													    	</td>
-															
+                                                            	</td>
 															<?php }else
 															{
 																//echo date('Y-m-d',strtotime($ds));
@@ -214,10 +193,7 @@
 														   <a href="<?php echo base_url();?>index.php/examControllers/examdonedeleteExam/<?php echo $row->id; ?>" class="btn btn-red ">
 											          	   <i class="fa fa-arrow-circle-right"></i>Delete Exam</a> 
 														    </td>
-														   
-														   
-
-														<?php }else{ ?> <button type='submit' style="width: 160px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
+															<?php }else{ ?> <button type='submit' style="width: 160px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
 														</td>
 														</td>
 
@@ -226,38 +202,33 @@
 											          	<i class="fa fa-arrow-circle-right"></i>Delete Exam</a>
 														</td>
 													</tr></form>
-													
-                                </div>
-							<script >	
-							  <?php if($ds>$cd){ ?> 	 
-						      $("#delete<?php echo $i;?>").click(function(){
-					            var id =$('#rowid<?php echo $i;?>').val();
-                                //window.confirm('Are you sure to delete the exam');
-				           $.post("<?php echo site_url('index.php/examControllers/deleteExam') ?>",{id : id},function(data){
-				    	  	alert(" Exam deleted Successfully!!!!! ");
-                             $("#delete<?php echo $i;?>").hide();
-                              window.location.reload();
-				             });
-				           }); 
-						   <?php }?>  
-
-					         </script>	
+													 </div>
+                            							<script >	
+                            							  <?php if($ds>$cd){ ?> 	 
+                            						      $("#delete<?php echo $i;?>").click(function(){
+                            					            var id =$('#rowid<?php echo $i;?>').val();
+                                                            //window.confirm('Are you sure to delete the exam');
+                            				           $.post("<?php echo site_url('index.php/examControllers/deleteExam') ?>",{id : id},function(data){
+                            				    	  	alert(" Exam deleted Successfully!!!!! ");
+                                                         $("#delete<?php echo $i;?>").hide();
+                                                          window.location.reload();
+                            				             });
+                            				           }); 
+                            						   <?php }?>  
+                            
+                            					         </script>	
 													<?php }} $i++;endforeach;?>
-													
-											   </tbody>
+											 </tbody>
 											</table>
-											
 											</div>
 										</div>
 									</div>
 								</div>
-								
 							</div>		
-							</div>
-									</div>
-								</div>
-								<!-- end: INLINE TABS PANEL -->
-							</div>
-						</div>
-
-						<!-- end: PAGE CONTENT
+    					</div>
+					</div>
+				</div>
+<!-- end: INLINE TABS PANEL -->
+</div>
+</div>
+<!-- end: PAGE CONTENT

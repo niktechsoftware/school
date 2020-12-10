@@ -571,181 +571,28 @@ function result(){
 		$id = $this->uri->segment(3);
 		$fsd1 = $this->uri->segment(4);
 		//echo $fsd1;
-		$examId = $this->uri->segment(5);
-		//echo $examid;
-		//exit();
-		// echo $id;
-
-		$resultData = array();
-		/**
-		 * this code block get persional information about a student by given studentID.
-		 */
-		//$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("id",$id);
-		$stuDetail = $this->db->get("student_info");
-		$data['studentInfo'] = $stuDetail->row();
-		$studg = $stuDetail->row();
-		/**
-		 * get student's parents information by given studentID.
-		 */
-		//$this->db->where("school_code",$this->session->userdata("school_code"));
-		$this->db->where("student_id",$id);
-		$stuDetail = $this->db->get("guardian_info");
-		$data['parentInfo'] = $stuDetail->row();
-		$this->db->where("id",$fsd1);
-		 $fsd =   $this->db->get("fsd")->row();
-		$futureDate=date('Y-m-d', strtotime('+1 year', strtotime($fsd->finance_start_date )) );
-		$data['fsd']=$fsd1;
-		$data['futureDate'] = $futureDate;
+		//$examId = $this->uri->segment(5);
 		
+		//echo $fsd1."-".$id;
+        $getClassRecord =   $this->db->query("select distinct(exam_max_subject.class_id) from exam_max_subject join  exam_info on exam_max_subject.id = exam_info.exam_max_id where  exam_max_subject.fsd='$fsd1'  and exam_info.stu_id='$id' ");
+        //print_r($getClassRecord->row());
+        if($getClassRecord->num_rows()>0){
+        $data['student_id']=$id;
+	    $data['fsd_id']=$fsd1;
+	   
+	    $data['class_id']=$getClassRecord->row()->class_id;
+	    $data['totalIndicator']=0;
+        $data['termTotal']=1;
+		$school_code=$this->session->userdata("school_code");
+		$callview = "format_".$school_code;
+		$data["school_code"]=$school_code;
+        $folderDetails = $this->db->get("db_name")->row();
+        $data['resultFolder']=$folderDetails->resultfolder;
+		$this->load->view("invoice/$folderDetails->resultfolder/$callview",$data);
+        }
+        else{
+         
 		
-		/**
-		 * [$futureDate defines end of finatial satrt date.]
-		 * @var [Date]
-		 */
-		  //for 1st term
-
-	       $this->db->Distinct();
-	      $this->db->select("exam_id,term");
-		  $this->db->where("school_code",$this->session->userdata("school_code"));
-		  $this->db->where("stu_id", $id);
-		
-		  $this->db->where("term",1);
-		 $examTypeResult2 = $this->db->get("exam_info");
-		// print_r($examTypeResult2);
-		
-		 //for 2nd term
-		 $this->db->Distinct();
-	      $this->db->select("exam_id,term");
-		  $this->db->where("school_code",$this->session->userdata("school_code"));
-		  $this->db->where("stu_id", $id);
-		  $this->db->where("fsd",$fsd1 );
-		  $this->db->where("term",2 );
-		 $examTypeResult2_2 = $this->db->get("exam_info");
-		 //print_r($examTypeResult2_2);
-		 //for 3rd term
-		 $this->db->Distinct();
-	      $this->db->select("exam_id,term");
-		  $this->db->where("school_code",$this->session->userdata("school_code"));
-		  $this->db->where("stu_id", $id);
-		  $this->db->where("fsd",$fsd1 );
-		  $this->db->where("term",3 );
-		 $examTypeResult2_3 = $this->db->get("exam_info");
-
-		$this->db->where("stu_id", $id);
-		$this->db->where("fsd",$fsd1 );
-		$examTypeResult = $this->db->get("exam_info")->result();
-		
-		$this->db->Distinct();
-		$this->db->select("class_id");
-		$this->db->where("stu_id", $id);
-		$this->db->where("fsd",$fsd1 );
-		$classid = $this->db->get("exam_info")->row();
-		
-		$examTypeResult1 = $this->db->query("select DISTINCT subject.id from subject join exam_info on exam_info.subject_id=subject.id where exam_info.fsd='$fsd1' and exam_info.stu_id='$id' order by subject.id ASC ")->result();
-	
-	
-		/*$this->db->Distinct();
-		$this->db->select("subject_id");
-		//$this->db->where("school_code",$this->session->userdata("school_code"));
-	//	$this->db->where("class_id", $studg->class_id);
-		$this->db->where("stu_id", $id);
-		$this->db->where("fsd",$fsd1 );
-		$this->db->order_by("subject_id","Asc");
-		$examTypeResult1 =  $this->db->get("exam_info")->result();*/
-		
-		$subject = Array();
-		$subject5 = Array();
-		foreach($examTypeResult as $val):
-		    $subject[] = $val->subject_id;
-			
-		endforeach;
-		foreach($examTypeResult1 as $val):
-		
-			$subject5[] = $val->id;
-			
-		endforeach;
-		$subject = array_unique($subject);
-		$subject5 = array_unique($subject5);
-		
-		$formatedResult = array();
-		foreach($subject5 as $subVal):
-			$subject = array();
-			foreach($examTypeResult as $val):
-				$count = 1;
-				$marks = array();
-				
-				if($subVal == $val->subject_id):
-					
-					if($count == 1){
-
-
-				 $subject['subject'] = $subVal;
-
-					}
-					$marks['Attendance'] = $val->Attendance;
-
-					$marks['examType'] = $val->exam_id;
-					$marks['out_of'] = $val->out_of;
-					$marks['marks'] = $val->marks;
-					$marks['created'] = $val->created;
-					$subject["marks"][] = $marks;
-				endif;
-				$count++;
-			endforeach;
-			
-			$formatedResult[] = $subject;
-			 
-		endforeach;
-
-		   $this->db->select("format");
-			$this->db->where("school_code",$this->session->userdata("school_code"));			
-		    $val=$this->db->get("result_format");
-		    //print_r($val);
-           if($val->num_rows()>0)
-            {//echo $examTypeResult;
-		      if($examTypeResult){
-		      $val=	$val->row()->format;
-		//echo $val;
-		if($examTypeResult){
-		//print_r($examTypeResult);
-			$data['fsd']=$fsd1;
-			$data['classid']=$classid;
-			$data['title'] = "Mark Sheet";
-			$data['futureDate'] = $futureDate;
-			$data['resultData'] = $formatedResult;
-			$data['examid']=$examTypeResult2;
-			$data['examid_2']=$examTypeResult2_2;
-			$data['examid_3']=$examTypeResult2_3;
-
-			$val=$this->session->userdata("school_code");
-
-			$callview = "format_".$val;
-			
-			/**
-			 * echo "<pre>";
-			 * print_r($data);
-			 * echo "</pre>";
-			 */
-            $folderDetails = $this->db->get("db_name")->row();
-			$this->load->view("invoice/$folderDetails->resultfolder/$callview",$data);
-
-
-
-		}
-		else{
-			 echo "<div class='alert alert-warning'> .
-					 Please ensure that you have select the result formate form the Setting Section.   
-					<br>If Yes then Contact to  Admin. 
-					<br>If Not then goto setting and Select Your Specific Result formate. 
-					<br>Thanku You;
-					<br>All the best;
-					 !!!!!!!!!</div>";
-			
-		         }}
-		   else
-		       {
-			
 					 echo "<div class='alert alert-warning'> No Record Found Please Select Valid FSD and Student ID.
 					Please insure possible mistakes.<br>1. Selected Financial Start Date have no exam conducted in current date.
 					<br>2.You have inserted wrong student ID please check it befoure generating Exam result.<br>
@@ -754,12 +601,13 @@ function result(){
 					<br>
 					<br>
 					Sorry !!!!!!!!!</div>";
-		  	       
                  }
-			
-            }
+            
+
+		}
+
 	
-}
+
 	function result_extra(){
 		$id = $this->uri->segment(3);
 		$this->db->where("school_code",$this->session->userdata("school_code"));

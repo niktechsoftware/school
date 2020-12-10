@@ -1,8 +1,8 @@
 	<?php 
-      $this->db->where('exam_id',$exam_name);
+      $this->db->where('exam_id',$exam_id);
       $examday=$this->db->get('exam_day');
 
-       $this->db->where('exam_id',$exam_name);
+       $this->db->where('exam_id',$exam_id);
        $examshift=$this->db->get('exam_shift');
 
 	if(!($examday->num_rows()&& $examshift->num_rows())>0)
@@ -54,7 +54,7 @@
                                  <tr class="<?php echo $rowcss;?>">
                                      <td>
                                 <?php 
-                                $this->db->where('id',$exam_name);
+                                $this->db->where('id',$exam_id);
                                 $examname=$this->db->get('exam_name')->row()->exam_name;  ?> 
                                 <?php echo "Exam Name:-".$examname."<br>"." Date:- [ ". $edate. " ] ";?>
                                  </td>
@@ -78,7 +78,7 @@
                                         </td>
                                         <td> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; </td>                            
                                  </tr>
-                                <input type="hidden" name ="exam_name"  value="<?php echo $exam_name;?>" />
+                                <input type="hidden" name ="exam_name"  value="<?php echo $exam_id;?>" />
                                  <input type="hidden" name ="edate" value="<?php echo $edate;?>" />
                                   </table>
                             </div>
@@ -126,7 +126,7 @@
          <?php  }
  				else
                 {
-                redirect("index.php/login/createSchedule/$exam_name");
+                redirect("index.php/login/createSchedule/$examname");
 
                 }?>		
  						

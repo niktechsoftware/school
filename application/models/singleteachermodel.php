@@ -11,6 +11,7 @@ class singleTeacherModel extends CI_Model{
 		$query=	$this->db->insert("emp_leave",$data);
 		return true;
 	}
+
 	
 	function time_Table($teacher_id){
 		//$this->db->where("school_code",$this->session->userdata("school_code"));

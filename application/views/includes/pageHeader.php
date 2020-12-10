@@ -58,7 +58,7 @@
         </div>
     </div>
     <?php if($this->session->userdata("login_type") !=  "student"){?>
-    <div class="col-sm-6" style="margin-top:13px; font-size:9px;">
+    <div class="col-sm-6 hidden-xs" style="margin-top:04px; font-size:18px;">
         <center><a class="" style="color: #f5f5f5;" href="#">Customer Care:<br><i class="fa fa-phone"></i>+91-&nbsp;9454012026,&nbsp;8765398096,&nbsp;9580121878
                 <br>WhatsApp Number&nbsp;: <i class="fab fa-whatsapp"></i>+91-&nbsp;9580121878</a></center>
     </div>
@@ -83,10 +83,14 @@
             
     <!--    </div>-->
     <!--</div>-->
-    <?php if(($this->session->userdata('login_type') == 'admin') ||($this->session->userdata('login_type') == '1')){?>   
+    <?php if(($this->session->userdata('login_type') == 'admin') ||($this->session->userdata('login_type') == '1')){?> 
+      <!--<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+            <i class="fa fa-bars"></i> &nbsp;   &nbsp;
+            </a>-->
    <div class="toolbar-tools pull-right">
+       
 									<!-- start: TOP NAVIGATION MENU -->
-									<ul class="nav navbar-right" style="margin-right:60px;">
+									<ul class="nav navbar-right" style="margin-right:10px;">
 										<!-- start: TO-DO DROPDOWN -->
 										<li class="dropdown">
 											<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
@@ -139,7 +143,29 @@
 												</li>
 											</ul>
 										</li>
-										</div>
+										<li class="dropdown">
+											<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+												<span class="messages-count badge badge-default hide">3</span> <i class="fa fa-envelope"></i> BUY SMS
+											</a>
+											<ul class="dropdown-menu dropdown-light dropdown-messages">
+												<li>
+												</li>
+												<li>
+													<div class="drop-down-wrapper ps-container">
+														<ul>
+														<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/login/mobileNotice/buysms" class="new-note"><span class="fa-stack"></span><h4 style="font-size:18px;">Buy SMS</h4></a>
+												</li>
+													<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/login/mobileNotice/requestsms" class="new-note"><span class="fa-stack"></span><h4 style="font-size:18px;">Request Offline</h4></a>
+												</li>
+															
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</li>
+	</div>
 										
        <?php } ?>
 </div>
