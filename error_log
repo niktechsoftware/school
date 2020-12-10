@@ -1,0 +1,4 @@
+[01-Dec-2020 13:12:29 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool4/application/controllers/employeeController.php on line 103
+[01-Dec-2020 13:13:08 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool4/application/controllers/employeeController.php on line 103
+[01-Dec-2020 13:13:24 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool4/application/controllers/employeeController.php on line 103
+[01-Dec-2020 13:13:40 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool4/application/controllers/employeeController.php on line 103

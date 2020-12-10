@@ -16,7 +16,9 @@ function getPeriodD($period_name)
 }
 
 function getperiodno(){
+    
 	$this->db->where("school_code",$this->session->userdata("school_code"));
+	
 	$query1 = $this->db->get("no_of_period");
 	return $query1;
 }

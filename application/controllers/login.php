@@ -753,7 +753,7 @@ function studentAttendance(){
 		$this->load->view("includes/mainContent", $data);
 	}
 
-function periodTimeSlot(){
+  function periodTimeSlot(){
 		$data['pageTitle'] = 'Time Table';
 		$data['smallTitle'] = 'Period Time Table';
 		$data['mainPage'] = 'Time Scheduling';
@@ -904,6 +904,7 @@ function periodTimeSlot(){
 		$data['smallTitle'] = 'Exam Scheduling';
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Exam Scheduling';
+	
 		$this->load->model("examModel");
 		$var=$this->examModel->getExamName($fsd);
 		$var1=$this->examModel->getExamNameForUpdate();
