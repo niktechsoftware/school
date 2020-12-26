@@ -52,12 +52,12 @@
 						Employee ID
 					</label>
 				</div>
-				<div class="col-md-2">
+			<!--	<div class="col-md-2">
 					<label class="checkbox-inline">
 						<input type="checkbox" name="chk[]" value="job_title" id="job_title">
 						Job Title
 					</label>
-				</div>
+				</div>-->
 				<div class="col-md-2">
 					<label class="checkbox-inline">
 						<input type="checkbox" name="chk[]" value="mobile" id="mobile">

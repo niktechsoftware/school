@@ -38,35 +38,18 @@ class Exampanel extends CI_Controller{
 
   public function findstdexam()
   {
-
-  	    $fsd=$this->input->post("fsd");             
+        $fsd=$this->input->post("fsd");             
   		$examid=$this->input->post("examid");
-  		$this->db->where('id',$examid);
-  		$data['examname']=$this->db->get('exam_info')->row();
-  		$studentexamid=$this->input->post("stdexam");
-  		$this->db->where('username',$studentexamid);
-		$sid=$this->db->get('student_info')->row();
-		$data['studentid']=$sid->id;
-	
-	/*	$this->db->select("class_id");
-		$this->db->where("stu_id",$sid->id);
+  		$student_id=$this->input->post("stdexam");
+  	    //$this->db->distinct();
+        //$this->db->select('subject_id','out_of','marks');
+		$this->db->where('exam_id',$examid);
+  		$this->db->where('stu_id',$student_id);
   		$this->db->where('fsd',$fsd);
-  		$cls=$this->db->get('exam_info')->row()->class_id;*/
-  		?>
-		<!-- <h1 style="color:green">Your Student Class is <?php //echo $cls->class_name;?></h1> -->
-		<?php
-  		
-
-  		$this->db->where('exam_id',$examid);
-  		$this->db->where('stu_id',$sid->id);
-  		$this->db->where('fsd',$fsd);
-  		$examd=$this->db->get('exam_info')->result();
-  //	print_r($examd);
-        $data['exam']=$examd;
+  		$exam=$this->db->get('exam_max_subject')->result();
+  		$data['exam']=$exam;
   		$this->load->view('panel/exam/studentwise',$data);
-
-
-  }
+      }
 
   public function findclassexam()
 	  {

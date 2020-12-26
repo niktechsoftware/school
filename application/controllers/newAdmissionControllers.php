@@ -242,7 +242,7 @@
 		$data['mainContent'] = 'newAdmission';
 		$this->load->view("includes/mainContent", $data);
 	}
-	function quickStureginsert(){	
+function quickStureginsert(){	
 		$school_code = $this->session->userdata("school_code");
 		
 		$id1 = $this->db->query("SELECT MAX(maxcount) as maxnumber From guardian_info where school_code =$school_code");
@@ -330,16 +330,17 @@
 			$sender = $this->smsmodel->getsmssender($school_code);
 			$sende_Detail1 =$sender->row();
 			$isSMS = $this->smsmodel->getsmsseting($school_code);
-			
-			if($isSMS->admission)
-				{
-					$school = $this->session->userdata("your_school_name");
-		 			$f_name=$this->input->post("fatherName");
-					$username = $id;
+				$school = $this->session->userdata("your_school_name");
+		 			$f_name = $this->input->post("fatherName");
+		 			$username = $id;
 					$password = $this->input->post("password");
 
 				//	$f_mobile = $this->input->post("mobileNumber");
 					$f_mobile = $this->input->post("mobileNumber");
+			
+			if($isSMS->admission)
+				{
+				
 					$max_id = $this->db->query("SELECT MAX(id) as maxid FROM sent_sms_master")->row();
 					$master_id=$max_id->maxid+1;
 					$msg="Dear ".$f_name." welcome to ".$school.". Your Ward's Student ID= ".$username." and Password=".$password.". Now You can login and get all school updates click .".$sende_Detail1->web_url." Thanks.";	

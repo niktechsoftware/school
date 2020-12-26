@@ -6,7 +6,7 @@ zx		<!--[if lt IE 9]>
 		<![endif]-->
 		<!--[if gte IE 9]><!-->
 		
-		<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
+	
 		<!--<![endif]-->
 		<script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -56,18 +56,40 @@ zx		<!--[if lt IE 9]>
 		<!-- start: CORE JAVASCRIPTS  -->
 		<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 		<!-- end: CORE JAVASCRIPTS  -->
+		<!-- start: Notification JAVASCRIPTS  -->
+		<script src="<?php echo base_url(); ?>assets/js/ui-notifications.js"></script>
 		<script>
 			jQuery(document).ready(function() {
-				
+			
+			  
+                 $("#cansa").on("click", function (e) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                } else {
+                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                }
+            });
+
+            e.preventDefault();
+        });
+        	 $('#aarju').DataTable();
 				TableExport.init();
 				Main.init();
 				SVExamples.init();
-			});
+		
 			
-			 <?php $sno=1; ?>
-                jQuery(document).ready(function() {
-					
-                    $('#aarju').DataTable();
-                } );
+			});
            
 		</script>

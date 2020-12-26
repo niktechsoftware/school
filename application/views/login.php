@@ -32,7 +32,7 @@
 	<body class="login">
 		<div class="row">
 		    <div class="col-md-3" style="padding: 0px; margin-top: 155px; margin-left: 100px;">
-	           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	          <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:block; text-align:center;"
      data-ad-layout="in-article"
@@ -41,16 +41,16 @@
      data-ad-slot="7535568800"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+</script>-->
 	        </div>
-			<div class="col-md-4" style="padding: 0px; margin-top: 70px; ">
-			    	<div style="text-align:center; color:white; font-size:20px;">
-					<h1 style=""> NIKTECH SOFTWARE SOLUTIONS </h1>
+			<div class="col-md-4" style="padding: 0px; margin-top: 35px; margin-left: 30px; margin-right: 30px; ">
+			    	<div style="text-align:center; color:white; font-size:30px;">
+				                NIKTECH SOFTWARE SOLUTIONS 
 					</div>
 			
 				
 				<!-- start: LOGIN BOX -->
-				<div class="box-login" style="border: 1px solid #808909; margin-top: 40px;">
+				<div class="box-login" style="border: 1px solid #808909; margin-top: 20px;">
 				    
 				<img style="height:70px; width:70px; float:right;" src="<?php echo base_url(); ?>assets/images/newwlogo.png">
 					<h3><?php echo $this->lang->line('login_welcome_message'); ?></h3>
@@ -160,10 +160,10 @@
 			<br>
 			</div>
 		
-			<div class="col-md-4" style="padding: 0px; margin-top: 175px; ">
-	           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- schooldemo -->
-                <ins class="adsbygoogle"
+		<div class="col-md-4" style="padding: 0px; margin-top: 175px; ">
+	         <!--  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                 schooldemo -->
+               <!-- <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-5093838037340612"
                      data-ad-slot="7883601903"
@@ -171,8 +171,8 @@
                      data-full-width-responsive="true"></ins>
                 <script>
                      (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-	        </div>
+                </script>-->
+	        </div>-
 			
 				<!-- end: FORGOT BOX -->
 			</div>

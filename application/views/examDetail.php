@@ -62,7 +62,8 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
             											<label>
             												Teacher ID
             												<div>
-            													<input type="text" class="form-control" name="tname" id="teacherid" style="width: 200px;"/>
+            												    <?php //$teacher=$this->session->userdata('username');?>
+            													<input type="text" class="form-control" value=" " name="tname" id="teacherid" style="width: 200px;"/>
             												</div>
             											</label>
 											        </div>
@@ -80,8 +81,7 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
                 												</select>
                 											</label>
 											        </div>
-											        
-										          </div>
+											      </div>
 										           <div class ="col-sm-6">
 										               	<div class="col-lg-6 col-md-4 col-sm-6">
                 											<label>
@@ -131,7 +131,7 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
             												Class
             												<select class="form-control" id="classId" name="class" style="width: 200px;"></select>
             											</label>
-											</div>
+											   </div>
 										          </div>
 										           <div class ="col-sm-6">
 										               	<div class="col-lg-6 col-md-4 col-sm-6">
@@ -139,18 +139,12 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
     												Subject
     												<select class="form-control" id="subjectId" name="subject" style="width: 200px;"></select>
     											</label>
+											  </div>
 											</div>
-											
-										
-										          </div>
-										    </div>
+										  </div>
 										</div>
 										<div id="enterMarks" class="table-responsive"></div>
-									</div>
-								</div>
-							</div>
-
-						</div>
+					                    	</div>
 <?PHP }else{ ?>
 <style>
     .td1{
@@ -226,8 +220,7 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
                 												</select>
                 											</label>
 											        </div>
-											        
-										          </div>
+											      </div>
 										           <div class ="col-sm-6">
 										               	<div class="col-lg-6 col-md-4 col-sm-6">
                 											<label>

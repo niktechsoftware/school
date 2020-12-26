@@ -88,7 +88,7 @@
 											<option value="students">Students</option>
 											<?php
 											}
-											elseif($logtype == "3"){
+										elseif($logtype == "3"){
 											?>
 											<option value="teachers">Teachers</option>
 											<option value="students">Students</option>
@@ -102,12 +102,12 @@
 												?>
 											<option value="students">Students</option>
 											<?php }
-											elseif($logtype == "accountent"){
+										elseif($logtype == "accountent"){
 											?>
 											<option value="employee">Employee></option>
 											<option value="teachers">Teachers</option>
 											<option value="students">Students</option>
-										<?php	}
+										<?php }
 											 ?>
 								</select>
 							</div>

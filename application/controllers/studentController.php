@@ -898,7 +898,7 @@ function admissionSuccess(){
 
 			
 
-				$this->db->where("school_code",$school_code);
+				//$this->db->where("school_code",$school_code);
 				$this->db->where('stu_id', $studentId);
 				$this->db->delete('exam_info');
 

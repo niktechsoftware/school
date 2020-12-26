@@ -87,7 +87,7 @@
 					}
 									
 					var category = $("#category").val();
-					var job_title = $("#job_title").val();
+					var job_category = $("#job_category").val();
 					var qualification = $("#qualification").val();
 					var experiance = $("#experiance").val();
 					
@@ -122,7 +122,7 @@
 						dob : dob,
 						gender : gender,
 						category : category,
-						job_title : job_title,
+						job_category : job_category,
 						qualification : qualification,
 						experiance : experiance,
 						status : status,

@@ -1,8 +1,6 @@
 <?php
     $school_code = $this->session->userdata("school_code");
     $row2=$this->db->get('db_name')->row()->name;
-
-
 if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $school_code == 1 && $row2 == "D" || $school_code == 2 && $row2 == "D" || $school_code == 3 && $row2 == "D" || $school_code == 4 && $row2 == "D" || $school_code == 10 && $row2 == "D"  || $school_code == 9 && $row2 == "D" || $school_code == 8 && $row2 == "D"){ ?>
 
 <!-- start: PAGE CONTENT -->
@@ -116,7 +114,7 @@ if($school_code == 9 && $row2 == "A1" || $school_code == 6 && $row2 == "A1" || $
 												<select class="form-control" id="classId" name="class" class="form-control" style="width: 200px;" required=""></select>
 											</label>
 											</div>
-											 <div class="col-lg-2 col-md-4 col-sm-6">
+											 <div class="col-lg-2 col-md-2 col-sm-4">
 											<label>
 												Subject
 												<select class="form-control" id="subjectIdmarks" name="subject" class="form-control" style="width: 200px;" required=""></select>

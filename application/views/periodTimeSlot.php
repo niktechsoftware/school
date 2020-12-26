@@ -46,23 +46,27 @@
 												<form action="<?php echo base_url();?>index.php/periodTimeControllers/period_no"  method ="post"  id="form">
 												<div class="panel-body space10">
 													<div class="row">
-													<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="col-lg-12 col-md-12 col-sm-12">
 													<div class="space10" >
-														<label class="panel-title">Time Table Name</label>
+														<label class="panel-title">Time Table Name:</label>
 					                            <input type="text" name="periodName" id="examName" required="" onkeyup="myfunction1()" onkeyup="myfunction()" />
 													</div>
 													</div>
-													<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="col-lg-12 col-md-12 col-sm-12">
 													<div class="space10" >
-													<label class="panel-title">Starting Date</label> 
-															<input  type="date" data-date-format="yyyy-mm-dd"  id= "printDate" name ="datet" data-date-viewmode="years" class="date-picker" required=""> 
+													<label class="panel-title" style="margin-left:15px;">Starting Date:</label> 
+															<input  type="date" data-date-format="yyyy-mm-dd"  id= "printDate" name ="datet" data-date-viewmode="years" class="date-picker" required="" style="margin-left:17px;"> 
 															</div>
 															</div>
 															<div class="col-lg-12 col-md-12 col-sm-12">
-											<center> <button class="btn btn-red ">
-                                                            Submit <i class="fa fa-arrow-circle-right"></i>
-                                                        </button></center>	
-														</div>
+										<button type='submit' onclick="myFunction()" style="width:38px; height:34px; margin-left:77%;" class="btn btn-xs btn-light-green"><i class="fa fa-floppy-o"></i></button>
+													</div>
+												
+                                                    <script>
+                                                    function myFunction() {
+                                                      alert("Successfully Added!");
+                                                    }
+													</script>
 												</div>	
 												
 												</div>
@@ -167,7 +171,7 @@
 														//$cd=date("Y-m-d");
 														//print_r($cd);
 													    ?> 
-													 <button type='submit' style="width: 130px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
+													 <button type='submit' style="width:38px; height:34px;" class="btn btn-xs btn-light-yellow" id="scheduling<?php echo $i;?>"><i class="fa fa-calendar"></i></button>
 														</td>
 														
 														<td >												

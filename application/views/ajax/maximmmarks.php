@@ -816,7 +816,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                         var mark = $("#mark").val();
                        var subjectid = $("#subjectid").val();
                        var marks_grade = $("#marks_grade").val();
-                      alert(mark+subtype+marks_grade);
+                     // alert(mark+subtype+marks_grade);
                        if(marks_grade!="a" && mark!=""){
                            if(marks_grade==0){
                                if(mark.match(/[A-Za-z]$/)){

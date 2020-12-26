@@ -367,8 +367,14 @@ $sum=0;
 							<td>
 							<?php  $totalpaidp += $total->totalpaid; echo $total->totalpaid;?>
 						</td>
-						<td><?php echo $this->feeModel->totFee_due_by_id($stu_id,1);?></td>
-			  			<td>
+						<td><?php $feetotdue= $this->feeModel->totFee_due_by_id($stu_id,1);
+						    echo $feetotdue;?>
+						</td>
+						<input type="hidden" value="<?php echo $this->feeModel->totFee_due_by_id($stu_id,1);?>" id="rem<?php echo $count;?>" >
+						<input type="hidden" value="<?php echo $feetotdue;?>" id="amt<?php echo $count;?>" >
+						<input type="hidden" value="<?php echo $count;?>" id="amt1<?php echo $count;?>">
+						
+					<td>
 							<a href="<?php echo base_url()?>index.php/feeControllers/feesDetail/<?php echo $stu_id;?>/<?php echo $fsd;?>" target="_blank" class="btn btn-blue">
 								View Detail
 							</a></td>
@@ -385,8 +391,7 @@ $sum=0;
 			  				var mnum = $("#mnum<?php echo $count;?>").val();
 							var amount = $("#amt<?php echo $count;?>").val();
 							var amount1 = $("#amt1<?php echo $count;?>").val();
-				// alert(amount);
-				// alert(amount1);
+						
 					$.post("<?php echo site_url("index.php/feeControllers/feeRemSms") ?>",{smstodue : smstodue,sname : sname,fname : fname,mnum : mnum,amount : amount,amount1 : amount1}, function(data){
 						$("#smstodew<?php echo $count;?>").html(data);
 					});

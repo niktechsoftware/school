@@ -1,5 +1,3 @@
-
-
 <script>
     function autoResize(id){
         var newheight;
@@ -29,9 +27,6 @@
 		?>
 		<div class="tabbable">
 			<ul class="nav nav-tabs tab-padding tab-space-3 tab-blue text-uppercase" id="myTab4">
-				
-				
-			
 				<li<?php if(strlen($this->uri->segment(4)) <= 0){ echo ' class="active"';}?>>
 					<a data-toggle="tab" href="#panel_overview">
 						Profile
@@ -82,8 +77,7 @@
 				</li><?php } ?>
 			</ul>
 			<div class="tab-content">
-			    
-				<div id="panel_overview" class="tab-pane fade <?php if(strlen($this->uri->segment(4)) <= 0){ echo "in active";}?>">
+			    <div id="panel_overview" class="tab-pane fade <?php if(strlen($this->uri->segment(4)) <= 0){ echo "in active";}?>">
 					<div class="row">
 						<div class="col-sm-5 col-md-4">
 							<div class="user-left">

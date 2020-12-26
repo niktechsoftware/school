@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <!-- start: DYNAMIC TABLE PANEL -->
     <div class="panel panel-white">
- <div class="panel-heading panel-pink">
+      <div class="panel-heading panel-pink">
         <h3 class="panel-title">Export <span class="text-bold">Simple Employee List</span></h3>
         <div class="panel-tools">
           <div class="dropdown">
@@ -39,8 +39,8 @@
         <div class="alert alert-info">
           <button data-dismiss="alert" class="close">×</button>
           <h3 class="media-heading text-center">Welcome to Simple Employee List Area</h3>
-Here you can see all the employees list, if you want to see full detail of employees, then choose employee id and click on full profile button.And you can also
-print employee Icard by click on that Employee Id.
+            Here you can see all the employees list, if you want to see full detail of employees, then choose employee id and click on full profile button.And you can also
+            print employee Icard by click on that Employee Id.
         </div>
 					<div class="row">
 						<div class="col-md-12 space20">
@@ -114,7 +114,7 @@ print employee Icard by click on that Employee Id.
 										<th>SNo.</th>
 										<th>Employee ID</th>
 										<th>Full Name</th>
-										<th>Job Title</th>
+										<th>Job Category</th>
 										<th>Mobile</th>
 										<th>Address</th>
 										<th>Email</th>
@@ -129,16 +129,25 @@ print employee Icard by click on that Employee Id.
 								<tbody>
 									<?php $sno = 1; foreach ($result->result() as $row): ?>
 									<tr class="text-uppercase">
-										<td><?php echo $sno; ?></td>
-										<td><a href="<?php echo base_url(); ?>index.php/employeeController/empicard/<?php echo $row->id; ?>"><?php echo $row->username; ?></a></td>
+										<td style="color:black"><?php echo $sno; ?></td>
+										<td style="color:DodgerBlue"><a href="<?php echo base_url(); ?>index.php/employeeController/empicard/<?php echo $row->id; ?>"><?php echo $row->username; ?></a></td>
 										<td><?php echo $row->name?></td>
-										<td><?php echo $row->job_title; ?></td>
-										<td><?php echo $row->mobile; ?></td>
+									    <td><?php  $this->db->where("id",$row->job_category);
+									              $jobcat=$this->db->get('emp_category')->row();
+									              echo $jobcat->Name; ?></td>
+										<td><i class="fa fa-phone" aria-hidden="true"><?php echo $row->mobile; ?></i></td>
 										<td><?php echo $row->address ?></td>
 										<td class="text-lowercase"><?php echo $row->email; ?></td>
-										<td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">Full Profile</a>
-									<?php if($row->status == 0){ ?><a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-red">InActive</a><?php } else{?>
-									<a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-green">Active</a><?php } ?></td>
+										<td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">
+										    <?php if($row->photo){?>
+										    <img  class="img-circle" height="50" width="50" src="https://schoolerp-niktech.in/a_school/9/images/empImage/<?php echo $row->photo;?>"/>
+										    <?php }else{?>
+										    <img src="https://www.schoolerp-niktech.in/a_school/icon/1.png" class="img-circle" style="height:50px; width:50px;" alt="">
+								       <?php }?>
+								        </a>
+								<!--	<?php if($row->status == 0){ ?><a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-red">InActive</a><?php } else{?>
+									<a href="<?php echo base_url(); ?>index.php/employeeController/active_employee/<?php echo $row->username;?>" class="btn btn-green">Active</a><?php } ?>--> 
+									</td>
 									</tr>
 									<?php $sno++; endforeach; ?>
 								</tbody>

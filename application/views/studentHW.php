@@ -1,9 +1,15 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.myth{
+    color:black;
+    font: 15px Arial, sans-serif bold:27px;
+}
+</style>
 <div class="row">
 	<div class="col-md-12">
 		<!-- start: RESPONSIVE TABLE PANEL -->
 		<div class="panel panel-white">
-
-<div class="panel-heading panel-blue">
+            <div class="panel-heading panel-blue">
 				<h4 class="panel-title ">Home Work <span class="text-bold"> Details</span></h4>
 				<div class="panel-tools">
 					<div class="dropdown">
@@ -51,23 +57,23 @@
     	<table class="table table-striped table-hover" id="sample-table-2">
     	<thead>
     	<tr>
-        	<th>S.no.</th>
-        	<th>Given By</th>
-        	<th>Assignment Title</th>
-        	<th>Subject</th>
-        	<th>Marks & Grade</th>
-        	<th>Work Description</th>
-        	<th>Given Date</th>
-        	<th>Submission Date</th>
-        	<th>Action</th>
-        		<th>Status</th>
+        	<th class="myth">S.no.</th>
+        	<th class="myth">Given By</th>
+        	<th class="myth">Assignment Title</th>
+        	<th class="myth">Subject</th>
+        	<th class="myth">Marks & Grade</th>
+        	<th class="myth">Work Description</th>
+        	<th class="myth">Given Date</th>
+        	<th class="myth">Submission Date</th>
+        	<th class="myth">Action</th>
+        	<th class="myth">Status</th>
+        	<th class="myth">Delete</th>
     	</tr>
     	</thead>
     	<tbody>
       <?php 
     		if($var1->num_rows()>0){
-        
-	      $count = 1;
+                 $count = 1;
                 foreach($var1->result() as $lv):
                     $this->db->where("work_id",$lv->s_no);
                     $this->db->where("submitted_by",$this->session->userdata("username"));
@@ -79,7 +85,6 @@
 			  			<td><?php echo $count;?></td>
 			  			<td><?php if($ename->num_rows()>0){ echo $ename->row()->name;}else{echo "<span style='color:red'>Teacher Name Not Found</span>";}?></td>
 			  			<td><?php echo $lv->work_name;?></td>
-			  		
 			  			<td><?php $sub= $lv->subject_id;
 			  			if($sub==0){
                             echo "N/A";
@@ -94,7 +99,7 @@
 			  			<td><?php echo date("d-m-Y",strtotime($lv->givenWorkDate)); ?></td>
 						<td><?php echo date("d-m-Y",strtotime($lv->DueWorkDate)); ?></td>
 						<td style=" width: 20%;"><a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/filehomeWork/<?php echo $lv->upload_filename; ?>" download>
-						    <button class="btn btn-info" >Download</button></a>
+						    <button class="btn btn-info" ><i class="fa fa-download"></i></button></a>
 						<a href="<?php echo base_url(); ?>index.php/studentHWControllers/submitHomeWork/<?php echo $lv->s_no;?>" style="color:white;">
 						<button class="btn btn-success"  >Submit</button></a>
 					
@@ -103,11 +108,13 @@
 						    <?php if($checkStatus->num_rows()>0){?>
 						    	<td>
 						    <a href="<?php echo $this->config->item('asset_url'); ?><?php echo $this->session->userdata("school_code");?>/images/submithomeWork/<?php echo $checkStatus->row()->upload_file; ?>" download>
-						     <button class="btn btn-info" >View</button></a>
+						     <button class="btn btn-info" >view</i></button></a>
 						<a href="#" style="color:white;">
-						<button class="btn btn-success"  >Submited</button></a>
+						<button class="btn btn-success"  >Done</button></a>
 						</td>
+						<td><a href="<?php echo base_url();?>index.php/studentHWControllers/deleteHomework/<?php echo $checkStatus->row()->work_id;?>"> <button class="btn btn-danger" ><i class="fa fa-trash" style="color:white;"></i></button></a>     </td>
 						   <?php }else{?> 
+						   <td></td>
 						   <td></td>
 						<?php }?>
 			  		</tr>
@@ -122,7 +129,6 @@
     </div>
     </div>
     </div>
-
-    </div>
-    </div>
-    </div>
+</div>
+</div>
+ </div>

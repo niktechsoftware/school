@@ -125,16 +125,19 @@
                                     <div class="row">
                                         <h4 style="margin-top: 10px; text-align:center;">PRINCIPAL SIGN</h4>
                                         <div><img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/sign.jpeg" alt="" width="100" height="50"  /></div>
-                                   <?php if($personalInfo->transport==0){?>
+                                  <?php if($this->session->userdata("school_code")==9){
+                                     
+                                 }else{if($personalInfo->transport==0){?>
                                      <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/walk.png" alt="" style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
                                    <?php }else{ ?>
                                    <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/bus.png" alt=""  style="float: right;width: 40px;height: 40px;border-radius: 50%;" />
+                                
                                  <label>PickUp Point: <?php
                               $this->db->where('id',$personalInfo->vehicle_pickup);
                               $transportrootamount = $this->db->get("transport_root_amount");
                               if($transportrootamount->num_rows()>0){$transportrootamount1=$transportrootamount->row();echo strtoupper($transportrootamount1->pickup_points);}else{ echo "Not updated";}
                               ?></label>
-                                  <?php } ?>
+                                  <?php }} ?>
                                     </div>
                                 </td>
                             </tr>
@@ -152,6 +155,9 @@
                                     <?php echo $personalInfo->username; ?>
                                 </td>
                             </tr>
+                            <?php if($this->session->userdata("school_code") ==9){
+                                
+                            }else{?>
                             <tr>
                                 <td style="padding:3px ;">DOB</td>
 
@@ -159,6 +165,7 @@
                                     <?php if(strlen($personalInfo->dob) > 1) {echo $personalInfo->dob; }else echo "N/A"; ?>
                                 </td>
                             </tr>
+                            <?php }?>
 
                             <tr>
                                 <td style="padding:3px">Father Name</td>
@@ -172,12 +179,16 @@
                                     <?php echo $personalInfo->mobile; ?>
                                 </td>
                             </tr>
+                              <?php if($this->session->userdata("school_code") ==9){
+                                
+                            }else{?>
                             <tr>
                                 <td style="padding:3px">Address</td>
                                 <td style="color:#008000;">
                                     <?php echo $personalInfo->address1; ?>
                                 </td>
                             </tr>
+                            <?php }?>
                         </table>
                     </div>
                 </div>

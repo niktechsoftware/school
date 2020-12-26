@@ -17,19 +17,18 @@ class studentHWControllers extends CI_Controller{
 		}
 	
 	}
+
 	function studentShowHomeWork(){
 		$this->load->model("homeWorkModel");
 		$data['pageTitle'] = 'Show HomeWork';
 		$data['smallTitle'] = 'Student HomeWork';
 		$data['mainPage'] = 'Show HomeWork';
 		$data['subPage'] = 'Student HomeWork';
-		
-
 		$va=$this->homeWorkModel->getHomeWorkDetail();
 		$data['var1']=$va;
 		$data['title'] = 'Show HomeWork';
-		$data['headerCss'] = 'headerCss/daybookCss';
-		$data['footerJs'] = 'footerJs/empAttendanceJs';
+		$data['headerCss'] = 'headerCss/feeCss';
+		$data['footerJs'] = 'footerJs/feeJs';
 		$data['mainContent'] = 'studentHW';
 		$this->load->view("includes/mainContent", $data);
 
@@ -385,9 +384,7 @@ function showHomeWork()
 		$data['footerJs'] = 'footerJs/showHomeWorkJs';
 		$data['mainContent'] = 'showHomeWork';
 		$this->load->view("includes/mainContent", $data);
-	
-		
-	}
+		}
 	
 	function getTeacherWork()
 	{	
@@ -706,10 +703,10 @@ function showHomeWork()
 	
 	public function deleteHomeWork(){
 	  $id= $this->uri->segment(3);
-		$this->db->where('school_code',$this->session->userdata('school_code'));
-		$this->db->where('s_no',$id);
-		$delete=$this->db->delete('homework_name');
-		redirect("index.php/studentHWControllers/showHomeWork");
+	//	$this->db->where('school_code',$this->session->userdata('school_code'));
+		$this->db->where('work_id',$id);
+		$delete=$this->db->delete('homework');
+		redirect("index.php/studentHWControllers/studentShowHomeWork");
 		
 	}
 public function viewHomeWork(){

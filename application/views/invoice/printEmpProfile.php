@@ -146,12 +146,12 @@
 				<td><?php if($detail->job_category==1){ echo "Accountant";}elseif($detail->job_category==2){echo "Employee";}elseif($detail->job_category==3){echo "Teacher";}else{echo "Principal";} ?></td>
 			
 			</tr>
-			<tr style="text-transform:uppercase;">
+		<!--	<tr style="text-transform:uppercase;">
 				<th>Job Title</th>
-				<td><?php if(strlen($detail->job_title) > 1) {echo ucwords($detail->job_title); }else echo "N/A"; ?></td>
+				<td><?php //if(strlen($detail->job_title) > 1) {echo ucwords($detail->job_title); }else echo "N/A"; ?></td>
 				<th>Gender</th>
-				<td><?php if ($detail->gender==1){echo "Male";}else{echo "Female";} ?></td>
-			</tr>
+				<td><?php //if ($detail->gender==1){echo "Male";}else{echo "Female";} ?></td>
+			</tr>-->
 			<tr style="text-transform:uppercase;">
 				<th>Category</th>
 				<td><?php if(strlen($detail->category) > 1) {echo ucwords($detail->category); }else echo "N/A"; ?></td>

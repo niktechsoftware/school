@@ -117,9 +117,9 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 							<th>Full Name</th>
 							<?php endif; ?>
 							
-							<?php if(strlen($job_title) > 1):?>
+							<!--<?php //if(strlen($job_category) > 1):?>
 							<th>Job Title</th>
-							<?php endif; ?>
+							<?php //endif; ?>-->
 							
 							<?php if(strlen($mobile) > 1):?>
 							<th>Mobile</th>
@@ -188,22 +188,22 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 					<tbody>
 						<?php $sno = 1; foreach ($result->result() as $row): ?>
 						<tr>
-							<td><?php echo $sno; ?></td>
+							<td style="color:black"><?php echo $sno; ?></td>
 							
 							 <?php if(strlen($username) > 1):?>
-							<td><?php echo $row->username; ?></td>
+							<td style="color:DodgerBlue"><?php echo $row->username; ?></td>
 							<?php endif; ?> 
 							
 							<?php if(strlen($name) > 1):?>
-							<td><?php echo $row->name ?></td>
+							<td ><?php echo $row->name ?></td>
 							<?php endif; ?>											
 							
-							<?php if(strlen($job_title) > 1):?>
-							<td><?php echo $row->job_title; ?></td>
-							<?php endif; ?>
+						<!--	<?php //if(strlen($job_title) > 1):?>
+							<td><?php //echo $row->job_title; ?></td>
+							<?php //endif; ?>-->
 							
 							<?php if(strlen($mobile) > 1):?>
-							<td><?php echo $row->mobile; ?></td>
+							<td><i class="fa fa-phone" aria-hidden="true"></i><?php echo $row->mobile; ?></td>
 							<?php endif; ?>
 							
 							<?php if(strlen($address) > 1):?>
@@ -262,7 +262,13 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
 							<td><?php if($row->gender==1){echo "Male";}else{echo "Female";} ?></td>
 							<?php endif;  ?>
 							
-							<td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">Full Profile</a></td>
+							<td><a href="<?php echo base_url(); ?>index.php/employeeController/employeeProfile/<?php echo $row->username;?>">
+							   <?php if($row->photo){?>
+										    <img  class="img-circle" height="50" width="50" src="https://schoolerp-niktech.in/a_school/9/images/empImage/<?php echo $row->photo;?>"/>
+										    <?php }else{?>
+										    <img src="https://schoolerp-niktech.in/a_school/icon/viewp.png" class="img-circle" style="width:40px;" alt="">
+						 <?php }?>
+							   	</a></td>
 						</tr>
 						<?php $sno++; endforeach; ?>
 					</tbody>

@@ -5,15 +5,18 @@
 		<div class="panel panel-calendar">
 			<div class="panel-heading panel-blue border-light">
 				<?php 
+			         $exam_id=$this->uri->segment('3');
 				     $this->db->where('school_code',$school_code);
-				      $this->db->where('id',$exam_name);
-                        $exam=$this->db->get('exam_name')->row();
+				     $this->db->where('id',$exam_id);
+                    $exam=$this->db->get('exam_name')->row();
+                   /* $this->db->where("exam_id",$exam->exam_id);
+                    $eh=$this->db->get("exam_head")->row();*/
 				     ?>
 				            
 				<h4 class="panel-title">Scheduling For-Exam Name:<?php echo $exam->exam_name;?> </h4>
 			</div>	
 			<div class="row">
-			<input type="hidden" name="exam_name" value="<?php echo $exam_name;?>"/>
+			<input type="hidden" name="exam_name" value="<?php echo $exam_id;?>"/>
 			<!-- <input type="hidden" name="edate" value="<?php// echo $edate;?>"/>-->
 			<input type="hidden" name="nod" value="<?php echo $nod;?>"/>
 				<table class="table table-responsive">
@@ -66,6 +69,7 @@
 								?><td><?php 
 								$sub = $this->db->query("SELECT subject_id FROM exam_time_table WHERE class_id ='$a->id' AND shift_id = '$sh->id'  AND exam_day_id ='$col->id' AND school_code='$school_code'");
 								$subject = $sub->row();
+							
 								$sub1 = $this->db->query("SELECT * FROM exam_time_table WHERE exam_id ='$exam_name' AND exam_day_id = '$col->id'  AND class_id = '$row->id' AND school_code='$school_code'");
 								$row1 = $sub1->row();
 								if($row1){
@@ -124,7 +128,8 @@
 							<option value="N/A">-Select Subject-</option>
 									
 									<?php
-									//print_r($subject);
+									print_r($subject);
+									
 									 foreach ($subject as $sub):
 										$sub2 = $this->db->query("SELECT distinct subject_id FROM exam_time_table WHERE exam_day_id='$col->id' and subject_id='$sub->id' and exam_id ='$exam_name' AND shift_id = '$sh->id'  AND class_id = '$row->id' AND school_code='$school_code'");
 							$row1 = $sub2->row();

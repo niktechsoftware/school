@@ -24,6 +24,8 @@ class CertificateController extends CI_Controller{
 		}
 	}
 	function addtc(){
+	   $failpass= $this->input->post("failpass");
+	    $tc_date = $this->input->post("tc_date");
 	    $stuid = $this->input->post('stuid');
 	    $renew_upto = $this->input->post('renew_upto');
 	    $school_status = $this->input->post('school_status');
@@ -36,6 +38,7 @@ class CertificateController extends CI_Controller{
 	    $meeting_date = $this->input->post('meeting_date');
 	     $attended_day = $this->input->post('attended_day');
 	     $other_remark = $this->input->post('other_remark');
+	      $padonnati = $this->input->post('padonnati');
 	     $data= array(
 	         "renewed_upto" =>$renew_upto,
 	         "school_status" =>$school_status,
@@ -48,6 +51,9 @@ class CertificateController extends CI_Controller{
 	         "meeting_date" =>$meeting_date,
 	         "pupil_attended_day" =>$attended_day,
 	         "other_remarks" =>$other_remark,
+	         "tc_date"=>$tc_date,
+	         "resultStatus"=>$failpass,
+	         "padonnati"=>$padonnati
 	         
 	         );
 	         $this->db->where('student_id',$stuid);

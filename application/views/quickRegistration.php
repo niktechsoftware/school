@@ -1,5 +1,3 @@
-
-
 <?php $school_code = $this->session->userdata("school_code");?>
 <style>
 .highlight-error {

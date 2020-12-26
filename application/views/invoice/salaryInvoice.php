@@ -92,19 +92,18 @@
 				<td width="10%" style="border: none;">
 				 <img src="<?php echo $this->config->item('asset_url'); ?><?= $this->session->userdata('school_code') ?>/images/empImage/<?= $this->session->userdata('logo') ?>" alt="" style="width:100px; height:100px; float:right;" />
 				</td>
+				
 				<td style="border: none;">
-					<h1 align="center" style="text-transform:uppercase;"><?php echo $info->school_name; ?></h1>
-			        <h3 align="center" style="font-variant:small-caps;">
+					<h2 align="center" style="text-transform:uppercase;  color:#D83E1D;"><?php echo $info->school_name; ?></h2>
+			        <h4 align="center" style="font-variant:small-caps;  color:#1365A5;">
 						<?php if($info->address1){echo $info->address1; }else{echo $info->address2; } 
 						echo ",".$info->city; ?>
-			        </h3>
-			        <h3 align="center" style="font-variant:small-caps;">
 						<?php echo $info->state." - ".$info->pin; ?>
-			        </h3>
-			        <h3 align="center" style="font-variant:small-caps;">
-						<?php if(strlen($info->fax_no > 0 )){echo "Phone : ".$info->fax_no.", ";} ?>
-			            <?php echo "Mobile : ".$info->mobile_no; ?>
-			        </h3>
+			        </h4>
+			        <h4 align="center" style="font-variant:small-caps;">
+						Phone:<span style="color:#D83E1D;"><?php if(strlen($info->fax_no > 0 )){echo $info->fax_no.", ";} ?></span>
+			            Mobile:<span style="color:#D83E1D;"><?php echo $info->mobile_no; ?></span>
+			        </h4>
 				</td>
 			</tr>
 		</table>
@@ -126,13 +125,18 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
 ?>
         	
                 <table>
-                    <tr class="text-uppercase"><td style="border:none;"><strong><h2>EMPLOYEE DETAIL</h2></strong></td></tr>
+                   <!-- <tr class="text-uppercase"><td style="border:none;"><strong><h2>EMPLOYEE DETAIL</h2></strong></td></tr>-->
                     <tr class="text-uppercase">
                         <td style="border:none; line-height: 20px;">
                             <label>
-                                <STRONG>Employee ID : </STRONG><?PHP echo strtoupper($empDetail->username); ?></BR>
-                                <STRONG>Name : </STRONG><?PHP echo strtoupper($empDetail->name); ?></BR>
-                                <STRONG>Designation. : </STRONG><?PHP echo strtoupper($empDetail->job_title); ?></BR>
+                                <div style="width: 140px; height: 150px; margin-left:50%;" >
+                                    <?php if($empDetail->photo){?>
+									<img  height="148" width="140" src="https://schoolerp-niktech.in/a_school/9/images/empImage/<?php echo $empDetail->photo; ?>" />
+								<?php }else{?>
+								<img  height="148" width="140" src="https://schoolerp-niktech.in/a_school/icon/maleteacher.png" >
+								<?php } ?>
+								</div>
+                                
                             </label>
                         </td>
                     </tr>
@@ -143,21 +147,42 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
                     <tr class="text-uppercase">
                         <td style="border:none; line-height: 20px;">
                             <label>
-                                <STRONG>Invoice No : </STRONG><?PHP echo $this->uri->segment(3); ?></BR>
+                                <STRONG><span style="color:#1365A5;">Employee ID : </span></STRONG><span style="color:#F98056;"><?PHP echo strtoupper($empDetail->username); ?></span></BR>
                             </label>
                         </td>
                     </tr>
                     <tr class="text-uppercase">
                         <td style="border:none; line-height: 20px;">
                             <label>
-                                <STRONG>Pay Mode : </STRONG><?PHP echo $row->pay_mode; ?></BR>
+                               <STRONG><span style="color:#1365A5;">Name : </span></STRONG><span style="color:#F98056;"><?PHP echo strtoupper($empDetail->name); ?></span></BR>
                             </label>
                         </td>
                     </tr>
                     <tr class="text-uppercase">
                         <td style="border:none; line-height: 20px;">
                             <label>
-                                <STRONG>Salary for Month : </STRONG>
+                               <STRONG><span style="color:#1365A5;">Designation. : </span></STRONG><span style="color:#F98056;"><?PHP echo strtoupper($empDetail->job_title); ?></span></BR>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr class="text-uppercase">
+                        <td style="border:none; line-height: 20px;">
+                            <label>
+                                 <STRONG><span style="color:#1365A5;">Invoice No : </span></STRONG><span style="color:#F98056;"><?PHP echo $this->uri->segment(3); ?></span></BR>
+                            </label>
+                        </td>
+                    </tr>
+                   <!-- <tr class="text-uppercase">
+                        <td style="border:none; line-height: 20px;">
+                            <label>
+                                <STRONG><span style="color:#1365A5;">Pay Mode : </span></STRONG><span style="color:#F98056;"><?PHP echo $row->pay_mode; ?></span></BR>
+                            </label>
+                        </td>
+                    </tr>-->
+                    <tr class="text-uppercase">
+                        <td style="border:none; line-height: 20px;">
+                            <label>
+                                <STRONG><span style="color:#1365A5;">Salary for Month : </span></STRONG>
                                 <?php $dt = $row->till_date;?>
                                 <?php if($row->monthNo == '0'){ ?>
                                 	Advance Salary
@@ -168,12 +193,13 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
 	                           <?php } ?>
                             </label>
                         </td>
+                        
                     </tr>
                     <tr class="text-uppercase">
                         <td style="border:none; line-height: 20px;">
                             <label>
-                                <STRONG>Pay Date : </STRONG><?PHP $newdate = date('l : d-M-Y', strtotime($row->created)); echo $newdate; ?></BR>
-                            </label>
+                               <!-- <STRONG><span style="color:#1365A5;">Pay Date :</span> </STRONG><span style="color:#F98056;"><?PHP $newdate = date('l : d-M-Y', strtotime($row->created)); echo $newdate; ?></BR></span>
+                           --> </label>
                         </td>
                     </tr>
                 </table>
@@ -187,77 +213,77 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
               </tr>
               <tr class="item-row text-uppercase">
               	  <td><label>1</label></td>
-                  <td><label>Basic Salary :</label></td>
-                  <th><label><?PHP echo $row->basicSalary; ?></label></th>
+                  <td><label><span style="color:#1365A5;">Basic Salary :</span></label></td>
+                  <th><label><span style="color:#F98056;"><?PHP echo $row->basicSalary; ?></span></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>2</label></td>
-                  <td><label>Medical Allowance :</label></td>
+                  <td><label><span style="color:#1365A5;">Medical Allowance :</span></label></td>
                   <th><label><?PHP echo $row->medicalAllowance; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>3</label></td>
-                  <td><label>Transport Allowance :</label></td>
+                  <td><label><span style="color:#1365A5;">Transport Allowance :</span></label></td>
                   <th><label><?PHP echo $row->transportAllowance; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>4</label></td>
-                  <td><label>Dearness Allowance :</label></td>
+                  <td><label><span style="color:#1365A5;">Dearness Allowance :</span></label></td>
                   <th><label><?PHP echo $row->dearnessAllowance; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>5</label></td>
-                  <td><label>House Rent Allowance :</label></td>
+                  <td><label><span style="color:#1365A5;">House Rent Allowance :</span></label></td>
                   <th><label><?PHP echo $row->houseRentAllowance; ?></label></th>
               </tr>
              
              
               <tr class="item-row text-uppercase">
               		<td><label>6</label></td>
-                  <td><label>Incentieve :</label></td>
+                  <td><label><span style="color:#1365A5;">Incentieve :</span></label></td>
                   <th><label><?PHP echo $row->encentieve; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>7</label></td>
-                  <td><label>Bonus :</label></td>
+                  <td><label><span style="color:#1365A5;">Bonus :</span></label></td>
                   <th><label><?PHP echo $row->bonus; ?></label></th>
               </tr>
                <tr class="item-row text-uppercase">
               		<td><label>8</label></td>
-                  <td><label>Advance Salary :</label></td>
+                  <td><label><span style="color:#1365A5;">Advance Salary :</span></label></td>
                   <th><label><?PHP echo $row->currentAdvance; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>9</label></td>
-                  <td><label>Total :</label></td>
-                  <th><label><?PHP echo $row->basicSalary + $row->medicalAllowance + $row->transportAllowance + $row->dearnessAllowance + $row->houseRentAllowance  + $row->encentieve + $row->bonus + $row->currentAdvance; ?></label></th>
+                  <td><label><span style="color:#1365A5;">Total :</span></label></td>
+                  <th><label><span style="color:#F98056;"><?PHP echo $row->basicSalary + $row->medicalAllowance + $row->transportAllowance + $row->dearnessAllowance + $row->houseRentAllowance  + $row->encentieve + $row->bonus + $row->currentAdvance; ?></span></label></th>
               </tr>
               <tr >
                   <th align="center" colspan="3"><label>------------ DEDUCTION ------------</label></th>
               </tr>
                <tr class="item-row text-uppercase">
               		<td><label>10</label></td>
-                  <td><label>Absent Deduction :</label></td>
+                  <td><label><span style="color:#1365A5;">Absent Deduction :</span></label></td>
                   <th><label><?PHP echo $row->spcialAllowance; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>11</label></td>
-                  <td><label>Provident Fund:</label></td>
+                  <td><label><span style="color:#1365A5;">Provident Fund:</span></label></td>
                   <th><label><?PHP echo $row->ProvidentFund; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>12</label></td>
-                  <td><label>Employee State Insurance</label></td>
+                  <td><label><span style="color:#1365A5;">Employee State Insurance</span></label></td>
                   <th><label><?PHP echo $row->employeeStateInsurance; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>13</label></td>
-                  <td><label>Previous Advance</label></td>
+                  <td><label><span style="color:#1365A5;">Previous Advance</span></label></td>
                   <th><label><?PHP echo $row->previousAdvance; ?></label></th>
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>14</label></td>
-                  <td><label>TOLAL DEDUCTION:</label></td>
+                  <td><label><span style="color:#1365A5;">TOLAL DEDUCTION:</span></label></td>
                   <th><label><?PHP echo $row->ProvidentFund + $row->employeeStateInsurance + $row->previousAdvance + $row->spcialAllowance; ?></label></th>
               </tr>
               <tr>
@@ -265,8 +291,8 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
               </tr>
               <tr class="item-row text-uppercase">
               		<td><label>15</label></td>
-                  <td><label>NET AMOUNT PAYABLE:</label></td>
-                  <th><label><?PHP echo $row->gross_s; ?></label></th>
+                  <td><label><span style="color:#D5400C;">NET AMOUNT PAYABLE:</span></label></td>
+                  <th><label><span style="color:#F98056;"><?PHP echo $row->gross_s; ?></span></label></th>
               </tr>
           
               <tr>
@@ -274,7 +300,7 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
                       <table width="100%" height="100%">
                           <tr>
                               <td style="border: 1px;" colspan="2">
-                                  <strong>Net Amount Payble (in words)</strong><br/><script> document.write(convert_number(<?php echo $row->gross_s; ?>)); </script> Rupee Only/-
+                                  <strong><span style="color:#1365A5;">Net Amount Payble (in words)</span></strong><br/><span style="color:#EB4910;"><script> document.write(convert_number(<?php echo $row->gross_s; ?>)); </script> Rupee Only/-</span>
                               </td>
                           </tr>
                       </table>
@@ -288,8 +314,10 @@ $this->db->where("school_code",$this->session->userdata("school_code"));
 		</div>
 	    -->
 	</div>
-    <center>This is Computer generated Invoice</center>
-    <center><button id="non-printable" type="button" class="btn btnn_primary"  onclick="window.print();">Print Invoice</button></center>
+   <!-- <center>This is Computer generated Invoice</center>-->
+   </br>
+   </br>
+    <center><button id="non-printable" type="button" class="btn btnn_primary"  onclick="window.print();">Print</button></center>
 	
 </body>
 </html>

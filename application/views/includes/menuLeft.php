@@ -1,76 +1,359 @@
 <!-- start: PAGESLIDE RIGHT -->
-<div id="pageslide-right" class="pageslide slide-fixed inner">
-    <div class="right-wrapper">
-        <div class="notifications">
-            <div class="pageslide-title">
-            <?php 
-             $school_code = $this->session->userdata("school_code");
-            $v=$this->session->userdata('username');
-            $abc = $this->db->query("SELECT * FROM message WHERE reciever_id='$v' AND open='n' AND school_code='$school_code'");
-            $total = $abc->num_rows();
-            $this->db->where("school_code",$this->session->userdata("school_code"));
-            $total1=$this->db->count_all("notice");
-            $totalNoti = $total1 + $total;?>
-                You have <?php echo $totalNoti;?> notifications
-            </div>
-            <div>Notices <?php echo $total1; ?></div>
-            <?php  
-            if($this->session->userdata('login_type') == 'student'){
-                
-            $this->db->where("school_code",$school_code);
-            $this->db->where("category","All Student");
-            $r =$this->db->get("notice");
-            
-            }else{
-                $this->db->where("school_code",$school_code);
-                $this->db->where("category","All Employee");
-               $r =$this->db->get("notice");
-            }
-            if($r->num_rows()>0){
-            foreach($r->result() as $rcom):
-            ?>
-            <ul class="pageslide-list">
-                <li>
-                    <a href="<?php echo base_url();?>msgNoticeControllers/showAllNotice/<?php echo $rcom->id;?>">
-                        <span class="label label-primary"><i class="fa fa-user"></i></span> 
-                        <span class="message"> <?php echo implode(' ',array_slice(explode(' ',$rcom->message),0,7));?>...</span> 
-                        <span class="time"> <?php echo date("D/M",strtotime($rcom->date));?></span>
-                    </a>
-                </li>
-               <?php endforeach; }?>
-            </ul>
-            <div class="view-all">
-                <a href="<?php echo base_url();?>msgNoticeControllers/showAllNotice">
-                    See All Notices <i class="fa fa-arrow-circle-o-right"></i>
-                </a>
-            </div>
-            <div>Messages <?php echo $total; ?></div>
-             <?php   $v=$this->session->userdata('username');
-             $r = $this->db->query("select * from message where reciever_id='$v'")->result();
-            foreach($r as $rcom):
-            ?>
-            <ul class="pageslide-list">
-                <li>
-                    <a href="<?php echo base_url();?>msgNoticeControllers/showAllMessage/<?php echo $rcom->id;?>">
-                        <span class="label label-primary"><i class="fa fa-user"></i></span> 
-                        <span class="message"> <?php echo implode(' ',array_slice(explode(' ',$rcom->message),0,7));?>...</span> 
-                        <span class="time"> <?php echo date("D/M",strtotime($rcom->send_date))." ".$rcom->send_time;?></span>
-                    </a>
-                </li>
-               <?php endforeach;?>
-            </ul>
-            <div class="view-all">
-                <a href="<?php echo base_url();?>msgNoticeControllers/showAllMessage">
-                    See All Message <i class="fa fa-arrow-circle-o-right"></i>
-                </a>
-            </div>
-            
-            
-            
-            
-            
-        </div>
-       
-    </div>
-</div>
-<!-- end: PAGESLIDE RIGHT -->
+			<div id="pageslide-right" class="pageslide slide-fixed inner">
+				<div class="right-wrapper">
+					<ul class="nav nav-tabs nav-justified" id="sidebar-tab">
+						<li class="active">
+							<a href="#users" role="tab" data-toggle="tab"><i class="fa fa-users"></i></a>
+						</li>
+						<li>
+							<a href="#notifications" role="tab" data-toggle="tab"><i class="fa fa-bookmark "></i></a>
+						</li>
+						<li>
+							<a href="#settings" role="tab" data-toggle="tab"><i class="fa fa-gear"></i></a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="users">
+							<div class="users-list">
+								<h5 class="sidebar-title">On-line</h5>
+								<ul class="media-list">
+									<li class="media">
+										<a href="#">
+											<i class="fa fa-circle status-online"></i>
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+											<div class="media-body">
+												<h6 class="media-heading">Nicole Bell</h6>
+												<span> Content Designer </span>
+											</div>
+										</a>
+									</li>
+									<li class="media">
+										<a href="#">
+											<div class="user-label">
+												<span class="label label-default">3</span>
+											</div>
+											<i class="fa fa-circle status-online"></i>
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												<div class="media-body">
+												<h4 class="media-heading">Steven Thompson</h4>
+												<span> Visual Designer </span>
+											</div>
+										</a>
+									</li>
+									<li class="media">
+										<a href="#">
+											<i class="fa fa-circle status-online"></i>
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												<div class="media-body">
+												<h4 class="media-heading">Ella Patterson</h4>
+												<span> Web Editor </span>
+											</div>
+										</a>
+									</li>
+									<li class="media">
+										<a href="#">
+											<i class="fa fa-circle status-online"></i>
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												<div class="media-body">
+												<h4 class="media-heading">Kenneth Ross</h4>
+												<span> Senior Designer </span>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<h5 class="sidebar-title">Off-line</h5>
+								<ul class="media-list">
+									<li class="media">
+										<a href="#">
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												<div class="media-body">
+												<h4 class="media-heading">Nicole Bell</h4>
+												<span> Content Designer </span>
+											</div>
+										</a>
+									</li>
+									<li class="media">
+										<a href="#">
+											<div class="user-label">
+												<span class="label label-default">3</span>
+											</div>
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												<div class="media-body">
+												<h4 class="media-heading">Steven Thompson</h4>
+												<span> Visual Designer </span>
+											</div>
+										</a>
+									</li>
+									<li class="media">
+										<a href="#">
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												<div class="media-body">
+												<h4 class="media-heading">Ella Patterson</h4>
+												<span> Web Editor </span>
+											</div>
+										</a>
+									</li>
+									<li class="media">
+										<a href="#">
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												<div class="media-body">
+												<h4 class="media-heading">Kenneth Ross</h4>
+												<span> Senior Designer </span>
+											</div>
+										</a>
+									</li>
+									<li class="media">
+										<a href="#">
+										    	<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+											
+											<div class="media-body">
+												<h4 class="media-heading">Ella Patterson</h4>
+												<span> Web Editor </span>
+											</div>
+										</a>
+									</li>
+									<li class="media">
+										<a href="#">
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												<div class="media-body">
+												<h4 class="media-heading">Kenneth Ross</h4>
+												<span> Senior Designer </span>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						<!--	<div class="user-chat">
+								<div class="sidebar-content">
+									<a class="sidebar-back" href="#"><i class="fa fa-chevron-circle-left"></i> Back</a>
+								</div>
+								<div class="user-chat-form sidebar-content">
+									<div class="input-group">
+										<input type="text" placeholder="Type a message here..." class="form-control">
+										<div class="input-group-btn">
+											<button class="btn btn-blue no-radius" type="button">
+												<i class="fa fa-chevron-right"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+								<ol class="discussion sidebar-content">
+									<li class="other">
+										<div class="avatar">
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+											</div>
+										<div class="messages">
+											<p>
+												Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</p>
+											<span class="time"> 51 min </span>
+										</div>
+									</li>
+									<li class="self">
+										<div class="avatar">
+										<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												</div>
+										<div class="messages">
+											<p>
+												Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</p>
+											<span class="time"> 37 mins </span>
+										</div>
+									</li>
+									<li class="other">
+										<div class="avatar">
+											<img alt="..." src="<?php echo $this->config->item('asset_url'); ?>icon/1.png" style="height:35px; width:35px;" class="media-object">
+												</div>
+										<div class="messages">
+											<p>
+												Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+											</p>
+										</div>
+									</li>
+								</ol>
+							</div>-->
+						</div>
+						<div class="tab-pane" id="notifications">
+							<div class="notifications">
+								<div class="pageslide-title">
+									You have 11 notifications
+								</div>
+								<ul class="pageslide-list">
+									<li>
+										<a href="javascript:void(0)">
+											<span class="label label-primary"><i class="fa fa-user"></i></span> <span class="message"> New user registration</span> <span class="time"> 1 min</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)">
+											<span class="label label-success"><i class="fa fa-comment"></i></span> <span class="message"> New comment</span> <span class="time"> 7 min</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)">
+											<span class="label label-success"><i class="fa fa-comment"></i></span> <span class="message"> New comment</span> <span class="time"> 8 min</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)">
+											<span class="label label-success"><i class="fa fa-comment"></i></span> <span class="message"> New comment</span> <span class="time"> 16 min</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)">
+											<span class="label label-primary"><i class="fa fa-user"></i></span> <span class="message"> New user registration</span> <span class="time"> 36 min</span>
+										</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)">
+											<span class="label label-warning"><i class="fa fa-shopping-cart"></i></span> <span class="message"> 2 items sold</span> <span class="time"> 1 hour</span>
+										</a>
+									</li>
+									<li class="warning">
+										<a href="javascript:void(0)">
+											<span class="label label-danger"><i class="fa fa-user"></i></span> <span class="message"> User deleted account</span> <span class="time"> 2 hour</span>
+										</a>
+									</li>
+								</ul>
+								<div class="view-all">
+									<a href="javascript:void(0)">
+										See all notifications <i class="fa fa-arrow-circle-o-right"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="settings">
+							<h5 class="sidebar-title">General Settings</h5>
+							<ul class="media-list">
+								<li class="media">
+									<div class="checkbox sidebar-content">
+										<label>
+											<input type="checkbox" value="" class="green" checked="checked">
+											Enable Notifications
+										</label>
+									</div>
+								</li>
+								<li class="media">
+									<div class="checkbox sidebar-content">
+										<label>
+											<input type="checkbox" value="" class="green" checked="checked">
+											Show your E-mail
+										</label>
+									</div>
+								</li>
+								<li class="media">
+									<div class="checkbox sidebar-content">
+										<label>
+											<input type="checkbox" value="" class="green">
+											Show Offline Users
+										</label>
+									</div>
+								</li>
+								<li class="media">
+									<div class="checkbox sidebar-content">
+										<label>
+											<input type="checkbox" value="" class="green" checked="checked">
+											E-mail Alerts
+										</label>
+									</div>
+								</li>
+								<li class="media">
+									<div class="checkbox sidebar-content">
+										<label>
+											<input type="checkbox" value="" class="green">
+											SMS Alerts
+										</label>
+									</div>
+								</li>
+							</ul>
+							<div class="sidebar-content">
+								<button class="btn btn-success">
+									<i class="icon-settings"></i> Save Changes
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="hidden-xs" id="style_selector">
+						<div id="style_selector_container">
+							<div class="pageslide-title">
+								Style Selector
+							</div>
+							<div class="box-title">
+								Choose Your Layout Style
+							</div>
+							<div class="input-box">
+								<div class="input">
+									<select name="layout" class="form-control">
+										<option value="default">Wide</option><option value="boxed">Boxed</option>
+									</select>
+								</div>
+							</div>
+							<div class="box-title">
+								Choose Your Header Style
+							</div>
+							<div class="input-box">
+								<div class="input">
+									<select name="header" class="form-control">
+										<option value="fixed">Fixed</option><option value="default">Default</option>
+									</select>
+								</div>
+							</div>
+							<div class="box-title">
+								Choose Your Sidebar Style
+							</div>
+							<div class="input-box">
+								<div class="input">
+									<select name="sidebar" class="form-control">
+										<option value="fixed">Fixed</option><option value="default">Default</option>
+									</select>
+								</div>
+							</div>
+							<div class="box-title">
+								Choose Your Footer Style
+							</div>
+							<div class="input-box">
+								<div class="input">
+									<select name="footer" class="form-control">
+										<option value="default">Default</option><option value="fixed">Fixed</option>
+									</select>
+								</div>
+							</div>
+							<div class="box-title">
+								10 Predefined Color Schemes
+							</div>
+							<div class="images icons-color">
+								<a href="#" id="default"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-1.png" alt="" class="active"></a>
+								<a href="#" id="style2"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-2.png" alt=""></a>
+								<a href="#" id="style3"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-3.png" alt=""></a>
+								<a href="#" id="style4"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-4.png" alt=""></a>
+								<a href="#" id="style5"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-5.png" alt=""></a>
+								<a href="#" id="style6"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-6.png" alt=""></a>
+								<a href="#" id="style7"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-7.png" alt=""></a>
+								<a href="#" id="style8"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-8.png" alt=""></a>
+								<a href="#" id="style9"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-9.png" alt=""></a>
+								<a href="#" id="style10"><img src="<?php echo $this->config->item('asset_url'); ?>icon/color-10.png" alt=""></a>
+							</div>
+							<div class="box-title">
+								Backgrounds for Boxed Version
+							</div>
+							<div class="images boxed-patterns">
+								<a href="#" id="bg_style_1"><img src="<?php echo $this->config->item('asset_url'); ?>icon/bg.png" alt=""></a>
+								<a href="#" id="bg_style_2"><img src="<?php echo $this->config->item('asset_url'); ?>icon/bg_2.png" alt=""></a>
+								<a href="#" id="bg_style_3"><img src="<?php echo $this->config->item('asset_url'); ?>icon/bg_3.png" alt=""></a>
+								<a href="#" id="bg_style_4"><img src="<?php echo $this->config->item('asset_url'); ?>icon/bg_4.png" alt=""></a>
+								<a href="#" id="bg_style_5"><img src="<?php echo $this->config->item('asset_url'); ?>icon/bg_5.png" alt=""></a>
+							</div>
+							<div class="style-options">
+								<a href="#" class="clear_style">
+									Clear Styles
+								</a>
+								<a href="#" class="save_style">
+									Save Styles
+								</a>
+							</div>
+						</div>
+						<div class="style-toggle open"></div>
+					</div>
+				</div>
+			</div>
+			<!-- end: PAGESLIDE RIGHT -->

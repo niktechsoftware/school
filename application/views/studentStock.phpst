@@ -35,14 +35,14 @@
 										</div>
 									</div>
 									<div class="panel-body">
-									    <div class="alert alert-info">
-                                					<button data-dismiss="alert" class="close">×</button>
-                                					<h4 class="media-heading text-center">Welcome to Student Stock Report
-                                						Area</h4>
-                                					<p>Here Stundent  can see their Stock purchasing report.You can also take
-                                						print out of that month on click Print Slip.</p>
-                                				</div>
-									    	<?php $v=$this->session->userdata('username'); 	
+									    
+									     <div class="alert alert-info">
+                                          <button data-dismiss="alert" class="close">×</button>
+                                          <h3 class="media-heading text-center">Welcome to the Student Stock  Area</h3>
+                                          In this section student can See thier Purchase Stock  .
+                                        </div>
+									    
+										<?php $v=$this->session->userdata('username'); 	
 											$this->db->where('username',$v);
 											$vid=$this->db->get('student_info')->row();
 											$v1= $vid->id;
@@ -77,11 +77,10 @@
 								    				</tr>
 								    				<?php $i++; 
 								    				endforeach; ?>
-								    			</tbody>	
-								    		</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-								
+						</tbody>	
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	

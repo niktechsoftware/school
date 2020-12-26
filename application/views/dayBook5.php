@@ -129,12 +129,15 @@ $dicountTotal = 0;
 		?>
 	</td>
 	<td><?php
-	if($row1->heads==5 || $row1->heads==3){
+	if($row1->heads==5 || $row1->heads==3 ||  $row1->heads==4){
 		if($row1->heads==5){
 			echo "Fee Deposit";
 		}
 		if($row1->heads==3){
 			echo "Sale Stock";
+		}
+		if($row1->heads==4){
+			echo "Fee Due";
 		}
 	}else{
 		$this->db->where("receipt_no",$row->invoice_no);
@@ -154,7 +157,7 @@ $dicountTotal = 0;
 <?php } ?>
 
 								<td style="color: red"><?php if($dr_cr == 0 ){ $dabit = $dabit + $row->amount; echo $row->amount; } ?></td>
-								<td style="color: green"><?php if($dr_cr == 1 ){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
+								<td style="color: green"><?php if($dr_cr == 1 || $dr_cr == 2){ $cradit = $cradit + $row->amount; echo $row->amount; } ?></td>
 
 
 <td><?php $datep = date("Y-m-d",strtotime($row->pay_date)); echo $this->daybookmodel->getClosingBalanceForDaybook($datep,$row->id); ?></td>

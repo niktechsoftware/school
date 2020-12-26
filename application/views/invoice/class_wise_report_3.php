@@ -4444,7 +4444,7 @@
      }
 
      }
-   } exit();
+   } 
 
 				function calculateGrade($val,$classid){
 								if($val >= 91 && $val < 101):

@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/perfect-scrollbar/src/perfect-scrollbar.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/animate.css/animate.min.css">
 		<!-- end: MAIN CSS -->
+			<script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.1.1.min.js"></script>
 		<!-- start: CSS REQUIRED FOR SUBVIEW CONTENTS -->
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/owl-carousel/owl-carousel/owl.theme.css">

@@ -34,7 +34,7 @@
         <div id="slidingbar">
             <div class="row">
                 <!-- start: SLIDING BAR FIRST COLUMN -->
-                <div class="col-md-4 col-sm-4">
+                <!--<div class="col-md-4 col-sm-4">
                     <h2>My Options</h2>
                     <div class="row">
                         <div class="col-xs-6 col-lg-3">
@@ -62,43 +62,14 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- end: SLIDING BAR FIRST COLUMN -->
                 <!-- start: SLIDING BAR SECOND COLUMN -->
                 <div class="col-md-4 col-sm-4">
-                    <h2>My Recent Works</h2>
+                <!--    <h2>My Recent Works</h2>-->
                     <div class="blog-photo-stream margin-bottom-30">
                         <ul class="list-unstyled">
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image01_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image02_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image03_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image04_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image05_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image06_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image07_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image08_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image09_th.jpg"></a>
-                            </li>
-                            <li>
-                                <a href="#"><img alt="" src="<?php echo base_url();?>assets/images/image10_th.jpg"></a>
-                            </li>
+                           
                         </ul>
                     </div>
                 </div>
@@ -181,18 +152,22 @@
 
 <div class="main-wrapper">
 <!-- start: TOPBAR -->
-<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
-    <!-- start: TOPBAR CONTAINER -->
-    <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-3" style="margin-top:7px"> 
-            <a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
-            <i class="fa fa-bars"></i> &nbsp;   &nbsp;
-            </a>
-            <?php if($this->session->userdata('login_type') == 'admin'){ ?>
+	<header class="topbar navbar navbar-inverse navbar-fixed-top inner">
+				<!-- start: TOPBAR CONTAINER -->
+				<div class="container">
+					<div class="navbar-header">
+						<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+							<i class="fa fa-bars"></i>
+						</a>
+						<!-- start: LOGO -->
+						<a class="navbar-brand" href="index.html">
+						<?php echo $this->session->userdata('your_school_name'); ?>
+						</a>
+						<!-- end: LOGO -->
+					</div>
+					 <?php if($this->session->userdata('login_type') == 'admin'){ ?>
             &nbsp;   &nbsp; <a style="margin-left:0px;"  href="https://niktechsoftware.com/index.php/welcome/pay" target="_blank"> 
-            <span class="button_blink" style="margin-top:-5px;">Due Amount  : <?php
+            <span class="button_blink hidden-xs" style="margin-top:-5px;" >Due Amount  : <?php
             	$school_code=   $this->session->userdata("school_code");
             			    $this->db->where("id",$school_code);
             		$cid  = $this->db->get("school")->row()->customer_id;
@@ -200,45 +175,29 @@
             if($client_due_list){echo $client_due_list->amount;}else{ echo "0";} ?> </span>
             </a>
             <?php }?>
-            &nbsp;   &nbsp;
+              &nbsp;   &nbsp;
             <a style="margin-left:0px;"  href="<?php echo base_url();?>assets/apk/niktech_software.apk" target="_blank"> 
-            <span class="button_blink" style="margin-top:-5px;">  Download App </span>
+            <span class="button_blink hidden-xs"  style="margin-top:-5px;">  Download App </span>
             </a>
-        
-        </div>
-        <div class="col-md-6">
-            <div class="navbar-header">
-            
-            <!-- start: LOGO -->
-            <a class="navbar-brand" style="margin-left:-60px;" href="#">
-               <strong style="font-size:15px;"> <?php echo $this->session->userdata('your_school_name'); ?></strong>
-            </a>
-            
-            <!-- end: LOGO -->
-            </div>
-        </div>
-        <div class="col-md-3" style="margin-top:7px">
-        <div class="topbar-tools">
-            <!-- start: TOP NAVIGATION MENU -->
-            <ul class="nav navbar-right">
-                <!-- start: USER DROPDOWN -->
-                <li class="dropdown current-user">
-                    <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
-                    	<?php if(strlen($this->session->userdata('photo')) > 1):?>
-				    		<?php if($this->session->userdata('login_type') == 'student'): ?>
-				        		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/stuImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" width="30" alt="">
-				        	<?php else: ?>
-				        		<img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" width="30" alt="">
-				        	<?php endif;?>
-				        <?php else:?>
-				        	<img src="<?php echo base_url()?>assets/images/anonymous.jpg" class="img-circle" width="30" alt="">
-				        <?php endif;?>
-                        <span class="username hidden-xs"><?php echo $this->session->userdata("name")?></span>
-                        <i class="fa fa-caret-down "></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-dark">
-                        <li>
-                        	<?php if($this->session->userdata('login_type') == 'admin'): ?>
+					<div class="topbar-tools">
+						<!-- start: TOP NAVIGATION MENU -->
+						<ul class="nav navbar-right">
+							<!-- start: USER DROPDOWN -->
+							<li class="dropdown current-user">
+								<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+								    	<?php if(strlen($this->session->userdata('photo')) > 1):?>
+				    		            <?php if($this->session->userdata('login_type') == 'student'): ?>
+									<img style="height:25px; width:30px;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/stuImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" alt=""> <span class="username hidden-xs"><?php echo $this->session->userdata("name")?></span> <i class="fa fa-caret-down "></i>
+								<?php else: ?>
+								<img  style="height:25px; width:30px;" src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $this->session->userdata('photo');?>" class="img-circle" alt=""> <span class="username hidden-xs"><?php echo $this->session->userdata("name")?></span> <i class="fa fa-caret-down "></i>
+								<?php endif;?>
+				                <?php else:?>
+				                <img style="height:25px; width:30px;" src="<?php echo base_url()?>assets/images/anonymous.jpg" class="img-circle" width="30" alt="">
+				                <?php endif;?>
+								</a>
+								<ul class="dropdown-menu dropdown-dark">
+								    <li>
+									<?php if($this->session->userdata('login_type') == 'admin'): ?>
 		                    	 <a href="<?php echo base_url()?>index.php/adminController/adminProfile">
 				                    My Profile
 				                </a>
@@ -253,51 +212,30 @@
 				                </a>
 		                    <?php endif;?>
                         </li>
-                        <!--<li>-->
-                        <!--    <a href="<?php //echo base_url();?>pages_calendar.html">-->
-                        <!--       My Calender-->
-                        <!--    </a>-->
-                        <!--</li>-->
-                        <?php  $v=$this->session->userdata('username');
+                         <?php  $v=$this->session->userdata('username');
 						            $abc = $this->db->query("SELECT * FROM message WHERE reciever_id='$v' AND open='n' AND school_code ='$school_code'");
 						            $total = $abc->num_rows();
 						            $this->db->where("school_code",$school_code);
 						            $total1=$this->db->count_all("notice");
 						            $totalNoti = $total1 + $total;?>
-
-                        <!--<li>-->
-                        <!--    <a href="pages_messages.html">-->
-
-                        <!--    </a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--    <a href="<?php //echo base_url()?>index.php/homeController/lockPage">-->
-
-                        <!--    </a>-->
-                        <!--</li>-->
-                        <li>
+								 <li>
                             <a href="<?php echo base_url()?>index.php/homeController/logout">
                                 Log Out
                             </a>
                         </li>
-                    </ul>
-                </li>
-                <!-- end: USER DROPDOWN -->
-                <li class="right-menu-toggle">
-                    <a href="#" class="sb-toggle-right">
-                        <i class="fa fa-globe toggle-icon"></i> <i class="fa fa-caret-right"></i> <span class="notifications-count badge badge-default hide"> <?php  echo $totalNoti;?></span>
-                    </a>
-                </li>
-            </ul>
-            <!-- end: TOP NAVIGATION MENU -->
-        </div>
-        </div>
-        </div>
-    </div>
-       
-       
-    </div>
-    <!-- end: TOPBAR CONTAINER -->
-</header>
+								</ul>
+							</li>
+							<!-- end: USER DROPDOWN -->
+							<li class="right-menu-toggle">
+								<a href="#" class="sb-toggle-right">
+									<i class="fa fa-globe toggle-icon"></i> <i class="fa fa-caret-right"></i> <span class="notifications-count badge badge-default hide"> 3</span>
+								</a>
+							</li>
+						</ul>
+						<!-- end: TOP NAVIGATION MENU -->
+					</div>
+				</div>
+				<!-- end: TOPBAR CONTAINER -->
+			</header>
 
 <!-- end: TOPBAR -->

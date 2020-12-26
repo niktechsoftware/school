@@ -6,7 +6,6 @@ blink{
 @keyframes blinker{
     50%{ opacity:0; }
 }
-
 </style>
 <!-- start: PAGE CONTENT -->
 <?php
@@ -15,7 +14,6 @@ $this->db->where("school_code",$school_code);
 $this->db->where("category","All Student");
 $this->db->order_by("id limit 1");
 $noticeForStudent=$this->db->get("notice");
-
 $is_login = $this->session->userdata ( 'is_login' );
 $is_lock = $this->session->userdata ( 'is_lock' );
 $logtype = $this->session->userdata ( 'login_type' );
@@ -103,46 +101,7 @@ echo $noticeForStudent->row()->message;
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 col-lg-4 col-sm-6">
-		<div class="panel panel-default panel-white core-box">
-		<div class="panel-body no-padding">
-	                <div class="partition-green text-center core-icon">
-	                    <i class="fa fa-inr fa-2x icon-big"></i><br>
-	                    <?php 
-	                    $totAmount =$this->feeModel->totFee_due_by_id($stuid_id,0);
 
-	                    $student_id =$this->session->userdata("id");
-	                   
-	                    ?>
-	                 
-	                  
-	                  <?php 
-	                  if($this->session->userdata("school_code")==6 && $this->session->userdata("school_code")==4 && $this->session->userdata("school_code")==9){ ?>
-               <a href="  <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php echo $student_id;?>/<?php echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>
-	               <?php	}else{ ?>
-	                  <a href="#" class="btn btn-warning" >Click To Pay</a>
-	                  <!-- <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php // echo $student_id;?>/<?php //echo $totAmount;?>-->
-					<?php   } ?>
-	                   <span class="subtitle">
-
-							
-	                    </span>
-	                </div>
-	                <a href="">
-		                <div class="padding-20 core-content">
-		                <!--	<h3 class="title block no-margin">Fee Reports</h3>-->
-		                <h3 class="title block no-margin"><blink>Due Fee Status</blink></h3>
-		                	<br/>
-							<?php echo $this->feeModel->totFee_due_by_id($stuid_id,1);
-							//echo $stuid_id;
-							?>
-		                	<span class="subtitle">  <h3><blink ></blink></h3>   </span>
-	                        
-		                </div>
-	                </a>
-	            </div>
-   </div>
-   </div>
    <?php
 			
 			$unm = $this->session->userdata ( "username" );
@@ -156,10 +115,34 @@ echo $noticeForStudent->row()->message;
 				<div class="partition-azure padding-20 text-center core-icon">
 					<i class="fa fa-book fa-2x icon-big"></i>
 				</div>
-				<a
-					href="<?php echo base_url(); ?>index.php/singleStudentControllers/feesDetail/<?php echo $stuid_id;?>">
+				<a href="<?php echo base_url(); ?>index.php/singleStudentControllers/feesDetail/<?php echo $stuid_id;?>">
 					<div class="padding-20 core-content">
 						<h4 class="title block no-margin">Deposit Fee Details</h4>
+						<br /> <span class="subtitle"> Click For Details</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+      <div class="col-md-6 col-lg-4 col-sm-6">
+		<div class="panel panel-default panel-white core-box">
+			<div class="panel-body no-padding">
+				<div class="partition-azure padding-20 text-center core-icon">
+					<i class="fa fa-book fa-2x icon-big"></i></br>
+					 <?php $totAmount =$this->feeModel->totFee_due_by_id($stuid_id,0);
+                                $student_id =$this->session->userdata("id");?>
+					 <?php 
+	                  if($this->session->userdata("school_code")==6 && $this->session->userdata("school_code")==4 && $this->session->userdata("school_code")==9){ ?>
+                    <a href="  <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php echo $student_id;?>/<?php echo $totAmount;?>" class="btn btn-warning" >Click To Pay</a>
+	                   <?php	}else{ ?>
+	                  <a href="#" class="btn btn-warning" >Click To Pay</a>
+	                  <!-- <?php echo base_url();?>index.php/singleStudentControllers/payFee/<?php // echo $student_id;?>/<?php //echo $totAmount;?>-->
+					<?php   } ?>
+				</div>
+				<!--	<a href="<?php echo base_url(); ?>index.php/singleStudentControllers/singleStudentControllers/feesDetailduefeereport/<?php //echo $stuid_id;?>">-->
+				<a href="<?php echo base_url(); ?>index.php/singleStudentControllers/duefeereport/<?php echo $stuid_id;?>">
+					<div class="padding-20 core-content">
+						<h4 class="title block no-margin">Due Fee Details</h4>
 						<br /> <span class="subtitle"> Click For Details</span>
 					</div>
 				</a>
@@ -175,11 +158,13 @@ echo $noticeForStudent->row()->message;
 				<div class="partition-azure padding-20 text-center core-icon">
 					<i class="fa fa-book fa-2x icon-big"></i>
 				</div>
-				<a
-					href="<?php echo base_url(); ?>index.php/studentHWControllers/studentShowHomeWork">
-					<div class="padding-20 core-content">
-						<h4 class="title block no-margin">Home Work</h4>
-						<br /> <span class="subtitle">Home Work And Project Details. </span>
+				<a href="<?php echo base_url(); ?>index.php/studentHWControllers/studentShowHomeWork">
+				    <div class="padding-20 core-content">
+				   	    <h4 class="title block no-margin">Home Work</h4>
+				   	    <br/>
+					    <span class="subtitle">Home Work And Project Details. </span>
+					<!--<img src="<?php echo base_url();?>assets/book2.gif" style="height:60px;">-->
+						
 					</div>
 				</a>
 			</div>
@@ -239,16 +224,7 @@ echo $noticeForStudent->row()->message;
             </div>
         </div>
     </div>
-	<div class="col-md-4 col-lg-8 col-sm-8">
-        <div class="panel panel-default panel-white ">
-          
-              
-              <a href="#">
-                <div class="padding-20 core-content">
-                    <h4 class="title block no-margin"><blink>Exam SCHEDULE</blink></h4>
-                  <br /> <span class="subtitle"> <h3>Current Exam Schedule</h3> </span>
-				  </a>
- <?php
+     <?php
 			
 			$unm = $this->session->userdata ( "username" );
 			$this->db->where ( 'username', $unm );
@@ -273,23 +249,55 @@ echo $noticeForStudent->row()->message;
 			 $this->db->where("id",$class_id);
 			$class = $this->db->get ( 'class_info' )->row ();
 			//print_r($class);
-			?>				 
+			?>	
+	<div class="col-md-4 col-lg-8 col-sm-8">
+        <div class="panel panel-default panel-white ">
+           <a href="#">
+                <div class="padding-20 core-content">
+                    <h4 class="title block no-margin"><blink>Exam SCHEDULE</blink></h4>
+                  <br /> <span class="subtitle"> <h3>Current Exam Schedule</h3> </span>
+				  </a>
+			 
 		<div class="table-responsive">
-<?php 	
+    <?php 	
         echo $exam_id;
         echo $class_id;
         echo $stuid_id;
 		$this->examModel->getExamTimeTableChartBy($exam_id,$class_id,$school_code,$stuid_id,1);?>
-		
-
-										</div>
-									
+		</div>
  </div>
- 	<?php }else{  ?> Exam Mode is not Defined.
+     <?php }else{  ?>
+      <div class="col-md-4 col-lg-8 col-sm-8">
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5093838037340612"
+     data-ad-slot="1257687292"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
  	<?php }?>
+ 
 
         </div>
     </div>
+    </br>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5093838037340612"
+     data-ad-slot="2901957365"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </br>
+  </br>
 <!--	<div class="col-md-6 col-lg-4 col-sm-6">
         <div class="panel panel-default panel-white core-box">
             <div class="panel-body no-padding">

@@ -74,7 +74,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                  {?>
                   <td><?php echo 'A'?></td>
                   <?php }?> 
-                    <td><?php echo $dum1->out_of; ?></td>                  
+                    <td><?php echo $dum1->max_m; ?></td>                  
                     <td>
                     <input type ="hidden" value="<?php echo $dum1->id;?>" name="rowid<?php echo $i;?>" id="rowid<?php echo $i;?>"/>
                  <input type="text" id="upmark<?php echo $i;?>" value="<?php echo $dum1->marks;?>" style="width:120px;" name="upmarks<?php echo $i;?>" />

@@ -1,5 +1,4 @@
 <?php
-
 class Login extends CI_Controller{
 
 	function __construct()
@@ -188,7 +187,32 @@ function configuredoc(){
 		$data['mainContent'] = 'configureFee';
 		$this->load->view("includes/mainContent", $data);
 	}
-
+	
+	function exam(){
+             $data=array(
+            'exam_name'  => $this->input->post('examHead'),
+           'school_code'=>$this->session->userdata("school_code")
+            ); 
+            $this->db->insert("exam_head",$data);
+           	redirect("index.php/login/examHead");
+         
+	}
+        
+	
+function examHead(){
+        $this->db->where("school_code",$this->session->userdata("school_code"));
+        $explist=$this->db->get("exam_head");
+        $data['explist']=$explist;
+        $data['pageTitle'] = 'Exam Head';
+		$data['smallTitle'] = 'Exam Head';
+		$data['mainPage'] = 'Exam Head';
+		$data['subPage'] = 'Exam Head';
+		$data['title'] = 'Exam Head';
+		$data['headerCss'] = 'headerCss/periodTimeCss';
+		$data['footerJs'] = 'footerJs/periodTimeJs';
+		$data['mainContent'] = 'examHead';
+		$this->load->view("includes/mainContent", $data);
+}
 	function updateClass(){
 		$this->load->model('configureclassmodel');
 		$res = $this->configureclassmodel->getClassList();
@@ -219,19 +243,7 @@ function configuredoc(){
 		$this->load->view("includes/mainContent", $data);
 	}
 
-	function addemployee(){
-		$data['pageTitle'] = 'Employee Section';
-		$data['smallTitle'] = 'Employee Registration';
-		$data['mainPage'] = 'Employee';
-		$data['subPage'] = 'Employee Registration';
-		$state = $this->allFormModel->getState()->result();
-		$data['state'] = $state;
-		$data['title'] = 'Employee Registration';
-		$data['headerCss'] = 'headerCss/addEmployeeCss';
-		$data['footerJs'] = 'footerJs/addEmployeeJs';
-		$data['mainContent'] = 'addemployee';
-		$this->load->view("includes/mainContent", $data);
-	}
+	
 function updatemaximum()
 	  {
 		$data['pageTitle'] = 'Maximum Marks Sheduling';
@@ -904,16 +916,22 @@ function studentAttendance(){
 		$data['smallTitle'] = 'Exam Scheduling';
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Exam Scheduling';
-	
-		$this->load->model("examModel");
+	    $this->load->model("examModel");
 		$var=$this->examModel->getExamName($fsd);
-		$var1=$this->examModel->getExamNameForUpdate();
+		$var1=$this->examModel->getExamNameForUpdate($fsd);
+		//$var=$this->examModel->getExamName();
 		$data['request']=$var->result();
+	   /* $school=$this->session->userdata('school_code');
+	    $exam= $this->db->query("SELECT  distinct (exam_id) as exam_id,term as term , id as id ,exam_date as exam_date, fsd as fsd from exam_schedule where school_code='$school'");*/
+		
+		//$data['exam']=$exam;
+	    //$fsd=$this->examModel->getFsdForUpdate($fsd);
+	    $data['fsd']=$fsd;
 		$data['requestforUpdate']=$var1->result();
 		
-		$this->db->where("school_code",$this->session->userdata("school_code"));
-		$count = $this->db->count_all("exam_name");
-		$data['i']=$count;
+		/*$this->db->where("school_code",$this->session->userdata("school_code"));
+		$count = $this->db->count_all("exam_head");
+		$data['i']=$count;*/
 		$data['title'] = 'Exam Scheduling';
 		$data['headerCss'] = 'headerCss/examCss';
 		$data['footerJs'] = 'footerJs/examJs';
@@ -925,27 +943,31 @@ function createSchedule()
 	{
 		$exam_id = $this->uri->segment(3);
 		$exam_id=$exam_id;
+
 		$this->db->where("exam_id",$exam_id);
 		$shift = $this->db->get("exam_shift");
+		//print_r($shift);
 		//$data['id']=$shift1->result();
 		//$shift= select id from exam_shift where ("exam_id", $exam_name);
 		//$shift = $data->id;
-		
 		//print_r($shift);
+	
 		$this->db->where("exam_id",$exam_id);
 		$day = $this->db->get("exam_day");
+	//	print_r($day);
 		$data['nos'] = $shift->num_rows();
 		$data['nod'] = $day->num_rows();
 		$data['msg'] = 1;
 		$data['msg'] = $this->uri->segment(4);
 		$this->load->model("examModel");
 		$data['exam_name'] = $exam_id;
-		
 		$data['pageTitle'] = 'Exam Sheduling';
 		$data['smallTitle'] = 'Exam Sheduling';
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Exam Sheduling';
 		// $this->load->model("examModel");
+		//print_r($data);
+		//exit();
 		$this->load->model("configureclassmodel");
 		$classes=$this->configureclassmodel->getClassName();
 		$data['classes']=$classes->result();
@@ -972,9 +994,11 @@ function createSchedule()
 		$data['subPage'] = 'Exam Time Table';
 		$res = $this->configureclassmodel->getClassName();
 		$data['noc'] = $res->result(); 
-	$fsd=$this->session->userdata("fsd");
+	    //$fsd=$this->session->userdata("fsd");
 
-		$var=$this->examModel->getExamName($fsd);
+		//$var=$this->examModel->getExamName();
+		$this->db->where("school_code",$this->session->userdata('school_code'));
+	    $var=$this->db->get("exam_name");
 		$data['request']=$var->result();
 		$data['title'] = 'Exam Time Table';
 		$data['headerCss'] = 'headerCss/examTimeTableCss';
@@ -990,7 +1014,7 @@ function createSchedule()
 		$this->load->model("configurefeemodel");
 		$this->load->model("examModel");
 		$fsd=$this->session->userdata("fsd");
-	$var=$this->examModel->getExamName($fsd);
+	    $var=$this->examModel->getExamName($fsd);
 		$data['request']=$var->result();
 		$stream=$this->configureclassmodel->getStramforexam();
 		$data['stream']=$stream->result();
@@ -1458,8 +1482,7 @@ function createSchedule()
 		$data['smallTitle'] = 'Select Exam Name';
 		$data['mainPage'] = 'Exam';
 		$data['subPage'] = 'Generate Result';
-
-		$data['title'] = 'Generate Result';
+        $data['title'] = 'Generate Result';
 		$data['headerCss'] = 'headerCss/generateResultCss';
 		$data['footerJs'] = 'footerJs/generateResultJs';
 		$data['mainContent'] = 'generateResult';
@@ -1535,7 +1558,7 @@ function exammode(){
 		$data['title'] = 'Exam Mode';
 		$this->load->model("examModel");
 		$var=$this->examModel->getExamName($fsd);
-		$var1=$this->examModel->getExamNameForUpdate();
+		$var1=$this->examModel->getExamNameForUpdate($fsd);
 		$data['request']=$var->result();
 		$data['requestforUpdate']=$var1->result();
 		$this->db->where("school_code",$this->session->userdata("school_code"));

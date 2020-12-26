@@ -1,4 +1,97 @@
+<<<<<<< HEAD
 [01-Dec-2020 13:12:29 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool4/application/controllers/employeeController.php on line 103
 [01-Dec-2020 13:13:08 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool4/application/controllers/employeeController.php on line 103
 [01-Dec-2020 13:13:24 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool4/application/controllers/employeeController.php on line 103
 [01-Dec-2020 13:13:40 Asia/Calcutta] PHP Fatal error:  Call to undefined method EmployeeController::addemployee() in /home/schoodhe/public_html/sschool4/application/controllers/employeeController.php on line 103
+=======
+[03-Dec-2020 01:02:32 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 671
+[03-Dec-2020 01:33:32 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 671
+[03-Dec-2020 01:34:36 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 671
+[03-Dec-2020 01:40:33 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 1244
+[03-Dec-2020 01:42:15 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 675
+[03-Dec-2020 01:42:50 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 686
+[03-Dec-2020 01:43:14 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 686
+[03-Dec-2020 01:43:18 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 686
+[03-Dec-2020 01:44:02 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 686
+[03-Dec-2020 01:44:52 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 687
+[03-Dec-2020 01:45:26 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 687
+[03-Dec-2020 01:48:13 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 688
+[03-Dec-2020 02:13:11 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 724
+[03-Dec-2020 02:20:38 Asia/Calcutta] PHP Fatal error:  Call to undefined function calculateGrade() in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 737
+[03-Dec-2020 02:24:25 Asia/Calcutta] PHP Fatal error:  Call to undefined function calculateGrade() in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 737
+[03-Dec-2020 02:25:45 Asia/Calcutta] PHP Fatal error:  Call to undefined function calculateGrade() in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 737
+[03-Dec-2020 16:19:09 Asia/Calcutta] PHP Fatal error:  Call to a member function check_fee_deposit() on a non-object in /home/schoodhe/public_html/schooltest/application/views/examHead.php on line 122
+[03-Dec-2020 16:26:22 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/views/examHead.php on line 55
+[03-Dec-2020 16:27:07 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/views/examHead.php on line 55
+[04-Dec-2020 06:15:20 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 926
+[04-Dec-2020 06:15:51 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 926
+[04-Dec-2020 06:15:55 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 926
+[04-Dec-2020 07:29:41 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '"<br>"' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in /home/schoodhe/public_html/schooltest/application/views/startScheduling.php on line 63
+[05-Dec-2020 16:06:48 Asia/Calcutta] PHP Fatal error:  Call to undefined method examModel::getFsdForUpdate() in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 929
+[05-Dec-2020 16:07:23 Asia/Calcutta] PHP Fatal error:  Call to undefined method examModel::getFsdForUpdate() in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 929
+[05-Dec-2020 16:07:55 Asia/Calcutta] PHP Fatal error:  Call to undefined method examModel::getFsdForUpdate() in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 929
+[05-Dec-2020 16:07:57 Asia/Calcutta] PHP Fatal error:  Call to undefined method examModel::getFsdForUpdate() in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 929
+[05-Dec-2020 16:08:34 Asia/Calcutta] PHP Fatal error:  Call to undefined method examModel::getFsdForUpdate() in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 929
+[05-Dec-2020 16:08:55 Asia/Calcutta] PHP Fatal error:  Call to undefined method examModel::getFsdForUpdate() in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 929
+[05-Dec-2020 16:09:11 Asia/Calcutta] PHP Fatal error:  Call to undefined method examModel::getFsdForUpdate() in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 929
+[05-Dec-2020 16:09:51 Asia/Calcutta] PHP Fatal error:  Call to undefined method examModel::getFsdForUpdate() in /home/schoodhe/public_html/schooltest/application/controllers/login.php on line 929
+[06-Dec-2020 14:28:07 Asia/Calcutta] PHP Fatal error:  Call to undefined function co_scolastic() in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 895
+[06-Dec-2020 14:29:10 Asia/Calcutta] PHP Fatal error:  Call to undefined function co_scolastic() in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 895
+[06-Dec-2020 14:30:19 Asia/Calcutta] PHP Fatal error:  Call to undefined function co_scolastic() in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 903
+[06-Dec-2020 14:39:53 Asia/Calcutta] PHP Fatal error:  Call to undefined function co_scolastic() in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 845
+[06-Dec-2020 14:39:54 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<' in /home/schoodhe/public_html/schooltest/application/views/examTimeTable.php on line 53
+[06-Dec-2020 14:41:07 Asia/Calcutta] PHP Fatal error:  Call to undefined function remarks1() in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 808
+[06-Dec-2020 15:06:54 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) in /home/schoodhe/public_html/schooltest/application/controllers/homeController.php on line 1195
+[06-Dec-2020 15:45:31 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::row() in /home/schoodhe/public_html/schooltest/application/views/dashboard.php on line 1166
+[06-Dec-2020 16:48:41 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/schooltest/application/views/dashboardStudent.php on line 257
+[07-Dec-2020 01:17:55 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/schooltest/application/views/invoice/si/format_15.php on line 132
+[07-Dec-2020 12:40:06 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/schooltest/application/views/teacherdashboard.php on line 1824
+[07-Dec-2020 13:14:04 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::count() in /home/schoodhe/public_html/schooltest/application/controllers/singleTeacherControllers.php on line 31
+[07-Dec-2020 13:27:11 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_DB_mysqli_result::count_all_results() in /home/schoodhe/public_html/schooltest/application/controllers/singleTeacherControllers.php on line 33
+[07-Dec-2020 13:28:01 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_DB_mysqli_result::count_all_results() in /home/schoodhe/public_html/schooltest/application/controllers/singleTeacherControllers.php on line 34
+[07-Dec-2020 13:28:05 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_DB_mysqli_result::count_all_results() in /home/schoodhe/public_html/schooltest/application/controllers/singleTeacherControllers.php on line 34
+[08-Dec-2020 15:33:18 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/schooltest/application/views/teacherdashboard.php on line 320
+[08-Dec-2020 16:46:53 Asia/Calcutta] PHP Fatal error:  Call to a member function userdata() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 7
+[08-Dec-2020 16:46:59 Asia/Calcutta] PHP Fatal error:  Call to a member function userdata() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 7
+[09-Dec-2020 10:50:29 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/schooltest/application/models/feemodel.php on line 409
+[09-Dec-2020 10:51:07 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/schooltest/application/models/feemodel.php on line 409
+[09-Dec-2020 10:52:22 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/schooltest/application/models/feemodel.php on line 408
+[09-Dec-2020 10:52:58 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/schooltest/application/models/feemodel.php on line 411
+[09-Dec-2020 11:40:25 Asia/Calcutta] PHP Fatal error:  Call to a member function getPreviousDue() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/singleStudentControllers.php on line 262
+[09-Dec-2020 11:40:51 Asia/Calcutta] PHP Fatal error:  Call to a member function getPreviousDue() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/singleStudentControllers.php on line 262
+[09-Dec-2020 11:44:32 Asia/Calcutta] PHP Fatal error:  Call to undefined method feeModel::etFsdByStudentId() in /home/schoodhe/public_html/schooltest/application/controllers/singleStudentControllers.php on line 263
+[09-Dec-2020 11:54:53 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/schooltest/application/controllers/singleStudentControllers.php on line 737
+[09-Dec-2020 11:57:53 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/controllers/singleStudentControllers.php on line 267
+[09-Dec-2020 11:58:43 Asia/Calcutta] PHP Fatal error:  Call to undefined method singleStudentControllers::getMonthFeeByMonth() in /home/schoodhe/public_html/schooltest/application/controllers/singleStudentControllers.php on line 276
+[09-Dec-2020 11:59:16 Asia/Calcutta] PHP Fatal error:  Call to undefined method singleStudentControllers::getMonthFeeByMonth() in /home/schoodhe/public_html/schooltest/application/controllers/singleStudentControllers.php on line 276
+[09-Dec-2020 12:05:40 Asia/Calcutta] PHP Fatal error:  Call to a member function row() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 110
+[09-Dec-2020 12:06:58 Asia/Calcutta] PHP Fatal error:  Call to a member function row() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 110
+[09-Dec-2020 12:07:03 Asia/Calcutta] PHP Fatal error:  Call to a member function row() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 110
+[09-Dec-2020 12:07:22 Asia/Calcutta] PHP Fatal error:  Call to a member function row() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 110
+[09-Dec-2020 12:14:02 Asia/Calcutta] PHP Fatal error:  Call to a member function row() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 110
+[09-Dec-2020 16:02:09 Asia/Calcutta] PHP Fatal error:  Call to a member function result() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 94
+[09-Dec-2020 16:02:40 Asia/Calcutta] PHP Fatal error:  Call to a member function date() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 100
+[09-Dec-2020 16:45:49 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_Session::uesrdata() in /home/schoodhe/public_html/schooltest/application/models/feemodel.php on line 98
+[10-Dec-2020 12:00:44 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '<' in /home/schoodhe/public_html/schooltest/application/models/feemodel.php on line 112
+[10-Dec-2020 12:46:01 Asia/Calcutta] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 284
+[10-Dec-2020 12:55:22 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 194
+[10-Dec-2020 12:55:56 Asia/Calcutta] PHP Parse error:  syntax error, unexpected '}' in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 329
+[10-Dec-2020 12:56:17 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_URI::sengment() in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 86
+[10-Dec-2020 13:03:28 Asia/Calcutta] PHP Fatal error:  Call to a member function classDetailsbyId() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 98
+[10-Dec-2020 13:04:32 Asia/Calcutta] PHP Fatal error:  Call to a member function classDetailsbyId() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 98
+[10-Dec-2020 13:06:39 Asia/Calcutta] PHP Fatal error:  Call to a member function classDetailsbyId() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 101
+[10-Dec-2020 13:08:04 Asia/Calcutta] PHP Fatal error:  Call to a member function getStu_record_fsdSingleid() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 212
+[10-Dec-2020 13:09:26 Asia/Calcutta] PHP Fatal error:  Call to a member function getStu_record_fsdSingleid() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 167
+[10-Dec-2020 13:11:41 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 247
+[10-Dec-2020 13:12:43 Asia/Calcutta] PHP Fatal error:  Call to a member function classDetailsbyId() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 157
+[10-Dec-2020 13:20:56 Asia/Calcutta] PHP Fatal error:  Call to a member function classDetailsbyId() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 159
+[10-Dec-2020 13:22:48 Asia/Calcutta] PHP Fatal error:  Call to a member function classDetailsbyId() on a non-object in /home/schoodhe/public_html/schooltest/application/views/duefeereport.php on line 131
+>>>>>>> e0c67b1f351b8e94c4ba9c474e2de95adb073582
+[11-Dec-2020 11:50:26 Asia/Calcutta] PHP Fatal error:  Call to undefined method CI_Session::usrdata() in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 14
+[16-Dec-2020 15:30:30 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'endif' (T_ENDIF) in /home/schoodhe/public_html/sschool4/application/views/employeeProfile.php on line 903
+[16-Dec-2020 15:31:49 Asia/Calcutta] PHP Parse error:  syntax error, unexpected ';' in /home/schoodhe/public_html/sschool4/application/views/employeeProfile.php on line 387
+[24-Dec-2020 11:50:37 Asia/Calcutta] PHP Fatal error:  Call to a member function row() on a non-object in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 224
+[24-Dec-2020 13:35:03 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 1104
+[24-Dec-2020 14:42:58 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::num_rows() in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 1010
+[24-Dec-2020 14:43:29 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::num_rows() in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 1010
+[24-Dec-2020 14:43:45 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::num_rows() in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 1010

@@ -35,12 +35,28 @@
           </a>
         </div>
       </div>
-     
+    <!-- <div class="row">
+                       <div class="col-sm-12">
+                      <div class="panel panel-white">
+
+                        <div class="panel-heading panel-purple">
+
+
+                          <h4 class="panel-title">Class Wise Exam Report list</h4>
+
+                        </div>
+                        <div class="panel-body" id="sample_rahul">
+						
+                        </div>
+                    </div>
+                </div>
+                </div>-->
        <div class="row">
         <div class="col-md-12">
         <div class="panel-body">
        <div class="text-white text-large">
-	   
+	     <div class="alert alert-info"><h3 class="media-heading text-center">Welcome to Examination Report  Section Area.</h3>
+                            <p class="media-timestamp">In this Page Teacher  Can Access Class Wise EXAM Report.</div></div>
 	   <!---->
 	    <div class="col-md-3">
                           <div class="form-group">
@@ -120,37 +136,14 @@
                             </select>
                           </div>
                         </div>
-                        </div>
-
-
-<div class="row">
-                       <div class="col-sm-12">
-                      <div class="panel panel-white">
-
-                        <div class="panel-heading panel-purple">
-
-
-                          <h4 class="panel-title">Class Wise Exam Report list</h4>
-
-                        </div>
-                        <div class="panel-body" id="sample_rahul">
-						
-                        </div>
+                       </div>
+                      </div>
                     </div>
                 </div>
-                </div>
-
-
-                </div>
-                        </div>
-                        </div>
-              
-
-                </div>
-                </div>
-                </div>
-
-                <script>
+               </div>
+              </div>
+        </div>
+     <script>
                  jQuery(document).ready(function() {
 		$("#fsd").change(function(){
             var fsd = $("#fsd").val();

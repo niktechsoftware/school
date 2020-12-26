@@ -143,12 +143,19 @@
                 </a>
             </li>
          </ul>
+         <!--<ul class="sub-menu">
+            <li>
+                <a href="<?php //echo base_url(); ?>index.php/login/examHead">
+                Exam Head  <i class="icon-arrow"></i>
+                </a>
+            </li>
+         </ul>-->
     </li>
 <li>
     <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="title">Employee </span><i class="icon-arrow"></i> </a>
     <ul class="sub-menu">
         <li>
-            <a href="<?php echo base_url(); ?>index.php/login/addemployee">
+            <a href="<?php echo base_url(); ?>index.php/employeeController/addemployee">
                 <span class="title"> Add Employee </span>
             </a>
         </li>
@@ -241,11 +248,11 @@
                 <span class="title">Collect Fee</span>
             </a>
         </li>
-         <li>
+         <!--<li>
             <a href="<?php echo base_url(); ?>index.php/login/feeStructure">
                 <span class="title"> Fee Structure</span>
             </a>
-        </li>
+        </li>-->
          <li>
             <a href="<?php echo base_url(); ?>index.php/login/transport">
                 <span class="title">Student Fee Card</span>
@@ -640,7 +647,7 @@
     <a href="javascript:void(0)"><i class="fa fa-cogs"></i> <span class="title">Employee </span><i class="icon-arrow"></i> </a>
     <ul class="sub-menu">
         <li>
-            <a href="<?php echo base_url(); ?>index.php/login/addemployee">
+            <a href="<?php echo base_url(); ?>index.php/employeeController/addemployee">
                 <span class="title"> Add Employee </span>
             </a>
         </li>
@@ -1029,7 +1036,9 @@
     <a href="javascript:void(0)"><i class="fa fa-th-large"></i> <span class="title"> Class </span><i class="icon-arrow"></i> </a>
     <ul class="sub-menu">
         <li>
-            <a href="<?php echo base_url(); ?>index.php/singleTeacherControllers/classTaken">
+            <!--singleTeacherControllers/classTaken-->
+            
+            <a href="<?php echo base_url(); ?>index.php/login/schedulingReport">
                 <span class="title">Classes Taken</span>
             </a>
         </li>
@@ -1072,7 +1081,7 @@
 
 
         <li>
-            <a href="<?php echo base_url(); ?>index.php/singleTeacherControllers/teacherClasstimeTable">
+            <a href="<?php echo base_url(); ?>index.php/login/schedulingReport">
                 <span class="title">Class Time Table</span>
             </a>
         </li>
@@ -1097,11 +1106,11 @@
                 <span class="title">Exam Duty</span>
             </a>
         </li> -->
-         <li>
-            <a href="<?php echo base_url(); ?>index.php/login/exammode">
+        <!-- <li>
+            <a href="<?php //echo base_url(); ?>index.php/login/exammode">
                 <span class="title">Exam Mode</span>
             </a>
-        </li>
+        </li>-->
          <li>
             <a href="<?php echo base_url(); ?>index.php/login/exammarksdetail">
                 <span class="title">Enter Maximum Marks</span>

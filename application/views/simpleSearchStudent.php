@@ -14,7 +14,7 @@
 					<div class="panel-tools">
 						<div class="dropdown">
 							<a data-toggle="dropdown" class="btn btn-xs dropdown-toggle btn-transparent-grey">
-								<i class="fa fa-cog"></i>
+								<i class="fa fa-cog fa-spin"></i>
 							</a>
 							<ul class="dropdown-menu dropdown-light pull-right" role="menu">
 								<li>
@@ -172,7 +172,7 @@ And also we get Student I card by click on username of that Student.
 										<td><a href="<?php echo base_url(); ?>index.php/studentController/admissionSuccess/<?php echo $snameid->id;?>">Full Profile</a></td>
 										<td>
 										<?php if($this->session->userdata('login_type') == 'admin'){ ?>
-
+                
 										<a href="<?php echo base_url(); ?>index.php/studentController/deleteStudent/<?php echo $snameid->id;?>">Delete</a></td>
 										<?php }?>
 									</tr>

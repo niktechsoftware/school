@@ -58,7 +58,7 @@
         </div>
     </div>
     <?php if($this->session->userdata("login_type") !=  "student"){?>
-    <div class="col-sm-6" style="margin-top:13px; font-size:9px;">
+    <div class="col-sm-6 hidden-xs" style="margin-top:04px; font-size:18px;">
         <center><a class="" style="color: #f5f5f5;" href="#">Customer Care:<br><i class="fa fa-phone"></i>+91-&nbsp;9454012026,&nbsp;8765398096,&nbsp;9580121878
                 <br>WhatsApp Number&nbsp;: <i class="fab fa-whatsapp"></i>+91-&nbsp;9580121878</a></center>
     </div>
@@ -83,7 +83,91 @@
             
     <!--    </div>-->
     <!--</div>-->
-   
+    <?php if(($this->session->userdata('login_type') == 'admin') ||($this->session->userdata('login_type') == '1')){?> 
+      <!--<a class="sb-toggle-left hidden-md hidden-lg" href="#main-navbar">
+            <i class="fa fa-bars"></i> &nbsp;   &nbsp;
+            </a>-->
+   <div class="toolbar-tools pull-right">
+       
+									<!-- start: TOP NAVIGATION MENU -->
+									<ul class="nav navbar-right" style="margin-right:10px;">
+										<!-- start: TO-DO DROPDOWN -->
+										<li class="dropdown">
+											<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+												<i class="fa fa-plus"></i><b> QUICK REPORT</b>
+												<div class="tooltip-notification hide">
+													<div class="tooltip-notification-arrow"></div>
+													<div class="tooltip-notification-inner">
+														<div>
+														<div class="semi-bold">
+																HI THERE!
+															</div>
+															<div class="message">
+																Try Quick Report
+															</div>
+														</div>
+													</div>
+												</div>
+											</a>
+											<ul class="dropdown-menu dropdown-light dropdown-subview">
+											
+												<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/smsAjax/smsPanel" class="new-note"><span class="fa-stack"> <i class="fa fa-comments fa-stack-1x fa-lg"></i></span>Sms Panel</a>
+												</li>
+												<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/studentController/studentPanel" class="read-all-notes"><span class="fa-stack"> <i class="fa fa-users fa-stack-1x fa-lg"></i> </span>Student Panel</a>
+												</li>
+												<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/exampanel" class="new-event"><span class="fa-stack"> <i class="fa fa-book fa-stack-1x fa-lg"></i></span>Exam Detail</a>
+												</li>
+												<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/attendancepanel" class="show-calendar"><span class="fa-stack"> <i class="fa fa-calendar-o fa-stack-1x fa-lg"></i></span>Attendance Report</a>
+												</li>
+												<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/feepanel" class="new-contributor"><span class="fa-stack"> <i class="fa fa-money fa-stack-1x fa-lg"></i> </span>Fee Report</a>
+												</li>
+												<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/homeworkpanel" class="show-contributors"><span class="fa-stack"> <i class="fa fa-file-text-o fa-stack-1x fa-lg"></i> </span>Home Work</a>
+												</li>
+													<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/timetablepanel" class="new-contributor"><span class="fa-stack"> <i class="fa fa-clock-o fa-stack-1x fa-lg"></i> </span>Time Table</a>
+												</li>
+												<li style="background-color:lightgray;">
+													<a href="<?php echo base_url();?>index.php/login/quickRegistraionStudent" class="show-contributors"><span class="fa-stack"> <i class="fa fa-user fa-stack-1x fa-lg"></i></span>Quick Admission</a>
+												</li>
+													<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/login/collectFee" class="new-contributor"><span class="fa-stack"> <i class="fa fa-rupee fa-stack-1x fa-lg"></i> </span>Collect Fee</a>
+												</li>
+												<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/login/simpleSearchStudent" class="show-contributors"><span class="fa-stack"> <i class="fa  fa-search fa-stack-1x fa-lg"></i> </span>Search Student</a>
+												</li>
+											</ul>
+										</li>
+										<li class="dropdown">
+											<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" data-close-others="true" href="#">
+												<span class="messages-count badge badge-default hide">3</span> <i class="fa fa-envelope"></i> BUY SMS
+											</a>
+											<ul class="dropdown-menu dropdown-light dropdown-messages">
+												<li>
+												</li>
+												<li>
+													<div class="drop-down-wrapper ps-container">
+														<ul>
+														<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/login/mobileNotice/buysms" class="new-note"><span class="fa-stack"></span><h4 style="font-size:18px;">Buy SMS</h4></a>
+												</li>
+													<li style="background-color:lightgray;">
+													<a href="<?php echo base_url(); ?>index.php/login/mobileNotice/requestsms" class="new-note"><span class="fa-stack"></span><h4 style="font-size:18px;">Request Offline</h4></a>
+												</li>
+															
+														</ul>
+													</div>
+												</li>
+											</ul>
+										</li>
+	</div>
+										
+       <?php } ?>
 </div>
     <!-- <div class="row">
         <div class="col-lg-12">
@@ -111,8 +195,8 @@
                 <?php echo $subPage; ?>
             </li>
         </ol>
-
-        <?php if(($this->session->userdata('login_type') == 'admin') ||($this->session->userdata('login_type') == '1')){?>        
+<!--
+             
 
         <a class="button_responsive btn btn-grey" style="margin:3px;" href="<?php echo base_url(); ?>index.php/smsAjax/smsPanel">SMS Panel</a>
         <a class="button_responsive btn btn-orange" style="margin:3px;" href="<?php echo base_url(); ?>index.php/studentController/studentPanel">Student Panel</a>
@@ -128,7 +212,6 @@
         <!-- Student Registration</a> -->
 
       
-       <?php } ?>
     </div>
 </div>
 

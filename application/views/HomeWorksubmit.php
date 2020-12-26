@@ -1,3 +1,4 @@
+<div class="min-content" style="max-height:465px;">
 <div class="row">
   <div class="col-md-12">
     <!-- start: DYNAMIC TABLE PANEL -->
@@ -36,16 +37,16 @@
         </a> -->
         </div>
       </div>
-
-      <div class="panel-body">
+     <div class="panel-body" >
         <div class="alert alert-info">
           <button data-dismiss="alert" class="close">×</button>
           <h3 class="media-heading text-center">Welcome to the Submit Homework Area</h3>
-          In this section employee/teacher/student can submit the homework . if they want to
-          submit home work then Select homewrk from and fill submite date and upload his/her homework notes.
+          In this section student can submit the homework . if they want to
+          submit home work then upload home work and fill submite date and upload his/her homework notes.
         </div>
         <!-- <div class="table-responsive" style="width:100%; overflow-y: scroll;">
       </div> -->
+      <br/> <br/>
         <form action="<?php echo base_url();?>index.php/studentHWControllers/submithw" method="post" enctype="multipart/form-data">
           <div class="row" style="margin-bottom:18px;">
             <div class="col-sm-12">
@@ -55,47 +56,51 @@
                 <span class="text-success"> <?php echo "successfully home work is Submitted";?></span>
 
                 <?php }?>
-              <div class="col-sm-6">
-<input type="text" hidden="hidden" name="work_id" value="<?php echo $do;?>">
+                 <input type="text" hidden="hidden" name="work_id" value="<?php echo $do;?>">
+              <!--<div class="col-sm-6">
+           
                 <label class="col-sm-5 control-label">
-                  Home Work From <span class="symbol required"></span>
+                  Submit Home Work From <span class="symbol required"></span>
                 </label>
-                <div class="col-sm-7">
+               <div class="col-sm-7">
                   <select class="form-control" name="homeworkfor" id="homeworkfor">
                     <option value="01">-Select-</option>
-                    <?php $logtype = $this->session->userdata('login_type');
-											if($logtype == "admin"){
+                    <?php // $logtype = $this->session->userdata('login_type');
+										 //	if($logtype == "admin"){
 											?>
                     <option value="employee">Employee</option>
                     <option value="teachers">Teachers</option>
                     <option value="students">Students</option>
                     <?php
-											}
-											elseif($logtype == "3"){
+										//	}
+										//	elseif($logtype == "3"){
 											?>
                     <option value="teachers">Teachers</option>
-                    <?php }
-                                            elseif($logtype == "2"){
+                    <?php //}
+                                            //elseif($logtype == "2"){
                         					?>
                     <option value="employee">Employee</option>
-                    <?php }
-											elseif($logtype == "student"){
+                    <?php // }
+										//	elseif($logtype == "student"){
 												?>
                     <option value="students">Students</option>
-                    <?php }
-											elseif($logtype == "accountent"){
+                    <?php //}
+										//	elseif($logtype == "accountent"){
 											?>
                     <option value="employee">Employee></option>
                     <option value="teachers">Teachers</option>
                     <option value="students">Students</option>
-                    <?php	}
+                    <?php//	}
 											 ?>
                   </select>
                 </div>
+                </div>-->
                 <?php echo form_error('empState'); ?>
+             <div class="col-sm-6">
+               <div class="col-sm-5"><label>Upload Home Work</label></div>
+                <div class="col-sm-7"><input type="file" name="filehomeWork" class="form-control" required="required"></div>
               </div>
-
-              <div class="col-sm-6">
+            <div class="col-sm-4">
                 <label class="col-sm-5 control-label">
                   Submittion Date</label>
                 <div class="col-sm-7">
@@ -103,87 +108,15 @@
                     name="sdate" class="form-control date-picker" required="required">
                 </div>
               </div>
-              </div>
-              </div>
-             
-             
-
-          <!--<div id="selectStudent">
-              <div class="row" style="margin-bottom:18px;">
-            <div class="col-sm-12">
-              <div class="col-sm-6">
-               
-                  <div class="col-sm-5"><label>Maximam Marks</label></div>
-                  <div class="col-sm-7"><input type="text" name="mm" id="mm" class="form-control"></div>
-                </div>
-              <div class="col-sm-6">
-                  <div class="col-sm-5">Section</div>
-                  <div class="col-sm-7">
-                    <select class="form-control" id="sectionId" name="section">
-                      <option value="01">-Select Section-</option>
-                      <?php foreach ($noc as $en):?>
-                      <option value="<?php echo $en->section?>"><?php echo $en->section?></option>
-                      <?php endforeach;?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              </div>
-<div class="row" style="margin-bottom:18px;">
-            <div class="col-sm-12" >
-              <div class="col-sm-6">
-              
-                  <div class="col-sm-5"><label>Class Name</label></div>
-                  <div class="col-sm-7">
-                    <select name="classv" id="classv" class="form-control">
-                    </select>
-                  </div>
-                </div>
-          
-              <div class="col-sm-6">
-               
-                  <div class="col-sm-5"><label>Subject</label></div>
-                  <div class="col-sm-7">
-                    <select class="form-control" id="subjectId" name="subject">
-                    </select>
-                  </div>
-                </div>
-              </div>
-              </div>
-              </div>-->
-              
-              <div class="row" style="margin-bottom:18px;">
-            <div class="col-sm-12" >
-              <div class="col-sm-6">
-                
-                  <div class="col-sm-5"></div>
-                  <div class="col-sm-7"></div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="col-sm-5"></div>
-                  <div class="col-sm-7"></div>
-                </div>
-              </div>
-               </div>
-               
-               <div class="row" style="margin-bottom:18px;">
-          <div class="col-sm-12">
-            <div class="col-sm-6">
-              
-                <div class="col-sm-5"><label>Upload</label></div>
-                <div class="col-sm-7"><input type="file" name="filehomeWork" class="form-control" required="required"></div>
-              </div>
-         
-            <div class="col-sm-6">
+                <div class="col-sm-2">
               <div class="col-sm-5">&nbsp</div>
                 <div class="col-sm-7"><button class="btn btn-green pull-right" type="submit">SUBMIT</button></div>
-
-              </div>
             </div>
-            </div>
-
-        </form>
-      </div>
-    </div>
-  </div>
+          </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
 </div>
