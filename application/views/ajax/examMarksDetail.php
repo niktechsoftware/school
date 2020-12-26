@@ -132,10 +132,7 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 <tbody>
                     
                 <?php
-								$i = 1;$j=1;
-								
-								
-                    
+				    $i = 1;$j=1;
                     $school_code =  $this->session->userdata("school_code");
                                     $this->db->where("id",$school_code);
                                     $info =$this->db->get("school")->row();
@@ -160,15 +157,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                 $this->db->where("student_id",$stu->id);
 				$fname  = $this->db->get("guardian_info"); 
 				foreach ($fname->result() as $pname):
-			/*	echo $examid."<br>";
-               echo $classid."<br>";
-               echo $subjectid."<br>";
-               echo $sub_type."<br>";
-	          echo "fsd".$fsd;
-	          echo "stud=".$stu->id;*/
 	           $this->db->where("id",$stu->id);
 	           $stu1 = $this->db->get("student_info")->row();
-	          
 	           $val=$this->db->query("select * from exam_max_subject join exam_info on exam_max_subject.id= exam_info.exam_max_id WHERE exam_max_subject.exam_id = '$examid' AND exam_max_subject.class_id='$classid' AND exam_max_subject.subject_id='$subjectid' AND exam_max_subject.sub_type='$sub_type' AND exam_max_subject.fsd = '$fsd' and exam_info.stu_id='$stu->id'");
 	  		 //print_r($val->result());
 	  		if($val->num_rows()>0){
@@ -178,12 +168,8 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   <tr>
                     <td><?php echo $j; ?></td>
                     <td>
-						<input type="hidden" id="examid<?php echo $i; ?>" value="<?php echo $result1->id; ?>" />
-                        <input type="hidden" id="stu_id<?php echo $i; ?>" value="<?php echo $result1->fsd; ?>" />
-						<input type="hidden" id="fsd<?php echo $i; ?>" value="<?php echo $fsd; ?>" />
-                        <input type="hidden" id="classid<?php echo $i; ?>" value="<?php echo $classid; ?>" />
-						<input type="hidden" id="subjectid<?php echo $i; ?>" value="<?php echo $subjectid; ?>" />
-						<input type="hidden" id="sub_type<?php echo $i; ?>" value="<?php echo $sub_type; ?>" />
+                        <input type="hidden" id="rowexam<?php echo $i; ?>" value="<?php echo $v->id; ?>" />
+					
 					<?php echo $stu1->username; ?> </td>
                     <td ><span  style="text-transform:uppercase;"><?php echo $stu1->name;?></span></td>
                                     	
@@ -207,17 +193,10 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                   </tr>
 				  <script>
 				  $("#deletemmarks1<?php echo $i;?>").click(function(){
-				       var fsd = $("#fsd").val();
-                           var mmarks = $("#mammarks<?php echo $i; ?>").val();
-							var classid = $("#classid<?php echo $i; ?>").val();
-							var stuid= $("#stu_id<?php echo $i; ?>").val();
-							var marks = $("#mark<?php echo $i; ?>").val();
-							var sub_type = $("#sub_type<?php echo $i; ?>").val();
-							var subjectid = $("#subjectid<?php echo $i; ?>").val();
-							var examid = $("#examid<?php echo $i; ?>").val();
-							var attendence = $("input[name='attendence']:checked").val();
+				       var row = $("rowexam<?php echo $i; ?>").val();
+                           
 							//alert(classid +" "+ subjectid +" "+examid);
-                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{fsd : fsd, sub_type : sub_type ,examid:examid, attendence: attendence,stuid : stuid, marks : marks,mmarks:mmarks,classid:classid,subjectid:subjectid}, function(data){
+                    $.post("<?php echo site_url("index.php/examControllers/deletesubMarks") ?>",{row : row}, function(data){
                       $("#deletemmarks1<?php echo $i;?>").html(data);
                       alert('Marks Deleted Successfully');
                       $("#deletemmarks1<?php echo $i;?>").html();

@@ -160,51 +160,50 @@
 											</thead>
 											<tbody>
 											
-											<?php $i=1; $cd1=date("Y-m-d"); foreach ($requestforUpdate as $row): 
-											 ?><form action="<?php echo base_url();?>index.php/examControllers/startScheduling" method="post" >
+											<?php $i=1; $cd1=date("Y-m-d"); 
+											    foreach ($requestforUpdate as $row):
+											        //echo $row->exam_name."-".$row->exam_date;
+											    ?>
 													
 													<tr>
+													    <form action="<?php echo base_url();?>index.php/examControllers/startScheduling" method="post" >
 														<td>	
 															
-											<input type="text" style="width: 140px;" name="examName<?php echo $i;?>" value="<?php echo $ename;?>" id="ename<?php echo $i;?>" disabled="disabled"/>									
-											 <input type="hidden" name="examName" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/>
+                    											<input type="text" style="width: 140px;" name="examName<?php echo $i;?>" value="<?php echo $row->exam_name;?>" id="ename<?php echo $i;?>" disabled="disabled"/>									
+                    											 <input type="hidden" name="examName" id="rowid<?php echo $i;?>" value="<?php echo $row->id;?>"/>
 														</td>
-														<td><?php echo $row->term;?> Exam Name</td>
+														<td><?php echo $row->term;?></td>
 														<td>
-															<input  type="text" style="width: 95px;" data-date-format="yyyy-mm-dd" id="edate<?php echo $i;?>" data-date-viewmode="years" value="<?php echo date('d-F-Y', strtotime($row->exam_date));  ?>" disabled="disabled"/>
-															<input type="hidden" name="edate" value="<?php echo date('d-F-Y', strtotime($row->exam_date));?>"/>		
+															<input  type="text" style="width: 95px;" data-date-format="yyyy-mm-dd" id="edate<?php echo $i;?>" data-date-viewmode="years" value="<?php echo date('d-m-Y', strtotime($row->exam_date));  ?>" disabled="disabled"/>
+															<input type="hidden" name="edate" value="<?php echo date('d-m-Y', strtotime($row->exam_date));?>"/>		
 														</td>
 
-														<td >
-													<?php 	$ds= $row->exam_date;
+														<td>
+													<?php 	$ds= date('Y-m-d', strtotime($row->exam_date));
 															$ename=$row->exam_name;
-															//$cd1=date("Y-m-d");
-															if(($ename=="Class Test")||($ename=="Other Exam"))
-																	{?>
-
-																	<button type='submit' style="width: 80px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
-                                                            	</td>
-															<?php }else
-															{
-																//echo date('Y-m-d',strtotime($ds));
-																//echo $cd1;
-																if($ds <= $cd1)
-															{?><button type='submit' disabled="disabled"  style="width: 100px;" class="btn btn-xs btn-light-blue" id="scheduling1"><i class="fa fa-check"></i>Exam Done </button>
+															
+														
+														    if($ds <= $cd1)
+															    {?><button type='submit' disabled="disabled"  style="width: 100px;" class="btn btn-xs btn-light-blue" id="scheduling1"><i class="fa fa-check"></i>Exam Done </button> 
+															    	<?php }else{ ?><button type='submit' style="width: 160px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
+														<?php }?>
 														    </td> 
 														    <td>
 														   <a href="<?php echo base_url();?>index.php/examControllers/examdonedeleteExam/<?php echo $row->id; ?>" class="btn btn-red ">
 											          	   <i class="fa fa-arrow-circle-right"></i>Delete Exam</a> 
-														    </td>
-															<?php }else{ ?> <button type='submit' style="width: 160px;" class="btn btn-xs btn-light-blue" id="scheduling<?php echo $i;?>"><i class="fa fa-check"></i>Go For Scheduling</button>
+														   
+														
 														</td>
-														</td>
+													
 
-														<td >												
-											          <a href="#" class="btn btn-green " id="delete<?php echo $i;?>">
-											          	<i class="fa fa-arrow-circle-right"></i>Delete Exam</a>
-														</td>
-													</tr></form>
-													 </div>
+													<!--	<td >												
+    											          <a href="#" class="btn btn-green " id="delete<?php echo $i;?>">
+    											          	<i class="fa fa-arrow-circle-right"></i>Delete Exam</a>
+														</td>-->
+															</form>
+													</tr>
+												
+													
                             							<script >	
                             							  <?php if($ds>$cd){ ?> 	 
                             						      $("#delete<?php echo $i;?>").click(function(){
@@ -219,7 +218,7 @@
                             						   <?php }?>  
                             
                             					         </script>	
-													<?php }} $i++;endforeach;?>
+													<?php  $i++;endforeach;?>
 											 </tbody>
 											</table>
 											</div>

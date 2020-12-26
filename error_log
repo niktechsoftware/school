@@ -95,3 +95,5 @@
 [24-Dec-2020 14:42:58 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::num_rows() in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 1010
 [24-Dec-2020 14:43:29 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::num_rows() in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 1010
 [24-Dec-2020 14:43:45 Asia/Calcutta] PHP Fatal error:  Call to undefined method stdClass::num_rows() in /home/schoodhe/public_html/sschool4/application/controllers/examControllers.php on line 1010
+[26-Dec-2020 11:58:53 Asia/Calcutta] PHP Parse error:  syntax error, unexpected end of file in /home/schoodhe/public_html/sschool4/application/views/invoice/si4/si4format.php on line 117
+[26-Dec-2020 12:47:33 Asia/Calcutta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/schoodhe/public_html/sschool4/application/views/examscheduling.php on line 175

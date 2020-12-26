@@ -579,10 +579,11 @@ function result(){
         if($getClassRecord->num_rows()>0){
         $data['student_id']=$id;
 	    $data['fsd_id']=$fsd1;
-	   
+	   $data['parentInfo'] = $this->db->query("select * from guardian_info where student_id ='$id'")->row();
 	    $data['class_id']=$getClassRecord->row()->class_id;
 	    $data['totalIndicator']=0;
         $data['termTotal']=1;
+        $data['title']="Result";
 		$school_code=$this->session->userdata("school_code");
 		
 		$data["school_code"]=$school_code;
@@ -592,9 +593,7 @@ function result(){
 		$this->load->view("invoice/$folderDetails->resultfolder/$callview",$data);
         }
         else{
-         
-		
-					 echo "<div class='alert alert-warning'> No Record Found Please Select Valid FSD and Student ID.
+        echo "<div class='alert alert-warning'> No Record Found Please Select Valid FSD and Student ID.
 					Please insure possible mistakes.<br>1. Selected Financial Start Date have no exam conducted in current date.
 					<br>2.You have inserted wrong student ID please check it befoure generating Exam result.<br>
 					3. May be Student is Inactive so please conform it...

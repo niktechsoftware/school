@@ -812,9 +812,7 @@ function defineExam1(){
 	       $this->db->where('id', $rowid);
 	       $this->db->update("exam_info",$data);
 	       echo "Updated";
-	       ?>
 	      
-	       <?php
 	}
 
 	function updatesubmaxiMarks(){
@@ -956,50 +954,6 @@ function insertMarksdetail()
 			$attendence=$this->input->post('attendence');
 			$school_code = 	$this->session->userdata("school_code");
 		    $row2=			$this->db->get('db_name')->row()->name;
-		    if($school_code == 9 && $row2 == "A" || $school_code == 6 && $row2 == "A"){
-			//for ramdoot start
-				/*$stuid=$this->input->post('stuid'); 
-				$marks=$this->input->post('marks');
-				$mmarks=$this->input->post('mmarks');
-				$classid=$this->input->post('classid');
-				$subjectid=$this->input->post('subjectid');
-				$examid=$this->input->post('examid');
-				$term=$this->input->post('term');
-				$attendence=$this->input->post('attendence');*/
-				
-				//$this->db->where('school_code' ,$this->session->userdata('school_code'));
-			//	$this->db->where('class_id',$classid);
-			//	$this->db->where('fsd',$fsd);
-			//	$this->db->where('subject_id',$subjectid);
-				$this->db->where('stu_id',$stuid);
-				$this->db->where('exam_max_id',$exam_max_id);
-			   $v=	$this->db->get('exam_info');
-			if($v->num_rows()<1){
-				$data=array(
-					'term'=>$term,
-					'class_id'=>$classid,
-					'subject_id'=>$subjectid,
-					'stu_id'=> $stuid,
-					 'out_of'=>$mmarks,
-					 'marks'=> $marks,
-					 'exam_id'=>$examid,
-					 'Attendance'=>$attendence,
-					 'fsd'=>$fsd,
-					 'school_code'=>$this->session->userdata('school_code'),
-					 "created" => date('Y-m-d'),
-					);
-					$this->db->insert('exam_info',$data);
-					 echo "inserted";
-				  } else{
-					  echo "marks already given";
-				  }
-			//for ramdoot end
-		}else{
-		
-			$this->db->where('stu_id',$stuid);
-			$this->db->where('exam_max_id',$exam_max_id);
-        	$v=	$this->db->get('exam_info');
-        	
         	
             $this->db->where('exam_id',$exam_max_id);
              $this->db->where('class_id',$classid);
@@ -1008,7 +962,9 @@ function insertMarksdetail()
               $this->db->where('fsd',$fsd);
             $exam_id= $this->db->get("exam_max_subject");
             if($exam_id->num_rows()>0){
-                
+                	$this->db->where('stu_id',$stuid);
+        			$this->db->where('exam_max_id',$exam_id->row()->id);
+                	$v=	$this->db->get('exam_info');
 	       	if($v->num_rows()<1){
 	        $data=array(
 			'stu_id'=> $stuid,
@@ -1026,7 +982,7 @@ function insertMarksdetail()
             }else{
                echo "define Maximum Marks First"; 
             }
-		}
+		
 	}
 	function resultRender(){
 		$school_code =$this->session->userdata("school_code");

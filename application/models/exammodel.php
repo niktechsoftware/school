@@ -490,17 +490,9 @@ return $query1;
 	    $exam_id=$data3['exam_id'];
 	    $class_id=$data3['class_id'];
 	    $subject_id=$data3['subject_id'];
-	  	/*$this->db->where("school_code",$data['school_code']);
-		$this->db->where("fsd",$data['fsd']);*/
-		//$this->db->where("exam_max_id",$data3['exam_id']);
-	/*	$this->db->where("class_id",$data['class_id']);
-		$this->db->where("subject_id",$data['subject_id']);*/
-	//	$query1 = $this->db->get("exam_info");
-		//print_r($query1);
-		$stur = $this->db->query("select * from exam_info join exam_max_subject on exam_info.exam_max_id = exam_max_subject.id where  exam_max_subject.class_id='$class_id' and exam_max_subject.subject_id='$subject_id'"); 
+		$stur = $this->db->query("select * from exam_info join exam_max_subject on exam_info.exam_max_id = exam_max_subject.id where  exam_max_subject.class_id='$class_id' and exam_max_subject.subject_id='$subject_id' and exam_max_subject.exam_id ='$exam_id'"); 
 		return $stur;
-	//	print_r($stur);
-	//	exit();
+	
 	}
 	
 	function checkoldExam($student_id,$oldfsd){
@@ -978,6 +970,7 @@ function co_ScolasticGrade($per,$class_id,$fsd_id,$student_id,$school_code){
     	                        </tr>
     	                        <!-- Dynamic -->
     							 <?php $displName = $this->db->query("select * from exam_activity where school_code = '$school_code'");
+    							 if($displName->num_rows()>0){
     	                      foreach($displName->result() as $dName):?>
     	                       <tr>
     	                            <td><?php echo $dName->activiy_name;?></td>
@@ -989,7 +982,7 @@ function co_ScolasticGrade($per,$class_id,$fsd_id,$student_id,$school_code){
     	                            }?></td>
     	                            <?php endforeach;?>
     	                        </tr>
-    	                        <?php endforeach;?>
+    	                        <?php endforeach; }?>
     					
     	                      
     	                    </table>

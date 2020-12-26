@@ -381,12 +381,12 @@
           
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/examDetail">
-                <span class="title">Exam Details</span>
+                <span class="title">Insert Marks</span>
             </a>
         </li>
         <li>
             <a href="<?php echo base_url(); ?>index.php/login/results">
-                <span class="title">Subject Wise Marks</span>
+                <span class="title">Update Marks</span>
             </a>
         </li>
         <li>

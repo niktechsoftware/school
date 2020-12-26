@@ -10,18 +10,24 @@
                     ?>
                     <table style="width: 100%;">
                         <tr>
-                           <td  style="border: none;">
+                           <td  style="border: none; width:200px">
                                 <img src="<?php echo $this->config->item('asset_url'); ?><?php echo $school_code;?>/images/empImage/<?php echo $info->logo;?>"
                                     alt="" style="height: 100px;width: 100px;" />
                                 </br><h3 style="color:white">Aff.No. - <?php echo $info->registration_no;?></h3>
                             </td>
                             <td colspan="2" style="border: none;" >
                                 <h1 style="color:black;font-size: 35px;">
-                                    <?php echo $info->school_name;?></h1>
-                                <h2 style="color:black;">
-                                    <?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<?php echo $info->school_name;?>
+                                    </h1>
+                                 <?php if($info->subtitle){?>   
+                                 <h2 style="color:black;font-size: 20px;">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php if($info->subtitle){echo $info->subtitle; }?>
                                 </h2>
+                                <?php }?>
                                 <h2 style="color:black;">
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <?php if($info->address1){echo $info->address1; }else{echo $info->address2; }echo ",".$info->city; ?>
+                                </h2>
+                                <h2 style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <?php echo $info->state." - ".$info->pin.", Contact No. : " ;
                                     if(strlen($info->mobile_no > 0 )){echo $info->mobile_no ;}
 									if(strlen($info->other_mobile_no > 0 )){echo ", ".$info->other_mobile_no ;} ?>
@@ -35,16 +41,9 @@
                                 <center><h2 style="border: 0px solid #000; padding: 5px; width: 200px; color:black;">
                                     Progress Report (2019-20) <br>
                                     <?php 
-                                    $this->db->where("school_code",$school_code);
-                                   $this->db->where("fsd",$fsd_id);
-                                    $this->db->where("stu_id",$student_id);
-                                    $result= $this->db->get("exam_info")->result();
-                                    $c="";$d="";
-                                    foreach($result as $d12):
-                                    $c = $d12->class_id;
-                                    break;
-                                    endforeach;
-                                    if(strlen($c)>0){   
+                                  
+                                  
+                                    if($class_id>0){   
                                 }else{
                                     echo " There are no marks entry for this Student";
                                 } 
@@ -61,8 +60,9 @@
                                 <span style="text-transform: uppercase;">Scholar ID: <?= $studentInfo->username; ?></span><br>
                                 <span style="text-transform: uppercase;">Scholar Name: <?= strtoupper($studentInfo->name);?> </span><br>
                                <?php
-                                           $this->db->where('school_code',$school_code);
-                                           $this->db->where('id',$classid->class_id);
+                              // $this->db->query("select class_id from exam_info join exam_max_subject on exam_max_subject = exam_max_id where exam_max_subject.class")
+                                       
+                                           $this->db->where('id',$class_id);
                                            $classname=$this->db->get('class_info');
                                             //print_r($classid->class_id);exit();
                                             ?>
@@ -72,7 +72,7 @@
                                   $secname = $this->db->get("class_section")->row()->section;
                                   ?>
                                 <span style="text-transform: uppercase;">Class: <?php  echo $classdf->class_name."-".$secname; ?></span>
-                                 <?php } else { echo "something wrong please try again";  }?>
+                                <?php }?>
                             
                             </td>
                             <td >
