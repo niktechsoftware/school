@@ -72,7 +72,9 @@ Niktech software Solutions,niktechsoftware.com,schoolerp-niktech.in
                     $("#submit<?php echo $i;?>").click(function(){
                     	var marks = $("#upmark<?php echo $i;?>").val();
     					var rowid= $("#rowid<?php echo $i;?>").val();
+    					//alert(rowid);
     				if(marks!=""){
+    				    //alert(marks);
     					$.post("<?php echo site_url("index.php/examControllers/updateSingeMarks") ?>",{marks : marks, rowid : rowid}, function(data){
     						$("#submit<?php echo $i;?>").val(data);
     						alert(" Updated Marks Successfully!!!!! ");

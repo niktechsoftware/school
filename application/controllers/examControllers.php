@@ -32,11 +32,7 @@ class examControllers extends CI_Controller
 	 $this->db->where("username",$stu);
 	 $studentDetails = $this->db->get("student_info");
 	 if($studentDetails->num_rows()>0){
-	     
-	    
-		
-		
-        $class_id=$this->input->post("class_id");
+     $class_id=$this->input->post("class_id");
      $subjectid=$this->input->post("subjectid");
      $fsd=$this->input->post("fsd");
      $exam_id=$this->input->post("exam_id");
@@ -736,6 +732,8 @@ function defineExam1(){
 		$data['school_code'] = $school_code;
 		$this->load->model("examModel");
 		$result=$this->examModel->getExamMarks($data3);
+	/*	print_r($result->result());
+		exit();*/
 		$data['dum'] = $result->result();
 		$this->load->view("ajax/examResult",$data);
 	}

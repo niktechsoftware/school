@@ -490,7 +490,7 @@ return $query1;
 	    $exam_id=$data3['exam_id'];
 	    $class_id=$data3['class_id'];
 	    $subject_id=$data3['subject_id'];
-		$stur = $this->db->query("select * from exam_info join exam_max_subject on exam_info.exam_max_id = exam_max_subject.id where  exam_max_subject.class_id='$class_id' and exam_max_subject.subject_id='$subject_id' and exam_max_subject.exam_id ='$exam_id'"); 
+		$stur = $this->db->query("select exam_info.stu_id,exam_info.id,exam_info.Attendance, exam_info.Attendance ,exam_info.exam_max_id , exam_max_subject.max_m , exam_info.marks from exam_info join exam_max_subject on exam_info.exam_max_id = exam_max_subject.id where  exam_max_subject.class_id='$class_id' and exam_max_subject.subject_id='$subject_id' and exam_max_subject.exam_id ='$exam_id'"); 
 		return $stur;
 	
 	}
